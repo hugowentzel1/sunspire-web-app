@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useSearchParams, useRouter } from 'next/navigation';
-
 import { TenantProvider, useTenant } from '@/components/TenantProvider';
 import { LeadModal } from '@/components/LeadModal';
 import { SolarEstimate } from '@/lib/estimate';
@@ -15,19 +14,27 @@ function ReportContent() {
   const { tenant, loading: tenantLoading } = useTenant();
   const [estimate, setEstimate] = useState<SolarEstimate | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   const [showLeadModal, setShowLeadModal] = useState(false);
-
 
   useEffect(() => {
     const address = searchParams.get('address');
-    const lat = parseFloat(searchParams.get('lat') || '40.7128');
-    const lng = parseFloat(searchParams.get('lng') || '-74.0060');
+    const lat = parseFloat(searchParams.get('lat') || '');
+    const lng = parseFloat(searchParams.get('lng') || '');
     const placeId = searchParams.get('placeId');
+
+    // Validate coordinates
+    if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
+      setError('Missing or invalid coordinates.');
+      setIsLoading(false);
+      return;
+    }
 
     if (address && lat && lng) {
       // Call the new estimate API
       fetchEstimate(address, lat, lng, placeId);
     } else {
+      setError('Missing address or coordinates.');
       setIsLoading(false);
     }
   }, [searchParams]);
@@ -61,6 +68,8 @@ function ReportContent() {
       setEstimate(data.estimate);
     } catch (error) {
       console.error('Error fetching estimate:', error);
+      setError(error instanceof Error ? error.message : 'Unknown error occurred');
+      
       // Fallback to basic estimate if API fails
       const fallbackEstimate = {
         id: Date.now().toString(),
@@ -126,6 +135,25 @@ function ReportContent() {
         <div className="text-center space-y-6">
           <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
           <p className="text-xl font-semibold text-gray-700">Generating your solar intelligence report...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter flex items-center justify-center">
+        <div className="text-center space-y-6">
+          <div className="m-4 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700 max-w-md">
+            <div className="font-semibold mb-2">Error Loading Report</div>
+            <div>{error}</div>
+            <button
+              onClick={() => router.push('/')}
+              className="mt-4 px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-2xl font-semibold hover:shadow-lg transition-all duration-200"
+            >
+              Back to Home
+            </button>
+          </div>
         </div>
       </div>
     );

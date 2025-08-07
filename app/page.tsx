@@ -3,15 +3,15 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import AddressAutocomplete from '@/components/AddressAutocomplete';
+import dynamic from 'next/dynamic';
 import { TenantProvider, useTenant } from '@/components/TenantProvider';
-
 import { PlaceResult } from '@/lib/calc';
+
+const AddressAutocomplete = dynamic(() => import('@/components/AddressAutocomplete'), { ssr: false });
 
 function HomeContent() {
   const [address, setAddress] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-
   const router = useRouter();
   const { tenant, loading: tenantLoading } = useTenant();
 

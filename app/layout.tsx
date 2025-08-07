@@ -1,12 +1,13 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
+import AppErrorBoundary from '@/components/AppErrorBoundary'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Sunrise Web App',
-  description: 'Solar energy analysis and lead capture application',
+  title: 'Sunspire - Solar Intelligence',
+  description: 'AI-powered solar analysis and installer matching',
 }
 
 export default function RootLayout({
@@ -16,7 +17,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <AppErrorBoundary>{children}</AppErrorBoundary>
+      </body>
     </html>
   )
 }
