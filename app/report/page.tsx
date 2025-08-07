@@ -3,10 +3,11 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useSearchParams, useRouter } from 'next/navigation';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
+
 import { TenantProvider, useTenant } from '@/components/TenantProvider';
 import { LeadModal } from '@/components/LeadModal';
-import { calculateSolarEstimate, SolarEstimate, methodology } from '@/lib/calc';
+import { SolarEstimate } from '@/lib/estimate';
+import EstimateChart from '@/components/EstimateChart';
 
 function ReportContent() {
   const searchParams = useSearchParams();
@@ -15,51 +16,79 @@ function ReportContent() {
   const [estimate, setEstimate] = useState<SolarEstimate | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [showLeadModal, setShowLeadModal] = useState(false);
-  const [showMethodology, setShowMethodology] = useState(false);
+
 
   useEffect(() => {
     const address = searchParams.get('address');
     const lat = parseFloat(searchParams.get('lat') || '40.7128');
     const lng = parseFloat(searchParams.get('lng') || '-74.0060');
+    const placeId = searchParams.get('placeId');
 
-    if (address) {
-      // Calculate solar estimate
-      const solarEstimate = calculateSolarEstimate({ lat, lng }, address);
-      setEstimate(solarEstimate);
+    if (address && lat && lng) {
+      // Call the new estimate API
+      fetchEstimate(address, lat, lng, placeId);
+    } else {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   }, [searchParams]);
 
-  // Generate 25-year savings data for chart
-  const generateChartData = (estimate: SolarEstimate) => {
-    const data = [];
-    let cumulativeSavings = 0;
-    let degradationFactor = 1.0;
-    let currentRate = estimate.electricityRate;
-    
-    for (let year = 1; year <= 25; year++) {
-      const yearlyProduction = estimate.annualProductionKWh * degradationFactor;
-      const yearlySavings = yearlyProduction * currentRate;
-      cumulativeSavings += yearlySavings;
-      
-      data.push({
-        year,
-        yearlySavings: Math.round(yearlySavings),
-        cumulativeSavings: Math.round(cumulativeSavings),
-        netSavings: Math.round(cumulativeSavings - estimate.estimatedCost)
+  const fetchEstimate = async (address: string, lat: number, lng: number, placeId?: string | null) => {
+    try {
+      const params = new URLSearchParams({
+        address,
+        lat: lat.toString(),
+        lng: lng.toString(),
+        ...(placeId && { placeId })
       });
+
+      const response = await fetch(`/api/estimate?${params}`);
       
-      // Panel degradation: 0.5% per year after year 1
-      if (year > 1) {
-        degradationFactor *= 0.995;
+      if (!response.ok) {
+        throw new Error('Failed to fetch estimate');
       }
-      
-      // Electricity rate increase: 2.5% per year
-      currentRate *= 1.025;
+
+      const data = await response.json();
+      setEstimate(data.estimate);
+    } catch (error) {
+      console.error('Error fetching estimate:', error);
+      // Fallback to basic estimate if API fails
+      setEstimate({
+        id: Date.now().toString(),
+        address,
+        coordinates: { lat, lng },
+        date: new Date(),
+        systemSizeKW: 8.5,
+        tilt: 20,
+        azimuth: 180,
+        losses: 14,
+        annualProductionKWh: 12000,
+        monthlyProduction: Array(12).fill(1000),
+        solarIrradiance: 4.5,
+        grossCost: 25500,
+        netCostAfterITC: 17850,
+        year1Savings: 1680,
+        paybackYear: 11,
+        npv25Year: 25000,
+        co2OffsetPerYear: 10200,
+        utilityRate: 0.14,
+        utilityRateSource: 'Static',
+        assumptions: {
+          itcPercentage: 0.30,
+          costPerWatt: 3.00,
+          degradationRate: 0.005,
+          oandmPerKWYear: 22,
+          electricityRateIncrease: 0.025,
+          discountRate: 0.07
+        },
+        cashflowProjection: []
+      });
+    } finally {
+      setIsLoading(false);
     }
-    
-    return data;
   };
+
+  // Use the cashflow projection from the estimate
+  const chartData = estimate?.cashflowProjection || [];
 
   if (tenantLoading || !tenant) {
     return (
@@ -126,13 +155,7 @@ function ReportContent() {
             </div>
 
             <div className="flex items-center space-x-4">
-              <motion.button
-                onClick={() => setShowMethodology(true)}
-                className="px-4 py-2 text-gray-600 hover:text-orange-500 transition-colors font-medium"
-                whileHover={{ scale: 1.05 }}
-              >
-                How We Calculate
-              </motion.button>
+
               <motion.button
                 onClick={() => router.push('/')}
                 className="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-2xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
@@ -207,67 +230,31 @@ function ReportContent() {
               <div className="w-16 h-16 mx-auto bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mb-4">
                 <span className="text-2xl">💰</span>
               </div>
-              <div className="text-3xl font-black text-gray-900 mb-2">${estimate.estimatedCost.toLocaleString()}</div>
-              <div className="text-gray-600 font-semibold">Estimated Cost</div>
+                          <div className="text-3xl font-black text-gray-900 mb-2">${estimate.netCostAfterITC.toLocaleString()}</div>
+            <div className="text-gray-600 font-semibold">Net Cost (After ITC)</div>
             </div>
 
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
               <div className="w-16 h-16 mx-auto bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-4">
                 <span className="text-2xl">📈</span>
               </div>
-              <div className="text-3xl font-black text-gray-900 mb-2">${estimate.estimatedSavings.toLocaleString()}</div>
-              <div className="text-gray-600 font-semibold">Annual Savings</div>
+                          <div className="text-3xl font-black text-gray-900 mb-2">${estimate.year1Savings.toLocaleString()}</div>
+            <div className="text-gray-600 font-semibold">Year 1 Savings</div>
             </div>
           </motion.div>
 
-          {/* 25-Year Savings Chart */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50"
-          >
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">25-Year Savings Projection</h2>
-            <div className="h-80">
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
-                  <XAxis 
-                    dataKey="year" 
-                    stroke="#6B7280"
-                    tick={{ fontSize: 12 }}
-                  />
-                  <YAxis 
-                    stroke="#6B7280"
-                    tick={{ fontSize: 12 }}
-                    tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
-                  />
-                  <Tooltip 
-                    formatter={(value: any) => [`$${value.toLocaleString()}`, 'Net Savings']}
-                    labelFormatter={(label) => `Year ${label}`}
-                  />
-                  <Line 
-                    type="monotone" 
-                    dataKey="netSavings" 
-                    stroke="#FFA63D" 
-                    strokeWidth={3}
-                    dot={{ fill: '#FFA63D', strokeWidth: 2, r: 4 }}
-                    activeDot={{ r: 6, stroke: '#FFA63D', strokeWidth: 2 }}
-                  />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-            <p className="text-sm text-gray-500 mt-4 text-center">
-              Net savings after accounting for system cost, panel degradation, and electricity rate increases
-            </p>
-          </motion.div>
+          {/* 25-Year Cashflow Chart */}
+          <EstimateChart 
+            cashflowData={chartData}
+            netCostAfterITC={estimate.netCostAfterITC}
+          />
 
           {/* Detailed Analysis */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.8 }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+            className="grid grid-cols-1 lg:grid-cols-3 gap-8"
           >
             {/* Financial Analysis */}
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50">
@@ -283,11 +270,11 @@ function ReportContent() {
                 </div>
                 <div className="flex justify-between items-center py-4 border-b border-gray-200">
                   <span className="text-gray-600">ROI</span>
-                  <span className="font-bold text-gray-900">{Math.round(((estimate.npv25Year + estimate.estimatedCost) / estimate.estimatedCost) * 100)}%</span>
+                  <span className="font-bold text-gray-900">{Math.round(((estimate.npv25Year + estimate.netCostAfterITC) / estimate.netCostAfterITC) * 100)}%</span>
                 </div>
                 <div className="flex justify-between items-center py-4">
                   <span className="text-gray-600">Electricity Rate</span>
-                  <span className="font-bold text-gray-900">${estimate.electricityRate}/kWh</span>
+                  <span className="font-bold text-gray-900">${estimate.utilityRate}/kWh ({estimate.utilityRateSource})</span>
                 </div>
               </div>
             </div>
@@ -305,12 +292,43 @@ function ReportContent() {
                   <span className="font-bold text-gray-900">{estimate.solarIrradiance} kWh/m²/day</span>
                 </div>
                 <div className="flex justify-between items-center py-4 border-b border-gray-200">
-                  <span className="text-gray-600">Region</span>
-                  <span className="font-bold text-gray-900">{estimate.region}</span>
+                  <span className="text-gray-600">System Tilt</span>
+                  <span className="font-bold text-gray-900">{estimate.tilt}°</span>
                 </div>
                 <div className="flex justify-between items-center py-4">
-                  <span className="text-gray-600">System Efficiency</span>
-                  <span className="font-bold text-gray-900">75%</span>
+                  <span className="text-gray-600">System Losses</span>
+                  <span className="font-bold text-gray-900">{estimate.losses}%</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Assumptions Panel */}
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Calculation Assumptions</h2>
+              <div className="space-y-6">
+                <div className="flex justify-between items-center py-4 border-b border-gray-200">
+                  <span className="text-gray-600">Federal Tax Credit (ITC)</span>
+                  <span className="font-bold text-gray-900">{(estimate.assumptions.itcPercentage * 100).toFixed(0)}%</span>
+                </div>
+                <div className="flex justify-between items-center py-4 border-b border-gray-200">
+                  <span className="text-gray-600">Cost per Watt</span>
+                  <span className="font-bold text-gray-900">${estimate.assumptions.costPerWatt}</span>
+                </div>
+                <div className="flex justify-between items-center py-4 border-b border-gray-200">
+                  <span className="text-gray-600">Panel Degradation</span>
+                  <span className="font-bold text-gray-900">{(estimate.assumptions.degradationRate * 100).toFixed(1)}%/year</span>
+                </div>
+                <div className="flex justify-between items-center py-4 border-b border-gray-200">
+                  <span className="text-gray-600">O&M Cost</span>
+                  <span className="font-bold text-gray-900">${estimate.assumptions.oandmPerKWYear}/kW/year</span>
+                </div>
+                <div className="flex justify-between items-center py-4 border-b border-gray-200">
+                  <span className="text-gray-600">Rate Increase</span>
+                  <span className="font-bold text-gray-900">{(estimate.assumptions.electricityRateIncrease * 100).toFixed(1)}%/year</span>
+                </div>
+                <div className="flex justify-between items-center py-4">
+                  <span className="text-gray-600">Discount Rate</span>
+                  <span className="font-bold text-gray-900">{(estimate.assumptions.discountRate * 100).toFixed(0)}%</span>
                 </div>
               </div>
             </div>
@@ -349,51 +367,7 @@ function ReportContent() {
         />
       )}
 
-      {/* Methodology Modal */}
-      {showMethodology && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
-          <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={() => setShowMethodology(false)} />
-          <div className="relative w-full max-w-2xl bg-white rounded-3xl shadow-2xl p-8 max-h-[80vh] overflow-y-auto">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">{methodology.title}</h2>
-            <p className="text-gray-600 mb-6">{methodology.description}</p>
-            
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Data Sources</h3>
-                <ul className="space-y-2">
-                  {methodology.sources.map((source, index) => (
-                    <li key={index} className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-orange-400 rounded-full"></div>
-                      <span className="text-gray-600">{source}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              
-              <div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">Calculation Factors</h3>
-                <ul className="space-y-2">
-                  {methodology.factors.map((factor, index) => (
-                    <li key={index} className="flex items-center space-x-2">
-                      <div className="w-2 h-2 bg-blue-400 rounded-full"></div>
-                      <span className="text-gray-600">{factor}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-            
-            <button
-              onClick={() => setShowMethodology(false)}
-              className="absolute top-4 right-4 p-2 text-gray-400 hover:text-gray-600 transition-colors"
-            >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      )}
+
     </div>
   );
 }
