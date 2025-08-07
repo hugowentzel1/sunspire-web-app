@@ -16,7 +16,7 @@ export interface LeadData {
 
 export async function storeLead(leadData: LeadData): Promise<{ success: boolean; error?: string }> {
   try {
-    const response = await fetch(`https://api.airtable.com/v0/${process.env.AIRTABLE_BASE_ID}/Leads`, {
+    const response = await fetch(`https://api.airtable.com/v0/${process.env.AIRTABLE_BASE_ID}/Table%201`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${process.env.AIRTABLE_API_KEY}`,
@@ -25,24 +25,28 @@ export async function storeLead(leadData: LeadData): Promise<{ success: boolean;
       body: JSON.stringify({
         fields: {
           'Name': leadData.name,
-          'Email': leadData.email,
-          'Phone': leadData.phone || '',
-          'Address': leadData.address,
-          'Notes': leadData.notes || '',
-          'Tenant Slug': leadData.tenantSlug,
-          'System Size (kW)': leadData.systemSizeKW,
-          'Estimated Cost': leadData.estimatedCost,
-          'Estimated Savings': leadData.estimatedSavings,
-          'Payback Period (Years)': leadData.paybackPeriodYears,
-          '25-Year NPV': leadData.npv25Year,
-          'CO2 Offset/Year': leadData.co2OffsetPerYear,
-          'Created At': leadData.createdAt,
+          'Notes': `Email: ${leadData.email}
+Phone: ${leadData.phone || 'Not provided'}
+Address: ${leadData.address}
+System Size: ${leadData.systemSizeKW} kW
+Estimated Cost: $${leadData.estimatedCost.toLocaleString()}
+Year 1 Savings: $${leadData.estimatedSavings.toLocaleString()}
+Payback: ${leadData.paybackPeriodYears} years
+25-Year Value: $${leadData.npv25Year.toLocaleString()}
+CO2 Offset: ${leadData.co2OffsetPerYear.toLocaleString()} lbs/year
+Tenant: ${leadData.tenantSlug}
+Created: ${leadData.createdAt}
+
+Additional Notes: ${leadData.notes || 'None'}`,
+          'Status': 'New Lead'
         }
       })
     });
 
     if (!response.ok) {
-      throw new Error(`Airtable API error: ${response.status}`);
+      const errorText = await response.text();
+      console.error('Airtable API Error Response:', errorText);
+      throw new Error(`Airtable API error: ${response.status} - ${errorText}`);
     }
 
     return { success: true };
