@@ -15,6 +15,8 @@ type Props = {
 export default function AddressAutocomplete({ value, onChange, onSelect, placeholder="Enter your address…", className="" }: Props){
   const key = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
   const [ready, setReady] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [preds, setPreds] = useState<google.maps.places.AutocompletePrediction[]>([]);
   const [active, setActive] = useState(-1);
   const svcRef = useRef<google.maps.places.AutocompleteService>();
@@ -22,17 +24,48 @@ export default function AddressAutocomplete({ value, onChange, onSelect, placeho
   const containerRef = useRef<HTMLDivElement>(null);
   const debounceRef = useRef<number>();
 
+  // Log the key for debugging
+  useEffect(() => {
+    console.log('Google Maps API Key available:', !!key);
+    if (!key) {
+      setError('Google Maps API key is missing');
+      return;
+    }
+  }, [key]);
+
   useEffect(() => {
     if (!key) return;
+    
+    setLoading(true);
+    setError(null);
     let mounted = true;
-    const loader = new Loader({ apiKey: key, version: "weekly", libraries: ["places"] });
+    
+    const loader = new Loader({ 
+      apiKey: key, 
+      version: "weekly", 
+      libraries: ["places"] 
+    });
+    
     loader.load().then(() => {
       if (!mounted) return;
+      console.log('Google Maps API loaded successfully');
+      
       svcRef.current = new google.maps.places.AutocompleteService();
       detailsRef.current = new google.maps.places.PlacesService(document.createElement("div"));
+      
+      console.info("Places ready");
       setReady(true);
-    }).catch((e) => { console.error("Places load failed", e); });
-    return () => { mounted = false; if (debounceRef.current) window.clearTimeout(debounceRef.current); };
+      setLoading(false);
+    }).catch((e) => { 
+      console.error("Places load failed", e);
+      setError('Failed to load Google Places API. Check API key and referrers.');
+      setLoading(false);
+    });
+    
+    return () => { 
+      mounted = false; 
+      if (debounceRef.current) window.clearTimeout(debounceRef.current); 
+    };
   }, [key]);
 
   useEffect(() => {
@@ -90,6 +123,20 @@ export default function AddressAutocomplete({ value, onChange, onSelect, placeho
         className="w-full rounded-2xl border border-orange-200 bg-white/70 px-4 py-3 text-[15px] shadow-sm outline-none focus:ring-2 focus:ring-orange-300"
         aria-autocomplete="list" aria-expanded={preds.length > 0}
       />
+      
+      {/* Status indicator */}
+      <div className="mt-2 text-xs">
+        {loading && <span className="text-blue-600">🔄 Loading Google Places...</span>}
+        {ready && !error && <span className="text-green-600">✅ Google Places loaded</span>}
+        {error && <span className="text-red-600">⚠️ {error}</span>}
+        {ready && !loading && !error && value.length > 0 && value.length < 3 && (
+          <span className="text-gray-500">Type 3+ letters for suggestions</span>
+        )}
+        {ready && !loading && !error && value.length >= 3 && preds.length === 0 && (
+          <span className="text-gray-500">No suggestions—try 3+ letters or check API key</span>
+        )}
+      </div>
+      
       {preds.length > 0 && (
         <ul className="absolute z-50 mt-2 max-h-64 w-full overflow-auto rounded-xl border border-slate-200 bg-white shadow-lg">
           {preds.map((p, i) => (

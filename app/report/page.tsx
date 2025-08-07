@@ -7,6 +7,7 @@ import { TenantProvider, useTenant } from '@/components/TenantProvider';
 import { LeadModal } from '@/components/LeadModal';
 import { SolarEstimate } from '@/lib/estimate';
 import EstimateChart from '@/components/EstimateChart';
+import { formatDateSafe } from '@/lib/format';
 
 function ReportContent() {
   const searchParams = useSearchParams();
@@ -245,7 +246,7 @@ function ReportContent() {
               <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
                 <span>Data Source: {estimate.utilityRateSource}</span>
                 <span>•</span>
-                <span>Generated on {estimate.date.toLocaleDateString()}</span>
+                <span>Generated on {formatDateSafe(estimate.date)}</span>
               </div>
             </div>
           </div>
