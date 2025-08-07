@@ -5,15 +5,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import AddressAutocomplete from '@/components/AddressAutocomplete';
 import { TenantProvider, useTenant } from '@/components/TenantProvider';
-import { LeadModal } from '@/components/LeadModal';
-import { calculateSolarEstimate, SolarEstimate } from '@/lib/calc';
+
 import { PlaceResult } from '@/lib/calc';
 
 function HomeContent() {
   const [address, setAddress] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [showLeadModal, setShowLeadModal] = useState(false);
-  const [currentEstimate, setCurrentEstimate] = useState<SolarEstimate | null>(null);
+
   const router = useRouter();
   const { tenant, loading: tenantLoading } = useTenant();
 
@@ -33,24 +31,14 @@ function HomeContent() {
     if (!address.trim()) return;
     setIsLoading(true);
     
-    // Calculate estimate
-    const estimate = calculateSolarEstimate(
-      { lat: 40.7128, lng: -74.0060 }, // Default coordinates
-      address
-    );
-    setCurrentEstimate(estimate);
-    
-    // Simulate loading and navigate to results
-    setTimeout(() => {
-      setIsLoading(false);
-      const q = new URLSearchParams({
-        address: address,
-        lat: '40.7128',
-        lng: '-74.0060',
-        placeId: 'demo',
-      });
-      router.push(`/report?${q.toString()}`);
-    }, 2000);
+    // Navigate to report page which will handle the estimation
+    const q = new URLSearchParams({
+      address: address,
+      lat: '40.7128',
+      lng: '-74.0060',
+      placeId: 'demo',
+    });
+    router.push(`/report?${q.toString()}`);
   };
 
   if (tenantLoading || !tenant) {
@@ -304,15 +292,7 @@ function HomeContent() {
         </motion.div>
       </main>
 
-      {/* Lead Modal */}
-      {currentEstimate && (
-        <LeadModal
-          isOpen={showLeadModal}
-          onClose={() => setShowLeadModal(false)}
-          estimate={currentEstimate}
-          address={address}
-        />
-      )}
+
     </div>
   );
 }

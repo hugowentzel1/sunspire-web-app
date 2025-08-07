@@ -128,7 +128,7 @@ function ReportContent() {
     );
   }
 
-  const chartData = generateChartData(estimate);
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter">
@@ -196,7 +196,7 @@ function ReportContent() {
                 Comprehensive analysis for your property at {estimate.address}
               </p>
               <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
-                <span>Confidence Range: {estimate.confidenceRange}</span>
+                <span>Data Source: {estimate.utilityRateSource}</span>
                 <span>•</span>
                 <span>Generated on {estimate.date.toLocaleDateString()}</span>
               </div>
@@ -262,7 +262,7 @@ function ReportContent() {
               <div className="space-y-6">
                 <div className="flex justify-between items-center py-4 border-b border-gray-200">
                   <span className="text-gray-600">Payback Period</span>
-                  <span className="font-bold text-gray-900">{estimate.paybackPeriodYears} years</span>
+                  <span className="font-bold text-gray-900">{estimate.paybackYear} years</span>
                 </div>
                 <div className="flex justify-between items-center py-4 border-b border-gray-200">
                   <span className="text-gray-600">25-Year NPV</span>

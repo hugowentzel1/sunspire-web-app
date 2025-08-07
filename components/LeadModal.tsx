@@ -6,7 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTenant } from './TenantProvider';
-import { SolarEstimate } from '@/lib/calc';
+import { SolarEstimate } from '@/lib/estimate';
 
 const leadFormSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -56,9 +56,9 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
           address,
           tenantSlug: tenant.slug,
           systemSizeKW: estimate.systemSizeKW,
-          estimatedCost: estimate.estimatedCost,
-          estimatedSavings: estimate.estimatedSavings,
-          paybackPeriodYears: estimate.paybackPeriodYears,
+          estimatedCost: estimate.netCostAfterITC,
+          estimatedSavings: estimate.year1Savings,
+          paybackPeriodYears: estimate.paybackYear,
           npv25Year: estimate.npv25Year,
           co2OffsetPerYear: estimate.co2OffsetPerYear,
         }),
@@ -136,8 +136,8 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
                   <h3 className="font-semibold text-gray-900 mb-2">Your Estimate Summary</h3>
                   <div className="text-sm text-gray-600 space-y-1">
                     <p>System Size: {estimate.systemSizeKW} kW</p>
-                    <p>Estimated Cost: ${estimate.estimatedCost.toLocaleString()}</p>
-                    <p>Annual Savings: ${estimate.estimatedSavings.toLocaleString()}</p>
+                    <p>Net Cost: ${estimate.netCostAfterITC.toLocaleString()}</p>
+                    <p>Year 1 Savings: ${estimate.year1Savings.toLocaleString()}</p>
                   </div>
                 </div>
               </div>

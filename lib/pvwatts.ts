@@ -92,8 +92,8 @@ export function getFallbackPVWattsData(params: PVWattsRequest): PVWattsResponse 
     outputs: {
       ac_monthly,
       ac_annual: Math.round(estimatedAnnualProduction),
-      solrad_monthly: monthlyDistribution.map(ratio => Math.round(solarIrradiance * ratio * 30, 1)),
-      solrad_annual: Math.round(solarIrradiance * 365, 1),
+      solrad_monthly: monthlyDistribution.map(ratio => Math.round(solarIrradiance * ratio * 30 * 10) / 10),
+      solrad_annual: Math.round(solarIrradiance * 365 * 10) / 10,
       dc_monthly: ac_monthly.map(ac => Math.round(ac / 0.75)),
       dc_annual: Math.round(estimatedAnnualProduction / 0.75)
     }
