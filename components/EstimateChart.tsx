@@ -29,12 +29,24 @@ interface EstimateChartProps {
 
 export default function EstimateChart({ cashflowData, netCostAfterITC, className = '' }: EstimateChartProps) {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     // Lazy load the chart
     const timer = setTimeout(() => setIsLoaded(true), 100);
     return () => clearTimeout(timer);
   }, []);
+
+  // Validate data
+  if (!cashflowData || cashflowData.length === 0) {
+    return (
+      <div className={`bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 ${className}`}>
+        <div className="text-center py-8">
+          <p className="text-gray-500">No chart data available</p>
+        </div>
+      </div>
+    );
+  }
 
   if (!isLoaded) {
     return (
@@ -53,7 +65,11 @@ export default function EstimateChart({ cashflowData, netCostAfterITC, className
     netCashflowFormatted: `$${(item.netCashflow / 1000).toFixed(1)}k`,
     savingsFormatted: `$${(item.savings / 1000).toFixed(1)}k`,
     cumulativeFormatted: `$${(item.cumulativeSavings / 1000).toFixed(1)}k`
-  }));
+  })).filter(item => 
+    typeof item.year === 'number' && 
+    typeof item.netCashflow === 'number' && 
+    typeof item.cumulativeSavings === 'number'
+  );
 
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {

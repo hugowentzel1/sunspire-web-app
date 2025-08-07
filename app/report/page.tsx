@@ -34,6 +34,8 @@ function ReportContent() {
 
   const fetchEstimate = async (address: string, lat: number, lng: number, placeId?: string | null) => {
     try {
+      console.log('Fetching estimate for:', { address, lat, lng, placeId });
+      
       const params = new URLSearchParams({
         address,
         lat: lat.toString(),
@@ -44,15 +46,23 @@ function ReportContent() {
       const response = await fetch(`/api/estimate?${params}`);
       
       if (!response.ok) {
-        throw new Error('Failed to fetch estimate');
+        const errorText = await response.text();
+        console.error('API response error:', response.status, errorText);
+        throw new Error(`Failed to fetch estimate: ${response.status}`);
       }
 
       const data = await response.json();
+      console.log('Estimate data received:', data);
+      
+      if (!data.estimate) {
+        throw new Error('No estimate data in response');
+      }
+      
       setEstimate(data.estimate);
     } catch (error) {
       console.error('Error fetching estimate:', error);
       // Fallback to basic estimate if API fails
-      setEstimate({
+      const fallbackEstimate = {
         id: Date.now().toString(),
         address,
         coordinates: { lat, lng },
@@ -80,8 +90,17 @@ function ReportContent() {
           electricityRateIncrease: 0.025,
           discountRate: 0.07
         },
-        cashflowProjection: []
-      });
+        cashflowProjection: Array.from({ length: 25 }, (_, i) => ({
+          year: i + 1,
+          production: Math.round(12000 * Math.pow(0.995, i)),
+          savings: Math.round(12000 * Math.pow(0.995, i) * 0.14),
+          cumulativeSavings: Math.round(12000 * 0.14 * (i + 1)),
+          netCashflow: Math.round(12000 * 0.14 * (i + 1) - 17850)
+        }))
+      };
+      
+      console.log('Using fallback estimate:', fallbackEstimate);
+      setEstimate(fallbackEstimate);
     } finally {
       setIsLoading(false);
     }
