@@ -70,7 +70,7 @@ export default function AddressAutocomplete({ value, onChange, onSelect, placeho
 
   useEffect(() => {
     if (!ready || !svcRef.current) return;
-    if (!value || value.length < 3) { setPreds([]); return; }
+    if (!value || value.length < 1) { setPreds([]); return; }
     if (debounceRef.current) window.clearTimeout(debounceRef.current);
     debounceRef.current = window.setTimeout(() => {
       svcRef.current!.getPlacePredictions({ input: value, types: ["address"] }, (p) => setPreds(p || []));
@@ -124,18 +124,7 @@ export default function AddressAutocomplete({ value, onChange, onSelect, placeho
         aria-autocomplete="list" aria-expanded={preds.length > 0}
       />
       
-      {/* Status indicator */}
-      <div className="mt-2 text-xs">
-        {loading && <span className="text-blue-600">🔄 Loading Google Places...</span>}
-        {ready && !error && <span className="text-green-600">✅ Google Places loaded</span>}
-        {error && <span className="text-red-600">⚠️ {error}</span>}
-        {ready && !loading && !error && value.length > 0 && value.length < 3 && (
-          <span className="text-gray-500">Type 3+ letters for suggestions</span>
-        )}
-        {ready && !loading && !error && value.length >= 3 && preds.length === 0 && (
-          <span className="text-gray-500">No suggestions—try 3+ letters or check API key</span>
-        )}
-      </div>
+
       
       {preds.length > 0 && (
         <ul className="absolute z-50 mt-2 max-h-64 w-full overflow-auto rounded-xl border border-slate-200 bg-white shadow-lg">
