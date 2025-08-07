@@ -11,34 +11,40 @@ const AddressAutocomplete = dynamic(() => import('@/components/AddressAutocomple
 
 function HomeContent() {
   const [address, setAddress] = useState('');
+  const [selectedPlace, setSelectedPlace] = useState<PlaceResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const { tenant, loading: tenantLoading } = useTenant();
 
   const handleAddressSelect = (placeResult: PlaceResult) => {
     setAddress(placeResult.formattedAddress);
-    // Navigate to report with query params
-    const q = new URLSearchParams({
-      address: placeResult.formattedAddress,
-      lat: String(placeResult.lat),
-      lng: String(placeResult.lng),
-      placeId: placeResult.placeId,
-    });
-    router.push(`/report?${q.toString()}`);
+    // Store the place result for when user clicks Generate button
+    setSelectedPlace(placeResult);
   };
 
   const handleGenerateEstimate = () => {
     if (!address.trim()) return;
     setIsLoading(true);
     
-    // Navigate to report page which will handle the estimation
-    const q = new URLSearchParams({
-      address: address,
-      lat: '40.7128',
-      lng: '-74.0060',
-      placeId: 'demo',
-    });
-    router.push(`/report?${q.toString()}`);
+    // Use selected place data if available, otherwise use typed address with default coords
+    if (selectedPlace) {
+      const q = new URLSearchParams({
+        address: selectedPlace.formattedAddress,
+        lat: String(selectedPlace.lat),
+        lng: String(selectedPlace.lng),
+        placeId: selectedPlace.placeId,
+      });
+      router.push(`/report?${q.toString()}`);
+    } else {
+      // Fallback to typed address with default coordinates
+      const q = new URLSearchParams({
+        address: address,
+        lat: '40.7128',
+        lng: '-74.0060',
+        placeId: 'demo',
+      });
+      router.push(`/report?${q.toString()}`);
+    }
   };
 
   if (tenantLoading || !tenant) {

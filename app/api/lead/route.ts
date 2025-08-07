@@ -7,7 +7,7 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     
     // Validate required fields
-    const { name, email, address, tenantSlug, systemSizeKW, estimatedCost, estimatedSavings, paybackPeriodYears, npv25Year, co2OffsetPerYear } = body;
+    const { name, email, address, tenantSlug, systemSizeKW, netCostAfterITC, year1Savings, paybackYear, npv25Year, co2OffsetPerYear } = body;
     
     if (!name || !email || !address || !tenantSlug) {
       return NextResponse.json(
@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Prepare lead data
+    // Prepare lead data with updated field names
     const leadData: LeadData = {
       name,
       email,
@@ -25,9 +25,9 @@ export async function POST(request: NextRequest) {
       notes: body.notes || '',
       tenantSlug,
       systemSizeKW,
-      estimatedCost,
-      estimatedSavings,
-      paybackPeriodYears,
+      estimatedCost: netCostAfterITC, // Map new field to old for Airtable compatibility
+      estimatedSavings: year1Savings, // Map new field to old for Airtable compatibility
+      paybackPeriodYears: paybackYear, // Map new field to old for Airtable compatibility
       npv25Year,
       co2OffsetPerYear,
       createdAt: new Date().toISOString(),
@@ -62,8 +62,8 @@ export async function POST(request: NextRequest) {
           phone: body.phone,
           address,
           systemSizeKW,
-          estimatedCost,
-          estimatedSavings,
+          estimatedCost: netCostAfterITC,
+          estimatedSavings: year1Savings,
         });
 
         await sendEmail({
@@ -82,8 +82,8 @@ export async function POST(request: NextRequest) {
           name,
           address,
           systemSizeKW,
-          estimatedCost,
-          estimatedSavings,
+          estimatedCost: netCostAfterITC,
+          estimatedSavings: year1Savings,
         });
 
         await sendEmail({

@@ -56,16 +56,17 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
           address,
           tenantSlug: tenant.slug,
           systemSizeKW: estimate.systemSizeKW,
-          estimatedCost: estimate.netCostAfterITC,
-          estimatedSavings: estimate.year1Savings,
-          paybackPeriodYears: estimate.paybackYear,
+          netCostAfterITC: estimate.netCostAfterITC,
+          year1Savings: estimate.year1Savings,
+          paybackYear: estimate.paybackYear,
           npv25Year: estimate.npv25Year,
           co2OffsetPerYear: estimate.co2OffsetPerYear,
         }),
       });
 
       if (!response.ok) {
-        throw new Error('Failed to submit lead');
+        const errorData = await response.text();
+        throw new Error(errorData || 'Failed to submit lead');
       }
 
       setIsSuccess(true);

@@ -59,17 +59,16 @@ export default function EstimateChart({ cashflowData, netCostAfterITC, className
     );
   }
 
-  // Format data for the chart
-  const chartData = cashflowData.map(item => ({
-    ...item,
-    netCashflowFormatted: `$${(item.netCashflow / 1000).toFixed(1)}k`,
-    savingsFormatted: `$${(item.savings / 1000).toFixed(1)}k`,
-    cumulativeFormatted: `$${(item.cumulativeSavings / 1000).toFixed(1)}k`
-  })).filter(item => 
-    typeof item.year === 'number' && 
-    typeof item.netCashflow === 'number' && 
-    typeof item.cumulativeSavings === 'number'
-  );
+  // Simplify data for better understanding - show every 5 years
+  const simplifiedData = cashflowData
+    .filter((item, index) => index === 0 || (index + 1) % 5 === 0 || index === cashflowData.length - 1)
+    .map(item => ({
+      year: item.year,
+      totalSavings: item.cumulativeSavings,
+      totalSavingsFormatted: `$${Math.round(item.cumulativeSavings / 1000)}k`,
+      annualSavings: item.savings,
+      annualSavingsFormatted: `$${Math.round(item.savings / 1000)}k`
+    }));
 
   const CustomTooltip = ({ active, payload, label }: any) => {
     if (active && payload && payload.length) {
@@ -77,19 +76,11 @@ export default function EstimateChart({ cashflowData, netCostAfterITC, className
       return (
         <div className="bg-white p-4 rounded-lg shadow-lg border border-gray-200">
           <p className="font-semibold text-gray-900">Year {label}</p>
-          <p className="text-sm text-gray-600">
-            Production: {data.production.toLocaleString()} kWh
+          <p className="text-sm text-green-600 font-semibold">
+            Total Savings: {data.totalSavingsFormatted}
           </p>
           <p className="text-sm text-gray-600">
-            Annual Savings: {data.savingsFormatted}
-          </p>
-          <p className="text-sm text-gray-600">
-            Cumulative: {data.cumulativeFormatted}
-          </p>
-          <p className={`text-sm font-semibold ${
-            data.netCashflow >= 0 ? 'text-green-600' : 'text-red-600'
-          }`}>
-            Net Cashflow: {data.netCashflowFormatted}
+            Annual Savings: {data.annualSavingsFormatted}
           </p>
         </div>
       );
@@ -97,20 +88,23 @@ export default function EstimateChart({ cashflowData, netCostAfterITC, className
     return null;
   };
 
+  // Find payback year for visual indicator
+  const paybackYear = cashflowData.findIndex(item => item.netCashflow >= 0) + 1;
+
   return (
     <div className={`bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 ${className}`}>
       <div className="mb-6">
         <h3 className="text-xl font-bold text-gray-900 mb-2">
-          25-Year Cashflow Projection
+          Your Solar Savings Over Time
         </h3>
         <p className="text-gray-600 text-sm">
-          Shows your cumulative savings over 25 years, accounting for panel degradation and electricity rate increases
+          Simple view of how your solar investment pays off over 25 years
         </p>
       </div>
 
-      <div className="h-80">
+      <div className="h-64">
         <ResponsiveContainer width="100%" height="100%">
-          <AreaChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+          <AreaChart data={simplifiedData} margin={{ top: 20, right: 30, left: 40, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
             <XAxis 
               dataKey="year" 
@@ -118,92 +112,69 @@ export default function EstimateChart({ cashflowData, netCostAfterITC, className
               fontSize={12}
               tickLine={false}
               axisLine={false}
+              label={{ value: 'Years', position: 'insideBottom', offset: -5, style: { textAnchor: 'middle' } }}
             />
             <YAxis 
               stroke="#6b7280"
               fontSize={12}
               tickLine={false}
               axisLine={false}
-              tickFormatter={(value) => `$${(value / 1000).toFixed(0)}k`}
+              tickFormatter={(value) => `$${Math.round(value / 1000)}k`}
+              label={{ value: 'Total Savings', angle: -90, position: 'insideLeft', style: { textAnchor: 'middle' } }}
             />
             <Tooltip content={<CustomTooltip />} />
             
-            {/* Zero line */}
-            <Line
-              type="monotone"
-              dataKey={() => 0}
-              stroke="#d1d5db"
-              strokeWidth={1}
-              strokeDasharray="5 5"
-              dot={false}
-            />
-            
-            {/* Net cashflow area */}
+            {/* Total savings area - single clean line */}
             <Area
               type="monotone"
-              dataKey="netCashflow"
-              stroke="#3b82f6"
-              strokeWidth={2}
-              fill="url(#netCashflowGradient)"
-              fillOpacity={0.3}
-            />
-            
-            {/* Cumulative savings line */}
-            <Line
-              type="monotone"
-              dataKey="cumulativeSavings"
+              dataKey="totalSavings"
               stroke="#10b981"
-              strokeWidth={2}
-              dot={false}
+              strokeWidth={3}
+              fill="url(#savingsGradient)"
+              fillOpacity={0.4}
+              dot={{ fill: '#10b981', strokeWidth: 2, r: 4 }}
             />
           </AreaChart>
         </ResponsiveContainer>
       </div>
 
-      {/* Chart legend */}
-      <div className="mt-4 flex flex-wrap gap-4 text-sm">
-        <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 bg-blue-500 rounded"></div>
-          <span className="text-gray-700">Net Cashflow</span>
-        </div>
-        <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 bg-green-500 rounded"></div>
-          <span className="text-gray-700">Cumulative Savings</span>
-        </div>
-        <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 border border-gray-300 rounded"></div>
-          <span className="text-gray-700">Break-even Line</span>
-        </div>
-      </div>
-
-      {/* Key insights */}
-      <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="text-center p-3 bg-blue-50 rounded-lg">
-          <div className="text-2xl font-bold text-blue-600">
-            ${(netCostAfterITC / 1000).toFixed(1)}k
+      {/* Simplified insights */}
+      <div className="mt-6 grid grid-cols-3 gap-4">
+        <div className="text-center p-4 bg-orange-50 rounded-lg border border-orange-200">
+          <div className="text-xl font-bold text-orange-600">
+            ${Math.round(netCostAfterITC / 1000)}k
           </div>
-          <div className="text-xs text-gray-600">Net System Cost</div>
+          <div className="text-xs text-gray-600">Investment</div>
         </div>
-        <div className="text-center p-3 bg-green-50 rounded-lg">
-          <div className="text-2xl font-bold text-green-600">
-            ${(chartData[24]?.cumulativeSavings / 1000).toFixed(1)}k
+        <div className="text-center p-4 bg-blue-50 rounded-lg border border-blue-200">
+          <div className="text-xl font-bold text-blue-600">
+            {paybackYear} years
+          </div>
+          <div className="text-xs text-gray-600">Payback Time</div>
+        </div>
+        <div className="text-center p-4 bg-green-50 rounded-lg border border-green-200">
+          <div className="text-xl font-bold text-green-600">
+            ${Math.round(cashflowData[24]?.cumulativeSavings / 1000)}k
           </div>
           <div className="text-xs text-gray-600">25-Year Savings</div>
         </div>
-        <div className="text-center p-3 bg-purple-50 rounded-lg">
-          <div className="text-2xl font-bold text-purple-600">
-            ${(chartData[24]?.netCashflow / 1000).toFixed(1)}k
-          </div>
-          <div className="text-xs text-gray-600">Net Profit</div>
-        </div>
+      </div>
+
+      {/* Simple explanation */}
+      <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+        <p className="text-sm text-gray-700">
+          <span className="font-semibold">How to read this:</span> The green area shows your total savings growing over time. 
+          After {paybackYear} years, you'll have saved enough to cover your initial investment. 
+          By year 25, you'll have saved ${Math.round(cashflowData[24]?.cumulativeSavings / 1000)}k total.
+        </p>
       </div>
 
       {/* SVG definitions for gradients */}
       <svg width="0" height="0">
         <defs>
-          <linearGradient id="netCashflowGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.3}/>
-            <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.1}/>
+          <linearGradient id="savingsGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor="#10b981" stopOpacity={0.4}/>
+            <stop offset="95%" stopColor="#10b981" stopOpacity={0.1}/>
           </linearGradient>
         </defs>
       </svg>
