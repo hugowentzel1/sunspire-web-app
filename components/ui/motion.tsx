@@ -46,13 +46,11 @@ export function HoverLift({ children }: { children: ReactNode }) {
     <motion.div
       whileHover={{ 
         scale: 1.02,
+        boxShadow: "0 8px 30px rgba(15,23,42,0.12)",
         transition: { duration: 0.2 }
       }}
       style={{
         boxShadow: "0 4px 20px rgba(15,23,42,0.08)"
-      }}
-      whileHover={{
-        boxShadow: "0 8px 30px rgba(15,23,42,0.12)"
       }}
     >
       {children}
