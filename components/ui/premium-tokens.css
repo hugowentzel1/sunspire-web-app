@@ -1,0 +1,68 @@
+/* Premium Design Tokens - Lush & Expensive */
+:root {
+  --brand: #FF7A3D;
+  --brand-2: #FF4D6D;
+  --ink: #0E1016;
+  --muted: #667085;
+  --bg-1: #F7FAFF;
+  --bg-2: #EEF4FF;
+  --card: #FFFFFF;
+  --border: #E6E9F0;
+}
+
+/* Premium Background */
+.bg-app {
+  background: radial-gradient(1200px 800px at 20% -10%, rgba(255,255,255,.8) 10%, transparent 60%), 
+              linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
+}
+
+/* Premium Card */
+.card {
+  @apply rounded-[22px] bg-white border border-[var(--border)] shadow-[0_12px_60px_rgba(15,23,42,.07)];
+}
+
+/* Premium Button */
+.btn-primary {
+  @apply inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold text-white shadow-lg transition;
+  background-image: linear-gradient(90deg, var(--brand), var(--brand-2));
+}
+
+.btn-primary:hover {
+  @apply shadow-xl scale-[1.02];
+  background-image: linear-gradient(90deg, var(--brand-2), var(--brand));
+}
+
+/* Premium Chip */
+.chip {
+  @apply inline-flex items-center gap-2 rounded-full bg-white/70 border border-[var(--border)] px-3 py-1 text-sm text-[var(--muted)] backdrop-blur;
+}
+
+/* Premium Icon Chip */
+.icon-chip {
+  @apply h-10 w-10 rounded-2xl bg-gradient-to-br from-orange-100 to-pink-100 flex items-center justify-center;
+  color: var(--brand);
+}
+
+/* Glass Effect */
+.glass {
+  @apply bg-white/70 backdrop-blur-xl border border-white/60 shadow-[0_10px_40px_rgba(15,23,42,.06)];
+}
+
+/* Premium Typography */
+.text-premium {
+  @apply text-[var(--ink)] font-semibold;
+}
+
+.text-muted-premium {
+  @apply text-[var(--muted)] font-medium;
+}
+
+/* Premium Spacing */
+.space-premium {
+  @apply space-y-8;
+}
+
+/* Premium Container */
+.container-premium {
+  @apply max-w-7xl mx-auto px-6 py-12;
+}
