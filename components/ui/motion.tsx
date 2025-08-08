@@ -7,6 +7,7 @@ interface MotionProps {
   children: ReactNode;
   delay?: number;
   duration?: number;
+  className?: string;
 }
 
 export function FadeIn({ children, delay = 0, duration = 0.6 }: MotionProps) {
