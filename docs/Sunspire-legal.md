@@ -74,6 +74,218 @@ and
 
 ---
 
+## Terms of Use
+
+### 1. ACCEPTANCE OF TERMS
+
+By accessing and using the Sunspire Solar Estimation Platform ("Service"), you accept and agree to be bound by the terms and provision of this agreement.
+
+### 2. DESCRIPTION OF SERVICE
+
+The Service provides solar energy estimation tools using NREL PVWatts® calculations and Google Maps location services. Estimates are approximations and should not be considered as guarantees.
+
+### 3. USER OBLIGATIONS
+
+3.1 **Accurate Information**: Users must provide accurate address and contact information.
+
+3.2 **Permitted Use**: The Service may only be used for legitimate solar estimation purposes.
+
+3.3 **Prohibited Activities**: Users may not attempt to reverse engineer, copy, or distribute the Service.
+
+### 4. DISCLAIMERS
+
+4.1 **Estimates**: Solar estimates are approximations based on mathematical models and historical data.
+
+4.2 **No Guarantees**: Actual solar production may vary due to weather, equipment performance, and other factors.
+
+4.3 **Third-Party Data**: The Service relies on data from NREL PVWatts® and Google Maps, which may contain errors.
+
+### 5. LIMITATION OF LIABILITY
+
+Sunspire Technologies, Inc. shall not be liable for any damages arising from the use of estimates or recommendations provided by the Service.
+
+---
+
+## Privacy Policy
+
+### 1. INFORMATION WE COLLECT
+
+1.1 **Address Information**: We collect property addresses to generate solar estimates.
+
+1.2 **Contact Information**: We collect names, emails, and phone numbers when users request installer matching.
+
+1.3 **Usage Data**: We collect anonymous usage statistics to improve our service.
+
+### 2. HOW WE USE YOUR INFORMATION
+
+2.1 **Estimate Generation**: Address data is used with NREL PVWatts® to calculate solar potential.
+
+2.2 **Lead Routing**: Contact information is shared with verified solar installers for quote requests.
+
+2.3 **Service Improvement**: Anonymous data helps us improve accuracy and user experience.
+
+### 3. DATA SHARING
+
+3.1 **Solar Installers**: Contact information is shared only with verified installers when users request quotes.
+
+3.2 **Service Providers**: We use Google Maps for location services and Airtable for lead management.
+
+3.3 **Legal Requirements**: We may disclose information if required by law.
+
+### 4. DATA SECURITY
+
+We implement industry-standard security measures to protect your information.
+
+### 5. YOUR RIGHTS
+
+You have the right to access, correct, or delete your personal information.
+
+---
+
+## Data Processing Addendum (DPA)
+
+### 1. DEFINITIONS
+
+"Personal Data" means any information relating to an identified or identifiable natural person.
+
+"Processing" means any operation performed on Personal Data.
+
+### 2. DATA PROCESSING
+
+2.1 **Purpose**: Personal Data is processed solely for solar estimation and lead generation services.
+
+2.2 **Duration**: Data is retained for 24 months unless deletion is requested.
+
+2.3 **Security**: We implement appropriate technical and organizational measures.
+
+### 3. DATA TRANSFERS
+
+3.1 **NREL PVWatts®**: Address data is transmitted to NREL for solar calculations.
+
+3.2 **Google Maps**: Location data is processed by Google for mapping services.
+
+3.3 **Airtable**: Contact information is stored in Airtable for lead management.
+
+### 4. SUBPROCESSORS
+
+We use the following subprocessors:
+- National Renewable Energy Laboratory (NREL)
+- Google Maps Platform
+- Airtable (for lead management)
+
+### 5. DATA SUBJECT RIGHTS
+
+We support data subject rights including access, rectification, erasure, and portability.
+
+---
+
+## Methodology & Attribution
+
+### 1. SOLAR CALCULATIONS
+
+1.1 **PVWatts® Integration**: All solar production estimates use NREL PVWatts® v8 calculations.
+
+1.2 **System Assumptions**:
+   - Federal Tax Credit (ITC): 30%
+   - Cost per Watt: $3.00
+   - Panel Degradation: 0.5% per year
+   - O&M Costs: $22/kW/year
+   - Electricity Rate Escalation: 2.5% per year
+   - Discount Rate: 7%
+
+1.3 **Weather Data**: Uses TMY3 (Typical Meteorological Year) data from NREL.
+
+### 2. LOCATION SERVICES
+
+2.1 **Google Maps**: Address validation and geocoding provided by Google Maps Platform.
+
+2.2 **Compliance**: All Google Maps usage complies with Google Maps Platform Terms of Service.
+
+### 3. UTILITY RATES
+
+3.1 **Data Sources**: Utility rates are sourced from public utility commission databases.
+
+3.2 **Updates**: Rates are updated quarterly to maintain accuracy.
+
+### 4. REQUIRED ATTRIBUTIONS
+
+4.1 **PVWatts®**: "Estimates generated using NREL PVWatts® v8."
+
+4.2 **Google Maps**: "Mapping and location data © Google" (when applicable)
+
+---
+
+## CAN-SPAM Cold Email Checklist
+
+### 1. SENDER IDENTIFICATION
+
+- [ ] Clear sender name and company
+- [ ] Valid physical address
+- [ ] Unsubscribe mechanism
+- [ ] Accurate subject lines
+
+### 2. CONTENT REQUIREMENTS
+
+- [ ] No misleading subject lines
+- [ ] Clear commercial nature
+- [ ] Valid opt-out instructions
+- [ ] Company identification
+
+### 3. COMPLIANCE MEASURES
+
+- [ ] Honor unsubscribe requests within 10 days
+- [ ] Maintain suppression lists
+- [ ] Monitor complaint rates
+- [ ] Regular list cleaning
+
+### 4. BEST PRACTICES
+
+- [ ] Personalize content when possible
+- [ ] Provide value in each email
+- [ ] Test email deliverability
+- [ ] Monitor engagement metrics
+
+---
+
+## Pre-Sale Legal Checklist
+
+### 1. WHITE-LABEL AGREEMENT
+
+- [ ] License terms defined
+- [ ] Usage restrictions clear
+- [ ] Termination conditions
+- [ ] Payment terms established
+
+### 2. INTELLECTUAL PROPERTY
+
+- [ ] IP ownership clarified
+- [ ] Branding rights defined
+- [ ] Attribution requirements
+- [ ] Third-party licenses
+
+### 3. DATA COMPLIANCE
+
+- [ ] Privacy policy in place
+- [ ] Data processing agreement
+- [ ] GDPR compliance (if applicable)
+- [ ] CCPA compliance (if applicable)
+
+### 4. LIABILITY PROTECTION
+
+- [ ] Disclaimers included
+- [ ] Limitation of liability
+- [ ] Indemnification clauses
+- [ ] Insurance requirements
+
+### 5. OPERATIONAL REQUIREMENTS
+
+- [ ] Support terms defined
+- [ ] SLA requirements
+- [ ] Maintenance schedules
+- [ ] Training provisions
+
+---
+
 ## Order Form
 
 ### Sunspire White-Label License Order Form
@@ -113,3 +325,4 @@ and
 
 **Authorized Signature:** _________________________
 **Date:** _________________________
+

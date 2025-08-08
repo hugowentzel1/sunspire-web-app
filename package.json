@@ -16,6 +16,7 @@
     "@types/google.maps": "^3.58.1",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "docx": "^9.5.1",
     "framer-motion": "^12.23.12",
     "next": "14.0.0",
     "react": "^18",

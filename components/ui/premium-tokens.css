@@ -1,7 +1,7 @@
 /* Premium Design Tokens - Lush & Expensive */
 :root {
-  --brand: #FF7A3D;
-  --brand-2: #FF4D6D;
+  --brand: #FF7A3D; /* Will be overridden by tenant.colors.primary */
+  --brand-2: #FF4D6D; /* Will be overridden by tenant.colors.secondary */
   --ink: #0E1016;
   --muted: #667085;
   --bg-1: #F7FAFF;
