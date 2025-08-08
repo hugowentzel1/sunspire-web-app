@@ -1,14 +1,22 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { TenantProvider, useTenant } from '@/components/TenantProvider';
 import { LeadModal } from '@/components/LeadModal';
-import LegalFooter from '@/components/legal/LegalFooter';
 import { SolarEstimate } from '@/lib/estimate';
 import EstimateChart from '@/components/EstimateChart';
 import { formatDateSafe } from '@/lib/format';
+
+// Premium Components
+import PremiumNav from '@/components/ui/PremiumNav';
+import PremiumReportHeader from '@/components/ui/PremiumReportHeader';
+import PremiumKPICards from '@/components/ui/PremiumKPICards';
+import PremiumChartContainer from '@/components/ui/PremiumChartContainer';
+import PremiumReportCTA from '@/components/ui/PremiumReportCTA';
+import PremiumFooter from '@/components/ui/PremiumFooter';
+import FixedCTA from '@/components/ui/FixedCTA';
+import { motion } from 'framer-motion';
 
 function ReportContent() {
   const searchParams = useSearchParams();
@@ -101,72 +109,45 @@ function ReportContent() {
         cashflowProjection: Array.from({ length: 25 }, (_, i) => ({
           year: i + 1,
           production: Math.round(12000 * Math.pow(0.995, i)),
-          savings: Math.round(12000 * Math.pow(0.995, i) * 0.14),
-          cumulativeSavings: Math.round(12000 * 0.14 * (i + 1)),
-          netCashflow: Math.round(12000 * 0.14 * (i + 1) - 17850)
+          savings: 1680 * Math.pow(1.025, i),
+          cumulativeSavings: 1680 * Math.pow(1.025, i) * (i + 1),
+          netCashflow: 1680 * Math.pow(1.025, i) - 17850 / 25
         }))
       };
       
-      console.log('Using fallback estimate:', fallbackEstimate);
       setEstimate(fallbackEstimate);
     } finally {
       setIsLoading(false);
     }
   };
 
-  const chartData = estimate?.cashflowProjection || [];
-
-  if (tenantLoading || !tenant) {
+  if (tenantLoading || isLoading) {
     return (
-      <div className="min-h-screen bg-[var(--accent-light)] flex items-center justify-center">
+      <div className="min-h-screen bg-premium-light flex items-center justify-center">
         <div className="text-center space-y-6">
-          <div className="w-16 h-16 border-4 border-[var(--primary)] border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <p className="text-xl font-semibold text-[var(--accent-dark)]">Loading...</p>
+          <div className="w-16 h-16 border-4 border-secondary border-t-transparent rounded-full animate-spin mx-auto"></div>
+          <p className="text-xl font-semibold text-gray-900">Generating your solar intelligence report...</p>
         </div>
       </div>
     );
   }
 
-  if (isLoading) {
+  if (error || !estimate) {
     return (
-      <div className="min-h-screen bg-[var(--accent-light)] flex items-center justify-center">
+      <div className="min-h-screen bg-premium-light flex items-center justify-center">
         <div className="text-center space-y-6">
-          <div className="w-16 h-16 border-4 border-[var(--primary)] border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <p className="text-xl font-semibold text-[var(--accent-dark)]">Generating your solar intelligence report...</p>
-        </div>
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="min-h-screen bg-[var(--accent-light)] flex items-center justify-center">
-        <div className="text-center space-y-6">
-          <div className="m-4 rounded-xl border border-red-200 bg-red-50 p-6 text-sm text-red-700 max-w-md">
-            <div className="font-semibold mb-2">Error Loading Report</div>
-            <div>{error}</div>
-            <button
-              onClick={() => router.push('/')}
-              className="btn-primary mt-4"
-            >
-              Back to Home
-            </button>
+          <div className="w-16 h-16 bg-error rounded-full flex items-center justify-center mx-auto">
+            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
           </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (!estimate) {
-    return (
-      <div className="min-h-screen bg-[var(--accent-light)] flex items-center justify-center">
-        <div className="text-center space-y-6">
-          <h1 className="text-2xl font-bold text-[var(--accent-dark)]">No data available</h1>
-          <button
+          <h2 className="text-2xl font-bold text-gray-900">Error Generating Report</h2>
+          <p className="text-gray-600 max-w-md mx-auto">{error || 'Unable to generate solar estimate. Please try again.'}</p>
+          <button 
             onClick={() => router.push('/')}
-            className="btn-primary"
+            className="btn-premium"
           >
-            Back to Home
+            Try Again
           </button>
         </div>
       </div>
@@ -174,227 +155,160 @@ function ReportContent() {
   }
 
   return (
-    <div className="min-h-screen bg-[var(--accent-light)]">
-      {/* Premium Header */}
-      <header className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-5 py-4">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-[var(--primary)] to-[var(--primary-hover)] rounded-xl flex items-center justify-center shadow-md">
-                <span className="text-white font-bold text-lg">☀️</span>
+    <div className="min-h-screen bg-premium-light">
+      {/* Premium Navigation */}
+      <PremiumNav />
+
+      {/* Premium Report Header */}
+      <PremiumReportHeader 
+        address={estimate.address}
+        customerName="Demo Customer"
+      />
+
+      {/* Main Content */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* KPI Cards */}
+        <PremiumKPICards estimate={estimate} />
+
+        {/* Chart Section */}
+        <PremiumChartContainer 
+          title="25-Year Cashflow Projection"
+          paybackYear={estimate.paybackYear || undefined}
+          className="mb-12"
+        >
+          <EstimateChart 
+            cashflowData={estimate.cashflowProjection} 
+            netCostAfterITC={estimate.netCostAfterITC} 
+          />
+        </PremiumChartContainer>
+
+        {/* Analysis Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+          {/* Financial Analysis */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="card-premium p-8"
+          >
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">Financial Analysis</h3>
+            <div className="space-y-4">
+              <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                <span className="text-gray-600 font-medium">Gross System Cost</span>
+                <span className="font-bold text-gray-900">${estimate.grossCost.toLocaleString()}</span>
               </div>
-              <div>
-                <h1 className="text-xl font-bold text-[var(--accent-dark)]">
-                  {tenant.name}
-                </h1>
-                <p className="text-sm font-medium text-gray-600">
-                  Solar Intelligence Report
-                </p>
+              <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                <span className="text-gray-600 font-medium">Federal Tax Credit (30%)</span>
+                <span className="font-bold text-gray-900">${(estimate.grossCost * 0.3).toLocaleString()}</span>
+              </div>
+              <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                <span className="text-gray-600 font-medium">Net Cost After ITC</span>
+                <span className="font-bold text-gray-900">${estimate.netCostAfterITC.toLocaleString()}</span>
+              </div>
+              <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                <span className="text-gray-600 font-medium">Payback Period</span>
+                <span className="font-bold text-gray-900">{estimate.paybackYear || '–'} years</span>
+              </div>
+              <div className="flex justify-between items-center py-3">
+                <span className="text-gray-600 font-medium">25-Year NPV</span>
+                <span className="font-bold text-gray-900">${(estimate.npv25Year || 0).toLocaleString()}</span>
               </div>
             </div>
+          </motion.div>
 
-            <button
-              onClick={() => router.push('/')}
-              className="btn-primary"
-            >
-              New Analysis
-            </button>
-          </div>
+          {/* Environmental Impact */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="card-premium p-8"
+          >
+            <h3 className="text-2xl font-bold text-gray-900 mb-6">Environmental Impact</h3>
+            <div className="space-y-4">
+              <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                <span className="text-gray-600 font-medium">CO₂ Offset/Year</span>
+                <span className="font-bold text-gray-900">{estimate.co2OffsetPerYear.toLocaleString()} lbs</span>
+              </div>
+              <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                <span className="text-gray-600 font-medium">Solar Irradiance</span>
+                <span className="font-bold text-gray-900">{estimate.solarIrradiance} kWh/m²/day</span>
+              </div>
+              <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                <span className="text-gray-600 font-medium">System Tilt</span>
+                <span className="font-bold text-gray-900">{estimate.tilt}°</span>
+              </div>
+              <div className="flex justify-between items-center py-3">
+                <span className="text-gray-600 font-medium">System Losses</span>
+                <span className="font-bold text-gray-900">{estimate.losses}%</span>
+              </div>
+            </div>
+          </motion.div>
         </div>
-      </header>
 
-      {/* Report Content */}
-      <main className="max-w-7xl mx-auto px-5 py-10">
+        {/* Assumptions Panel */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="space-y-8"
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="card-premium p-8 mb-12"
         >
-          {/* Report Header */}
-          <div className="text-center space-y-6">
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="w-20 h-20 mx-auto bg-gradient-to-br from-[var(--primary)] to-[var(--primary-hover)] rounded-2xl flex items-center justify-center shadow-lg"
-            >
-              <span className="text-3xl">📊</span>
-            </motion.div>
-
-            <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl font-bold text-[var(--accent-dark)]">
-                Solar Intelligence Report
-              </h1>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                Comprehensive analysis for your property at {estimate.address}
-              </p>
-              <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
-                <span>Data Source: {estimate.utilityRateSource}</span>
-                <span>•</span>
-                <span>Generated on {formatDateSafe(estimate.date)}</span>
-              </div>
+          <h3 className="text-2xl font-bold text-gray-900 mb-6">Calculation Assumptions</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="flex justify-between items-center py-3 border-b border-gray-100">
+              <span className="text-gray-600 font-medium">Federal Tax Credit (ITC)</span>
+              <span className="font-bold text-gray-900">{(estimate.assumptions.itcPercentage * 100).toFixed(0)}%</span>
+            </div>
+            <div className="flex justify-between items-center py-3 border-b border-gray-100">
+              <span className="text-gray-600 font-medium">Cost per Watt</span>
+              <span className="font-bold text-gray-900">${estimate.assumptions.costPerWatt}</span>
+            </div>
+            <div className="flex justify-between items-center py-3 border-b border-gray-100">
+              <span className="text-gray-600 font-medium">Panel Degradation</span>
+              <span className="font-bold text-gray-900">{(estimate.assumptions.degradationRate * 100).toFixed(1)}%/year</span>
+            </div>
+            <div className="flex justify-between items-center py-3 border-b border-gray-100">
+              <span className="text-gray-600 font-medium">O&M Cost</span>
+              <span className="font-bold text-gray-900">${estimate.assumptions.oandmPerKWYear}/kW/year</span>
+            </div>
+            <div className="flex justify-between items-center py-3 border-b border-gray-100">
+              <span className="text-gray-600 font-medium">Rate Increase</span>
+              <span className="font-bold text-gray-900">{(estimate.assumptions.electricityRateIncrease * 100).toFixed(1)}%/year</span>
+            </div>
+            <div className="flex justify-between items-center py-3 border-b border-gray-100">
+              <span className="text-gray-600 font-medium">Discount Rate</span>
+              <span className="font-bold text-gray-900">{(estimate.assumptions.discountRate * 100).toFixed(0)}%</span>
             </div>
           </div>
+        </motion.div>
 
-          {/* Key Metrics Grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+        {/* Call to Action */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          className="bg-gradient-to-r from-secondary to-accent rounded-3xl p-8 text-center text-white shadow-2xl"
+        >
+          <h2 className="text-3xl font-bold mb-4">Ready to Go Solar?</h2>
+          <p className="text-xl mb-8 opacity-90">
+            Connect with verified solar installers in your area and get started today
+          </p>
+          <button
+            onClick={() => setShowLeadModal(true)}
+            className="btn-premium-alt text-lg px-8 py-4"
           >
-            <div className="card card-padding text-center hover-lift">
-              <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--primary)] to-[var(--primary-hover)] rounded-lg flex items-center justify-center mb-4">
-                <span className="text-xl">⚡</span>
-              </div>
-              <div className="text-3xl font-bold text-[var(--accent-dark)] mb-2">{estimate.systemSizeKW} kW</div>
-              <div className="text-gray-600 font-medium">System Size</div>
-            </div>
-
-            <div className="card card-padding text-center hover-lift">
-              <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--secondary)] to-[var(--secondary-hover)] rounded-lg flex items-center justify-center mb-4">
-                <span className="text-xl">☀️</span>
-              </div>
-              <div className="text-3xl font-bold text-[var(--accent-dark)] mb-2">{estimate.annualProductionKWh.toLocaleString()} kWh</div>
-              <div className="text-gray-600 font-medium">Annual Production</div>
-            </div>
-
-            <div className="card card-padding text-center hover-lift">
-              <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--primary)] to-[var(--primary-hover)] rounded-lg flex items-center justify-center mb-4">
-                <span className="text-xl">💰</span>
-              </div>
-              <div className="text-3xl font-bold text-[var(--accent-dark)] mb-2">${estimate.netCostAfterITC.toLocaleString()}</div>
-              <div className="text-gray-600 font-medium">Net Cost (After ITC)</div>
-            </div>
-
-            <div className="card card-padding text-center hover-lift">
-              <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--secondary)] to-[var(--secondary-hover)] rounded-lg flex items-center justify-center mb-4">
-                <span className="text-xl">📈</span>
-              </div>
-              <div className="text-3xl font-bold text-[var(--accent-dark)] mb-2">${estimate.year1Savings.toLocaleString()}</div>
-              <div className="text-gray-600 font-medium">Year 1 Savings</div>
-            </div>
-          </motion.div>
-
-          {/* 25-Year Cashflow Chart */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.6 }}
-            className="card card-padding"
-          >
-            <EstimateChart 
-              cashflowData={chartData}
-              netCostAfterITC={estimate.netCostAfterITC}
-            />
-          </motion.div>
-
-          {/* Detailed Analysis */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.6 }}
-            className="grid grid-cols-1 lg:grid-cols-3 gap-6"
-          >
-            {/* Financial Analysis */}
-            <div className="card card-padding">
-              <h2 className="text-xl font-bold text-[var(--accent-dark)] mb-6">Financial Analysis</h2>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                  <span className="text-gray-600 font-medium">Payback Period</span>
-                  <span className="font-bold text-[var(--accent-dark)]">{estimate.paybackYear} years</span>
-                </div>
-                <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                  <span className="text-gray-600 font-medium">25-Year NPV</span>
-                  <span className="font-bold text-[var(--accent-dark)]">${estimate.npv25Year.toLocaleString()}</span>
-                </div>
-                <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                  <span className="text-gray-600 font-medium">ROI</span>
-                  <span className="font-bold text-[var(--accent-dark)]">{Math.round(((estimate.npv25Year + estimate.netCostAfterITC) / estimate.netCostAfterITC) * 100)}%</span>
-                </div>
-                <div className="flex justify-between items-center py-3">
-                  <span className="text-gray-600 font-medium">Electricity Rate</span>
-                  <span className="font-bold text-[var(--accent-dark)]">${estimate.utilityRate}/kWh ({estimate.utilityRateSource})</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Environmental Impact */}
-            <div className="card card-padding">
-              <h2 className="text-xl font-bold text-[var(--accent-dark)] mb-6">Environmental Impact</h2>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                  <span className="text-gray-600 font-medium">CO₂ Offset/Year</span>
-                  <span className="font-bold text-[var(--accent-dark)]">{estimate.co2OffsetPerYear.toLocaleString()} lbs</span>
-                </div>
-                <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                  <span className="text-gray-600 font-medium">Solar Irradiance</span>
-                  <span className="font-bold text-[var(--accent-dark)]">{estimate.solarIrradiance} kWh/m²/day</span>
-                </div>
-                <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                  <span className="text-gray-600 font-medium">System Tilt</span>
-                  <span className="font-bold text-[var(--accent-dark)]">{estimate.tilt}°</span>
-                </div>
-                <div className="flex justify-between items-center py-3">
-                  <span className="text-gray-600 font-medium">System Losses</span>
-                  <span className="font-bold text-[var(--accent-dark)]">{estimate.losses}%</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Assumptions Panel */}
-            <div className="card card-padding">
-              <h2 className="text-xl font-bold text-[var(--accent-dark)] mb-6">Calculation Assumptions</h2>
-              <div className="space-y-4">
-                <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                  <span className="text-gray-600 font-medium">Federal Tax Credit (ITC)</span>
-                  <span className="font-bold text-[var(--accent-dark)]">{(estimate.assumptions.itcPercentage * 100).toFixed(0)}%</span>
-                </div>
-                <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                  <span className="text-gray-600 font-medium">Cost per Watt</span>
-                  <span className="font-bold text-[var(--accent-dark)]">${estimate.assumptions.costPerWatt}</span>
-                </div>
-                <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                  <span className="text-gray-600 font-medium">Panel Degradation</span>
-                  <span className="font-bold text-[var(--accent-dark)]">{(estimate.assumptions.degradationRate * 100).toFixed(1)}%/year</span>
-                </div>
-                <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                  <span className="text-gray-600 font-medium">O&M Cost</span>
-                  <span className="font-bold text-[var(--accent-dark)]">${estimate.assumptions.oandmPerKWYear}/kW/year</span>
-                </div>
-                <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                  <span className="text-gray-600 font-medium">Rate Increase</span>
-                  <span className="font-bold text-[var(--accent-dark)]">{(estimate.assumptions.electricityRateIncrease * 100).toFixed(1)}%/year</span>
-                </div>
-                <div className="flex justify-between items-center py-3">
-                  <span className="text-gray-600 font-medium">Discount Rate</span>
-                  <span className="font-bold text-[var(--accent-dark)]">{(estimate.assumptions.discountRate * 100).toFixed(0)}%</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Call to Action */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.0, duration: 0.6 }}
-            className="bg-gradient-to-r from-[var(--primary)] to-[var(--primary-hover)] rounded-xl p-8 text-center text-white shadow-lg"
-          >
-            <h2 className="text-3xl font-bold mb-4">Ready to Go Solar?</h2>
-            <p className="text-xl mb-8 opacity-90">
-              Connect with verified solar installers in your area and get started today
-            </p>
-            <button
-              onClick={() => setShowLeadModal(true)}
-              className="px-8 py-4 bg-white text-[var(--primary)] rounded-lg font-bold text-lg hover:bg-gray-50 transition-all duration-200 shadow-md hover:scale-[1.02]"
-            >
-              Get Matched with Installers
-            </button>
-          </motion.div>
+            Get Matched with Installers
+          </button>
         </motion.div>
       </main>
+
+      {/* Premium Report CTA */}
+      <PremiumReportCTA estimate={estimate} />
+
+      {/* Premium Footer */}
+      <PremiumFooter />
+
+      {/* Fixed CTA Button */}
+      <FixedCTA />
 
       {/* Lead Modal */}
       {estimate && (
@@ -405,9 +319,6 @@ function ReportContent() {
           address={estimate.address}
         />
       )}
-
-      {/* Legal Footer */}
-      <LegalFooter showGoogle={true} />
     </div>
   );
 }
