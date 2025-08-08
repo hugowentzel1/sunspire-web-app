@@ -16,7 +16,7 @@ export default function PremiumKPICards({ estimate }: PremiumKPICardsProps) {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
         </svg>
       ),
-      color: "from-secondary to-accent"
+      color: "from-orange-500 to-amber-500"
     },
     {
       label: "Annual Production",
@@ -26,7 +26,7 @@ export default function PremiumKPICards({ estimate }: PremiumKPICardsProps) {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
         </svg>
       ),
-      color: "from-blue to-purple"
+      color: "from-amber-500 to-yellow-500"
     },
     {
       label: "Net Cost (After ITC)",
@@ -36,7 +36,7 @@ export default function PremiumKPICards({ estimate }: PremiumKPICardsProps) {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
         </svg>
       ),
-      color: "from-accent to-green-500"
+      color: "from-red-500 to-pink-500"
     },
     {
       label: "Year 1 Savings",

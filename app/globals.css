@@ -5,17 +5,17 @@
 @tailwind utilities;
 
 :root {
-  /* Premium SaaS Color Palette */
-  --primary: #0F172A;        /* Deep slate */
-  --primary-light: #1E293B;  /* Lighter slate */
-  --secondary: #F59E0B;      /* Rich gold */
+  /* Premium Orange/Gold Color Palette */
+  --primary: #EA580C;        /* Rich orange */
+  --primary-light: #FB923C;  /* Light orange */
+  --secondary: #F59E0B;      /* Amber gold */
   --secondary-light: #FCD34D; /* Light gold */
-  --accent: #10B981;         /* Emerald green */
-  --accent-light: #34D399;   /* Light emerald */
-  --blue: #3B82F6;           /* Royal blue */
-  --blue-light: #60A5FA;     /* Light blue */
-  --purple: #8B5CF6;         /* Rich purple */
-  --purple-light: #A78BFA;   /* Light purple */
+  --accent: #DC2626;         /* Deep red accent */
+  --accent-light: #F87171;   /* Light red */
+  --orange: #FF7A3D;         /* Vibrant orange */
+  --orange-light: #FF9D6B;   /* Light orange */
+  --gold: #F59E0B;           /* Pure gold */
+  --gold-light: #FCD34D;     /* Light gold */
   
   /* Neutral palette */
   --white: #FFFFFF;
@@ -89,24 +89,24 @@ h3 {
 
 /* Premium Background Gradients */
 .bg-premium {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #EA580C 0%, #F59E0B 100%);
 }
 
 .bg-premium-alt {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  background: linear-gradient(135deg, #FF7A3D 0%, #DC2626 100%);
 }
 
 .bg-premium-dark {
-  background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+  background: linear-gradient(135deg, #7C2D12 0%, #92400E 100%);
 }
 
 .bg-premium-light {
-  background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%);
+  background: linear-gradient(135deg, #FEF3C7 0%, #FEF7ED 100%);
 }
 
 /* Animated Background */
 .bg-animated {
-  background: linear-gradient(-45deg, #667eea, #764ba2, #f093fb, #f5576c);
+  background: linear-gradient(-45deg, #EA580C, #F59E0B, #FF7A3D, #DC2626);
   background-size: 400% 400%;
   animation: gradientShift 15s ease infinite;
 }
@@ -157,33 +157,33 @@ h3 {
 /* Premium Buttons */
 .btn-premium {
   @apply inline-flex items-center justify-center px-8 py-4 font-semibold text-white rounded-2xl transition-all duration-300 transform hover:scale-105;
-  background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
-  box-shadow: 0 4px 14px 0 rgba(245, 158, 11, 0.4);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  box-shadow: 0 4px 14px 0 rgba(234, 88, 12, 0.4);
 }
 
 .btn-premium:hover {
-  box-shadow: 0 8px 25px 0 rgba(245, 158, 11, 0.6);
+  box-shadow: 0 8px 25px 0 rgba(234, 88, 12, 0.6);
 }
 
 .btn-premium-alt {
   @apply inline-flex items-center justify-center px-8 py-4 font-semibold text-white rounded-2xl transition-all duration-300 transform hover:scale-105;
-  background: linear-gradient(135deg, var(--blue) 0%, var(--purple) 100%);
-  box-shadow: 0 4px 14px 0 rgba(59, 130, 246, 0.4);
+  background: linear-gradient(135deg, var(--orange) 0%, var(--accent) 100%);
+  box-shadow: 0 4px 14px 0 rgba(255, 122, 61, 0.4);
 }
 
 .btn-premium-alt:hover {
-  box-shadow: 0 8px 25px 0 rgba(59, 130, 246, 0.6);
+  box-shadow: 0 8px 25px 0 rgba(255, 122, 61, 0.6);
 }
 
 .btn-outline-premium {
   @apply inline-flex items-center justify-center px-8 py-4 font-semibold rounded-2xl transition-all duration-300 border-2;
   background: transparent;
-  border-color: var(--secondary);
-  color: var(--secondary);
+  border-color: var(--primary);
+  color: var(--primary);
 }
 
 .btn-outline-premium:hover {
-  background: var(--secondary);
+  background: var(--primary);
   color: var(--white);
   transform: translateY(-2px);
 }
@@ -199,7 +199,7 @@ h3 {
 
 .stat-value {
   @apply text-4xl md:text-5xl font-black mb-2;
-  background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -208,16 +208,16 @@ h3 {
 /* Premium Icons */
 .icon-premium {
   @apply w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto;
-  background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
   color: var(--white);
-  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
+  box-shadow: 0 8px 25px rgba(234, 88, 12, 0.3);
 }
 
 .icon-premium-alt {
   @apply w-16 h-16 rounded-2xl flex items-center justify-center mb-6 mx-auto;
-  background: linear-gradient(135deg, var(--blue) 0%, var(--purple) 100%);
+  background: linear-gradient(135deg, var(--orange) 0%, var(--accent) 100%);
   color: var(--white);
-  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 8px 25px rgba(255, 122, 61, 0.3);
 }
 
 /* Premium Navigation */

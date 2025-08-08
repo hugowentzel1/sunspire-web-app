@@ -123,12 +123,12 @@ function ReportContent() {
 
   if (tenantLoading || isLoading) {
     return (
-      <div className="min-h-screen bg-premium-light flex items-center justify-center">
-        <div className="text-center space-y-6">
-          <div className="w-16 h-16 border-4 border-secondary border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <p className="text-xl font-semibold text-gray-900">Generating your solar intelligence report...</p>
+              <div className="min-h-screen bg-premium-light flex items-center justify-center">
+          <div className="text-center space-y-6">
+            <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+            <p className="text-xl font-semibold text-gray-900">Generating your solar intelligence report...</p>
+          </div>
         </div>
-      </div>
     );
   }
 
@@ -286,7 +286,7 @@ function ReportContent() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="bg-gradient-to-r from-secondary to-accent rounded-3xl p-8 text-center text-white shadow-2xl"
+          className="bg-gradient-to-r from-orange-500 to-amber-500 rounded-3xl p-8 text-center text-white shadow-2xl"
         >
           <h2 className="text-3xl font-bold mb-4">Ready to Go Solar?</h2>
           <p className="text-xl mb-8 opacity-90">

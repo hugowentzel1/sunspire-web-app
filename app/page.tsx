@@ -38,12 +38,12 @@ function HomeContent() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-premium-light flex items-center justify-center">
-        <div className="text-center space-y-6">
-          <div className="w-16 h-16 border-4 border-secondary border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <p className="text-xl font-semibold text-gray-900">Loading...</p>
+              <div className="min-h-screen bg-premium-light flex items-center justify-center">
+          <div className="text-center space-y-6">
+            <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+            <p className="text-xl font-semibold text-gray-900">Loading...</p>
+          </div>
         </div>
-      </div>
     );
   }
 
