@@ -43,7 +43,13 @@ export default function PremiumAddressInput({ onAddressSelect, onGenerateEstimat
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </div>
-              <AddressAutocomplete onSelect={onAddressSelect} />
+              <AddressAutocomplete 
+                value={address}
+                onChange={setAddress}
+                onSelect={onAddressSelect}
+                placeholder="Enter your address..."
+                className="w-full pl-12 pr-4 py-4 bg-white/90 backdrop-blur-sm border border-white/30 rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50"
+              />
             </div>
 
             {/* Generate Button */}
