@@ -18,3 +18,4 @@ A Next.js web application for solar energy analysis and lead capture.
 ## Deployment
 
 This app is automatically deployed to Vercel when changes are pushed to the main branch.
+# Force redeploy
