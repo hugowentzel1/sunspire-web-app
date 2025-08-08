@@ -1,6 +1,6 @@
 'use client';
 
-import { LegalFooter } from '@/components/legal/LegalFooter';
+import LegalFooter from '@/components/legal/LegalFooter';
 
 export default function MethodologyPage() {
   return (
@@ -102,7 +102,7 @@ export default function MethodologyPage() {
         </div>
       </div>
       
-      <LegalFooter />
+      <LegalFooter showGoogle={true} />
     </div>
   );
 }

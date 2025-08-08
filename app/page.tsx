@@ -7,9 +7,9 @@ import dynamic from 'next/dynamic';
 import { TenantProvider, useTenant } from '@/components/TenantProvider';
 import { Card } from '@/components/ui/Card';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
-import { StatTile } from '@/components/ui/StatTile';
+import StatTile from '@/components/ui/StatTile';
 import { TrustChip } from '@/components/ui/TrustChip';
-import { LegalFooter } from '@/components/legal/LegalFooter';
+import LegalFooter from '@/components/legal/LegalFooter';
 import { PlaceResult } from '@/lib/calc';
 
 const AddressAutocomplete = dynamic(() => import('@/components/AddressAutocomplete'), { ssr: false });
@@ -286,7 +286,7 @@ function HomeContent() {
       </section>
 
       {/* Footer */}
-      <LegalFooter showGoogleAttribution={true} />
+      <LegalFooter showGoogle={true} />
     </div>
   );
 }

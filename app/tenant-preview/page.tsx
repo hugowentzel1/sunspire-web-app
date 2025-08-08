@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { TenantProvider, useTenant } from '@/components/TenantProvider';
-import { LegalFooter } from '@/components/legal/LegalFooter';
+import LegalFooter from '@/components/legal/LegalFooter';
 
 function TenantPreviewContent() {
   const { tenant, loading } = useTenant();
@@ -253,7 +253,7 @@ function TenantPreviewContent() {
       </main>
 
       {/* Legal Footer */}
-      <LegalFooter showGoogleAttribution={true} />
+      <LegalFooter showGoogle={true} />
     </div>
   );
 }
