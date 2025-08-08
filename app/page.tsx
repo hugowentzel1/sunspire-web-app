@@ -1,24 +1,27 @@
 'use client';
 
 import { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { TenantProvider, useTenant } from '@/components/TenantProvider';
+import { Card } from '@/components/ui/Card';
+import { PrimaryButton } from '@/components/ui/PrimaryButton';
+import { StatTile } from '@/components/ui/StatTile';
+import { TrustChip } from '@/components/ui/TrustChip';
 import { PlaceResult } from '@/lib/calc';
 
 const AddressAutocomplete = dynamic(() => import('@/components/AddressAutocomplete'), { ssr: false });
 
 function HomeContent() {
+  const { tenant, loading } = useTenant();
   const [address, setAddress] = useState('');
   const [selectedPlace, setSelectedPlace] = useState<PlaceResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const { tenant, loading: tenantLoading } = useTenant();
 
   const handleAddressSelect = (placeResult: PlaceResult) => {
     setAddress(placeResult.formattedAddress);
-    // Store the place result for when user clicks Generate button
     setSelectedPlace(placeResult);
   };
 
@@ -26,7 +29,6 @@ function HomeContent() {
     if (!address.trim()) return;
     setIsLoading(true);
     
-    // Use selected place data if available, otherwise use typed address with default coords
     if (selectedPlace) {
       const q = new URLSearchParams({
         address: selectedPlace.formattedAddress,
@@ -36,7 +38,6 @@ function HomeContent() {
       });
       router.push(`/report?${q.toString()}`);
     } else {
-      // Fallback to typed address with default coordinates
       const q = new URLSearchParams({
         address: address,
         lat: '40.7128',
@@ -47,263 +48,260 @@ function HomeContent() {
     }
   };
 
-  if (tenantLoading || !tenant) {
+  if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter flex items-center justify-center">
+      <div className="min-h-screen bg-[var(--accent-light)] flex items-center justify-center">
         <div className="text-center space-y-6">
-          <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <p className="text-xl font-semibold text-gray-700">Loading...</p>
+          <div className="w-16 h-16 border-4 border-[var(--primary)] border-t-transparent rounded-full animate-spin mx-auto"></div>
+          <p className="text-xl font-semibold text-[var(--accent-dark)]">Loading...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter">
-      {/* Premium App Header */}
-      <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            {/* Premium Logo */}
-            <div className="flex items-center space-x-4">
-              <motion.div 
-                className="w-12 h-12 bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-2xl"
-                whileHover={{ scale: 1.05, rotate: 5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
-                <span className="text-white font-bold text-lg">☀️</span>
-              </motion.div>
-              <div>
-                <h1 className="text-2xl font-black bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text text-transparent">
-                  {tenant.name}
-                </h1>
-                <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
-                  {tenant.tagline}
-                </p>
-              </div>
-            </div>
-            
-            {/* Premium Navigation */}
-            <nav className="hidden md:flex items-center space-x-8">
-              <a href="#" className="text-gray-600 hover:text-orange-500 transition-colors font-medium">
-                Enterprise
-              </a>
-              <a href="#" className="text-gray-600 hover:text-orange-500 transition-colors font-medium">
-                Partners
-              </a>
-              <a href="#" className="text-gray-600 hover:text-orange-500 transition-colors font-medium">
-                Support
-              </a>
-              <motion.button 
-                className="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-2xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Get Started
-              </motion.button>
-            </nav>
-          </div>
-        </div>
-      </header>
-
+    <div className="min-h-screen">
       {/* Hero Section */}
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center space-y-12"
-        >
-          {/* Premium Hero Content */}
-          <div className="space-y-8">
+      <section className="relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Column */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              className="relative"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="space-y-8"
             >
-              <div className="w-32 h-32 mx-auto bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden">
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                  animate={{ x: ['-100%', '100%'] }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                />
-                <span className="text-6xl relative z-10">☀️</span>
+              <div className="space-y-6">
+                <motion.h1 
+                  className="text-5xl lg:text-6xl font-black text-[var(--accent-dark)] leading-tight"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2, duration: 0.8 }}
+                >
+                  Solar Intelligence in{' '}
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)]">
+                    Seconds
+                  </span>
+                </motion.h1>
+                
+                <motion.p 
+                  className="text-xl text-gray-600 leading-relaxed"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4, duration: 0.8 }}
+                >
+                  PVWatts-powered estimates, branded reports, and lead capture—ready to white-label.
+                </motion.p>
               </div>
+
+              {/* Trust Chips */}
               <motion.div 
-                className="absolute -top-4 -right-4 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg"
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 2, repeat: Infinity }}
-              >
-                <span className="text-white text-lg">✓</span>
-              </motion.div>
-            </motion.div>
-            
-            <div className="space-y-6">
-              <motion.h1 
-                className="text-5xl md:text-7xl font-black text-gray-900 leading-tight"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4, duration: 0.8 }}
-              >
-                Solar Intelligence
-                <span className="block text-transparent bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text">
-                  in Seconds
-                </span>
-              </motion.h1>
-              <motion.p 
-                className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+                className="flex flex-wrap gap-3"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.8 }}
               >
-                Transform your property with AI-powered solar analysis. 
-                Get instant estimates, detailed reports, and connect with premium installers.
-              </motion.p>
+                <TrustChip>Used by 50+ teams</TrustChip>
+                <TrustChip variant="success">Bank-level security</TrustChip>
+                <TrustChip variant="warning">White-label ready</TrustChip>
+              </motion.div>
+
+              {/* Address Input */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.8 }}
+                className="space-y-4"
+              >
+                <Card className="p-6">
+                  <div className="space-y-4">
+                    <label className="block text-sm font-semibold text-gray-700">
+                      Enter your address
+                    </label>
+                    <AddressAutocomplete
+                      value={address}
+                      onChange={setAddress}
+                      onSelect={handleAddressSelect}
+                      placeholder="Start typing your address..."
+                      className="w-full"
+                    />
+                    <PrimaryButton
+                      onClick={handleGenerateEstimate}
+                      disabled={!selectedPlace || isLoading}
+                      className="w-full"
+                      size="lg"
+                    >
+                      {isLoading ? 'Generating...' : 'Generate Solar Intelligence Report →'}
+                    </PrimaryButton>
+                  </div>
+                </Card>
+              </motion.div>
+            </motion.div>
+
+            {/* Right Column */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              className="relative"
+            >
+              <Card className="relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)]/10 to-[var(--secondary)]/10"></div>
+                <div className="relative z-10 p-8 text-center">
+                  <motion.div
+                    className="text-8xl mb-6 animate-float"
+                    animate={{ y: [0, -10, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  >
+                    ☀️
+                  </motion.div>
+                  <div className="space-y-4">
+                    <h3 className="text-2xl font-bold text-gray-900">
+                      Instant Solar Analysis
+                    </h3>
+                    <p className="text-gray-600">
+                      Get accurate, professional solar estimates in seconds using industry-standard PVWatts data.
+                    </p>
+                  </div>
+                </div>
+              </Card>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Social Proof Section */}
+      <section className="py-16 bg-white/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            <StatTile
+              label="Properties Analyzed"
+              value="50K+"
+              icon="🏠"
+            />
+            <StatTile
+              label="Estimated Savings"
+              value="$2.5M"
+              icon="💰"
+            />
+            <StatTile
+              label="Model Match"
+              value="98%"
+              icon="📊"
+            />
+            <StatTile
+              label="AI Support"
+              value="24/7"
+              icon="🤖"
+            />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Feature Triad */}
+      <section className="py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+                         <h2 className="text-4xl font-bold text-[var(--accent-dark)] mb-4">
+               Everything You Need to Close More Deals
+             </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Professional solar proposals that convert prospects into customers
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <Card className="text-center p-8 h-full">
+                                  <div className="h-16 w-16 mx-auto mb-6 rounded-xl bg-gradient-to-br from-[var(--primary)] to-[var(--primary-hover)] flex items-center justify-center text-2xl text-white">
+                   📄
+                 </div>
+                                 <h3 className="text-2xl font-bold text-[var(--accent-dark)] mb-4">
+                   Beautiful Reports
+                 </h3>
+                <p className="text-gray-600">
+                  Branded PDF export with professional layouts that impress prospects and close deals faster.
+                </p>
+              </Card>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <Card className="text-center p-8 h-full">
+                                 <div className="h-16 w-16 mx-auto mb-6 rounded-xl bg-gradient-to-br from-[var(--secondary)] to-[var(--secondary-hover)] flex items-center justify-center text-2xl text-white">
+                   🎯
+                 </div>
+                 <h3 className="text-2xl font-bold text-[var(--accent-dark)] mb-4">
+                   Accurate Estimates
+                 </h3>
+                <p className="text-gray-600">
+                  PVWatts-powered calculations with local utility rates for precise, trustworthy estimates.
+                </p>
+              </Card>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <Card className="text-center p-8 h-full">
+                                 <div className="h-16 w-16 mx-auto mb-6 rounded-xl bg-gradient-to-br from-[var(--primary)] to-[var(--primary-hover)] flex items-center justify-center text-2xl text-white">
+                   🔗
+                 </div>
+                 <h3 className="text-2xl font-bold text-[var(--accent-dark)] mb-4">
+                   Lead Routing
+                 </h3>
+                <p className="text-gray-600">
+                  Airtable/CRM integration with webhooks for seamless lead management and follow-up.
+                </p>
+              </Card>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-12 border-t border-slate-200/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div className="text-sm text-gray-600">
+              Estimates generated using NREL PVWatts® v8.
+            </div>
+            <div className="flex items-center space-x-6">
+              <TrustChip variant="success">Supports custom domains, logos & colors</TrustChip>
             </div>
           </div>
-
-          {/* Premium Trust Indicators */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-            className="flex flex-wrap justify-center gap-8 text-sm"
-          >
-            {tenant.trustBadges.slice(0, 3).map((badge, index) => (
-              <div key={index} className="flex items-center space-x-3 bg-white/60 backdrop-blur-sm rounded-2xl px-6 py-3 border border-gray-200/50">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="font-semibold text-gray-700">{badge}</span>
-              </div>
-            ))}
-          </motion.div>
-
-          {/* Premium Input Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.0, duration: 0.8 }}
-            className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-3xl mx-auto"
-          >
-            <div className="space-y-8">
-              <div className="text-center space-y-4">
-                <h2 className="text-2xl font-bold text-gray-900">
-                  Enter Your Property Address
-                </h2>
-                <p className="text-gray-600">
-                  Get a comprehensive solar analysis tailored to your specific location
-                </p>
-              </div>
-
-              {/* Premium Address Input */}
-              <div className="space-y-6">
-                <AddressAutocomplete
-                  value={address}
-                  onChange={setAddress}
-                  onSelect={handleAddressSelect}
-                  placeholder="Start typing your property address..."
-                  className="w-full"
-                />
-
-                {/* Premium Generate Button */}
-                <motion.button
-                  onClick={handleGenerateEstimate}
-                  disabled={!address.trim() || isLoading}
-                  className={`w-full py-6 px-8 rounded-2xl text-lg font-bold text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl ${
-                    !address.trim() || isLoading
-                      ? 'bg-gray-300 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 hover:from-orange-600 hover:via-red-600 hover:to-pink-600'
-                  }`}
-                  whileHover={!address.trim() || isLoading ? {} : { scale: 1.02 }}
-                  whileTap={!address.trim() || isLoading ? {} : { scale: 0.98 }}
-                >
-                  {isLoading ? (
-                    <div className="flex items-center justify-center space-x-4">
-                      <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                      <span>Analyzing Your Property...</span>
-                    </div>
-                  ) : (
-                    <div className="flex items-center justify-center space-x-4">
-                      <span>Generate Solar Intelligence Report</span>
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                      </svg>
-                    </div>
-                  )}
-                </motion.button>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Premium Stats Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto"
-          >
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              <div className="text-4xl font-black text-gray-900 mb-2">50K+</div>
-              <div className="text-gray-600 font-semibold">Properties Analyzed</div>
-            </div>
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              <div className="text-4xl font-black text-gray-900 mb-2">$2.5M</div>
-              <div className="text-gray-600 font-semibold">Total Savings Generated</div>
-            </div>
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              <div className="text-4xl font-black text-gray-900 mb-2">98%</div>
-              <div className="text-gray-600 font-semibold">Accuracy Rate</div>
-            </div>
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              <div className="text-4xl font-black text-gray-900 mb-2">24/7</div>
-              <div className="text-gray-600 font-semibold">AI Support</div>
-            </div>
-          </motion.div>
-
-          {/* Premium Features */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.4, duration: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto"
-          >
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 mx-auto bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Advanced Analytics</h3>
-              <p className="text-gray-600">AI-powered insights with 25-year projections and ROI analysis</p>
-            </div>
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 mx-auto bg-gradient-to-br from-green-500 to-teal-500 rounded-2xl flex items-center justify-center">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Premium Network</h3>
-              <p className="text-gray-600">Connect with verified, top-rated solar installers in your area</p>
-            </div>
-            <div className="text-center space-y-4">
-              <div className="w-16 h-16 mx-auto bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Enterprise Security</h3>
-              <p className="text-gray-600">Bank-level encryption and SOC 2 compliance for your data</p>
-            </div>
-          </motion.div>
-        </motion.div>
-      </main>
-
-
+        </div>
+      </footer>
     </div>
   );
 }
 
-export default function Home() {
+export default function HomePage() {
   return (
     <TenantProvider>
       <HomeContent />

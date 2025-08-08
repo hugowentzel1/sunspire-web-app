@@ -24,7 +24,6 @@ function ReportContent() {
     const lng = parseFloat(searchParams.get('lng') || '');
     const placeId = searchParams.get('placeId');
 
-    // Validate coordinates
     if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
       setError('Missing or invalid coordinates.');
       setIsLoading(false);
@@ -32,7 +31,6 @@ function ReportContent() {
     }
 
     if (address && lat && lng) {
-      // Call the new estimate API
       fetchEstimate(address, lat, lng, placeId);
     } else {
       setError('Missing address or coordinates.');
@@ -71,7 +69,6 @@ function ReportContent() {
       console.error('Error fetching estimate:', error);
       setError(error instanceof Error ? error.message : 'Unknown error occurred');
       
-      // Fallback to basic estimate if API fails
       const fallbackEstimate = {
         id: Date.now().toString(),
         address,
@@ -116,15 +113,14 @@ function ReportContent() {
     }
   };
 
-  // Use the cashflow projection from the estimate
   const chartData = estimate?.cashflowProjection || [];
 
   if (tenantLoading || !tenant) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter flex items-center justify-center">
+      <div className="min-h-screen bg-[var(--accent-light)] flex items-center justify-center">
         <div className="text-center space-y-6">
-          <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <p className="text-xl font-semibold text-gray-700">Loading...</p>
+          <div className="w-16 h-16 border-4 border-[var(--primary)] border-t-transparent rounded-full animate-spin mx-auto"></div>
+          <p className="text-xl font-semibold text-[var(--accent-dark)]">Loading...</p>
         </div>
       </div>
     );
@@ -132,10 +128,10 @@ function ReportContent() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter flex items-center justify-center">
+      <div className="min-h-screen bg-[var(--accent-light)] flex items-center justify-center">
         <div className="text-center space-y-6">
-          <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <p className="text-xl font-semibold text-gray-700">Generating your solar intelligence report...</p>
+          <div className="w-16 h-16 border-4 border-[var(--primary)] border-t-transparent rounded-full animate-spin mx-auto"></div>
+          <p className="text-xl font-semibold text-[var(--accent-dark)]">Generating your solar intelligence report...</p>
         </div>
       </div>
     );
@@ -143,14 +139,14 @@ function ReportContent() {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter flex items-center justify-center">
+      <div className="min-h-screen bg-[var(--accent-light)] flex items-center justify-center">
         <div className="text-center space-y-6">
-          <div className="m-4 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700 max-w-md">
+          <div className="m-4 rounded-xl border border-red-200 bg-red-50 p-6 text-sm text-red-700 max-w-md">
             <div className="font-semibold mb-2">Error Loading Report</div>
             <div>{error}</div>
             <button
               onClick={() => router.push('/')}
-              className="mt-4 px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-2xl font-semibold hover:shadow-lg transition-all duration-200"
+              className="btn-primary mt-4"
             >
               Back to Home
             </button>
@@ -162,12 +158,12 @@ function ReportContent() {
 
   if (!estimate) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter flex items-center justify-center">
+      <div className="min-h-screen bg-[var(--accent-light)] flex items-center justify-center">
         <div className="text-center space-y-6">
-          <h1 className="text-2xl font-bold text-gray-900">No data available</h1>
+          <h1 className="text-2xl font-bold text-[var(--accent-dark)]">No data available</h1>
           <button
             onClick={() => router.push('/')}
-            className="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-2xl font-semibold hover:shadow-lg transition-all duration-200"
+            className="btn-primary"
           >
             Back to Home
           </button>
@@ -176,53 +172,42 @@ function ReportContent() {
     );
   }
 
-
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter">
+    <div className="min-h-screen bg-[var(--accent-light)]">
       {/* Premium Header */}
-      <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
+      <header className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-5 py-4">
+          <div className="flex justify-between items-center">
             <div className="flex items-center space-x-4">
-              <motion.div
-                className="w-12 h-12 bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-2xl"
-                whileHover={{ scale: 1.05, rotate: 5 }}
-                transition={{ type: "spring", stiffness: 300 }}
-              >
+              <div className="w-10 h-10 bg-gradient-to-br from-[var(--primary)] to-[var(--primary-hover)] rounded-xl flex items-center justify-center shadow-md">
                 <span className="text-white font-bold text-lg">☀️</span>
-              </motion.div>
+              </div>
               <div>
-                <h1 className="text-2xl font-black bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text text-transparent">
+                <h1 className="text-xl font-bold text-[var(--accent-dark)]">
                   {tenant.name}
                 </h1>
-                <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
+                <p className="text-sm font-medium text-gray-600">
                   Solar Intelligence Report
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center space-x-4">
-
-              <motion.button
-                onClick={() => router.push('/')}
-                className="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-2xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                New Analysis
-              </motion.button>
-            </div>
+            <button
+              onClick={() => router.push('/')}
+              className="btn-primary"
+            >
+              New Analysis
+            </button>
           </div>
         </div>
       </header>
 
       {/* Report Content */}
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main className="max-w-7xl mx-auto px-5 py-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           className="space-y-8"
         >
           {/* Report Header */}
@@ -230,14 +215,14 @@ function ReportContent() {
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-              className="w-24 h-24 mx-auto bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 rounded-full flex items-center justify-center shadow-2xl"
+              transition={{ delay: 0.2, duration: 0.6 }}
+              className="w-20 h-20 mx-auto bg-gradient-to-br from-[var(--primary)] to-[var(--primary-hover)] rounded-2xl flex items-center justify-center shadow-lg"
             >
-              <span className="text-4xl">📊</span>
+              <span className="text-3xl">📊</span>
             </motion.div>
 
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl font-black text-gray-900">
+              <h1 className="text-4xl md:text-5xl font-bold text-[var(--accent-dark)]">
                 Solar Intelligence Report
               </h1>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">
@@ -255,128 +240,135 @@ function ReportContent() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
           >
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              <div className="w-16 h-16 mx-auto bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mb-4">
-                <span className="text-2xl">⚡</span>
+            <div className="card card-padding text-center hover-lift">
+              <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--primary)] to-[var(--primary-hover)] rounded-lg flex items-center justify-center mb-4">
+                <span className="text-xl">⚡</span>
               </div>
-              <div className="text-3xl font-black text-gray-900 mb-2">{estimate.systemSizeKW} kW</div>
-              <div className="text-gray-600 font-semibold">System Size</div>
+              <div className="text-3xl font-bold text-[var(--accent-dark)] mb-2">{estimate.systemSizeKW} kW</div>
+              <div className="text-gray-600 font-medium">System Size</div>
             </div>
 
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              <div className="w-16 h-16 mx-auto bg-gradient-to-br from-green-500 to-teal-500 rounded-2xl flex items-center justify-center mb-4">
-                <span className="text-2xl">☀️</span>
+            <div className="card card-padding text-center hover-lift">
+              <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--secondary)] to-[var(--secondary-hover)] rounded-lg flex items-center justify-center mb-4">
+                <span className="text-xl">☀️</span>
               </div>
-              <div className="text-3xl font-black text-gray-900 mb-2">{estimate.annualProductionKWh.toLocaleString()} kWh</div>
-              <div className="text-gray-600 font-semibold">Annual Production</div>
+              <div className="text-3xl font-bold text-[var(--accent-dark)] mb-2">{estimate.annualProductionKWh.toLocaleString()} kWh</div>
+              <div className="text-gray-600 font-medium">Annual Production</div>
             </div>
 
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              <div className="w-16 h-16 mx-auto bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mb-4">
-                <span className="text-2xl">💰</span>
+            <div className="card card-padding text-center hover-lift">
+              <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--primary)] to-[var(--primary-hover)] rounded-lg flex items-center justify-center mb-4">
+                <span className="text-xl">💰</span>
               </div>
-                          <div className="text-3xl font-black text-gray-900 mb-2">${estimate.netCostAfterITC.toLocaleString()}</div>
-            <div className="text-gray-600 font-semibold">Net Cost (After ITC)</div>
+              <div className="text-3xl font-bold text-[var(--accent-dark)] mb-2">${estimate.netCostAfterITC.toLocaleString()}</div>
+              <div className="text-gray-600 font-medium">Net Cost (After ITC)</div>
             </div>
 
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              <div className="w-16 h-16 mx-auto bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-4">
-                <span className="text-2xl">📈</span>
+            <div className="card card-padding text-center hover-lift">
+              <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--secondary)] to-[var(--secondary-hover)] rounded-lg flex items-center justify-center mb-4">
+                <span className="text-xl">📈</span>
               </div>
-                          <div className="text-3xl font-black text-gray-900 mb-2">${estimate.year1Savings.toLocaleString()}</div>
-            <div className="text-gray-600 font-semibold">Year 1 Savings</div>
+              <div className="text-3xl font-bold text-[var(--accent-dark)] mb-2">${estimate.year1Savings.toLocaleString()}</div>
+              <div className="text-gray-600 font-medium">Year 1 Savings</div>
             </div>
           </motion.div>
 
           {/* 25-Year Cashflow Chart */}
-          <EstimateChart 
-            cashflowData={chartData}
-            netCostAfterITC={estimate.netCostAfterITC}
-          />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.6, duration: 0.6 }}
+            className="card card-padding"
+          >
+            <EstimateChart 
+              cashflowData={chartData}
+              netCostAfterITC={estimate.netCostAfterITC}
+            />
+          </motion.div>
 
           {/* Detailed Analysis */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-            className="grid grid-cols-1 lg:grid-cols-3 gap-8"
+            transition={{ delay: 0.8, duration: 0.6 }}
+            className="grid grid-cols-1 lg:grid-cols-3 gap-6"
           >
             {/* Financial Analysis */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Financial Analysis</h2>
-              <div className="space-y-6">
-                <div className="flex justify-between items-center py-4 border-b border-gray-200">
-                  <span className="text-gray-600">Payback Period</span>
-                  <span className="font-bold text-gray-900">{estimate.paybackYear} years</span>
+            <div className="card card-padding">
+              <h2 className="text-xl font-bold text-[var(--accent-dark)] mb-6">Financial Analysis</h2>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                  <span className="text-gray-600 font-medium">Payback Period</span>
+                  <span className="font-bold text-[var(--accent-dark)]">{estimate.paybackYear} years</span>
                 </div>
-                <div className="flex justify-between items-center py-4 border-b border-gray-200">
-                  <span className="text-gray-600">25-Year NPV</span>
-                  <span className="font-bold text-gray-900">${estimate.npv25Year.toLocaleString()}</span>
+                <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                  <span className="text-gray-600 font-medium">25-Year NPV</span>
+                  <span className="font-bold text-[var(--accent-dark)]">${estimate.npv25Year.toLocaleString()}</span>
                 </div>
-                <div className="flex justify-between items-center py-4 border-b border-gray-200">
-                  <span className="text-gray-600">ROI</span>
-                  <span className="font-bold text-gray-900">{Math.round(((estimate.npv25Year + estimate.netCostAfterITC) / estimate.netCostAfterITC) * 100)}%</span>
+                <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                  <span className="text-gray-600 font-medium">ROI</span>
+                  <span className="font-bold text-[var(--accent-dark)]">{Math.round(((estimate.npv25Year + estimate.netCostAfterITC) / estimate.netCostAfterITC) * 100)}%</span>
                 </div>
-                <div className="flex justify-between items-center py-4">
-                  <span className="text-gray-600">Electricity Rate</span>
-                  <span className="font-bold text-gray-900">${estimate.utilityRate}/kWh ({estimate.utilityRateSource})</span>
+                <div className="flex justify-between items-center py-3">
+                  <span className="text-gray-600 font-medium">Electricity Rate</span>
+                  <span className="font-bold text-[var(--accent-dark)]">${estimate.utilityRate}/kWh ({estimate.utilityRateSource})</span>
                 </div>
               </div>
             </div>
 
             {/* Environmental Impact */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Environmental Impact</h2>
-              <div className="space-y-6">
-                <div className="flex justify-between items-center py-4 border-b border-gray-200">
-                  <span className="text-gray-600">CO₂ Offset/Year</span>
-                  <span className="font-bold text-gray-900">{estimate.co2OffsetPerYear.toLocaleString()} lbs</span>
+            <div className="card card-padding">
+              <h2 className="text-xl font-bold text-[var(--accent-dark)] mb-6">Environmental Impact</h2>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                  <span className="text-gray-600 font-medium">CO₂ Offset/Year</span>
+                  <span className="font-bold text-[var(--accent-dark)]">{estimate.co2OffsetPerYear.toLocaleString()} lbs</span>
                 </div>
-                <div className="flex justify-between items-center py-4 border-b border-gray-200">
-                  <span className="text-gray-600">Solar Irradiance</span>
-                  <span className="font-bold text-gray-900">{estimate.solarIrradiance} kWh/m²/day</span>
+                <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                  <span className="text-gray-600 font-medium">Solar Irradiance</span>
+                  <span className="font-bold text-[var(--accent-dark)]">{estimate.solarIrradiance} kWh/m²/day</span>
                 </div>
-                <div className="flex justify-between items-center py-4 border-b border-gray-200">
-                  <span className="text-gray-600">System Tilt</span>
-                  <span className="font-bold text-gray-900">{estimate.tilt}°</span>
+                <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                  <span className="text-gray-600 font-medium">System Tilt</span>
+                  <span className="font-bold text-[var(--accent-dark)]">{estimate.tilt}°</span>
                 </div>
-                <div className="flex justify-between items-center py-4">
-                  <span className="text-gray-600">System Losses</span>
-                  <span className="font-bold text-gray-900">{estimate.losses}%</span>
+                <div className="flex justify-between items-center py-3">
+                  <span className="text-gray-600 font-medium">System Losses</span>
+                  <span className="font-bold text-[var(--accent-dark)]">{estimate.losses}%</span>
                 </div>
               </div>
             </div>
 
             {/* Assumptions Panel */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Calculation Assumptions</h2>
-              <div className="space-y-6">
-                <div className="flex justify-between items-center py-4 border-b border-gray-200">
-                  <span className="text-gray-600">Federal Tax Credit (ITC)</span>
-                  <span className="font-bold text-gray-900">{(estimate.assumptions.itcPercentage * 100).toFixed(0)}%</span>
+            <div className="card card-padding">
+              <h2 className="text-xl font-bold text-[var(--accent-dark)] mb-6">Calculation Assumptions</h2>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                  <span className="text-gray-600 font-medium">Federal Tax Credit (ITC)</span>
+                  <span className="font-bold text-[var(--accent-dark)]">{(estimate.assumptions.itcPercentage * 100).toFixed(0)}%</span>
                 </div>
-                <div className="flex justify-between items-center py-4 border-b border-gray-200">
-                  <span className="text-gray-600">Cost per Watt</span>
-                  <span className="font-bold text-gray-900">${estimate.assumptions.costPerWatt}</span>
+                <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                  <span className="text-gray-600 font-medium">Cost per Watt</span>
+                  <span className="font-bold text-[var(--accent-dark)]">${estimate.assumptions.costPerWatt}</span>
                 </div>
-                <div className="flex justify-between items-center py-4 border-b border-gray-200">
-                  <span className="text-gray-600">Panel Degradation</span>
-                  <span className="font-bold text-gray-900">{(estimate.assumptions.degradationRate * 100).toFixed(1)}%/year</span>
+                <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                  <span className="text-gray-600 font-medium">Panel Degradation</span>
+                  <span className="font-bold text-[var(--accent-dark)]">{(estimate.assumptions.degradationRate * 100).toFixed(1)}%/year</span>
                 </div>
-                <div className="flex justify-between items-center py-4 border-b border-gray-200">
-                  <span className="text-gray-600">O&M Cost</span>
-                  <span className="font-bold text-gray-900">${estimate.assumptions.oandmPerKWYear}/kW/year</span>
+                <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                  <span className="text-gray-600 font-medium">O&M Cost</span>
+                  <span className="font-bold text-[var(--accent-dark)]">${estimate.assumptions.oandmPerKWYear}/kW/year</span>
                 </div>
-                <div className="flex justify-between items-center py-4 border-b border-gray-200">
-                  <span className="text-gray-600">Rate Increase</span>
-                  <span className="font-bold text-gray-900">{(estimate.assumptions.electricityRateIncrease * 100).toFixed(1)}%/year</span>
+                <div className="flex justify-between items-center py-3 border-b border-gray-100">
+                  <span className="text-gray-600 font-medium">Rate Increase</span>
+                  <span className="font-bold text-[var(--accent-dark)]">{(estimate.assumptions.electricityRateIncrease * 100).toFixed(1)}%/year</span>
                 </div>
-                <div className="flex justify-between items-center py-4">
-                  <span className="text-gray-600">Discount Rate</span>
-                  <span className="font-bold text-gray-900">{(estimate.assumptions.discountRate * 100).toFixed(0)}%</span>
+                <div className="flex justify-between items-center py-3">
+                  <span className="text-gray-600 font-medium">Discount Rate</span>
+                  <span className="font-bold text-[var(--accent-dark)]">{(estimate.assumptions.discountRate * 100).toFixed(0)}%</span>
                 </div>
               </div>
             </div>
@@ -386,21 +378,19 @@ function ReportContent() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.0, duration: 0.8 }}
-            className="bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 rounded-3xl p-8 text-center text-white"
+            transition={{ delay: 1.0, duration: 0.6 }}
+            className="bg-gradient-to-r from-[var(--primary)] to-[var(--primary-hover)] rounded-xl p-8 text-center text-white shadow-lg"
           >
             <h2 className="text-3xl font-bold mb-4">Ready to Go Solar?</h2>
             <p className="text-xl mb-8 opacity-90">
               Connect with verified solar installers in your area and get started today
             </p>
-            <motion.button
+            <button
               onClick={() => setShowLeadModal(true)}
-              className="px-8 py-4 bg-white text-orange-600 rounded-2xl font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              className="px-8 py-4 bg-white text-[var(--primary)] rounded-lg font-bold text-lg hover:bg-gray-50 transition-all duration-200 shadow-md hover:scale-[1.02]"
             >
               Get Matched with Installers
-            </motion.button>
+            </button>
           </motion.div>
         </motion.div>
       </main>
@@ -414,8 +404,6 @@ function ReportContent() {
           address={estimate.address}
         />
       )}
-
-
     </div>
   );
 }
