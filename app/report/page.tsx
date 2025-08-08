@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { TenantProvider, useTenant } from '@/components/TenantProvider';
 import { LeadModal } from '@/components/LeadModal';
+import { LegalFooter } from '@/components/legal/LegalFooter';
 import { SolarEstimate } from '@/lib/estimate';
 import EstimateChart from '@/components/EstimateChart';
 import { formatDateSafe } from '@/lib/format';
@@ -404,6 +405,9 @@ function ReportContent() {
           address={estimate.address}
         />
       )}
+
+      {/* Legal Footer */}
+      <LegalFooter showGoogleAttribution={true} />
     </div>
   );
 }

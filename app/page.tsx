@@ -9,6 +9,7 @@ import { Card } from '@/components/ui/Card';
 import { PrimaryButton } from '@/components/ui/PrimaryButton';
 import { StatTile } from '@/components/ui/StatTile';
 import { TrustChip } from '@/components/ui/TrustChip';
+import { LegalFooter } from '@/components/legal/LegalFooter';
 import { PlaceResult } from '@/lib/calc';
 
 const AddressAutocomplete = dynamic(() => import('@/components/AddressAutocomplete'), { ssr: false });
@@ -285,18 +286,7 @@ function HomeContent() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 border-t border-slate-200/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-sm text-gray-600">
-              Estimates generated using NREL PVWatts® v8.
-            </div>
-            <div className="flex items-center space-x-6">
-              <TrustChip variant="success">Supports custom domains, logos & colors</TrustChip>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <LegalFooter showGoogleAttribution={true} />
     </div>
   );
 }
