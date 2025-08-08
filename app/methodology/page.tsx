@@ -1,3 +1,5 @@
+'use client';
+
 import { LegalFooter } from '@/components/legal/LegalFooter';
 
 export default function MethodologyPage() {
