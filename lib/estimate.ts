@@ -1,38 +1,39 @@
-import { PVWattsResponse } from './pvwatts';
-import { UtilityRate } from './rates';
+import incentives from "@/data/incentives.json" assert { type: "json" };
+import type { PvwattsOut } from "./pvwatts";
+import type { RateResult } from "./rates";
 
 export interface SolarEstimate {
   id: string;
   address: string;
   coordinates: { lat: number; lng: number };
-  date: Date;
-  
-  // System specifications
+  date: string | Date;
+
+  // system
   systemSizeKW: number;
   tilt: number;
   azimuth: number;
   losses: number;
-  
-  // Production data
+
+  // production
   annualProductionKWh: number;
   monthlyProduction: number[];
   solarIrradiance: number;
-  
-  // Financial calculations
+
+  // finance
   grossCost: number;
   netCostAfterITC: number;
   year1Savings: number;
-  paybackYear: number;
+  paybackYear: number | null;
   npv25Year: number;
-  
-  // Environmental impact
+
+  // env
   co2OffsetPerYear: number;
-  
-  // Utility data
+
+  // utility
   utilityRate: number;
   utilityRateSource: string;
-  
-  // Assumptions and methodology
+
+  // assumptions shown in UI
   assumptions: {
     itcPercentage: number;
     costPerWatt: number;
@@ -41,8 +42,8 @@ export interface SolarEstimate {
     electricityRateIncrease: number;
     discountRate: number;
   };
-  
-  // 25-year cashflow projection
+
+  // for chart
   cashflowProjection: {
     year: number;
     production: number;
@@ -52,166 +53,107 @@ export interface SolarEstimate {
   }[];
 }
 
-export interface EstimateRequest {
-  lat: number;
-  lng: number;
+export type BuildInputs = {
   address: string;
-  systemKw?: number;
-  tilt?: number;
-  azimuth?: number;
-  lossesPct?: number;
+  lat: number; lng: number;
   stateCode?: string;
-  zipCode?: string;
-}
+  pv: PvwattsOut;
+  rate: RateResult;
+  systemKw: number;
+  tilt: number;
+  azimuth: number;
+  lossesPct: number;
+};
 
-export function calculateSolarEstimate(
-  pvwattsData: PVWattsResponse,
-  utilityRate: UtilityRate,
-  request: EstimateRequest
-): SolarEstimate {
-  // Get configurable parameters from environment variables
-  const costPerWatt = parseFloat(process.env.DEFAULT_COST_PER_WATT || '3.00');
-  const degradationRate = parseFloat(process.env.DEFAULT_DEGRADATION_PCT || '0.5') / 100;
-  const oandmPerKWYear = parseFloat(process.env.OANDM_PER_KW_YEAR || '22');
-  
-  // Fixed assumptions
-  const itcPercentage = 0.30; // 30% federal tax credit
-  const electricityRateIncrease = 0.025; // 2.5% annual increase
-  const discountRate = 0.07; // 7% discount rate for NPV
-  
-  // System specifications
-  const systemSizeKW = request.systemKw || pvwattsData.inputs.system_capacity;
-  const tilt = request.tilt || pvwattsData.inputs.tilt;
-  const azimuth = request.azimuth || pvwattsData.inputs.azimuth;
-  const losses = request.lossesPct || pvwattsData.inputs.losses;
-  
-  // Production data
-  const annualProductionKWh = pvwattsData.outputs.ac_annual;
-  const monthlyProduction = pvwattsData.outputs.ac_monthly;
-  const solarIrradiance = pvwattsData.outputs.solrad_annual / 365;
-  
-  // Cost calculations
-  const grossCost = systemSizeKW * 1000 * costPerWatt;
-  const netCostAfterITC = grossCost * (1 - itcPercentage);
-  
-  // Year 1 savings calculation
-  const annualOandMCost = systemSizeKW * oandmPerKWYear;
-  const year1Savings = annualProductionKWh * utilityRate.rate - annualOandMCost;
-  
-  // 25-year cashflow projection
-  const cashflowProjection = calculate25YearCashflow(
-    annualProductionKWh,
-    utilityRate.rate,
-    annualOandMCost,
-    degradationRate,
-    electricityRateIncrease,
-    netCostAfterITC
-  );
-  
-  // Payback year calculation
-  const paybackYear = calculatePaybackYear(cashflowProjection);
-  
-  // 25-year NPV calculation
-  const npv25Year = calculateNPV25Year(cashflowProjection, discountRate);
-  
-  // CO2 offset calculation (lbs CO2 per kWh avoided)
-  const co2PerKwh = 0.85; // EPA average for US grid
-  const co2OffsetPerYear = Math.round(annualProductionKWh * co2PerKwh);
-  
+export function buildEstimate({
+  address, lat, lng, stateCode, pv, rate, systemKw, tilt, azimuth, lossesPct
+}: BuildInputs): SolarEstimate {
+  const costPerWatt = num(process.env.DEFAULT_COST_PER_WATT, 3.0);
+  const degr = num(process.env.DEFAULT_DEGRADATION_PCT, 0.5) / 100;
+  const oandmPerKW = num(process.env.OANDM_PER_KW_YEAR, 22);
+  const rateEsc = num(process.env.DEFAULT_RATE_ESCALATION, 0.025);
+  const oandmEsc = num(process.env.DEFAULT_OANDM_ESCALATION, 0.02);
+  const discount = num(process.env.DISCOUNT_RATE, 0.07);
+
+  // Incentives (rebate BEFORE ITC)
+  const itcPct = incentives["US"]?.itc_pct ?? 0.30;
+  const stateReb = stateCode ? (incentives as any)[stateCode] : undefined;
+  const rebatePerWatt = stateReb?.rebate_per_watt ?? 0;
+  const rebateFlat = stateReb?.rebate_flat ?? 0;
+
+  const capex = systemKw * 1000 * costPerWatt;
+  const rebate = rebateFlat + rebatePerWatt * systemKw * 1000;
+  const itc = itcPct * Math.max(0, capex - rebate);
+  const netCost = Math.max(0, capex - rebate - itc);
+
+  const annualKWh = pv.annual_kwh;
+  const monthlyKWh = pv.monthly_kwh.map((n) => Math.round(n));
+
+  // Cashflow 25 years
+  const oandm0 = oandmPerKW * systemKw;
+  let cumulative = -netCost;
+  const cashflowProjection = [];
+  let npv = -netCost;
+
+  for (let y = 1; y <= 25; y++) {
+    const prodY = annualKWh * Math.pow(1 - degr, y - 1);
+    const rateY = rate.rate * Math.pow(1 + rateEsc, y - 1);
+    const oandmY = oandm0 * Math.pow(1 + oandmEsc, y - 1);
+    const savingsY = prodY * rateY;
+    const netY = savingsY - oandmY;
+    cumulative += netY;
+    npv += netY / Math.pow(1 + discount, y);
+    cashflowProjection.push({
+      year: y,
+      production: Math.round(prodY),
+      savings: Math.round(savingsY),
+      cumulativeSavings: Math.round(Math.max(0, cumulative + netCost)), // cumulative pre-capex if you need
+      netCashflow: Math.round(cumulative)
+    });
+  }
+
+  const paybackYear = cashflowProjection.find((p) => p.netCashflow >= 0)?.year ?? null;
+  const co2Offset = Math.round(annualKWh * 0.85); // lbs CO2 avoided (Year 1)
+
   return {
     id: Date.now().toString(),
-    address: request.address,
-    coordinates: { lat: request.lat, lng: request.lng },
-    date: new Date(),
-    
-    systemSizeKW,
-    tilt,
-    azimuth,
-    losses,
-    
-    annualProductionKWh,
-    monthlyProduction,
-    solarIrradiance: Math.round(solarIrradiance * 10) / 10,
-    
-    grossCost: Math.round(grossCost),
-    netCostAfterITC: Math.round(netCostAfterITC),
-    year1Savings: Math.round(year1Savings),
+    address,
+    coordinates: { lat, lng },
+    date: new Date().toISOString(),
+
+    systemSizeKW: systemKw,
+    tilt, azimuth, losses: lossesPct,
+
+    annualProductionKWh: Math.round(annualKWh),
+    monthlyProduction: monthlyKWh,
+    solarIrradiance: round2(pv.solrad_kwh_m2_day), // kWh/m²/day
+
+    grossCost: Math.round(capex),
+    netCostAfterITC: Math.round(netCost),
+    year1Savings: Math.round(annualKWh * rate.rate - oandm0),
     paybackYear,
-    npv25Year: Math.round(npv25Year),
-    
-    co2OffsetPerYear,
-    
-    utilityRate: utilityRate.rate,
-    utilityRateSource: utilityRate.source,
-    
+    npv25Year: Math.round(npv),
+
+    co2OffsetPerYear: co2Offset,
+
+    utilityRate: round3(rate.rate),
+    utilityRateSource: rate.source,
+
     assumptions: {
-      itcPercentage,
+      itcPercentage: itcPct,
       costPerWatt,
-      degradationRate,
-      oandmPerKWYear,
-      electricityRateIncrease,
-      discountRate
+      degradationRate: degr,
+      oandmPerKWYear: oandmPerKW,
+      electricityRateIncrease: rateEsc,
+      discountRate: discount
     },
-    
+
     cashflowProjection
   };
 }
 
-function calculate25YearCashflow(
-  annualProduction: number,
-  utilityRate: number,
-  annualOandM: number,
-  degradationRate: number,
-  rateIncrease: number,
-  netCost: number
-) {
-  const cashflow: SolarEstimate['cashflowProjection'] = [];
-  let cumulativeSavings = 0;
-  let currentRate = utilityRate;
-  let degradationFactor = 1.0;
-  
-  for (let year = 1; year <= 25; year++) {
-    // Apply degradation to production
-    if (year > 1) {
-      degradationFactor *= (1 - degradationRate);
-    }
-    
-    const yearlyProduction = annualProduction * degradationFactor;
-    const yearlySavings = yearlyProduction * currentRate - annualOandM;
-    cumulativeSavings += yearlySavings;
-    const netCashflow = cumulativeSavings - netCost;
-    
-    cashflow.push({
-      year,
-      production: Math.round(yearlyProduction),
-      savings: Math.round(yearlySavings),
-      cumulativeSavings: Math.round(cumulativeSavings),
-      netCashflow: Math.round(netCashflow)
-    });
-    
-    // Increase electricity rate
-    currentRate *= (1 + rateIncrease);
-  }
-  
-  return cashflow;
+function num(v: string|undefined, dflt: number) {
+  const n = Number(v); return Number.isFinite(n) ? n : dflt;
 }
-
-function calculatePaybackYear(cashflow: SolarEstimate['cashflowProjection']): number {
-  for (const year of cashflow) {
-    if (year.netCashflow >= 0) {
-      return year.year;
-    }
-  }
-  return 25; // If never reaches payback
-}
-
-function calculateNPV25Year(cashflow: SolarEstimate['cashflowProjection'], discountRate: number): number {
-  let npv = 0;
-  
-  for (const year of cashflow) {
-    const discountFactor = Math.pow(1 + discountRate, -year.year);
-    npv += year.savings * discountFactor;
-  }
-  
-  return npv;
-}
+function round2(n: number) { return Math.round(n * 100) / 100; }
+function round3(n: number) { return Math.round(n * 1000) / 1000; }

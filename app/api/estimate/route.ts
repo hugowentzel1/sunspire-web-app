@@ -1,101 +1,75 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { callPVWattsAPI, getFallbackPVWattsData } from '@/lib/pvwatts';
-import { getUtilityRate, getStateFromZip } from '@/lib/rates';
-import { calculateSolarEstimate, EstimateRequest } from '@/lib/estimate';
+import { NextResponse } from "next/server";
+import { pvwatts } from "@/lib/pvwatts";
+import { getRate } from "@/lib/rates";
+import { buildEstimate } from "@/lib/estimate";
 
-export async function GET(request: NextRequest) {
-  const { searchParams } = new URL(request.url);
-  
-  try {
-    // Extract parameters from query string
-    const lat = parseFloat(searchParams.get('lat') || '');
-    const lng = parseFloat(searchParams.get('lng') || '');
-    const address = searchParams.get('address') || '';
-    const systemKw = searchParams.get('systemKw') ? parseFloat(searchParams.get('systemKw')!) : undefined;
-    const tilt = searchParams.get('tilt') ? parseFloat(searchParams.get('tilt')!) : undefined;
-    const azimuth = searchParams.get('azimuth') ? parseFloat(searchParams.get('azimuth')!) : undefined;
-    const lossesPct = searchParams.get('lossesPct') ? parseFloat(searchParams.get('lossesPct')!) : undefined;
-    const stateCode = searchParams.get('stateCode') || undefined;
-    const zipCode = searchParams.get('zipCode') || undefined;
-    
-    // Validate required parameters
-    if (!lat || !lng || !address) {
-      return NextResponse.json(
-        { error: 'Missing required parameters: lat, lng, address' },
-        { status: 400 }
-      );
-    }
-    
-    // Validate coordinate ranges
-    if (lat < -90 || lat > 90 || lng < -180 || lng > 180) {
-      return NextResponse.json(
-        { error: 'Invalid coordinates' },
-        { status: 400 }
-      );
-    }
-    
-    // Determine system size if not provided
-    let systemSizeKW = systemKw;
-    if (!systemSizeKW) {
-      // Estimate system size based on average home usage (12,000 kWh/year)
-      // and typical solar production (1 kW produces ~1,400 kWh/year)
-      systemSizeKW = Math.round((12000 / 1400) * 10) / 10;
-    }
-    
-    // Get utility rate
-    const utilityRate = await getUtilityRate(stateCode, zipCode);
-    
-    // Get PVWatts data
-    let pvwattsData;
-    try {
-      pvwattsData = await callPVWattsAPI({
-        lat,
-        lng,
-        system_capacity_kw: systemSizeKW,
-        tilt,
-        azimuth,
-        losses: lossesPct
-      });
-    } catch (error) {
-      console.warn('PVWatts API failed, using fallback data:', error);
-      pvwattsData = getFallbackPVWattsData({
-        lat,
-        lng,
-        system_capacity_kw: systemSizeKW,
-        tilt,
-        azimuth,
-        losses: lossesPct
-      });
-    }
-    
-    // Calculate solar estimate
-    const estimateRequest: EstimateRequest = {
-      lat,
-      lng,
-      address,
-      systemKw: systemSizeKW,
-      tilt,
-      azimuth,
-      lossesPct,
-      stateCode,
-      zipCode
-    };
-    
-    const estimate = calculateSolarEstimate(pvwattsData, utilityRate, estimateRequest);
-    
-    // Return the estimate with PVWatts data and assumptions
-    return NextResponse.json({
-      estimate,
-      pvwattsData,
-      utilityRate,
-      request: estimateRequest
-    });
-    
-  } catch (error) {
-    console.error('Error in estimate API:', error);
-    return NextResponse.json(
-      { error: 'Failed to generate estimate' },
-      { status: 500 }
-    );
+type Inputs = {
+  address: string;
+  lat: number; lng: number;
+  systemKw: number; tilt: number; azimuth: number; lossesPct: number;
+  state?: string; shadePct?: number; roofFace?: "N"|"E"|"S"|"W";
+};
+
+function parseInputsFromSearch(url: string): Inputs {
+  const sp = new URL(url).searchParams;
+  const lat = Number(sp.get("lat"));
+  const lng = Number(sp.get("lng"));
+  const address = sp.get("address") ?? "";
+  const systemKw = Number(sp.get("systemKw") ?? 6);
+  const tilt = Number(sp.get("tilt") ?? 20);
+  const azimuth = Number(sp.get("azimuth") ?? 180);
+  const lossesPct = Number(sp.get("lossesPct") ?? (process.env.DEFAULT_LOSSES_PCT ?? 14));
+  const state = (sp.get("state") ?? "").toUpperCase() || undefined;
+  const roofFace = (sp.get("roofFace") as Inputs["roofFace"]) || undefined;
+  const shadePct = Number(sp.get("shadePct") ?? 0);
+
+  return { address, lat, lng, systemKw, tilt, azimuth, lossesPct, state, roofFace, shadePct };
+}
+
+function withRoofAdjustments(i: Inputs): Inputs {
+  // Optional: If roofFace provided, overwrite azimuth. N=0,E=90,S=180,W=270
+  let az = i.azimuth;
+  if (i.roofFace) {
+    az = i.roofFace === "N" ? 0 : i.roofFace === "E" ? 90 : i.roofFace === "S" ? 180 : 270;
   }
+  // Add shading into losses (cap at 30%)
+  const losses = Math.min(30, i.lossesPct + (i.shadePct || 0));
+  return { ...i, azimuth: az, lossesPct: losses };
+}
+
+export async function GET(req: Request) {
+  try {
+    let i = parseInputsFromSearch(req.url);
+    if (!Number.isFinite(i.lat) || !Number.isFinite(i.lng)) {
+      return NextResponse.json({ error: "lat/lng required" }, { status: 400 });
+    }
+    i = withRoofAdjustments(i);
+
+    const pv = await pvwatts({
+      lat: i.lat, lon: i.lng,
+      system_capacity_kw: i.systemKw,
+      tilt_deg: i.tilt,
+      azimuth_deg: i.azimuth,
+      losses_pct: i.lossesPct
+    });
+
+    const rate = await getRate(i.state);
+    const estimate = buildEstimate({
+      address: i.address, lat: i.lat, lng: i.lng,
+      stateCode: i.state, pv, rate,
+      systemKw: i.systemKw, tilt: i.tilt, azimuth: i.azimuth, lossesPct: i.lossesPct
+    });
+
+    // IMPORTANT: keep the exact shape the UI expects (estimate inside top-level object)
+    return NextResponse.json({ estimate }, { status: 200 });
+  } catch (e: any) {
+    return NextResponse.json({ error: e.message ?? "estimate failed" }, { status: 500 });
+  }
+}
+
+export async function POST(req: Request) {
+  const body = await req.json().catch(() => ({}));
+  const qs = new URLSearchParams(Object.entries(body).map(([k,v]) => [k, String(v)]));
+  const url = `http://dummy.local?${qs.toString()}`;
+  return GET(new Request(url));
 }
