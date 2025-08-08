@@ -1,39 +1,36 @@
 'use client';
 
 import { useState } from 'react';
-import { PVWattsBadge } from './PVWattsBadge';
-import { GoogleAttribution } from './GoogleAttribution';
-import { LegalModal } from './LegalModal';
+import PVWattsBadge from './PVWattsBadge';
+import GoogleAttribution from './GoogleAttribution';
+import LegalModal from './LegalModal';
 
 interface LegalFooterProps {
-  showGoogleAttribution?: boolean;
+  showGoogle?: boolean;
 }
 
-export function LegalFooter({ showGoogleAttribution = false }: LegalFooterProps) {
+export default function LegalFooter({ showGoogle = false }: LegalFooterProps) {
   const [showLegalModal, setShowLegalModal] = useState(false);
 
   return (
     <>
-      <footer className="border-t border-[var(--border)] bg-white/50 backdrop-blur-sm">
-        <div className="container-premium py-8">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex items-center space-x-6">
-              <PVWattsBadge />
-              {showGoogleAttribution && <GoogleAttribution />}
-            </div>
-            <button
-              onClick={() => setShowLegalModal(true)}
-              className="text-sm text-muted-premium hover:text-premium underline"
-            >
-              Terms & Privacy
-            </button>
-          </div>
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-[var(--muted)]">
+        <div className="flex items-center gap-6">
+          <PVWattsBadge />
+          {showGoogle && <GoogleAttribution />}
         </div>
-      </footer>
-
-      <LegalModal 
-        isOpen={showLegalModal} 
-        onClose={() => setShowLegalModal(false)} 
+        
+        <button
+          onClick={() => setShowLegalModal(true)}
+          className="text-[var(--brand-2)] hover:underline"
+        >
+          Terms & Privacy
+        </button>
+      </div>
+      
+      <LegalModal
+        isOpen={showLegalModal}
+        onClose={() => setShowLegalModal(false)}
       />
     </>
   );

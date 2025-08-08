@@ -8,9 +8,7 @@ interface LegalModalProps {
   onClose: () => void;
 }
 
-export function LegalModal({ isOpen, onClose }: LegalModalProps) {
-  const [activeTab, setActiveTab] = useState<'terms' | 'privacy'>('terms');
-
+export default function LegalModal({ isOpen, onClose }: LegalModalProps) {
   return (
     <AnimatePresence>
       {isOpen && (
@@ -18,111 +16,53 @@ export function LegalModal({ isOpen, onClose }: LegalModalProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4"
-          onClick={onClose}
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
         >
+          <div className="absolute inset-0 bg-black/50" onClick={onClose}></div>
+          
           <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
+            initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            className="bg-white rounded-[22px] max-w-2xl w-full max-h-[80vh] overflow-hidden shadow-[0_20px_80px_rgba(15,23,42,0.15)]"
-            onClick={(e) => e.stopPropagation()}
+            exit={{ scale: 0.95, opacity: 0 }}
+            className="relative bg-white rounded-2xl p-8 max-w-2xl w-full max-h-[80vh] overflow-y-auto"
           >
-            {/* Header */}
-            <div className="p-6 border-b border-[var(--border)]">
-              <div className="flex items-center justify-between">
-                <h2 className="text-xl font-bold text-premium">Legal Information</h2>
-                <button
-                  onClick={onClose}
-                  className="text-muted-premium hover:text-premium"
-                >
-                  ✕
-                </button>
+            <button
+              onClick={onClose}
+              className="absolute top-4 right-4 text-[var(--muted)] hover:text-[var(--ink)]"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            
+            <div className="space-y-6">
+              <h2 className="text-2xl font-bold text-[var(--ink)]">Terms & Privacy</h2>
+              
+              <div>
+                <h3 className="font-bold text-[var(--ink)] mb-2">Disclaimer</h3>
+                <p className="text-sm text-[var(--muted)]">
+                  Solar estimates are approximations based on mathematical models and historical data. 
+                  Actual production may vary due to weather, equipment performance, and other factors. 
+                  These estimates should not be considered as guarantees.
+                </p>
               </div>
               
-              {/* Tabs */}
-              <div className="flex gap-4 mt-4">
-                <button
-                  onClick={() => setActiveTab('terms')}
-                  className={`px-4 py-2 rounded-lg font-medium transition ${
-                    activeTab === 'terms'
-                      ? 'bg-[var(--brand)] text-white'
-                      : 'text-muted-premium hover:text-premium'
-                  }`}
-                >
-                  Terms of Use
-                </button>
-                <button
-                  onClick={() => setActiveTab('privacy')}
-                  className={`px-4 py-2 rounded-lg font-medium transition ${
-                    activeTab === 'privacy'
-                      ? 'bg-[var(--brand)] text-white'
-                      : 'text-muted-premium hover:text-premium'
-                  }`}
-                >
-                  Privacy Policy
-                </button>
+              <div>
+                <h3 className="font-bold text-[var(--ink)] mb-2">Data Use</h3>
+                <p className="text-sm text-[var(--muted)]">
+                  Address and contact information is used to generate solar estimates and may be shared 
+                  with verified solar installers when you request quotes. Data is processed by NREL PVWatts® 
+                  for calculations and Google Maps for location services.
+                </p>
               </div>
-            </div>
-
-            {/* Content */}
-            <div className="p-6 overflow-y-auto max-h-[60vh]">
-              {activeTab === 'terms' ? (
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="font-bold text-premium mb-2">Disclaimer</h3>
-                    <p className="text-sm text-muted-premium leading-relaxed">
-                      Solar estimates provided are approximate and for informational purposes only. 
-                      Actual system performance, costs, and savings may vary based on site-specific 
-                      conditions, equipment selection, and market factors. These estimates do not 
-                      constitute guarantees or warranties.
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <h3 className="font-bold text-premium mb-2">Data Use</h3>
-                    <p className="text-sm text-muted-premium leading-relaxed">
-                      Your address and contact information are used solely to generate solar estimates 
-                      and connect you with qualified installers. Data is processed by NREL PVWatts® 
-                      for solar calculations and Google Maps for location services.
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <h3 className="font-bold text-premium mb-2">Consent</h3>
-                    <p className="text-sm text-muted-premium leading-relaxed">
-                      By using this service, you consent to the collection and processing of your 
-                      information as described in our Privacy Policy. You may withdraw consent at any time.
-                    </p>
-                  </div>
-                </div>
-              ) : (
-                <div className="space-y-6">
-                  <div>
-                    <h3 className="font-bold text-premium mb-2">Information We Collect</h3>
-                    <p className="text-sm text-muted-premium leading-relaxed">
-                      We collect address information for solar calculations, contact details for 
-                      installer connections, and usage data to improve our service.
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <h3 className="font-bold text-premium mb-2">How We Use Your Data</h3>
-                    <p className="text-sm text-muted-premium leading-relaxed">
-                      Your information is used to generate solar estimates, connect you with 
-                      qualified installers, and improve our service. We do not sell your personal data.
-                    </p>
-                  </div>
-                  
-                  <div>
-                    <h3 className="font-bold text-premium mb-2">Data Sharing</h3>
-                    <p className="text-sm text-muted-premium leading-relaxed">
-                      We share your information only with qualified solar installers you choose 
-                      to connect with, and as required by law.
-                    </p>
-                  </div>
-                </div>
-              )}
+              
+              <div>
+                <h3 className="font-bold text-[var(--ink)] mb-2">Consent</h3>
+                <p className="text-sm text-[var(--muted)]">
+                  By continuing to use this service, you consent to our data processing practices. 
+                  For full terms and privacy policy, please contact us for licensing information.
+                </p>
+              </div>
             </div>
           </motion.div>
         </motion.div>

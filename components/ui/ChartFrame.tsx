@@ -1,44 +1,47 @@
 import { ReactNode } from 'react';
-import { HoverLift } from './motion';
+import { cn } from '@/lib/utils';
 
 interface ChartFrameProps {
+  title?: string;
   children: ReactNode;
+  zeroLine?: boolean;
   paybackYear?: number | null;
   className?: string;
 }
 
-export function ChartFrame({ children, paybackYear, className }: ChartFrameProps) {
+export default function ChartFrame({ title, children, zeroLine, paybackYear, className }: ChartFrameProps) {
   return (
-    <HoverLift className={className}>
-      <div className="card p-8 relative">
-        {/* Zero Line */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute left-8 right-8 top-1/2 border-t border-gray-200/50"></div>
-        </div>
+    <div className={cn("card p-6 relative", className)}>
+      {title && (
+        <h3 className="text-xl font-bold text-[var(--ink)] mb-6">
+          {title}
+        </h3>
+      )}
+      
+      <div className="relative">
+        {zeroLine && (
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <div className="w-full h-px bg-[var(--border)] opacity-50"></div>
+          </div>
+        )}
         
-        {/* Payback Marker */}
         {paybackYear && (
           <div className="absolute inset-0 pointer-events-none">
             <div 
-              className="absolute top-0 bottom-0 w-px bg-gradient-to-b from-[var(--brand)] to-transparent"
-              style={{ 
-                left: `${8 + (paybackYear / 25) * (100 - 16)}%`,
-                opacity: 0.6
-              }}
+              className="absolute top-0 bottom-0 w-px bg-[var(--warn)] opacity-30"
+              style={{ left: `${(paybackYear / 25) * 100}%` }}
+            ></div>
+            <div 
+              className="absolute bottom-0 text-xs text-[var(--warn)] font-medium"
+              style={{ left: `${(paybackYear / 25) * 100}%`, transform: 'translateX(-50%)' }}
             >
-              <div className="absolute -top-2 -left-1 w-2 h-2 bg-[var(--brand)] rounded-full"></div>
-              <div className="absolute -bottom-8 -left-8 w-16 text-xs text-[var(--brand)] font-medium text-center">
-                Payback
-              </div>
+              {paybackYear}y
             </div>
           </div>
         )}
         
-        {/* Chart Content */}
-        <div className="relative z-10">
-          {children}
-        </div>
+        {children}
       </div>
-    </HoverLift>
+    </div>
   );
 }

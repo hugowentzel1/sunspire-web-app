@@ -1,6 +1,6 @@
-export function GoogleAttribution() {
+export default function GoogleAttribution() {
   return (
-    <div className="text-xs text-muted-premium">
+    <div className="text-sm text-[var(--muted)]">
       Mapping and location data © Google
     </div>
   );

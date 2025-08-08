@@ -1,24 +1,31 @@
-/* Premium Design Tokens - Lush & Expensive */
+/* Premium Design Tokens - Ultra Premium */
 :root {
-  --brand: #FF7A3D; /* Will be overridden by tenant.colors.primary */
-  --brand-2: #FF4D6D; /* Will be overridden by tenant.colors.secondary */
+  --brand: #111827;        /* deep neutral */
+  --brand-2: #4F46E5;      /* indigo accent */
   --ink: #0E1016;
   --muted: #667085;
   --bg-1: #F7FAFF;
   --bg-2: #EEF4FF;
   --card: #FFFFFF;
   --border: #E6E9F0;
+  --good: #16A34A;
+  --warn: #F59E0B;
 }
 
 /* Premium Background */
 .bg-app {
-  background: radial-gradient(1200px 800px at 20% -10%, rgba(255,255,255,.8) 10%, transparent 60%), 
+  background: radial-gradient(1200px 800px at 20% -10%, rgba(255,255,255,.85) 10%, transparent 60%), 
               linear-gradient(180deg, var(--bg-1) 0%, var(--bg-2) 100%);
 }
 
 /* Premium Card */
 .card {
   @apply rounded-[22px] bg-white border border-[var(--border)] shadow-[0_12px_60px_rgba(15,23,42,.07)];
+}
+
+/* Glass Effect */
+.glass {
+  @apply bg-white/75 backdrop-blur-xl border border-white/60 shadow-[0_10px_40px_rgba(15,23,42,.06)];
 }
 
 /* Premium Button */
@@ -34,18 +41,13 @@
 
 /* Premium Chip */
 .chip {
-  @apply inline-flex items-center gap-2 rounded-full bg-white/70 border border-[var(--border)] px-3 py-1 text-sm text-[var(--muted)] backdrop-blur;
+  @apply inline-flex items-center gap-2 rounded-full bg-white/85 border border-[var(--border)] px-3 py-1 text-sm text-[var(--muted)] backdrop-blur;
 }
 
 /* Premium Icon Chip */
 .icon-chip {
-  @apply h-10 w-10 rounded-2xl bg-gradient-to-br from-orange-100 to-pink-100 flex items-center justify-center;
-  color: var(--brand);
-}
-
-/* Glass Effect */
-.glass {
-  @apply bg-white/70 backdrop-blur-xl border border-white/60 shadow-[0_10px_40px_rgba(15,23,42,.06)];
+  @apply h-10 w-10 rounded-2xl bg-gradient-to-br from-indigo-50 to-violet-50 flex items-center justify-center;
+  color: var(--brand-2);
 }
 
 /* Premium Typography */
