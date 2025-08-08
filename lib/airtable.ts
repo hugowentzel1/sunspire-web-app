@@ -15,14 +15,14 @@ export interface LeadData {
 }
 
 export async function storeLead(leadData: LeadData): Promise<{ success: boolean; error?: string }> {
-  try {
-    const response = await fetch(`https://api.airtable.com/v0/${process.env.AIRTABLE_BASE_ID}/Table%201`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${process.env.AIRTABLE_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
+  const tableNames = ['Table 1', 'Leads', 'tblybSQVPXv2GbwUq']; // Try multiple possible names
+  
+  for (const tableName of tableNames) {
+    try {
+      const url = `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}`;
+      console.log(`Trying Airtable table: ${tableName}, URL: ${url}`);
+      
+      const payload = {
         fields: {
           'Name': leadData.name,
           'Notes': `Email: ${leadData.email}
@@ -37,26 +37,47 @@ CO2 Offset: ${leadData.co2OffsetPerYear.toLocaleString()} lbs/year
 Tenant: ${leadData.tenantSlug}
 Created: ${leadData.createdAt}
 
-Additional Notes: ${leadData.notes || 'None'}`,
-          'Status': 'New Lead'
+Additional Notes: ${leadData.notes || 'None'}`
         }
-      })
-    });
+      };
+      
+      console.log('Payload:', JSON.stringify(payload, null, 2));
+      
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${process.env.AIRTABLE_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(payload)
+      });
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error('Airtable API Error Response:', errorText);
-      throw new Error(`Airtable API error: ${response.status} - ${errorText}`);
+      if (response.ok) {
+        console.log(`Successfully stored lead using table name: ${tableName}`);
+        return { success: true };
+      } else {
+        const errorText = await response.text();
+        console.error(`Failed with table ${tableName}:`, response.status, errorText);
+        
+        // If this is the last table name, throw the error
+        if (tableName === tableNames[tableNames.length - 1]) {
+          throw new Error(`Airtable API error: ${response.status} - ${errorText}`);
+        }
+      }
+    } catch (error) {
+      console.error(`Error with table ${tableName}:`, error);
+      
+      // If this is the last table name, return the error
+      if (tableName === tableNames[tableNames.length - 1]) {
+        return { 
+          success: false, 
+          error: error instanceof Error ? error.message : 'Unknown error' 
+        };
+      }
     }
-
-    return { success: true };
-  } catch (error) {
-    console.error('Error storing lead in Airtable:', error);
-    return { 
-      success: false, 
-      error: error instanceof Error ? error.message : 'Unknown error' 
-    };
   }
+  
+  return { success: false, error: 'All table names failed' };
 }
 
 // Fallback storage for development/testing

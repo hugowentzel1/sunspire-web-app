@@ -35,16 +35,25 @@ export async function POST(request: NextRequest) {
 
     // Store lead in Airtable (or fallback)
     let storeResult;
+    console.log('Environment check:', {
+      hasAirtableKey: !!process.env.AIRTABLE_API_KEY,
+      hasAirtableBase: !!process.env.AIRTABLE_BASE_ID,
+      airtableKeyLength: process.env.AIRTABLE_API_KEY?.length,
+      airtableBase: process.env.AIRTABLE_BASE_ID
+    });
+    
     if (process.env.AIRTABLE_API_KEY && process.env.AIRTABLE_BASE_ID) {
+      console.log('Attempting to store lead in Airtable...');
       storeResult = await storeLead(leadData);
     } else {
+      console.log('Using fallback storage (missing Airtable credentials)');
       storeResult = await storeLeadFallback(leadData);
     }
 
     if (!storeResult.success) {
       console.error('Failed to store lead:', storeResult.error);
       return NextResponse.json(
-        { error: 'Failed to store lead information' },
+        { error: `Failed to store lead information: ${storeResult.error}` },
         { status: 500 }
       );
     }
