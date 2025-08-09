@@ -102,7 +102,7 @@ export default function MethodologyPage() {
         </div>
       </div>
       
-      <LegalFooter showGoogle={true} />
+      <LegalFooter />
     </div>
   );
 }
