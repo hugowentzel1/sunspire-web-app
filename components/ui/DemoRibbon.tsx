@@ -30,17 +30,27 @@ export default function DemoRibbon() {
   const initials = useMemo(() => {
     if (!brand) return '🅻';
     const words = brand.trim().split(/\s+/);
-    const chars = words.slice(0,2).map(w => w[0]?.toUpperCase()).join('');
+    const chars = words.slice(0, 2).map((w) => w[0]?.toUpperCase()).join('');
     return chars || '🅻';
   }, [brand]);
 
   if (!enabled) return null;
 
+  const mailto = typeof window !== 'undefined'
+    ? `mailto:sales@sunspire.app?subject=${encodeURIComponent('White-label Demo')}&body=${encodeURIComponent(`Brand: ${brand ?? ''}\nLink: ${window.location.href}`)}`
+    : 'mailto:sales@sunspire.app?subject=White-label%20Demo';
+
+  const copy = async () => {
+    try { await navigator.clipboard.writeText(window.location.href); } catch {}
+  };
+
   return (
     <div className="fixed top-3 left-1/2 -translate-x-1/2 z-50">
-      <div className="flex items-center gap-3 px-4 py-2 rounded-full border border-[var(--border)] bg-white/90 backdrop-blur shadow-[0_10px_40px_rgba(15,23,42,.08)]">
-        <div className="h-8 w-8 rounded-xl overflow-hidden flex items-center justify-center text-xs font-black text-white"
-             style={{ background: 'linear-gradient(140deg, var(--sun-1), var(--sun-2), var(--sun-3))' }}>
+      <div className="flex items-center gap-4 px-5 py-3 rounded-full border border-[var(--border)] bg-white/95 backdrop-blur shadow-[0_16px_60px_rgba(15,23,42,.12)]">
+        <div
+          className="h-9 w-9 rounded-xl overflow-hidden flex items-center justify-center text-xs font-black text-white"
+          style={{ background: 'linear-gradient(140deg, var(--sun-1), var(--sun-2), var(--sun-3))' }}
+        >
           {logo ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img src={logo} alt="Brand logo" className="h-full w-full object-cover" />
@@ -49,12 +59,16 @@ export default function DemoRibbon() {
           )}
         </div>
         <div className="text-sm font-semibold text-[var(--ink)]">
-          {brand ? `Demo for ${brand}` : 'Demo Preview'} • <span className="text-[var(--muted)]">Your logo could be here</span>
+          <span className="mr-1">White‑label this app</span>
+          <span className="hidden sm:inline text-[var(--muted)]">— Your logo + domain in 24h</span>
+          <span className="ml-2 text-[var(--muted)]">{brand ? `(Preview: ${brand})` : ''}</span>
         </div>
-        <button
-          onClick={() => navigator.clipboard.writeText(window.location.href)}
-          className="text-xs font-bold px-2 py-1 rounded-lg border border-[var(--border)] hover:bg-[var(--bg-2)]"
-        >Copy link</button>
+        <button onClick={copy} className="text-xs font-bold px-2.5 py-1.5 rounded-lg border border-[var(--border)] hover:bg-[var(--bg-2)]">
+          Copy demo link
+        </button>
+        <a href={mailto} className="btn-sunset text-xs px-3 py-2">
+          Get white‑label demo
+        </a>
       </div>
     </div>
   );
