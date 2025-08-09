@@ -45,7 +45,7 @@ export default function DemoRibbon() {
   };
 
   return (
-    <div className="fixed top-3 left-1/2 -translate-x-1/2 z-50">
+    <div className="fixed top-24 left-1/2 -translate-x-1/2 z-[100]">
       <div className="flex items-center gap-4 px-5 py-3 rounded-full border border-[var(--border)] bg-white/95 backdrop-blur shadow-[0_16px_60px_rgba(15,23,42,.12)]">
         <div
           className="h-9 w-9 rounded-xl overflow-hidden flex items-center justify-center text-xs font-black text-white"
