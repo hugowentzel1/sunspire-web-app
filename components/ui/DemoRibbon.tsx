@@ -59,8 +59,8 @@ export default function DemoRibbon() {
           )}
         </div>
         <div className="text-sm font-semibold text-[var(--ink)]">
-          <span className="mr-1">White‑label this app</span>
-          <span className="hidden sm:inline text-[var(--muted)]">— Your logo + domain in 24h</span>
+          <span className="mr-1">This could be your logo</span>
+          <span className="hidden sm:inline text-[var(--muted)]">— White‑label on your domain in 24h</span>
           <span className="ml-2 text-[var(--muted)]">{brand ? `(Preview: ${brand})` : ''}</span>
         </div>
         <button onClick={copy} className="text-xs font-bold px-2.5 py-1.5 rounded-lg border border-[var(--border)] hover:bg-[var(--bg-2)]">
