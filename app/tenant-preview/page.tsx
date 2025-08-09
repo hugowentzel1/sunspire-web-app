@@ -253,7 +253,7 @@ function TenantPreviewContent() {
       </main>
 
       {/* Legal Footer */}
-      <LegalFooter showGoogle={true} />
+      <LegalFooter />
     </div>
   );
 }
