@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import './globals.css'
-import '@/components/ui/premium-tokens.css'
+import '@/components/ui/sunset-theme.css'
 import AppErrorBoundary from '@/components/AppErrorBoundary'
+import DemoRibbon from '@/components/ui/DemoRibbon'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,6 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <DemoRibbon />
         <AppErrorBoundary>{children}</AppErrorBoundary>
       </body>
     </html>
