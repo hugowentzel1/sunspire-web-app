@@ -72,7 +72,6 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
       setIsSuccess(true);
       reset();
       
-      // Close modal after 3 seconds
       setTimeout(() => {
         onClose();
         setIsSuccess(false);
@@ -130,7 +129,7 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
                 
                 <h2 className="text-2xl font-bold text-gray-900 mb-4">You're All Set!</h2>
                 <p className="text-gray-600 mb-6">
-                  Thank you for your interest! Expect a call from {tenant.name} within 24 hours.
+                  Thanks for reaching out! We’ll email you a summary and next steps within 24 hours.
                 </p>
                 
                 <div className="bg-gray-50 rounded-2xl p-4 mb-6">
@@ -150,7 +149,7 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
                     Get Your Solar Quote
                   </h2>
                   <p className="text-gray-600">
-                    Connect with {tenant.name} for your personalized solar proposal
+                    We’ll email your personalized proposal from {tenant.name}
                   </p>
                 </div>
 
@@ -167,7 +166,7 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
                       className={`w-full px-4 py-3 rounded-2xl border-2 transition-colors ${
                         errors.name 
                           ? 'border-red-300 focus:border-red-500 focus:ring-red-100' 
-                          : 'border-gray-200 focus:border-blue-500 focus:ring-blue-100'
+                          : 'border-gray-200 focus:border-orange-500 focus:ring-orange-100'
                       } focus:ring-4 focus:outline-none`}
                       placeholder="Enter your full name"
                     />
@@ -187,7 +186,7 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
                       className={`w-full px-4 py-3 rounded-2xl border-2 transition-colors ${
                         errors.email 
                           ? 'border-red-300 focus:border-red-500 focus:ring-red-100' 
-                          : 'border-gray-200 focus:border-blue-500 focus:ring-blue-100'
+                          : 'border-gray-200 focus:border-orange-500 focus:ring-orange-100'
                       } focus:ring-4 focus:outline-none`}
                       placeholder="Enter your email address"
                     />
@@ -204,7 +203,7 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
                     <input
                       {...register('phone')}
                       type="tel"
-                      className="w-full px-4 py-3 rounded-2xl border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition-colors"
+                      className="w-full px-4 py-3 rounded-2xl border-2 border-gray-200 focus:border-orange-500 focus:ring-4 focus:ring-orange-100 focus:outline-none transition-colors"
                       placeholder="Enter your phone number"
                     />
                   </div>
@@ -217,7 +216,7 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
                     <textarea
                       {...register('notes')}
                       rows={3}
-                      className="w-full px-4 py-3 rounded-2xl border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 focus:outline-none transition-colors resize-none"
+                      className="w-full px-4 py-3 rounded-2xl border-2 border-gray-200 focus:border-orange-500 focus:ring-4 focus:ring-orange-100 focus:outline-none transition-colors resize-none"
                       placeholder="Any specific questions or requirements?"
                     />
                   </div>
@@ -244,7 +243,7 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
                     className={`w-full py-4 px-6 rounded-2xl font-semibold text-white transition-all duration-200 ${
                       isSubmitting
                         ? 'bg-gray-400 cursor-not-allowed'
-                        : 'bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 transform hover:-translate-y-0.5 hover:shadow-lg'
+                        : 'bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 transform hover:-translate-y-0.5 hover:shadow-lg'
                     }`}
                   >
                     {isSubmitting ? (
