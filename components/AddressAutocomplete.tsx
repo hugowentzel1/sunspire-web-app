@@ -22,7 +22,9 @@ export default function AddressAutocomplete({ value, onChange, onSelect, placeho
   const svcRef = useRef<google.maps.places.AutocompleteService>();
   const detailsRef = useRef<google.maps.places.PlacesService>();
   const containerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const debounceRef = useRef<number>();
+  const suppressFetchRef = useRef<boolean>(false);
 
   // Log the key for debugging
   useEffect(() => {
@@ -70,6 +72,8 @@ export default function AddressAutocomplete({ value, onChange, onSelect, placeho
 
   useEffect(() => {
     if (!ready || !svcRef.current) return;
+    // If we just selected an item programmatically, skip one fetch cycle
+    if (suppressFetchRef.current) { suppressFetchRef.current = false; return; }
     if (!value || value.length < 1) { setPreds([]); return; }
     if (debounceRef.current) window.clearTimeout(debounceRef.current);
     debounceRef.current = window.setTimeout(() => {
@@ -93,7 +97,15 @@ export default function AddressAutocomplete({ value, onChange, onSelect, placeho
         });
       });
   }
-  function selectIdx(i:number){ const p = preds[i]; if (!p) return; onChange(p.description); setPreds([]); fetchDetails(p.place_id); }
+  function selectIdx(i:number){
+    const p = preds[i]; if (!p) return;
+    suppressFetchRef.current = true;
+    onChange(p.description);
+    setPreds([]);
+    fetchDetails(p.place_id);
+    // Blur to ensure any OS-level suggestion UI closes
+    inputRef.current?.blur();
+  }
 
   useEffect(() => {
     const close = (e: MouseEvent) => { if (!containerRef.current?.contains(e.target as Node)) setPreds([]); };
@@ -111,6 +123,7 @@ export default function AddressAutocomplete({ value, onChange, onSelect, placeho
   return (
     <div ref={containerRef} className={`relative ${className}`}>
       <input
+        ref={inputRef}
         value={value}
         onChange={(e) => onChange(e.target.value)}
         onKeyDown={(e) => {
@@ -123,9 +136,6 @@ export default function AddressAutocomplete({ value, onChange, onSelect, placeho
         className="w-full rounded-2xl border border-orange-200 bg-white/70 px-4 py-3 text-[15px] shadow-sm outline-none focus:ring-2 focus:ring-orange-300"
         aria-autocomplete="list" aria-expanded={preds.length > 0}
       />
-      
-
-      
       {preds.length > 0 && (
         <ul className="absolute z-50 mt-2 max-h-64 w-full overflow-auto rounded-xl border border-slate-200 bg-white shadow-lg">
           {preds.map((p, i) => (
