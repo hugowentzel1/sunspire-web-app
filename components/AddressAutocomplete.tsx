@@ -25,6 +25,7 @@ export default function AddressAutocomplete({ value, onChange, onSelect, placeho
   const inputRef = useRef<HTMLInputElement>(null);
   const debounceRef = useRef<number>();
   const suppressFetchRef = useRef<boolean>(false);
+  const ignoreNextPredsRef = useRef<boolean>(false);
 
   // Log the key for debugging
   useEffect(() => {
@@ -77,7 +78,10 @@ export default function AddressAutocomplete({ value, onChange, onSelect, placeho
     if (!value || value.length < 1) { setPreds([]); return; }
     if (debounceRef.current) window.clearTimeout(debounceRef.current);
     debounceRef.current = window.setTimeout(() => {
-      svcRef.current!.getPlacePredictions({ input: value, types: ["address"] }, (p) => setPreds(p || []));
+      svcRef.current!.getPlacePredictions({ input: value, types: ["address"] }, (p) => {
+        if (ignoreNextPredsRef.current) { ignoreNextPredsRef.current = false; return; }
+        setPreds(p || []);
+      });
       setActive(-1);
     }, 180);
   }, [value, ready]);
@@ -100,8 +104,11 @@ export default function AddressAutocomplete({ value, onChange, onSelect, placeho
   function selectIdx(i:number){
     const p = preds[i]; if (!p) return;
     suppressFetchRef.current = true;
+    ignoreNextPredsRef.current = true;
+    if (debounceRef.current) { window.clearTimeout(debounceRef.current); }
     onChange(p.description);
     setPreds([]);
+    setActive(-1);
     fetchDetails(p.place_id);
     // Blur to ensure any OS-level suggestion UI closes
     inputRef.current?.blur();
