@@ -73,7 +73,7 @@ function HomeContent() {
               <button
                 onClick={handleGenerateEstimate}
                 disabled={!address.trim() || isLoading}
-                className={`btn-sunset w-full ${(!address.trim()||isLoading) ? "opacity-60 cursor-not-allowed" : ""}`}
+                className={`${(!address.trim()||isLoading) ? 'btn-disabled' : 'btn-sunset w-full'}`}
               >
                 {isLoading ? "Analyzing…" : "Generate Solar Intelligence Report →"}
               </button>
