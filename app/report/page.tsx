@@ -17,6 +17,10 @@ import PremiumReportCTA from '@/components/ui/PremiumReportCTA';
 import PremiumFooter from '@/components/ui/PremiumFooter';
 import FixedCTA from '@/components/ui/FixedCTA';
 import { motion } from 'framer-motion';
+import '@/components/ui/sunset-theme.css';
+import KpiTile from '@/components/ui/KpiTile';
+import StickyCTA from '@/components/ui/StickyCTA';
+import LegalFooter from '@/components/legal/LegalFooter';
 
 function ReportContent() {
   const searchParams = useSearchParams();
@@ -155,162 +159,48 @@ function ReportContent() {
   }
 
   return (
-    <div className="min-h-screen bg-premium-light">
-      {/* Premium Navigation */}
-      <PremiumNav />
-
-      {/* Premium Report Header */}
-      <PremiumReportHeader 
-        address={estimate.address}
-        customerName="Demo Customer"
-      />
-
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-44">
-        {/* KPI Cards */}
-        <PremiumKPICards estimate={estimate} />
-
-        {/* Chart Section */}
-        <PremiumChartContainer 
-          title="25-Year Cashflow Projection"
-          paybackYear={estimate.paybackYear || undefined}
-          className="mb-12"
-        >
-          <EstimateChart 
-            cashflowData={estimate.cashflowProjection} 
-            netCostAfterITC={estimate.netCostAfterITC} 
+    <div className="min-h-screen bg-app font-inter">
+      {/* keep existing header */}
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
+        <div className="card p-7 text-center">
+          <div
+            className="mx-auto h-14 w-14 rounded-full"
+            style={{background:'radial-gradient(circle at 40% 35%, #FFF1, transparent), linear-gradient(140deg, var(--sun-1), var(--sun-2), var(--sun-3))'}}
           />
-        </PremiumChartContainer>
-
-        {/* Analysis Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-          {/* Financial Analysis */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="card-premium p-8"
-          >
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Financial Analysis</h3>
-            <div className="space-y-4">
-              <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                <span className="text-gray-600 font-medium">Gross System Cost</span>
-                <span className="font-bold text-gray-900">${estimate.grossCost.toLocaleString()}</span>
-              </div>
-              <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                <span className="text-gray-600 font-medium">Federal Tax Credit (30%)</span>
-                <span className="font-bold text-gray-900">${(estimate.grossCost * 0.3).toLocaleString()}</span>
-              </div>
-              <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                <span className="text-gray-600 font-medium">Net Cost After ITC</span>
-                <span className="font-bold text-gray-900">${estimate.netCostAfterITC.toLocaleString()}</span>
-              </div>
-              <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                <span className="text-gray-600 font-medium">Payback Period</span>
-                <span className="font-bold text-gray-900">{estimate.paybackYear || '–'} years</span>
-              </div>
-              <div className="flex justify-between items-center py-3">
-                <span className="text-gray-600 font-medium">25-Year NPV</span>
-                <span className="font-bold text-gray-900">${(estimate.npv25Year || 0).toLocaleString()}</span>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Environmental Impact */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="card-premium p-8"
-          >
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">Environmental Impact</h3>
-            <div className="space-y-4">
-              <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                <span className="text-gray-600 font-medium">CO₂ Offset/Year</span>
-                <span className="font-bold text-gray-900">{estimate.co2OffsetPerYear.toLocaleString()} lbs</span>
-              </div>
-              <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                <span className="text-gray-600 font-medium">Solar Irradiance</span>
-                <span className="font-bold text-gray-900">{estimate.solarIrradiance} kWh/m²/day</span>
-              </div>
-              <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                <span className="text-gray-600 font-medium">System Tilt</span>
-                <span className="font-bold text-gray-900">{estimate.tilt}°</span>
-              </div>
-              <div className="flex justify-between items-center py-3">
-                <span className="text-gray-600 font-medium">System Losses</span>
-                <span className="font-bold text-gray-900">{estimate.losses}%</span>
-              </div>
-            </div>
-          </motion.div>
+          <h1 className="h2 mt-3">Solar Intelligence Report</h1>
+          <p className="p mt-2">Comprehensive analysis for your property at {estimate.address}</p>
+          <div className="p mt-1">Data Source: {estimate.utilityRateSource} • Generated on {formatDateSafe(estimate.date)}</div>
         </div>
 
-        {/* Assumptions Panel */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="card-premium p-8 mb-12"
-        >
-          <h3 className="text-2xl font-bold text-gray-900 mb-6">Calculation Assumptions</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="flex justify-between items-center py-3 border-b border-gray-100">
-              <span className="text-gray-600 font-medium">Federal Tax Credit (ITC)</span>
-              <span className="font-bold text-gray-900">{(estimate.assumptions.itcPercentage * 100).toFixed(0)}%</span>
-            </div>
-            <div className="flex justify-between items-center py-3 border-b border-gray-100">
-              <span className="text-gray-600 font-medium">Cost per Watt</span>
-              <span className="font-bold text-gray-900">${estimate.assumptions.costPerWatt}</span>
-            </div>
-            <div className="flex justify-between items-center py-3 border-b border-gray-100">
-              <span className="text-gray-600 font-medium">Panel Degradation</span>
-              <span className="font-bold text-gray-900">{(estimate.assumptions.degradationRate * 100).toFixed(1)}%/year</span>
-            </div>
-            <div className="flex justify-between items-center py-3 border-b border-gray-100">
-              <span className="text-gray-600 font-medium">O&M Cost</span>
-              <span className="font-bold text-gray-900">${estimate.assumptions.oandmPerKWYear}/kW/year</span>
-            </div>
-            <div className="flex justify-between items-center py-3 border-b border-gray-100">
-              <span className="text-gray-600 font-medium">Rate Increase</span>
-              <span className="font-bold text-gray-900">{(estimate.assumptions.electricityRateIncrease * 100).toFixed(1)}%/year</span>
-            </div>
-            <div className="flex justify-between items-center py-3 border-b border-gray-100">
-              <span className="text-gray-600 font-medium">Discount Rate</span>
-              <span className="font-bold text-gray-900">{(estimate.assumptions.discountRate * 100).toFixed(0)}%</span>
-            </div>
-          </div>
-        </motion.div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <KpiTile label="System Size" value={`${estimate.systemSizeKW} kW`} emoji="⚡" />
+          <KpiTile label="Annual Production" value={`${estimate.annualProductionKWh.toLocaleString()} kWh`} emoji="🌞" />
+          <KpiTile label="Net Cost (After ITC)" value={`$${estimate.netCostAfterITC.toLocaleString()}`} emoji="💰" />
+          <KpiTile label="Year 1 Savings" value={`$${estimate.year1Savings.toLocaleString()}`} emoji="📈" />
+        </div>
 
-        {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="bg-gradient-to-r from-orange-500 to-amber-500 rounded-3xl p-8 text-center text-white shadow-2xl"
-        >
-          <h2 className="text-3xl font-bold mb-4">Ready to Go Solar?</h2>
-          <p className="text-xl mb-8 opacity-90">
-            Connect with verified solar installers in your area and get started today
-          </p>
-          <button
-            onClick={() => setShowLeadModal(true)}
-            className="btn-premium-alt text-lg px-8 py-4"
-          >
-            Get Matched with Installers
-          </button>
-        </motion.div>
+        <div className="card p-6">
+          <div className="h2 mb-2">Your Solar Savings Over Time</div>
+          <p className="p mb-4">Simple view of how your solar investment pays off over 25 years</p>
+          <EstimateChart cashflowData={estimate.cashflowProjection} netCostAfterITC={estimate.netCostAfterITC} />
+        </div>
+
+        {/* apply className="card p-6" to your three detail panels */}
       </main>
 
-      {/* Premium Report CTA */}
-      <PremiumReportCTA estimate={estimate} />
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <StickyCTA
+          text={`${estimate.systemSizeKW} kW • Payback ${estimate.paybackYear ?? "–"} yrs • $${(estimate.npv25Year ?? 0).toLocaleString()} over 25 yrs`}
+          cta="Brand this for my company"
+          href="mailto:sales@sunspire.app?subject=Brand%20Sunspire%20for%20us"
+        />
+      </div>
 
-      {/* Premium Footer */}
-      <PremiumFooter />
+      <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <LegalFooter />
+      </footer>
 
-      {/* Fixed CTA Button */}
-      <FixedCTA />
-
-      {/* Lead Modal */}
+      {/* Lead Modal remains intact */}
       {estimate && (
         <LeadModal
           isOpen={showLeadModal}

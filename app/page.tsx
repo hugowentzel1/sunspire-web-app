@@ -2,128 +2,104 @@
 
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import dynamic from 'next/dynamic';
 import { TenantProvider, useTenant } from '@/components/TenantProvider';
 import { PlaceResult } from '@/lib/calc';
 
-// Premium Components
-import PremiumNav from '@/components/ui/PremiumNav';
-import PremiumHero from '@/components/ui/PremiumHero';
-import PremiumAddressInput from '@/components/ui/PremiumAddressInput';
-import PremiumFeatures from '@/components/ui/PremiumFeatures';
-import PremiumFooter from '@/components/ui/PremiumFooter';
-import FixedCTA from '@/components/ui/FixedCTA';
+// Sunset Theme Components
+import '@/components/ui/sunset-theme.css';
+import SunsetHero from '@/components/ui/SunsetHero';
+import KpiTile from '@/components/ui/KpiTile';
+import StickyCTA from '@/components/ui/StickyCTA';
+import LegalFooter from '@/components/legal/LegalFooter';
+
+const AddressAutocomplete = dynamic(() => import('@/components/AddressAutocomplete'), { ssr: false });
 
 function HomeContent() {
   const { tenant, loading } = useTenant();
+  const [address, setAddress] = useState('');
   const [selectedPlace, setSelectedPlace] = useState<PlaceResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const handleAddressSelect = (placeResult: PlaceResult) => {
     setSelectedPlace(placeResult);
+    setAddress(placeResult.formattedAddress);
   };
 
   const handleGenerateEstimate = () => {
     if (!selectedPlace) return;
     setIsLoading(true);
-    
-      const q = new URLSearchParams({
-        address: selectedPlace.formattedAddress,
-        lat: String(selectedPlace.lat),
-        lng: String(selectedPlace.lng),
-        placeId: selectedPlace.placeId,
-      });
-      router.push(`/report?${q.toString()}`);
+    const q = new URLSearchParams({
+      address: selectedPlace.formattedAddress,
+      lat: String(selectedPlace.lat),
+      lng: String(selectedPlace.lng),
+      placeId: selectedPlace.placeId,
+    });
+    router.push(`/report?${q.toString()}`);
   };
 
   if (loading) {
     return (
-              <div className="min-h-screen bg-premium-light flex items-center justify-center">
-          <div className="text-center space-y-6">
-            <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
-            <p className="text-xl font-semibold text-gray-900">Loading...</p>
-          </div>
+      <div className="min-h-screen bg-app flex items-center justify-center">
+        <div className="text-center space-y-6">
+          <div className="w-16 h-16 border-4 border-[var(--sun-1)] border-t-transparent rounded-full animate-spin mx-auto"></div>
+          <p className="text-xl font-semibold text-[var(--ink)]">Loading...</p>
         </div>
+      </div>
     );
   }
 
   return (
-    <div className="min-h-screen">
-      {/* Premium Navigation */}
-      <PremiumNav />
-
-      {/* Premium Hero Section */}
-      <PremiumHero
-        title="Solar Intelligence in Seconds"
-        subtitle="Enterprise-grade solar estimates powered by NREL PVWatts®. White-label ready for your solar business."
-      >
-        <PremiumAddressInput
-          onAddressSelect={handleAddressSelect}
-          onGenerateEstimate={handleGenerateEstimate}
-          isLoading={isLoading}
-        />
-      </PremiumHero>
-
-      {/* Premium Features Section */}
-      <PremiumFeatures />
-
-      {/* Contact Section */}
-      <section id="contact" className="py-20 bg-premium-dark">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-6">
-              Ready to Transform Your Solar Business?
-             </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Get your white-label solar intelligence platform up and running in 24 hours.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="card-glass p-8 text-center">
-              <div className="icon-premium-alt mb-6">
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Request White-Label Demo</h3>
-              <p className="text-gray-300 mb-6">
-                No calls required. Email us and we’ll send a branded demo link within 24 hours.
-              </p>
-              <a 
-                href="mailto:sales@sunspire.app?subject=White-label%20Demo%20Request&body=Hi%20Sunspire%2C%20please%20send%20me%20a%20white-label%20demo%20preview%20link.%20We%20want%20to%20see%20branding%20with%20our%20logo%20and%20colors."
-                className="btn-premium-alt w-full"
+    <div className="min-h-screen bg-app font-inter">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
+        <SunsetHero
+          title="Solar Intelligence"
+          highlight="in Seconds"
+          subtitle="Transform your property with AI-powered solar analysis. Get instant estimates, detailed reports, and connect with premium installers."
+          badges={["Used by 50+ Solar Companies","Bank-Level Security","SOC 2 Compliant"]}
+        >
+          <div className="card p-6 md:p-7">
+            <div className="text-center mb-3 font-bold text-[var(--ink)]">Enter Your Property Address</div>
+            <p className="p text-center mb-5">Get a comprehensive solar analysis tailored to your specific location</p>
+            <div className="space-y-4">
+              <AddressAutocomplete
+                value={address}
+                onChange={setAddress}
+                onSelect={handleAddressSelect}
+                placeholder="Start typing your property address..."
+                className="input"
+              />
+              <button
+                onClick={handleGenerateEstimate}
+                disabled={!address.trim() || isLoading}
+                className={`btn-sunset w-full ${(!address.trim()||isLoading) ? "opacity-60 cursor-not-allowed" : ""}`}
               >
-                Email Me a Demo Link
-              </a>
-            </div>
-
-            <div className="card-glass p-8 text-center">
-              <div className="icon-premium mb-6">
-                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-              </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Start White-Label Setup</h3>
-              <p className="text-gray-300 mb-6">
-                We’ll brand it for you in 24 hours and send your live, shareable link.
-              </p>
-              <a 
-                href="mailto:sales@sunspire.app?subject=White-label%20Setup&body=Hi%20Sunspire%2C%20we%27re%20ready%20to%20start%20white-label%20setup.%20Please%20send%20next%20steps%20and%20a%20branded%20preview%20link."
-                className="btn-premium w-full"
-              >
-                Email to Start
-              </a>
+                {isLoading ? "Analyzing…" : "Generate Solar Intelligence Report →"}
+              </button>
             </div>
           </div>
+        </SunsetHero>
+
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <KpiTile label="Properties Analyzed" value="50K+" emoji="🏠" />
+          <KpiTile label="Total Savings Generated" value="$2.5M" emoji="💰" />
+          <KpiTile label="Accuracy Rate" value="98%" emoji="📊" />
+          <KpiTile label="AI Support" value="24/7" emoji="🤖" />
         </div>
-      </section>
+      </main>
 
-      {/* Premium Footer */}
-      <PremiumFooter />
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <StickyCTA
+          text="Want this running on your domain with your logo tomorrow?"
+          cta="Get your white-label demo"
+          href="mailto:sales@sunspire.app?subject=White-label%20Demo"
+        />
+      </div>
 
-      {/* Fixed CTA Button */}
-      <FixedCTA />
+      <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <LegalFooter />
+      </footer>
     </div>
   );
 }

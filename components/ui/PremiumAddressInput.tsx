@@ -47,18 +47,18 @@ export default function PremiumAddressInput({ onAddressSelect, onGenerateEstimat
                 value={address}
                 onChange={setAddress}
                 onSelect={onAddressSelect}
-                placeholder="Start typing your property address..."
-                className="w-full pl-12 pr-4 py-4 bg-white/95 backdrop-blur-sm border-2 border-amber-200 focus:border-amber-400 rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-amber-50"
+                placeholder="Enter your address..."
+                className="w-full pl-12 pr-4 py-4 bg-white/90 backdrop-blur-sm border border-white/30 rounded-2xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50"
               />
             </div>
 
             {/* Generate Button */}
             <motion.button
-              whileHover={{ scale: address ? 1.02 : 1 }}
-              whileTap={{ scale: address ? 0.98 : 1 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={onGenerateEstimate}
-              disabled={!address || isLoading}
-              className={`${!address || isLoading ? 'btn-disabled w-full text-lg py-4' : 'btn-premium w-full text-lg py-4'}`}
+              disabled={isLoading}
+              className="btn-premium w-full text-lg py-4 disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? (
                 <div className="flex items-center justify-center space-x-2">

@@ -1,0 +1,51 @@
+:root{
+  --bg-1:#F8FAFF;  /* warm, very light */
+  --bg-2:#F2F6FF;
+  --card:#FFFFFF;
+  --border:#E6EAF2;
+  --ink:#0F172A;   /* charcoal */
+  --muted:#667085;
+
+  /* brand gradient */
+  --sun-1:#FF7A3D; /* orange */
+  --sun-2:#FF4D6D; /* coral/red */
+  --sun-3:#FF7CA8; /* pink */
+
+  /* accents */
+  --success:#10B981;
+  --warning:#F59E0B;
+  --info:#4F46E5;
+}
+
+/* page background like screenshots */
+.bg-app{
+  background:
+   radial-gradient(900px 520px at 20% -10%, rgba(255,122,61,.12) 0%, transparent 60%),
+   radial-gradient(900px 520px at 120% 0%, rgba(79,70,229,.08) 0%, transparent 55%),
+   linear-gradient(180deg,var(--bg-1) 0%, var(--bg-2) 100%);
+}
+
+/* cards + badges */
+.card{ background:var(--card); border:1px solid var(--border); border-radius:24px; box-shadow:0 18px 60px rgba(15,23,42,.08);}
+.badge{ display:inline-flex; align-items:center; gap:.5rem; padding:.45rem .8rem; border-radius:999px; background:#fff; border:1px solid var(--border); color:var(--muted); font-weight:600;}
+.badge .dot{ width:.55rem; height:.55rem; border-radius:999px; background:var(--success); }
+
+/* primary button */
+.btn-sunset{ color:#fff; font-weight:800; border-radius:18px; padding:1rem 1.15rem;
+  background-image:linear-gradient(92deg,var(--sun-1) 0%, var(--sun-2) 50%, var(--sun-3) 100%);
+  box-shadow:0 14px 40px rgba(255,122,61,.25);
+  transition:transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+.btn-sunset:hover{ transform:translateY(-1px); filter:saturate(1.05); box-shadow:0 18px 55px rgba(255,122,61,.33); }
+
+/* type & misc */
+.h1{ font-weight:900; color:var(--ink); letter-spacing:-.02em; font-size:clamp(34px,6vw,64px);}
+.h1 .hl{ background:linear-gradient(90deg,var(--sun-1),var(--sun-2),var(--sun-3)); -webkit-background-clip:text; background-clip:text; color:transparent;}
+.h2{ font-weight:800; color:var(--ink); font-size:clamp(22px,3.5vw,32px);}
+.p{ color:var(--muted); font-weight:600;}
+.hr{ height:1px; background:var(--border);}
+.input{ width:100%; border-radius:16px; border:1px solid #F6C7B0; padding:.85rem 1rem; font-size:15px; }
+.cta-card{ padding:1.75rem 2rem; border-radius:26px; color:#fff;
+  background:linear-gradient(92deg,var(--sun-1),var(--sun-2),var(--sun-3));
+  box-shadow:0 20px 70px rgba(255,98,80,.35);
+}
