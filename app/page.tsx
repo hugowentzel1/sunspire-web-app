@@ -85,16 +85,16 @@ function HomeContent() {
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                 </svg>
-                 </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Schedule a Call</h3>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4">Request White-Label Demo</h3>
               <p className="text-gray-300 mb-6">
-                Book a 15-minute consultation to discuss your white-label needs and see a live demo.
+                No calls required. Email us and we’ll send a branded demo link within 24 hours.
               </p>
               <a 
-                href="mailto:sales@sunspire.app?subject=White-label%20Consultation&body=Hi%20Sunspire%2C%20I%27d%20like%20to%20schedule%20a%20call%20about%20white-labeling%20the%20solar%20intelligence%20platform."
+                href="mailto:sales@sunspire.app?subject=White-label%20Demo%20Request&body=Hi%20Sunspire%2C%20please%20send%20me%20a%20white-label%20demo%20preview%20link.%20We%20want%20to%20see%20branding%20with%20our%20logo%20and%20colors."
                 className="btn-premium-alt w-full"
               >
-                Schedule Consultation
+                Email Me a Demo Link
               </a>
             </div>
 
@@ -103,18 +103,18 @@ function HomeContent() {
                 <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                 </div>
-              <h3 className="text-2xl font-bold text-white mb-4">Get Started Today</h3>
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-4">Start White-Label Setup</h3>
               <p className="text-gray-300 mb-6">
-                Ready to go? We can have your white-label platform live within 24 hours.
+                We’ll brand it for you in 24 hours and send your live, shareable link.
               </p>
               <a 
-                href="mailto:sales@sunspire.app?subject=White-label%20Setup&body=Hi%20Sunspire%2C%20I%27m%20ready%20to%20get%20started%20with%20white-labeling%20the%20solar%20intelligence%20platform.%20Please%20send%20me%20the%20next%20steps."
+                href="mailto:sales@sunspire.app?subject=White-label%20Setup&body=Hi%20Sunspire%2C%20we%27re%20ready%20to%20start%20white-label%20setup.%20Please%20send%20next%20steps%20and%20a%20branded%20preview%20link."
                 className="btn-premium w-full"
               >
-                Start White-Label Setup
+                Email to Start
               </a>
-                 </div>
+            </div>
           </div>
         </div>
       </section>
