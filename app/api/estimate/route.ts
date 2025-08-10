@@ -58,7 +58,19 @@ function parseInputsFromSearch(url: string): Inputs {
 
 export async function GET(req: Request) {
   try {
+    const sp = new URL(req.url).searchParams;
+    const demoFlag = sp.get('demo');
+    const isDemo = !!demoFlag && demoFlag !== '0' && demoFlag !== 'false';
+
     let i = parseInputsFromSearch(req.url);
+
+    // If demo and some fields are missing, inject good defaults
+    if (isDemo) {
+      // Make sure PVWatts gets sane values
+      if (!Number.isFinite(i.tilt)) i.tilt = 22;
+      if (!Number.isFinite(i.azimuth)) i.azimuth = 180;
+      if (!Number.isFinite(i.lossesPct)) i.lossesPct = 14;
+    }
 
     const pv = await pvwatts({
       lat: i.lat,

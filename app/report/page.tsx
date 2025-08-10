@@ -19,11 +19,37 @@ function ReportContent() {
   const [error, setError] = useState<string | null>(null);
   const [showLeadModal, setShowLeadModal] = useState(false);
 
+  const demoAddressesByState: Record<string, {address:string, lat:number, lng:number}> = {
+    AZ: { address: "123 N Central Ave, Phoenix, AZ", lat: 33.4484, lng: -112.0740 },
+    CA: { address: "111 S Spring St, Los Angeles, CA", lat: 34.0537, lng: -118.2428 },
+    FL: { address: "200 S Orange Ave, Orlando, FL", lat: 28.5384, lng: -81.3789 },
+    GA: { address: "2 City Plaza, Atlanta, GA", lat: 33.749, lng: -84.388 },
+    TX: { address: "901 S Mopac Expy, Austin, TX", lat: 30.2672, lng: -97.7431 },
+    NV: { address: "400 Stewart Ave, Las Vegas, NV", lat: 36.1716, lng: -115.1391 }
+  };
+
+  function pickDemoAddress(state?: string) {
+    if (state && demoAddressesByState[state]) return demoAddressesByState[state];
+    return demoAddressesByState["AZ"]; // sunny default
+  }
+
   useEffect(() => {
-    const address = searchParams.get('address');
-    const lat = parseFloat(searchParams.get('lat') || '');
-    const lng = parseFloat(searchParams.get('lng') || '');
+    const demoFlag = searchParams.get('demo');
+    const isDemo = !!demoFlag && demoFlag !== '0' && demoFlag !== 'false';
+
+    let address = searchParams.get('address') || '';
+    let lat = parseFloat(searchParams.get('lat') || '');
+    let lng = parseFloat(searchParams.get('lng') || '');
     const placeId = searchParams.get('placeId');
+    const state = searchParams.get('state') || undefined;
+
+    // If demo and missing coords, pick a good default by state
+    if (isDemo && (!Number.isFinite(lat) || !Number.isFinite(lng) || !address)) {
+      const pick = pickDemoAddress(state);
+      address = pick.address;
+      lat = pick.lat;
+      lng = pick.lng;
+    }
 
     if (!Number.isFinite(lat) || !Number.isFinite(lng)) {
       setError('Missing or invalid coordinates.');
@@ -154,6 +180,20 @@ function ReportContent() {
               </div>
             </div>
           </div>
+
+          {/* Trust elements and CTA */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8 }} className="mt-4 flex flex-wrap items-center justify-center gap-3">
+            <a
+              href="/tenant-preview?demo=1"
+              className="px-5 py-3 rounded-xl font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-200"
+              style={{ backgroundColor: '#FFA63D' }}
+            >
+              Put this on our site
+            </a>
+            <div className="text-xs text-slate-500">
+              Data sources: PVWatts v8 (NREL) • EIA rates • HTTPS encrypted
+            </div>
+          </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
