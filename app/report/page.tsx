@@ -185,8 +185,7 @@ function ReportContent() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8 }} className="mt-4 flex flex-wrap items-center justify-center gap-3">
             <a
               href="/tenant-preview?demo=1"
-              className="px-5 py-3 rounded-xl font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-200"
-              style={{ backgroundColor: '#FFA63D' }}
+              className="px-5 py-3 rounded-xl font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-200 bg-gradient-to-r from-orange-500 via-red-500 to-pink-500"
             >
               Put this on our site
             </a>
