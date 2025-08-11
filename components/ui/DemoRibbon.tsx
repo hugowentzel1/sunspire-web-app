@@ -46,7 +46,7 @@ export default function DemoRibbon() {
         </div>
         <a
           href={reportHref}
-          className="px-4 py-2 rounded-xl text-white text-sm font-semibold bg-gradient-to-r from-yellow-400 to-orange-500 hover:from-yellow-500 hover:to-orange-600 transition-all duration-200 shadow-lg hover:shadow-xl"
+          className="px-4 py-2 rounded-xl text-white text-sm font-semibold bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-500 hover:to-amber-600 transition-all duration-200 shadow-lg hover:shadow-xl"
         >
           Put this on our site
         </a>
