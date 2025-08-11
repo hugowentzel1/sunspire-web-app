@@ -46,7 +46,7 @@ export default function DemoRibbon() {
         </div>
         <a
           href={reportHref}
-          className="btn-sunset px-4 py-2 text-sm"
+          className="px-4 py-2 rounded-xl text-white text-sm font-semibold bg-yellow-500 hover:bg-yellow-600 transition-colors duration-200 shadow-lg hover:shadow-xl"
         >
           Put this on our site
         </a>
