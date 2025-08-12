@@ -1,6 +1,9 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": ".next",
-  "framework": "nextjs",
-  "installCommand": "npm install"
+  "redirects": [
+    {
+      "source": "/:slug*",
+      "destination": "https://sunspiredemo.com/?company=:slug&utm_source=cold&utm_medium=email&utm_campaign=demo_v1",
+      "permanent": false
+    }
+  ]
 }

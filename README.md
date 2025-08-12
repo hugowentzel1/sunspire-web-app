@@ -1,21 +1,16 @@
-# Sunrise Web App
+# Sunspire Outreach Redirects
 
-A Next.js web application for solar energy analysis and lead capture.
+This Vercel app handles demo link redirects for cold email outreach campaigns.
 
-## Features
+## How it works
 
-- Solar energy analysis using NREL API
-- Address input and validation
-- Lead capture functionality
-- Modern UI with Tailwind CSS
+Any visit to `https://demo.sunspiredemo.com/ANYTHING` will redirect to your real demo with proper UTM tracking.
 
-## Getting Started
+## Example
 
-1. Install dependencies: `npm install`
-2. Run development server: `npm run dev`
-3. Open [http://localhost:3000](http://localhost:3000)
+- **Input:** `https://demo.sunspiredemo.com/acme-solar-123`
+- **Output:** `https://sunspire-web-app-git-main-hugo-wentzels-projects.vercel.app/?demo=1&utm_source=cold&utm_medium=email&utm_campaign=demo-v1&c=acme-solar-123`
 
 ## Deployment
 
-This app is automatically deployed to Vercel when changes are pushed to the main branch.
-# Force redeploy
+Deploy this to Vercel and connect the `demo.sunspiredemo.com` domain.
