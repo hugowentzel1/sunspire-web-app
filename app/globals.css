@@ -17,6 +17,9 @@
   --gold: #F59E0B;           /* Pure gold */
   --gold-light: #FCD34D;     /* Light gold */
   
+  /* Brand takeover demo color (overridden by BrandProvider when demo=1) */
+  --brand-primary: #FFA63D;
+  
   /* Neutral palette */
   --white: #FFFFFF;
   --gray-50: #F8FAFC;
@@ -318,4 +321,22 @@ h3 {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--gray-400);
+}
+
+/* Brand Takeover Demo Utilities */
+.btn-primary { 
+  background: var(--brand-primary); 
+  border-color: var(--brand-primary); 
+}
+
+.callout-accent { 
+  border: 1px solid color-mix(in srgb, var(--brand-primary) 35%, #e5e7eb); 
+}
+
+/* Demo mode button overrides */
+[data-demo="true"] .btn-primary,
+[data-demo="true"] .btn-premium,
+[data-demo="true"] .btn-premium-alt {
+  background: var(--brand-primary) !important;
+  border-color: var(--brand-primary) !important;
 }

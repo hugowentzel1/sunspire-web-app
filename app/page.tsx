@@ -12,6 +12,7 @@ import HeroBrand from '@/src/brand/HeroBrand';
 import StickyBuyBar from '@/src/demo/StickyBuyBar';
 import InstallSheet from '@/src/demo/InstallSheet';
 import NavBrandOverride from '@/src/brand/NavBrandOverride';
+import Image from 'next/image';
 
 const AddressAutocomplete = dynamic(() => import('@/components/AddressAutocomplete'), { ssr: false });
 
@@ -89,24 +90,39 @@ function HomeContent() {
     );
   }
 
+  const initials = (name: string) => {
+    return name
+      .split(' ')
+      .map(n => n[0])
+      .join('')
+      .toUpperCase()
+      .substring(0, 2);
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter" data-demo={b.enabled}>
       <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center space-x-4">
-              <motion.div 
-                className="w-12 h-12 bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-2xl"
-                whileHover={{ scale: 1.05, rotate: 5 }}
-                transition={{ type: 'spring', stiffness: 300 }}
-              >
-                <span className="text-white font-bold text-lg">☀️</span>
-              </motion.div>
+              {!b.enabled ? (
+                <motion.div 
+                  className="w-12 h-12 bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-2xl"
+                  whileHover={{ scale: 1.05, rotate: 5 }}
+                  transition={{ type: 'spring', stiffness: 300 }}
+                >
+                  <span className="text-white font-bold text-lg">☀️</span>
+                </motion.div>
+              ) : (
+                <HeroBrand />
+              )}
               <div>
                 <h1 className="text-2xl font-black bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text text-transparent">
-                  {tenant.name}
+                  {b.enabled ? b.brand : tenant.name}
                 </h1>
-                <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">{tenant.tagline}</p>
+                <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
+                  {b.enabled ? "Solar Intelligence" : tenant.tagline}
+                </p>
               </div>
             </div>
 
@@ -115,7 +131,11 @@ function HomeContent() {
               <a href="#" className="text-gray-600 hover:text-orange-500 transition-colors font-medium">Partners</a>
               <a href="#" className="text-gray-600 hover:text-orange-500 transition-colors font-medium">Support</a>
               <motion.button 
-                className="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-2xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"
+                className={`px-6 py-3 text-white rounded-2xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 ${
+                  b.enabled 
+                    ? 'bg-[var(--brand-primary)] hover:bg-[var(--brand-primary)]/90' 
+                    : 'bg-gradient-to-r from-orange-500 to-red-500'
+                }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -134,14 +154,42 @@ function HomeContent() {
           
           <div className="space-y-8">
             <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="relative">
-              <div className="w-32 h-32 mx-auto bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden">
-                <motion.div 
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" 
-                  animate={{ x: ['-100%', '100%'] }} 
-                  transition={{ duration: 2, repeat: Infinity, ease: 'linear' }} 
-                />
-                <span className="text-6xl relative z-10">☀️</span>
-              </div>
+              {!b.enabled ? (
+                <div className="w-32 h-32 mx-auto bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden">
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" 
+                    animate={{ x: ['-100%', '100%'] }} 
+                    transition={{ duration: 2, repeat: Infinity, ease: 'linear' }} 
+                  />
+                  <span className="text-6xl relative z-10">☀️</span>
+                </div>
+              ) : (
+                <div className="w-32 h-32 mx-auto flex items-center justify-center">
+                  {b.logo ? (
+                    <Image 
+                      src={b.logo} 
+                      alt={`${b.brand} logo`} 
+                      width={128} 
+                      height={128}
+                      style={{ objectFit: "contain", borderRadius: 20 }} 
+                    />
+                  ) : (
+                    <div style={{
+                      width: 128, 
+                      height: 128, 
+                      borderRadius: 20, 
+                      display: "grid", 
+                      placeItems: "center",
+                      background: b.primary, 
+                      color: "#0D0D0D", 
+                      fontWeight: 800, 
+                      fontSize: 36
+                    }}>
+                      {initials(b.brand)}
+                    </div>
+                  )}
+                </div>
+              )}
               <motion.div 
                 className="absolute -top-4 -right-4 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg" 
                 animate={{ scale: [1, 1.2, 1] }} 
@@ -209,7 +257,13 @@ function HomeContent() {
                 <motion.button 
                   onClick={handleGenerateEstimate} 
                   disabled={!address.trim() || isLoading} 
-                  className={`w-full py-6 px-8 rounded-2xl text-lg font-bold text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl ${!address.trim() || isLoading ? 'bg-gray-300 cursor-not-allowed' : 'bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 hover:from-orange-600 hover:via-red-600 hover:to-pink-600'}`} 
+                  className={`w-full py-6 px-8 rounded-2xl text-lg font-bold text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl ${
+                    !address.trim() || isLoading 
+                      ? 'bg-gray-300 cursor-not-allowed' 
+                      : b.enabled
+                        ? 'bg-[var(--brand-primary)] hover:bg-[var(--brand-primary)]/90'
+                        : 'bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 hover:from-orange-600 hover:via-red-600 hover:to-pink-600'
+                  }`} 
                   whileHover={!address.trim() || isLoading ? {} : { scale: 1.02 }} 
                   whileTap={!address.trim() || isLoading ? {} : { scale: 0.98 }}
                 >
