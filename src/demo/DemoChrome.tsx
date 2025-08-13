@@ -1,12 +1,28 @@
 "use client";
-import React, { useState } from "react";
-import { useIsDemo, useDemoParams } from "@/src/personalization/useDemo";
+import React, { useMemo, useState } from "react";
+import { useIsDemo, useDemoParams } from "./useDemo";
 import { usePersonalizationCtx } from "@/src/personalization/PersonalizationContext";
+
+function ExpiryBadge({ days }: { days: number }) {
+  const [left, setLeft] = useState(days);
+  // purely cosmetic
+  return (
+    <span style={{ 
+      fontSize: 12, 
+      padding: "4px 8px", 
+      borderRadius: 999, 
+      background: "#FFF3CD", 
+      color: "#8C6D1F" 
+    }}>
+      Link expires in {left} day{left === 1 ? "" : "s"}
+    </span>
+  );
+}
 
 export function DemoBanner() {
   const isDemo = useIsDemo();
   const { brand } = usePersonalizationCtx();
-  const { domain } = useDemoParams();
+  const { domain, expireDays } = useDemoParams();
   const [closed, setClosed] = useState(false);
   
   if (!isDemo || closed) return null;
@@ -14,11 +30,31 @@ export function DemoBanner() {
   async function copy() { 
     try { 
       await navigator.clipboard.writeText(window.location.href); 
+      // Track copy action
+      fetch("/api/demo-event", { 
+        method: "POST", 
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ 
+          type: "cta_click", 
+          source: "banner_copy", 
+          href: window.location.href 
+        }) 
+      });
     } catch {} 
   }
   
-  function install() { 
+  function openInstall() { 
     document.dispatchEvent(new CustomEvent("openInstall")); 
+    // Track install click
+    fetch("/api/demo-event", { 
+      method: "POST", 
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ 
+        type: "cta_click", 
+        source: "banner_primary", 
+        href: window.location.href 
+      }) 
+    });
   }
 
   return (
@@ -26,18 +62,19 @@ export function DemoBanner() {
       position: "sticky", 
       top: 0, 
       zIndex: 1000, 
-      background: "#fff", 
-      borderBottom: "1px solid #eee",
-      padding: "8px 12px", 
       display: "flex", 
-      gap: 12, 
+      flexWrap: "wrap",
+      gap: 10, 
       alignItems: "center", 
-      justifyContent: "center"
+      justifyContent: "center", 
+      padding: "10px 12px",
+      background: "#fff", 
+      borderBottom: "1px solid #eee"
     }}>
       <strong>{brand ?? "Your Company"} — Demo Mode</strong>
-      <span style={{opacity: 0.7}}>Pre-branded preview. Not a contract quote.</span>
+      <span style={{ opacity: 0.7 }}>Pre-branded preview. Not a contract quote.</span>
       <button 
-        onClick={install} 
+        onClick={openInstall} 
         style={{
           padding: "6px 12px",
           background: "#f97316",
@@ -64,17 +101,11 @@ export function DemoBanner() {
       >
         Copy demo link
       </button>
+      <ExpiryBadge days={expireDays} />
       <button 
         onClick={() => setClosed(true)} 
-        aria-label="Dismiss"
-        style={{
-          padding: "4px 8px",
-          background: "transparent",
-          border: "none",
-          cursor: "pointer",
-          fontSize: "16px",
-          color: "#6b7280"
-        }}
+        aria-label="Dismiss" 
+        style={{ marginLeft: 6 }}
       >
         ✕
       </button>
@@ -82,20 +113,40 @@ export function DemoBanner() {
   );
 }
 
-export function DemoStickyBottom() {
+export function DemoStickyBar() {
   const isDemo = useIsDemo();
   const { domain } = useDemoParams();
   
   if (!isDemo) return null;
   
-  function install() { 
+  function openInstall() { 
     document.dispatchEvent(new CustomEvent("openInstall")); 
+    // Track install click
+    fetch("/api/demo-event", { 
+      method: "POST", 
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ 
+        type: "cta_click", 
+        source: "sticky_primary", 
+        href: window.location.href 
+      }) 
+    });
   }
   
   function copy() { 
     navigator.clipboard.writeText(window.location.href); 
+    // Track copy action
+    fetch("/api/demo-event", { 
+      method: "POST", 
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ 
+        type: "cta_click", 
+        source: "sticky_copy", 
+        href: window.location.href 
+      }) 
+    });
   }
-
+  
   return (
     <div style={{
       position: "fixed", 
@@ -109,10 +160,10 @@ export function DemoStickyBottom() {
       padding: "10px",
       background: "rgba(255,255,255,.9)", 
       borderTop: "1px solid #eee", 
-      backdropFilter: "saturate(1.2) blur(4px)"
+      backdropFilter: "saturate(1.1) blur(4px)"
     }}>
       <button 
-        onClick={install} 
+        onClick={openInstall} 
         style={{
           padding: "8px 16px",
           background: "#f97316",

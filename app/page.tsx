@@ -10,8 +10,8 @@ import LegalFooter from '@/components/legal/LegalFooter';
 import { usePersonalization } from '@/components/usePersonalization';
 import { DemoAwareCTA } from '@/src/personalization/DemoAwareCTA';
 import { DemoAwareAddressInput } from '@/src/personalization/DemoAwareAddressInput';
-import { useIsDemo, useDemoParams, useDemoQuota } from '@/src/personalization/useDemo';
-import { DemoBanner, DemoStickyBottom } from '@/src/demo/DemoChrome';
+import { useIsDemo, useDemoParams, useDemoQuota } from '@/src/demo/useDemo';
+import { DemoBanner, DemoStickyBar } from '@/src/demo/DemoChrome';
 import InstallSheet from '@/src/demo/InstallSheet';
 
 const AddressAutocomplete = dynamic(() => import('@/components/AddressAutocomplete'), { ssr: false });
@@ -41,11 +41,11 @@ function HomeContent() {
     
     if (isDemo) {
       if (runs <= 0) {
-        alert("Demo mode: address submission is disabled. Contact us to install your live version.");
+        alert("Demo mode: address submission is disabled. Click 'Put this on our site' to install your live version.");
         return;
       }
       if (remaining <= 0) {
-        alert("Demo limit reached. Contact us to install your live version.");
+        alert("Demo limit reached. Click 'Put this on our site' to install your live version.");
         return;
       }
       consume();
@@ -269,7 +269,7 @@ function HomeContent() {
         <LegalFooter />
       </footer>
       <InstallSheet />
-      <DemoStickyBottom />
+      <DemoStickyBar />
     </div>
     </>
   );

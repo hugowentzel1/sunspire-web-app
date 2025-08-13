@@ -5,21 +5,21 @@ export default function BlurMask({ children }: { children: React.ReactNode }) {
   return (
     <div style={{ position: "relative" }}>
       {children}
-      <div style={{
+      <div style={{ 
         position: "absolute", 
         inset: 0, 
-        backdropFilter: "blur(6px)",
-        background: "rgba(255,255,255,0.35)"
+        backdropFilter: "blur(7px)", 
+        background: "rgba(255,255,255,.35)" 
       }} />
-      <div style={{
+      <div style={{ 
         position: "absolute", 
-        bottom: 8, 
         right: 8, 
-        fontSize: 12,
-        padding: "4px 8px", 
+        bottom: 8, 
+        fontSize: 12, 
+        color: "#fff",
+        background: "rgba(0,0,0,.55)", 
         borderRadius: 8, 
-        background: "rgba(0,0,0,0.55)", 
-        color: "#fff"
+        padding: "4px 8px" 
       }}>
         Demo preview — some details hidden
       </div>

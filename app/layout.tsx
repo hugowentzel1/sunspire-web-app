@@ -9,6 +9,7 @@ import PersonalizedBanner from '@/src/personalization/PersonalizedBanner'
 import { DemoWatermark } from '@/src/personalization/DemoWatermark'
 import { DemoFooter } from '@/src/personalization/DemoFooter'
 import { headers } from 'next/headers'
+import DemoNoIndex from '@/src/demo/DemoNoIndex'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -31,6 +32,7 @@ export default function RootLayout({
         {isDemo && <meta name="robots" content="noindex,nofollow" />}
       </head>
       <body className={inter.className}>
+        <DemoNoIndex />
         <PersonalizationProvider>
           <DemoRibbon />
           <AppErrorBoundary>{children}</AppErrorBoundary>
