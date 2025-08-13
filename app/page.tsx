@@ -40,10 +40,26 @@ function HomeContent() {
         alert("Preview limit reached. Click 'Add to our site' to install your live version.");
         return;
       }
-      // Navigate to demo result page
-      const url = new URL("/demo-result", window.location.origin);
-      url.search = window.location.search; // preserve personalization + demo params
-      window.location.href = url.toString();
+      // Navigate to original report page with demo flag
+      if (selectedPlace) {
+        const q = new URLSearchParams({
+          address: selectedPlace.formattedAddress,
+          lat: String(selectedPlace.lat),
+          lng: String(selectedPlace.lng),
+          placeId: selectedPlace.placeId,
+          demo: '1', // Add demo flag for brand takeover
+        });
+        router.push(`/report?${q.toString()}`);
+      } else {
+        const q = new URLSearchParams({ 
+          address, 
+          lat: '40.7128', 
+          lng: '-74.0060', 
+          placeId: 'demo',
+          demo: '1' // Add demo flag for brand takeover
+        });
+        router.push(`/report?${q.toString()}`);
+      }
       return;
     }
     
