@@ -6,7 +6,7 @@ import AppErrorBoundary from '@/components/AppErrorBoundary'
 import DemoRibbon from '@/components/ui/DemoRibbon'
 import { PersonalizationProvider } from '@/src/personalization/PersonalizationContext'
 import { headers } from 'next/headers'
-import DemoNoIndex from '@/src/demo/DemoNoIndex'
+import BrandProvider from '@/src/brand/BrandProvider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,8 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <DemoNoIndex />
-        {children}
+        <BrandProvider>{children}</BrandProvider>
       </body>
     </html>
   )

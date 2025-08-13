@@ -21,7 +21,7 @@ export default function BlurMask({ children }: { children: React.ReactNode }) {
         borderRadius: 8, 
         padding: "4px 8px" 
       }}>
-        Demo preview — some details hidden
+        Preview — details hidden
       </div>
     </div>
   );

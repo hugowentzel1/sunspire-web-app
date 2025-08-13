@@ -1,40 +1,36 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useIsDemo, useDemoParams } from "./useDemo";
-import { usePersonalizationCtx } from "@/src/personalization/PersonalizationContext";
+import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
 
 export default function InstallSheet() {
-  const isDemo = useIsDemo();
-  const { brand, primary } = usePersonalizationCtx();
-  const { domain, rep, pilot } = useDemoParams();
+  const b = useBrandTakeover();
   const [open, setOpen] = useState(false);
-
+  
   useEffect(() => {
     const on = () => setOpen(true);
     document.addEventListener("openInstall", on);
     return () => document.removeEventListener("openInstall", on);
   }, []);
-
-  // Autopen for high-intent links: &pilot=1
+  
   useEffect(() => { 
-    if (isDemo && pilot) setOpen(true); 
-  }, [isDemo, pilot]);
-
-  if (!isDemo || !open) return null;
+    if (b.enabled && b.pilot) setOpen(true); 
+  }, [b.enabled, b.pilot]);
+  
+  if (!b.enabled || !open) return null;
 
   async function emailPack(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const form = new FormData(e.currentTarget);
-    await fetch("/api/demo-event", {
-      method: "POST",
+    const email = new FormData(e.currentTarget).get("email");
+    await fetch("/api/demo-event", { 
+      method: "POST", 
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        type: "email_pack",
-        email: form.get("email"),
-        brand, 
-        primary, 
-        domain, 
-        rep,
+        type: "email_pack", 
+        email, 
+        brand: b.brand, 
+        primary: b.primary, 
+        domain: b.domain, 
+        rep: b.rep, 
         demoLink: window.location.href
       })
     });
@@ -64,15 +60,14 @@ export default function InstallSheet() {
         }}
       >
         <h3 style={{ margin: "0 0 16px 0", fontSize: "20px", fontWeight: "600" }}>
-          Put Sunspire on {domain ?? "your site"}
+          Add to {b.domain ?? "your site"}
         </h3>
-        <p style={{ margin: "0 0 12px 0" }}>Choose one to start now:</p>
         <ol style={{ margin: "0 0 16px 0", paddingLeft: "20px" }}>
           <li style={{ marginBottom: "8px" }}>
-            <strong>Hosted subdomain</strong> (fastest): e.g. solar.{domain ?? "yourdomain.com"}
+            <strong>Hosted subdomain</strong> (fastest): e.g. solar.{b.domain ?? "yourdomain.com"}
           </li>
           <li style={{ marginBottom: "8px" }}>
-            <strong>Embed on your site</strong> (1-line script & API key)
+            <strong>Embed</strong> (1-line script & API key)
           </li>
         </ol>
         <div style={{ display: "flex", gap: 8, marginTop: 10 }}>
@@ -143,9 +138,6 @@ export default function InstallSheet() {
             </button>
           </div>
         </form>
-        <p style={{ opacity: 0.7, marginTop: 12, fontSize: "12px" }}>
-          Demo data. For illustration only.
-        </p>
       </div>
     </div>
   );

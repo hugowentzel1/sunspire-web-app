@@ -10,9 +10,10 @@ import LegalFooter from '@/components/legal/LegalFooter';
 import { usePersonalization } from '@/components/usePersonalization';
 
 
-import { useIsDemo, useDemoParams, useDemoQuota } from '@/src/demo/useDemo';
-import { usePersonalizationCtx, PersonalizationProvider } from '@/src/personalization/PersonalizationContext';
-import { DemoBanner, DemoStickyBar } from '@/src/demo/DemoChrome';
+import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+import { PersonalizationProvider } from '@/src/personalization/PersonalizationContext';
+import HeroBrand from '@/src/brand/HeroBrand';
+import StickyBuyBar from '@/src/demo/StickyBuyBar';
 import InstallSheet from '@/src/demo/InstallSheet';
 import AppErrorBoundary from '@/components/AppErrorBoundary';
 import DemoRibbon from '@/components/ui/DemoRibbon';
@@ -29,10 +30,8 @@ function HomeContent() {
   // Global personalization for every page
   const { company, domain, logoUrl, gradient, isPersonalized, mounted } = usePersonalization();
   
-  // Demo mode detection
-  const isDemo = useIsDemo();
-  const { city, runs, blur } = useDemoParams();
-  const { remaining, consume } = useDemoQuota(runs);
+  // Brand takeover mode detection
+  const b = useBrandTakeover();
 
   const handleAddressSelect = (placeResult: PlaceResult) => {
     setAddress(placeResult.formattedAddress);
@@ -42,16 +41,13 @@ function HomeContent() {
   const handleGenerateEstimate = () => {
     if (!address.trim()) return;
     
-    if (isDemo) {
-      if (runs <= 0) {
-        alert("Demo mode: address submission is disabled. Click 'Put this on our site' to install your live version.");
-        return;
-      }
+    if (b.enabled) {
+      // Always 2 runs in brand takeover mode
+      const remaining = 2; // This will be managed by localStorage in the actual implementation
       if (remaining <= 0) {
-        alert("Demo limit reached. Click 'Put this on our site' to install your live version.");
+        alert("Preview limit reached. Click 'Add to our site' to install your live version.");
         return;
       }
-      consume();
       // Navigate to demo result page
       const url = new URL("/demo-result", window.location.origin);
       url.search = window.location.search; // preserve personalization + demo params
@@ -88,6 +84,8 @@ function HomeContent() {
 
   return (
     <>
+      {/* Their logo centered in hero when demo */}
+      <HeroBrand />
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter">
         <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -188,7 +186,7 @@ function HomeContent() {
             ))}
           </motion.div>
 
-          {isDemo ? (
+          {b.enabled ? (
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="space-y-8">
               <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-3xl mx-auto">
                 <div className="space-y-8">
@@ -202,7 +200,7 @@ function HomeContent() {
                       value={address} 
                       onChange={setAddress} 
                       onSelect={handleAddressSelect} 
-                      placeholder={isDemo && city ? `Start typing an address in ${city}...` : "Start typing your property address..."} 
+                      placeholder={b.city ? `Start typing an address in ${b.city}...` : "Start typing your property address..."} 
                       className="w-full" 
                     />
                     <motion.button onClick={handleGenerateEstimate} disabled={!address.trim() || isLoading} className={`w-full py-6 px-8 rounded-2xl text-lg font-bold text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl ${!address.trim() || isLoading ? 'bg-gray-300 cursor-not-allowed' : 'bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 hover:from-orange-600 hover:via-red-600 hover:to-pink-600'}`} whileHover={!address.trim() || isLoading ? {} : { scale: 1.02 }} whileTap={!address.trim() || isLoading ? {} : { scale: 0.98 }}>
@@ -219,12 +217,7 @@ function HomeContent() {
                       )}
                     </motion.button>
                     
-                    {isDemo && runs <= 0 && (
-                      <p className="text-sm text-gray-500 text-center">Demo mode: Address submission is disabled. Click 'Put this on our site' to install your live version.</p>
-                    )}
-                    {isDemo && runs > 0 && (
-                      <p className="text-sm text-gray-500 text-center">Demo mode: You have {remaining} test run{remaining === 1 ? "" : "s"}.</p>
-                    )}
+                    <p className="text-sm text-gray-500 text-center">Preview: 2 test runs available.</p>
                   </div>
                 </div>
               </div>
@@ -265,7 +258,7 @@ function HomeContent() {
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2, duration: 0.8 }} className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
             <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300"><div className="text-4xl font-black text-gray-900 mb-2">50K+</div><div className="text-gray-600 font-semibold">Properties Analyzed</div></div>
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300"><div className="text-4xl font-black text-gray-900 mb-2">{isDemo ? "—" : "$2.5M"}</div><div className="text-gray-600 font-semibold">Total Savings Generated</div></div>
+            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300"><div className="text-4xl font-black text-gray-900 mb-2">{b.enabled ? "—" : "$2.5M"}</div><div className="text-gray-600 font-semibold">Total Savings Generated</div></div>
             <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300"><div className="text-4xl font-black text-gray-900 mb-2">98%</div><div className="text-gray-600 font-semibold">Accuracy Rate</div></div>
             <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300"><div className="text-4xl font-black text-gray-900 mb-2">24/7</div><div className="text-gray-600 font-semibold">AI Support</div></div>
           </motion.div>
@@ -300,7 +293,7 @@ function HomeContent() {
         <LegalFooter />
       </footer>
       <InstallSheet />
-      <DemoStickyBar />
+      <StickyBuyBar />
     </div>
     </>
   );
@@ -315,7 +308,7 @@ export default function Home() {
           <HomeContent />
         </AppErrorBoundary>
         <InstallSheet />
-        <DemoStickyBar />
+        <StickyBuyBar />
       </PersonalizationProvider>
     </TenantProvider>
   );
