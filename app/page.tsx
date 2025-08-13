@@ -8,8 +8,8 @@ import { TenantProvider, useTenant } from '@/components/TenantProvider';
 import { PlaceResult } from '@/lib/calc';
 import LegalFooter from '@/components/legal/LegalFooter';
 import { usePersonalization } from '@/components/usePersonalization';
-import { DemoAwareCTA } from '@/src/personalization/DemoAwareCTA';
-import { DemoAwareAddressInput } from '@/src/personalization/DemoAwareAddressInput';
+
+
 import { useIsDemo, useDemoParams, useDemoQuota } from '@/src/demo/useDemo';
 import { usePersonalizationCtx, PersonalizationProvider } from '@/src/personalization/PersonalizationContext';
 import { DemoBanner, DemoStickyBar } from '@/src/demo/DemoChrome';
@@ -190,47 +190,76 @@ function HomeContent() {
 
           {isDemo ? (
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="space-y-8">
-              <DemoAwareCTA />
-              <DemoAwareAddressInput />
+              <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-3xl mx-auto">
+                <div className="space-y-8">
+                  <div className="text-center space-y-4">
+                    <h2 className="text-2xl font-bold text-gray-900">Enter Your Property Address</h2>
+                    <p className="text-gray-600">Get a comprehensive solar analysis tailored to your specific location</p>
+                  </div>
+
+                  <div className="space-y-6">
+                    <AddressAutocomplete 
+                      value={address} 
+                      onChange={setAddress} 
+                      onSelect={handleAddressSelect} 
+                      placeholder={isDemo && city ? `Start typing an address in ${city}...` : "Start typing your property address..."} 
+                      className="w-full" 
+                    />
+                    <motion.button onClick={handleGenerateEstimate} disabled={!address.trim() || isLoading} className={`w-full py-6 px-8 rounded-2xl text-lg font-bold text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl ${!address.trim() || isLoading ? 'bg-gray-300 cursor-not-allowed' : 'bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 hover:from-orange-600 hover:via-red-600 hover:to-pink-600'}`} whileHover={!address.trim() || isLoading ? {} : { scale: 1.02 }} whileTap={!address.trim() || isLoading ? {} : { scale: 0.98 }}>
+                      {isLoading ? (
+                        <div className="flex items-center justify-center space-x-4">
+                          <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                          <span>Analyzing Your Property...</span>
+                        </div>
+                      ) : (
+                        <div className="flex items-center justify-center space-x-4">
+                          <span>Generate Solar Intelligence Report</span>
+                          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                        </div>
+                      )}
+                    </motion.button>
+                    
+                    {isDemo && runs <= 0 && (
+                      <p className="text-sm text-gray-500 text-center">Demo mode: Address submission is disabled. Click 'Put this on our site' to install your live version.</p>
+                    )}
+                    {isDemo && runs > 0 && (
+                      <p className="text-sm text-gray-500 text-center">Demo mode: You have {remaining} test run{remaining === 1 ? "" : "s"}.</p>
+                    )}
+                  </div>
+                </div>
+              </div>
             </motion.div>
           ) : (
             <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-3xl mx-auto">
-            <div className="space-y-8">
-              <div className="text-center space-y-4">
-                <h2 className="text-2xl font-bold text-gray-900">Enter Your Property Address</h2>
-                <p className="text-gray-600">Get a comprehensive solar analysis tailored to your specific location</p>
-              </div>
+              <div className="space-y-8">
+                <div className="text-center space-y-4">
+                  <h2 className="text-2xl font-bold text-gray-900">Enter Your Property Address</h2>
+                  <p className="text-gray-600">Get a comprehensive solar analysis tailored to your specific location</p>
+                </div>
 
-              <div className="space-y-6">
-                <AddressAutocomplete 
-                  value={address} 
-                  onChange={setAddress} 
-                  onSelect={handleAddressSelect} 
-                  placeholder={isDemo && city ? `Start typing an address in ${city}...` : "Start typing your property address..."} 
-                  className="w-full" 
-                />
-                <motion.button onClick={handleGenerateEstimate} disabled={!address.trim() || isLoading} className={`w-full py-6 px-8 rounded-2xl text-lg font-bold text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl ${!address.trim() || isLoading ? 'bg-gray-300 cursor-not-allowed' : 'bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 hover:from-orange-600 hover:via-red-600 hover:to-pink-600'}`} whileHover={!address.trim() || isLoading ? {} : { scale: 1.02 }} whileTap={!address.trim() || isLoading ? {} : { scale: 0.98 }}>
-                  {isLoading ? (
-                    <div className="flex items-center justify-center space-x-4">
-                      <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                      <span>Analyzing Your Property...</span>
-                    </div>
-                  ) : (
-                    <div className="flex items-center justify-center space-x-4">
-                      <span>Generate Solar Intelligence Report</span>
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-                    </div>
-                  )}
-                </motion.button>
-                
-                {isDemo && runs <= 0 && (
-                  <p className="text-sm text-gray-500 text-center">Demo mode: Address submission is disabled.</p>
-                )}
-                {isDemo && runs > 0 && (
-                  <p className="text-sm text-gray-500 text-center">Demo mode: You have {remaining} test run{remaining === 1 ? "" : "s"}.</p>
-                )}
+                <div className="space-y-6">
+                  <AddressAutocomplete 
+                    value={address} 
+                    onChange={setAddress} 
+                    onSelect={handleAddressSelect} 
+                    placeholder="Start typing your property address..." 
+                    className="w-full" 
+                  />
+                  <motion.button onClick={handleGenerateEstimate} disabled={!address.trim() || isLoading} className={`w-full py-6 px-8 rounded-2xl text-lg font-bold text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl ${!address.trim() || isLoading ? 'bg-gray-300 cursor-not-allowed' : 'bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 hover:from-orange-600 hover:via-red-600 hover:to-pink-600'}`} whileHover={!address.trim() || isLoading ? {} : { scale: 1.02 }} whileTap={!address.trim() || isLoading ? {} : { scale: 0.98 }}>
+                    {isLoading ? (
+                      <div className="flex items-center justify-center space-x-4">
+                        <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        <span>Analyzing Your Property...</span>
+                      </div>
+                    ) : (
+                      <div className="flex items-center justify-center space-x-4">
+                        <span>Generate Solar Intelligence Report</span>
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                      </div>
+                    )}
+                  </motion.button>
+                </div>
               </div>
-            </div>
             </motion.div>
           )}
 
