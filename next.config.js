@@ -2,6 +2,7 @@
 const nextConfig = {
   // App directory is now stable in Next.js 14
   images: {
+    unoptimized: true, // TEMP: bypass image optimization to fix Vercel thumbnail
     domains: ['www.google.com', 'google.com'],
     remotePatterns: [
       {
