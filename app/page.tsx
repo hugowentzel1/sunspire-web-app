@@ -11,8 +11,11 @@ import { usePersonalization } from '@/components/usePersonalization';
 import { DemoAwareCTA } from '@/src/personalization/DemoAwareCTA';
 import { DemoAwareAddressInput } from '@/src/personalization/DemoAwareAddressInput';
 import { useIsDemo, useDemoParams, useDemoQuota } from '@/src/demo/useDemo';
+import { usePersonalizationCtx, PersonalizationProvider } from '@/src/personalization/PersonalizationContext';
 import { DemoBanner, DemoStickyBar } from '@/src/demo/DemoChrome';
 import InstallSheet from '@/src/demo/InstallSheet';
+import AppErrorBoundary from '@/components/AppErrorBoundary';
+import DemoRibbon from '@/components/ui/DemoRibbon';
 
 const AddressAutocomplete = dynamic(() => import('@/components/AddressAutocomplete'), { ssr: false });
 
@@ -85,7 +88,6 @@ function HomeContent() {
 
   return (
     <>
-      <DemoBanner />
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter">
         <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -278,7 +280,14 @@ function HomeContent() {
 export default function Home() {
   return (
     <TenantProvider>
-      <HomeContent />
+      <PersonalizationProvider>
+        <DemoRibbon />
+        <AppErrorBoundary>
+          <HomeContent />
+        </AppErrorBoundary>
+        <InstallSheet />
+        <DemoStickyBar />
+      </PersonalizationProvider>
     </TenantProvider>
   );
 }

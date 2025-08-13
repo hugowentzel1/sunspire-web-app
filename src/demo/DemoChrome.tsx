@@ -1,11 +1,9 @@
 "use client";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useIsDemo, useDemoParams } from "./useDemo";
 import { usePersonalizationCtx } from "@/src/personalization/PersonalizationContext";
 
 function ExpiryBadge({ days }: { days: number }) {
-  const [left, setLeft] = useState(days);
-  // purely cosmetic
   return (
     <span style={{ 
       fontSize: 12, 
@@ -14,7 +12,7 @@ function ExpiryBadge({ days }: { days: number }) {
       background: "#FFF3CD", 
       color: "#8C6D1F" 
     }}>
-      Link expires in {left} day{left === 1 ? "" : "s"}
+      Link expires in {days} day{days === 1 ? "" : "s"}
     </span>
   );
 }
@@ -30,31 +28,11 @@ export function DemoBanner() {
   async function copy() { 
     try { 
       await navigator.clipboard.writeText(window.location.href); 
-      // Track copy action
-      fetch("/api/demo-event", { 
-        method: "POST", 
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-          type: "cta_click", 
-          source: "banner_copy", 
-          href: window.location.href 
-        }) 
-      });
     } catch {} 
   }
   
   function openInstall() { 
     document.dispatchEvent(new CustomEvent("openInstall")); 
-    // Track install click
-    fetch("/api/demo-event", { 
-      method: "POST", 
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ 
-        type: "cta_click", 
-        source: "banner_primary", 
-        href: window.location.href 
-      }) 
-    });
   }
 
   return (
@@ -121,30 +99,10 @@ export function DemoStickyBar() {
   
   function openInstall() { 
     document.dispatchEvent(new CustomEvent("openInstall")); 
-    // Track install click
-    fetch("/api/demo-event", { 
-      method: "POST", 
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ 
-        type: "cta_click", 
-        source: "sticky_primary", 
-        href: window.location.href 
-      }) 
-    });
   }
   
   function copy() { 
     navigator.clipboard.writeText(window.location.href); 
-    // Track copy action
-    fetch("/api/demo-event", { 
-      method: "POST", 
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ 
-        type: "cta_click", 
-        source: "sticky_copy", 
-        href: window.location.href 
-      }) 
-    });
   }
   
   return (

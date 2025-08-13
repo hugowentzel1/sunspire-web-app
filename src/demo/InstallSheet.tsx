@@ -6,7 +6,7 @@ import { usePersonalizationCtx } from "@/src/personalization/PersonalizationCont
 export default function InstallSheet() {
   const isDemo = useIsDemo();
   const { brand, primary } = usePersonalizationCtx();
-  const { domain, rep } = useDemoParams();
+  const { domain, rep, pilot } = useDemoParams();
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -14,6 +14,11 @@ export default function InstallSheet() {
     document.addEventListener("openInstall", on);
     return () => document.removeEventListener("openInstall", on);
   }, []);
+
+  // Autopen for high-intent links: &pilot=1
+  useEffect(() => { 
+    if (isDemo && pilot) setOpen(true); 
+  }, [isDemo, pilot]);
 
   if (!isDemo || !open) return null;
 

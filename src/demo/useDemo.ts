@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 
 export function useIsDemo() {
   const [isDemo, set] = useState(false);
@@ -17,11 +17,12 @@ export type DemoParams = {
   runs: number;
   blur: boolean;
   expireDays: number;
+  pilot: boolean;
 };
 
 export function useDemoParams(): DemoParams {
   const [params, setParams] = useState<DemoParams>({
-    domain: null, city: null, rep: null, runs: 1, blur: true, expireDays: 7,
+    domain: null, city: null, rep: null, runs: 1, blur: true, expireDays: 7, pilot: false,
   });
   useEffect(() => {
     const sp = new URLSearchParams(window.location.search);
@@ -35,6 +36,7 @@ export function useDemoParams(): DemoParams {
       runs,
       blur: blurRaw ? blurRaw === "1" : runs > 0,
       expireDays: expire,
+      pilot: sp.get("pilot") === "1",
     });
   }, []);
   return params;
