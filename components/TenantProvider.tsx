@@ -68,6 +68,76 @@ export const useTenant = () => {
   return context;
 };
 
+// Fallback default tenant configuration
+const defaultTenant: TenantConfig = {
+  slug: 'default',
+  name: 'Sunspire',
+  tagline: 'PREMIUM SOLAR INTELLIGENCE',
+  logo: '/logo-default.svg',
+  colors: {
+    primary: '#FFA63D',
+    secondary: '#FF6F3C',
+    accent: '#1A99E6',
+    success: '#1AB380',
+    warning: '#FFA63D',
+    error: '#FF6F3C',
+    background: '#FAFAFF',
+    surface: '#FDFDFF',
+    text: '#1F2937',
+    textSecondary: '#6B7280',
+    border: '#E5E7EB'
+  },
+  contact: {
+    email: 'hello@sunspire.com',
+    phone: '+1 (555) 123-4567',
+    address: '123 Solar Street, Sunny City, SC 12345'
+  },
+  social: {
+    website: 'https://sunspire.com',
+    facebook: 'https://facebook.com/sunspire',
+    twitter: 'https://twitter.com/sunspire',
+    linkedin: 'https://linkedin.com/company/sunspire'
+  },
+  features: {
+    showTestimonials: true,
+    showTrustBadges: true,
+    showMethodology: true,
+    showPricing: false
+  },
+  testimonials: [
+    {
+      id: '1',
+      name: 'Sarah Johnson',
+      role: 'Homeowner',
+      location: 'Austin, TX',
+      content: 'Sunspire\'s estimate was spot-on! We saved $2,400 in our first year and the installation was seamless.',
+      rating: 5
+    },
+    {
+      id: '2', 
+      name: 'Mike Chen',
+      role: 'Property Manager',
+      location: 'San Diego, CA',
+      content: 'The accuracy of their solar estimates helped us make informed decisions for our portfolio. Highly recommended!',
+      rating: 5
+    },
+    {
+      id: '3',
+      name: 'Lisa Rodriguez',
+      role: 'Business Owner',
+      location: 'Miami, FL', 
+      content: 'Professional service from start to finish. The ROI calculations were exactly what we needed to justify the investment.',
+      rating: 5
+    }
+  ],
+  trustBadges: [
+    'Used by 50+ Solar Companies',
+    'Bank-Level Security',
+    'SOC 2 Compliant',
+    '24/7 Support'
+  ]
+};
+
 interface TenantProviderProps {
   children: React.ReactNode;
 }
@@ -94,50 +164,40 @@ export function TenantProvider({ children }: TenantProviderProps) {
           }
         }
 
-        // Load tenant configuration
-        const response = await fetch(`/tenants/${tenantSlug}.json`);
-        if (!response.ok) {
-          throw new Error(`Failed to load tenant config: ${response.status}`);
-        }
-
-        const tenantConfig: TenantConfig = await response.json();
-        setTenant(tenantConfig);
-
-        // Apply CSS custom properties for theming
-        const root = document.documentElement;
-        root.style.setProperty('--brand', tenantConfig.colors.primary);
-        root.style.setProperty('--brand-foreground', tenantConfig.colors.text);
-        root.style.setProperty('--brand-accent', tenantConfig.colors.accent);
-        root.style.setProperty('--brand-secondary', tenantConfig.colors.secondary);
-        root.style.setProperty('--brand-success', tenantConfig.colors.success);
-        root.style.setProperty('--brand-warning', tenantConfig.colors.warning);
-        root.style.setProperty('--brand-error', tenantConfig.colors.error);
-        root.style.setProperty('--brand-background', tenantConfig.colors.background);
-        root.style.setProperty('--brand-surface', tenantConfig.colors.surface);
-        root.style.setProperty('--brand-text', tenantConfig.colors.text);
-        root.style.setProperty('--brand-text-secondary', tenantConfig.colors.textSecondary);
-        root.style.setProperty('--brand-border', tenantConfig.colors.border);
-
-      } catch (err) {
-        console.error('Error loading tenant configuration:', err);
-        setError(err instanceof Error ? err.message : 'Failed to load tenant configuration');
-        
-        // Fallback to default tenant
+        // Try to load tenant configuration, but fallback to default if it fails
         try {
-          const response = await fetch('/tenants/default.json');
+          const response = await fetch(`/tenants/${tenantSlug}.json`);
           if (response.ok) {
-            const defaultTenant = await response.json();
+            const tenantData = await response.json();
+            setTenant(tenantData);
+          } else {
+            // If tenant file doesn't exist, use default
+            console.warn(`Tenant config not found for ${tenantSlug}, using default`);
             setTenant(defaultTenant);
           }
-        } catch (fallbackErr) {
-          console.error('Failed to load default tenant:', fallbackErr);
+        } catch (fetchError) {
+          // If fetch fails, use default tenant
+          console.warn('Failed to fetch tenant config, using default:', fetchError);
+          setTenant(defaultTenant);
         }
-      } finally {
+        
+        setLoading(false);
+      } catch (error) {
+        console.error('Error loading tenant:', error);
+        // Always fallback to default tenant instead of failing
+        setTenant(defaultTenant);
         setLoading(false);
       }
     };
 
-    loadTenant();
+    // Only run on client side
+    if (typeof window !== 'undefined') {
+      loadTenant();
+    } else {
+      // Server-side: use default tenant
+      setTenant(defaultTenant);
+      setLoading(false);
+    }
   }, []);
 
   return (
