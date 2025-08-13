@@ -1,22 +1,43 @@
-import { ImageResponse } from 'next/og';
+export const runtime = "edge";
+export const contentType = "image/png";
 
-export const runtime = 'edge';
-export const size = { width: 1200, height: 630 };
-export const contentType = 'image/png';
-export const alt = 'Sunspire - Solar Intelligence Platform';
+import { ImageResponse } from "next/og";
 
-export default function Image() {
+function normalizeHex(hex: string | null, fallback = "#FFA63D") {
+  if (!hex) return fallback;
+  const h = hex.startsWith("#") ? hex : `#${hex}`;
+  return /^#[0-9a-fA-F]{6}$/.test(h) ? h.toUpperCase() : fallback;
+}
+function sanitizeBrand(s: string | null) {
+  if (!s) return "Sunspire";
+  return s.replace(/[<>]/g, "").trim().slice(0, 40) || "Sunspire";
+}
+
+export async function GET(req: Request) {
+  const url = new URL(req.url);
+  const brand = sanitizeBrand(url.searchParams.get("brand"));
+  const primary = normalizeHex(url.searchParams.get("primary"));
+
   return new ImageResponse(
     (
-      <div style={{
-        width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column',
-        background: 'linear-gradient(180deg,#FFFFFF 0%, #FFF6F7 100%)', fontFamily: 'Inter'
-      }}>
-        <div style={{ width: 140, height: 140, borderRadius: 999, background: 'linear-gradient(140deg, #FF7A3D, #FF4D6D, #FF7CA8)' }} />
-        <div style={{ fontSize: 64, fontWeight: 900, color: '#0F172A', marginTop: 24 }}>Solar Intelligence in Seconds</div>
-        <div style={{ marginTop: 14, padding: '10px 16px', borderRadius: 999, fontWeight: 700, background: '#fff', color: '#667085', border: '1px solid #E6EAF2' }}>Brandable in 24h</div>
+      <div
+        style={{
+          width: 1200,
+          height: 630,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: primary,
+          color: "#0D0D0D",
+          fontSize: 98,
+          fontWeight: 800,
+          letterSpacing: "-1px",
+          padding: 40,
+        }}
+      >
+        {brand}
       </div>
     ),
-    { ...size }
+    { width: 1200, height: 630 }
   );
 }

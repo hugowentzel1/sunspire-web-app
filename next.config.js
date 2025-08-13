@@ -15,6 +15,11 @@ const nextConfig = {
         hostname: 'google.com',
         pathname: '/s2/favicons/**',
       },
+      { protocol: "https", hostname: "res.cloudinary.com" },
+      { protocol: "https", hostname: "i.imgur.com" },
+      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "logo.clearbit.com" },
+      { protocol: "https", hostname: "cdn.jsdelivr.net" },
     ],
   },
 }

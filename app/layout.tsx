@@ -4,6 +4,8 @@ import './globals.css'
 import '@/components/ui/sunset-theme.css'
 import AppErrorBoundary from '@/components/AppErrorBoundary'
 import DemoRibbon from '@/components/ui/DemoRibbon'
+import { PersonalizationProvider } from '@/src/personalization/PersonalizationContext'
+import PersonalizedBanner from '@/src/personalization/PersonalizedBanner'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -20,8 +22,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <DemoRibbon />
-        <AppErrorBoundary>{children}</AppErrorBoundary>
+        <PersonalizationProvider>
+          <DemoRibbon />
+          <AppErrorBoundary>{children}</AppErrorBoundary>
+          {/* Non-blocking banner */}
+          <PersonalizedBanner />
+        </PersonalizationProvider>
       </body>
     </html>
   )
