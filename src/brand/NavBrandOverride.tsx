@@ -10,14 +10,14 @@ export default function NavBrandOverride() {
       "[data-app-brand]",
       ".app-brand",
       "header .brand",
-      "header img[alt='Sunspire']",
-      "header [aria-label='Sunspire']",
-      "a[href='/' i]" 
+      "header img[alt*='Sunspire' i]",
+      "header [aria-label*='Sunspire' i]",
     ];
     document.querySelectorAll(selectors.join(",")).forEach(el => {
-      (el as HTMLElement).style.visibility = "hidden";
-      (el as HTMLElement).style.pointerEvents = "none";
-      (el as HTMLElement).setAttribute("data-vendor-hidden", "true");
+      const node = el as HTMLElement;
+      node.style.visibility = "hidden";
+      node.style.pointerEvents = "none";
+      node.setAttribute("data-vendor-hidden","true");
     });
   }, [b.enabled]);
   return null;

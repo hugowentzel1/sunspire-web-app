@@ -1,7 +1,5 @@
 export const runtime = "edge";
-
 export async function POST(req: Request) {
-  const body = await req.json().catch(() => null);
-  console.log("demo-event", body);
+  await req.text(); // ignore payload for now
   return new Response(null, { status: 204 });
 }

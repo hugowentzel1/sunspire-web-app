@@ -12,6 +12,8 @@ import HeroBrand from '@/src/brand/HeroBrand';
 import StickyBuyBar from '@/src/demo/StickyBuyBar';
 import InstallSheet from '@/src/demo/InstallSheet';
 import NavBrandOverride from '@/src/brand/NavBrandOverride';
+import { DemoBanner } from '@/src/demo/DemoChrome';
+import { usePreviewQuota } from '@/src/demo/usePreviewQuota';
 import Image from 'next/image';
 
 const AddressAutocomplete = dynamic(() => import('@/components/AddressAutocomplete'), { ssr: false });
@@ -25,6 +27,8 @@ function HomeContent() {
   
   // Brand takeover mode detection
   const b = useBrandTakeover();
+  const { read, consume } = usePreviewQuota(2);
+  const remaining = read();
 
   const handleAddressSelect = (placeResult: PlaceResult) => {
     setAddress(placeResult.formattedAddress);
@@ -35,32 +39,15 @@ function HomeContent() {
     if (!address.trim()) return;
     
     if (b.enabled) {
-      // Always 2 runs in brand takeover mode
-      const remaining = 2; // This will be managed by localStorage in the actual implementation
       if (remaining <= 0) {
-        alert("Preview limit reached. Click 'Add to our site' to install your live version.");
+        document.dispatchEvent(new CustomEvent("openInstall"));
         return;
       }
-      // Navigate to original report page with demo flag
-      if (selectedPlace) {
-        const q = new URLSearchParams({
-          address: selectedPlace.formattedAddress,
-          lat: String(selectedPlace.lat),
-          lng: String(selectedPlace.lng),
-          placeId: selectedPlace.placeId,
-          demo: '1', // Add demo flag for brand takeover
-        });
-        router.push(`/report?${q.toString()}`);
-      } else {
-        const q = new URLSearchParams({ 
-          address, 
-          lat: '40.7128', 
-          lng: '-74.0060', 
-          placeId: 'demo',
-          demo: '1' // Add demo flag for brand takeover
-        });
-        router.push(`/report?${q.toString()}`);
-      }
+      consume();
+      // Navigate to demo result page
+      const u = new URL("/demo-result", location.origin);
+      u.search = location.search; // keep personalization
+      location.href = u.toString();
       return;
     }
     
@@ -101,6 +88,7 @@ function HomeContent() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter" data-demo={b.enabled}>
+      <DemoBanner />
       <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
@@ -149,47 +137,22 @@ function HomeContent() {
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-center space-y-12">
           
-          {/* Their logo centered in hero when demo */}
-          <HeroBrand />
+          {/* HERO ICON: render only one (fix double) */}
+          {!b.enabled ? (
+            <div className="w-32 h-32 mx-auto bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden">
+              <motion.div 
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" 
+                animate={{ x: ['-100%', '100%'] }} 
+                transition={{ duration: 2, repeat: Infinity, ease: 'linear' }} 
+              />
+              <span className="text-6xl relative z-10">☀️</span>
+            </div>
+          ) : (
+            <HeroBrand />
+          )}
           
           <div className="space-y-8">
             <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="relative">
-              {!b.enabled ? (
-                <div className="w-32 h-32 mx-auto bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden">
-                  <motion.div 
-                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" 
-                    animate={{ x: ['-100%', '100%'] }} 
-                    transition={{ duration: 2, repeat: Infinity, ease: 'linear' }} 
-                  />
-                  <span className="text-6xl relative z-10">☀️</span>
-                </div>
-              ) : (
-                <div className="w-32 h-32 mx-auto flex items-center justify-center">
-                  {b.logo ? (
-                    <Image 
-                      src={b.logo} 
-                      alt={`${b.brand} logo`} 
-                      width={128} 
-                      height={128}
-                      style={{ objectFit: "contain", borderRadius: 20 }} 
-                    />
-                  ) : (
-                    <div style={{
-                      width: 128, 
-                      height: 128, 
-                      borderRadius: 20, 
-                      display: "grid", 
-                      placeItems: "center",
-                      background: b.primary, 
-                      color: "#0D0D0D", 
-                      fontWeight: 800, 
-                      fontSize: 36
-                    }}>
-                      {initials(b.brand)}
-                    </div>
-                  )}
-                </div>
-              )}
               <motion.div 
                 className="absolute -top-4 -right-4 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg" 
                 animate={{ scale: [1, 1.2, 1] }} 
@@ -281,7 +244,7 @@ function HomeContent() {
                 </motion.button>
                 
                 {b.enabled && (
-                  <p className="text-sm text-gray-500 text-center">Preview: 2 test runs available.</p>
+                  <p className="text-sm text-gray-500 text-center">Preview: {remaining} run{remaining===1?"":"s"} left.</p>
                 )}
               </div>
             </div>
