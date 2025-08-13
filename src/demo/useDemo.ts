@@ -22,11 +22,11 @@ export type DemoParams = {
 
 export function useDemoParams(): DemoParams {
   const [params, setParams] = useState<DemoParams>({
-    domain: null, city: null, rep: null, runs: 1, blur: true, expireDays: 7, pilot: false,
+    domain: null, city: null, rep: null, runs: 2, blur: true, expireDays: 7, pilot: false,
   });
   useEffect(() => {
     const sp = new URLSearchParams(window.location.search);
-    const runs = Math.max(0, parseInt(sp.get("runs") || "1", 10) || 1);
+    const runs = Math.max(0, parseInt(sp.get("runs") || "2", 10) || 2);
     const blurRaw = sp.get("blur");
     const expire = Math.max(1, parseInt(sp.get("expire") || "7", 10) || 7);
     setParams({

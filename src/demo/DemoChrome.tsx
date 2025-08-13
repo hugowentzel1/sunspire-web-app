@@ -69,12 +69,13 @@ export function DemoBanner() {
         onClick={copy} 
         style={{
           padding: "6px 12px",
-          background: "white",
+          background: "#f8fafc",
           color: "#374151",
           border: "1px solid #d1d5db",
           borderRadius: "6px",
           cursor: "pointer",
-          fontSize: "14px"
+          fontSize: "14px",
+          fontWeight: "500"
         }}
       >
         Copy demo link
@@ -138,12 +139,13 @@ export function DemoStickyBar() {
         onClick={copy} 
         style={{
           padding: "8px 16px",
-          background: "white",
+          background: "#f8fafc",
           color: "#374151",
           border: "1px solid #d1d5db",
           borderRadius: "6px",
           cursor: "pointer",
-          fontSize: "14px"
+          fontSize: "14px",
+          fontWeight: "500"
         }}
       >
         Copy link
