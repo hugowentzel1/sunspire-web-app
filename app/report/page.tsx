@@ -9,6 +9,7 @@ import { SolarEstimate } from '@/lib/estimate';
 import EstimateChart from '@/components/EstimateChart';
 import { formatDateSafe } from '@/lib/format';
 import LegalFooter from '@/components/legal/LegalFooter';
+import { usePersonalization } from '@/components/usePersonalization';
 
 function ReportContent() {
   const searchParams = useSearchParams();
@@ -18,6 +19,9 @@ function ReportContent() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showLeadModal, setShowLeadModal] = useState(false);
+  
+  // Global personalization for every page
+  const { company, domain, logoUrl, gradient, isPersonalized } = usePersonalization();
 
   const demoAddressesByState: Record<string, {address:string, lat:number, lng:number}> = {
     AZ: { address: "123 N Central Ave, Phoenix, AZ", lat: 33.4484, lng: -112.0740 },
