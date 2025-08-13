@@ -8,6 +8,7 @@ import { PersonalizationProvider } from '@/src/personalization/PersonalizationCo
 import PersonalizedBanner from '@/src/personalization/PersonalizedBanner'
 import { DemoWatermark } from '@/src/personalization/DemoWatermark'
 import { DemoFooter } from '@/src/personalization/DemoFooter'
+import { headers } from 'next/headers'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -21,8 +22,14 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const h = headers();
+  const isDemo = h.get("referer")?.includes("demo=1") ?? false; // best-effort
+  
   return (
     <html lang="en">
+      <head>
+        {isDemo && <meta name="robots" content="noindex,nofollow" />}
+      </head>
       <body className={inter.className}>
         <PersonalizationProvider>
           <DemoRibbon />

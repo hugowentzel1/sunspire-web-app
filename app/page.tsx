@@ -10,7 +10,9 @@ import LegalFooter from '@/components/legal/LegalFooter';
 import { usePersonalization } from '@/components/usePersonalization';
 import { DemoAwareCTA } from '@/src/personalization/DemoAwareCTA';
 import { DemoAwareAddressInput } from '@/src/personalization/DemoAwareAddressInput';
-import { useIsDemo } from '@/src/personalization/useDemoFlag';
+import { useIsDemo, useDemoParams, useDemoQuota } from '@/src/personalization/useDemo';
+import { DemoBanner, DemoStickyBottom } from '@/src/demo/DemoChrome';
+import InstallSheet from '@/src/demo/InstallSheet';
 
 const AddressAutocomplete = dynamic(() => import('@/components/AddressAutocomplete'), { ssr: false });
 
@@ -26,6 +28,8 @@ function HomeContent() {
   
   // Demo mode detection
   const isDemo = useIsDemo();
+  const { city, runs, blur } = useDemoParams();
+  const { remaining, consume } = useDemoQuota(runs);
 
   const handleAddressSelect = (placeResult: PlaceResult) => {
     setAddress(placeResult.formattedAddress);
@@ -34,6 +38,24 @@ function HomeContent() {
 
   const handleGenerateEstimate = () => {
     if (!address.trim()) return;
+    
+    if (isDemo) {
+      if (runs <= 0) {
+        alert("Demo mode: address submission is disabled. Contact us to install your live version.");
+        return;
+      }
+      if (remaining <= 0) {
+        alert("Demo limit reached. Contact us to install your live version.");
+        return;
+      }
+      consume();
+      // Navigate to demo result page
+      const url = new URL("/demo-result", window.location.origin);
+      url.search = window.location.search; // preserve personalization + demo params
+      window.location.href = url.toString();
+      return;
+    }
+    
     setIsLoading(true);
     if (selectedPlace) {
       const q = new URLSearchParams({
@@ -62,8 +84,10 @@ function HomeContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter">
-      <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
+    <>
+      <DemoBanner />
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter">
+        <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center space-x-4">
@@ -176,7 +200,13 @@ function HomeContent() {
               </div>
 
               <div className="space-y-6">
-                <AddressAutocomplete value={address} onChange={setAddress} onSelect={handleAddressSelect} placeholder="Start typing your property address..." className="w-full" />
+                <AddressAutocomplete 
+                  value={address} 
+                  onChange={setAddress} 
+                  onSelect={handleAddressSelect} 
+                  placeholder={isDemo && city ? `Start typing an address in ${city}...` : "Start typing your property address..."} 
+                  className="w-full" 
+                />
                 <motion.button onClick={handleGenerateEstimate} disabled={!address.trim() || isLoading} className={`w-full py-6 px-8 rounded-2xl text-lg font-bold text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl ${!address.trim() || isLoading ? 'bg-gray-300 cursor-not-allowed' : 'bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 hover:from-orange-600 hover:via-red-600 hover:to-pink-600'}`} whileHover={!address.trim() || isLoading ? {} : { scale: 1.02 }} whileTap={!address.trim() || isLoading ? {} : { scale: 0.98 }}>
                   {isLoading ? (
                     <div className="flex items-center justify-center space-x-4">
@@ -190,6 +220,13 @@ function HomeContent() {
                     </div>
                   )}
                 </motion.button>
+                
+                {isDemo && runs <= 0 && (
+                  <p className="text-sm text-gray-500 text-center">Demo mode: Address submission is disabled.</p>
+                )}
+                {isDemo && runs > 0 && (
+                  <p className="text-sm text-gray-500 text-center">Demo mode: You have {remaining} test run{remaining === 1 ? "" : "s"}.</p>
+                )}
               </div>
             </div>
             </motion.div>
@@ -231,7 +268,10 @@ function HomeContent() {
       <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <LegalFooter />
       </footer>
+      <InstallSheet />
+      <DemoStickyBottom />
     </div>
+    </>
   );
 }
 
