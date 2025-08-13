@@ -11,6 +11,21 @@ export default function PersonalizedBanner() {
   const copy = async () => {
     try {
       await navigator.clipboard.writeText(window.location.href);
+      // Capture the copy action
+      fetch("/api/demo-lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: "Demo User",
+          email: "demo@example.com",
+          domain: window.location.hostname,
+          brand,
+          primary: "demo_banner_copy",
+          logo: null,
+          demoLink: window.location.href,
+          source: "demo_banner"
+        })
+      }).catch(console.error);
     } catch {}
   };
 

@@ -17,6 +17,7 @@ export async function GET(req: Request) {
   const url = new URL(req.url);
   const brand = sanitizeBrand(url.searchParams.get("brand"));
   const primary = normalizeHex(url.searchParams.get("primary"));
+  const isDemo = url.searchParams.get("demo") === "1";
 
   return new ImageResponse(
     (
@@ -25,17 +26,32 @@ export async function GET(req: Request) {
           width: 1200,
           height: 630,
           display: "flex",
+          flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
           background: primary,
           color: "#0D0D0D",
-          fontSize: 98,
+          fontSize: isDemo ? 72 : 98,
           fontWeight: 800,
           letterSpacing: "-1px",
           padding: 40,
         }}
       >
-        {brand}
+        <div style={{ fontSize: isDemo ? 48 : 72, marginBottom: isDemo ? 20 : 0 }}>
+          {brand}
+        </div>
+        {isDemo && (
+          <div style={{ 
+            fontSize: 32, 
+            color: "#666", 
+            marginTop: 20,
+            padding: "8px 16px",
+            background: "rgba(255,255,255,0.9)",
+            borderRadius: 8
+          }}>
+            Demo Preview
+          </div>
+        )}
       </div>
     ),
     { width: 1200, height: 630 }

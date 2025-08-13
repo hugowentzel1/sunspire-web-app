@@ -8,6 +8,9 @@ import { TenantProvider, useTenant } from '@/components/TenantProvider';
 import { PlaceResult } from '@/lib/calc';
 import LegalFooter from '@/components/legal/LegalFooter';
 import { usePersonalization } from '@/components/usePersonalization';
+import { DemoAwareCTA } from '@/src/personalization/DemoAwareCTA';
+import { DemoAwareAddressInput } from '@/src/personalization/DemoAwareAddressInput';
+import { useIsDemo } from '@/src/personalization/useDemoFlag';
 
 const AddressAutocomplete = dynamic(() => import('@/components/AddressAutocomplete'), { ssr: false });
 
@@ -20,6 +23,9 @@ function HomeContent() {
   
   // Global personalization for every page
   const { company, domain, logoUrl, gradient, isPersonalized, mounted } = usePersonalization();
+  
+  // Demo mode detection
+  const isDemo = useIsDemo();
 
   const handleAddressSelect = (placeResult: PlaceResult) => {
     setAddress(placeResult.formattedAddress);
@@ -156,7 +162,13 @@ function HomeContent() {
             ))}
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-3xl mx-auto">
+          {isDemo ? (
+            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="space-y-8">
+              <DemoAwareCTA />
+              <DemoAwareAddressInput />
+            </motion.div>
+          ) : (
+            <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-3xl mx-auto">
             <div className="space-y-8">
               <div className="text-center space-y-4">
                 <h2 className="text-2xl font-bold text-gray-900">Enter Your Property Address</h2>
@@ -180,11 +192,12 @@ function HomeContent() {
                 </motion.button>
               </div>
             </div>
-          </motion.div>
+            </motion.div>
+          )}
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.2, duration: 0.8 }} className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
             <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300"><div className="text-4xl font-black text-gray-900 mb-2">50K+</div><div className="text-gray-600 font-semibold">Properties Analyzed</div></div>
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300"><div className="text-4xl font-black text-gray-900 mb-2">$2.5M</div><div className="text-gray-600 font-semibold">Total Savings Generated</div></div>
+            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300"><div className="text-4xl font-black text-gray-900 mb-2">{isDemo ? "—" : "$2.5M"}</div><div className="text-gray-600 font-semibold">Total Savings Generated</div></div>
             <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300"><div className="text-4xl font-black text-gray-900 mb-2">98%</div><div className="text-gray-600 font-semibold">Accuracy Rate</div></div>
             <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300"><div className="text-4xl font-black text-gray-900 mb-2">24/7</div><div className="text-gray-600 font-semibold">AI Support</div></div>
           </motion.div>

@@ -6,6 +6,8 @@ import AppErrorBoundary from '@/components/AppErrorBoundary'
 import DemoRibbon from '@/components/ui/DemoRibbon'
 import { PersonalizationProvider } from '@/src/personalization/PersonalizationContext'
 import PersonalizedBanner from '@/src/personalization/PersonalizedBanner'
+import { DemoWatermark } from '@/src/personalization/DemoWatermark'
+import { DemoFooter } from '@/src/personalization/DemoFooter'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,6 +29,9 @@ export default function RootLayout({
           <AppErrorBoundary>{children}</AppErrorBoundary>
           {/* Non-blocking banner */}
           <PersonalizedBanner />
+          {/* Demo components */}
+          <DemoWatermark />
+          <DemoFooter />
         </PersonalizationProvider>
       </body>
     </html>
