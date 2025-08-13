@@ -19,7 +19,7 @@ function HomeContent() {
   const { tenant, loading: tenantLoading } = useTenant();
   
   // Global personalization for every page
-  const { company, domain, logoUrl, gradient, isPersonalized } = usePersonalization();
+  const { company, domain, logoUrl, gradient, isPersonalized, mounted } = usePersonalization();
 
   const handleAddressSelect = (placeResult: PlaceResult) => {
     setAddress(placeResult.formattedAddress);
@@ -43,7 +43,8 @@ function HomeContent() {
     }
   };
 
-  if (tenantLoading || !tenant) {
+  // Show loading until both tenant and personalization are ready
+  if (tenantLoading || !tenant || !mounted) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter flex items-center justify-center">
         <div className="text-center space-y-6">
