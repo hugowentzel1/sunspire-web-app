@@ -1,4 +1,54 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+
 export default function Home() {
+  const [company, setCompany] = useState('');
+  const [domain, setDomain] = useState('');
+
+  useEffect(() => {
+    // Read company and domain parameters from URL
+    const p = new URLSearchParams(window.location.search);
+    const c = p.get("company")?.trim() || '';
+    const d = p.get("domain")?.trim() || '';
+    setCompany(c);
+    setDomain(d);
+
+    if (c) {
+      // Personalization: Browser tab title
+      document.title = `${c} — Sunspire Demo`;
+      
+      // Personalization: No-index tag for SEO protection
+      if (!document.querySelector('meta[name="robots"]')) {
+        const m = document.createElement("meta");
+        m.name = "robots";
+        m.content = "noindex,follow";
+        document.head.appendChild(m);
+      }
+    }
+  }, []);
+
+  // Personalization: Deterministic gradient based on company
+  const getCompanyGradient = (companyName: string) => {
+    if (!companyName) return { from: '#f97316', to: '#ec4899' };
+    
+    let h = 0;
+    for (let i = 0; i < companyName.length; i++) {
+      h = (h * 31 + companyName.charCodeAt(i)) % 360;
+    }
+    const from = `hsl(${h}, 75%, 92%)`;
+    const to = `hsl(${(h + 30) % 360}, 85%, 96%)`;
+    return { from, to };
+  };
+
+  const { from, to } = getCompanyGradient(company);
+
+  // Personalization: Auto-pull favicon from domain
+  const getCompanyLogo = (domainName: string) => {
+    if (!domainName) return '';
+    return `https://www.google.com/s2/favicons?sz=64&domain=${encodeURIComponent(domainName)}`;
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter">
       <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
@@ -9,11 +59,12 @@ export default function Home() {
                 <span className="text-white font-bold text-lg">☀️</span>
               </div>
               <div>
+                {/* Personalization: Company name in header */}
                 <h1 className="text-2xl font-black bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text text-transparent">
-                  Sunspire
+                  {company ? `${company} - Sunspire` : "Sunspire"}
                 </h1>
                 <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
-                  PREMIUM SOLAR INTELLIGENCE
+                  {company ? "Personalized Solar Intelligence" : "PREMIUM SOLAR INTELLIGENCE"}
                 </p>
               </div>
             </div>
@@ -34,8 +85,27 @@ export default function Home() {
         <div className="text-center space-y-12">
           <div className="space-y-8">
             <div className="relative">
-              <div className="w-32 h-32 mx-auto bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden">
-                <span className="text-6xl">☀️</span>
+              {/* Personalization: Logo with auto-favicon */}
+              <div className="flex items-center justify-center space-x-4 mb-6">
+                {domain && (
+                  <img 
+                    src={getCompanyLogo(domain)} 
+                    alt="company logo" 
+                    width={48} 
+                    height={48} 
+                    className="rounded-lg shadow-lg"
+                  />
+                )}
+                <div 
+                  className="w-32 h-32 rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden"
+                  style={{
+                    background: company 
+                      ? `linear-gradient(135deg, ${from}, ${to})`
+                      : 'linear-gradient(135deg, #f97316, #dc2626, #ec4899)'
+                  }}
+                >
+                  <span className="text-6xl">☀️</span>
+                </div>
               </div>
               <div className="absolute -top-4 -right-4 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
                 <span className="text-white text-lg">✓</span>
@@ -43,12 +113,17 @@ export default function Home() {
             </div>
 
             <div className="space-y-6">
+              {/* Personalization: Headline text */}
               <h1 className="text-5xl md:text-7xl font-black text-gray-900 leading-tight">
-                Solar Intelligence
+                {company ? `Custom Sunspire Demo for ${company}` : "Solar Intelligence"}
                 <span className="block text-transparent bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text">in Seconds</span>
               </h1>
+              {/* Personalization: Body copy snippets */}
               <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Transform your property with AI-powered solar analysis. Get instant estimates, detailed reports, and connect with premium installers.
+                {company 
+                  ? `${company}, here's how we turn visitors into booked calls (no dev work).`
+                  : "Transform your property with AI-powered solar analysis. Get instant estimates, detailed reports, and connect with premium installers."
+                }
               </p>
             </div>
           </div>
