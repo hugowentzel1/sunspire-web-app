@@ -15,7 +15,7 @@ export function DemoAwareCTA() {
         <div className="flex flex-col gap-3 items-center text-center">
           <div className="flex gap-3">
             <button 
-              className="px-6 py-3 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 transition-colors"
+              className="px-6 py-3 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 transition-colors shadow-md border border-orange-600"
               onClick={() => setIsModalOpen(true)}
             >
               Put this on our site
