@@ -49,14 +49,14 @@ export function useBrandTakeover(): BrandState {
 
   useEffect(() => {
     const sp = new URLSearchParams(location.search);
-    const enabled = sp.get("demo")==="1" || sp.get("demo")==="true";
+    const enabled = sp.get("demo")==="1" || sp.get("demo")==="true" || !!sp.get("company");
     const expire = Math.max(1, parseInt(sp.get("expire")||"7",10)||7);
     setSt({
       enabled,
-      brand: clean(sp.get("brand")) ?? "Your Company",
+      brand: clean(sp.get("company") || sp.get("brand")) ?? "Your Company",
       primary: hex(sp.get("primary")),
       logo: allowLogo(sp.get("logo")),
-      domain: sp.get("domain"),
+      domain: sp.get("domain") || sp.get("company"),
       city: sp.get("city"),
       rep: sp.get("rep"),
       expireDays: expire,

@@ -156,6 +156,29 @@ function HomeContent() {
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-center space-y-12">
           
+          {/* Company Branding Section */}
+          {b.enabled && (
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ delay: 0.1, duration: 0.8 }}
+              className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg"
+            >
+              <div className="space-y-4">
+                <h2 className="text-3xl font-bold text-gray-900">
+                  Built for {b.brand}
+                </h2>
+                <p className="text-lg text-gray-600">
+                  Exclusive preview of your white-label solar intelligence tool
+                </p>
+                <div className="inline-flex items-center px-4 py-2 bg-orange-100 border border-orange-300 rounded-full text-orange-800 text-sm font-medium">
+                  <span className="mr-2">⚡</span>
+                  Ready to launch on {b.domain || b.brand}.com
+                </div>
+              </div>
+            </motion.div>
+          )}
+          
           {/* HERO ICON: render only one (fix double) */}
           {!b.enabled ? (
             <div className="w-32 h-32 mx-auto bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden">
@@ -188,8 +211,17 @@ function HomeContent() {
                 animate={{ opacity: 1, y: 0 }} 
                 transition={{ delay: 0.4, duration: 0.8 }}
               >
-                Solar Intelligence
-                <span className="block text-transparent bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text">in Seconds</span>
+                {b.enabled ? (
+                  <>
+                    {b.brand}
+                    <span className="block text-transparent bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text">Solar Intelligence</span>
+                  </>
+                ) : (
+                  <>
+                    Solar Intelligence
+                    <span className="block text-transparent bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text">in Seconds</span>
+                  </>
+                )}
               </motion.h1>
               <motion.p 
                 className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed" 
@@ -197,7 +229,10 @@ function HomeContent() {
                 animate={{ opacity: 1, y: 0 }} 
                 transition={{ delay: 0.6, duration: 0.8 }}
               >
-                Transform your property with AI-powered solar analysis. Get instant estimates, detailed reports, and connect with premium installers.
+                {b.enabled 
+                  ? `Transform your property with ${b.brand}'s AI-powered solar analysis. Get instant estimates, detailed reports, and connect with premium installers.`
+                  : "Transform your property with AI-powered solar analysis. Get instant estimates, detailed reports, and connect with premium installers."
+                }
               </motion.p>
             </div>
           </div>
@@ -256,7 +291,7 @@ function HomeContent() {
                     </div>
                   ) : (
                     <div className="flex items-center justify-center space-x-4">
-                      <span>Generate Solar Intelligence Report</span>
+                      <span>{b.enabled ? `Generate ${b.brand} Solar Report` : "Generate Solar Intelligence Report"}</span>
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
                     </div>
                   )}
