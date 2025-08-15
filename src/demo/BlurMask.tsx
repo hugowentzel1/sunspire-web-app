@@ -1,10 +1,16 @@
 "use client";
 import React from "react";
 import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
+import { getCTA } from "./cta";
+import { useABVariant } from "./useABVariant";
+import PriceAnchor from "./PriceAnchor";
 
 export default function BlurMask({ children }: { children: React.ReactNode }) {
   const b = useBrandTakeover();
+  const variant = useABVariant();
+  
   if (!b.enabled) return <>{children}</>;
+  
   return (
     <div style={{ position:"relative" }}>
       {children}
@@ -15,9 +21,12 @@ export default function BlurMask({ children }: { children: React.ReactNode }) {
       </div>
       <button onClick={()=>document.dispatchEvent(new CustomEvent("openInstall"))}
         style={{ position:"absolute", left:"50%", bottom:"14px", transform:"translateX(-50%)",
-                 padding:"8px 12px", borderRadius:12, border:"none", background:"var(--brand-primary)" }}>
-        Add to {b.domain ?? "our site"} to unlock
+                 padding:"8px 12px", borderRadius:12, border:"none", background:"var(--brand-primary)", color:"#fff", cursor:"pointer" }}>
+        {getCTA(variant, "inline", b.domain)}
       </button>
+      <div style={{ position:"absolute", bottom:"-60px", left:"50%", transform:"translateX(-50%)", width:"100%" }}>
+        <PriceAnchor />
+      </div>
     </div>
   );
 }

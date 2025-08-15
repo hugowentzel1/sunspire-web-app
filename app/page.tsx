@@ -14,6 +14,10 @@ import InstallSheet from '@/src/demo/InstallSheet';
 import NavBrandOverride from '@/src/brand/NavBrandOverride';
 import { DemoBanner } from '@/src/demo/DemoChrome';
 import { usePreviewQuota } from '@/src/demo/usePreviewQuota';
+import { useCountdown } from '@/src/demo/useCountdown';
+import SocialProof from '@/src/demo/SocialProof';
+import LockOverlay from '@/src/demo/LockOverlay';
+import { track } from '@/src/demo/track';
 import Image from 'next/image';
 
 const AddressAutocomplete = dynamic(() => import('@/components/AddressAutocomplete'), { ssr: false });
@@ -29,6 +33,11 @@ function HomeContent() {
   const b = useBrandTakeover();
   const { read, consume } = usePreviewQuota(2);
   const remaining = read();
+  const countdown = useCountdown(b.expireDays);
+  
+  // Auto-open install sheet after first run
+  const [hasShownInstall, setHasShownInstall] = useState(false);
+  const shouldShowLock = b.enabled && (remaining <= 0 || countdown.isExpired);
 
   const handleAddressSelect = (placeResult: PlaceResult) => {
     setAddress(placeResult.formattedAddress);
@@ -39,11 +48,21 @@ function HomeContent() {
     if (!address.trim()) return;
     
     if (b.enabled) {
-      if (remaining <= 0) {
-        document.dispatchEvent(new CustomEvent("openInstall"));
-        return;
+      if (remaining <= 0 || countdown.isExpired) {
+        return; // LockOverlay will handle this
       }
+      
       consume();
+      track("run_start", { event: "run_start", runsUsed: 2 - remaining + 1 });
+      
+      // Auto-open install sheet after first run (sessionStorage guard)
+      if (remaining === 2 && !hasShownInstall) {
+        setHasShownInstall(true);
+        setTimeout(() => {
+          document.dispatchEvent(new CustomEvent("openInstall"));
+        }, 1000);
+      }
+      
       // Navigate to demo result page
       const u = new URL("/demo-result", location.origin);
       u.search = location.search; // keep personalization
@@ -244,7 +263,10 @@ function HomeContent() {
                 </motion.button>
                 
                 {b.enabled && (
-                  <p className="text-sm text-gray-500 text-center">Preview: {remaining} run{remaining===1?"":"s"} left.</p>
+                  <div className="text-sm text-gray-500 text-center space-y-2">
+                    <p>Preview: {remaining} run{remaining===1?"":"s"} left.</p>
+                    <p>Expires in {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</p>
+                  </div>
                 )}
               </div>
             </div>
@@ -312,6 +334,8 @@ function HomeContent() {
       {/* Demo components - only show when brand takeover is enabled */}
       <InstallSheet />
       <StickyBuyBar />
+      {shouldShowLock && <LockOverlay />}
+      <SocialProof />
     </div>
   );
 }

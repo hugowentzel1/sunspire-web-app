@@ -12,6 +12,11 @@ export function redactNumber(n: number, precision = 0): string {
 
 export function currencyRange(n:number){ if(!isFinite(n)) return "—"; const lo=Math.round((n*0.9)/100)*100; const hi=Math.round((n*1.1)/100)*100; return `$${lo.toLocaleString()}–$${hi.toLocaleString()}`; }
 
+export function shouldBlurBlock(id: string): boolean {
+  const blurIds = ["roi", "payback", "lifetime", "assumptions", "mainGraphs"];
+  return blurIds.includes(id);
+}
+
 export function hideCurrency(s: string) {
   return s.replace(/\$[\d,]+(\.\d+)?/g, "$—,——");
 }

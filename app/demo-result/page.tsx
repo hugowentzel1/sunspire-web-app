@@ -4,16 +4,21 @@ import { currencyRange } from "@/src/demo/redaction";
 import { useEffect } from "react";
 import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
 import { usePreviewQuota } from "@/src/demo/usePreviewQuota";
+import { useCountdown } from "@/src/demo/useCountdown";
+import { track } from "@/src/demo/track";
 
 export default function DemoResult(){
   const b = useBrandTakeover();
   const { read } = usePreviewQuota(2);
   const remaining = read();
+  const countdown = useCountdown(b.expireDays);
 
   // mock-ish values to render structure
   const pv={ sizeKw:6.0, annualKwh:9637, cost:12600, savingsYr1:1603, npv25:9736, roiPct:177 };
 
-  useEffect(()=>{ fetch("/api/demo-event",{method:"POST",body:JSON.stringify({type:"view_demo_result",href:location.href})}); },[]);
+  useEffect(()=>{ 
+    track("view", { href: location.href });
+  },[]);
 
   // Always blur premium areas in demo (both runs)
   const Premium = ({children}:{children:React.ReactNode}) => b.enabled ? <BlurMask>{children}</BlurMask> : <>{children}</>;
@@ -22,6 +27,12 @@ export default function DemoResult(){
     <main style={{ padding:"24px 16px", maxWidth:1120, margin:"0 auto" }}>
       <h1>Solar Intelligence Report</h1>
       <p style={{opacity:.7}}>Preview {remaining===2?"(first run)":"(second run or later)"} — some details hidden.</p>
+      
+      {b.enabled && (
+        <div style={{textAlign:"center",margin:"16px 0",padding:"12px",background:"#FFF3CD",borderRadius:"8px",color:"#8C6D1F"}}>
+          <strong>Expires in {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</strong>
+        </div>
+      )}
 
       {/* Safe headline tiles */}
       <section style={{ display:"grid", gridTemplateColumns:"repeat(4,minmax(0,1fr))", gap:16, margin:"16px 0" }}>
