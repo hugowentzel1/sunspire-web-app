@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
 import { useCountdown } from "./useCountdown";
+import { usePreviewQuota } from "./usePreviewQuota";
 import { getCTA } from "./cta";
 import { useABVariant } from "./useABVariant";
 import { track } from "./track";
@@ -17,6 +18,8 @@ function ExpiryBadge({days, hours, minutes, seconds}:{days:number, hours:number,
 export function DemoBanner(){
   const b = useBrandTakeover();
   const countdown = useCountdown(b.expireDays);
+  const { read } = usePreviewQuota(2);
+  const remaining = read();
   const variant = useABVariant();
   const [closed,setClosed]=useState(false);
   
@@ -40,6 +43,7 @@ export function DemoBanner(){
       </button>
       <button className="btn" onClick={copy}>Copy link</button>
       <ExpiryBadge days={countdown.days} hours={countdown.hours} minutes={countdown.minutes} seconds={countdown.seconds}/>
+      <span style={{fontSize:12,color:"#6B7280"}}>Runs left: {remaining}</span>
       <button onClick={()=>setClosed(true)} aria-label="Dismiss">✕</button>
     </div>
   );

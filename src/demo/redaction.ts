@@ -13,8 +13,16 @@ export function redactNumber(n: number, precision = 0): string {
 export function currencyRange(n:number){ if(!isFinite(n)) return "—"; const lo=Math.round((n*0.9)/100)*100; const hi=Math.round((n*1.1)/100)*100; return `$${lo.toLocaleString()}–$${hi.toLocaleString()}`; }
 
 export function shouldBlurBlock(id: string): boolean {
-  const blurIds = ["roi", "payback", "lifetime", "assumptions", "mainGraphs"];
+  const blurIds = ["roi", "payback", "npv", "lifetime_savings", "mainGraphs", "assumptions"];
   return blurIds.includes(id);
+}
+
+export function teaseCurrency(value: number): string {
+  if (!isFinite(value)) return "—";
+  // Create rounded bands for currency values
+  const low = Math.round((value * 0.9) / 100) * 100;
+  const high = Math.round((value * 1.1) / 100) * 100;
+  return `$${low.toLocaleString()}–$${high.toLocaleString()}`;
 }
 
 export function hideCurrency(s: string) {

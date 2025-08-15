@@ -1,11 +1,14 @@
 export type TrackEvent = 
   | "view" 
+  | "view_result"
   | "cta_click" 
   | "install_open" 
   | "run_start" 
   | "run_complete" 
   | "limit_hit" 
-  | "checkout_success";
+  | "checkout_success"
+  | "sample_request"
+  | "sample_success";
 
 export type TrackPayload = {
   event: TrackEvent;
