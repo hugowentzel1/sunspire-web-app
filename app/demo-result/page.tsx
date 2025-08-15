@@ -21,11 +21,12 @@ import Assumptions from '@/src/report/sections/Assumptions';
 import CTABand from '@/src/report/CTABand';
 import LeadFormModal from '@/src/report/LeadFormModal';
 import LeadFormSuccessModal from '@/src/report/LeadFormSuccessModal';
+import StickyCTA from '@/src/ui/StickyCTA';
 
 export default function DemoResult() {
   const b = useBrandTakeover();
-  const countdown = useCountdown(b.expireDays);
-  const { read } = usePreviewQuota(2);
+  const countdown = useCountdown(b.expireDays || 3);
+  const { read, consume } = usePreviewQuota(2);
   const remaining = read();
   const [isLeadFormOpen, setIsLeadFormOpen] = useState(false);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
@@ -66,14 +67,26 @@ export default function DemoResult() {
 
   // Track page view
   useEffect(() => {
-    track("view_result", { href: location.href });
-  }, []);
+    track("view_result", { 
+      href: location.href,
+      brand: b.brand || undefined,
+      domain: b.domain || undefined,
+      daysLeft: countdown.days,
+      runsUsed: 2 - remaining,
+      variant: "A"
+    });
+  }, [b.brand, b.domain, countdown.days, remaining]);
 
   // Listen for lead form events
   useEffect(() => {
     const handleOpenLeadForm = () => setIsLeadFormOpen(true);
     const handleOpenInstall = () => {
-      track("install_open");
+      track("install_open", {
+        brand: b.brand || undefined,
+        domain: b.domain || undefined,
+        daysLeft: countdown.days,
+        runsUsed: 2 - remaining
+      });
       // InstallSheet will handle this
     };
 
@@ -84,7 +97,7 @@ export default function DemoResult() {
       document.removeEventListener("openLeadForm", handleOpenLeadForm);
       document.removeEventListener("openInstall", handleOpenInstall);
     };
-  }, []);
+  }, [b.brand, b.domain, countdown.days, remaining]);
 
   // Check if demo is expired or quota exhausted
   if (countdown.isExpired || remaining <= 0) {
@@ -117,7 +130,10 @@ export default function DemoResult() {
             </div>
             <div className="flex items-center space-x-4">
               <button 
-                onClick={() => window.history.back()} 
+                onClick={() => {
+                  consume();
+                  window.history.back();
+                }} 
                 className={`px-6 py-3 text-white rounded-2xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 ${
                   b.enabled 
                     ? 'bg-[var(--brand-primary)] hover:bg-[var(--brand-primary)]/90' 
@@ -244,6 +260,9 @@ export default function DemoResult() {
           year1Savings: estimate.year1Savings
         }}
       />
+
+      {/* Mobile Sticky CTA */}
+      <StickyCTA />
     </div>
   );
 }

@@ -41,7 +41,7 @@ export default function Financial({
     </div>
   );
 
-  if (shouldBlurBlock("roi") || shouldBlurBlock("payback") || shouldBlurBlock("npv")) {
+  if (shouldBlurBlock("roi") || shouldBlurBlock("payback") || shouldBlurBlock("npv") || shouldBlurBlock("lifetime_savings")) {
     return (
       <BlurMask id="financial" cta="Unlock Full Report">
         {content}

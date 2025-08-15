@@ -20,9 +20,13 @@ export type TrackPayload = {
   utm_campaign?: string;
   deadline?: string;
   runsUsed?: number;
+  daysLeft?: number;
   referrer?: string;
   userAgent?: string;
   screenSize?: string;
+  placement?: string;
+  cta_type?: string;
+  id?: string;
   [key: string]: any;
 };
 
@@ -39,9 +43,13 @@ export function track(event: TrackEvent, payload: Partial<TrackPayload> = {}) {
     utm_campaign: payload.utm_campaign || new URLSearchParams(window.location.search).get("utm_campaign") || undefined,
     deadline: payload.deadline,
     runsUsed: payload.runsUsed,
+    daysLeft: payload.daysLeft,
     referrer: payload.referrer || document.referrer,
     userAgent: payload.userAgent || navigator.userAgent,
     screenSize: payload.screenSize || `${window.screen.width}x${window.screen.height}`,
+    placement: payload.placement,
+    cta_type: payload.cta_type,
+    id: payload.id,
     ...payload
   };
 

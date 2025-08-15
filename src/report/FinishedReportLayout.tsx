@@ -50,6 +50,13 @@ export default function FinishedReportLayout({ data, children }: FinishedReportL
           transition={{ duration: 0.8 }} 
           className="space-y-8"
         >
+          {/* Sub-headline */}
+          <div className="text-center">
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              A ready-to-embed, white-label quote tool that turns traffic into booked consults — live on your site in minutes.
+            </p>
+          </div>
+          
           {children}
         </motion.div>
       </main>

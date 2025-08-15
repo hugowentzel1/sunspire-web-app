@@ -8,16 +8,24 @@ import { useABVariant } from "./useABVariant";
 import { track } from "./track";
 
 function ExpiryBadge({days, hours, minutes, seconds}:{days:number, hours:number, minutes:number, seconds:number}){ 
+  const isWarning = days <= 2;
   return (
-    <span style={{fontSize:12,padding:"4px 8px",borderRadius:999,background:"#FFF3CD",color:"#8C6D1F"}}>
-      Expires in {days}d {hours}h {minutes}m {seconds}s
+    <span style={{
+      fontSize: 12,
+      padding: "4px 8px",
+      borderRadius: 999,
+      background: isWarning ? "#FEF2F2" : "#FFF3CD",
+      color: isWarning ? "#DC2626" : "#8C6D1F",
+      border: `1px solid ${isWarning ? "#FECACA" : "#FDE68A"}`
+    }}>
+      Exclusive preview — expires in {days}:{hours.toString().padStart(2, '0')}:{minutes.toString().padStart(2, '0')}:{seconds.toString().padStart(2, '0')}
     </span>
   ); 
 }
 
 export function DemoBanner(){
   const b = useBrandTakeover();
-  const countdown = useCountdown(b.expireDays);
+  const countdown = useCountdown(b.expireDays || 3);
   const { read } = usePreviewQuota(2);
   const remaining = read();
   const variant = useABVariant();
@@ -35,16 +43,19 @@ export function DemoBanner(){
   };
   
   return (
-    <div style={{position:"sticky",top:0,zIndex:1000,display:"flex",gap:10,justifyContent:"center",alignItems:"center",padding:"10px 12px",background:"#fff",borderBottom:"1px solid #eee"}}>
-      <strong>Exclusive preview built for {b.brand}</strong>
-      <span style={{opacity:.7}}>Ready to launch on your site</span>
-      <button className="btn" style={{background:"var(--brand-primary)"}} onClick={open}>
-        {getCTA(variant, "primary", b.domain)}
-      </button>
-      <button className="btn" onClick={copy}>Copy link</button>
-      <ExpiryBadge days={countdown.days} hours={countdown.hours} minutes={countdown.minutes} seconds={countdown.seconds}/>
-      <span style={{fontSize:12,color:"#6B7280"}}>Runs left: {remaining}</span>
-      <button onClick={()=>setClosed(true)} aria-label="Dismiss">✕</button>
+    <div style={{position:"sticky",top:0,zIndex:1000,display:"flex",gap:10,justifyContent:"space-between",alignItems:"center",padding:"10px 12px",background:"#fff",borderBottom:"1px solid #eee"}}>
+      <div style={{display:"flex",gap:10,alignItems:"center"}}>
+        <strong>Exclusive preview built for {b.brand}</strong>
+        <ExpiryBadge days={countdown.days} hours={countdown.hours} minutes={countdown.minutes} seconds={countdown.seconds}/>
+        <span style={{fontSize:12,color:"#6B7280"}}>Runs left: {remaining}</span>
+      </div>
+      <div style={{display:"flex",gap:10,alignItems:"center"}}>
+        <button className="btn" style={{background:"var(--brand-primary)"}} onClick={open}>
+          Launch on {b.domain || "your domain"}
+        </button>
+        <button className="btn" onClick={copy}>Copy link</button>
+        <button onClick={()=>setClosed(true)} aria-label="Dismiss">✕</button>
+      </div>
     </div>
   );
 }

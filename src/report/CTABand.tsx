@@ -2,14 +2,11 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
-import { getCTA } from "@/src/demo/cta";
-import { useABVariant } from "@/src/demo/useABVariant";
 import { track } from "@/src/demo/track";
 import PriceAnchor from "@/src/demo/PriceAnchor";
 
 export default function CTABand() {
   const b = useBrandTakeover();
-  const variant = useABVariant();
 
   const handlePrimaryClick = () => {
     track("cta_click", { placement: "band", cta_type: "primary" });
@@ -39,7 +36,7 @@ export default function CTABand() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          Launch Your Branded Tool
+          Launch on {b.domain || "your domain"}
         </motion.button>
         <motion.button
           onClick={handleSecondaryClick}
@@ -50,8 +47,11 @@ export default function CTABand() {
           Request Sample Report
         </motion.button>
       </div>
-      <div className="text-sm opacity-90">
-        Full version from $599/mo • Most tools cost $2,500+/mo
+      <div className="text-sm opacity-90 mb-4">
+        Full version from $599/mo. Most tools cost $2,500+/mo.
+      </div>
+      <div className="text-xs opacity-75">
+        Risk: Cancel anytime. 14-day money-back if it doesn't lift booked calls.
       </div>
       <div className="mt-4">
         <PriceAnchor />

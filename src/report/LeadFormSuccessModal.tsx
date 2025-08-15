@@ -2,6 +2,7 @@
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { teaseCurrency } from "@/src/demo/redaction";
+import { track } from "@/src/demo/track";
 
 interface LeadFormSuccessModalProps {
   isOpen: boolean;
@@ -18,6 +19,12 @@ export default function LeadFormSuccessModal({
   onClose, 
   summary 
 }: LeadFormSuccessModalProps) {
+  const handleStartActivation = () => {
+    track("cta_click", { placement: "success_modal", cta_type: "start_activation" });
+    document.dispatchEvent(new CustomEvent("openInstall"));
+    onClose();
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -40,11 +47,11 @@ export default function LeadFormSuccessModal({
             <div className="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-4">
               <span className="text-2xl">✅</span>
             </div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-2">You're All Set!</h2>
-            <p className="text-gray-600 mb-6">We'll send your sample report shortly.</p>
+            <h2 className="text-2xl font-bold text-gray-900 mb-2">You're all set!</h2>
+            <p className="text-gray-600 mb-6">We'll email a sample within 24 hours.</p>
             
             {/* Summary Card */}
-            <div className="bg-gray-50 rounded-2xl p-6 text-left">
+            <div className="bg-gray-50 rounded-2xl p-6 text-left mb-6">
               <h3 className="font-semibold text-gray-900 mb-4">Your Solar Summary</h3>
               <div className="space-y-3">
                 <div className="flex justify-between">
@@ -62,12 +69,20 @@ export default function LeadFormSuccessModal({
               </div>
             </div>
             
-            <button
-              onClick={onClose}
-              className="mt-6 px-6 py-3 bg-orange-600 text-white rounded-xl hover:bg-orange-700 transition-colors"
-            >
-              Close
-            </button>
+            <div className="flex gap-3">
+              <button
+                onClick={onClose}
+                className="flex-1 px-6 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-colors"
+              >
+                Close
+              </button>
+              <button
+                onClick={handleStartActivation}
+                className="flex-1 px-6 py-3 bg-orange-600 text-white rounded-xl hover:bg-orange-700 transition-colors"
+              >
+                Start activation now
+              </button>
+            </div>
           </div>
         </motion.div>
       </motion.div>
