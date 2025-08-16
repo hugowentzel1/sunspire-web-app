@@ -16,16 +16,24 @@ const lighten = (hex: string, amt = 14) => {
 };
 
 export function getBrandFromQuery(): Brand {
-  if (typeof window === 'undefined') return defaultBrand;
+  // Safety check for server-side rendering
+  if (typeof window === 'undefined' || typeof window.location === 'undefined') {
+    return defaultBrand;
+  }
   
-  const p = new URLSearchParams(window.location.search);
-  const c = (p.get('brandColor') || '').trim();
-  
-  if (!/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(c)) return defaultBrand;
-  
-  return { 
-    hex: c, 
-    from: c, 
-    to: lighten(c) 
-  };
+  try {
+    const p = new URLSearchParams(window.location.search);
+    const c = (p.get('brandColor') || '').trim();
+    
+    if (!/^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(c)) return defaultBrand;
+    
+    return { 
+      hex: c, 
+      from: c, 
+      to: lighten(c) 
+    };
+  } catch (error) {
+    console.warn('Failed to parse brand from query:', error);
+    return defaultBrand;
+  }
 }
