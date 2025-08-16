@@ -463,6 +463,10 @@ h3 {
 .lead-form-modal .form-container {
   position: relative;
   z-index: 10001;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 /* Ensure modal is above all other content */
@@ -480,12 +484,16 @@ h3 {
 .lead-form-modal .modal-content {
   background: white;
   border-radius: 0.5rem;
-  padding: 1.5rem;
+  padding: 2rem;
   max-width: 28rem;
   width: 100%;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   position: relative;
   z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 500px;
 }
 
 .lead-form-modal .submit-button {
@@ -501,6 +509,7 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 0 auto;
 }
 
 .lead-form-modal .submit-button:hover {

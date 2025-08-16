@@ -196,7 +196,7 @@ export default function DemoResult() {
         {/* Savings Chart */}
         <SavingsChart 
           series={estimate.cashflowProjection}
-          blur={shouldBlurBlock("mainGraphs")}
+          blur={false}
         />
 
         {/* Three Highlight Chips with Teasers */}
@@ -211,7 +211,7 @@ export default function DemoResult() {
           </div>
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 text-center border border-gray-200/50">
             <div className="text-2xl font-bold text-gray-900 mb-2">25-Year Savings</div>
-            <div className="text-gray-600">Mid-five-figures (unlock exact)</div>
+            <div className="text-gray-600">${estimate.npv25Year.toLocaleString()} (unlock detailed breakdown)</div>
           </div>
         </div>
 

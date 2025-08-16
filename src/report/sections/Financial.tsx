@@ -1,8 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import LockedOverlay from "@/components/LockedOverlay";
-import { shouldBlurBlock, teaseCurrency } from "@/src/demo/redaction";
+import { teaseCurrency } from "@/src/demo/redaction";
 
 interface FinancialProps {
   paybackYear: number;
@@ -17,7 +16,7 @@ export default function Financial({
   roiPct, 
   utilityRate 
 }: FinancialProps) {
-  const content = (
+  return (
     <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50">
       <h2 className="text-2xl font-bold text-gray-900 mb-6">Financial Analysis</h2>
       <div className="space-y-6">
@@ -40,15 +39,4 @@ export default function Financial({
       </div>
     </div>
   );
-
-  if (shouldBlurBlock("roi") || shouldBlurBlock("payback") || shouldBlurBlock("npv") || shouldBlurBlock("lifetime_savings")) {
-    return (
-      <div className="relative locked-blur">
-        {content}
-        <LockedOverlay onUnlock={() => document.dispatchEvent(new CustomEvent("openInstall"))} />
-      </div>
-    );
-  }
-
-  return content;
 }

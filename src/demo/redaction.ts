@@ -13,7 +13,12 @@ export function redactNumber(n: number, precision = 0): string {
 export function currencyRange(n:number){ if(!isFinite(n)) return "—"; const lo=Math.round((n*0.9)/100)*100; const hi=Math.round((n*1.1)/100)*100; return `$${lo.toLocaleString()}–$${hi.toLocaleString()}`; }
 
 export function shouldBlurBlock(id: string): boolean {
-  const blurIds = ["mainGraphs", "roi", "npv", "payback", "lifetime_savings", "assumptions_sensitive", "net_cost", "y1_savings"];
+  // Updated blur logic:
+  // - Chart should be unblurred (remove "mainGraphs")
+  // - Environmental impact should be blurred (add "environmental")
+  // - Financial section should be unblurred (remove "roi", "npv", "payback")
+  // - Keep some sensitive data blurred
+  const blurIds = ["environmental", "lifetime_savings", "assumptions_sensitive", "net_cost", "y1_savings"];
   return blurIds.includes(id);
 }
 

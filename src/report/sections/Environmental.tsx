@@ -1,6 +1,8 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
+import LockedOverlay from "@/components/LockedOverlay";
+import { shouldBlurBlock } from "@/src/demo/redaction";
 
 interface EnvironmentalProps {
   co2OffsetPerYear: number;
@@ -15,7 +17,7 @@ export default function Environmental({
   tilt, 
   losses 
 }: EnvironmentalProps) {
-  return (
+  const content = (
     <motion.div 
       initial={{ opacity: 0, y: 20 }} 
       animate={{ opacity: 1, y: 0 }} 
@@ -43,4 +45,15 @@ export default function Environmental({
       </div>
     </motion.div>
   );
+
+  if (shouldBlurBlock("environmental")) {
+    return (
+      <div className="relative locked-blur">
+        {content}
+        <LockedOverlay onUnlock={() => document.dispatchEvent(new CustomEvent("openInstall"))} />
+      </div>
+    );
+  }
+
+  return content;
 }
