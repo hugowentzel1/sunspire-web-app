@@ -1,9 +1,6 @@
 "use client";
 import React from "react";
 import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
-import { getCTA } from "./cta";
-import { useABVariant } from "./useABVariant";
-import PriceAnchor from "./PriceAnchor";
 import { track } from "./track";
 
 export default function BlurMask({ 
@@ -16,7 +13,6 @@ export default function BlurMask({
   id?: string;
 }) {
   const b = useBrandTakeover();
-  const variant = useABVariant();
   
   if (!b.enabled) return <>{children}</>;
   
@@ -26,24 +22,36 @@ export default function BlurMask({
   };
   
   return (
-    <div style={{ position:"relative" }}>
+    <div className="relative group">
       {children}
-      <div style={{ position:"absolute", inset:0, backdropFilter:"blur(7px)", background:"rgba(255,255,255,.35)" }} />
-      <div style={{ position:"absolute", inset:"auto 8px 8px auto", fontSize:12, color:"#fff",
-                    background:"rgba(0,0,0,.6)", borderRadius:8, padding:"6px 10px" }}>
-        Preview — details hidden
+      
+      {/* Blur Overlay */}
+      <div className="absolute inset-0 backdrop-blur-md bg-white/60 rounded-2xl transition-all duration-300 group-hover:bg-white/70" />
+      
+      {/* Preview Badge */}
+      <div className="absolute top-4 right-4">
+        <div className="px-3 py-1.5 bg-gray-900/80 backdrop-blur-sm text-white text-xs font-medium rounded-full border border-white/20">
+          Preview — details hidden
+        </div>
       </div>
-      <button 
-        onClick={handleBlurClick}
-        style={{ position:"absolute", left:"50%", bottom:"14px", transform:"translateX(-50%)",
-                 padding:"8px 12px", borderRadius:12, border:"none", background:"var(--brand-primary)", color:"#fff", cursor:"pointer" }}
-        aria-label="Preview — details hidden. Activate to unlock full report."
-      >
-        {cta}
-      </button>
-      <div style={{ position:"absolute", bottom:"-60px", left:"50%", transform:"translateX(-50%)", width:"100%" }}>
-        <PriceAnchor />
+      
+      {/* Unlock Button */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        <button 
+          onClick={handleBlurClick}
+          className="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 border-0 cursor-pointer"
+          aria-label="Preview — details hidden. Activate to unlock full report."
+        >
+          <div className="flex items-center space-x-2">
+            <span>🔒</span>
+            <span>{cta}</span>
+            <span>→</span>
+          </div>
+        </button>
       </div>
+      
+      {/* Hover Effect */}
+      <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-orange-300/50 transition-all duration-300" />
     </div>
   );
 }

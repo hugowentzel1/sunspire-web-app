@@ -293,6 +293,21 @@ function HomeContent() {
               </div>
 
               <div className="space-y-6">
+                {/* Address Input - Show for both demo and regular modes */}
+                <div className="w-full max-w-2xl mx-auto">
+                  <AddressAutocomplete 
+                    value={address}
+                    onChange={setAddress}
+                    onSelect={handleAddressSelect}
+                    placeholder={b.city ? `Start typing an address in ${b.city}...` : "Start typing your property address..."}
+                    className="w-full"
+                  />
+                  <p className="text-sm text-gray-500 mt-2 text-center">
+                    Enter your property address to get started
+                  </p>
+                </div>
+
+                {/* Generate Button - Now below the search bar */}
                 <motion.button 
                   onClick={b.enabled && address.trim() ? handleGenerateEstimate : (b.enabled ? handleLaunchClick : handleGenerateEstimate)} 
                   disabled={!b.enabled && !address.trim() || isLoading} 
@@ -323,20 +338,6 @@ function HomeContent() {
                     </div>
                   )}
                 </motion.button>
-
-                {/* Address Input - Show for both demo and regular modes */}
-                <div className="w-full max-w-2xl mx-auto">
-                  <AddressAutocomplete 
-                    value={address}
-                    onChange={setAddress}
-                    onSelect={handleAddressSelect}
-                    placeholder={b.city ? `Start typing an address in ${b.city}...` : "Start typing your property address..."}
-                    className="w-full"
-                  />
-                  <p className="text-sm text-gray-500 mt-2 text-center">
-                    Enter your property address to get started
-                  </p>
-                </div>
                 
                 {b.enabled && (
                   <div className="text-sm text-gray-500 text-center space-y-2">
