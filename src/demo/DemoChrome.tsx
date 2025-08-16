@@ -14,9 +14,9 @@ function ExpiryBadge({days, hours, minutes, seconds}:{days:number, hours:number,
       fontSize: 12,
       padding: "4px 8px",
       borderRadius: 999,
-      background: isWarning ? "#FEF2F2" : "#FFF3CD",
-      color: isWarning ? "#DC2626" : "#8C6D1F",
-      border: `1px solid ${isWarning ? "#FECACA" : "#FDE68A"}`
+      background: isWarning ? `color-mix(in srgb, var(--brand-primary) 10%, white)` : `color-mix(in srgb, var(--brand-primary) 10%, white)`,
+      color: isWarning ? `var(--brand-primary)` : `var(--brand-primary)`,
+      border: `1px solid ${isWarning ? `color-mix(in srgb, var(--brand-primary) 30%, white)` : `color-mix(in srgb, var(--brand-primary) 30%, white)`}`
     }}>
       Exclusive preview — expires in {days}:{hours.toString().padStart(2, '0')}:{minutes.toString().padStart(2, '0')}:{seconds.toString().padStart(2, '0')}
     </span>

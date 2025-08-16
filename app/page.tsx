@@ -183,7 +183,7 @@ function HomeContent() {
             <div className="flex items-center space-x-4">
               <HeroBrand />
               <div>
-                <h1 className="text-2xl font-black bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text text-transparent">
+                <h1 className="text-2xl font-black text-[var(--brand-primary)]">
                   {b.brand}
                 </h1>
                 <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
@@ -213,7 +213,7 @@ function HomeContent() {
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-center space-y-12">
           
           {/* Company Branding Section */}
@@ -232,7 +232,7 @@ function HomeContent() {
                   <p className="text-lg text-gray-600">
                     Exclusive preview of your white-label solar intelligence tool
                   </p>
-                  <div className="inline-flex items-center px-4 py-2 bg-[var(--brand-primary)]/10 border border-[var(--brand-primary)]/30 rounded-full text-[var(--brand-primary)] text-sm font-medium">
+                  <div className="inline-flex items-center px-4 py-2 bg-orange-100 border border-orange-300 rounded-full text-orange-800 text-sm font-medium">
                     <span className="mr-2">⚡</span>
                     Ready to launch on {b.domain || b.brand}.com
                   </div>
