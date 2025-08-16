@@ -222,18 +222,20 @@ function HomeContent() {
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ delay: 0.1, duration: 0.8 }}
-              className="bg-white/80 backdrop-blur-sm rounded-3xl py-8 px-8 border border-gray-200/50 shadow-lg mx-auto max-w-2xl my-12"
+              className="flex items-center justify-center min-h-[60vh]"
             >
-              <div className="space-y-4 text-center">
-                <h2 className="text-3xl font-bold text-gray-900">
-                  Built for {b.brand}
-                </h2>
-                <p className="text-lg text-gray-600">
-                  Exclusive preview of your white-label solar intelligence tool
-                </p>
-                <div className="inline-flex items-center px-4 py-2 bg-orange-100 border border-orange-300 rounded-full text-orange-800 text-sm font-medium">
-                  <span className="mr-2">⚡</span>
-                  Ready to launch on {b.domain || b.brand}.com
+              <div className="bg-white/80 backdrop-blur-sm rounded-3xl py-8 px-8 border border-gray-200/50 shadow-lg mx-auto max-w-2xl">
+                <div className="space-y-4 text-center">
+                  <h2 className="text-3xl font-bold text-gray-900">
+                    Built for {b.brand}
+                  </h2>
+                  <p className="text-lg text-gray-600">
+                    Exclusive preview of your white-label solar intelligence tool
+                  </p>
+                  <div className="inline-flex items-center px-4 py-2 bg-orange-100 border border-orange-300 rounded-full text-orange-800 text-sm font-medium">
+                    <span className="mr-2">⚡</span>
+                    Ready to launch on {b.domain || b.brand}.com
+                  </div>
                 </div>
               </div>
             </motion.div>
