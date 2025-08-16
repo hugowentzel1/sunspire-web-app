@@ -57,14 +57,14 @@ export default function CTABand() {
             onClick={handleSecondaryClick}
             className="px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:-translate-y-1"
             style={{
-              background: 'var(--brand-primary, #FFA63D)',
-              color: '#ffffff',
-              border: '2px solid var(--brand-primary, #FFA63D)',
-              boxShadow: '0 8px 25px rgba(255, 166, 61, 0.3)'
+              background: '#ffffff',
+              color: 'var(--brand-primary, #FFA63D)',
+              border: '2px solid #ffffff',
+              boxShadow: '0 8px 25px rgba(0, 0, 0, 0.1)'
             }}
             whileHover={{ 
               scale: 1.05,
-              boxShadow: '0 12px 30px rgba(255, 166, 61, 0.4)',
+              boxShadow: '0 12px 30px rgba(0, 0, 0, 0.15)',
               transform: 'translateY(-2px)'
             }}
             whileTap={{ scale: 0.95 }}

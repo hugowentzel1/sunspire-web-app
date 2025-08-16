@@ -88,14 +88,14 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-[2000] p-4"
+        className="lead-form-modal"
         onClick={onClose}
       >
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
-          className="bg-white rounded-lg p-6 max-w-md w-full mx-4 shadow-xl"
+          className="modal-content"
           onClick={(e) => e.stopPropagation()}
         >
           {isSuccess ? (
@@ -120,7 +120,7 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
               
               <p className="text-sm text-gray-600 mb-4">Get a detailed sample of your solar analysis</p>
 
-              <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-4 form-container">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Name *
@@ -192,7 +192,7 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full max-w-xs px-8 py-4 rounded-lg text-white font-semibold shadow-lg hover:opacity-95 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:shadow-xl h-[52px] flex items-center justify-center"
+                    className="submit-button"
                     style={buttonStyle}
                   >
                     {isSubmitting ? "Submitting..." : "Request Sample Report"}
