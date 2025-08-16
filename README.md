@@ -13,3 +13,4 @@ AI-powered solar analysis and installer matching platform.
 
 Your beautiful Sunspire site is back and working!
 # Google Maps API Key Added
+// Trigger fresh Vercel deployment
