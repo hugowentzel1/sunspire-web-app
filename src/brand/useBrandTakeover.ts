@@ -55,7 +55,7 @@ export function useBrandTakeover(): BrandState {
     const expire = Math.max(1, parseInt(sp.get("expire")||"7",10)||7);
     setSt({
       enabled,
-      brand: clean(sp.get("company") || sp.get("brand")) ?? "Your Company",
+      brand: clean(sp.get("company") || sp.get("brand")) || "Your Company",
       primary: hex(sp.get("primary")),
       logo: allowLogo(sp.get("logo")),
       domain: sp.get("domain") || sp.get("company"),

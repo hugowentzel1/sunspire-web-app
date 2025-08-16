@@ -15,7 +15,7 @@ export default function InstallSheet(){
   useEffect(()=>{ 
     const on = (e: CustomEvent) => {
       setOpen(true);
-      track("drawer_open", { brand: b.brand, domain: b.domain || undefined });
+      track("drawer_open", { brand: b.brand || undefined, domain: b.domain || undefined });
     }; 
     document.addEventListener("openInstall", on as EventListener); 
     return ()=>document.removeEventListener("openInstall", on as EventListener); 
@@ -39,8 +39,8 @@ export default function InstallSheet(){
   async function handleCheckout() {
     setIsSubmitting(true);
     track("checkout_start", { 
-      brand: b.brand, 
-      domain: b.domain, 
+      brand: b.brand || undefined, 
+      domain: b.domain || undefined, 
       plan, 
       subdomain 
     });
