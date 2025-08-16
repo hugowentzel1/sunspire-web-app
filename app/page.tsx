@@ -455,22 +455,22 @@ function HomeContent() {
             <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">How It Works</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center space-y-4">
-                <div className="w-16 h-16 mx-auto bg-orange-100 rounded-2xl flex items-center justify-center">
-                  <span className="text-2xl">1</span>
+                <div className="w-16 h-16 mx-auto bg-gradient-to-br from-[var(--brand)] to-[var(--brand-2)] rounded-2xl flex items-center justify-center text-white font-bold text-xl">
+                  <span>1</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900">Add the widget</h3>
                 <p className="text-gray-600">One line of code to embed on your website</p>
               </div>
               <div className="text-center space-y-4">
-                <div className="w-16 h-16 mx-auto bg-orange-100 rounded-2xl flex items-center justify-center">
-                  <span className="text-2xl">2</span>
+                <div className="w-16 h-16 mx-auto bg-gradient-to-br from-[var(--brand)] to-[var(--brand-2)] rounded-2xl flex items-center justify-center text-white font-bold text-xl">
+                  <span>2</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900">Visitors get instant quotes</h3>
                 <p className="text-gray-600">AI-powered analysis in seconds</p>
               </div>
               <div className="text-center space-y-4">
-                <div className="w-16 h-16 mx-auto bg-orange-100 rounded-2xl flex items-center justify-center">
-                  <span className="text-2xl">3</span>
+                <div className="w-16 h-16 mx-auto bg-gradient-to-br from-[var(--brand)] to-[var(--brand-2)] rounded-2xl flex items-center justify-center text-white font-bold text-xl">
+                  <span>3</span>
                 </div>
                 <h3 className="text-xl font-bold text-gray-900">Your team gets booked calls</h3>
                 <p className="text-gray-600">Qualified leads ready to convert</p>
