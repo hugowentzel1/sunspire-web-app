@@ -77,9 +77,9 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
 
   // Use company brand colors for button
   const buttonStyle = b.enabled && b.primary ? {
-    background: `linear-gradient(135deg, ${b.primary}70, ${b.primary})`
+    background: `linear-gradient(135deg, #ffffff, ${b.primary})`
   } : {
-    background: 'linear-gradient(135deg, #fbbf2470, #d97706)'
+    background: 'linear-gradient(135deg, #ffffff, #d97706)'
   };
 
   return (
@@ -188,11 +188,11 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
                 </div>
 
                 {/* footer actions, always visible */}
-                <footer className="mt-6 flex justify-center">
+                <footer className="mt-6 flex justify-center w-full">
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="px-8 py-4 rounded-lg text-white font-semibold shadow-lg hover:opacity-95 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:shadow-xl min-w-[200px] h-[52px] flex items-center justify-center"
+                    className="w-full max-w-xs px-8 py-4 rounded-lg text-white font-semibold shadow-lg hover:opacity-95 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:shadow-xl h-[52px] flex items-center justify-center"
                     style={buttonStyle}
                   >
                     {isSubmitting ? "Submitting..." : "Request Sample Report"}
