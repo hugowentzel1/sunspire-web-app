@@ -3,6 +3,17 @@ import React from "react";
 import { motion } from "framer-motion";
 import LockedOverlay from "@/components/LockedOverlay";
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  Area,
+  AreaChart
+} from 'recharts';
 
 interface ChartSeries {
   year: number;
@@ -20,6 +31,39 @@ interface SavingsChartProps {
 export default function SavingsChart({ series, blur = false }: SavingsChartProps) {
   const b = useBrandTakeover();
   
+  // Simplify data for better understanding - show every 5 years
+  const simplifiedData = series
+    .filter((item, index) => index === 0 || (index + 1) % 5 === 0 || index === series.length - 1)
+    .map(item => ({
+      year: item.year,
+      totalSavings: item.cumulativeSavings,
+      totalSavingsFormatted: `$${Math.round(item.cumulativeSavings / 1000)}k`,
+      annualSavings: item.savings,
+      annualSavingsFormatted: `$${Math.round(item.savings / 1000)}k`
+    }));
+
+  const CustomTooltip = ({ active, payload, label }: any) => {
+    if (active && payload && payload.length) {
+      const data = payload[0].payload;
+      return (
+        <div className="bg-white p-4 rounded-lg shadow-lg border border-gray-200">
+          <p className="font-semibold text-gray-900">Year {label}</p>
+          <p className="text-sm text-green-600 font-semibold">
+            Total Savings: {data.totalSavingsFormatted}
+          </p>
+          <p className="text-sm text-gray-600">
+            Annual Savings: {data.annualSavingsFormatted}
+          </p>
+        </div>
+      );
+    }
+    return null;
+  };
+
+  // Find payback year for visual indicator
+  const paybackYear = series.findIndex(item => item.netCashflow >= 0) + 1;
+  const netCostAfterITC = Math.abs(series[0]?.netCashflow || 12600);
+
   const chartContent = (
     <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50">
       <div className="mb-6">
@@ -32,64 +76,58 @@ export default function SavingsChart({ series, blur = false }: SavingsChartProps
       </div>
 
       <div className="h-64">
-        <div className="w-full h-full bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl border-2 border-dashed border-gray-300 flex items-center justify-center relative overflow-hidden">
-          {/* Chart visualization */}
-          <div className="w-full h-full p-4">
-            <div className="text-center text-gray-500 mb-4">
-              <div className="text-2xl font-bold mb-2">📊</div>
-              <div className="text-lg font-semibold">25-Year Cash Flow Analysis</div>
-            </div>
+        <ResponsiveContainer width="100%" height="100%">
+          <AreaChart data={simplifiedData} margin={{ top: 20, right: 30, left: 40, bottom: 5 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+            <XAxis 
+              dataKey="year" 
+              stroke="#6b7280"
+              fontSize={12}
+              tickLine={false}
+              axisLine={false}
+              label={{ value: 'Years', position: 'insideBottom', offset: -5, style: { textAnchor: 'middle' } }}
+            />
+            <YAxis 
+              stroke="#6b7280"
+              fontSize={12}
+              tickLine={false}
+              axisLine={false}
+              tickFormatter={(value) => `$${Math.round(value / 1000)}k`}
+              label={{ value: 'Total Savings', angle: -90, position: 'insideLeft', style: { textAnchor: 'middle' } }}
+            />
+            <Tooltip content={<CustomTooltip />} />
             
-            {/* Simple bar chart */}
-            <div className="flex items-end justify-center space-x-1 h-32">
-              {series.slice(0, 10).map((yearData, index) => {
-                const maxSavings = Math.max(...series.slice(0, 10).map(s => s.savings));
-                const barHeight = maxSavings > 0 ? (yearData.savings / maxSavings) * 80 : 10;
-                
-                return (
-                  <div key={index} className="flex flex-col items-center">
-                    <div 
-                      className="w-3 bg-gradient-to-t from-blue-500 to-purple-500 rounded-t-sm"
-                      style={{ height: `${Math.max(8, barHeight)}px` }}
-                    />
-                    <div className="text-xs text-gray-400 mt-1">{yearData.year}</div>
-                  </div>
-                );
-              })}
-            </div>
-            
-            {/* Chart legend */}
-            <div className="flex justify-center space-x-6 mt-4 text-sm text-gray-600">
-              <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 bg-blue-500 rounded"></div>
-                <span>Annual Savings</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <div className="w-3 h-3 bg-purple-500 rounded"></div>
-                <span>Cumulative</span>
-              </div>
-            </div>
-          </div>
-        </div>
+            {/* Total savings area - single clean line */}
+            <Area
+              type="monotone"
+              dataKey="totalSavings"
+              stroke="#10b981"
+              strokeWidth={3}
+              fill="url(#savingsGradient)"
+              fillOpacity={0.4}
+              dot={{ fill: '#10b981', strokeWidth: 2, r: 4 }}
+            />
+          </AreaChart>
+        </ResponsiveContainer>
       </div>
 
       {/* Simplified insights */}
       <div className="mt-6 grid grid-cols-3 gap-4">
         <div className="text-center p-4 bg-orange-50 rounded-lg border border-orange-200">
           <div className="text-xl font-bold text-orange-600">
-            ${Math.round(series[0]?.netCashflow ? Math.abs(series[0].netCashflow) / 1000 : 12)}k
+            ${Math.round(netCostAfterITC / 1000)}k
           </div>
           <div className="text-xs text-gray-600">Investment</div>
         </div>
         <div className="text-center p-4 bg-blue-50 rounded-lg border border-blue-200">
           <div className="text-xl font-bold text-blue-600">
-            {series.findIndex(y => y.netCashflow >= 0) + 1 || 8} years
+            {paybackYear} years
           </div>
           <div className="text-xs text-gray-600">Payback Time</div>
         </div>
         <div className="text-center p-4 bg-green-50 rounded-lg border border-green-200">
           <div className="text-xl font-bold text-green-600">
-            ${Math.round(series[24]?.cumulativeSavings / 1000) || 9}k
+            ${Math.round(series[24]?.cumulativeSavings / 1000)}k
           </div>
           <div className="text-xs text-gray-600">25-Year Savings</div>
         </div>
@@ -98,11 +136,21 @@ export default function SavingsChart({ series, blur = false }: SavingsChartProps
       {/* Simple explanation */}
       <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
         <p className="text-sm text-gray-700">
-          <span className="font-semibold">How to read this:</span> The bars show your annual savings growing over time. 
-          After {series.findIndex(y => y.netCashflow >= 0) + 1 || 8} years, you'll have saved enough to cover your initial investment. 
-          By year 25, you'll have saved ${Math.round(series[24]?.cumulativeSavings / 1000) || 9}k total.
+          <span className="font-semibold">How to read this:</span> The green area shows your total savings growing over time. 
+          After {paybackYear} years, you'll have saved enough to cover your initial investment. 
+          By year 25, you'll have saved ${Math.round(series[24]?.cumulativeSavings / 1000)}k total.
         </p>
       </div>
+
+      {/* SVG definitions for gradients */}
+      <svg width="0" height="0">
+        <defs>
+          <linearGradient id="savingsGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="5%" stopColor="#10b981" stopOpacity={0.4}/>
+            <stop offset="95%" stopColor="#10b981" stopOpacity={0.1}/>
+          </linearGradient>
+        </defs>
+      </svg>
 
       <div className="text-center mt-4">
         <a 
@@ -124,7 +172,7 @@ export default function SavingsChart({ series, blur = false }: SavingsChartProps
           }`}
         >
           <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h4z" />
           </svg>
           Unlock Full Report →
         </button>
