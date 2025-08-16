@@ -20,13 +20,19 @@ import { track } from '@/src/demo/track';
 import Image from 'next/image';
 import { IconBadge } from '@/components/ui/IconBadge';
 import { useBrandColors } from '@/hooks/useBrandColors';
+import LoadingFallback from '@/components/LoadingFallback';
+import React from 'react';
 
-const AddressAutocomplete = dynamic(() => import('@/components/AddressAutocomplete'), { ssr: false });
+const AddressAutocomplete = dynamic(() => import('@/components/AddressAutocomplete'), { 
+  ssr: false,
+  loading: () => <div className="h-12 bg-gray-100 rounded-lg animate-pulse" />
+});
 
 function HomeContent() {
   const [address, setAddress] = useState('');
   const [selectedPlace, setSelectedPlace] = useState<PlaceResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [isClient, setIsClient] = useState(false);
   const router = useRouter();
   
   // Brand takeover mode detection
@@ -42,29 +48,44 @@ function HomeContent() {
   const [hasShownInstall, setHasShownInstall] = useState(false);
   const shouldShowLock = b.enabled && (remaining <= 0 || countdown.isExpired);
 
+  // Ensure client-side rendering
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   // Track page view
   useEffect(() => {
+    if (!isClient) return;
+    
     if (b.enabled) {
-      track("session_company", { 
-        brand: b.brand || undefined,
-        domain: b.domain || undefined,
-        firstName: b.firstName || undefined,
-        role: b.role || undefined,
-        logo: b.logo || undefined
-      });
+      try {
+        track("session_company", { 
+          brand: b.brand || undefined,
+          domain: b.domain || undefined,
+          firstName: b.firstName || undefined,
+          role: b.role || undefined,
+          logo: b.logo || undefined
+        });
+      } catch (error) {
+        console.warn('Tracking failed:', error);
+      }
     }
-  }, [b.enabled, b.brand, b.domain, b.firstName, b.role, b.logo]);
+  }, [isClient, b.enabled, b.brand, b.domain, b.firstName, b.role, b.logo]);
 
   const handleAddressSelect = (placeResult: PlaceResult) => {
     setAddress(placeResult.formattedAddress);
     setSelectedPlace(placeResult);
     
-    if (b.enabled) {
-      track("address_entered", {
-        brand: b.brand || undefined,
-        domain: b.domain || undefined,
-        address: placeResult.formattedAddress
-      });
+    if (b.enabled && isClient) {
+      try {
+        track("address_entered", {
+          brand: b.brand || undefined,
+          domain: b.domain || undefined,
+          address: placeResult.formattedAddress
+        });
+      } catch (error) {
+        console.warn('Tracking failed:', error);
+      }
     }
   };
 
@@ -77,14 +98,19 @@ function HomeContent() {
       }
       
       consume();
-      track("run_start", { event: "run_start", runsUsed: 2 - remaining + 1 });
       
-      // Track report generation
-      track("report_generated", {
-        brand: b.brand || undefined,
-        domain: b.domain || undefined,
-        address: address
-      });
+      try {
+        track("run_start", { event: "run_start", runsUsed: 2 - remaining + 1 });
+        
+        // Track report generation
+        track("report_generated", {
+          brand: b.brand || undefined,
+          domain: b.domain || undefined,
+          address: address
+        });
+      } catch (error) {
+        console.warn('Tracking failed:', error);
+      }
       
       // Auto-open install sheet after first run (sessionStorage guard)
       if (remaining === 2 && !hasShownInstall) {
@@ -501,6 +527,8 @@ function HomeContent() {
 
 export default function Home() {
   return (
-    <HomeContent />
+    <React.Suspense fallback={<LoadingFallback />}>
+      <HomeContent />
+    </React.Suspense>
   );
 }

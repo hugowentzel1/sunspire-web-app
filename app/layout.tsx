@@ -22,11 +22,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <BrandProvider>
-          <BrandCSSInjector />
-          <DemoRibbon />
-          <AppErrorBoundary>{children}</AppErrorBoundary>
-        </BrandProvider>
+        <AppErrorBoundary>
+          <BrandProvider>
+            <BrandCSSInjector />
+            <DemoRibbon />
+            {children}
+          </BrandProvider>
+        </AppErrorBoundary>
       </body>
     </html>
   )
