@@ -155,7 +155,7 @@ function HomeContent() {
     }
   };
 
-  // Add debug markers and content shown sentinel
+  // Add debug markers and content shown sentinel - force redeploy
   useEffect(() => { 
     console.log('[route] hydrated');
     (window as any).__CONTENT_SHOWN__ = true; 
