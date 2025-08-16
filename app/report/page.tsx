@@ -311,9 +311,15 @@ function ReportContent() {
             </div>
           </motion.div>
 
-          <div className="bg-white rounded-2xl p-5 border border-gray-200/50">
-            <div className="min-h-[400px]">
+          <div className="relative rounded-2xl bg-white p-5 overflow-hidden">
+            <div className="relative z-10 min-h-[400px]">
               <EstimateChart cashflowData={estimate.cashflowProjection} netCostAfterITC={estimate.netCostAfterITC} />
+            </div>
+            <div className="relative z-10 flex justify-center mt-4">
+              <UnlockButton
+                label="Unlock Full Report"
+                onClick={() => {}} // TODO: Add checkout function
+              />
             </div>
           </div>
 
@@ -356,15 +362,17 @@ function ReportContent() {
             </div>
 
             {/* Calculation Assumptions - Unblurred */}
-            <div className="bg-white rounded-3xl p-8 border border-gray-200/50">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Calculation Assumptions</h2>
-              <div className="space-y-6">
-                <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Federal Tax Credit (ITC)</span><span className="font-bold text-gray-900">{(estimate.assumptions.itcPercentage * 100).toFixed(0)}%</span></div>
-                <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Cost per Watt</span><span className="font-bold text-gray-900">${estimate.assumptions.costPerWatt}</span></div>
-                <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Panel Degradation</span><span className="font-bold text-gray-900">{(estimate.assumptions.degradationRate * 100).toFixed(1)}%/year</span></div>
-                <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">O&M Cost</span><span className="font-bold text-gray-900">${estimate.assumptions.oandmPerKWYear}/kW/year</span></div>
-                <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Rate Increase</span><span className="font-bold text-gray-900">{(estimate.assumptions.electricityRateIncrease * 100).toFixed(1)}%/year</span></div>
-                <div className="flex justify-between items-center py-4"><span className="text-gray-600">Discount Rate</span><span className="font-bold text-gray-900">{(estimate.assumptions.discountRate * 100).toFixed(0)}%</span></div>
+            <div className="relative rounded-2xl p-8 bg-white border border-gray-200/50">
+              <div className="relative z-10">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Calculation Assumptions</h2>
+                <div className="space-y-6">
+                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Federal Tax Credit (ITC)</span><span className="text-gray-900 font-bold">{(estimate.assumptions.itcPercentage * 100).toFixed(0)}%</span></div>
+                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Cost per Watt</span><span className="text-gray-900 font-bold">${estimate.assumptions.costPerWatt}</span></div>
+                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Panel Degradation</span><span className="text-gray-900 font-bold">{(estimate.assumptions.degradationRate * 100).toFixed(1)}%/year</span></div>
+                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">O&M Cost</span><span className="text-gray-900 font-bold">${estimate.assumptions.oandmPerKWYear}/kW/year</span></div>
+                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Rate Increase</span><span className="text-gray-900 font-bold">{(estimate.assumptions.electricityRateIncrease * 100).toFixed(1)}%/year</span></div>
+                  <div className="flex justify-between items-center py-4"><span className="text-gray-600">Discount Rate</span><span className="text-gray-900 font-bold">{(estimate.assumptions.discountRate * 100).toFixed(0)}%</span></div>
+                </div>
               </div>
             </div>
           </motion.div>

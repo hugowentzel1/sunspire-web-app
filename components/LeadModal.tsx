@@ -142,19 +142,19 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
                 </div>
               </div>
             ) : (
-              <div className="p-8 overflow-auto">
+              <div className="p-6 overflow-auto">
                 {/* Header */}
-                <div className="text-center mb-8">
+                <div className="text-center mb-6">
                   <h2 className="text-2xl font-bold text-gray-900 mb-2">
                     Get Your Solar Quote
                   </h2>
                   <p className="text-gray-600">
-                    We’ll email your personalized proposal from {tenant.name}
+                    We'll email your personalized proposal from {tenant.name}
                   </p>
                 </div>
 
                 {/* Form */}
-                <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+                <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                   {/* Name */}
                   <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -221,8 +221,6 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
                     />
                   </div>
 
-
-
                   {/* Error Message */}
                   {error && (
                     <div className="bg-red-50 border border-red-200 rounded-2xl p-4">
@@ -231,7 +229,7 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
                   )}
 
                   {/* Footer Buttons */}
-                  <footer className="mt-6 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-3">
+                  <footer className="mt-4 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-3">
                     <button 
                       type="button" 
                       onClick={handleClose} 
