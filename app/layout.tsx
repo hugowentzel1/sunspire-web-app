@@ -6,6 +6,7 @@ import AppErrorBoundary from '@/components/AppErrorBoundary'
 import DemoRibbon from '@/components/ui/DemoRibbon'
 import BrandProvider from '@/src/brand/BrandProvider'
 import BrandCSSInjector from '@/components/BrandCSSInjector'
+import BootProbe from './BootProbe'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
+        <BootProbe />
         <AppErrorBoundary>
           <BrandProvider>
             <BrandCSSInjector />

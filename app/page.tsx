@@ -29,6 +29,8 @@ const AddressAutocomplete = dynamic(() => import('@/components/AddressAutocomple
 });
 
 function HomeContent() {
+  console.log('[route] render start');
+  
   const [address, setAddress] = useState('');
   const [selectedPlace, setSelectedPlace] = useState<PlaceResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -153,13 +155,51 @@ function HomeContent() {
     }
   };
 
+  // Add debug markers and content shown sentinel
+  useEffect(() => { 
+    console.log('[route] hydrated');
+    (window as any).__CONTENT_SHOWN__ = true; 
+  }, []);
+
+  // Don't block render on brand takeover - show content immediately
+  // The brand takeover will update the UI when ready
   if (!b.enabled) {
+    // Show a minimal loading state instead of full-screen spinner
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter flex items-center justify-center">
-        <div className="text-center space-y-6">
-          <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
-          <p className="text-xl font-semibold text-gray-700">Loading...</p>
-        </div>
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter" data-demo={false}>
+        <DemoBanner />
+        <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center h-20">
+              <div className="flex items-center space-x-4">
+                <HeroBrand />
+                <div>
+                  <h1 className="text-2xl font-black bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text text-transparent">
+                    Sunspire
+                  </h1>
+                  <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
+                    Solar Intelligence
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+        
+        <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+          <div className="text-center space-y-8">
+            <div className="w-32 h-32 mx-auto bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 rounded-full flex items-center justify-center shadow-2xl">
+              <span className="text-6xl">☀️</span>
+            </div>
+            <h1 className="text-5xl md:text-7xl font-black text-gray-900 leading-tight">
+              Solar Intelligence
+              <span className="block text-transparent bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text">in Seconds</span>
+            </h1>
+            <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Transform your property with AI-powered solar analysis. Get instant estimates, detailed reports, and connect with premium installers.
+            </p>
+          </div>
+        </main>
       </div>
     );
   }
