@@ -43,7 +43,7 @@ export default function SavingsChart({ series, blur = false }: SavingsChartProps
 
   if (blur) {
     return (
-      <BlurMask id="mainGraphs" cta="Unlock Full Report">
+      <BlurMask id="mainGraphs" cta="Unlock Full Report" buttonPosition="bottom">
         {chartContent}
       </BlurMask>
     );

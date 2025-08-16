@@ -55,7 +55,7 @@ export default function Assumptions({
 
   if (shouldBlurBlock("assumptions_sensitive")) {
     return (
-      <BlurMask id="assumptions" cta="Unlock Full Report">
+      <BlurMask id="assumptions" cta="Unlock Full Report" buttonPosition="center">
         {content}
       </BlurMask>
     );

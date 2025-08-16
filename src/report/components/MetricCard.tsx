@@ -40,7 +40,7 @@ export default function MetricCard({
 
   if (blur) {
     return (
-      <BlurMask id={blurId} cta="Unlock Full Report">
+      <BlurMask id={blurId} cta="Unlock Full Report" buttonPosition="top-right">
         {cardContent}
       </BlurMask>
     );

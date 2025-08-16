@@ -340,3 +340,35 @@ h3 {
   background: var(--brand-primary) !important;
   border-color: var(--brand-primary) !important;
 }
+
+/* Gate: blur + soft wash that hides inner shapes */
+.gate {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+}
+
+.gate__content {
+  filter: blur(8px);
+  transform: scale(1.01);
+  opacity: .85;
+  pointer-events: none;
+}
+
+.gate::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255,255,255,.62), rgba(255,255,255,.92));
+  backdrop-filter: saturate(110%) blur(1px);
+}
+
+/* Only the unlock pill should be clickable */
+.gate__unlock {
+  position: absolute;
+  z-index: 20;
+  pointer-events: auto;
+}

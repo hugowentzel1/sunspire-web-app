@@ -28,7 +28,6 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted with data:", formData); // Debug log
     setIsSubmitting(true);
 
     try {
@@ -37,15 +36,12 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
         ...formData,
         address
       };
-      console.log("Sending payload:", payload); // Debug log
       
       const response = await fetch("/api/demo-event", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
-
-      console.log("Response status:", response.status); // Debug log
 
       if (response.ok) {
         track("sample_request", { 
@@ -81,14 +77,14 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+        className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
         onClick={onClose}
       >
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           exit={{ scale: 0.9, opacity: 0 }}
-          className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl"
+          className="bg-white rounded-lg p-6 max-w-md w-full mx-4 shadow-xl"
           onClick={(e) => e.stopPropagation()}
         >
           {isSuccess ? (
@@ -96,15 +92,22 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
               <div className="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-4">
                 <span className="text-2xl">✅</span>
               </div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">You're All Set!</h2>
+              <h2 className="text-xl font-semibold text-gray-900 mb-2">You're All Set!</h2>
               <p className="text-gray-600">We'll send your sample report shortly.</p>
             </div>
           ) : (
             <>
-              <div className="text-center mb-6">
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">Request Sample Report</h2>
-                <p className="text-gray-600">Get a detailed sample of your solar analysis</p>
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-semibold text-gray-900">Request Sample Report</h2>
+                <button
+                  onClick={onClose}
+                  className="text-gray-400 hover:text-gray-600 text-2xl"
+                >
+                  ×
+                </button>
               </div>
+              
+              <p className="text-sm text-gray-600 mb-4">Get a detailed sample of your solar analysis</p>
 
               <form onSubmit={handleSubmit} className="space-y-4">
                 <div>
@@ -116,7 +119,7 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
                     required
                     value={formData.name}
                     onChange={(e) => handleInputChange("name", e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     placeholder="Your full name"
                   />
                 </div>
@@ -130,7 +133,7 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
                     required
                     value={formData.email}
                     onChange={(e) => handleInputChange("email", e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -143,7 +146,7 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
                     type="tel"
                     value={formData.phone}
                     onChange={(e) => handleInputChange("phone", e.target.value)}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     placeholder="(555) 123-4567"
                   />
                 </div>
@@ -156,12 +159,12 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
                     value={formData.notes}
                     onChange={(e) => handleInputChange("notes", e.target.value)}
                     rows={3}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-transparent"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     placeholder="Any specific questions or requirements..."
                   />
                 </div>
 
-                <div className="bg-gray-50 rounded-xl p-4">
+                <div className="bg-gray-50 rounded-md p-3">
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Property Address
                   </label>
@@ -169,54 +172,22 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
                     type="text"
                     value={address}
                     readOnly
-                    className="w-full px-4 py-3 bg-gray-100 border border-gray-300 rounded-xl text-gray-600"
+                    className="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-gray-600"
                   />
                 </div>
 
-                <div className="flex gap-3 pt-4">
-                  <button
-                    type="button"
-                    onClick={onClose}
-                    className="flex-1 px-4 py-3 border border-gray-300 text-gray-700 rounded-xl hover:bg-gray-50 transition-colors"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="flex-1 px-4 py-3 bg-orange-600 text-white rounded-xl hover:bg-orange-700 disabled:opacity-50 transition-colors font-semibold text-lg"
-                  >
-                    {isSubmitting ? "Sending..." : "Request Report"}
-                  </button>
-                </div>
-                
-                {/* FORCED SUBMIT BUTTON - This will always be visible */}
-                <div className="mt-4 pt-4 border-t border-gray-200">
-                  <button
-                    type="submit"
-                    onClick={handleSubmit}
-                    className="w-full px-6 py-4 bg-red-600 text-white rounded-xl hover:bg-red-700 font-semibold text-lg shadow-lg"
-                    style={{
-                      display: 'block',
-                      opacity: '1',
-                      position: 'relative',
-                      zIndex: '9999'
-                    }}
-                  >
-                    SUBMIT REPORT (FORCED)
-                  </button>
-                </div>
-                
-                {/* Additional backup - hidden but functional */}
                 <button
                   type="submit"
-                  onClick={handleSubmit}
-                  className="sr-only"
-                  aria-hidden="true"
+                  disabled={isSubmitting}
+                  className="w-full py-2 px-4 bg-orange-500 text-white rounded-md hover:bg-orange-600 disabled:opacity-50 disabled:cursor-not-allowed font-medium"
                 >
-                  Hidden Submit
+                  {isSubmitting ? "Submitting..." : "Request Report"}
                 </button>
               </form>
+              
+              <p className="text-xs text-gray-500 mt-4 text-center">
+                We'll send your sample report within 24 hours.
+              </p>
             </>
           )}
         </motion.div>
