@@ -16,9 +16,10 @@ export function shouldBlurBlock(id: string): boolean {
   // Updated blur logic:
   // - Chart should be unblurred (remove "mainGraphs")
   // - Environmental impact should be blurred (add "environmental")
-  // - Financial section should be unblurred (remove "roi", "npv", "payback")
+  // - Financial section should be blurred (add "financial")
+  // - Assumptions section should be unblurred (remove "assumptions_sensitive")
   // - Keep some sensitive data blurred
-  const blurIds = ["environmental", "lifetime_savings", "assumptions_sensitive", "net_cost", "y1_savings"];
+  const blurIds = ["environmental", "financial", "lifetime_savings", "net_cost", "y1_savings"];
   return blurIds.includes(id);
 }
 

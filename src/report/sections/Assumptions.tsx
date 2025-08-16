@@ -1,8 +1,6 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import LockedOverlay from "@/components/LockedOverlay";
-import { shouldBlurBlock } from "@/src/demo/redaction";
 
 interface AssumptionsProps {
   itcPercentage: number;
@@ -21,7 +19,7 @@ export default function Assumptions({
   electricityRateIncrease, 
   discountRate 
 }: AssumptionsProps) {
-  const content = (
+  return (
     <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50">
       <h2 className="text-2xl font-bold text-gray-900 mb-6">Calculation Assumptions</h2>
       <div className="space-y-6">
@@ -52,15 +50,4 @@ export default function Assumptions({
       </div>
     </div>
   );
-
-  if (shouldBlurBlock("assumptions_sensitive")) {
-    return (
-      <div className="relative locked-blur">
-        {content}
-        <LockedOverlay onUnlock={() => document.dispatchEvent(new CustomEvent("openInstall"))} />
-      </div>
-    );
-  }
-
-  return content;
 }

@@ -108,7 +108,7 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
             </div>
           ) : (
             <>
-              <div className="flex justify-between items-center mb-6">
+              <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-semibold text-gray-900">Request Sample Report</h2>
                 <button
                   onClick={onClose}
@@ -120,90 +120,88 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
               
               <p className="text-sm text-gray-600 mb-6">Get a detailed sample of your solar analysis</p>
 
-              <form onSubmit={handleSubmit} className="flex flex-col gap-4 form-container">
-                <div className="space-y-4">
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Name *
-                    </label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.name}
-                      onChange={(e) => handleInputChange("name", e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                      placeholder="Your full name"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      required
-                      value={formData.email}
-                      onChange={(e) => handleInputChange("email", e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                      placeholder="your@email.com"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Phone (optional)
-                    </label>
-                    <input
-                      type="tel"
-                      value={formData.phone}
-                      onChange={(e) => handleInputChange("phone", e.target.value)}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                      placeholder="(555) 123-4567"
-                    />
-                  </div>
-
-                  <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Notes (optional)
-                    </label>
-                    <textarea
-                      value={formData.notes}
-                      onChange={(e) => handleInputChange("notes", e.target.value)}
-                      rows={3}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
-                      placeholder="Any specific questions or requirements..."
-                    />
-                  </div>
-
-                  <div className="bg-gray-50 rounded-md p-3">
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Property Address
-                    </label>
-                    <input
-                      type="text"
-                      value={address}
-                      readOnly
-                      className="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-gray-600"
-                    />
-                  </div>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Name *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    value={formData.name}
+                    onChange={(e) => handleInputChange("name", e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    placeholder="Your full name"
+                  />
                 </div>
 
-                {/* footer actions, always visible */}
-                <footer className="mt-8 flex flex-col items-center space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Email *
+                  </label>
+                  <input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => handleInputChange("email", e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    placeholder="your@email.com"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Phone (optional)
+                  </label>
+                  <input
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => handleInputChange("phone", e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    placeholder="(555) 123-4567"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Notes (optional)
+                  </label>
+                  <textarea
+                    value={formData.notes}
+                    onChange={(e) => handleInputChange("notes", e.target.value)}
+                    rows={3}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
+                    placeholder="Any specific questions or requirements..."
+                  />
+                </div>
+
+                <div className="bg-gray-50 rounded-md p-3">
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    Property Address
+                  </label>
+                  <input
+                    type="text"
+                    value={address}
+                    readOnly
+                    className="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-gray-600"
+                  />
+                </div>
+
+                {/* Submit button */}
+                <div className="pt-4">
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="pill-brand no-blur inline-flex items-center justify-center rounded-lg px-6 py-3 text-white font-semibold shadow-md hover:brightness-95 active:brightness-90 transition-colors"
+                    className="w-full pill-brand no-blur inline-flex items-center justify-center rounded-lg px-6 py-3 text-white font-semibold shadow-md hover:brightness-95 active:brightness-90 transition-colors"
                   >
                     {isSubmitting ? "Submitting..." : "Request Sample Report"}
                   </button>
-                  
-                  <div className="text-center text-sm text-slate-600">
-                    <p>We'll send your sample report within 24 hours.</p>
-                  </div>
-                </footer>
+                </div>
               </form>
+              
+              <div className="mt-4 text-center text-sm text-slate-600">
+                <p>We'll send your sample report within 24 hours.</p>
+              </div>
             </>
           )}
         </motion.div>
