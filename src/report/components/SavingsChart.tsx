@@ -117,20 +117,44 @@ export default function SavingsChart({ series, blur = false }: SavingsChartProps
 
       {/* Simplified insights */}
       <div className="mt-6 grid grid-cols-3 gap-4">
-        <div className="text-center p-4 bg-orange-50 rounded-lg border border-orange-200">
-          <div className="text-xl font-bold text-orange-600">
+        <div className={`text-center p-4 rounded-lg border ${
+          b.enabled && b.primary 
+            ? `bg-[${b.primary}]10 border-[${b.primary}]30` 
+            : 'bg-orange-50 border-orange-200'
+        }`}>
+          <div className={`text-xl font-bold ${
+            b.enabled && b.primary 
+              ? `text-[${b.primary}]` 
+              : 'text-orange-600'
+          }`}>
             ${Math.round(netCostAfterITC / 1000)}k
           </div>
           <div className="text-xs text-gray-600">Investment</div>
         </div>
-        <div className="text-center p-4 bg-blue-50 rounded-lg border border-blue-200">
-          <div className="text-xl font-bold text-blue-600">
+        <div className={`text-center p-4 rounded-lg border ${
+          b.enabled && b.primary 
+            ? `bg-[${b.primary}]10 border-[${b.primary}]30` 
+            : 'bg-blue-50 border-blue-200'
+        }`}>
+          <div className={`text-xl font-bold ${
+            b.enabled && b.primary 
+              ? `text-[${b.primary}]` 
+              : 'text-blue-600'
+          }`}>
             {paybackYear} years
           </div>
           <div className="text-xs text-gray-600">Payback Time</div>
         </div>
-        <div className="text-center p-4 bg-green-50 rounded-lg border border-green-200">
-          <div className="text-xl font-bold text-green-600">
+        <div className={`text-center p-4 rounded-lg border ${
+          b.enabled && b.primary 
+            ? `bg-[${b.primary}]10 border-[${b.primary}]30` 
+            : 'bg-green-50 border-green-200'
+        }`}>
+          <div className={`text-xl font-bold ${
+            b.enabled && b.primary 
+              ? `text-[${b.primary}]` 
+              : 'text-green-600'
+          }`}>
             ${Math.round(series[24]?.cumulativeSavings / 1000)}k
           </div>
           <div className="text-xs text-gray-600">25-Year Savings</div>
@@ -138,7 +162,11 @@ export default function SavingsChart({ series, blur = false }: SavingsChartProps
       </div>
 
       {/* Simple explanation */}
-      <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+      <div className={`mt-4 p-4 rounded-lg border ${
+        b.enabled && b.primary 
+          ? `bg-[${b.primary}]5 border-[${b.primary}]20` 
+          : 'bg-gray-50 border-gray-200'
+      }`}>
         <p className="text-sm text-gray-700">
           <span className="font-semibold">How to read this:</span> The green area shows your total savings growing over time. 
           After {paybackYear} years, you'll have saved enough to cover your initial investment. 
