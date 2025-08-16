@@ -6,11 +6,11 @@ export function IconBadge({ children }: { children: React.ReactNode }) {
   const b = useBrandTakeover();
   
   // Use company brand colors for gradient, fallback to default orange
-  // More distinct gradient with better contrast
+  // Better gradient that matches the main color more closely
   const gradientStyle = b.enabled && b.primary ? {
-    background: `linear-gradient(135deg, ${b.primary}30, ${b.primary})`
+    background: `linear-gradient(135deg, ${b.primary}40, ${b.primary})`
   } : {
-    background: 'linear-gradient(135deg, #fbbf2430, #d97706)'
+    background: 'linear-gradient(135deg, #fbbf2440, #d97706)'
   };
 
   return (

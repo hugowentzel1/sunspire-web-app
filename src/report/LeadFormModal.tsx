@@ -188,9 +188,9 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
                 </footer>
               </form>
               
-              <p className="text-xs text-gray-500 mt-4 text-center">
-                We'll send your sample report within 24 hours.
-              </p>
+              <div className="mt-6 text-center">
+                <p className="text-xs text-gray-500">We'll send your sample report within 24 hours.</p>
+              </div>
             </>
           )}
         </motion.div>
