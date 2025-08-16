@@ -11,6 +11,7 @@ import { formatDateSafe } from '@/lib/format';
 import LegalFooter from '@/components/legal/LegalFooter';
 import { IconBadge } from '@/components/ui/IconBadge';
 import UnlockButton from '@/components/UnlockButton';
+import BlurGate from '@/components/ui/BlurGate';
 import { useBrandColors } from '@/hooks/useBrandColors';
 import StickyBuyBar from '@/src/demo/StickyBuyBar';
 import InstallSheet from '@/src/demo/InstallSheet';
@@ -310,15 +311,9 @@ function ReportContent() {
             </div>
           </motion.div>
 
-          <div className="relative rounded-2xl bg-white p-5 overflow-hidden">
-            <div className="relative z-10 min-h-[400px]">
+          <div className="bg-white rounded-2xl p-5 border border-gray-200/50">
+            <div className="min-h-[400px]">
               <EstimateChart cashflowData={estimate.cashflowProjection} netCostAfterITC={estimate.netCostAfterITC} />
-            </div>
-            <div className="relative z-10 flex justify-center mt-4">
-              <UnlockButton
-                label="Unlock Full Report"
-                onClick={() => {}} // TODO: Add checkout function
-              />
             </div>
           </div>
 
@@ -336,13 +331,8 @@ function ReportContent() {
               </div>
             </div>
 
-            {/* Environmental Impact - Blurred */}
-            <div className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50">
-              {/* BLUR LAYER (kept behind button) */}
-              <div className="absolute inset-0 bg-white/60 backdrop-blur-sm pointer-events-none" aria-hidden />
-              
-              {/* CONTENT LAYER */}
-              <div className="relative z-10 p-8">
+            <BlurGate locked={true} onUnlock={() => {}}>
+              <div className="bg-white rounded-3xl p-8 border border-gray-200/50">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Environmental Impact</h2>
                 <div className="space-y-6">
                   <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">CO₂ Offset/Year</span><span className="font-bold text-gray-900">{estimate.co2OffsetPerYear.toLocaleString()} lbs</span></div>
@@ -351,34 +341,25 @@ function ReportContent() {
                   <div className="flex justify-between items-center py-4"><span className="text-gray-600">System Losses</span><span className="font-bold text-gray-900">{estimate.losses}%</span></div>
                 </div>
               </div>
-
-              {/* UNLOCK BUTTON (always sharp, centered, consistent spacing) */}
-              <UnlockButton
-                label="Unlock Full Report"
-                onClick={() => {}} // TODO: Add checkout function
-                className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
-              />
-            </div>
+            </BlurGate>
 
             {/* Calculation Assumptions - Unblurred */}
-            <div className="relative rounded-2xl p-8 bg-white border border-gray-200/50">
-              <div className="relative z-10">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Calculation Assumptions</h2>
-                <div className="space-y-6">
-                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Federal Tax Credit (ITC)</span><span className="font-bold text-gray-900">{(estimate.assumptions.itcPercentage * 100).toFixed(0)}%</span></div>
-                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Cost per Watt</span><span className="font-bold text-gray-900">${estimate.assumptions.costPerWatt}</span></div>
-                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Panel Degradation</span><span className="font-bold text-gray-900">{(estimate.assumptions.degradationRate * 100).toFixed(1)}%/year</span></div>
-                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">O&M Cost</span><span className="font-bold text-gray-900">${estimate.assumptions.oandmPerKWYear}/kW/year</span></div>
-                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Rate Increase</span><span className="font-bold text-gray-900">{(estimate.assumptions.electricityRateIncrease * 100).toFixed(1)}%/year</span></div>
-                  <div className="flex justify-between items-center py-4"><span className="text-gray-600">Discount Rate</span><span className="font-bold text-gray-900">{(estimate.assumptions.discountRate * 100).toFixed(0)}%</span></div>
-                </div>
+            <div className="bg-white rounded-3xl p-8 border border-gray-200/50">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Calculation Assumptions</h2>
+              <div className="space-y-6">
+                <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Federal Tax Credit (ITC)</span><span className="font-bold text-gray-900">{(estimate.assumptions.itcPercentage * 100).toFixed(0)}%</span></div>
+                <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Cost per Watt</span><span className="font-bold text-gray-900">${estimate.assumptions.costPerWatt}</span></div>
+                <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Panel Degradation</span><span className="font-bold text-gray-900">{(estimate.assumptions.degradationRate * 100).toFixed(1)}%/year</span></div>
+                <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">O&M Cost</span><span className="font-bold text-gray-900">${estimate.assumptions.oandmPerKWYear}/kW/year</span></div>
+                <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Rate Increase</span><span className="font-bold text-gray-900">{(estimate.assumptions.electricityRateIncrease * 100).toFixed(1)}%/year</span></div>
+                <div className="flex justify-between items-center py-4"><span className="text-gray-600">Discount Rate</span><span className="font-bold text-gray-900">{(estimate.assumptions.discountRate * 100).toFixed(0)}%</span></div>
               </div>
             </div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 rounded-3xl p-8 text-center text-white">
-            <h2 className="text-3xl font-bold mb-4">Ready to Go Solar?</h2>
-            <p className="text-xl mb-8 opacity-90">Connect with verified solar installers in your area and get started today</p>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 rounded-3xl py-12 px-8 text-center text-white">
+            <h2 className="text-3xl font-bold mb-6">Ready to Go Solar?</h2>
+            <p className="text-xl mb-10 opacity-90">Connect with verified solar installers in your area and get started today</p>
             <motion.button onClick={() => setShowLeadModal(true)} className="px-8 py-4 bg-white text-orange-600 rounded-2xl font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>Get Matched with Installers</motion.button>
           </motion.div>
         </motion.div>
