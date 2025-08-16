@@ -43,7 +43,7 @@
   --error: #EF4444;
   --info: #3B82F6;
 
-  --brand: #D72626; /* fallback brand red */
+  --brand: #E11D2E; /* fallback if no company color injected */
 }
 
 /* Never allow blur to affect these nodes */
