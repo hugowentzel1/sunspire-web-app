@@ -119,7 +119,7 @@ export default function SavingsChart({ series, blur = false }: SavingsChartProps
       <div className="mt-6 grid grid-cols-3 gap-4">
         <div className={`text-center p-4 rounded-lg border ${
           b.enabled && b.primary 
-            ? `bg-[${b.primary}]20 border-[${b.primary}]` 
+            ? `bg-gradient-to-br from-[${b.primary}]20 to-[${b.primary}]10 border-[${b.primary}]` 
             : 'bg-orange-50 border-orange-200'
         }`}>
           <div className={`text-xl font-bold ${
@@ -133,7 +133,7 @@ export default function SavingsChart({ series, blur = false }: SavingsChartProps
         </div>
         <div className={`text-center p-4 rounded-lg border ${
           b.enabled && b.primary 
-            ? `bg-[${b.primary}]20 border-[${b.primary}]` 
+            ? `bg-gradient-to-br from-[${b.primary}]20 to-[${b.primary}]10 border-[${b.primary}]` 
             : 'bg-blue-50 border-blue-200'
         }`}>
           <div className={`text-xl font-bold ${
@@ -147,7 +147,7 @@ export default function SavingsChart({ series, blur = false }: SavingsChartProps
         </div>
         <div className={`text-center p-4 rounded-lg border ${
           b.enabled && b.primary 
-            ? `bg-[${b.primary}]20 border-[${b.primary}]` 
+            ? `bg-gradient-to-br from-[${b.primary}]20 to-[${b.primary}]10 border-[${b.primary}]` 
             : 'bg-green-50 border-green-200'
         }`}>
           <div className={`text-xl font-bold ${
