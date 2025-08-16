@@ -30,15 +30,21 @@ export default function SavingsChart({ series, blur = false }: SavingsChartProps
           
           {/* Chart Bars */}
           <div className="flex items-end justify-center space-x-1 h-32">
-            {series.slice(0, 10).map((yearData, index) => (
-              <div key={index} className="flex flex-col items-center">
-                <div 
-                  className="w-3 bg-gradient-to-t from-blue-500 to-purple-500 rounded-t-sm"
-                  style={{ height: `${Math.max(10, (yearData.savings / 2000) * 100)}px` }}
-                />
-                <div className="text-xs text-gray-400 mt-1">{yearData.year}</div>
-              </div>
-            ))}
+            {series.slice(0, 10).map((yearData, index) => {
+              // Calculate proper bar height based on savings data
+              const maxSavings = Math.max(...series.slice(0, 10).map(s => s.savings));
+              const barHeight = maxSavings > 0 ? (yearData.savings / maxSavings) * 80 : 10;
+              
+              return (
+                <div key={index} className="flex flex-col items-center">
+                  <div 
+                    className="w-3 bg-gradient-to-t from-blue-500 to-purple-500 rounded-t-sm"
+                    style={{ height: `${Math.max(8, barHeight)}px` }}
+                  />
+                  <div className="text-xs text-gray-400 mt-1">{yearData.year}</div>
+                </div>
+              );
+            })}
           </div>
           
           {/* Chart Legend */}
@@ -61,8 +67,14 @@ export default function SavingsChart({ series, blur = false }: SavingsChartProps
             </div>
             <div>
               <div className="font-semibold">Break-Even Year</div>
-              <div>Year {series.findIndex(y => y.netCashflow >= 0) + 1}</div>
+              <div>Year {series.findIndex(y => y.netCashflow >= 0) + 1 || 'N/A'}</div>
             </div>
+          </div>
+          
+          {/* Additional Chart Info */}
+          <div className="text-center mt-3 text-xs text-gray-400">
+            <div>Max Annual Savings: ${Math.max(...series.map(s => s.savings)).toLocaleString()}</div>
+            <div>Average Annual: ${Math.round(series.reduce((sum, s) => sum + s.savings, 0) / series.length).toLocaleString()}</div>
           </div>
         </div>
       </div>
