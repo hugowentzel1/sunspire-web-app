@@ -372,64 +372,80 @@ h3 {
   text-align: center;
 }
 
+/* Unlock button - ensure solid company color and proper positioning */
 .unlock-pill {
-  position: relative; 
-  left: 16px; 
-  bottom: 16px; 
-  z-index: 20; /* higher than overlay */
-  padding: 12px 18px; 
-  border-radius: 9999px; 
-  font-weight: 600; 
-  font-size: 14px;
-  color: #fff;
-  background: var(--brand-primary, #FFA63D);
-  box-shadow: 0 4px 16px rgba(0, 0, 0, .15);
-  pointer-events: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: calc(100% - 32px);
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  transition: all 0.2s ease;
-  border: none;
-  cursor: pointer;
-  min-height: 44px;
+  position: absolute !important; 
+  left: 16px !important; 
+  bottom: 16px !important; 
+  z-index: 20 !important; /* higher than overlay */
+  padding: 12px 20px !important; 
+  border-radius: 9999px !important; 
+  font-weight: 600 !important; 
+  font-size: 14px !important; 
+  color: #fff !important;
+  background: var(--brand-primary, #FFA63D) !important;
+  background-image: none !important; /* override any gradients */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, .15) !important;
+  pointer-events: auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: auto !important;
+  min-width: 200px !important;
+  max-width: calc(100% - 32px) !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+  transition: all 0.2s ease !important;
+  border: none !important;
+  cursor: pointer !important;
+  min-height: 44px !important;
+  box-sizing: border-box !important;
+  text-decoration: none !important;
+  outline: none !important;
+  gap: 8px !important;
+}
+
+.unlock-pill svg {
+  flex-shrink: 0 !important;
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.unlock-pill .unlock-text {
+  flex: 1 !important;
+  text-align: center !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
 }
 
 .unlock-pill:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, .2);
-  background: var(--brand-primary, #FFA63D);
-  filter: brightness(1.05);
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .2) !important;
+  background: var(--brand-primary, #FFA63D) !important;
+  background-image: none !important; /* override any gradients */
+  filter: brightness(1.05) !important;
 }
 
 .unlock-pill:active {
-  transform: translateY(0);
+  transform: translateY(0) !important;
 }
 
-.unlock-text {
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  max-width: 200px;
-  line-height: 1.2;
-  text-align: center;
-  flex: 1;
+.unlock-pill:focus {
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(255, 166, 61, 0.3) !important;
 }
 
 .unlock-button-container {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  z-index: 20;
-  padding: 16px;
-  pointer-events: none;
+  position: absolute !important;
+  left: 0 !important;
+  bottom: 0 !important;
+  z-index: 20 !important;
+  padding: 16px !important;
+  pointer-events: none !important;
 }
 
 .unlock-button-container .unlock-pill {
-  pointer-events: auto;
+  pointer-events: auto !important;
 }
 
 .blur-overlay {
@@ -531,6 +547,19 @@ h3 {
 .lead-form-modal .submit-button:hover {
   transform: translateY(-1px);
   box-shadow: 0 8px 25px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Override any potential gradient backgrounds for unlock button */
+.unlock-pill,
+.unlock-pill:hover,
+.unlock-pill:active,
+.unlock-pill:focus {
+  background: var(--brand-primary, #FFA63D) !important;
+  background-image: none !important;
+  background: linear-gradient(none) !important;
+  background: -webkit-linear-gradient(none) !important;
+  background: -moz-linear-gradient(none) !important;
+  background: -o-linear-gradient(none) !important;
 }
 
 
