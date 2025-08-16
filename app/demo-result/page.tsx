@@ -196,19 +196,19 @@ export default function DemoResult() {
           blur={shouldBlurBlock("mainGraphs")}
         />
 
-        {/* Three Highlight Chips */}
+        {/* Three Highlight Chips with Teasers */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 text-center border border-gray-200/50">
             <div className="text-2xl font-bold text-gray-900 mb-2">Investment</div>
             <div className="text-gray-600">Teaser value shown</div>
           </div>
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 text-center border border-gray-200/50">
-            <div className="text-2xl font-bold text-gray-900 mb-2">Payback Time</div>
-            <div className="text-gray-600">Blurred</div>
+            <div className="text-2xl font-bold text-gray-900 mb-2">Payback</div>
+            <div className="text-gray-600">Under 7 years (unlock exact)</div>
           </div>
           <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 text-center border border-gray-200/50">
             <div className="text-2xl font-bold text-gray-900 mb-2">25-Year Savings</div>
-            <div className="text-gray-600">Blurred</div>
+            <div className="text-gray-600">Mid-five-figures (unlock exact)</div>
           </div>
         </div>
 

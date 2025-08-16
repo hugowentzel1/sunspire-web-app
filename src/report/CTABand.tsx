@@ -50,8 +50,16 @@ export default function CTABand() {
       <div className="text-sm opacity-90 mb-4">
         Only $99/mo + $399 setup. 14-day refund if it doesn't lift booked calls.
       </div>
-      <div className="text-xs opacity-75">
+      <div className="text-xs opacity-75 mb-4">
         Cancel anytime. No long-term contracts.
+      </div>
+      <div className="text-sm opacity-90">
+        <button 
+          onClick={handleSecondaryClick}
+          className="underline hover:no-underline transition-all"
+        >
+          Email me full report
+        </button>
       </div>
       <div className="mt-4">
         <PriceAnchor />

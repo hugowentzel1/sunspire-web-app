@@ -30,6 +30,14 @@ export default function SavingsChart({ series, blur = false }: SavingsChartProps
           </div>
         </div>
       </div>
+      <div className="text-center mt-4">
+        <a 
+          href="/methodology" 
+          className="text-sm text-blue-600 hover:text-blue-800 underline"
+        >
+          View data sources and methodology →
+        </a>
+      </div>
     </div>
   );
 
