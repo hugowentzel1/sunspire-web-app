@@ -15,3 +15,4 @@ Your beautiful Sunspire site is back and working!
 # Google Maps API Key Added
 // Trigger fresh Vercel deployment
 // Trigger fresh Vercel deployment to fix loading issue
+# Trigger deployment
