@@ -259,14 +259,14 @@ function ReportContent() {
           </motion.div>
 
           <BlurGate locked={true} onUnlock={() => {}} className="rounded-2xl">
-            <div className="p-5">
+            <div className="p-5 min-h-[400px]">
               <EstimateChart cashflowData={estimate.cashflowProjection} netCostAfterITC={estimate.netCostAfterITC} />
             </div>
           </BlurGate>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.8 }} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <BlurGate locked={true} onUnlock={() => {}}>
-              <div className="bg-white rounded-3xl p-8 border border-gray-200/50">{/* Financial */}
+              <div className="bg-white rounded-3xl p-8 border border-gray-200/50 min-h-[300px]">{/* Financial */}
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Financial Analysis</h2>
                 <div className="space-y-6">
                   <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Payback Period</span><span className="font-bold text-gray-900">{estimate.paybackYear} years</span></div>
@@ -278,7 +278,7 @@ function ReportContent() {
             </BlurGate>
 
             <BlurGate locked={true} onUnlock={() => {}}>
-              <div className="bg-white rounded-3xl p-8 border border-gray-200/50">{/* Environmental */}
+              <div className="bg-white rounded-3xl p-8 border border-gray-200/50 min-h-[300px]">{/* Environmental */}
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Environmental Impact</h2>
                 <div className="space-y-6">
                   <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">CO₂ Offset/Year</span><span className="font-bold text-gray-900">{estimate.co2OffsetPerYear.toLocaleString()} lbs</span></div>
@@ -290,7 +290,7 @@ function ReportContent() {
             </BlurGate>
 
             <BlurGate locked={true} onUnlock={() => {}}>
-              <div className="bg-white rounded-3xl p-8 border border-gray-200/50">{/* Assumptions */}
+              <div className="bg-white rounded-3xl p-8 border border-gray-200/50 min-h-[300px]">{/* Assumptions */}
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Calculation Assumptions</h2>
                 <div className="space-y-6">
                   <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Federal Tax Credit (ITC)</span><span className="font-bold text-gray-900">{(estimate.assumptions.itcPercentage * 100).toFixed(0)}%</span></div>

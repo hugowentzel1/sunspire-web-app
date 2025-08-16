@@ -9,6 +9,7 @@ export default function BrandProvider({ children }: { children: React.ReactNode 
   useEffect(() => {
     if (!b.enabled) return;
     document.documentElement.style.setProperty("--brand-primary", b.primary);
+    document.documentElement.style.setProperty("--brand", b.primary);
   }, [b.enabled, b.primary]);
 
   // Favicon override

@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import { cn } from '@/lib/utils';
 
 type Props = {
   locked?: boolean;
@@ -12,25 +13,27 @@ type Props = {
 export default function BlurGate({
   locked,
   onUnlock,
-  unlockLabel = 'Unlock Full Report →',
+  unlockLabel = 'Unlock Full Report',
   className = '',
   children
 }: Props) {
   return (
-    <div className={`locked-container bg-white shadow-sm ${className}`}>
-      {children}
+    <div className={cn("relative", className)}>
+      {/* Only the inner content gets blurred */}
+      <div className={locked ? "pointer-events-none select-none blur-[8px] opacity-95" : ""}>
+        {children}
+      </div>
+
       {locked && (
-        <>
-          <div className="blur-overlay" />
-          <div className="unlock-button-container">
-            <button type="button" className="unlock-pill" onClick={onUnlock}>
-              <svg className="w-4 h-4 mr-2 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
-              </svg>
-              <span className="unlock-text">{unlockLabel}</span>
-            </button>
-          </div>
-        </>
+        <button
+          type="button"
+          onClick={onUnlock}
+          className="unlock-pill absolute left-1/2 -translate-x-1/2 bottom-6 z-20 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[color:var(--brand)] px-4 py-2 text-white font-semibold shadow-md hover:shadow-lg hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+        >
+          <span role="img" aria-label="locked">🔒</span>
+          <span>{unlockLabel}</span>
+          <span aria-hidden>→</span>
+        </button>
       )}
     </div>
   );

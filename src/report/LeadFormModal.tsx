@@ -188,20 +188,26 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
                 </div>
 
                 {/* footer actions, always visible */}
-                <footer className="mt-6 flex justify-center w-full">
+                <footer className="mt-4 mb-4 flex w-full items-center justify-center gap-3">
+                  <button
+                    type="button"
+                    onClick={onClose}
+                    className="rounded-xl px-4 py-2 text-[color:var(--ink)] bg-white shadow-sm ring-1 ring-black/5 hover:bg-slate-50"
+                  >
+                    Cancel
+                  </button>
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="submit-button"
-                    style={buttonStyle}
+                    className="rounded-xl bg-[color:var(--brand)] px-5 py-3 font-semibold text-white shadow-md hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
                   >
                     {isSubmitting ? "Submitting..." : "Request Sample Report"}
                   </button>
                 </footer>
               </form>
               
-              <div className="mt-6 text-center">
-                <p className="text-xs text-gray-500">We'll send your sample report within 24 hours.</p>
+              <div className="mt-4 mb-1 text-center text-sm text-slate-600">
+                <p>We'll send your sample report within 24 hours.</p>
               </div>
             </>
           )}
