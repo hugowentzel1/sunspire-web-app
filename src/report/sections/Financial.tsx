@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import BlurMask from "@/src/demo/BlurMask";
+import LockedOverlay from "@/components/LockedOverlay";
 import { shouldBlurBlock, teaseCurrency } from "@/src/demo/redaction";
 
 interface FinancialProps {
@@ -43,9 +43,10 @@ export default function Financial({
 
   if (shouldBlurBlock("roi") || shouldBlurBlock("payback") || shouldBlurBlock("npv") || shouldBlurBlock("lifetime_savings")) {
     return (
-      <BlurMask id="financial" cta="Unlock Full Report" buttonPosition="center">
+      <div className="relative locked-blur">
         {content}
-      </BlurMask>
+        <LockedOverlay onUnlock={() => document.dispatchEvent(new CustomEvent("openInstall"))} />
+      </div>
     );
   }
 

@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import BlurMask from "@/src/demo/BlurMask";
+import LockedOverlay from "@/components/LockedOverlay";
 import { teaseCurrency } from "@/src/demo/redaction";
 
 interface MetricCardProps {
@@ -40,9 +40,10 @@ export default function MetricCard({
 
   if (blur) {
     return (
-      <BlurMask id={blurId} cta="Unlock Full Report" buttonPosition="top-right">
+      <div className="relative locked-blur">
         {cardContent}
-      </BlurMask>
+        <LockedOverlay onUnlock={() => document.dispatchEvent(new CustomEvent("openInstall"))} />
+      </div>
     );
   }
 

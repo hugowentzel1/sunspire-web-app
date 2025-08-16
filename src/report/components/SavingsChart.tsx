@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import BlurMask from "@/src/demo/BlurMask";
+import LockedOverlay from "@/components/LockedOverlay";
 
 interface ChartSeries {
   year: number;
@@ -43,9 +43,10 @@ export default function SavingsChart({ series, blur = false }: SavingsChartProps
 
   if (blur) {
     return (
-      <BlurMask id="mainGraphs" cta="Unlock Full Report" buttonPosition="bottom">
+      <div className="relative locked-blur">
         {chartContent}
-      </BlurMask>
+        <LockedOverlay onUnlock={() => document.dispatchEvent(new CustomEvent("openInstall"))} />
+      </div>
     );
   }
 

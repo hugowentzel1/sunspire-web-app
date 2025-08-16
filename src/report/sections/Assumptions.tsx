@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import BlurMask from "@/src/demo/BlurMask";
+import LockedOverlay from "@/components/LockedOverlay";
 import { shouldBlurBlock } from "@/src/demo/redaction";
 
 interface AssumptionsProps {
@@ -55,9 +55,10 @@ export default function Assumptions({
 
   if (shouldBlurBlock("assumptions_sensitive")) {
     return (
-      <BlurMask id="assumptions" cta="Unlock Full Report" buttonPosition="center">
+      <div className="relative locked-blur">
         {content}
-      </BlurMask>
+        <LockedOverlay onUnlock={() => document.dispatchEvent(new CustomEvent("openInstall"))} />
+      </div>
     );
   }
 

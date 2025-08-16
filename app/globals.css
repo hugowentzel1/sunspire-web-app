@@ -372,3 +372,15 @@ h3 {
   z-index: 20;
   pointer-events: auto;
 }
+
+/* ensure the blurred container hides any inner shapes/inputs */
+.locked-blur {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem; /* match card radius */
+}
+
+.locked-blur > * {
+  filter: blur(6px);
+  transform: scale(1.01);
+}
