@@ -163,46 +163,7 @@ function HomeContent() {
 
   // Don't block render on brand takeover - show content immediately
   // The brand takeover will update the UI when ready
-  if (!b.enabled) {
-    // Show a minimal loading state instead of full-screen spinner
-    return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter" data-demo={false}>
-        <DemoBanner />
-        <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between items-center h-20">
-              <div className="flex items-center space-x-4">
-                <HeroBrand />
-                <div>
-                  <h1 className="text-2xl font-black bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text text-transparent">
-                    Sunspire
-                  </h1>
-                  <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
-                    Solar Intelligence
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </header>
-        
-        <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-          <div className="text-center space-y-8">
-            <div className="w-32 h-32 mx-auto bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 rounded-full flex items-center justify-center shadow-2xl">
-              <span className="text-6xl">☀️</span>
-            </div>
-            <h1 className="text-5xl md:text-7xl font-black text-gray-900 leading-tight">
-              Solar Intelligence
-              <span className="block text-transparent bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text">in Seconds</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Transform your property with AI-powered solar analysis. Get instant estimates, detailed reports, and connect with premium installers.
-            </p>
-          </div>
-        </main>
-      </div>
-    );
-  }
+  // Remove the early return to show full content always
 
   const initials = (name: string) => {
     return name
@@ -261,9 +222,9 @@ function HomeContent() {
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ delay: 0.1, duration: 0.8 }}
-              className="bg-white/80 backdrop-blur-sm rounded-3xl py-12 px-8 border border-gray-200/50 shadow-lg"
+              className="bg-white/80 backdrop-blur-sm rounded-3xl py-8 px-8 border border-gray-200/50 shadow-lg mx-auto max-w-2xl"
             >
-              <div className="space-y-4">
+              <div className="space-y-4 text-center">
                 <h2 className="text-3xl font-bold text-gray-900">
                   Built for {b.brand}
                 </h2>
