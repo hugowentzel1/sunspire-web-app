@@ -15,7 +15,7 @@ export default function InstallSheet(){
   useEffect(()=>{ 
     const on = (e: CustomEvent) => {
       setOpen(true);
-      track("drawer_open", { brand: b.brand, domain: b.domain });
+      track("drawer_open", { brand: b.brand, domain: b.domain || undefined });
     }; 
     document.addEventListener("openInstall", on as EventListener); 
     return ()=>document.removeEventListener("openInstall", on as EventListener); 
