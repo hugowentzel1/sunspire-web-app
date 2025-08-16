@@ -35,6 +35,8 @@ export type BrandState = {
   domain: string | null;
   city: string | null;
   rep: string | null;
+  firstName: string | null;
+  role: string | null;
   expireDays: number;
   runs: number;     // always 2
   blur: boolean;    // always true
@@ -44,7 +46,7 @@ export type BrandState = {
 export function useBrandTakeover(): BrandState {
   const [st, setSt] = useState<BrandState>({
     enabled:false, brand:"Your Company", primary:"#FFA63D", logo:null,
-    domain:null, city:null, rep:null, expireDays:7, runs:2, blur:true, pilot:false
+    domain:null, city:null, rep:null, firstName:null, role:null, expireDays:7, runs:2, blur:true, pilot:false
   });
 
   useEffect(() => {
@@ -59,6 +61,8 @@ export function useBrandTakeover(): BrandState {
       domain: sp.get("domain") || sp.get("company"),
       city: sp.get("city"),
       rep: sp.get("rep"),
+      firstName: clean(sp.get("firstName")),
+      role: clean(sp.get("role")),
       expireDays: expire,
       runs: 2,
       blur: true,

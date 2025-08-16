@@ -8,7 +8,14 @@ export type TrackEvent =
   | "limit_hit" 
   | "checkout_success"
   | "sample_request"
-  | "sample_success";
+  | "sample_success"
+  | "unlock_clicked"
+  | "drawer_open"
+  | "checkout_start"
+  | "session_company"
+  | "address_entered"
+  | "report_generated"
+  | "cta_launch_clicked";
 
 export type TrackPayload = {
   event: TrackEvent;
@@ -61,4 +68,14 @@ export function track(event: TrackEvent, payload: Partial<TrackPayload> = {}) {
   }).catch(() => {
     // Silently fail - don't block user experience
   });
+
+  // Also log to console for development
+  console.log(`[Analytics] ${event}:`, fullPayload);
+}
+
+// Analytics bus function for global access
+if (typeof window !== "undefined") {
+  (window as any).sa = (name: string, payload: any = {}) => {
+    track(name as TrackEvent, payload);
+  };
 }

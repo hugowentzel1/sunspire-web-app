@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
@@ -39,9 +39,30 @@ function HomeContent() {
   const [hasShownInstall, setHasShownInstall] = useState(false);
   const shouldShowLock = b.enabled && (remaining <= 0 || countdown.isExpired);
 
+  // Track page view
+  useEffect(() => {
+    if (b.enabled) {
+      track("session_company", { 
+        brand: b.brand || undefined,
+        domain: b.domain || undefined,
+        firstName: b.firstName || undefined,
+        role: b.role || undefined,
+        logo: b.logo || undefined
+      });
+    }
+  }, [b.enabled, b.brand, b.domain, b.firstName, b.role, b.logo]);
+
   const handleAddressSelect = (placeResult: PlaceResult) => {
     setAddress(placeResult.formattedAddress);
     setSelectedPlace(placeResult);
+    
+    if (b.enabled) {
+      track("address_entered", {
+        brand: b.brand || undefined,
+        domain: b.domain || undefined,
+        address: placeResult.formattedAddress
+      });
+    }
   };
 
   const handleGenerateEstimate = () => {
@@ -54,6 +75,13 @@ function HomeContent() {
       
       consume();
       track("run_start", { event: "run_start", runsUsed: 2 - remaining + 1 });
+      
+      // Track report generation
+      track("report_generated", {
+        brand: b.brand || undefined,
+        domain: b.domain || undefined,
+        address: address
+      });
       
       // Auto-open install sheet after first run (sessionStorage guard)
       if (remaining === 2 && !hasShownInstall) {
@@ -82,6 +110,17 @@ function HomeContent() {
     } else {
       const q = new URLSearchParams({ address, lat: '40.7128', lng: '-74.0060', placeId: 'demo' });
       router.push(`/report?${q.toString()}`);
+    }
+  };
+
+  const handleLaunchClick = () => {
+    if (b.enabled) {
+      track("cta_launch_clicked", {
+        brand: b.brand || undefined,
+        domain: b.domain || undefined,
+        placement: "header"
+      });
+      document.dispatchEvent(new CustomEvent("openInstall"));
     }
   };
 
@@ -138,6 +177,7 @@ function HomeContent() {
               <a href="#" className="text-gray-600 hover:text-orange-500 transition-colors font-medium">Partners</a>
               <a href="#" className="text-gray-600 hover:text-orange-500 transition-colors font-medium">Support</a>
               <motion.button 
+                onClick={handleLaunchClick}
                 className={`px-6 py-3 text-white rounded-2xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 ${
                   b.enabled 
                     ? 'bg-[var(--brand-primary)] hover:bg-[var(--brand-primary)]/90' 
@@ -146,7 +186,7 @@ function HomeContent() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                Get Started
+                {b.enabled ? `Launch on ${b.brand}` : "Get Started"}
               </motion.button>
             </nav>
           </div>
@@ -175,6 +215,11 @@ function HomeContent() {
                   <span className="mr-2">⚡</span>
                   Ready to launch on {b.domain || b.brand}.com
                 </div>
+                {b.domain && (
+                  <div className="inline-flex items-center px-3 py-1 bg-gray-100 border border-gray-300 rounded-lg text-gray-600 text-xs font-medium">
+                    solar.{b.domain}
+                  </div>
+                )}
               </div>
             </motion.div>
           )}
@@ -213,8 +258,8 @@ function HomeContent() {
               >
                 {b.enabled ? (
                   <>
-                    {b.brand}
-                    <span className="block text-transparent bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text">Solar Intelligence</span>
+                    {b.brand} Solar Intelligence
+                    <span className="block text-transparent bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text">— Live in 10 Minutes</span>
                   </>
                 ) : (
                   <>
@@ -230,7 +275,7 @@ function HomeContent() {
                 transition={{ delay: 0.6, duration: 0.8 }}
               >
                 {b.enabled 
-                  ? `Transform your property with ${b.brand}'s AI-powered solar analysis. Get instant estimates, detailed reports, and connect with premium installers.`
+                  ? `Embed a branded quote tool on ${b.domain || b.brand}.com. Turn visitors into booked calls. 14-day refund if it doesn't lift conversions.`
                   : "Transform your property with AI-powered solar analysis. Get instant estimates, detailed reports, and connect with premium installers."
                 }
               </motion.p>
@@ -272,7 +317,7 @@ function HomeContent() {
                   className="w-full" 
                 />
                 <motion.button 
-                  onClick={handleGenerateEstimate} 
+                  onClick={b.enabled ? handleLaunchClick : handleGenerateEstimate} 
                   disabled={!address.trim() || isLoading} 
                   className={`w-full py-6 px-8 rounded-2xl text-lg font-bold text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl ${
                     !address.trim() || isLoading 
@@ -291,7 +336,7 @@ function HomeContent() {
                     </div>
                   ) : (
                     <div className="flex items-center justify-center space-x-4">
-                      <span>{b.enabled ? `Generate ${b.brand} Solar Report` : "Generate Solar Intelligence Report"}</span>
+                      <span>{b.enabled ? `Launch on ${b.brand}` : "Generate Solar Intelligence Report"}</span>
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
                     </div>
                   )}

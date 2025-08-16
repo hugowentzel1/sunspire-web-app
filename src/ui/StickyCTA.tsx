@@ -29,7 +29,7 @@ export default function StickyCTA() {
           onClick={handlePrimaryClick}
           className="w-full py-3 px-6 bg-orange-600 text-white rounded-2xl font-semibold hover:bg-orange-700 transition-colors"
         >
-          Launch on {b.domain || "your domain"}
+          Launch on {b.domain || b.brand}
         </button>
         
         {/* Secondary CTA */}
@@ -42,7 +42,7 @@ export default function StickyCTA() {
         
         {/* Price anchor */}
         <p className="text-xs text-center text-gray-500">
-          Full version from $599/mo. Most tools cost $2,500+/mo.
+          Only $99/mo + $399 setup. 14-day refund if it doesn't lift booked calls.
         </p>
       </div>
     </motion.div>

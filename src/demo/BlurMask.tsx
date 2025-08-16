@@ -21,7 +21,7 @@ export default function BlurMask({
   if (!b.enabled) return <>{children}</>;
   
   const handleBlurClick = () => {
-    track("cta_click", { placement: "blur", id });
+    track("unlock_clicked", { placement: "blur", id });
     document.dispatchEvent(new CustomEvent("openInstall"));
   };
   

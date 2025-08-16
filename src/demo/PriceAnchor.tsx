@@ -13,7 +13,7 @@ export default function PriceAnchor() {
       borderRadius: "8px",
       border: "1px solid #E5E7EB"
     }}>
-      <strong>Full version from just $599/mo.</strong> Most tools cost $2,500+/mo.
+      <strong>Full version from just $99/mo + $399 setup.</strong> Most tools cost $2,500+/mo.
     </div>
   );
 }

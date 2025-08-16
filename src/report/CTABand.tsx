@@ -36,7 +36,7 @@ export default function CTABand() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          Launch on {b.domain || "your domain"}
+          Launch on {b.domain || b.brand}
         </motion.button>
         <motion.button
           onClick={handleSecondaryClick}
@@ -48,10 +48,10 @@ export default function CTABand() {
         </motion.button>
       </div>
       <div className="text-sm opacity-90 mb-4">
-        Full version from $599/mo. Most tools cost $2,500+/mo.
+        Only $99/mo + $399 setup. 14-day refund if it doesn't lift booked calls.
       </div>
       <div className="text-xs opacity-75">
-        Risk: Cancel anytime. 14-day money-back if it doesn't lift booked calls.
+        Cancel anytime. No long-term contracts.
       </div>
       <div className="mt-4">
         <PriceAnchor />
