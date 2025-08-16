@@ -9,21 +9,19 @@ export default function UnlockPill({ label = "Unlock Full Report", className = "
     <button
       {...rest}
       className={[
-        // size + layout (keeps lock + text centered and on one line)
+        // layout
         "inline-flex items-center justify-center gap-2",
-        "h-9 min-w-[180px] px-4 rounded-full",
-        "whitespace-nowrap leading-none text-sm font-semibold",
-        "text-white text-center",
-        // color: SOLID brand
-        "pill-brand no-blur",
-        // subtle elevation + hover
-        "shadow-[0_6px_22px_rgba(0,0,0,.12)] hover:brightness-95 active:brightness-90",
+        "h-10 min-w-[216px] sm:min-w-[228px] px-5 rounded-full",
+        "whitespace-nowrap text-[14px] leading-none font-semibold",
+        "text-white text-center shrink-0",
+        // color & behavior
+        "pill-brand no-blur shadow-[0_6px_22px_rgba(0,0,0,.12)] hover:brightness-95 active:brightness-90",
         "transition-[filter,opacity,transform]",
         className,
       ].join(" ")}
     >
       <span aria-hidden className="leading-none">🔒</span>
-      <span className="leading-none">{label} <span aria-hidden>→</span></span>
+      <span className="leading-none">{label}&nbsp;<span aria-hidden>→</span></span>
     </button>
   );
 }

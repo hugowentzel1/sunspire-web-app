@@ -54,9 +54,12 @@
 }
 
 /* Force solid brand background (no gradient) for pills/buttons that use this class */
-.pill-brand {
+.pill-brand,
+.pill-brand::before,
+.pill-brand::after {
   background: var(--brand) !important;
-  background-image: none !important; /* kill gradients */
+  background-image: none !important;      /* kill gradients */
+  filter: none !important;                 /* kill any accidental blur */
 }
 
 * {
