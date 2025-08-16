@@ -119,7 +119,7 @@ export default function SavingsChart({ series, blur = false }: SavingsChartProps
       <div className="mt-6 grid grid-cols-3 gap-4">
         <div className={`text-center p-4 rounded-lg border ${
           b.enabled && b.primary 
-            ? `bg-[${b.primary}]10 border-[${b.primary}]30` 
+            ? `bg-[${b.primary}]20 border-[${b.primary}]` 
             : 'bg-orange-50 border-orange-200'
         }`}>
           <div className={`text-xl font-bold ${
@@ -133,7 +133,7 @@ export default function SavingsChart({ series, blur = false }: SavingsChartProps
         </div>
         <div className={`text-center p-4 rounded-lg border ${
           b.enabled && b.primary 
-            ? `bg-[${b.primary}]10 border-[${b.primary}]30` 
+            ? `bg-[${b.primary}]20 border-[${b.primary}]` 
             : 'bg-blue-50 border-blue-200'
         }`}>
           <div className={`text-xl font-bold ${
@@ -147,7 +147,7 @@ export default function SavingsChart({ series, blur = false }: SavingsChartProps
         </div>
         <div className={`text-center p-4 rounded-lg border ${
           b.enabled && b.primary 
-            ? `bg-[${b.primary}]10 border-[${b.primary}]30` 
+            ? `bg-[${b.primary}]20 border-[${b.primary}]` 
             : 'bg-green-50 border-green-200'
         }`}>
           <div className={`text-xl font-bold ${
@@ -168,7 +168,7 @@ export default function SavingsChart({ series, blur = false }: SavingsChartProps
           : 'bg-gray-50 border-gray-200'
       }`}>
         <p className="text-sm text-gray-700">
-          <span className="font-semibold">How to read this:</span> The green area shows your total savings growing over time. 
+          <span className="font-semibold">How to read this:</span> The {b.enabled && b.primary ? 'company-branded' : 'green'} area shows your total savings growing over time. 
           After {paybackYear} years, you'll have saved enough to cover your initial investment. 
           By year 25, you'll have saved ${Math.round(series[24]?.cumulativeSavings / 1000)}k total.
         </p>
