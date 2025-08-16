@@ -379,8 +379,17 @@ h3 {
   overflow: hidden;
   border-radius: 1rem; /* match card radius */
 }
-
 .locked-blur > * {
-  filter: blur(6px);
+  filter: blur(3px); /* reduced blur so content is more visible */
   transform: scale(1.01);
+}
+
+/* Ensure unlock buttons are never blurred */
+.locked-blur .gate__unlock,
+.locked-blur button[onclick*="openInstall"],
+.locked-blur button[onclick*="openLeadForm"] {
+  filter: none !important;
+  transform: none !important;
+  z-index: 10;
+  position: relative;
 }

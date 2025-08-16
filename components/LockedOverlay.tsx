@@ -11,7 +11,7 @@ export default function LockedOverlay({
 }) {
   return (
     <div
-      className={`absolute inset-0 pointer-events-none rounded-2xl ${className}`}
+      className={`absolute inset-0 pointer-events-none rounded-2xl z-20 ${className}`}
       aria-hidden="true"
     >
       {/* soft veil to remove inner borders/ghost boxes */}
@@ -20,7 +20,7 @@ export default function LockedOverlay({
       <button
         type="button"
         onClick={onUnlock}
-        className="pointer-events-auto absolute left-4 bottom-4 px-4 py-2 rounded-full text-white text-sm font-medium shadow-md bg-gradient-to-r from-orange-500 to-rose-500 hover:opacity-95 transition"
+        className="pointer-events-auto absolute left-4 bottom-4 px-4 py-2 rounded-full text-white text-sm font-medium shadow-md bg-gradient-to-r from-orange-500 to-rose-500 hover:opacity-95 transition z-30"
       >
         🔒 {label} →
       </button>
