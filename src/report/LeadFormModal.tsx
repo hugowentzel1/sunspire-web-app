@@ -28,18 +28,24 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log("Form submitted with data:", formData); // Debug log
     setIsSubmitting(true);
 
     try {
+      const payload = {
+        event: "sample_request",
+        ...formData,
+        address
+      };
+      console.log("Sending payload:", payload); // Debug log
+      
       const response = await fetch("/api/demo-event", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          event: "sample_request",
-          ...formData,
-          address
-        })
+        body: JSON.stringify(payload)
       });
+
+      console.log("Response status:", response.status); // Debug log
 
       if (response.ok) {
         track("sample_request", { 
@@ -53,6 +59,8 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
           setIsSuccess(false);
           setFormData({ name: "", email: "", phone: "", notes: "" });
         }, 3000);
+      } else {
+        console.error("Form submission failed with status:", response.status);
       }
     } catch (error) {
       console.error("Error submitting form:", error);
