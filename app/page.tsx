@@ -404,6 +404,83 @@ function HomeContent() {
               <p className="text-gray-600">Bank-level encryption and SOC 2 compliance for your data</p>
             </div>
           </motion.div>
+
+          {/* Logos Strip */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 1.5, duration: 0.8 }} 
+            className="text-center"
+          >
+            <div className="inline-flex items-center px-6 py-3 bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200/50">
+              <span className="text-gray-600 font-medium">Used by 50+ installers</span>
+            </div>
+          </motion.div>
+
+          {/* How It Works Section */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 1.6, duration: 0.8 }} 
+            className="max-w-5xl mx-auto"
+          >
+            <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">How It Works</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="text-center space-y-4">
+                <div className="w-16 h-16 mx-auto bg-orange-100 rounded-2xl flex items-center justify-center">
+                  <span className="text-2xl">1</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900">Add the widget</h3>
+                <p className="text-gray-600">One line of code to embed on your website</p>
+              </div>
+              <div className="text-center space-y-4">
+                <div className="w-16 h-16 mx-auto bg-orange-100 rounded-2xl flex items-center justify-center">
+                  <span className="text-2xl">2</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900">Visitors get instant quotes</h3>
+                <p className="text-gray-600">AI-powered analysis in seconds</p>
+              </div>
+              <div className="text-center space-y-4">
+                <div className="w-16 h-16 mx-auto bg-orange-100 rounded-2xl flex items-center justify-center">
+                  <span className="text-2xl">3</span>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900">Your team gets booked calls</h3>
+                <p className="text-gray-600">Qualified leads ready to convert</p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* FAQ Section */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 1.8, duration: 0.8 }} 
+            className="max-w-4xl mx-auto"
+          >
+            <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Frequently Asked Questions</h2>
+            <div className="space-y-6">
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">CMS? — Yes, 1-line &lt;script&gt;. Hosted option too.</h3>
+                <p className="text-gray-600">Works with any website platform. Just add one line of code.</p>
+              </div>
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Accuracy? — NREL PVWatts v8 • EIA rates • local irradiance</h3>
+                <p className="text-gray-600">Industry-standard data sources. <a href="/methodology" className="text-blue-600 hover:underline">View methodology</a>.</p>
+              </div>
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Security? — Encrypted in transit & at rest</h3>
+                <p className="text-gray-600">Bank-level security for all customer data.</p>
+              </div>
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Cancel? — Yes, 14-day refund if it doesn't lift booked calls</h3>
+                <p className="text-gray-600">No long-term contracts. Cancel anytime.</p>
+              </div>
+              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Support? — Email support 24/7</h3>
+                <p className="text-gray-600">Get help whenever you need it.</p>
+              </div>
+            </div>
+          </motion.div>
         </motion.div>
       </main>
 
