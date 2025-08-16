@@ -201,7 +201,7 @@ function HomeContent() {
                 className={`px-6 py-3 text-white rounded-2xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 ${
                   b.enabled 
                     ? 'bg-[var(--brand-primary)] hover:bg-[var(--brand-primary)]/90' 
-                    : 'bg-gradient-to-r from-orange-500 to-red-500'
+                    : 'bg-[var(--brand-primary)] hover:bg-[var(--brand-primary)]/90'
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -222,7 +222,7 @@ function HomeContent() {
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ delay: 0.1, duration: 0.8 }}
-              className="my-8"
+              className="mt-4 mb-8"
             >
               <div className="bg-white/80 backdrop-blur-sm rounded-3xl py-6 px-8 border border-gray-200/50 shadow-lg mx-auto max-w-2xl">
                 <div className="space-y-4 text-center">
@@ -232,7 +232,7 @@ function HomeContent() {
                   <p className="text-lg text-gray-600">
                     Exclusive preview of your white-label solar intelligence tool
                   </p>
-                  <div className="inline-flex items-center px-4 py-2 bg-orange-100 border border-orange-300 rounded-full text-orange-800 text-sm font-medium">
+                  <div className="inline-flex items-center px-4 py-2 bg-[var(--brand-primary)]/10 border border-[var(--brand-primary)]/30 rounded-full text-[var(--brand-primary)] text-sm font-medium">
                     <span className="mr-2">⚡</span>
                     Ready to launch on {b.domain || b.brand}.com
                   </div>
@@ -276,12 +276,12 @@ function HomeContent() {
                 {b.enabled ? (
                   <>
                     {b.brand} Solar Intelligence
-                    <span className="block text-transparent bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text">— Live in 10 Minutes</span>
+                    <span className="block text-[var(--brand-primary)]">— Live in 10 Minutes</span>
                   </>
                 ) : (
                   <>
                     Solar Intelligence
-                    <span className="block text-transparent bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text">in Seconds</span>
+                    <span className="block text-[var(--brand-primary)]">in Seconds</span>
                   </>
                 )}
               </motion.h1>
