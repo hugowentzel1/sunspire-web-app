@@ -203,11 +203,6 @@ function HomeContent() {
                   <span className="mr-2">⚡</span>
                   Ready to launch on {b.domain || b.brand}.com
                 </div>
-                {b.domain && (
-                  <div className="inline-flex items-center px-3 py-1 bg-gray-100 border border-gray-300 rounded-lg text-gray-600 text-xs font-medium">
-                    solar.{b.domain}
-                  </div>
-                )}
               </div>
             </motion.div>
           )}
@@ -298,25 +293,18 @@ function HomeContent() {
               </div>
 
               <div className="space-y-6">
-                <AddressAutocomplete 
-                  value={address} 
-                  onChange={setAddress} 
-                  onSelect={handleAddressSelect} 
-                  placeholder={b.city ? `Start typing an address in ${b.city}...` : "Start typing your property address..."} 
-                  className="w-full" 
-                />
                 <motion.button 
-                  onClick={b.enabled ? handleLaunchClick : handleGenerateEstimate} 
-                  disabled={!address.trim() || isLoading} 
+                  onClick={b.enabled && address.trim() ? handleGenerateEstimate : (b.enabled ? handleLaunchClick : handleGenerateEstimate)} 
+                  disabled={!b.enabled && !address.trim() || isLoading} 
                   className={`w-full py-6 px-8 rounded-2xl text-lg font-bold text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl ${
-                    !address.trim() || isLoading 
+                    (!b.enabled && !address.trim()) || isLoading 
                       ? 'bg-gray-300 cursor-not-allowed' 
                       : b.enabled
                         ? 'bg-[var(--brand-primary)] hover:bg-[var(--brand-primary)]/90'
                         : 'bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 hover:from-orange-600 hover:via-red-600 hover:to-pink-600'
                   }`} 
-                  whileHover={!address.trim() || isLoading ? {} : { scale: 1.02 }} 
-                  whileTap={!address.trim() || isLoading ? {} : { scale: 0.98 }}
+                  whileHover={(!b.enabled && !address.trim()) || isLoading ? {} : { scale: 1.02 }} 
+                  whileTap={(!b.enabled && !address.trim()) || isLoading ? {} : { scale: 0.98 }}
                 >
                   {isLoading ? (
                     <div className="flex items-center justify-center space-x-4">
@@ -325,11 +313,30 @@ function HomeContent() {
                     </div>
                   ) : (
                     <div className="flex items-center justify-center space-x-4">
-                      <span>{b.enabled ? `Launch on ${b.brand}` : "Generate Solar Intelligence Report"}</span>
+                      <span>
+                        {b.enabled 
+                          ? (address.trim() ? `Generate ${b.brand} Solar Report` : `Launch on ${b.brand}`)
+                          : "Generate Solar Intelligence Report"
+                        }
+                      </span>
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
                     </div>
                   )}
                 </motion.button>
+
+                {/* Address Input - Show for both demo and regular modes */}
+                <div className="w-full max-w-2xl mx-auto">
+                  <AddressAutocomplete 
+                    value={address}
+                    onChange={setAddress}
+                    onSelect={handleAddressSelect}
+                    placeholder={b.city ? `Start typing an address in ${b.city}...` : "Start typing your property address..."}
+                    className="w-full"
+                  />
+                  <p className="text-sm text-gray-500 mt-2 text-center">
+                    Enter your property address to get started
+                  </p>
+                </div>
                 
                 {b.enabled && (
                   <div className="text-sm text-gray-500 text-center space-y-2">
