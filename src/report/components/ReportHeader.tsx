@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
 import HeroBrand from "@/src/brand/HeroBrand";
+import { IconBadge } from "@/components/ui/IconBadge";
 
 interface ReportHeaderProps {
   address: string;
@@ -47,11 +48,10 @@ export default function ReportHeader({
       <div className="flex justify-center mb-6">
         {b.enabled ? <HeroBrand /> : (
           <motion.div 
-            className="w-16 h-16 bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-2xl"
             whileHover={{ scale: 1.05, rotate: 5 }}
             transition={{ type: 'spring', stiffness: 300 }}
           >
-            <span className="text-white font-bold text-2xl">☀️</span>
+            <IconBadge>☀️</IconBadge>
           </motion.div>
         )}
       </div>

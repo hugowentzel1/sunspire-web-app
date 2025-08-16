@@ -98,7 +98,7 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -113,7 +113,7 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden"
+            className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden max-h-[85vh]"
           >
             {isSuccess ? (
               <div className="p-8 text-center">
@@ -142,7 +142,7 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
                 </div>
               </div>
             ) : (
-              <div className="p-8">
+              <div className="p-8 overflow-auto">
                 {/* Header */}
                 <div className="text-center mb-8">
                   <h2 className="text-2xl font-bold text-gray-900 mb-2">
@@ -236,25 +236,30 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
                     </div>
                   )}
 
-                  {/* Submit Button */}
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className={`w-full py-4 px-6 rounded-2xl font-semibold text-white transition-all duration-200 ${
-                      isSubmitting
-                        ? 'bg-gray-400 cursor-not-allowed'
-                        : 'bg-gradient-to-r from-orange-500 to-amber-500 hover:from-orange-600 hover:to-amber-600 transform hover:-translate-y-0.5 hover:shadow-lg'
-                    }`}
-                  >
-                    {isSubmitting ? (
-                      <div className="flex items-center justify-center space-x-2">
-                        <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                        <span>Submitting...</span>
-                      </div>
-                    ) : (
-                      'Get My Solar Quote'
-                    )}
-                  </button>
+                  {/* Footer Buttons */}
+                  <footer className="mt-6 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-3">
+                    <button 
+                      type="button" 
+                      onClick={handleClose} 
+                      className="px-4 py-2 rounded-lg ring-1 ring-black/10 bg-white hover:bg-slate-50 text-gray-700"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="brand-gradient text-white px-4 py-2 rounded-lg shadow hover:opacity-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {isSubmitting ? (
+                        <div className="flex items-center justify-center space-x-2">
+                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                          <span>Submitting...</span>
+                        </div>
+                      ) : (
+                        'Get My Solar Quote'
+                      )}
+                    </button>
+                  </footer>
                 </form>
 
                 {/* Close Button */}

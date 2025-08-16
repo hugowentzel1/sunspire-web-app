@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { TenantProvider, useTenant } from '@/components/TenantProvider';
 import LegalFooter from '@/components/legal/LegalFooter';
+import { IconBadge } from '@/components/ui/IconBadge';
 
 function TenantPreviewContent() {
   const { tenant, loading } = useTenant();
@@ -43,11 +44,10 @@ function TenantPreviewContent() {
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center space-x-4">
               <motion.div
-                className="w-12 h-12 bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-2xl"
                 whileHover={{ scale: 1.05, rotate: 5 }}
                 transition={{ type: "spring", stiffness: 300 }}
               >
-                <span className="text-white font-bold text-lg">🎨</span>
+                <IconBadge>🎨</IconBadge>
               </motion.div>
               <div>
                 <h1 className="text-2xl font-black bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text text-transparent">
@@ -98,14 +98,10 @@ function TenantPreviewContent() {
                   whileTap={{ scale: 0.98 }}
                 >
                   <div className="text-center space-y-4">
-                    <div className={`w-16 h-16 mx-auto rounded-2xl flex items-center justify-center ${
-                      t.slug === 'default' 
-                        ? 'bg-gradient-to-br from-orange-400 via-red-500 to-pink-500' 
-                        : 'bg-gradient-to-br from-blue-500 to-blue-600'
-                    }`}>
-                      <span className="text-white font-bold text-xl">
+                    <div className="mb-4">
+                      <IconBadge>
                         {t.slug === 'default' ? '☀️' : '⚡'}
-                      </span>
+                      </IconBadge>
                     </div>
                     <div>
                       <h3 className="text-xl font-bold text-gray-900">{t.name}</h3>

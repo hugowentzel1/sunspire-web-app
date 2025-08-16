@@ -3,6 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import LockedOverlay from "@/components/LockedOverlay";
 import { teaseCurrency } from "@/src/demo/redaction";
+import { IconBadge } from "@/components/ui/IconBadge";
 
 interface MetricCardProps {
   label: string;
@@ -27,9 +28,7 @@ export default function MetricCard({
   
   const cardContent = (
     <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-      <div className="w-16 h-16 mx-auto bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center mb-4">
-        <span className="text-2xl">{icon}</span>
-      </div>
+      <div className="mb-4"><IconBadge>{icon}</IconBadge></div>
       <div className="text-3xl font-black text-gray-900 mb-2">{displayValue}</div>
       <div className="text-gray-600 font-semibold">{label}</div>
       {hint && (

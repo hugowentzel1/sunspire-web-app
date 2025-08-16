@@ -5,6 +5,10 @@
 @tailwind utilities;
 
 :root {
+  /* Brand gradient system */
+  --brand: #FF7A00; /* fallback */
+  --brand-2: #FF3D81;
+  
   /* Premium Orange/Gold Color Palette */
   --primary: #EA580C;        /* Rich orange */
   --primary-light: #FB923C;  /* Light orange */
@@ -321,6 +325,11 @@ h3 {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--gray-400);
+}
+
+/* Brand gradient system */
+.brand-gradient { 
+  background-image: linear-gradient(135deg, var(--brand), var(--brand-2)); 
 }
 
 /* Brand Takeover Demo Utilities */

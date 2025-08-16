@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import { useCountdown } from '@/src/demo/useCountdown';
 import { usePreviewQuota } from '@/src/demo/usePreviewQuota';
+import { IconBadge } from '@/components/ui/IconBadge';
 import { track } from '@/src/demo/track';
 import { shouldBlurBlock } from '@/src/demo/redaction';
 import { DemoBanner } from '@/src/demo/DemoChrome';
@@ -113,9 +114,7 @@ export default function DemoResult() {
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center space-x-4">
               {!b.enabled ? (
-                <div className="w-12 h-12 bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-2xl">
-                  <span className="text-white font-bold text-lg">☀️</span>
-                </div>
+                <IconBadge>☀️</IconBadge>
               ) : (
                 <HeroBrand />
               )}

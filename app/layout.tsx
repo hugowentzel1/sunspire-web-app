@@ -5,6 +5,7 @@ import '@/components/ui/sunset-theme.css'
 import AppErrorBoundary from '@/components/AppErrorBoundary'
 import DemoRibbon from '@/components/ui/DemoRibbon'
 import BrandProvider from '@/src/brand/BrandProvider'
+import BrandCSSInjector from '@/components/BrandCSSInjector'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,6 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <BrandProvider>
+          <BrandCSSInjector />
           <DemoRibbon />
           <AppErrorBoundary>{children}</AppErrorBoundary>
         </BrandProvider>
