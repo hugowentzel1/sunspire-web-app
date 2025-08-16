@@ -222,7 +222,7 @@ function HomeContent() {
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ delay: 0.1, duration: 0.8 }}
-              className="bg-white/80 backdrop-blur-sm rounded-3xl py-8 px-8 border border-gray-200/50 shadow-lg mx-auto max-w-2xl"
+              className="bg-white/80 backdrop-blur-sm rounded-3xl py-8 px-8 border border-gray-200/50 shadow-lg mx-auto max-w-2xl my-12"
             >
               <div className="space-y-4 text-center">
                 <h2 className="text-3xl font-bold text-gray-900">
