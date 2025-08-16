@@ -20,13 +20,49 @@ export default function SavingsChart({ series, blur = false }: SavingsChartProps
   const chartContent = (
     <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50">
       <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Your Solar Savings Over Time</h2>
-      <div className="h-80 bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl border-2 border-dashed border-gray-300 flex items-center justify-center">
-        <div className="text-center text-gray-500">
-          <div className="text-4xl mb-2">📊</div>
-          <div className="text-lg font-semibold">Savings Projection Chart</div>
-          <div className="text-sm">25-year cash flow analysis</div>
-          <div className="text-xs mt-2 opacity-75">
-            {series.length} years of data available
+      <div className="h-80 bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl border-2 border-dashed border-gray-300 flex items-center justify-center relative overflow-hidden">
+        {/* Actual Chart Data - will be blurred when needed */}
+        <div className="w-full h-full p-4">
+          <div className="text-center text-gray-500 mb-4">
+            <div className="text-2xl font-bold mb-2">📊</div>
+            <div className="text-lg font-semibold">25-Year Cash Flow Analysis</div>
+          </div>
+          
+          {/* Chart Bars */}
+          <div className="flex items-end justify-center space-x-1 h-32">
+            {series.slice(0, 10).map((yearData, index) => (
+              <div key={index} className="flex flex-col items-center">
+                <div 
+                  className="w-3 bg-gradient-to-t from-blue-500 to-purple-500 rounded-t-sm"
+                  style={{ height: `${Math.max(10, (yearData.savings / 2000) * 100)}px` }}
+                />
+                <div className="text-xs text-gray-400 mt-1">{yearData.year}</div>
+              </div>
+            ))}
+          </div>
+          
+          {/* Chart Legend */}
+          <div className="flex justify-center space-x-6 mt-4 text-sm text-gray-600">
+            <div className="flex items-center space-x-2">
+              <div className="w-3 h-3 bg-blue-500 rounded"></div>
+              <span>Annual Savings</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <div className="w-3 h-3 bg-purple-500 rounded"></div>
+              <span>Cumulative</span>
+            </div>
+          </div>
+          
+          {/* Data Summary */}
+          <div className="grid grid-cols-2 gap-4 mt-4 text-xs text-gray-500">
+            <div>
+              <div className="font-semibold">Total 25-Year Savings</div>
+              <div>${series[24]?.cumulativeSavings?.toLocaleString() || '0'}</div>
+            </div>
+            <div>
+              <div className="font-semibold">Break-Even Year</div>
+              <div>Year {series.findIndex(y => y.netCashflow >= 0) + 1}</div>
+            </div>
           </div>
         </div>
       </div>
