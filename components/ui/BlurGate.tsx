@@ -1,23 +1,31 @@
-export function BlurGate({
-  children,
-  blur = 8,
-  footer
-}: { 
-  children: React.ReactNode; 
-  blur?: number; 
-  footer?: React.ReactNode 
-}) {
+'use client';
+import React from 'react';
+
+type Props = {
+  locked?: boolean;
+  onUnlock?: () => void;
+  unlockLabel?: string;
+  className?: string;
+  children: React.ReactNode;
+};
+
+export default function BlurGate({
+  locked,
+  onUnlock,
+  unlockLabel = 'Unlock Full Report →',
+  className = '',
+  children
+}: Props) {
   return (
-    <div className="relative rounded-2xl ring-1 ring-black/5 bg-white/60 overflow-hidden">
-      <div 
-        className="pointer-events-none absolute inset-0 backdrop-blur-sm bg-white/40"
-        style={{ backdropFilter: `blur(${blur}px)` }}
-      />
-      <div className="relative">{children}</div>
-      {footer && (
-        <div className="absolute left-4 bottom-4 z-10">
-          {footer}
-        </div>
+    <div className={`locked-container bg-white shadow-sm ${className}`}>
+      {children}
+      {locked && (
+        <>
+          <div className="blur-overlay" />
+          <button type="button" className="unlock-pill" onClick={onUnlock}>
+            {unlockLabel}
+          </button>
+        </>
       )}
     </div>
   );

@@ -4,6 +4,7 @@ import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import { useCountdown } from '@/src/demo/useCountdown';
 import { usePreviewQuota } from '@/src/demo/usePreviewQuota';
 import { IconBadge } from '@/components/ui/IconBadge';
+import { useBrandColors } from '@/hooks/useBrandColors';
 import { track } from '@/src/demo/track';
 import { shouldBlurBlock } from '@/src/demo/redaction';
 import { DemoBanner } from '@/src/demo/DemoChrome';
@@ -28,6 +29,9 @@ export default function DemoResult() {
   const b = useBrandTakeover();
   const countdown = useCountdown(b.expireDays || 3);
   const { read, consume } = usePreviewQuota(2);
+  
+  // Brand colors from URL
+  useBrandColors();
   const remaining = read();
   const [isLeadFormOpen, setIsLeadFormOpen] = useState(false);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);

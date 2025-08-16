@@ -5,10 +5,14 @@ import { motion } from 'framer-motion';
 import { TenantProvider, useTenant } from '@/components/TenantProvider';
 import LegalFooter from '@/components/legal/LegalFooter';
 import { IconBadge } from '@/components/ui/IconBadge';
+import { useBrandColors } from '@/hooks/useBrandColors';
 
 function TenantPreviewContent() {
   const { tenant, loading } = useTenant();
   const [selectedTenant, setSelectedTenant] = useState('default');
+  
+  // Brand colors from URL
+  useBrandColors();
 
   const tenants = [
     { slug: 'default', name: 'Sunspire', description: 'Premium Solar Intelligence' },

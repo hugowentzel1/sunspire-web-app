@@ -10,7 +10,8 @@ import EstimateChart from '@/components/EstimateChart';
 import { formatDateSafe } from '@/lib/format';
 import LegalFooter from '@/components/legal/LegalFooter';
 import { IconBadge } from '@/components/ui/IconBadge';
-import { BlurGate } from '@/components/ui/BlurGate';
+import BlurGate from '@/components/ui/BlurGate';
+import { useBrandColors } from '@/hooks/useBrandColors';
 import StickyBuyBar from '@/src/demo/StickyBuyBar';
 import InstallSheet from '@/src/demo/InstallSheet';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
@@ -29,6 +30,9 @@ function ReportContent() {
   
   // Brand takeover mode detection
   const b = useBrandTakeover();
+  
+  // Brand colors from URL
+  useBrandColors();
 
   const demoAddressesByState: Record<string, {address:string, lat:number, lng:number}> = {
     AZ: { address: "123 N Central Ave, Phoenix, AZ", lat: 33.4484, lng: -112.0740 },
@@ -254,25 +258,15 @@ function ReportContent() {
             </div>
           </motion.div>
 
-          <BlurGate
-            footer={
-              <button className="brand-gradient text-white text-sm px-4 py-2 rounded-full shadow hover:opacity-95 ring-1 ring-black/10">
-                🔓 Unlock Full Report →
-              </button>
-            }
-          >
-            <EstimateChart cashflowData={estimate.cashflowProjection} netCostAfterITC={estimate.netCostAfterITC} />
+          <BlurGate locked={true} onUnlock={() => {}} className="rounded-2xl">
+            <div className="p-5">
+              <EstimateChart cashflowData={estimate.cashflowProjection} netCostAfterITC={estimate.netCostAfterITC} />
+            </div>
           </BlurGate>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.8 }} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <BlurGate
-              footer={
-                <button className="brand-gradient text-white text-sm px-4 py-2 rounded-full shadow hover:opacity-95 ring-1 ring-black/10">
-                  🔓 Unlock Full Report →
-                </button>
-              }
-            >
-              <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50">{/* Financial */}
+            <BlurGate locked={true} onUnlock={() => {}}>
+              <div className="bg-white rounded-3xl p-8 border border-gray-200/50">{/* Financial */}
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Financial Analysis</h2>
                 <div className="space-y-6">
                   <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Payback Period</span><span className="font-bold text-gray-900">{estimate.paybackYear} years</span></div>
@@ -283,14 +277,8 @@ function ReportContent() {
               </div>
             </BlurGate>
 
-            <BlurGate
-              footer={
-                <button className="brand-gradient text-white text-sm px-4 py-2 rounded-full shadow hover:opacity-95 ring-1 ring-black/10">
-                  🔓 Unlock Full Report →
-                </button>
-              }
-            >
-              <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50">{/* Environmental */}
+            <BlurGate locked={true} onUnlock={() => {}}>
+              <div className="bg-white rounded-3xl p-8 border border-gray-200/50">{/* Environmental */}
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Environmental Impact</h2>
                 <div className="space-y-6">
                   <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">CO₂ Offset/Year</span><span className="font-bold text-gray-900">{estimate.co2OffsetPerYear.toLocaleString()} lbs</span></div>
@@ -301,14 +289,8 @@ function ReportContent() {
               </div>
             </BlurGate>
 
-            <BlurGate
-              footer={
-                <button className="brand-gradient text-white text-sm px-4 py-2 rounded-full shadow hover:opacity-95 ring-1 ring-black/10">
-                  🔓 Unlock Full Report →
-                </button>
-              }
-            >
-              <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50">{/* Assumptions */}
+            <BlurGate locked={true} onUnlock={() => {}}>
+              <div className="bg-white rounded-3xl p-8 border border-gray-200/50">{/* Assumptions */}
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Calculation Assumptions</h2>
                 <div className="space-y-6">
                   <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Federal Tax Credit (ITC)</span><span className="font-bold text-gray-900">{(estimate.assumptions.itcPercentage * 100).toFixed(0)}%</span></div>

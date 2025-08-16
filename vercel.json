@@ -1,5 +1,5 @@
 {
-  "framework": "nextjs",
-  "rewrites": [{ "source": "/(.*)", "destination": "/" }],
-  "redirects": []
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
+  ]
 }
