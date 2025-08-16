@@ -168,12 +168,8 @@ export default function LockOverlay() {
           
           <button 
             onClick={openInstallSheet}
+            className="px-8 py-4 rounded-2xl font-bold text-lg request-sample-btn transition-all duration-300 transform hover:-translate-y-1"
             style={{
-              padding: "16px 32px",
-              background: "#F3F4F6",
-              color: "#374151",
-              border: "1px solid #D1D5DB",
-              borderRadius: "12px",
               fontSize: "16px",
               fontWeight: "600",
               cursor: "pointer"
