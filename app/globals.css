@@ -484,7 +484,7 @@ h3 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 600px;
+  min-height: 500px;
 }
 
 .lead-form-modal .form-container {

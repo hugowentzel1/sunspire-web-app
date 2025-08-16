@@ -108,7 +108,7 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
             </div>
           ) : (
             <>
-              <div className="flex justify-between items-center mb-6">
+              <div className="flex justify-between items-center mb-4">
                 <h2 className="text-xl font-semibold text-gray-900">Request Sample Report</h2>
                 <button
                   onClick={onClose}
@@ -118,9 +118,9 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
                 </button>
               </div>
               
-              <p className="text-sm text-gray-600 mb-8">Get a detailed sample of your solar analysis</p>
+              <p className="text-sm text-gray-600 mb-6">Get a detailed sample of your solar analysis</p>
 
-              <form onSubmit={handleSubmit} className="space-y-6 mb-8">
+              <form onSubmit={handleSubmit} className="space-y-6 mb-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Name *
@@ -172,18 +172,6 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
                     rows={3}
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
                     placeholder="Any specific questions or requirements..."
-                  />
-                </div>
-
-                <div className="bg-gray-50 rounded-md p-3">
-                  <label className="block text-sm font-medium text-gray-700 mb-1">
-                    Property Address
-                  </label>
-                  <input
-                    type="text"
-                    value={address}
-                    readOnly
-                    className="w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md text-gray-600"
                   />
                 </div>
               </form>

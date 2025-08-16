@@ -97,15 +97,19 @@ export default function SavingsChart({ series, blur = false }: SavingsChartProps
             />
             <Tooltip content={<CustomTooltip />} />
             
-            {/* Total savings area - single clean line */}
+            {/* Total savings area - single clean line with company colors */}
             <Area
               type="monotone"
               dataKey="totalSavings"
-              stroke="#10b981"
+              stroke={b.enabled && b.primary ? b.primary : "#10b981"}
               strokeWidth={3}
-              fill="url(#savingsGradient)"
+              fill={b.enabled && b.primary ? `url(#companyGradient)` : `url(#savingsGradient)`}
               fillOpacity={0.4}
-              dot={{ fill: '#10b981', strokeWidth: 2, r: 4 }}
+              dot={{ 
+                fill: b.enabled && b.primary ? b.primary : "#10b981", 
+                strokeWidth: 2, 
+                r: 4 
+              }}
             />
           </AreaChart>
         </ResponsiveContainer>
@@ -148,6 +152,11 @@ export default function SavingsChart({ series, blur = false }: SavingsChartProps
           <linearGradient id="savingsGradient" x1="0" y1="0" x2="0" y2="1">
             <stop offset="5%" stopColor="#10b981" stopOpacity={0.4}/>
             <stop offset="95%" stopColor="#10b981" stopOpacity={0.1}/>
+          </linearGradient>
+          <linearGradient id="companyGradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor={b.enabled && b.primary ? b.primary : "#10b981"} stopOpacity={0.6}/>
+            <stop offset="50%" stopColor={b.enabled && b.primary ? `${b.primary}80` : "#10b98180"} stopOpacity={0.3}/>
+            <stop offset="100%" stopColor="#ffffff" stopOpacity={0.1}/>
           </linearGradient>
         </defs>
       </svg>
