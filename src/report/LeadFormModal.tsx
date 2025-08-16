@@ -184,8 +184,8 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="flex-1 px-4 py-3 bg-orange-600 text-white rounded-xl hover:bg-orange-700 disabled:opacity-50 transition-colors"
-                    style={{ display: 'block' }} // Force display
+                    className="flex-1 px-4 py-3 bg-orange-600 text-white rounded-xl hover:bg-orange-700 disabled:opacity-50 transition-colors font-semibold text-lg"
+                    style={{ display: 'block', visibility: 'visible', opacity: 1 }}
                   >
                     {isSubmitting ? "Sending..." : "Request Report"}
                   </button>
@@ -194,6 +194,17 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
                 {/* Debug info */}
                 <div className="text-xs text-gray-500 mt-2 text-center">
                   Debug: Form has {Object.keys(formData).length} fields, isSubmitting: {isSubmitting.toString()}
+                </div>
+                
+                {/* Force submit button visibility */}
+                <div className="mt-4 text-center">
+                  <button
+                    type="submit"
+                    onClick={handleSubmit}
+                    className="w-full px-6 py-3 bg-red-600 text-white rounded-xl hover:bg-red-700 font-semibold"
+                  >
+                    SUBMIT REPORT (FORCED)
+                  </button>
                 </div>
               </form>
             </>

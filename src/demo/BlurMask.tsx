@@ -26,7 +26,7 @@ export default function BlurMask({
       {children}
       
       {/* Blur Overlay */}
-      <div className="absolute inset-0 backdrop-blur-3xl bg-white/95 rounded-2xl transition-all duration-300 group-hover:bg-white/98" />
+      <div className="absolute inset-0 bg-white rounded-2xl transition-all duration-300 group-hover:bg-gray-50" />
       
       {/* Preview Badge */}
       <div className="absolute top-4 right-4">
