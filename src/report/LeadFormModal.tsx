@@ -197,11 +197,10 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
                     onClick={handleSubmit}
                     className="w-full px-6 py-4 bg-red-600 text-white rounded-xl hover:bg-red-700 font-semibold text-lg shadow-lg"
                     style={{
-                      display: 'block !important',
-                      visibility: 'visible !important',
-                      opacity: '1 !important',
-                      position: 'relative !important',
-                      zIndex: '9999 !important'
+                      display: 'block',
+                      opacity: '1',
+                      position: 'relative',
+                      zIndex: '9999'
                     }}
                   >
                     SUBMIT REPORT (FORCED)
