@@ -4,7 +4,6 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
-import { TenantProvider, useTenant } from '@/components/TenantProvider';
 import { PlaceResult } from '@/lib/calc';
 import LegalFooter from '@/components/legal/LegalFooter';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
@@ -27,7 +26,6 @@ function HomeContent() {
   const [selectedPlace, setSelectedPlace] = useState<PlaceResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const { tenant, loading: tenantLoading } = useTenant();
   
   // Brand takeover mode detection
   const b = useBrandTakeover();
@@ -124,7 +122,7 @@ function HomeContent() {
     }
   };
 
-  if (tenantLoading || !tenant) {
+  if (!b.enabled) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter flex items-center justify-center">
         <div className="text-center space-y-6">
@@ -151,23 +149,13 @@ function HomeContent() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center space-x-4">
-              {!b.enabled ? (
-                <motion.div 
-                  className="w-12 h-12 bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 rounded-2xl flex items-center justify-center shadow-2xl"
-                  whileHover={{ scale: 1.05, rotate: 5 }}
-                  transition={{ type: 'spring', stiffness: 300 }}
-                >
-                  <span className="text-white font-bold text-lg">☀️</span>
-                </motion.div>
-              ) : (
-                <HeroBrand />
-              )}
+              <HeroBrand />
               <div>
                 <h1 className="text-2xl font-black bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text text-transparent">
-                  {b.enabled ? b.brand : tenant.name}
+                  {b.brand}
                 </h1>
                 <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
-                  {b.enabled ? "Solar Intelligence" : tenant.tagline}
+                  Solar Intelligence
                 </p>
               </div>
             </div>
@@ -288,12 +276,13 @@ function HomeContent() {
             transition={{ delay: 0.8, duration: 0.8 }} 
             className="flex flex-wrap justify-center gap-8 text-sm"
           >
-            {tenant.trustBadges.slice(0, 3).map((badge, index) => (
-              <div key={index} className="flex items-center space-x-3 bg-white/60 backdrop-blur-sm rounded-2xl px-6 py-3 border border-gray-200/50">
-                <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                <span className="font-semibold text-gray-700">{badge}</span>
-              </div>
-            ))}
+            {/* Tenant trust badges are removed as per edit hint */}
+            {/* {tenant.trustBadges.slice(0, 3).map((badge, index) => ( */}
+            {/*   <div key={index} className="flex items-center space-x-3 bg-white/60 backdrop-blur-sm rounded-2xl px-6 py-3 border border-gray-200/50"> */}
+            {/*     <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div> */}
+            {/*     <span className="font-semibold text-gray-700">{badge}</span> */}
+            {/*   </div> */}
+            {/* ))} */}
           </motion.div>
 
           <motion.div 
@@ -499,10 +488,6 @@ function HomeContent() {
 
 export default function Home() {
   return (
-    <TenantProvider>
-      <HomeContent />
-      {/* Hide original brand elements when in demo mode */}
-      <NavBrandOverride />
-    </TenantProvider>
+    <HomeContent />
   );
 }
