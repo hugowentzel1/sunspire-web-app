@@ -10,7 +10,7 @@ import EstimateChart from '@/components/EstimateChart';
 import { formatDateSafe } from '@/lib/format';
 import LegalFooter from '@/components/legal/LegalFooter';
 import { IconBadge } from '@/components/ui/IconBadge';
-import BlurGate from '@/components/ui/BlurGate';
+import UnlockPill from '@/src/components/ui/UnlockPill';
 import { useBrandColors } from '@/hooks/useBrandColors';
 import StickyBuyBar from '@/src/demo/StickyBuyBar';
 import InstallSheet from '@/src/demo/InstallSheet';
@@ -235,38 +235,67 @@ function ReportContent() {
             </div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              <div className="mb-4"><IconBadge>⚡</IconBadge></div>
-              <div className="text-3xl font-black text-gray-900 mb-2">{estimate.systemSizeKW} kW</div>
-              <div className="text-gray-600 font-semibold">System Size</div>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
+            <div className="relative rounded-2xl p-8 bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
+              <div aria-hidden className="absolute inset-0 rounded-2xl bg-white/60 backdrop-blur-md pointer-events-none" />
+              <div className="relative z-0">
+                <div className="mb-4"><IconBadge>⚡</IconBadge></div>
+                <div className="text-3xl font-black text-gray-900 mb-2">{estimate.systemSizeKW} kW</div>
+                <div className="text-gray-600 font-semibold">System Size</div>
+              </div>
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10">
+                <UnlockPill />
+              </div>
             </div>
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              <div className="mb-4"><IconBadge>☀️</IconBadge></div>
-              <div className="text-3xl font-black text-gray-900 mb-2">{estimate.annualProductionKWh.toLocaleString()} kWh</div>
-              <div className="text-gray-600 font-semibold">Annual Production</div>
+            <div className="relative rounded-2xl p-8 bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
+              <div aria-hidden className="absolute inset-0 rounded-2xl bg-white/60 backdrop-blur-md pointer-events-none" />
+              <div className="relative z-0">
+                <div className="mb-4"><IconBadge>☀️</IconBadge></div>
+                <div className="text-3xl font-black text-gray-900 mb-2">{estimate.annualProductionKWh.toLocaleString()} kWh</div>
+                <div className="text-gray-600 font-semibold">Annual Production</div>
+              </div>
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10">
+                <UnlockPill />
+              </div>
             </div>
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              <div className="mb-4"><IconBadge>💰</IconBadge></div>
-              <div className="text-3xl font-black text-gray-900 mb-2">${estimate.netCostAfterITC.toLocaleString()}</div>
-              <div className="text-gray-600 font-semibold">Net Cost (After ITC)</div>
+            <div className="relative rounded-2xl p-8 bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
+              <div aria-hidden className="absolute inset-0 rounded-2xl bg-white/60 backdrop-blur-md pointer-events-none" />
+              <div className="relative z-0">
+                <div className="mb-4"><IconBadge>💰</IconBadge></div>
+                <div className="text-3xl font-black text-gray-900 mb-2">${estimate.netCostAfterITC.toLocaleString()}</div>
+                <div className="text-gray-600 font-semibold">Net Cost (After ITC)</div>
+              </div>
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10">
+                <UnlockPill />
+              </div>
             </div>
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              <div className="mb-4"><IconBadge>📈</IconBadge></div>
-              <div className="text-3xl font-black text-gray-900 mb-2">{estimate.year1Savings.toLocaleString()}</div>
-              <div className="text-gray-600 font-semibold">Year 1 Savings</div>
+            <div className="relative rounded-2xl p-8 bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
+              <div aria-hidden className="absolute inset-0 rounded-2xl bg-white/60 backdrop-blur-md pointer-events-none" />
+              <div className="relative z-0">
+                <div className="mb-4"><IconBadge>📈</IconBadge></div>
+                <div className="text-3xl font-black text-gray-900 mb-2">{estimate.year1Savings.toLocaleString()}</div>
+                <div className="text-gray-600 font-semibold">Year 1 Savings</div>
+              </div>
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10">
+                <UnlockPill />
+              </div>
             </div>
           </motion.div>
 
-          <BlurGate locked={true} onUnlock={() => {}} className="rounded-2xl">
-            <div className="p-5 min-h-[400px]">
+          <div className="relative rounded-2xl bg-white p-5 overflow-hidden">
+            <div aria-hidden className="absolute inset-0 rounded-2xl bg-white/60 backdrop-blur-md pointer-events-none" />
+            <div className="relative z-0 min-h-[400px]">
               <EstimateChart cashflowData={estimate.cashflowProjection} netCostAfterITC={estimate.netCostAfterITC} />
             </div>
-          </BlurGate>
+            <div className="relative z-10 flex justify-center mt-3">
+              <UnlockPill />
+            </div>
+          </div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.8 }} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            <BlurGate locked={true} onUnlock={() => {}}>
-              <div className="bg-white rounded-3xl p-8 border border-gray-200/50 min-h-[300px]">{/* Financial */}
+            <div className="relative rounded-2xl p-8 bg-white border border-gray-200/50">
+              <div aria-hidden className="absolute inset-0 rounded-2xl bg-white/60 backdrop-blur-md pointer-events-none" />
+              <div className="relative z-0">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Financial Analysis</h2>
                 <div className="space-y-6">
                   <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Payback Period</span><span className="font-bold text-gray-900">{estimate.paybackYear} years</span></div>
@@ -275,10 +304,14 @@ function ReportContent() {
                   <div className="flex justify-between items-center py-4"><span className="text-gray-600">Electricity Rate</span><span className="font-bold text-gray-900">${estimate.utilityRate}/kWh ({estimate.utilityRateSource})</span></div>
                 </div>
               </div>
-            </BlurGate>
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10">
+                <UnlockPill />
+              </div>
+            </div>
 
-            <BlurGate locked={true} onUnlock={() => {}}>
-              <div className="bg-white rounded-3xl p-8 border border-gray-200/50 min-h-[300px]">{/* Environmental */}
+            <div className="relative rounded-2xl p-8 bg-white border border-gray-200/50">
+              <div aria-hidden className="absolute inset-0 rounded-2xl bg-white/60 backdrop-blur-md pointer-events-none" />
+              <div className="relative z-0">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Environmental Impact</h2>
                 <div className="space-y-6">
                   <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">CO₂ Offset/Year</span><span className="font-bold text-gray-900">{estimate.co2OffsetPerYear.toLocaleString()} lbs</span></div>
@@ -287,10 +320,14 @@ function ReportContent() {
                   <div className="flex justify-between items-center py-4"><span className="text-gray-600">System Losses</span><span className="font-bold text-gray-900">{estimate.losses}%</span></div>
                 </div>
               </div>
-            </BlurGate>
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10">
+                <UnlockPill />
+              </div>
+            </div>
 
-            <BlurGate locked={true} onUnlock={() => {}}>
-              <div className="bg-white rounded-3xl p-8 border border-gray-200/50 min-h-[300px]">{/* Assumptions */}
+            <div className="relative rounded-2xl p-8 bg-white border border-gray-200/50">
+              <div aria-hidden className="absolute inset-0 rounded-2xl bg-white/60 backdrop-blur-md pointer-events-none" />
+              <div className="relative z-0">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Calculation Assumptions</h2>
                 <div className="space-y-6">
                   <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Federal Tax Credit (ITC)</span><span className="font-bold text-gray-900">{(estimate.assumptions.itcPercentage * 100).toFixed(0)}%</span></div>
@@ -301,7 +338,10 @@ function ReportContent() {
                   <div className="flex justify-between items-center py-4"><span className="text-gray-600">Discount Rate</span><span className="font-bold text-gray-900">{(estimate.assumptions.discountRate * 100).toFixed(0)}%</span></div>
                 </div>
               </div>
-            </BlurGate>
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-10">
+                <UnlockPill />
+              </div>
+            </div>
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 rounded-3xl p-8 text-center text-white">

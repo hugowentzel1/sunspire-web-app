@@ -42,6 +42,21 @@
   --warning: #F59E0B;
   --error: #EF4444;
   --info: #3B82F6;
+
+  --brand: #D72626; /* fallback brand red */
+}
+
+/* Never allow blur to affect these nodes */
+.no-blur, .no-blur * {
+  filter: none !important;
+  -webkit-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Force solid brand background (no gradient) for pills/buttons that use this class */
+.pill-brand {
+  background: var(--brand) !important;
+  background-image: none !important; /* kill gradients */
 }
 
 * {

@@ -15,5 +15,7 @@ export function useBrandColors() {
     const r = document.documentElement;
     r.style.setProperty('--brand', a || fallbackA);
     r.style.setProperty('--brand-2', b || fallbackB);
+    // Also set brand-primary for backward compatibility
+    r.style.setProperty('--brand-primary', a || fallbackA);
   }, [sp]);
 }

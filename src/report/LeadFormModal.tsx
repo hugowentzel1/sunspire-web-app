@@ -188,18 +188,11 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
                 </div>
 
                 {/* footer actions, always visible */}
-                <footer className="mt-4 mb-4 flex w-full items-center justify-center gap-3">
-                  <button
-                    type="button"
-                    onClick={onClose}
-                    className="rounded-xl px-4 py-2 text-[color:var(--ink)] bg-white shadow-sm ring-1 ring-black/5 hover:bg-slate-50"
-                  >
-                    Cancel
-                  </button>
+                <footer className="mt-6 flex items-center justify-center">
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="rounded-xl bg-[color:var(--brand)] px-5 py-3 font-semibold text-white shadow-md hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+                    className="pill-brand no-blur inline-flex items-center justify-center rounded-lg px-6 py-3 text-white font-semibold shadow-md hover:brightness-95 active:brightness-90 transition-colors"
                   >
                     {isSubmitting ? "Submitting..." : "Request Sample Report"}
                   </button>
