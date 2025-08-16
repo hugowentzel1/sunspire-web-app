@@ -16,3 +16,4 @@ Your beautiful Sunspire site is back and working!
 // Trigger fresh Vercel deployment
 // Trigger fresh Vercel deployment to fix loading issue
 # Trigger deployment
+# Trigger fresh deployment - revert complete
