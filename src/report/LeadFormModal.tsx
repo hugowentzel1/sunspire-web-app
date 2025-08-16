@@ -185,27 +185,38 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
                     type="submit"
                     disabled={isSubmitting}
                     className="flex-1 px-4 py-3 bg-orange-600 text-white rounded-xl hover:bg-orange-700 disabled:opacity-50 transition-colors font-semibold text-lg"
-                    style={{ display: 'block', visibility: 'visible', opacity: 1 }}
                   >
                     {isSubmitting ? "Sending..." : "Request Report"}
                   </button>
                 </div>
                 
-                {/* Debug info */}
-                <div className="text-xs text-gray-500 mt-2 text-center">
-                  Debug: Form has {Object.keys(formData).length} fields, isSubmitting: {isSubmitting.toString()}
-                </div>
-                
-                {/* Force submit button visibility */}
-                <div className="mt-4 text-center">
+                {/* FORCED SUBMIT BUTTON - This will always be visible */}
+                <div className="mt-4 pt-4 border-t border-gray-200">
                   <button
                     type="submit"
                     onClick={handleSubmit}
-                    className="w-full px-6 py-3 bg-red-600 text-white rounded-xl hover:bg-red-700 font-semibold"
+                    className="w-full px-6 py-4 bg-red-600 text-white rounded-xl hover:bg-red-700 font-semibold text-lg shadow-lg"
+                    style={{
+                      display: 'block !important',
+                      visibility: 'visible !important',
+                      opacity: '1 !important',
+                      position: 'relative !important',
+                      zIndex: '9999 !important'
+                    }}
                   >
                     SUBMIT REPORT (FORCED)
                   </button>
                 </div>
+                
+                {/* Additional backup - hidden but functional */}
+                <button
+                  type="submit"
+                  onClick={handleSubmit}
+                  className="sr-only"
+                  aria-hidden="true"
+                >
+                  Hidden Submit
+                </button>
               </form>
             </>
           )}

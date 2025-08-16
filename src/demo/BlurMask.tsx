@@ -22,21 +22,24 @@ export default function BlurMask({
   };
   
   return (
-    <div className="relative group">
-      {children}
+    <div className="relative">
+      {/* Hide the original content completely */}
+      <div className="opacity-0 pointer-events-none">
+        {children}
+      </div>
       
-      {/* Blur Overlay */}
-      <div className="absolute inset-0 bg-white rounded-2xl transition-all duration-300 group-hover:bg-gray-50" />
+      {/* Solid white overlay that blocks everything */}
+      <div className="absolute inset-0 bg-white rounded-2xl shadow-lg" />
       
       {/* Preview Badge */}
-      <div className="absolute top-4 right-4">
-        <div className="px-3 py-1.5 bg-gray-900/80 backdrop-blur-sm text-white text-xs font-medium rounded-full border border-white/20">
+      <div className="absolute top-4 right-4 z-10">
+        <div className="px-3 py-1.5 bg-gray-900/90 text-white text-xs font-medium rounded-full border border-white/20">
           Preview — details hidden
         </div>
       </div>
       
       {/* Unlock Button */}
-      <div className="absolute inset-0 flex items-center justify-center">
+      <div className="absolute inset-0 flex items-center justify-center z-10">
         <button 
           onClick={handleBlurClick}
           className="px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 hover:-translate-y-1 border-0 cursor-pointer"
@@ -49,9 +52,6 @@ export default function BlurMask({
           </div>
         </button>
       </div>
-      
-      {/* Hover Effect */}
-      <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-orange-300/50 transition-all duration-300" />
     </div>
   );
 }
