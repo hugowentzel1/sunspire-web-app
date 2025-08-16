@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { track } from "@/src/demo/track";
+import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 
 interface LeadFormModalProps {
   isOpen: boolean;
@@ -25,6 +26,9 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  
+  // Get brand colors
+  const b = useBrandTakeover();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -70,6 +74,13 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
   };
 
   if (!isOpen) return null;
+
+  // Use company brand colors for button
+  const buttonStyle = b.enabled && b.primary ? {
+    background: `linear-gradient(135deg, ${b.primary}70, ${b.primary})`
+  } : {
+    background: 'linear-gradient(135deg, #fbbf2470, #d97706)'
+  };
 
   return (
     <AnimatePresence>
@@ -181,7 +192,8 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="px-6 py-3 rounded-lg text-white font-medium bg-gradient-to-r from-orange-500 to-rose-500 shadow hover:opacity-95 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="px-8 py-4 rounded-lg text-white font-semibold shadow-lg hover:opacity-95 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 hover:shadow-xl min-w-[200px] h-[52px] flex items-center justify-center"
+                    style={buttonStyle}
                   >
                     {isSubmitting ? "Submitting..." : "Request Sample Report"}
                   </button>

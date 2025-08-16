@@ -28,7 +28,9 @@ export default function MetricCard({
   
   const cardContent = (
     <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-      <div className="mb-4"><IconBadge>{icon}</IconBadge></div>
+      <div className="flex justify-center mb-4">
+        <IconBadge>{icon}</IconBadge>
+      </div>
       <div className="text-3xl font-black text-gray-900 mb-2">{displayValue}</div>
       <div className="text-gray-600 font-semibold">{label}</div>
       {hint && (

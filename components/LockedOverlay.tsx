@@ -13,10 +13,11 @@ export default function LockedOverlay({
   const b = useBrandTakeover();
   
   // Use company brand colors for gradient, fallback to default
+  // Better gradient that matches the company color more closely
   const gradientStyle = b.enabled && b.primary ? {
-    background: `linear-gradient(135deg, ${b.primary}60, ${b.primary})`
+    background: `linear-gradient(135deg, ${b.primary}70, ${b.primary})`
   } : {
-    background: 'linear-gradient(135deg, #fbbf2460, #d97706)'
+    background: 'linear-gradient(135deg, #fbbf2470, #d97706)'
   };
 
   return (
@@ -30,7 +31,7 @@ export default function LockedOverlay({
       <button
         type="button"
         onClick={onUnlock}
-        className="pointer-events-auto absolute left-1/2 bottom-6 transform -translate-x-1/2 px-5 py-3 rounded-full text-white text-sm font-medium shadow-lg hover:opacity-95 transition-all duration-200 hover:shadow-xl z-30 min-w-[160px]"
+        className="pointer-events-auto absolute left-1/2 bottom-6 transform -translate-x-1/2 px-6 py-3 rounded-full text-white text-sm font-semibold shadow-lg hover:opacity-95 transition-all duration-200 hover:shadow-xl z-30 min-w-[180px] h-[48px] flex items-center justify-center"
         style={gradientStyle}
       >
         🔒 {label} →
