@@ -11,7 +11,7 @@ import { formatDateSafe } from '@/lib/format';
 import LegalFooter from '@/components/legal/LegalFooter';
 import { IconBadge } from '@/components/ui/IconBadge';
 import UnlockButton from '@/components/UnlockButton';
-import BlurGate from '@/components/ui/BlurGate';
+
 import { useBrandColors } from '@/hooks/useBrandColors';
 import StickyBuyBar from '@/src/demo/StickyBuyBar';
 import InstallSheet from '@/src/demo/InstallSheet';
