@@ -331,8 +331,13 @@ function ReportContent() {
               </div>
             </div>
 
-            <BlurGate locked={true} onUnlock={() => {}}>
-              <div className="bg-white rounded-3xl p-8 border border-gray-200/50">
+            {/* Environmental Impact - Blurred */}
+            <div className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50">
+              {/* BLUR LAYER */}
+              <div className="absolute inset-0 bg-white/60 backdrop-blur-sm pointer-events-none" aria-hidden />
+              
+              {/* CONTENT LAYER */}
+              <div className="relative z-10 p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Environmental Impact</h2>
                 <div className="space-y-6">
                   <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">CO₂ Offset/Year</span><span className="font-bold text-gray-900">{estimate.co2OffsetPerYear.toLocaleString()} lbs</span></div>
@@ -341,7 +346,14 @@ function ReportContent() {
                   <div className="flex justify-between items-center py-4"><span className="text-gray-600">System Losses</span><span className="font-bold text-gray-900">{estimate.losses}%</span></div>
                 </div>
               </div>
-            </BlurGate>
+
+              {/* UNLOCK BUTTON (always sharp, centered, consistent spacing) */}
+              <UnlockButton
+                label="Unlock Full Report"
+                onClick={() => {}} // TODO: Add checkout function
+                className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
+              />
+            </div>
 
             {/* Calculation Assumptions - Unblurred */}
             <div className="bg-white rounded-3xl p-8 border border-gray-200/50">

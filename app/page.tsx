@@ -221,7 +221,7 @@ function HomeContent() {
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ delay: 0.1, duration: 0.8 }}
-              className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg"
+              className="bg-white/80 backdrop-blur-sm rounded-3xl py-12 px-8 border border-gray-200/50 shadow-lg"
             >
               <div className="space-y-4">
                 <h2 className="text-3xl font-bold text-gray-900">
@@ -526,9 +526,5 @@ function HomeContent() {
 }
 
 export default function Home() {
-  return (
-    <React.Suspense fallback={<LoadingFallback />}>
-      <HomeContent />
-    </React.Suspense>
-  );
+  return <HomeContent />;
 }

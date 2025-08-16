@@ -221,13 +221,7 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
                     />
                   </div>
 
-                  {/* Property Address */}
-                  <div className="bg-gray-50 rounded-2xl p-4">
-                    <label className="block text-sm font-semibold text-gray-700 mb-2">
-                      Property Address
-                    </label>
-                    <p className="text-gray-600 text-sm">{address}</p>
-                  </div>
+
 
                   {/* Error Message */}
                   {error && (
@@ -237,30 +231,28 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
                   )}
 
                   {/* Footer Buttons */}
-                  <footer className="mt-4 sticky bottom-0 bg-white/90 backdrop-blur supports-[backdrop-filter]:bg-white/70 px-4 py-3">
-                    <div className="flex flex-col justify-end gap-3 sm:flex-row">
-                      <button 
-                        type="button" 
-                        onClick={handleClose} 
-                        className="h-10 px-4 rounded-md border border-slate-200 text-slate-700"
-                      >
-                        Cancel
-                      </button>
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="h-10 px-4 rounded-md text-white font-semibold brand-gradient"
-                      >
-                        {isSubmitting ? (
-                          <div className="flex items-center justify-center space-x-2">
-                            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                            <span>Submitting...</span>
-                          </div>
-                        ) : (
-                          'Request Sample Report'
-                        )}
-                      </button>
-                    </div>
+                  <footer className="mt-6 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-end gap-3">
+                    <button 
+                      type="button" 
+                      onClick={handleClose} 
+                      className="px-4 py-2 rounded-lg ring-1 ring-black/10 bg-white hover:bg-slate-50"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="brand-gradient text-white px-4 py-2 rounded-lg shadow hover:opacity-95"
+                    >
+                      {isSubmitting ? (
+                        <div className="flex items-center justify-center space-x-2">
+                          <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                          <span>Submitting...</span>
+                        </div>
+                      ) : (
+                        'Request Sample Report'
+                      )}
+                    </button>
                   </footer>
                 </form>
 
