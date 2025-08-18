@@ -1,31 +1,26 @@
 "use client";
 
-import { useEffect, useState } from 'react';
-import { getBrandFromQuery } from '@/lib/brand';
+import { useEffect } from 'react';
+import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 
 export default function BrandCSSInjector() {
-  const [isClient, setIsClient] = useState(false);
+  const { enabled, primary, brand } = useBrandTakeover();
 
   useEffect(() => {
-    setIsClient(true);
+    const root = document.documentElement;
     
-    try {
-      const { from, to } = getBrandFromQuery();
-      const root = document.documentElement;
+    if (enabled && primary) {
+      // Set the company's primary color
+      root.style.setProperty('--brand', primary);
+      root.style.setProperty('--brand-2', primary); // Use same color for consistency
       
-      root.style.setProperty('--brand', from);
-      root.style.setProperty('--brand-2', to);
-    } catch (error) {
-      console.warn('Brand injection failed:', error);
+      console.log(`Brand CSS injected: ${brand} with color ${primary}`);
+    } else {
       // Fallback to default brand
-      const root = document.documentElement;
       root.style.setProperty('--brand', '#FF7A00');
       root.style.setProperty('--brand-2', '#FF3D81');
     }
-  }, []);
-
-  // Don't render anything until client-side
-  if (!isClient) return null;
+  }, [enabled, primary, brand]);
 
   return null;
 }
