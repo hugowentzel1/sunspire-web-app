@@ -228,7 +228,7 @@ function HomeContent() {
                   <p className="text-lg text-gray-600">
                     Exclusive preview of your white-label solar intelligence tool
                   </p>
-                  <div className="inline-flex items-center px-4 py-2 bg-orange-100 border border-orange-300 rounded-full text-orange-800 text-sm font-medium">
+                  <div className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium" style={{ backgroundColor: `${b.primary}20`, borderColor: `${b.primary}40`, color: b.primary }}>
                     <span className="mr-2">⚡</span>
                     Ready to launch on {b.domain || b.brand}.com
                   </div>
@@ -239,7 +239,7 @@ function HomeContent() {
           
           {/* HERO ICON: render only one (fix double) */}
           {!b.enabled ? (
-            <div className="w-32 h-32 mx-auto bg-gradient-to-br from-orange-400 via-red-500 to-pink-500 rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden">
+            <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${b.primary}, ${b.primary}CC)` }}>
               <motion.div 
                 className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" 
                 animate={{ x: ['-100%', '100%'] }} 

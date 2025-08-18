@@ -74,14 +74,16 @@ export default function EstimateChart({ cashflowData, netCostAfterITC, className
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (
-        <div className="bg-white p-4 rounded-lg shadow-lg border border-gray-200">
-          <p className="font-semibold text-gray-900">Year {label}</p>
-          <p className="text-sm text-green-600 font-semibold">
-            Total Savings: {data.totalSavingsFormatted}
-          </p>
-          <p className="text-sm text-gray-600">
-            Annual Savings: {data.annualSavingsFormatted}
-          </p>
+        <div className="bg-white/95 backdrop-blur-sm p-4 rounded-xl shadow-xl border border-gray-200/50">
+          <p className="font-bold text-gray-900 mb-2">Year {label}</p>
+          <div className="space-y-1">
+            <p className="text-sm font-semibold" style={{ color: 'var(--brand)' }}>
+              Total Savings: {data.totalSavingsFormatted}
+            </p>
+            <p className="text-sm text-gray-600">
+              Annual Savings: {data.annualSavingsFormatted}
+            </p>
+          </div>
         </div>
       );
     }
@@ -93,46 +95,55 @@ export default function EstimateChart({ cashflowData, netCostAfterITC, className
 
   return (
     <div className={`bg-white rounded-2xl p-6 border border-gray-200/50 ${className}`}>
-      <div className="mb-6">
-        <h3 className="text-xl font-bold text-gray-900 mb-2">
-          Your Solar Savings Over Time
+      <div className="mb-8">
+        <h3 className="text-2xl font-bold text-gray-900 mb-3">
+          Your Solar Investment Timeline
         </h3>
-        <p className="text-gray-600 text-sm">
-          Simple view of how your solar investment pays off over 25 years
+        <p className="text-gray-600">
+          See how your solar investment pays off over 25 years
         </p>
       </div>
 
-      <div className="h-64">
+      <div className="h-80">
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={simplifiedData} margin={{ top: 20, right: 30, left: 40, bottom: 5 }}>
-            <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+            <defs>
+              <linearGradient id="savingsGradient" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="var(--brand)" stopOpacity={0.3}/>
+                <stop offset="95%" stopColor="var(--brand)" stopOpacity={0.05}/>
+              </linearGradient>
+            </defs>
+            
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.06)" strokeWidth={1} />
             <XAxis 
               dataKey="year" 
-              stroke="#6b7280"
-              fontSize={12}
+              stroke="rgba(0,0,0,0.4)"
+              fontSize={13}
+              fontWeight={500}
               tickLine={false}
               axisLine={false}
-              label={{ value: 'Years', position: 'insideBottom', offset: -5, style: { textAnchor: 'middle' } }}
+              label={{ value: 'Years', position: 'insideBottom', offset: -5, style: { textAnchor: 'middle', fontSize: 14, fontWeight: 600 } }}
             />
             <YAxis 
-              stroke="#6b7280"
-              fontSize={12}
+              stroke="rgba(0,0,0,0.4)"
+              fontSize={13}
+              fontWeight={500}
               tickLine={false}
               axisLine={false}
               tickFormatter={(value) => `$${Math.round(value / 1000)}k`}
-              label={{ value: 'Total Savings', angle: -90, position: 'insideLeft', style: { textAnchor: 'middle' } }}
+              label={{ value: 'Total Savings', angle: -90, position: 'insideLeft', style: { textAnchor: 'middle', fontSize: 14, fontWeight: 600 } }}
             />
             <Tooltip content={<CustomTooltip />} />
             
-            {/* Total savings area - single clean line */}
+            {/* Total savings area - premium styling */}
             <Area
               type="monotone"
               dataKey="totalSavings"
-              stroke="#10b981"
-              strokeWidth={3}
+              stroke="var(--brand)"
+              strokeWidth={4}
               fill="url(#savingsGradient)"
-              fillOpacity={0.4}
-              dot={{ fill: '#10b981', strokeWidth: 2, r: 4 }}
+              dot={{ fill: 'var(--brand)', strokeWidth: 3, r: 6, stroke: 'white' }}
+              activeDot={{ fill: 'var(--brand)', strokeWidth: 4, r: 8, stroke: 'white' }}
             />
           </AreaChart>
         </ResponsiveContainer>
@@ -140,20 +151,20 @@ export default function EstimateChart({ cashflowData, netCostAfterITC, className
 
       {/* Simplified insights */}
       <div className="mt-6 grid grid-cols-3 gap-4">
-        <div className="text-center p-4 bg-orange-50 rounded-lg border border-orange-200">
-          <div className="text-xl font-bold text-orange-600">
+        <div className="text-center p-4 rounded-lg border" style={{ backgroundColor: 'var(--brand)20', borderColor: 'var(--brand)40' }}>
+          <div className="text-xl font-bold" style={{ color: 'var(--brand)' }}>
             ${Math.round(netCostAfterITC / 1000)}k
           </div>
           <div className="text-xs text-gray-600">Investment</div>
         </div>
-        <div className="text-center p-4 bg-blue-50 rounded-lg border border-blue-200">
-          <div className="text-xl font-bold text-blue-600">
+        <div className="text-center p-4 rounded-lg border" style={{ backgroundColor: 'var(--brand)20', borderColor: 'var(--brand)40' }}>
+          <div className="text-xl font-bold" style={{ color: 'var(--brand)' }}>
             {paybackYear} years
           </div>
           <div className="text-xs text-gray-600">Payback Time</div>
         </div>
-        <div className="text-center p-4 bg-green-50 rounded-lg border border-green-200">
-          <div className="text-xl font-bold text-green-600">
+        <div className="text-center p-4 rounded-lg border" style={{ backgroundColor: 'var(--brand)20', borderColor: 'var(--brand)40' }}>
+          <div className="text-xl font-bold" style={{ color: 'var(--brand)' }}>
             ${Math.round(cashflowData[24]?.cumulativeSavings / 1000)}k
           </div>
           <div className="text-xs text-gray-600">25-Year Savings</div>
@@ -161,23 +172,15 @@ export default function EstimateChart({ cashflowData, netCostAfterITC, className
       </div>
 
       {/* Simple explanation */}
-      <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+      <div className="mt-6 p-4 rounded-lg border" style={{ backgroundColor: 'var(--brand)5', borderColor: 'var(--brand)20' }}>
         <p className="text-sm text-gray-700">
-          <span className="font-semibold">How to read this:</span> The green area shows your total savings growing over time. 
+          <span className="font-semibold">How to read this:</span> The <span style={{ color: 'var(--brand)' }}>company-branded</span> area shows your total savings growing over time. 
           After {paybackYear} years, you'll have saved enough to cover your initial investment. 
           By year 25, you'll have saved ${Math.round(cashflowData[24]?.cumulativeSavings / 1000)}k total.
         </p>
       </div>
 
-      {/* SVG definitions for gradients */}
-      <svg width="0" height="0">
-        <defs>
-          <linearGradient id="savingsGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="#10b981" stopOpacity={0.4}/>
-            <stop offset="95%" stopColor="#10b981" stopOpacity={0.1}/>
-          </linearGradient>
-        </defs>
-      </svg>
+
     </div>
   );
 }
