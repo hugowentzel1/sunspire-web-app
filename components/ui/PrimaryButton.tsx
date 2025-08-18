@@ -1,10 +1,11 @@
-import { cn } from "@/lib/utils";
-import { ButtonHTMLAttributes, ReactNode } from "react";
+"use client";
+
+import { ButtonHTMLAttributes } from 'react';
+import { cn } from '@/lib/utils';
 
 interface PrimaryButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children: ReactNode;
-  className?: string;
   size?: "sm" | "md" | "lg";
+  variant?: "primary" | "secondary" | "cta";
   disabled?: boolean;
 }
 
@@ -12,6 +13,7 @@ export function PrimaryButton({
   children, 
   className, 
   size = "md", 
+  variant = "primary",
   disabled = false,
   ...props 
 }: PrimaryButtonProps) {
@@ -21,15 +23,19 @@ export function PrimaryButton({
     lg: "px-8 py-4 text-lg"
   };
 
+  const variantClasses = {
+    primary: "btn-primary",
+    secondary: "btn-secondary", 
+    cta: "btn-cta"
+  };
+
   return (
     <button
       className={cn(
-        "inline-flex items-center justify-center rounded-lg font-semibold text-white",
-        "bg-[var(--primary)] shadow-md hover:bg-[var(--primary-hover)]",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--primary)]",
-        "transition-all duration-200 hover:shadow-lg hover:scale-[1.02]",
-        "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:transform-none",
+        variantClasses[variant],
         sizeClasses[size],
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--brand)]",
+        "disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:transform-none",
         className
       )}
       disabled={disabled}

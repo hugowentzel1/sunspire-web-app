@@ -28,15 +28,198 @@
   @apply bg-white/75 backdrop-blur-xl border border-white/60 shadow-[0_10px_40px_rgba(15,23,42,.06)];
 }
 
-/* Premium Button */
+/* Enhanced Premium Button System - Works with any company colors */
 .btn-primary {
-  @apply inline-flex items-center justify-center rounded-2xl px-5 py-3 font-semibold text-white shadow-lg transition;
-  background-image: linear-gradient(90deg, var(--brand), var(--brand-2));
+  @apply inline-flex items-center justify-center rounded-2xl px-6 py-4 font-bold text-white transition-all duration-300 transform;
+  
+  /* Dynamic company color with premium enhancements */
+  background: linear-gradient(135deg, 
+    var(--brand) 0%, 
+    color-mix(in srgb, var(--brand) 85%, white) 25%,
+    var(--brand) 50%,
+    color-mix(in srgb, var(--brand) 90%, black) 75%,
+    var(--brand) 100%
+  );
+  
+  /* Premium shadows and borders */
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    0 4px 16px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+  
+  /* Premium border with subtle glow */
+  border: 1px solid color-mix(in srgb, var(--brand) 80%, white);
+  
+  /* Text shadow for premium feel */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  
+  /* Position relative for pseudo-elements */
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent, 
+    rgba(255, 255, 255, 0.2), 
+    transparent
+  );
+  transition: left 0.6s ease;
 }
 
 .btn-primary:hover {
-  @apply shadow-xl scale-[1.02];
-  background-image: linear-gradient(90deg, var(--brand-2), var(--brand));
+  @apply scale-[1.02] -translate-y-1;
+  
+  /* Enhanced hover effects */
+  box-shadow: 
+    0 16px 48px rgba(0, 0, 0, 0.2),
+    0 8px 24px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+  
+  /* Slightly brighter on hover */
+  filter: brightness(1.05) saturate(1.1);
+}
+
+.btn-primary:hover::before {
+  left: 100%;
+}
+
+.btn-primary:active {
+  @apply scale-[0.98] translate-y-0;
+  transition: all 0.1s ease;
+}
+
+/* Secondary Button - More subtle but still premium */
+.btn-secondary {
+  @apply inline-flex items-center justify-center rounded-2xl px-6 py-4 font-semibold transition-all duration-300 transform;
+  
+  /* Sophisticated secondary style */
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 255, 255, 0.85) 100%
+  );
+  
+  color: var(--brand);
+  border: 2px solid color-mix(in srgb, var(--brand) 20%, transparent);
+  
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.btn-secondary:hover {
+  @apply scale-[1.02] -translate-y-1;
+  
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 1) 0%,
+    rgba(255, 255, 255, 0.95) 100%
+  );
+  
+  border-color: color-mix(in srgb, var(--brand) 40%, transparent);
+  
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    0 4px 16px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* CTA Button - Most premium for conversions */
+.btn-cta {
+  @apply inline-flex items-center justify-center rounded-3xl px-8 py-5 font-black text-lg transition-all duration-500 transform;
+  
+  /* Ultra-premium gradient with company colors */
+  background: linear-gradient(135deg,
+    var(--brand) 0%,
+    color-mix(in srgb, var(--brand) 70%, var(--brand-2)) 25%,
+    var(--brand-2) 50%,
+    color-mix(in srgb, var(--brand-2) 70%, var(--brand)) 75%,
+    var(--brand) 100%
+  );
+  
+  /* Premium text styling */
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  letter-spacing: 0.025em;
+  
+  /* Ultra-premium shadows */
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.25),
+    0 8px 32px rgba(0, 0, 0, 0.15),
+    0 4px 16px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.2);
+  
+  /* Premium border */
+  border: 2px solid color-mix(in srgb, var(--brand) 60%, white);
+  
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-cta::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
+  transition: left 0.8s ease;
+}
+
+.btn-cta:hover {
+  @apply scale-[1.03] -translate-y-2;
+  
+  /* Enhanced hover effects */
+  box-shadow: 
+    0 32px 80px rgba(0, 0, 0, 0.35),
+    0 16px 48px rgba(0, 0, 0, 0.25),
+    0 8px 24px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+  
+  filter: brightness(1.1) saturate(1.15);
+}
+
+.btn-cta:hover::before {
+  left: 100%;
+}
+
+.btn-cta:active {
+  @apply scale-[0.98] translate-y-0;
+  transition: all 0.1s ease;
+}
+
+/* Disabled Button - Still looks premium */
+.btn-disabled {
+  @apply inline-flex items-center justify-center rounded-2xl px-6 py-4 font-semibold transition-all duration-300 cursor-not-allowed;
+  
+  background: linear-gradient(135deg,
+    rgba(209, 213, 219, 0.8) 0%,
+    rgba(209, 213, 219, 0.6) 100%
+  );
+  
+  color: rgba(107, 114, 128, 0.8);
+  border: 1px solid rgba(209, 213, 219, 0.5);
+  
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  
+  filter: grayscale(0.3) opacity(0.8);
 }
 
 /* Premium Chip */

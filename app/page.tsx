@@ -198,11 +198,7 @@ function HomeContent() {
               <a href="#" className="text-gray-600 hover:text-orange-500 transition-colors font-medium">Support</a>
               <motion.button 
                 onClick={handleLaunchClick}
-                className={`px-6 py-3 text-white rounded-2xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 ${
-                  b.enabled 
-                    ? 'bg-[var(--brand-primary)] hover:bg-[var(--brand-primary)]/90' 
-                    : 'bg-[var(--brand-primary)] hover:bg-[var(--brand-primary)]/90'
-                }`}
+                className="btn-primary"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -345,12 +341,12 @@ function HomeContent() {
                 <motion.button 
                   onClick={b.enabled && address.trim() ? handleGenerateEstimate : (b.enabled ? handleLaunchClick : handleGenerateEstimate)} 
                   disabled={!b.enabled && !address.trim() || isLoading} 
-                  className={`w-full py-6 px-8 rounded-2xl text-lg font-bold text-white transition-all duration-300 transform hover:-translate-y-1 hover:shadow-2xl ${
+                  className={`w-full ${
                     (!b.enabled && !address.trim()) || isLoading 
-                      ? 'bg-gray-300 cursor-not-allowed' 
+                      ? 'btn-disabled' 
                       : b.enabled
-                        ? 'bg-[var(--brand-primary)] hover:bg-[var(--brand-primary)]/90'
-                        : 'bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 hover:from-orange-600 hover:via-red-600 hover:to-pink-600'
+                        ? 'btn-cta'
+                        : 'btn-cta'
                   }`} 
                   whileHover={(!b.enabled && !address.trim()) || isLoading ? {} : { scale: 1.02 }} 
                   whileTap={(!b.enabled && !address.trim()) || isLoading ? {} : { scale: 0.98 }}
