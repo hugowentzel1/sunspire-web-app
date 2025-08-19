@@ -13,7 +13,7 @@
       - /url: /support
     - button "Launch on GreenSolar"
 - strong: Exclusive preview built for GreenSolar
-- text: "Exclusive preview — expires in 6:23:59:58 Runs left: 2"
+- text: "Exclusive preview — expires in 6:23:59:53 Runs left: 2"
 - button "Launch on GreenSolar"
 - button "Copy link"
 - button "Dismiss": ✕
@@ -43,7 +43,7 @@
     - text: Launch on GreenSolar
     - img
   - paragraph: "Preview: 2 runs left."
-  - paragraph: Expires in 6d 23h 59m 58s
+  - paragraph: Expires in 6d 23h 59m 53s
   - text: 50K+ Properties Analyzed — Total Savings Generated 98% Accuracy Rate 24/7 AI Support
   - img
   - text: Advanced Analytics AI-powered insights with 25-year projections and ROI analysis

@@ -177,37 +177,7 @@ function HomeContent() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter" data-demo={b.enabled}>
       <DemoBanner />
-      <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <div className="flex items-center space-x-4">
-              <HeroBrand />
-              <div>
-                <h1 className="text-2xl font-black text-[var(--brand-primary)]">
-                  {b.brand}
-                </h1>
-                <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
-                  Solar Intelligence
-                </p>
-              </div>
-            </div>
 
-            <nav className="hidden md:flex items-center space-x-8">
-              <a href="/pricing" className="text-gray-600 hover:text-orange-500 transition-colors font-medium">Pricing</a>
-              <a href="/partners" className="text-gray-600 hover:text-orange-500 transition-colors font-medium">Partners</a>
-              <a href="/support" className="text-gray-600 hover:text-orange-500 transition-colors font-medium">Support</a>
-              <motion.button 
-                onClick={handleLaunchClick}
-                className="btn-primary"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                {b.enabled ? `Launch on ${b.brand}` : "Get Started"}
-              </motion.button>
-            </nav>
-          </div>
-        </div>
-      </header>
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-center space-y-12">
