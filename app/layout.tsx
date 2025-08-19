@@ -27,7 +27,6 @@ export default function RootLayout({
         <BootProbe />
         <AppErrorBoundary>
           <BrandProvider>
-            <BrandCSSInjector />
             <DemoRibbon />
             <SharedNavigation />
             {children}
