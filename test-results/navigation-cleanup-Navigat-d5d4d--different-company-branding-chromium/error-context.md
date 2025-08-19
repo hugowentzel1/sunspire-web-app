@@ -2,7 +2,7 @@
 
 ```yaml
 - strong: Exclusive preview built for BlueSolar
-- text: "Exclusive preview — expires in 6:23:59:54 Runs left: 2"
+- text: "Exclusive preview — expires in 6:23:59:53 Runs left: 2"
 - button "Launch on BlueSolar"
 - button "Copy link"
 - button "Dismiss": ✕

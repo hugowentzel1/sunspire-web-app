@@ -193,6 +193,9 @@ function HomeContent() {
             </div>
 
             <nav className="hidden md:flex items-center space-x-8">
+              <a href="/enterprise" className="text-gray-600 hover:text-orange-500 transition-colors font-medium">Enterprise</a>
+              <a href="/partners" className="text-gray-600 hover:text-orange-500 transition-colors font-medium">Partners</a>
+              <a href="/support" className="text-gray-600 hover:text-orange-500 transition-colors font-medium">Support</a>
               <motion.button 
                 onClick={handleLaunchClick}
                 className="btn-primary"
