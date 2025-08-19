@@ -53,13 +53,25 @@ export function useBrandTakeover(): BrandState {
 
   useEffect(() => {
     // Only run in browser environment
-    if (typeof window === 'undefined') return;
+    if (typeof window === 'undefined') {
+      console.log('useBrandTakeover: Not in browser environment');
+      return;
+    }
+    
+    console.log('useBrandTakeover: Hook running, checking URL parameters...');
     
     // First, try to get brand info from URL parameters
     const sp = new URLSearchParams(location.search);
+    console.log('useBrandTakeover: URL search params:', location.search);
+    console.log('useBrandTakeover: Company param:', sp.get("company"));
+    console.log('useBrandTakeover: BrandColor param:', sp.get("brandColor"));
+    
     const urlEnabled = sp.get("demo")==="1" || sp.get("demo")==="true" || !!sp.get("company");
+    console.log('useBrandTakeover: URL enabled:', urlEnabled);
     
     if (urlEnabled) {
+      console.log('useBrandTakeover: URL has brand parameters, processing...');
+      
       // URL has brand parameters - use them and save to localStorage
       const brandState: BrandState = {
         enabled: urlEnabled,
@@ -77,44 +89,57 @@ export function useBrandTakeover(): BrandState {
         pilot: sp.get("pilot")==="1",
       };
       
+      console.log('useBrandTakeover: Created brand state:', brandState);
+      
       // Save to localStorage with timestamp
       try {
         const stateWithTimestamp = {
           ...brandState,
           _timestamp: Date.now()
         };
+        console.log('useBrandTakeover: Attempting to save to localStorage:', stateWithTimestamp);
         localStorage.setItem(STORAGE_KEY, JSON.stringify(stateWithTimestamp));
-        console.log('Saved brand state to localStorage:', stateWithTimestamp);
+        console.log('useBrandTakeover: Successfully saved brand state to localStorage');
       } catch (e) {
-        console.warn('Failed to save brand state to localStorage:', e);
+        console.warn('useBrandTakeover: Failed to save brand state to localStorage:', e);
       }
       
       setSt(brandState);
     } else {
+      console.log('useBrandTakeover: No URL parameters, checking localStorage...');
+      
       // No URL parameters - try to restore from localStorage
       try {
         const stored = localStorage.getItem(STORAGE_KEY);
+        console.log('useBrandTakeover: Stored localStorage content:', stored);
+        
         if (stored) {
           const parsed = JSON.parse(stored);
+          console.log('useBrandTakeover: Parsed localStorage:', parsed);
+          
           // Only restore if it's still valid (not expired)
           const now = Date.now();
           const storedTime = parsed._timestamp || 0;
           const daysSinceStored = (now - storedTime) / (1000 * 60 * 60 * 24);
           
+          console.log('useBrandTakeover: Days since stored:', daysSinceStored);
+          
           if (daysSinceStored < (parsed.expireDays || 7)) {
-            console.log('Restored brand state from localStorage:', parsed);
+            console.log('useBrandTakeover: Restored brand state from localStorage:', parsed);
             setSt(parsed);
             return;
           } else {
             // Expired - remove from localStorage
-            console.log('Brand state expired, removing from localStorage');
+            console.log('useBrandTakeover: Brand state expired, removing from localStorage');
             localStorage.removeItem(STORAGE_KEY);
           }
         }
       } catch (e) {
-        console.warn('Failed to restore brand state from localStorage:', e);
+        console.warn('useBrandTakeover: Failed to restore brand state from localStorage:', e);
         localStorage.removeItem(STORAGE_KEY);
       }
+      
+      console.log('useBrandTakeover: Setting default state');
       
       // Default state
       setSt({
