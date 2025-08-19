@@ -67,6 +67,24 @@ export default function SupportPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Back to Home Button */}
+        <motion.div 
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-8"
+        >
+                      <a 
+              href="/" 
+              className="inline-flex items-center text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
+            >
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              Back to Home
+            </a>
+        </motion.div>
+
         {/* Hero Section */}
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
