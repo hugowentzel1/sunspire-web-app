@@ -17,6 +17,7 @@ import FinishedReportLayout from '@/src/report/FinishedReportLayout';
 import ReportHeader from '@/src/report/components/ReportHeader';
 import MetricCard from '@/src/report/components/MetricCard';
 import SavingsChart from '@/src/report/components/SavingsChart';
+import EstimateChart from '@/components/EstimateChart';
 import Financial from '@/src/report/sections/Financial';
 import Environmental from '@/src/report/sections/Environmental';
 import Assumptions from '@/src/report/sections/Assumptions';
@@ -193,26 +194,9 @@ export default function DemoResult() {
           />
         </div>
 
-        {/* Savings Chart */}
-        <SavingsChart 
-          series={estimate.cashflowProjection}
-          blur={false}
-        />
-
-        {/* Three Highlight Chips with Teasers */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 text-center border border-gray-200/50">
-            <div className="text-2xl font-bold text-gray-900 mb-2">Investment</div>
-            <div className="text-gray-600">Teaser value shown</div>
-          </div>
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 text-center border border-gray-200/50">
-            <div className="text-2xl font-bold text-gray-900 mb-2">Payback</div>
-            <div className="text-gray-600">Under 7 years (unlock exact)</div>
-          </div>
-          <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 text-center border border-gray-200/50">
-            <div className="text-2xl font-bold text-gray-900 mb-2">25-Year Savings</div>
-            <div className="text-gray-600">${estimate.npv25Year.toLocaleString()} (unlock detailed breakdown)</div>
-          </div>
+        {/* Chart Area with EstimateChart - Clean Design */}
+        <div className="max-w-6xl mx-auto">
+          <EstimateChart cashflowData={estimate.cashflowProjection} netCostAfterITC={estimate.netCostAfterITC} />
         </div>
 
         {/* Three Column Analysis */}
