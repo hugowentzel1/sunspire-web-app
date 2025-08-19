@@ -82,30 +82,30 @@ export default function SharedNavigation() {
   };
 
   return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+    <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-20">
           <div className="flex items-center space-x-4">
             {b.enabled && logoUrl ? (
               <Image 
                 src={logoUrl} 
                 alt={`${b.brand} logo`} 
-                width={32} 
-                height={32} 
+                width={48} 
+                height={48} 
                 className="rounded-lg"
                 style={{ objectFit: "contain" }}
               />
             ) : (
-              <div className="w-8 h-8 bg-gray-900 rounded-lg flex items-center justify-center">
-                <span className="text-white text-sm font-bold">☀️</span>
+              <div className="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center">
+                <span className="text-white text-lg font-bold">☀️</span>
               </div>
             )}
             <div>
-              <h1 className="text-2xl font-black" style={{ color: b.enabled ? 'var(--brand-primary)' : undefined }}>
+              <h1 className="text-2xl font-black text-[var(--brand-primary)]">
                 {b.enabled ? b.brand : 'Your Company'}
               </h1>
               <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
-                SOLAR INTELLIGENCE
+                Solar Intelligence
               </p>
             </div>
           </div>
