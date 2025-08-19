@@ -100,7 +100,7 @@ export default function SharedNavigation() {
                 <span className="text-white text-sm font-bold">☀️</span>
               </div>
             )}
-            <div className="flex flex-col justify-center py-2">
+            <div className="flex flex-col justify-center" style={{ paddingTop: '8px', paddingBottom: '8px' }}>
               <h1 className="text-2xl font-black leading-tight" style={{ color: b.enabled ? 'var(--brand-primary)' : undefined }}>
                 {b.enabled ? b.brand : 'Your Company'}
               </h1>
@@ -111,9 +111,9 @@ export default function SharedNavigation() {
           </div>
           
           <nav className="hidden md:flex items-center space-x-12">
-            <a href="/pricing" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Pricing</a>
-            <a href="/partners" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Partners</a>
-            <a href="/support" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Support</a>
+            <a href="/pricing" className="transition-colors font-medium" style={{ color: b.enabled ? 'var(--brand-primary)' : '#6B7280' }}>Pricing</a>
+            <a href="/partners" className="transition-colors font-medium" style={{ color: b.enabled ? 'var(--brand-primary)' : '#6B7280' }}>Partners</a>
+            <a href="/support" className="transition-colors font-medium" style={{ color: b.enabled ? 'var(--brand-primary)' : '#6B7280' }}>Support</a>
             <motion.button 
               onClick={handleLaunchClick}
               className="btn-primary ml-12"
