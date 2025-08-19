@@ -38,7 +38,12 @@ export default function ReportHeader({
         initial={{ opacity: 0, scale: 0.8 }} 
         animate={{ opacity: 1, scale: 1 }} 
         transition={{ delay: 0.1, duration: 0.8 }} 
-        className="inline-flex items-center px-4 py-2 bg-orange-100 border border-orange-300 rounded-full text-orange-800 text-sm font-medium"
+        className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium"
+        style={{
+          backgroundColor: `${b.primary}20`,
+          borderColor: `${b.primary}40`,
+          color: b.primary
+        }}
       >
         <span className="mr-2">⏰</span>
         Exclusive preview — expires in {countdown.days}:{countdown.hours.toString().padStart(2, '0')}:{countdown.minutes.toString().padStart(2, '0')}:{countdown.seconds.toString().padStart(2, '0')}
