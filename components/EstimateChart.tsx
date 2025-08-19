@@ -138,25 +138,49 @@ export default function EstimateChart({ cashflowData, netCostAfterITC, className
         </ResponsiveContainer>
       </div>
 
-      {/* Simplified insights */}
+      {/* Enhanced metric cards with brand color gradients and shadows */}
       <div className="mt-6 grid grid-cols-3 gap-4">
-        <div className="text-center p-4 rounded-lg border" style={{ backgroundColor: 'var(--brand)20', borderColor: 'var(--brand)40' }}>
-          <div className="text-xl font-bold" style={{ color: 'var(--brand)' }}>
+        <div 
+          className="text-center p-4 rounded-lg border shadow-lg relative overflow-hidden"
+          style={{ 
+            background: `linear-gradient(135deg, var(--brand)15, var(--brand)25, var(--brand)15)`,
+            borderColor: 'var(--brand)',
+            boxShadow: '0 10px 25px -5px var(--brand)20, 0 4px 6px -2px var(--brand)10'
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent"></div>
+          <div className="text-xl font-bold relative z-10 text-gray-900">
             ${Math.round(netCostAfterITC / 1000)}k
           </div>
-          <div className="text-xs text-gray-600">Investment</div>
+          <div className="text-xs text-gray-600 relative z-10">Investment</div>
         </div>
-        <div className="text-center p-4 rounded-lg border" style={{ backgroundColor: 'var(--brand)20', borderColor: 'var(--brand)40' }}>
-          <div className="text-xl font-bold" style={{ color: 'var(--brand)' }}>
+        <div 
+          className="text-center p-4 rounded-lg border shadow-lg relative overflow-hidden"
+          style={{ 
+            background: `linear-gradient(135deg, var(--brand)15, var(--brand)30, var(--brand)15)`,
+            borderColor: 'var(--brand)',
+            boxShadow: '0 10px 25px -5px var(--brand)20, 0 4px 6px -2px var(--brand)10'
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent"></div>
+          <div className="text-xl font-bold relative z-10 text-gray-900">
             {paybackYear} years
           </div>
-          <div className="text-xs text-gray-600">Payback Time</div>
+          <div className="text-xs text-gray-600 relative z-10">Payback Time</div>
         </div>
-        <div className="text-center p-4 rounded-lg border" style={{ backgroundColor: 'var(--brand)20', borderColor: 'var(--brand)40' }}>
-          <div className="text-xl font-bold" style={{ color: 'var(--brand)' }}>
+        <div 
+          className="text-center p-4 rounded-lg border shadow-lg relative overflow-hidden"
+          style={{ 
+            background: `linear-gradient(135deg, var(--brand)15, var(--brand)25, var(--brand)15)`,
+            borderColor: 'var(--brand)',
+            boxShadow: '0 10px 25px -5px var(--brand)20, 0 4px 6px -2px var(--brand)10'
+          }}
+        >
+          <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent"></div>
+          <div className="text-xl font-bold relative z-10 text-gray-900">
             ${Math.round(cashflowData[24]?.cumulativeSavings / 1000)}k
           </div>
-          <div className="text-xs text-gray-600">25-Year Savings</div>
+          <div className="text-xs text-gray-600 relative z-10">25-Year Savings</div>
         </div>
       </div>
 
