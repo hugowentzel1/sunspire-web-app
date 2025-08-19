@@ -1,0 +1,84 @@
+# Page snapshot
+
+```yaml
+- banner:
+  - img "Apple logo"
+  - heading "Apple" [level=1]
+  - paragraph: Solar Intelligence
+  - navigation:
+    - link "Pricing":
+      - /url: /pricing
+    - link "Partners":
+      - /url: /partners
+    - link "Support":
+      - /url: /support
+    - button "Launch on Apple"
+- banner:
+  - img "Apple logo"
+  - heading "Apple" [level=1]
+  - paragraph: Solar Intelligence
+  - navigation:
+    - link "Pricing":
+      - /url: /pricing
+    - link "Partners":
+      - /url: /partners
+    - link "Support":
+      - /url: /support
+    - button "Launch on Apple"
+- main:
+  - heading "Partner with Apple" [level=1]
+  - paragraph: Join our growing network of agencies, consultants, and resellers. Earn 30% recurring commission while helping solar companies grow.
+  - heading "Commission Structure" [level=3]
+  - text: Standard Plan ($99/month) $30/month recurring Setup Fee ($399) $120 one-time Enterprise Deals Custom rates
+  - heading "Partner Benefits" [level=3]
+  - text: 💰
+  - heading "Recurring Revenue" [level=4]
+  - paragraph: 30% commission on all recurring payments, paid monthly
+  - text: 🎯
+  - heading "Marketing Support" [level=4]
+  - paragraph: Sales materials, case studies, and co-marketing opportunities
+  - text: 🏷️
+  - heading "White-Label Options" [level=4]
+  - paragraph: Resell under your own brand with custom pricing
+  - text: 📈
+  - heading "Partner Portal" [level=4]
+  - paragraph: Track commissions, leads, and performance in real-time
+  - heading "Partner Success Story" [level=4]
+  - paragraph: "\"We've generated over $15,000 in recurring revenue in just 6 months by recommending Apple to our solar clients. The commission payments are reliable and the product sells itself.\""
+  - paragraph: — Sarah Chen, Digital Marketing Agency
+  - heading "Apply to Become a Partner" [level=2]
+  - text: Company/Agency Name
+  - textbox "Your agency or company name"
+  - text: Your Name
+  - textbox "Your full name"
+  - text: Email
+  - textbox "your@email.com"
+  - text: Phone
+  - textbox "(555) 123-4567"
+  - text: Partner Type
+  - combobox:
+    - option "Select type" [selected]
+    - option "Marketing Agency"
+    - option "Business Consultant"
+    - option "Software Reseller"
+    - option "Freelancer"
+    - option "Other"
+  - text: Experience with Solar Industry
+  - combobox:
+    - option "Select experience" [selected]
+    - option "New to solar"
+    - option "Some experience"
+    - option "Very experienced"
+    - option "Industry expert"
+  - text: How many solar companies do you work with?
+  - 'textbox "Tell us about your client base and how you''d promote {b.enabled ? b.brand : ''Your Company''}..."'
+  - button "Submit Partner Application"
+  - paragraph: Applications are typically reviewed within 48 hours
+- text: Estimates generated using NREL PVWatts® v8.•Mapping & location data © Google
+- button "Terms"
+- button "Privacy"
+- link "Methodology":
+  - /url: /methodology
+- text: •Powered by Apple
+- alert
+```

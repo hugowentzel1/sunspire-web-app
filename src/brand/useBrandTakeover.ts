@@ -60,6 +60,25 @@ export function useBrandTakeover(): BrandState {
     
     console.log('useBrandTakeover: Hook running, checking URL parameters...');
     
+    // Function to save brand state to localStorage
+    const saveBrandState = (brandState: BrandState) => {
+      try {
+        const stateWithTimestamp = {
+          ...brandState,
+          _timestamp: Date.now()
+        };
+        console.log('useBrandTakeover: Saving to localStorage:', stateWithTimestamp);
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(stateWithTimestamp));
+        console.log('useBrandTakeover: Successfully saved to localStorage');
+        
+        // Verify the save worked
+        const verification = localStorage.getItem(STORAGE_KEY);
+        console.log('useBrandTakeover: Verification - localStorage now contains:', verification);
+      } catch (e) {
+        console.error('useBrandTakeover: Failed to save to localStorage:', e);
+      }
+    };
+    
     // First, try to get brand info from URL parameters
     const sp = new URLSearchParams(location.search);
     console.log('useBrandTakeover: URL search params:', location.search);
@@ -91,19 +110,8 @@ export function useBrandTakeover(): BrandState {
       
       console.log('useBrandTakeover: Created brand state:', brandState);
       
-      // Save to localStorage with timestamp
-      try {
-        const stateWithTimestamp = {
-          ...brandState,
-          _timestamp: Date.now()
-        };
-        console.log('useBrandTakeover: Attempting to save to localStorage:', stateWithTimestamp);
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(stateWithTimestamp));
-        console.log('useBrandTakeover: Successfully saved brand state to localStorage');
-      } catch (e) {
-        console.warn('useBrandTakeover: Failed to save brand state to localStorage:', e);
-      }
-      
+      // Save to localStorage and set state
+      saveBrandState(brandState);
       setSt(brandState);
     } else {
       console.log('useBrandTakeover: No URL parameters, checking localStorage...');
@@ -136,7 +144,11 @@ export function useBrandTakeover(): BrandState {
         }
       } catch (e) {
         console.warn('useBrandTakeover: Failed to restore brand state from localStorage:', e);
-        localStorage.removeItem(STORAGE_KEY);
+        try {
+          localStorage.removeItem(STORAGE_KEY);
+        } catch (cleanupError) {
+          console.warn('useBrandTakeover: Failed to clean up localStorage:', cleanupError);
+        }
       }
       
       console.log('useBrandTakeover: Setting default state');

@@ -35,11 +35,11 @@ test.describe('Verify Navigation Pages Branding', () => {
     expect(headerTitle).toContain('Google');
     
     // Verify brand colors are applied to buttons and elements
-    const ctaButton = page.locator('button:has-text("Launch on Google")');
+    const ctaButton = page.locator('button:has-text("Launch on Google")').first();
     await expect(ctaButton).toBeVisible();
     
     // Check that the page uses brand colors (not hardcoded green)
-    const popularBadge = page.locator('div:has-text("Most Popular")');
+    const popularBadge = page.locator('div:has-text("Most Popular")').last();
     await expect(popularBadge).toBeVisible();
     
     // Verify LegalFooter shows correct branding
