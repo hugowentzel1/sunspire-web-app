@@ -56,7 +56,7 @@ export function useBrandTakeover(): BrandState {
     setSt({
       enabled,
       brand: clean(sp.get("company") || sp.get("brand")) || "Your Company",
-      primary: hex(sp.get("primary")),
+      primary: hex(sp.get("primary") || sp.get("brandColor")),
       logo: allowLogo(sp.get("logo")),
       domain: sp.get("domain") || sp.get("company"),
       city: sp.get("city"),
