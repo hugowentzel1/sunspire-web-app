@@ -62,7 +62,7 @@ export default function PremiumFeatures() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6">
-            Enterprise-Grade Solar Intelligence
+            Professional Solar Intelligence
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Built for solar companies that demand the highest quality estimates and the most professional presentation.

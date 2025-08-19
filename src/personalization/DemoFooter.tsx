@@ -36,36 +36,7 @@ export function DemoFooter() {
             </div>
           </div>
           
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-medium text-gray-800 mb-3">Quick Links</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <button
-                  onClick={() => handleDemoLink('enterprise')}
-                  className="text-gray-600 hover:text-gray-800 transition-colors"
-                >
-                  Enterprise
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleDemoLink('partners')}
-                  className="text-gray-600 hover:text-gray-800 transition-colors"
-                >
-                  Partners
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => handleDemoLink('support')}
-                  className="text-gray-600 hover:text-gray-800 transition-colors"
-                >
-                  Support
-                </button>
-              </li>
-            </ul>
-          </div>
+
           
           {/* Demo Actions */}
           <div>
