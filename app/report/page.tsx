@@ -162,43 +162,7 @@ function ReportContent() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter" data-demo={b.enabled}>
               {/* <DemoBanner /> */}
-      <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <div className="flex items-center space-x-4">
-              {!b.enabled ? (
-                <motion.div whileHover={{ scale: 1.05, rotate: 5 }} transition={{ type: 'spring', stiffness: 300 }}>
-                  <IconBadge>☀️</IconBadge>
-                </motion.div>
-              ) : (
-                <HeroBrand />
-              )}
-              <div>
-                <h1 className="text-2xl font-black" style={{ color: b.enabled ? 'var(--brand-primary)' : undefined }}>
-                  {b.enabled ? b.brand : tenant?.name}
-                </h1>
-                <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
-                  {b.enabled ? "Solar Intelligence Report" : "Solar Intelligence Report"}
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center space-x-4">
-              <motion.button 
-                onClick={() => router.push('/')} 
-                className={`px-6 py-3 text-white rounded-2xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 ${
-                  b.enabled 
-                    ? 'bg-[var(--brand-primary)] hover:bg-[var(--brand-primary)]/90' 
-                    : 'bg-gradient-to-r from-orange-500 to-red-500'
-                }`}
-                whileHover={{ scale: 1.05 }} 
-                whileTap={{ scale: 0.95 }}
-              >
-                New Analysis
-              </motion.button>
-            </div>
-          </div>
-        </div>
-      </header>
+
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="space-y-8">

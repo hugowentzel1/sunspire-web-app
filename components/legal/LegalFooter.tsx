@@ -31,7 +31,7 @@ export default function LegalFooter({ showPoweredBy = true, brand }: { showPower
           <button className="underline" onClick={() => setShowTerms(true)}>Terms</button>
           <button className="underline" onClick={() => setShowPrivacy(true)}>Privacy</button>
           <a className="underline" href="/methodology">Methodology</a>
-          {showPoweredBy && !brand && (
+          {showPoweredBy && (
             <>
               <span>•</span>
               <span>Powered by Your Company</span>
