@@ -7,10 +7,12 @@ export default function BrandProvider({ children }: { children: React.ReactNode 
 
   // CSS var theme
   useEffect(() => {
+    console.log('BrandProvider: enabled=', b.enabled, 'primary=', b.primary, 'brand=', b.brand);
     if (!b.enabled) return;
     document.documentElement.style.setProperty("--brand-primary", b.primary);
     document.documentElement.style.setProperty("--brand", b.primary);
-  }, [b.enabled, b.primary]);
+    console.log('BrandProvider: CSS variables set to', b.primary);
+  }, [b.enabled, b.primary, b.brand]);
 
   // Favicon override
   useEffect(() => {
