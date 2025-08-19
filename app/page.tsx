@@ -199,14 +199,14 @@ function HomeContent() {
               <div className="bg-white/80 backdrop-blur-sm rounded-3xl py-6 px-8 border border-gray-200/50 shadow-lg mx-auto max-w-2xl">
                 <div className="space-y-4 text-center">
                   <h2 className="text-3xl font-bold text-gray-900">
-                    Built for {b.brand}
+                    Built for Your Company
                   </h2>
                   <p className="text-lg text-gray-600">
                     Exclusive preview of your white-label solar intelligence tool
                   </p>
                   <div className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium" style={{ backgroundColor: `${b.primary}20`, borderColor: `${b.primary}40`, color: b.primary }}>
                     <span className="mr-2">⚡</span>
-                    Ready to launch on {b.domain || b.brand}.com
+                    Ready to launch on your domain
                   </div>
                 </div>
               </div>
@@ -247,7 +247,7 @@ function HomeContent() {
               >
                 {b.enabled ? (
                   <>
-                    {b.brand} Solar Intelligence
+                    White-Label Solar Tool
                     <span className="block text-[var(--brand-primary)]">— Live in 10 Minutes</span>
                   </>
                 ) : (
@@ -264,7 +264,7 @@ function HomeContent() {
                 transition={{ delay: 0.6, duration: 0.8 }}
               >
                 {b.enabled 
-                  ? `Embed a branded quote tool on ${b.domain || b.brand}.com. Turn visitors into booked calls. 14-day refund if it doesn't lift conversions.`
+                  ? `Embed a branded quote tool on your domain. Turn visitors into booked calls. 14-day refund if it doesn't lift conversions.`
                   : "Transform your property with AI-powered solar analysis. Get instant estimates, detailed reports, and connect with premium installers."
                 }
               </motion.p>
@@ -336,7 +336,7 @@ function HomeContent() {
                     <div className="flex items-center justify-center space-x-4">
                       <span>
                         {b.enabled 
-                          ? (address.trim() ? `Generate ${b.brand} Solar Report` : `Launch on ${b.brand}`)
+                          ? (address.trim() ? `Generate Solar Report` : `Launch Tool`)
                           : "Generate Solar Intelligence Report"
                         }
                       </span>

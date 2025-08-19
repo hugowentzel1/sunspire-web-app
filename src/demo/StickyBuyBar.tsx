@@ -42,7 +42,7 @@ export default function StickyBuyBar() {
           fontWeight: "500"
         }}
       >
-        Add to {b.domain ?? "our site"}
+        Add to Your Site
       </button>
       <button 
         onClick={copy} 

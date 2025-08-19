@@ -101,7 +101,7 @@ export default function LockOverlay() {
             </div>
           )}
           <h2 style={{ fontSize: "28px", fontWeight: "800", color: "#111827" }}>
-            {b.brand}'s Solar Intelligence Tool is now locked.
+            Your Solar Intelligence Tool is now locked.
           </h2>
         </div>
 
