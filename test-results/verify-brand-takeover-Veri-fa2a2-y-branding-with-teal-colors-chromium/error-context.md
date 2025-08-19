@@ -70,7 +70,7 @@
   - button "Privacy"
   - link "Methodology":
     - /url: /methodology
-  - text: •Powered by Sunspire
+  - text: •Powered by TealEnergy
 - button "Add to TealEnergy"
 - button "Copy link"
 - text: Trusted by 50+ Solar Brands Bank-Level Security • SOC 2 Compliant • 98% Accuracy

@@ -33,7 +33,7 @@
     - text: Launch on Netflix
     - img
   - paragraph: "Preview: 2 runs left."
-  - paragraph: Expires in 6d 23h 59m 54s
+  - paragraph: Expires in 6d 23h 59m 56s
   - text: 50K+ Properties Analyzed — Total Savings Generated 98% Accuracy Rate 24/7 AI Support
   - img
   - text: Advanced Analytics AI-powered insights with 25-year projections and ROI analysis
@@ -72,7 +72,7 @@
   - button "Privacy"
   - link "Methodology":
     - /url: /methodology
-  - text: •Powered by Sunspire
+  - text: •Powered by Netflix
 - button "Add to Netflix"
 - button "Copy link"
 - text: Trusted by 50+ Solar Brands Bank-Level Security • SOC 2 Compliant • 98% Accuracy

@@ -25,7 +25,7 @@ export default function SharedNavigation() {
             </div>
             <div>
               <h1 className="text-2xl font-black" style={{ color: b.enabled ? 'var(--brand-primary)' : undefined }}>
-                {b.enabled ? b.brand : 'Sunspire'}
+                {b.enabled ? b.brand : 'Your Company'}
               </h1>
               <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
                 SOLAR INTELLIGENCE
