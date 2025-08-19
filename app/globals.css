@@ -23,7 +23,7 @@
   --gold-light: #FCD34D;     /* Light gold */
   
   /* Brand takeover demo color (overridden by BrandProvider when demo=1) */
-  --brand-primary: #FFA63D;
+  /* --brand-primary: #FFA63D; -- Removed hardcoded value to allow dynamic setting */
   
   /* Neutral palette */
   --white: #FFFFFF;
