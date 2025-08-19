@@ -1,12 +1,19 @@
 "use client";
 
 import { motion } from 'framer-motion';
+import { useEffect } from 'react';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import SharedNavigation from '@/components/SharedNavigation';
 import LegalFooter from '@/components/legal/LegalFooter';
 
 export default function PricingPage() {
   const b = useBrandTakeover();
+
+  // Debug logging
+  useEffect(() => {
+    console.log('Pricing page mounted, brand state:', b);
+    console.log('localStorage brand state:', localStorage.getItem('sunspire-brand-takeover'));
+  }, [b]);
 
   const handleLaunchClick = () => {
     if (b.enabled) {

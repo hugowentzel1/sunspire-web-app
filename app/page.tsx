@@ -40,6 +40,12 @@ function HomeContent() {
   // Brand takeover mode detection
   const b = useBrandTakeover();
   
+  // Debug logging for brand state
+  useEffect(() => {
+    console.log('Main page brand state:', b);
+    console.log('Main page localStorage:', localStorage.getItem('sunspire-brand-takeover'));
+  }, [b]);
+  
   // Brand colors from URL
   useBrandColors();
   const { read, consume } = usePreviewQuota(2);
