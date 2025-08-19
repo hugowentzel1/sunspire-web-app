@@ -40,9 +40,9 @@ export default function ReportHeader({
         transition={{ delay: 0.1, duration: 0.8 }} 
         className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium"
         style={{
-          backgroundColor: `${b.primary}20`,
-          borderColor: `${b.primary}40`,
-          color: b.primary
+          backgroundColor: '#FEF2F2',
+          borderColor: '#FCA5A5',
+          color: '#DC2626'
         }}
       >
         <span className="mr-2">⏰</span>
