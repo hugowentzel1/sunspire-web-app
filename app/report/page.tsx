@@ -209,7 +209,7 @@ function ReportContent() {
               </div>
             </motion.div>
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl font-black text-gray-900">Solar Intelligence Report</h1>
+              <h1 className="text-4xl md:text-5xl font-black text-gray-900">New Analysis</h1>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">Comprehensive analysis for your property at {estimate.address}</p>
               <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
                 <span>Data Source: {estimate.utilityRateSource}</span>

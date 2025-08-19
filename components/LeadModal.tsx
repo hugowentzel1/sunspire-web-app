@@ -127,7 +127,7 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
                   </svg>
                 </motion.div>
                 
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">You're All Set!</h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-4">Sample Report Requested!</h2>
                 <p className="text-gray-600 mb-6">
                   Thanks for reaching out! We’ll email you a summary and next steps within 24 hours.
                 </p>
@@ -146,10 +146,10 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
                 {/* Header */}
                 <div className="text-center mb-6">
                   <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                    Get Your Solar Quote
+                    Request Sample Report
                   </h2>
                   <p className="text-gray-600">
-                    We'll email your personalized proposal from {tenant.name}
+                    Get your comprehensive solar analysis delivered to your inbox
                   </p>
                 </div>
 
