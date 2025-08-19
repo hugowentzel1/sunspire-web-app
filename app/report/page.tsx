@@ -386,7 +386,7 @@ function ReportContent() {
       </main>
 
       <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <LegalFooter />
+        <LegalFooter brand={b.enabled ? b.brand : undefined} />
       </footer>
 
       {estimate && (

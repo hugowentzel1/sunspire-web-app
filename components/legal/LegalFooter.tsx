@@ -15,7 +15,7 @@ function Modal({ title, children, onClose }: { title: string; children: React.Re
   );
 }
 
-export default function LegalFooter({ showPoweredBy = true }: { showPoweredBy?: boolean }) {
+export default function LegalFooter({ showPoweredBy = true, brand }: { showPoweredBy?: boolean; brand?: string }) {
   const [showTerms, setShowTerms] = useState(false);
   const [showPrivacy, setShowPrivacy] = useState(false);
 
@@ -34,7 +34,7 @@ export default function LegalFooter({ showPoweredBy = true }: { showPoweredBy?: 
           {showPoweredBy && (
             <>
               <span>•</span>
-              <span>Powered by Sunspire</span>
+              <span>Powered by {brand || 'Your Company'}</span>
             </>
           )}
         </div>
