@@ -8,7 +8,7 @@ export function HeroPersonalizedBadge() {
     <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
       {logo && <Image src={logo} alt="Logo" width={28} height={28} />}
       <span style={{ fontWeight: 700, color: primary }}>
-        {brand ?? "Sunspire"}
+        {brand ?? "Your Company"}
       </span>
     </div>
   );

@@ -55,7 +55,7 @@ export function DemoFooter() {
         
         <div className="border-t border-gray-200 mt-8 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-            <p>© 2024 {brand ?? "Your Company"}. Demo preview powered by Sunspire.</p>
+            <p>© 2024 {brand ?? "Your Company"}. Demo preview powered by Your Company.</p>
             <div className="flex gap-4 mt-2 md:mt-0">
               <button
                 onClick={() => handleDemoLink('privacy')}

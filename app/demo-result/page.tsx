@@ -125,7 +125,7 @@ export default function DemoResult() {
               )}
               <div>
                 <h1 className="text-2xl font-black bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text text-transparent">
-                  {b.enabled ? b.brand : 'Sunspire'}
+                  {b.enabled ? b.brand : 'Your Company'}
                 </h1>
                 <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
                   Solar Intelligence Report
