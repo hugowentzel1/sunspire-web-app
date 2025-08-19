@@ -140,7 +140,7 @@ export default function AddressAutocomplete({ value, onChange, onSelect, placeho
           else if (e.key === "Escape") { setPreds([]); }
         }}
         placeholder={placeholder}
-        className="w-full rounded-2xl border border-orange-200 bg-white/70 px-4 py-3 text-[15px] shadow-sm outline-none focus:ring-2 focus:ring-orange-300"
+        className="w-full rounded-2xl border border-gray-300 bg-white/70 px-4 py-3 text-[15px] shadow-sm outline-none focus:ring-2 focus:ring-gray-400"
         aria-autocomplete="list" aria-expanded={preds.length > 0}
       />
       {preds.length > 0 && (
@@ -148,7 +148,7 @@ export default function AddressAutocomplete({ value, onChange, onSelect, placeho
           {preds.map((p, i) => (
             <li
               key={p.place_id}
-              className={`cursor-pointer px-4 py-2 text-sm ${i===active?"bg-orange-50":"hover:bg-slate-50"}`}
+              className={`cursor-pointer px-4 py-2 text-sm ${i===active?"bg-gray-100":"hover:bg-slate-50"}`}
               onMouseEnter={() => setActive(i)}
               onMouseDown={(e) => { e.preventDefault(); selectIdx(i); }}
             >{p.description}</li>
