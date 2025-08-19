@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+import SharedNavigation from '@/components/SharedNavigation';
+import LegalFooter from '@/components/legal/LegalFooter';
 
 export default function PricingPage() {
   const b = useBrandTakeover();
@@ -16,8 +18,8 @@ export default function PricingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
-
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <SharedNavigation />
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero Section */}
@@ -44,20 +46,20 @@ export default function PricingPage() {
         >
           <div className="bg-white rounded-3xl shadow-2xl border border-gray-200 p-8 md:p-12 relative overflow-hidden">
             {/* Popular Badge */}
-            <div className="absolute top-0 right-0 bg-green-500 text-white px-6 py-2 rounded-bl-lg font-semibold">
+            <div className="absolute top-0 right-0 text-white px-6 py-2 rounded-bl-lg font-semibold" style={{ backgroundColor: 'var(--brand-primary)' }}>
               Most Popular
             </div>
             
             {/* Setup Fee */}
             <div className="text-center mb-8">
-              <div className="text-sm text-green-600 font-semibold mb-2">One-Time Setup</div>
+              <div className="text-sm font-semibold mb-2" style={{ color: 'var(--brand-primary)' }}>One-Time Setup</div>
               <div className="text-4xl font-bold text-gray-900 mb-2">$399</div>
               <p className="text-gray-600">Get your tool live in 24 hours</p>
             </div>
 
             {/* Monthly Fee */}
             <div className="text-center mb-8">
-              <div className="text-sm text-green-600 font-semibold mb-2">Then Just</div>
+              <div className="text-sm font-semibold mb-2" style={{ color: 'var(--brand-primary)' }}>Then Just</div>
               <div className="text-5xl font-bold text-gray-900 mb-2">$99</div>
               <div className="text-xl text-gray-600 mb-2">per month</div>
               <p className="text-gray-600">Cancel anytime, no long-term contracts</p>
@@ -68,36 +70,36 @@ export default function PricingPage() {
               <h3 className="text-lg font-semibold text-gray-900 text-center mb-4">Everything You Get:</h3>
               
               <div className="flex items-center space-x-3">
-                <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center">
-                  <span className="text-green-600 text-sm">✓</span>
+                <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--brand-primary)', opacity: 0.1 }}>
+                  <span className="text-sm" style={{ color: 'var(--brand-primary)' }}>✓</span>
                 </div>
                 <span className="text-gray-700">Full white-label customization</span>
               </div>
               
               <div className="flex items-center space-x-3">
-                <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center">
-                  <span className="text-green-600 text-sm">✓</span>
+                <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--brand-primary)', opacity: 0.1 }}>
+                  <span className="text-sm" style={{ color: 'var(--brand-primary)' }}>✓</span>
                 </div>
                 <span className="text-gray-700">Your domain & branding</span>
               </div>
               
               <div className="flex items-center space-x-3">
-                <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center">
-                  <span className="text-green-600 text-sm">✓</span>
+                <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--brand-primary)', opacity: 0.1 }}>
+                  <span className="text-sm" style={{ color: 'var(--brand-primary)' }}>✓</span>
                 </div>
                 <span className="text-gray-700">Lead capture & CRM integration</span>
               </div>
               
               <div className="flex items-center space-x-3">
-                <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center">
-                  <span className="text-green-600 text-sm">✓</span>
+                <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--brand-primary)', opacity: 0.1 }}>
+                  <span className="text-sm" style={{ color: 'var(--brand-primary)' }}>✓</span>
                 </div>
                 <span className="text-gray-700">24/7 email support</span>
               </div>
               
               <div className="flex items-center space-x-3">
-                <div className="w-5 h-5 bg-green-100 rounded-full flex items-center justify-center">
-                  <span className="text-green-600 text-sm">✓</span>
+                <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--brand-primary)', opacity: 0.1 }}>
+                  <span className="text-sm" style={{ color: 'var(--brand-primary)' }}>✓</span>
                 </div>
                 <span className="text-gray-700">14-day money-back guarantee</span>
               </div>
@@ -106,7 +108,8 @@ export default function PricingPage() {
             {/* CTA Button */}
             <motion.button 
               onClick={handleLaunchClick}
-              className="w-full bg-green-600 text-white py-4 px-6 rounded-xl font-semibold text-lg hover:bg-green-700 transition-colors"
+              className="w-full text-white py-4 px-6 rounded-xl font-semibold text-lg transition-colors"
+              style={{ backgroundColor: 'var(--brand-primary)' }}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
@@ -130,7 +133,7 @@ export default function PricingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             
             <div className="text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: 'var(--brand-primary)', opacity: 0.1 }}>
                 <span className="text-2xl">💰</span>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">ROI in 1 Month</h3>
@@ -138,7 +141,7 @@ export default function PricingPage() {
             </div>
             
             <div className="text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: 'var(--brand-primary)', opacity: 0.1 }}>
                 <span className="text-2xl">⚡</span>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Live in 24 Hours</h3>
@@ -146,7 +149,7 @@ export default function PricingPage() {
             </div>
             
             <div className="text-center">
-              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: 'var(--brand-primary)', opacity: 0.1 }}>
                 <span className="text-2xl">🔄</span>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Cancel Anytime</h3>
@@ -162,14 +165,15 @@ export default function PricingPage() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-center"
         >
-          <div className="bg-green-50 rounded-2xl p-8 max-w-2xl mx-auto">
+          <div className="rounded-2xl p-8 max-w-2xl mx-auto" style={{ backgroundColor: 'var(--brand-primary)', opacity: 0.05 }}>
             <h3 className="text-xl font-bold text-gray-900 mb-4">Ready to Get Started?</h3>
             <p className="text-gray-600 mb-6">
-              Join 50+ solar companies already using Sunspire to increase their conversions.
+              Join 50+ solar companies already using {b.enabled ? b.brand : 'Your Company'} to increase their conversions.
             </p>
             <motion.button 
               onClick={handleLaunchClick}
-              className="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors"
+              className="px-8 py-3 rounded-lg font-semibold text-white transition-colors"
+              style={{ backgroundColor: 'var(--brand-primary)' }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -178,6 +182,8 @@ export default function PricingPage() {
           </div>
         </motion.div>
       </main>
+
+      <LegalFooter brand={b.enabled ? b.brand : undefined} />
     </div>
   );
 }

@@ -2,8 +2,12 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+import SharedNavigation from '@/components/SharedNavigation';
+import LegalFooter from '@/components/legal/LegalFooter';
 
 export default function PartnersPage() {
+  const b = useBrandTakeover();
   const [formData, setFormData] = useState({
     company: '',
     name: '',
@@ -32,8 +36,8 @@ export default function PartnersPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
+      <SharedNavigation />
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero Section */}
@@ -44,7 +48,7 @@ export default function PartnersPage() {
           className="text-center mb-16"
         >
           <h1 className="text-4xl font-bold text-gray-900 mb-6">
-            Partner with Sunspire
+            Partner with {b.enabled ? b.brand : 'Your Company'}
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Join our growing network of agencies, consultants, and resellers. 
@@ -61,20 +65,20 @@ export default function PartnersPage() {
             className="space-y-8"
           >
             {/* Commission Structure */}
-            <div className="bg-blue-50 rounded-lg p-6">
+            <div className="rounded-lg p-6" style={{ backgroundColor: 'var(--brand-primary)', opacity: 0.05 }}>
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Commission Structure</h3>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className="text-gray-700">Standard Plan ($99/month)</span>
-                  <span className="font-bold text-blue-600">$30/month recurring</span>
+                  <span className="font-bold" style={{ color: 'var(--brand-primary)' }}>$30/month recurring</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-gray-700">Setup Fee ($399)</span>
-                  <span className="font-bold text-blue-600">$120 one-time</span>
+                  <span className="font-bold" style={{ color: 'var(--brand-primary)' }}>$120 one-time</span>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-gray-700">Enterprise Deals</span>
-                  <span className="font-bold text-blue-600">Custom rates</span>
+                  <span className="font-bold" style={{ color: 'var(--brand-primary)' }}>Custom rates</span>
                 </div>
               </div>
             </div>
@@ -84,8 +88,8 @@ export default function PartnersPage() {
               <h3 className="text-xl font-semibold text-gray-900">Partner Benefits</h3>
               
               <div className="flex items-start space-x-4">
-                <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                  <span className="text-blue-600 font-bold">💰</span>
+                <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--brand-primary)', opacity: 0.1 }}>
+                  <span className="font-bold" style={{ color: 'var(--brand-primary)' }}>💰</span>
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Recurring Revenue</h4>
@@ -94,8 +98,8 @@ export default function PartnersPage() {
               </div>
               
               <div className="flex items-start space-x-4">
-                <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                  <span className="text-blue-600 font-bold">🎯</span>
+                <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--brand-primary)', opacity: 0.1 }}>
+                  <span className="font-bold" style={{ color: 'var(--brand-primary)' }}>🎯</span>
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Marketing Support</h4>
@@ -104,8 +108,8 @@ export default function PartnersPage() {
               </div>
               
               <div className="flex items-start space-x-4">
-                <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                  <span className="text-blue-600 font-bold">🏷️</span>
+                <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--brand-primary)', opacity: 0.1 }}>
+                  <span className="font-bold" style={{ color: 'var(--brand-primary)' }}>🏷️</span>
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">White-Label Options</h4>
@@ -114,8 +118,8 @@ export default function PartnersPage() {
               </div>
               
               <div className="flex items-start space-x-4">
-                <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                  <span className="text-blue-600 font-bold">📈</span>
+                <div className="w-8 h-8 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--brand-primary)', opacity: 0.1 }}>
+                  <span className="font-bold" style={{ color: 'var(--brand-primary)' }}>📈</span>
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">Partner Portal</h4>
@@ -129,7 +133,7 @@ export default function PartnersPage() {
               <h4 className="font-semibold text-gray-900 mb-2">Partner Success Story</h4>
               <p className="text-gray-600 italic mb-3">
                 "We've generated over $15,000 in recurring revenue in just 6 months by 
-                recommending Sunspire to our solar clients. The commission payments are 
+                recommending {b.enabled ? b.brand : 'Your Company'} to our solar clients. The commission payments are 
                 reliable and the product sells itself."
               </p>
               <p className="text-sm text-gray-500">— Sarah Chen, Digital Marketing Agency</p>
@@ -156,7 +160,8 @@ export default function PartnersPage() {
                   required
                   value={formData.company}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
+                  style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
                   placeholder="Your agency or company name"
                 />
               </div>
@@ -171,7 +176,8 @@ export default function PartnersPage() {
                   required
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
+                  style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
                   placeholder="Your full name"
                 />
               </div>
@@ -186,7 +192,8 @@ export default function PartnersPage() {
                   required
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
+                  style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
                   placeholder="your@email.com"
                 />
               </div>
@@ -200,7 +207,8 @@ export default function PartnersPage() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
+                  style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
                   placeholder="(555) 123-4567"
                 />
               </div>
@@ -214,7 +222,8 @@ export default function PartnersPage() {
                   required
                   value={formData.type}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
+                  style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
                 >
                   <option value="">Select type</option>
                   <option value="agency">Marketing Agency</option>
@@ -234,7 +243,8 @@ export default function PartnersPage() {
                   required
                   value={formData.experience}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
+                  style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
                 >
                   <option value="">Select experience</option>
                   <option value="none">New to solar</option>
@@ -253,14 +263,16 @@ export default function PartnersPage() {
                   rows={4}
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Tell us about your client base and how you'd promote Sunspire..."
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
+                  style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
+                  placeholder="Tell us about your client base and how you'd promote {b.enabled ? b.brand : 'Your Company'}..."
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                className="w-full text-white py-3 px-6 rounded-lg font-semibold transition-colors"
+                style={{ backgroundColor: 'var(--brand-primary)' }}
               >
                 Submit Partner Application
               </button>
@@ -272,6 +284,8 @@ export default function PartnersPage() {
           </motion.div>
         </div>
       </main>
+
+      <LegalFooter brand={b.enabled ? b.brand : undefined} />
     </div>
   );
 }
