@@ -11,7 +11,7 @@ import HeroBrand from '@/src/brand/HeroBrand';
 import StickyBuyBar from '@/src/demo/StickyBuyBar';
 import InstallSheet from '@/src/demo/InstallSheet';
 import NavBrandOverride from '@/src/brand/NavBrandOverride';
-import { DemoBanner } from '@/src/demo/DemoChrome';
+// import { DemoBanner } from '@/src/demo/DemoChrome';
 import { usePreviewQuota } from '@/src/demo/usePreviewQuota';
 import { useCountdown } from '@/src/demo/useCountdown';
 import SocialProof from '@/src/demo/SocialProof';
@@ -176,7 +176,7 @@ function HomeContent() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter" data-demo={b.enabled}>
-      <DemoBanner />
+              {/* <DemoBanner /> */}
 
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

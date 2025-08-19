@@ -7,7 +7,7 @@ import { IconBadge } from '@/components/ui/IconBadge';
 import { useBrandColors } from '@/hooks/useBrandColors';
 import { track } from '@/src/demo/track';
 import { shouldBlurBlock } from '@/src/demo/redaction';
-import { DemoBanner } from '@/src/demo/DemoChrome';
+// import { DemoBanner } from '@/src/demo/DemoChrome';
 import InstallSheet from '@/src/demo/InstallSheet';
 import LockOverlay from '@/src/demo/LockOverlay';
 import HeroBrand from '@/src/brand/HeroBrand';
@@ -112,7 +112,7 @@ export default function DemoResult() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter" data-demo={b.enabled}>
-      <DemoBanner />
+              {/* <DemoBanner /> */}
       
       <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
