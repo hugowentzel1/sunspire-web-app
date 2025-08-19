@@ -33,8 +33,8 @@ export default function ReportHeader({
       transition={{ delay: 0.2, duration: 0.8 }} 
       className="text-center space-y-6"
     >
-      {/* Urgency Strip */}
-      <motion.div 
+      {/* Urgency Strip - Removed demo banner */}
+      {/* <motion.div 
         initial={{ opacity: 0, scale: 0.8 }} 
         animate={{ opacity: 1, scale: 1 }} 
         transition={{ delay: 0.1, duration: 0.8 }} 
@@ -47,7 +47,7 @@ export default function ReportHeader({
       >
         <span className="mr-2">⏰</span>
         Exclusive preview — expires in {countdown.days}:{countdown.hours.toString().padStart(2, '0')}:{countdown.minutes.toString().padStart(2, '0')}:{countdown.seconds.toString().padStart(2, '0')}
-      </motion.div>
+      </motion.div> */}
 
       {/* Logo and Brand */}
       <div className="flex justify-center mb-6">
