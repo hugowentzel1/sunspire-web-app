@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
-import SharedNavigation from '@/components/SharedNavigation';
+
 import LegalFooter from '@/components/legal/LegalFooter';
 
 export default function PartnersPage() {
@@ -37,8 +37,6 @@ export default function PartnersPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <SharedNavigation />
-
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero Section */}
         <motion.div 
