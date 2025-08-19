@@ -128,11 +128,11 @@ export default function EstimateChart({ cashflowData, netCostAfterITC, className
             <Area
               type="monotone"
               dataKey="totalSavings"
-              stroke="#10b981"
+              stroke="var(--brand)"
               strokeWidth={3}
               fill="url(#savingsGradient)"
               fillOpacity={0.4}
-              dot={{ fill: '#10b981', strokeWidth: 2, r: 4 }}
+              dot={{ fill: 'var(--brand)', strokeWidth: 2, r: 4 }}
             />
           </AreaChart>
         </ResponsiveContainer>
@@ -173,8 +173,8 @@ export default function EstimateChart({ cashflowData, netCostAfterITC, className
       <svg width="0" height="0">
         <defs>
           <linearGradient id="savingsGradient" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="5%" stopColor="#10b981" stopOpacity={0.4}/>
-            <stop offset="95%" stopColor="#10b981" stopOpacity={0.1}/>
+            <stop offset="5%" stopColor="var(--brand)" stopOpacity={0.4}/>
+            <stop offset="95%" stopColor="var(--brand)" stopOpacity={0.1}/>
           </linearGradient>
         </defs>
       </svg>
