@@ -1,0 +1,99 @@
+# Page snapshot
+
+```yaml
+- banner:
+  - link "☀️ Sunspire":
+    - /url: /
+  - navigation:
+    - link "Pricing":
+      - /url: /pricing
+    - link "Partners":
+      - /url: /partners
+    - link "Support":
+      - /url: /support
+    - button "Get Started"
+- banner:
+  - link "☀️ Sunspire":
+    - /url: /
+  - navigation:
+    - link "Enterprise":
+      - /url: /enterprise
+    - link "Partners":
+      - /url: /partners
+    - link "Back to Demo":
+      - /url: /
+- main:
+  - heading "Support Center" [level=1]
+  - paragraph: Get help with setup, integration, and optimization. Our team responds to all tickets within 24 hours (2 hours for priority support).
+  - text: 💬
+  - heading "Live Chat" [level=3]
+  - paragraph: Get instant help from our support team
+  - button "Start Chat"
+  - text: 📧
+  - heading "Email Support" [level=3]
+  - paragraph: Send us a detailed message
+  - link "Email Us":
+    - /url: mailto:support@sunspire.app
+  - text: 📞
+  - heading "Priority Support" [level=3]
+  - paragraph: Enterprise clients get phone support
+  - link "Upgrade":
+    - /url: /enterprise
+  - heading "Frequently Asked Questions" [level=2]
+  - heading "How accurate are the solar estimates?" [level=3]
+  - paragraph: Our estimates use NREL PVWatts v8, EIA electricity rates, and local solar irradiance data. Accuracy is typically ±10-15%, comparable to professional site surveys.
+  - heading "How quickly can I get the tool live on my website?" [level=3]
+  - paragraph: Standard setup takes 24-48 hours. Enterprise clients get priority setup within 12 hours.
+  - heading "Can I customize the branding and colors?" [level=3]
+  - paragraph: Yes! All plans include full white-label customization with your colors, logo, and domain.
+  - heading "Do you integrate with CRM systems?" [level=3]
+  - paragraph: Yes, we integrate with most major CRMs including Salesforce, HubSpot, and Pipedrive. Custom integrations available for enterprise clients.
+  - heading "What if the tool doesn't increase my conversions?" [level=3]
+  - paragraph: We offer a 14-day money-back guarantee. If you don't see increased booked calls, you get a full refund.
+  - heading "Is there a setup fee?" [level=3]
+  - paragraph: Standard plans include a $399 setup fee. Enterprise plans have custom setup pricing based on requirements.
+  - heading "Helpful Resources" [level=3]
+  - link "📊 Calculation Methodology":
+    - /url: /methodology
+  - link "🏢 Enterprise Features":
+    - /url: /enterprise
+  - link "🤝 Partner Program":
+    - /url: /partners
+  - link "⚡ Setup Assistance":
+    - /url: mailto:setup@sunspire.app
+  - heading "Create Support Ticket" [level=2]
+  - text: Name
+  - textbox "Your name"
+  - text: Email
+  - textbox "your@email.com"
+  - text: Company
+  - textbox "Your company name"
+  - text: Priority
+  - combobox:
+    - option "Select priority" [selected]
+    - option "Low - General question"
+    - option "Normal - Need help"
+    - option "High - System issue"
+    - option "Urgent - Site down"
+  - text: Category
+  - combobox:
+    - option "Select category" [selected]
+    - option "Setup & Installation"
+    - option "CRM Integration"
+    - option "Branding & Customization"
+    - option "Billing & Account"
+    - option "Technical Issue"
+    - option "Other"
+  - text: Subject
+  - textbox "Brief description of your issue"
+  - text: Message
+  - textbox "Please provide as much detail as possible..."
+  - button "Create Support Ticket"
+  - heading "Response Times" [level=4]
+  - list:
+    - listitem: "• Standard: 24 hours"
+    - listitem: "• High Priority: 4 hours"
+    - listitem: "• Urgent: 1 hour"
+    - listitem: "• Enterprise: 2 hours guaranteed"
+- alert
+```

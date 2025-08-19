@@ -1,38 +1,49 @@
 # Page snapshot
 
 ```yaml
-- strong: Exclusive preview built for GreenFuture
-- text: "Exclusive preview — expires in 6:23:59:53 Runs left: 2"
-- button "Launch on GreenFuture"
+- banner:
+  - link "☀️ Sunspire":
+    - /url: /
+  - navigation:
+    - link "Pricing":
+      - /url: /pricing
+    - link "Partners":
+      - /url: /partners
+    - link "Support":
+      - /url: /support
+    - button "Launch on GreenSolar"
+- strong: Exclusive preview built for GreenSolar
+- text: "Exclusive preview — expires in 6:23:59:58 Runs left: 2"
+- button "Launch on GreenSolar"
 - button "Copy link"
 - button "Dismiss": ✕
 - banner:
   - text: G
-  - heading "GreenFuture" [level=1]
+  - heading "GreenSolar" [level=1]
   - paragraph: Solar Intelligence
   - navigation:
-    - link "Enterprise":
-      - /url: "#"
+    - link "Pricing":
+      - /url: /pricing
     - link "Partners":
-      - /url: "#"
+      - /url: /partners
     - link "Support":
-      - /url: "#"
-    - button "Launch on GreenFuture"
+      - /url: /support
+    - button "Launch on GreenSolar"
 - main:
-  - heading "Built for GreenFuture" [level=2]
+  - heading "Built for GreenSolar" [level=2]
   - paragraph: Exclusive preview of your white-label solar intelligence tool
-  - text: ⚡ Ready to launch on GreenFuture.com G ✓
-  - heading "GreenFuture Solar Intelligence — Live in 10 Minutes" [level=1]
-  - paragraph: Embed a branded quote tool on GreenFuture.com. Turn visitors into booked calls. 14-day refund if it doesn't lift conversions.
+  - text: ⚡ Ready to launch on GreenSolar.com G ✓
+  - heading "GreenSolar Solar Intelligence — Live in 10 Minutes" [level=1]
+  - paragraph: Embed a branded quote tool on GreenSolar.com. Turn visitors into booked calls. 14-day refund if it doesn't lift conversions.
   - heading "Enter Your Property Address" [level=2]
   - paragraph: Get a comprehensive solar analysis tailored to your specific location
   - textbox "Start typing your property address..."
   - paragraph: Enter your property address to get started
-  - button "Launch on GreenFuture":
-    - text: Launch on GreenFuture
+  - button "Launch on GreenSolar":
+    - text: Launch on GreenSolar
     - img
   - paragraph: "Preview: 2 runs left."
-  - paragraph: Expires in 6d 23h 59m 53s
+  - paragraph: Expires in 6d 23h 59m 58s
   - text: 50K+ Properties Analyzed — Total Savings Generated 98% Accuracy Rate 24/7 AI Support
   - img
   - text: Advanced Analytics AI-powered insights with 25-year projections and ROI analysis
@@ -72,7 +83,7 @@
   - link "Methodology":
     - /url: /methodology
   - text: •Powered by Sunspire
-- button "Add to GreenFuture"
+- button "Add to GreenSolar"
 - button "Copy link"
 - text: Trusted by 50+ Solar Brands Bank-Level Security • SOC 2 Compliant • 98% Accuracy
 - alert

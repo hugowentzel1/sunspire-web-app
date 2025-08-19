@@ -62,23 +62,7 @@ export default function SupportPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
-      {/* Header */}
-      <header className="bg-white shadow-sm">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <a href="/" className="text-2xl font-bold text-gray-900">
-                <span className="text-orange-500">☀️</span> Sunspire
-              </a>
-            </div>
-            <nav className="flex items-center space-x-6">
-              <a href="/enterprise" className="text-gray-600 hover:text-green-500">Enterprise</a>
-              <a href="/partners" className="text-gray-600 hover:text-green-500">Partners</a>
-              <a href="/" className="btn-primary">Back to Demo</a>
-            </nav>
-          </div>
-        </div>
-      </header>
+
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Hero Section */}

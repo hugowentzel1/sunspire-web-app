@@ -7,11 +7,11 @@ test.describe('Navigation Everywhere Testing', () => {
     
     await page.waitForLoadState('networkidle');
     
-    // Check that all navigation links are visible
-    await expect(page.locator('text=Pricing')).toBeVisible();
-    await expect(page.locator('text=Partners')).toBeVisible();
-    await expect(page.locator('text=Support')).toBeVisible();
-    await expect(page.locator('text=Get Started')).toBeVisible();
+    // Check that all navigation links are visible (use first instance to avoid duplicates)
+    await expect(page.locator('text=Pricing').first()).toBeVisible();
+    await expect(page.locator('text=Partners').first()).toBeVisible();
+    await expect(page.locator('text=Support').first()).toBeVisible();
+    await expect(page.locator('text=Get Started').first()).toBeVisible();
     
     console.log('✅ Main page navigation is visible');
   });
