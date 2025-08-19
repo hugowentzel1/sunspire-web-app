@@ -100,20 +100,20 @@ export default function SharedNavigation() {
                 <span className="text-white text-sm font-bold">☀️</span>
               </div>
             )}
-            <div className="flex flex-col justify-center" style={{ paddingTop: '8px', paddingBottom: '8px' }}>
-              <h1 className="text-2xl font-black leading-tight" style={{ color: b.enabled ? 'var(--brand-primary)' : undefined }}>
+            <div>
+              <h1 className="text-2xl font-black" style={{ color: b.enabled ? 'var(--brand-primary)' : undefined }}>
                 {b.enabled ? b.brand : 'Your Company'}
               </h1>
-              <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase leading-tight">
+              <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
                 SOLAR INTELLIGENCE
               </p>
             </div>
           </div>
           
           <nav className="hidden md:flex items-center space-x-12">
-            <a href="/pricing" className="transition-colors font-medium" style={{ color: b.enabled ? 'var(--brand-primary)' : '#6B7280' }}>Pricing</a>
-            <a href="/partners" className="transition-colors font-medium" style={{ color: b.enabled ? 'var(--brand-primary)' : '#6B7280' }}>Partners</a>
-            <a href="/support" className="transition-colors font-medium" style={{ color: b.enabled ? 'var(--brand-primary)' : '#6B7280' }}>Support</a>
+            <a href="/enterprise" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Enterprise</a>
+            <a href="/partners" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Partners</a>
+            <a href="/support" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Support</a>
             <motion.button 
               onClick={handleLaunchClick}
               className="btn-primary ml-12"
