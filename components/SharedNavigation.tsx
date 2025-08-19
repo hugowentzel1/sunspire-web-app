@@ -33,13 +33,13 @@ export default function SharedNavigation() {
             </div>
           </div>
           
-          <nav className="hidden md:flex items-center space-x-8">
-            <a href="/enterprise" className="text-gray-600 hover:text-orange-500 transition-colors font-medium">Enterprise</a>
-            <a href="/partners" className="text-gray-600 hover:text-orange-500 transition-colors font-medium">Partners</a>
-            <a href="/support" className="text-gray-600 hover:text-orange-500 transition-colors font-medium">Support</a>
+          <nav className="hidden md:flex items-center space-x-10">
+            <a href="/enterprise" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Enterprise</a>
+            <a href="/partners" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Partners</a>
+            <a href="/support" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Support</a>
             <motion.button 
               onClick={handleLaunchClick}
-              className="btn-primary"
+              className="btn-primary ml-8"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

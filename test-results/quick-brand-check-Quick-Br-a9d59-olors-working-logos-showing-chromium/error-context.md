@@ -1,10 +1,6 @@
 # Page snapshot
 
 ```yaml
-- text: Your Brand — Demo Mode Pre-branded preview. Not a contract quote.
-- link "Put this on our site":
-  - /url: /report?company=Google&demo=1
-- button "Copy demo link"
 - banner:
   - text: ☀️
   - heading "Google" [level=1]
@@ -33,7 +29,7 @@
     - text: Launch on Google
     - img
   - paragraph: "Preview: 2 runs left."
-  - paragraph: Expires in 6d 23h 59m 58s
+  - paragraph: Expires in 6d 23h 59m 56s
   - text: 50K+ Properties Analyzed — Total Savings Generated 98% Accuracy Rate 24/7 AI Support
   - img
   - text: Advanced Analytics AI-powered insights with 25-year projections and ROI analysis
