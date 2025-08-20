@@ -7,7 +7,7 @@ import DemoRibbon from '@/components/ui/DemoRibbon'
 import BrandProvider from '@/src/brand/BrandProvider'
 import BootProbe from './BootProbe'
 import SharedNavigation from '@/components/SharedNavigation'
-import ConditionalNavigation from '@/components/ConditionalNavigation'
+
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -28,7 +28,7 @@ export default function RootLayout({
         <AppErrorBoundary>
           <BrandProvider>
             <DemoRibbon />
-            <ConditionalNavigation />
+            <SharedNavigation />
             {children}
           </BrandProvider>
         </AppErrorBoundary>
