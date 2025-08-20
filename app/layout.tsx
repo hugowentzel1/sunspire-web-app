@@ -5,9 +5,9 @@ import '@/components/ui/sunset-theme.css'
 import AppErrorBoundary from '@/components/AppErrorBoundary'
 import DemoRibbon from '@/components/ui/DemoRibbon'
 import BrandProvider from '@/src/brand/BrandProvider'
-import BrandCSSInjector from '@/components/BrandCSSInjector'
 import BootProbe from './BootProbe'
 import SharedNavigation from '@/components/SharedNavigation'
+import ConditionalNavigation from '@/components/ConditionalNavigation'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -28,7 +28,7 @@ export default function RootLayout({
         <AppErrorBoundary>
           <BrandProvider>
             <DemoRibbon />
-            <SharedNavigation />
+            <ConditionalNavigation />
             {children}
           </BrandProvider>
         </AppErrorBoundary>
