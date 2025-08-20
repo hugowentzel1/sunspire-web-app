@@ -167,14 +167,14 @@ function ReportContent() {
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="space-y-8">
           <div className="text-center space-y-6">
-            <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="w-24 h-24 mx-auto">
-              <div className="brand-gradient text-white rounded-full w-24 h-24 grid place-items-center shadow-[0_8px_30px_rgba(0,0,0,.08)]">
-                <span className="text-4xl">📊</span>
+            <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="w-20 h-20 mx-auto">
+              <div className="bg-gray-100 text-gray-600 rounded-full w-20 h-20 grid place-items-center shadow-sm border border-gray-200">
+                <span className="text-3xl">📊</span>
               </div>
             </motion.div>
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl font-black text-gray-900">New Analysis</h1>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">Comprehensive analysis for your property at {estimate.address}</p>
+              <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Solar Analysis Report</h2>
+              <p className="text-lg text-gray-600 max-w-2xl mx-auto">Comprehensive analysis for your property at {estimate.address}</p>
               <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
                 <span>Data Source: {estimate.utilityRateSource}</span>
                 <span>•</span>
