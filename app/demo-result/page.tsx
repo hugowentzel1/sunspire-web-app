@@ -124,7 +124,7 @@ export default function DemoResult() {
                 <HeroBrand />
               )}
               <div>
-                <h1 className="text-2xl font-black bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 bg-clip-text text-transparent">
+                <h1 className="text-2xl font-black text-[var(--brand-primary)]">
                   {b.enabled ? b.brand : 'Your Company'}
                 </h1>
                 <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
@@ -132,13 +132,16 @@ export default function DemoResult() {
                 </p>
               </div>
             </div>
-            <div className="flex items-center space-x-4">
+            <nav className="hidden md:flex items-center space-x-12">
+              <a href="/pricing" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Pricing</a>
+              <a href="/partners" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Partners</a>
+              <a href="/support" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Support</a>
               <button 
                 onClick={() => {
                   consume();
                   window.history.back();
                 }} 
-                className={`px-6 py-3 text-white rounded-2xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 ${
+                className={`px-6 py-3 text-white rounded-2xl font-semibold hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 ml-12 ${
                   b.enabled 
                     ? 'bg-[var(--brand-primary)] hover:bg-[var(--brand-primary)]/90' 
                     : 'bg-gradient-to-r from-orange-500 to-red-500'
@@ -146,7 +149,7 @@ export default function DemoResult() {
               >
                 New Analysis
               </button>
-            </div>
+            </nav>
           </div>
         </div>
       </header>
