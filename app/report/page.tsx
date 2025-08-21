@@ -277,7 +277,15 @@ function ReportContent() {
                     width={48} 
                     height={48} 
                     className="rounded-lg"
-                    style={{ objectFit: "contain" }}
+                    style={{ 
+                      objectFit: "contain",
+                      width: "48px",
+                      height: "48px",
+                      minWidth: "48px",
+                      minHeight: "48px",
+                      maxWidth: "48px",
+                      maxHeight: "48px"
+                    }}
                   />
                 ) : (
                   <div className="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center">
