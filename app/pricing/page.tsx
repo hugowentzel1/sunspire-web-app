@@ -159,11 +159,7 @@ export default function PricingPage() {
             <div className="text-center">
               <div className="flex justify-center mb-4">
                 <IconBadge>
-                  <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 1v22"/>
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 1v22"/>
-                  </svg>
+                  <span className="text-2xl">💰</span>
                 </IconBadge>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">ROI in 1 Month</h3>

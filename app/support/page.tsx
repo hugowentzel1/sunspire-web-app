@@ -136,9 +136,7 @@ export default function SupportPage() {
             <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style={{ 
               background: 'linear-gradient(135deg, #ffffff, var(--brand-primary))'
             }}>
-              <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-              </svg>
+              <span className="text-2xl">📧</span>
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Email Support</h3>
             <p className="text-gray-600 mb-4">Send us a detailed message</p>
