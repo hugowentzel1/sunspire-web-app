@@ -186,16 +186,16 @@ export default function SupportPage() {
             <div className="mt-12">
               <h3 className="text-xl font-semibold text-gray-900 mb-6">Helpful Resources</h3>
               <div className="space-y-3">
-                <a href="/methodology" className="block hover:text-opacity-80 transition-colors" style={{ color: 'var(--brand-primary)' }}>
+                <a href="/methodology" className="block hover:text-opacity-80 transition-colors text-gray-500 hover:text-gray-700">
                   📊 Calculation Methodology
                 </a>
-                <a href="/pricing" className="block hover:text-opacity-80 transition-colors" style={{ color: 'var(--brand-primary)' }}>
+                <a href="/pricing" className="block hover:text-opacity-80 transition-colors text-gray-500 hover:text-gray-700">
                   🏢 Enterprise Features
                 </a>
-                <a href="/partners" className="block hover:text-opacity-80 transition-colors" style={{ color: 'var(--brand-primary)' }}>
+                <a href="/partners" className="block hover:text-opacity-80 transition-colors text-gray-500 hover:text-gray-700">
                   🤝 Partner Program
                 </a>
-                <a href="mailto:setup@sunspire.app" className="block hover:text-opacity-80 transition-colors" style={{ color: 'var(--brand-primary)' }}>
+                <a href="mailto:setup@sunspire.app" className="block hover:text-opacity-80 transition-colors text-gray-500 hover:text-gray-700">
                   ⚡ Setup Assistance
                 </a>
               </div>

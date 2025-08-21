@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+import { IconBadge } from '@/components/ui/IconBadge';
 
 import LegalFooter from '@/components/legal/LegalFooter';
 
@@ -156,28 +157,34 @@ export default function PricingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             
             <div className="text-center">
-                          <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-gray-100 border-2 border-gray-200">
-              <span className="text-2xl">💰</span>
+              <div className="flex justify-center mb-4">
+                <IconBadge>
+                  <span className="text-2xl">💰</span>
+                </IconBadge>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">ROI in 1 Month</h3>
+              <p className="text-gray-700">If you book just 1 extra call per month, you've covered your costs</p>
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">ROI in 1 Month</h3>
-            <p className="text-gray-700">If you book just 1 extra call per month, you've covered your costs</p>
-          </div>
-          
-          <div className="text-center">
-            <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-gray-100 border-2 border-gray-200">
-              <span className="text-2xl">⚡</span>
+            
+            <div className="text-center">
+              <div className="flex justify-center mb-4">
+                <IconBadge>
+                  <span className="text-2xl">⚡</span>
+                </IconBadge>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Live in 24 Hours</h3>
+              <p className="text-gray-700">No waiting weeks for custom development</p>
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Live in 24 Hours</h3>
-            <p className="text-gray-700">No waiting weeks for custom development</p>
-          </div>
-          
-          <div className="text-center">
-            <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-gray-100 border-2 border-gray-200">
-              <span className="text-2xl">🔄</span>
+            
+            <div className="text-center">
+              <div className="flex justify-center mb-4">
+                <IconBadge>
+                  <span className="text-2xl">🔄</span>
+                </IconBadge>
+              </div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Cancel Anytime</h3>
+              <p className="text-gray-700">14-day refund if it doesn't increase your conversions</p>
             </div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-2">Cancel Anytime</h3>
-            <p className="text-gray-700">14-day refund if it doesn't increase your conversions</p>
-          </div>
           </div>
         </motion.div>
 
@@ -188,9 +195,9 @@ export default function PricingPage() {
           transition={{ duration: 0.8, delay: 0.6 }}
           className="text-center"
         >
-          <div className="rounded-2xl p-8 max-w-2xl mx-auto" style={{ backgroundColor: 'var(--brand-primary)', opacity: 0.05 }}>
+          <div className="rounded-2xl p-8 max-w-2xl mx-auto bg-gray-50 border border-gray-200">
             <h3 className="text-xl font-bold text-gray-900 mb-4">Ready to Get Started?</h3>
-            <p className="text-gray-600 mb-6">
+            <p className="text-gray-700 mb-6">
               Join 50+ solar companies already using {b.enabled ? b.brand : 'Your Company'} to increase their conversions.
             </p>
             <motion.button 

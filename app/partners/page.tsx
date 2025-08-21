@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+import { IconBadge } from '@/components/ui/IconBadge';
 
 import LegalFooter from '@/components/legal/LegalFooter';
 
@@ -104,42 +105,42 @@ export default function PartnersPage() {
               <h3 className="text-xl font-semibold text-gray-900">Partner Benefits</h3>
               
               <div className="flex items-start space-x-4">
-                <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
+                <IconBadge>
                   <span className="text-lg">💰</span>
-                </div>
+                </IconBadge>
                 <div>
                   <h4 className="font-semibold text-gray-900">Recurring Revenue</h4>
-                  <p className="text-gray-600">30% commission on all recurring payments, paid monthly</p>
+                  <p className="text-gray-500">30% commission on all recurring payments, paid monthly</p>
                 </div>
               </div>
               
               <div className="flex items-start space-x-4">
-                <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
+                <IconBadge>
                   <span className="text-lg">🎯</span>
-                </div>
+                </IconBadge>
                 <div>
                   <h4 className="font-semibold text-gray-900">Marketing Support</h4>
-                  <p className="text-gray-600">Sales materials, case studies, and co-marketing opportunities</p>
+                  <p className="text-gray-500">Sales materials, case studies, and co-marketing opportunities</p>
                 </div>
               </div>
               
               <div className="flex items-start space-x-4">
-                <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
+                <IconBadge>
                   <span className="text-lg">🏷️</span>
-                </div>
+                </IconBadge>
                 <div>
                   <h4 className="font-semibold text-gray-900">White-Label Options</h4>
-                  <p className="text-gray-600">Resell under your own brand with custom pricing</p>
+                  <p className="text-gray-500">Resell under your own brand with custom pricing</p>
                 </div>
               </div>
               
               <div className="flex items-start space-x-4">
-                <div className="w-8 h-8 bg-gray-100 rounded-full flex items-center justify-center">
+                <IconBadge>
                   <span className="text-lg">📈</span>
-                </div>
+                </IconBadge>
                 <div>
                   <h4 className="font-semibold text-gray-900">Partner Portal</h4>
-                  <p className="text-gray-600">Track commissions, leads, and performance in real-time</p>
+                  <p className="text-gray-500">Track commissions, leads, and performance in real-time</p>
                 </div>
               </div>
             </div>
