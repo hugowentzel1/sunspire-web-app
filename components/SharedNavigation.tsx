@@ -9,8 +9,8 @@ export default function SharedNavigation() {
   const pathname = usePathname();
   const b = useBrandTakeover();
   
-  // Don't render on the report page since it has its own custom banner
-  if (pathname === '/report') {
+  // Don't render on pages that have their own custom banners
+  if (pathname === '/report' || pathname === '/demo-result') {
     return null;
   }
 
