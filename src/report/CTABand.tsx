@@ -37,7 +37,7 @@ export default function CTABand() {
         <div className="flex flex-wrap items-center justify-center gap-4 mb-6">
           <motion.button
             onClick={handlePrimaryClick}
-            className="px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:-translate-y-1"
+            className="w-48 px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:-translate-y-1"
             style={{
               background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
               color: 'var(--brand-primary, #FFA63D)',
@@ -55,7 +55,7 @@ export default function CTABand() {
           </motion.button>
           <motion.button
             onClick={handleSecondaryClick}
-            className="px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:-translate-y-1"
+            className="w-48 px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:-translate-y-1"
             style={{
               background: '#ffffff',
               color: 'var(--brand-primary, #FFA63D)',
