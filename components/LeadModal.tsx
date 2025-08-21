@@ -7,6 +7,7 @@ import { z } from 'zod';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useTenant } from './TenantProvider';
 import { SolarEstimate } from '@/lib/estimate';
+import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 
 const leadFormSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -26,6 +27,7 @@ interface LeadModalProps {
 
 export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps) {
   const { tenant } = useTenant();
+  const b = useBrandTakeover();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -120,20 +122,45 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
-                  className="w-16 h-16 mx-auto mb-6 bg-green-500 rounded-full flex items-center justify-center"
+                  className="w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center"
+                  style={{ 
+                    background: b.enabled && b.primary 
+                      ? `linear-gradient(135deg, ${b.primary}, ${b.primary}dd)` 
+                      : 'linear-gradient(135deg, #10b981, #059669)'
+                  }}
                 >
                   <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                   </svg>
                 </motion.div>
                 
-                <h2 className="text-2xl font-bold text-gray-900 mb-4">Sample Report Requested!</h2>
+                <h2 
+                  className="text-2xl font-bold mb-4"
+                  style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}
+                >
+                  Sample Report Requested!
+                </h2>
                 <p className="text-gray-600 mb-6">
                   Thanks for reaching out! We’ll email you a summary and next steps within 24 hours.
                 </p>
                 
-                <div className="bg-gray-50 rounded-2xl p-4 mb-6">
-                  <h3 className="font-semibold text-gray-900 mb-2">Your Estimate Summary</h3>
+                <div 
+                  className="rounded-2xl p-4 mb-6"
+                  style={{ 
+                    background: b.enabled && b.primary 
+                      ? `${b.primary}10` 
+                      : '#f9fafb',
+                    border: b.enabled && b.primary 
+                      ? `1px solid ${b.primary}20` 
+                      : '1px solid #e5e7eb'
+                  }}
+                >
+                  <h3 
+                    className="font-semibold mb-2"
+                    style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}
+                  >
+                    Your Estimate Summary
+                  </h3>
                   <div className="text-sm text-gray-600 space-y-1">
                     <p>System Size: {estimate.systemSizeKW} kW</p>
                     <p>Net Cost: ${estimate.netCostAfterITC.toLocaleString()}</p>
