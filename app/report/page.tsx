@@ -114,7 +114,9 @@ function ReportContent() {
 
   useEffect(() => {
     const demoFlag = searchParams.get('demo');
+    const company = searchParams.get('company');
     const isDemo = !!demoFlag && demoFlag !== '0' && demoFlag !== 'false';
+    const hasBrand = !!company; // If we have a company parameter, treat it as a demo
 
     let address = searchParams.get('address') || '';
     let lat = parseFloat(searchParams.get('lat') || '');
@@ -122,16 +124,16 @@ function ReportContent() {
     const placeId = searchParams.get('placeId');
     const state = searchParams.get('state') || undefined;
 
-    // If demo and missing coords, pick a good default by state
-    if (isDemo && (!Number.isFinite(lat) || !Number.isFinite(lng) || !address)) {
+    // If demo/brand mode and missing coords, pick a good default by state
+    if ((isDemo || hasBrand) && (!Number.isFinite(lat) || !Number.isFinite(lng) || !address)) {
       const pick = pickDemoAddress(state);
       address = pick.address;
       lat = pick.lat;
       lng = pick.lng;
     }
 
-    // For demo mode or when we have coordinates, create a fallback estimate immediately
-    if (isDemo || (address && Number.isFinite(lat) && Number.isFinite(lng))) {
+    // For demo mode, brand mode, or when we have coordinates, create a fallback estimate immediately
+    if (isDemo || hasBrand || (address && Number.isFinite(lat) && Number.isFinite(lng))) {
       const fallbackEstimate = {
         id: Date.now().toString(),
         address: address || '123 Solar Street, San Diego, CA',
@@ -151,7 +153,7 @@ function ReportContent() {
         npv25Year: 73000,
         co2OffsetPerYear: 10200,
         utilityRate: 0.14,
-        utilityRateSource: 'Demo',
+        utilityRateSource: hasBrand ? 'Demo' : 'Demo',
         assumptions: {
           itcPercentage: 0.30,
           costPerWatt: 3.00,
