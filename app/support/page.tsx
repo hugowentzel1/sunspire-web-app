@@ -119,13 +119,8 @@ export default function SupportPage() {
             <p className="text-gray-600 mb-4">Get instant help from our support team</p>
             <button 
               onClick={() => setShowChat(true)}
-              className="px-4 py-2 rounded-lg transition-colors"
-              style={{ 
-                background: 'linear-gradient(135deg, #ffffff 0%, var(--brand-primary) 100%)',
-                color: 'var(--brand-primary)',
-                border: '2px solid var(--brand-primary)',
-                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)'
-              }}
+              className="px-4 py-2 rounded-lg text-white transition-colors"
+              style={{ backgroundColor: 'var(--brand-primary)' }}
             >
               Start Chat
             </button>
