@@ -86,15 +86,15 @@ export default function PartnersPage() {
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Commission Structure</h3>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-700">Standard Plan ($99/month)</span>
+                  <span className="text-gray-500">Standard Plan ($99/month)</span>
                   <span className="font-bold" style={{ color: 'var(--brand-primary)' }}>$30/month recurring</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-700">Setup Fee ($399)</span>
+                  <span className="text-gray-500">Setup Fee ($399)</span>
                   <span className="font-bold" style={{ color: 'var(--brand-primary)' }}>$120 one-time</span>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-gray-700">Enterprise Deals</span>
+                  <span className="text-gray-500">Enterprise Deals</span>
                   <span className="font-bold" style={{ color: 'var(--brand-primary)' }}>Custom rates</span>
                 </div>
               </div>

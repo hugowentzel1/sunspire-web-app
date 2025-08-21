@@ -118,8 +118,13 @@ export default function SupportPage() {
             <p className="text-gray-600 mb-4">Get instant help from our support team</p>
             <button 
               onClick={() => setShowChat(true)}
-              className="px-4 py-2 rounded-lg text-white transition-colors"
-              style={{ backgroundColor: 'var(--brand-primary)' }}
+              className="px-4 py-2 rounded-lg transition-colors"
+              style={{ 
+                background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+                color: 'var(--brand-primary)',
+                border: '2px solid var(--brand-primary)',
+                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)'
+              }}
             >
               Start Chat
             </button>
@@ -140,8 +145,13 @@ export default function SupportPage() {
             <p className="text-gray-600 mb-4">Send us a detailed message</p>
             <a 
               href="mailto:support@sunspire.app"
-              className="px-4 py-2 rounded-lg text-white transition-colors inline-block"
-              style={{ backgroundColor: 'var(--brand-primary)' }}
+              className="px-4 py-2 rounded-lg transition-colors inline-block"
+              style={{ 
+                background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+                color: 'var(--brand-primary)',
+                border: '2px solid var(--brand-primary)',
+                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)'
+              }}
             >
               Email Us
             </a>
@@ -162,8 +172,13 @@ export default function SupportPage() {
             <p className="text-gray-600 mb-4">Enterprise clients get phone support</p>
             <a 
               href="/pricing"
-              className="px-4 py-2 rounded-lg text-white transition-colors inline-block"
-              style={{ backgroundColor: 'var(--brand-primary)' }}
+              className="px-4 py-2 rounded-lg transition-colors inline-block"
+              style={{ 
+                background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+                color: 'var(--brand-primary)',
+                border: '2px solid var(--brand-primary)',
+                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)'
+              }}
             >
               Upgrade
             </a>
