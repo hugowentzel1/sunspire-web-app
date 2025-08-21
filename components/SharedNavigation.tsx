@@ -2,10 +2,17 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 
 export default function SharedNavigation() {
+  const pathname = usePathname();
   const b = useBrandTakeover();
+  
+  // Don't render on pages that have their own custom banners
+  if (pathname === '/report' || pathname === '/demo-result') {
+    return null;
+  }
 
   // Generate a default logo URL for common companies when no logo is provided
   const getDefaultLogo = (brand: string) => {
