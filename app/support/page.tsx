@@ -109,7 +109,7 @@ export default function SupportPage() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="bg-white rounded-lg shadow-lg p-6 text-center"
           >
-            <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: 'var(--brand-primary)', opacity: 0.1 }}>
+            <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 bg-gray-100 border-2 border-gray-200">
               <span className="text-2xl">💬</span>
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Live Chat</h3>
@@ -129,7 +129,7 @@ export default function SupportPage() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="bg-white rounded-lg shadow-lg p-6 text-center"
           >
-            <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: 'var(--brand-primary)', opacity: 0.1 }}>
+            <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 bg-gray-100 border-2 border-gray-200">
               <span className="text-2xl">📧</span>
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Email Support</h3>
@@ -149,7 +149,7 @@ export default function SupportPage() {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="bg-white rounded-lg shadow-lg p-6 text-center"
           >
-            <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: 'var(--brand-primary)', opacity: 0.1 }}>
+            <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 bg-gray-100 border-2 border-gray-200">
               <span className="text-2xl">📞</span>
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Priority Support</h3>
@@ -346,7 +346,7 @@ export default function SupportPage() {
               </button>
             </form>
 
-            <div className="mt-6 p-4 rounded-lg" style={{ backgroundColor: 'var(--brand-primary)', opacity: 0.05 }}>
+            <div className="mt-6 p-4 rounded-lg bg-gray-50 border border-gray-200">
               <h4 className="font-semibold text-gray-900 mb-2">Response Times</h4>
               <ul className="text-sm text-gray-700 space-y-1">
                 <li>• Standard: 24 hours</li>

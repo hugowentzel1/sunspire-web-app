@@ -81,7 +81,7 @@ export default function PartnersPage() {
             className="space-y-8"
           >
             {/* Commission Structure */}
-            <div className="rounded-lg p-6" style={{ backgroundColor: 'var(--brand-primary)', opacity: 0.05 }}>
+            <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
               <h3 className="text-xl font-semibold text-gray-900 mb-4">Commission Structure</h3>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">

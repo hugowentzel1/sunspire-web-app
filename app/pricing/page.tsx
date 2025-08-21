@@ -156,28 +156,28 @@ export default function PricingPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             
             <div className="text-center">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: 'var(--brand-primary)', opacity: 0.1 }}>
-                <span className="text-2xl">💰</span>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">ROI in 1 Month</h3>
-              <p className="text-gray-600">If you book just 1 extra call per month, you've covered your costs</p>
+                          <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-gray-100 border-2 border-gray-200">
+              <span className="text-2xl">💰</span>
             </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: 'var(--brand-primary)', opacity: 0.1 }}>
-                <span className="text-2xl">⚡</span>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Live in 24 Hours</h3>
-              <p className="text-gray-600">No waiting weeks for custom development</p>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">ROI in 1 Month</h3>
+            <p className="text-gray-700">If you book just 1 extra call per month, you've covered your costs</p>
+          </div>
+          
+          <div className="text-center">
+            <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-gray-100 border-2 border-gray-200">
+              <span className="text-2xl">⚡</span>
             </div>
-            
-            <div className="text-center">
-              <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: 'var(--brand-primary)', opacity: 0.1 }}>
-                <span className="text-2xl">🔄</span>
-              </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Cancel Anytime</h3>
-              <p className="text-gray-600">14-day refund if it doesn't increase your conversions</p>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Live in 24 Hours</h3>
+            <p className="text-gray-700">No waiting weeks for custom development</p>
+          </div>
+          
+          <div className="text-center">
+            <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 bg-gray-100 border-2 border-gray-200">
+              <span className="text-2xl">🔄</span>
             </div>
+            <h3 className="text-lg font-semibold text-gray-900 mb-2">Cancel Anytime</h3>
+            <p className="text-gray-700">14-day refund if it doesn't increase your conversions</p>
+          </div>
           </div>
         </motion.div>
 
