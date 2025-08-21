@@ -75,10 +75,34 @@ export default function HeroBrand(){
   return (
     <div style={{ display:"grid", placeItems:"center", margin:"24px 0" }}>
       {logoUrl ? (
-        <Image src={logoUrl} alt={`${b.brand} logo`} width={96} height={96} style={{ objectFit:"contain", borderRadius:16 }}/>
+        <Image 
+          src={logoUrl} 
+          alt={`${b.brand} logo`} 
+          width={48} 
+          height={48} 
+          style={{ 
+            objectFit:"contain", 
+            borderRadius:8,
+            width: "48px",
+            height: "48px",
+            minWidth: "48px",
+            minHeight: "48px",
+            maxWidth: "48px",
+            maxHeight: "48px"
+          }}
+        />
       ) : (
-        <div style={{ width:96, height:96, borderRadius:20, display:"grid", placeItems:"center",
-                      background:b.primary, color:"#0D0D0D", fontWeight:800, fontSize:28 }}>
+        <div style={{ 
+          width:48, 
+          height:48, 
+          borderRadius:8, 
+          display:"grid", 
+          placeItems:"center",
+          background:b.primary, 
+          color:"#0D0D0D", 
+          fontWeight:800, 
+          fontSize:16 
+        }}>
           {initials(b.brand)}
         </div>
       )}
