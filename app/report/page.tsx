@@ -35,69 +35,6 @@ function ReportContent() {
   // Brand colors from URL
   useBrandColors();
 
-  // Generate a default logo URL for common companies when no logo is provided
-  const getDefaultLogo = (brand: string) => {
-    const brandLower = brand.toLowerCase();
-    
-    // Tech companies
-    if (brandLower.includes('google')) return 'https://logo.clearbit.com/google.com';
-    if (brandLower.includes('microsoft')) return 'https://logo.clearbit.com/microsoft.com';
-    if (brandLower.includes('apple')) return 'https://logo.clearbit.com/apple.com';
-    if (brandLower.includes('amazon')) return 'https://logo.clearbit.com/amazon.com';
-    if (brandLower.includes('meta') || brandLower.includes('facebook')) return 'https://logo.clearbit.com/facebook.com';
-    if (brandLower.includes('netflix')) return 'https://logo.clearbit.com/netflix.com';
-    if (brandLower.includes('spotify')) return 'https://logo.clearbit.com/spotify.com';
-    if (brandLower.includes('twitter')) return 'https://logo.clearbit.com/twitter.com';
-    if (brandLower.includes('linkedin')) return 'https://logo.clearbit.com/linkedin.com';
-    if (brandLower.includes('instagram')) return 'https://logo.clearbit.com/instagram.com';
-    if (brandLower.includes('twitch')) return 'https://logo.clearbit.com/twitch.tv';
-    if (brandLower.includes('discord')) return 'https://logo.clearbit.com/discord.com';
-    if (brandLower.includes('slack')) return 'https://logo.clearbit.com/slack.com';
-    if (brandLower.includes('shopify')) return 'https://logo.clearbit.com/shopify.com';
-    if (brandLower.includes('uber')) return 'https://logo.clearbit.com/uber.com';
-    if (brandLower.includes('lyft')) return 'https://logo.clearbit.com/lyft.com';
-    
-    // Solar companies
-    if (brandLower.includes('tesla')) return 'https://logo.clearbit.com/tesla.com';
-    if (brandLower.includes('sunpower')) return 'https://logo.clearbit.com/sunpower.com';
-    if (brandLower.includes('solarcity')) return 'https://logo.clearbit.com/solarcity.com';
-    if (brandLower.includes('vivint')) return 'https://logo.clearbit.com/vivint.com';
-    if (brandLower.includes('sunrun')) return 'https://logo.clearbit.com/sunrun.com';
-    if (brandLower.includes('sunnova')) return 'https://logo.clearbit.com/sunnova.com';
-    if (brandLower.includes('tealenergy')) return 'https://logo.clearbit.com/tealenergy.com';
-    
-    // Energy companies
-    if (brandLower.includes('bp')) return 'https://logo.clearbit.com/bp.com';
-    if (brandLower.includes('shell')) return 'https://logo.clearbit.com/shell.com';
-    if (brandLower.includes('exxon')) return 'https://logo.clearbit.com/exxonmobil.com';
-    if (brandLower.includes('chevron')) return 'https://logo.clearbit.com/chevron.com';
-    
-    // Real estate/home
-    if (brandLower.includes('zillow')) return 'https://logo.clearbit.com/zillow.com';
-    if (brandLower.includes('redfin')) return 'https://logo.clearbit.com/redfin.com';
-    if (brandLower.includes('realtor')) return 'https://logo.clearbit.com/realtor.com';
-    if (brandLower.includes('homedepot')) return 'https://logo.clearbit.com/homedepot.com';
-    
-    // Financial services
-    if (brandLower.includes('chase')) return 'https://logo.clearbit.com/chase.com';
-    if (brandLower.includes('wellsfargo')) return 'https://logo.clearbit.com/wellsfargo.com';
-    if (brandLower.includes('bankofamerica')) return 'https://logo.clearbit.com/bankofamerica.com';
-    if (brandLower.includes('goldmansachs')) return 'https://logo.clearbit.com/goldmansachs.com';
-    
-    // Other popular brands
-    if (brandLower.includes('starbucks')) return 'https://logo.clearbit.com/starbucks.com';
-    if (brandLower.includes('mcdonalds')) return 'https://logo.clearbit.com/mcdonalds.com';
-    if (brandLower.includes('cocacola') || brandLower.includes('coca')) return 'https://logo.clearbit.com/coca-cola.com';
-    if (brandLower.includes('target')) return 'https://logo.clearbit.com/target.com';
-    if (brandLower.includes('bestbuy')) return 'https://logo.clearbit.com/bestbuy.com';
-    if (brandLower.includes('snapchat')) return 'https://logo.clearbit.com/snapchat.com';
-    if (brandLower.includes('whatsapp')) return 'https://logo.clearbit.com/whatsapp.com';
-    if (brandLower.includes('firefox')) return 'https://logo.clearbit.com/mozilla.org';
-    if (brandLower.includes('harleydavidson')) return 'https://logo.clearbit.com/harley-davidson.com';
-    
-    return null;
-  };
-
   const demoAddressesByState: Record<string, {address:string, lat:number, lng:number}> = {
     AZ: { address: "123 N Central Ave, Phoenix, AZ", lat: 33.4484, lng: -112.0740 },
     CA: { address: "111 S Spring St, Los Angeles, CA", lat: 34.0537, lng: -118.2428 },
@@ -223,70 +160,21 @@ function ReportContent() {
   if (!estimate) return null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter report-page" data-demo={b.enabled}>
-      {/* Custom consolidated banner for report page */}
-      <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <div className="flex items-center space-x-4">
-              {b.enabled ? (
-                (b.logo || getDefaultLogo(b.brand)) ? (
-                  <Image 
-                    src={b.logo || getDefaultLogo(b.brand) || ''} 
-                    alt={`${b.brand} logo`} 
-                    width={48} 
-                    height={48} 
-                    className="rounded-lg"
-                    style={{ objectFit: "contain" }}
-                  />
-                ) : (
-                  <div className="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center">
-                    <span className="text-white text-lg font-bold">☀️</span>
-                  </div>
-                )
-              ) : (
-                <div className="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center">
-                  <span className="text-white text-lg font-bold">☀️</span>
-                </div>
-              )}
-              <div>
-                <h1 className="text-2xl font-black text-[var(--brand-primary)]">
-                  {b.enabled ? b.brand : 'Your Company'}
-                </h1>
-                <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
-                  Solar Intelligence
-                </p>
-              </div>
-            </div>
-            
-            <nav className="hidden md:flex items-center space-x-12">
-              <a href="/pricing" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Pricing</a>
-              <a href="/partners" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Partners</a>
-              <a href="/support" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Support</a>
-              <motion.button 
-                onClick={() => router.push('/')}
-                className="btn-primary ml-12"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                New Analysis
-              </motion.button>
-            </nav>
-          </div>
-        </div>
-      </header>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter" data-demo={b.enabled}>
+              {/* <DemoBanner /> */}
+
 
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="space-y-8">
           <div className="text-center space-y-6">
-            <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="w-20 h-20 mx-auto">
-              <div className="bg-gray-100 text-gray-600 rounded-full w-20 h-20 grid place-items-center shadow-sm border border-gray-200">
-                <span className="text-3xl">📊</span>
+            <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="w-24 h-24 mx-auto">
+              <div className="brand-gradient text-white rounded-full w-24 h-24 grid place-items-center shadow-[0_8px_30px_rgba(0,0,0,.08)]">
+                <span className="text-4xl">📊</span>
               </div>
             </motion.div>
             <div className="space-y-4">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-800">Solar Analysis Report</h2>
-              <p className="text-lg text-gray-600 max-w-2xl mx-auto">Comprehensive analysis for your property at {estimate.address}</p>
+              <h1 className="text-4xl md:text-5xl font-black text-gray-900">New Analysis</h1>
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">Comprehensive analysis for your property at {estimate.address}</p>
               <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
                 <span>Data Source: {estimate.utilityRateSource}</span>
                 <span>•</span>
@@ -295,10 +183,22 @@ function ReportContent() {
             </div>
           </div>
 
-          {/* Data source info */}
-          <div className="text-center text-xs text-slate-500">
-            Data sources: PVWatts v8 (NREL) • EIA rates • HTTPS encrypted
-          </div>
+          {/* Trust elements and CTA */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8 }} className="mt-4 flex flex-wrap items-center justify-center gap-3">
+            <a
+              href="/tenant-preview?demo=1"
+              className={`px-5 py-3 rounded-xl font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-200 ${
+                b.enabled 
+                  ? 'bg-[var(--brand-primary)] hover:bg-[var(--brand-primary)]/90' 
+                  : 'bg-gradient-to-r from-orange-500 via-red-500 to-pink-500'
+              }`}
+            >
+              Put this on our site
+            </a>
+            <div className="text-xs text-slate-500">
+              Data sources: PVWatts v8 (NREL) • EIA rates • HTTPS encrypted
+            </div>
+          </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
             <div className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">

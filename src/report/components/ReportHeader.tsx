@@ -49,8 +49,8 @@ export default function ReportHeader({
         Exclusive preview — expires in {countdown.days}:{countdown.hours.toString().padStart(2, '0')}:{countdown.minutes.toString().padStart(2, '0')}:{countdown.seconds.toString().padStart(2, '0')}
       </motion.div> */}
 
-      {/* Logo and Brand - Removed to prevent duplicate header appearance */}
-      {/* <div className="flex justify-center mb-6">
+      {/* Logo and Brand */}
+      <div className="flex justify-center mb-6">
         {b.enabled ? <HeroBrand /> : (
           <motion.div 
             whileHover={{ scale: 1.05, rotate: 5 }}
@@ -59,12 +59,12 @@ export default function ReportHeader({
             <IconBadge>☀️</IconBadge>
           </motion.div>
         )}
-      </div> */}
+      </div>
 
       {/* Title and Subtitle */}
       <div className="space-y-4">
         <h1 className="text-4xl md:text-5xl font-black text-gray-900">
-          Solar Analysis Report
+          Solar Intelligence Report
         </h1>
         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
           Comprehensive analysis for your property at {address}
