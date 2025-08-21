@@ -113,7 +113,9 @@ export default function SupportPage() {
               background: 'linear-gradient(135deg, #ffffff 0%, var(--brand-primary) 100%)',
               opacity: 0.1
             }}>
-              <span className="text-2xl">💬</span>
+              <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.220C2.307 15.697 2 13.892 2 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+              </svg>
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Live Chat</h3>
             <p className="text-gray-600 mb-4">Get instant help from our support team</p>
@@ -136,19 +138,16 @@ export default function SupportPage() {
               background: 'linear-gradient(135deg, #ffffff 0%, var(--brand-primary) 100%)',
               opacity: 0.1
             }}>
-              <span className="text-2xl">📧</span>
+              <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Email Support</h3>
             <p className="text-gray-600 mb-4">Send us a detailed message</p>
             <a 
               href="mailto:support@sunspire.app"
-              className="px-4 py-2 rounded-lg transition-colors inline-block"
-              style={{ 
-                background: 'linear-gradient(135deg, #ffffff 0%, var(--brand-primary) 100%)',
-                color: 'var(--brand-primary)',
-                border: '2px solid var(--brand-primary)',
-                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)'
-              }}
+              className="px-4 py-2 rounded-lg text-white transition-colors inline-block"
+              style={{ backgroundColor: 'var(--brand-primary)' }}
             >
               Email Us
             </a>
@@ -161,7 +160,7 @@ export default function SupportPage() {
             className="bg-white rounded-lg shadow-lg p-6 text-center"
           >
             <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4" style={{ 
-              background: 'linear-gradient(135deg, #ffffff 0%, #f8fafc 100%)',
+              background: 'linear-gradient(135deg, #ffffff 0%, var(--brand-primary) 100%)',
               opacity: 0.1
             }}>
               <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -169,16 +168,11 @@ export default function SupportPage() {
               </svg>
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Priority Support</h3>
-            <p className="text-gray-900 mb-4">Enterprise clients get phone support</p>
+            <p className="text-gray-600 mb-4">Enterprise clients get phone support</p>
             <a 
               href="/pricing"
-              className="px-4 py-2 rounded-lg transition-colors inline-block"
-              style={{ 
-                background: 'linear-gradient(135deg, #ffffff 0%, var(--brand-primary) 100%)',
-                color: 'var(--brand-primary)',
-                border: '2px solid var(--brand-primary)',
-                boxShadow: '0 4px 15px rgba(0, 0, 0, 0.1)'
-              }}
+              className="px-4 py-2 rounded-lg text-white transition-colors inline-block"
+              style={{ backgroundColor: 'var(--brand-primary)' }}
             >
               Upgrade
             </a>
