@@ -106,7 +106,7 @@ export default function PartnersPage() {
               
               <div className="flex items-start space-x-4">
                 <IconBadge>
-                  <span className="text-lg">💰</span>
+                  <span className="text-lg text-gray-900">💰</span>
                 </IconBadge>
                 <div>
                   <h4 className="font-semibold text-gray-900">Recurring Revenue</h4>
@@ -116,7 +116,7 @@ export default function PartnersPage() {
               
               <div className="flex items-start space-x-4">
                 <IconBadge>
-                  <span className="text-lg">🎯</span>
+                  <span className="text-lg text-gray-900">🎯</span>
                 </IconBadge>
                 <div>
                   <h4 className="font-semibold text-gray-900">Marketing Support</h4>
@@ -126,7 +126,7 @@ export default function PartnersPage() {
               
               <div className="flex items-start space-x-4">
                 <IconBadge>
-                  <span className="text-lg">🏷️</span>
+                  <span className="text-lg text-gray-900">🏷️</span>
                 </IconBadge>
                 <div>
                   <h4 className="font-semibold text-gray-900">White-Label Options</h4>
@@ -136,7 +136,7 @@ export default function PartnersPage() {
               
               <div className="flex items-start space-x-4">
                 <IconBadge>
-                  <span className="text-lg">📈</span>
+                  <span className="text-lg text-gray-900">📈</span>
                 </IconBadge>
                 <div>
                   <h4 className="font-semibold text-gray-900">Partner Portal</h4>

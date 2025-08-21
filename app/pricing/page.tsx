@@ -159,7 +159,7 @@ export default function PricingPage() {
             <div className="text-center">
               <div className="flex justify-center mb-4">
                 <IconBadge>
-                  <span className="text-2xl">💰</span>
+                  <span className="text-2xl text-gray-900">💰</span>
                 </IconBadge>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">ROI in 1 Month</h3>
@@ -169,7 +169,7 @@ export default function PricingPage() {
             <div className="text-center">
               <div className="flex justify-center mb-4">
                 <IconBadge>
-                  <span className="text-2xl">⚡</span>
+                  <span className="text-2xl text-gray-900">⚡</span>
                 </IconBadge>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Live in 24 Hours</h3>
@@ -179,7 +179,7 @@ export default function PricingPage() {
             <div className="text-center">
               <div className="flex justify-center mb-4">
                 <IconBadge>
-                  <span className="text-2xl">🔄</span>
+                  <span className="text-2xl text-gray-900">🔄</span>
                 </IconBadge>
               </div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">Cancel Anytime</h3>

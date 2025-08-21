@@ -110,7 +110,7 @@ export default function SupportPage() {
             className="bg-white rounded-lg shadow-lg p-6 text-center"
           >
             <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 bg-gray-100 border-2 border-gray-200">
-              <span className="text-2xl text-gray-700">💬</span>
+              <span className="text-2xl text-gray-900">💬</span>
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Live Chat</h3>
             <p className="text-gray-600 mb-4">Get instant help from our support team</p>
@@ -130,7 +130,7 @@ export default function SupportPage() {
             className="bg-white rounded-lg shadow-lg p-6 text-center"
           >
             <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 bg-gray-100 border-2 border-gray-200">
-              <span className="text-2xl text-gray-700">📧</span>
+              <span className="text-2xl text-gray-900">📧</span>
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Email Support</h3>
             <p className="text-gray-600 mb-4">Send us a detailed message</p>
@@ -150,7 +150,7 @@ export default function SupportPage() {
             className="bg-white rounded-lg shadow-lg p-6 text-center"
           >
             <div className="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 bg-gray-100 border-2 border-gray-200">
-              <span className="text-2xl text-gray-700">📞</span>
+              <span className="text-2xl text-gray-900">📞</span>
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Priority Support</h3>
             <p className="text-gray-600 mb-4">Enterprise clients get phone support</p>
@@ -175,7 +175,7 @@ export default function SupportPage() {
             
             <div className="space-y-6">
               {faqs.map((faq, index) => (
-                <div key={index} className="bg-white rounded-lg shadow-sm p-6">
+                <div key={index} className="bg-white rounded-lg shadow-sm p-6 border border-gray-300">
                   <h3 className="font-semibold text-gray-900 mb-2">{faq.question}</h3>
                   <p className="text-gray-600">{faq.answer}</p>
                 </div>
