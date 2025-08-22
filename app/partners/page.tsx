@@ -3,12 +3,14 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+import { useCompany } from '@/components/CompanyContext';
 import { IconBadge } from '@/components/ui/IconBadge';
 
 import LegalFooter from '@/components/legal/LegalFooter';
 
 export default function PartnersPage() {
   const b = useBrandTakeover();
+  const { company } = useCompany();
   const [formData, setFormData] = useState({
     company: '',
     name: '',
@@ -65,12 +67,22 @@ export default function PartnersPage() {
           className="text-center mb-16"
         >
           <h1 className="text-4xl font-bold text-gray-900 mb-6">
-            Partner with {b.enabled ? b.brand : 'Your Company'}
+            Partner with Sunspire
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Join our growing network of agencies, consultants, and resellers. 
             Earn 30% recurring commission while helping solar companies grow.
           </p>
+          
+          {/* Eligibility and Payout Terms */}
+          <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+            <div className="text-center">
+              <p className="text-sm text-blue-800">
+                <strong>Eligibility:</strong> Agencies with ≥5 solar clients • 
+                <strong>Payout:</strong> 30% recurring, Net-30, 30-day cookie
+              </p>
+            </div>
+          </div>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">

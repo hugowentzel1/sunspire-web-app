@@ -3,12 +3,14 @@
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+import { useCompany } from '@/components/CompanyContext';
 import { IconBadge } from '@/components/ui/IconBadge';
 
 import LegalFooter from '@/components/legal/LegalFooter';
 
 export default function PricingPage() {
   const b = useBrandTakeover();
+  const { company } = useCompany();
 
   // Debug logging
   useEffect(() => {
@@ -137,7 +139,7 @@ export default function PricingPage() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              {b.enabled ? `Launch on ${b.brand}` : "Get Started Now"}
+              {b.enabled ? `Launch for ${company.companyName || 'Your Company'}` : "Get Started Now"}
             </motion.button>
 
             <p className="text-xs text-gray-500 text-center mt-4">
@@ -213,7 +215,7 @@ export default function PricingPage() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {b.enabled ? `Launch on ${b.brand}` : "Start Your 14-Day Trial"}
+              {b.enabled ? `Launch for ${company.companyName || 'Your Company'}` : "Start Your 14-Day Trial"}
             </motion.button>
           </div>
         </motion.div>

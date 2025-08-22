@@ -4,10 +4,12 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+import { useCompany } from './CompanyContext';
 
 export default function SharedNavigation() {
   const pathname = usePathname();
   const b = useBrandTakeover();
+  const { company } = useCompany();
   
   // Don't render on pages that have their own custom banners
   if (pathname === '/report' || pathname === '/demo-result') {
@@ -135,11 +137,22 @@ export default function SharedNavigation() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {b.enabled ? `Launch on ${b.brand}` : "Get Started"}
+              {b.enabled ? `Launch for ${company.companyName || 'Your Company'}` : "Get Started"}
             </motion.button>
           </nav>
         </div>
       </div>
+      
+      {/* Disclaimer Footer */}
+      {b.enabled && (
+        <div className="border-t border-gray-100 bg-gray-50/50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+            <p className="text-xs text-gray-500 text-center">
+              Private demo for {company.companyName}. Not affiliated.
+            </p>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

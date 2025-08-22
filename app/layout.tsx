@@ -8,6 +8,7 @@ import BrandProvider from '@/src/brand/BrandProvider'
 import BrandCSSInjector from '@/components/BrandCSSInjector'
 import BootProbe from './BootProbe'
 import SharedNavigation from '@/components/SharedNavigation'
+import { CompanyProvider } from '@/components/CompanyContext'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -27,9 +28,11 @@ export default function RootLayout({
         <BootProbe />
         <AppErrorBoundary>
           <BrandProvider>
-            <DemoRibbon />
-            <SharedNavigation />
-            {children}
+            <CompanyProvider>
+              <DemoRibbon />
+              <SharedNavigation />
+              {children}
+            </CompanyProvider>
           </BrandProvider>
         </AppErrorBoundary>
       </body>

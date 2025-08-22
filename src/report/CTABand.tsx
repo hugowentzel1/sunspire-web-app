@@ -2,11 +2,13 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
+import { useCompany } from "@/components/CompanyContext";
 import { track } from "@/src/demo/track";
 import PriceAnchor from "@/src/demo/PriceAnchor";
 
 export default function CTABand() {
   const b = useBrandTakeover();
+  const { company } = useCompany();
 
   const handlePrimaryClick = () => {
     track("cta_click", { placement: "band", cta_type: "primary" });
@@ -53,7 +55,7 @@ export default function CTABand() {
             }}
             whileTap={{ scale: 0.95 }}
           >
-            Launch on {b.domain || b.brand}
+            Launch for {company.companyName || 'Your Company'}
           </motion.button>
           <motion.button
             onClick={handleSecondaryClick}
