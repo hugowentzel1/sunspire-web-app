@@ -8,6 +8,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useTenant } from './TenantProvider';
 import { SolarEstimate } from '@/lib/estimate';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+import FocusTrap from '@/components/ui/FocusTrap';
+import { trackSampleRequested } from '@/lib/track';
 
 const leadFormSchema = z.object({
   name: z.string().min(2, 'Name must be at least 2 characters'),
@@ -71,6 +73,14 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
         throw new Error(errorData || 'Failed to submit lead');
       }
 
+      // Track the sample request
+      trackSampleRequested({
+        email: data.email,
+        name: data.name,
+        phone: data.phone,
+        notes: data.notes
+      });
+      
       setIsSuccess(true);
       reset();
       
@@ -111,12 +121,13 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
           />
 
           {/* Modal */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden max-h-[85vh]"
-          >
+          <FocusTrap onEscape={handleClose}>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              className="relative w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden max-h-[85vh]"
+            >
             {isSuccess ? (
               <div className="p-8 text-center">
                 <motion.div
@@ -293,7 +304,8 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
                 </button>
               </div>
             )}
-          </motion.div>
+            </motion.div>
+          </FocusTrap>
         </div>
       )}
     </AnimatePresence>

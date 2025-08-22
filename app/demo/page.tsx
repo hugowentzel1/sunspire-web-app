@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { useCompany } from '@/components/CompanyContext';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import StickyCTA from '@/components/StickyCTA';
+import { isTrialEnabledForCompany, getTrialBadgeText } from '@/lib/features';
 
 export default function DemoPage() {
   const { company } = useCompany();
@@ -37,24 +38,35 @@ export default function DemoPage() {
           
           {/* CTAs */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
-            <motion.button
-              onClick={handleActivateClick}
-              className="px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:-translate-y-1"
-              style={{
-                background: 'var(--brand-primary, #FFA63D)',
-                color: '#ffffff',
-                boxShadow: '0 8px 25px rgba(0, 0, 0, 0.1)',
-                minWidth: '200px'
-              }}
-              whileHover={{ 
-                scale: 1.05,
-                boxShadow: '0 12px 30px rgba(0, 0, 0, 0.15)',
-                transform: 'translateY(-2px)'
-              }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Activate Sunspire now
-            </motion.button>
+            <div className="text-center">
+              <motion.button
+                onClick={handleActivateClick}
+                className="px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:-translate-y-1"
+                style={{
+                  background: 'var(--brand-primary, #FFA63D)',
+                  color: '#ffffff',
+                  boxShadow: '0 8px 25px rgba(0, 0, 0, 0.1)',
+                  minWidth: '200px'
+                }}
+                whileHover={{ 
+                  scale: 1.05,
+                  boxShadow: '0 12px 30px rgba(0, 0, 0, 0.15)',
+                  transform: 'translateY(-2px)'
+                }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Activate Sunspire now
+              </motion.button>
+              
+              {/* Trial Badge */}
+              {isTrialEnabledForCompany(company.companyHandle) && (
+                <div className="mt-2">
+                  <span className="inline-block px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full">
+                    {getTrialBadgeText()}
+                  </span>
+                </div>
+              )}
+            </div>
             
             <motion.button
               onClick={handleWalkthroughClick}

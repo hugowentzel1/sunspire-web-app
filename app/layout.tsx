@@ -9,6 +9,7 @@ import BrandCSSInjector from '@/components/BrandCSSInjector'
 import BootProbe from './BootProbe'
 import SharedNavigation from '@/components/SharedNavigation'
 import { CompanyProvider } from '@/components/CompanyContext'
+import CookieConsent from '@/components/CookieConsent'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -35,6 +36,9 @@ export default function RootLayout({
             </CompanyProvider>
           </BrandProvider>
         </AppErrorBoundary>
+        
+        {/* Cookie Consent */}
+        <CookieConsent />
       </body>
     </html>
   )
