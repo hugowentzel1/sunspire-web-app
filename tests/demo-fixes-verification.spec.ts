@@ -13,29 +13,43 @@ test('Demo Fixes Verification - Visual Test', async ({ page }) => {
   await page.screenshot({ path: 'system-status-apple-colors.png', fullPage: true });
   console.log('📸 System status page screenshot saved');
   
-  // Check SLA section colors
-  const slaSection = page.locator('text=SLA: Sunspire guarantees 99.9%+ uptime with 24/7 monitoring');
-  if (await slaSection.count() > 0) {
-    const slaContainer = slaSection.locator('..').locator('..');
+  // Check SLA section colors - look for the container div, not the text
+  const slaContainer = page.locator('div.mt-4.p-4.rounded-lg.border').first();
+  if (await slaContainer.count() > 0) {
     const slaColors = await slaContainer.evaluate((el) => {
       const style = window.getComputedStyle(el);
       return {
         background: style.backgroundColor,
-        borderColor: style.borderColor,
-        color: style.color
+        borderColor: style.borderColor
       };
     });
     
-    console.log('🎨 SLA Section Colors:');
+    console.log('🎨 SLA Container Colors:');
     console.log(`  Background: ${slaColors.background}`);
     console.log(`  Border: ${slaColors.borderColor}`);
-    console.log(`  Text: ${slaColors.color}`);
     
-    // Verify it's using Apple's black color
-    if (slaColors.color.includes('rgb(0, 0, 0)')) {
-      console.log('✅ SLA section is using Apple brand colors (black)');
+    // Check if it's using Apple's black color (should be very light black with transparency)
+    if (slaColors.background.includes('rgba(0, 0, 0, 0.063)') || slaColors.background.includes('rgba(0, 0, 0, 0.125)') || slaColors.background.includes('rgba(0, 0, 0, 0.1)') || slaColors.background.includes('rgb(0, 0, 0)')) {
+      console.log('✅ SLA container is using Apple brand colors');
     } else {
-      console.log('❌ SLA section is not using Apple brand colors');
+      console.log('❌ SLA container is not using Apple brand colors');
+    }
+  }
+  
+  // Check 24/7 monitoring text specifically
+  const monitoringText = page.locator('text=24/7').first();
+  if (await monitoringText.count() > 0) {
+    const textColor = await monitoringText.evaluate((el) => {
+      const style = window.getComputedStyle(el);
+      return style.color;
+    });
+    
+    console.log(`🎯 24/7 Monitoring Text Color: ${textColor}`);
+    
+    if (textColor.includes('rgb(0, 0, 0)')) {
+      console.log('✅ 24/7 monitoring text is using Apple brand color (black)');
+    } else {
+      console.log('❌ 24/7 monitoring text is not using Apple brand color');
     }
   }
   
@@ -43,7 +57,7 @@ test('Demo Fixes Verification - Visual Test', async ({ page }) => {
   console.log('\n🔍 Test 2: Sample Report Confirmation');
   await page.goto('https://sunspire-web-app.vercel.app/demo-result?company=Apple&brandColor=%23000000&demo=1');
   await page.waitForLoadState('networkidle');
-  await page.waitForTimeout(2000);
+  await page.waitForTimeout(3000);
   
   // Look for sample report button
   const sampleButton = page.locator('button:has-text("Request Sample Report")');
@@ -67,9 +81,18 @@ test('Demo Fixes Verification - Visual Test', async ({ page }) => {
     await page.fill('input[placeholder*="email"], input[name="email"]', 'test@example.com');
     console.log('✅ Form filled out');
     
-    // Submit the form
+    // Check if submit button is inside form
     const submitButton = page.locator('button[type="submit"]');
     if (await submitButton.count() > 0) {
+      console.log('✅ Submit button found');
+      
+      // Check if button is inside form
+      const isInsideForm = await submitButton.evaluate((el) => {
+        return el.closest('form') !== null;
+      });
+      console.log(`🔍 Submit button inside form: ${isInsideForm}`);
+      
+      // Submit the form
       await submitButton.first().click();
       console.log('🚀 Form submitted');
       
@@ -92,7 +115,20 @@ test('Demo Fixes Verification - Visual Test', async ({ page }) => {
         
       } catch (error) {
         console.log('❌ Success confirmation did not appear');
+        console.log('🔍 Checking for any error messages or console logs...');
+        
+        // Check for any error messages on the page
+        const errorMessages = await page.locator('text=error, text=Error, text=failed, text=Failed').count();
+        if (errorMessages > 0) {
+          console.log(`⚠️ Found ${errorMessages} potential error messages on page`);
+        }
+        
+        // Take screenshot of failure state
         await page.screenshot({ path: 'no-confirmation.png' });
+        
+        // Check if the form is still visible (might be a submission issue)
+        const formStillVisible = await page.locator('form').count();
+        console.log(`🔍 Form still visible after submission: ${formStillVisible > 0}`);
       }
     } else {
       console.log('❌ Submit button not found');
