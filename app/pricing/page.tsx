@@ -95,6 +95,16 @@ export default function PricingPage() {
             <div className="space-y-4 mb-8">
               <h3 className="text-lg font-semibold text-gray-900 text-center mb-4">Everything You Get:</h3>
               
+              {/* Value Bar */}
+              <div className="bg-gray-50 rounded-lg p-4 mb-6">
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-center text-sm">
+                  <div className="font-semibold text-gray-900">ROI in 1 month</div>
+                  <div className="font-semibold text-gray-900">Live in 10 minutes</div>
+                  <div className="font-semibold text-gray-900">CRM included</div>
+                  <div className="font-semibold text-gray-900">14-day money-back</div>
+                </div>
+              </div>
+              
               <div className="flex items-center space-x-3">
                 <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--brand-primary)', opacity: 0.1 }}>
                   <span className="text-sm" style={{ color: 'var(--brand-primary)' }}>✓</span>
@@ -207,6 +217,11 @@ export default function PricingPage() {
             <h3 className="text-xl font-bold text-gray-900 mb-4">Ready to Get Started?</h3>
             <p className="text-gray-700 mb-6">
               Join 50+ solar companies already using {b.enabled ? b.brand : 'Your Company'} to increase their conversions.
+            </p>
+            
+            {/* Proof Line */}
+            <p className="text-sm text-gray-600 mb-4 italic">
+              Installer X booked 31% more consults in 30 days.
             </p>
             <motion.button 
               onClick={handleLaunchClick}
