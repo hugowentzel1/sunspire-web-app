@@ -103,8 +103,8 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
               <div className="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-4">
                 <span className="text-2xl">✅</span>
               </div>
-              <h2 className="text-xl font-semibold text-gray-900 mb-2">You're All Set!</h2>
-              <p className="text-gray-600">We'll send your sample report shortly.</p>
+              <h2 className="text-xl font-semibold text-gray-900 mb-2">Sample Report Requested!</h2>
+              <p className="text-gray-600">Thanks for reaching out! We'll email you a summary and next steps within 24 hours.</p>
             </div>
           ) : (
             <>
