@@ -498,6 +498,13 @@ function ReportContent() {
                   <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Rate Increase</span><span className="text-gray-900 font-bold">{(estimate.assumptions.electricityRateIncrease * 100).toFixed(1)}%/year</span></div>
                   <div className="flex justify-between items-center py-4"><span className="text-gray-600">Discount Rate</span><span className="text-gray-900 font-bold">{(estimate.assumptions.discountRate * 100).toFixed(0)}%</span></div>
                 </div>
+                
+                {/* Last Updated */}
+                <div className="mt-6 pt-4 border-t border-gray-200">
+                  <p className="text-sm text-gray-500 text-center">
+                    Last updated {new Date().toLocaleDateString()}
+                  </p>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -506,6 +513,39 @@ function ReportContent() {
             <h2 className="text-3xl font-bold mb-6">Ready to Go Solar?</h2>
             <p className="text-xl mb-10 opacity-90">Connect with verified solar installers in your area and get started today</p>
             <motion.button onClick={() => setShowLeadModal(true)} className="px-8 py-4 bg-white text-orange-600 rounded-2xl font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>Get Matched with Installers</motion.button>
+          </motion.div>
+          
+          {/* Copy Demo Link Button */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 1.2, duration: 0.8 }} 
+            className="text-center mb-8"
+          >
+            <button 
+              onClick={() => {
+                navigator.clipboard.writeText(window.location.href);
+                // Could add a toast notification here
+              }}
+              className="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg font-medium transition-colors"
+            >
+              📋 Copy Demo Link
+            </button>
+          </motion.div>
+          
+          {/* Disclaimer */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 1.4, duration: 0.8 }} 
+            className="max-w-4xl mx-auto text-center"
+          >
+            <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Estimates are informational only, based on modeled data (NREL PVWatts® v8 and current utility rates). 
+                Actual results vary by site conditions and installation quality. Not a binding quote.
+              </p>
+            </div>
           </motion.div>
         </motion.div>
       </main>

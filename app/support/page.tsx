@@ -99,6 +99,31 @@ export default function SupportPage() {
             Get help with setup, integration, and optimization. Our team responds to all 
             tickets within 24 hours (2 hours for priority support).
           </p>
+          
+          {/* SLA Callout */}
+          <div className="mt-8 max-w-4xl mx-auto">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+              <h3 className="text-lg font-semibold text-blue-900 mb-4 text-center">Response Time Guarantees</h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                <div>
+                  <div className="text-2xl font-bold text-blue-600">Standard</div>
+                  <div className="text-sm text-blue-700">24h</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-blue-600">High</div>
+                  <div className="text-sm text-blue-700">4h</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-blue-600">Urgent</div>
+                  <div className="text-sm text-blue-700">1h</div>
+                </div>
+                <div>
+                  <div className="text-2xl font-bold text-blue-600">Enterprise</div>
+                  <div className="text-sm text-blue-700">2h guaranteed</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </motion.div>
 
         {/* Support Options */}
@@ -175,6 +200,49 @@ export default function SupportPage() {
             </a>
           </motion.div>
         </div>
+        
+        {/* Guide Tiles */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+          className="mb-16"
+        >
+          <h2 className="text-2xl font-bold text-gray-900 mb-8 text-center">Helpful Guides & Resources</h2>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <a href="/docs/setup" className="bg-white rounded-lg shadow-sm p-6 border border-gray-200 hover:shadow-md transition-shadow text-center">
+              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">📚</span>
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">Setup Guide</h3>
+              <p className="text-sm text-gray-600">Step-by-step installation</p>
+            </a>
+            
+            <a href="/docs/embed" className="bg-white rounded-lg shadow-sm p-6 border border-gray-200 hover:shadow-md transition-shadow text-center">
+              <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">🔗</span>
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">Embed Guide</h3>
+              <p className="text-sm text-gray-600">Add to your website</p>
+            </a>
+            
+            <a href="/docs/crm" className="bg-white rounded-lg shadow-sm p-6 border border-gray-200 hover:shadow-md transition-shadow text-center">
+              <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">📊</span>
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">CRM Guides</h3>
+              <p className="text-sm text-gray-600">HubSpot, Salesforce, Airtable</p>
+            </a>
+            
+            <a href="/status" className="bg-white rounded-lg shadow-sm p-6 border border-gray-200 hover:shadow-md transition-shadow text-center">
+              <div className="w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl">📈</span>
+              </div>
+              <h3 className="font-semibold text-gray-900 mb-2">System Status</h3>
+              <p className="text-sm text-gray-600">Live uptime & performance</p>
+            </a>
+          </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Left Column - FAQ */}
