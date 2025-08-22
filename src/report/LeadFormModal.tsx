@@ -65,14 +65,12 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
         setIsSuccess(true);
         console.log('🎉 Success state set to true');
         
-        // Don't close the modal immediately - let user see the success message
-        // Only close after they've had time to read it
-        setTimeout(() => {
-          console.log('⏰ Timeout reached, closing modal');
-          onClose();
-          setIsSuccess(false);
-          setFormData({ name: "", email: "", phone: "", notes: "" });
-        }, 5000); // Increased to 5 seconds
+        // Don't close the modal automatically - let user close manually
+        // The success message will stay visible until they click close
+        console.log('✅ Success message will stay visible until user closes');
+        
+        // Reset form data
+        setFormData({ name: "", email: "", phone: "", notes: "" });
       } else {
         console.error("Form submission failed with status:", response.status);
       }
@@ -107,7 +105,7 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         className="lead-form-modal"
-        onClick={onClose}
+        onClick={isSuccess ? undefined : onClose}
       >
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
@@ -129,10 +127,16 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
               </div>
               <h2 className="text-xl font-semibold mb-2" style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}>Sample Report Requested!</h2>
               <p className="text-gray-600 mb-4">Thanks for reaching out!</p>
-              <div className="bg-gray-50 rounded-lg p-4 text-sm text-gray-700">
+              <div className="bg-gray-50 rounded-lg p-4 text-sm text-gray-700 mb-6">
                 <p className="font-medium mb-1">What's Next?</p>
                 <p>We'll email you a detailed sample report within 24 hours, along with next steps to get your white-label demo live.</p>
               </div>
+              <button
+                onClick={onClose}
+                className="px-6 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg text-gray-700 font-medium transition-colors"
+              >
+                Close
+              </button>
             </div>
           ) : (
             <>
