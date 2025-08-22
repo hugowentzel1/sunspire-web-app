@@ -71,10 +71,7 @@ export default function PricingPage() {
           className="max-w-2xl mx-auto mb-16"
         >
           <div className="bg-white rounded-3xl shadow-2xl border border-gray-200 p-8 md:p-12 relative overflow-hidden">
-            {/* Popular Badge */}
-            <div className="absolute top-0 right-0 text-white px-6 py-2 rounded-bl-lg font-semibold" style={{ backgroundColor: 'var(--brand-primary)' }}>
-              Most Popular
-            </div>
+
             
             {/* Setup Fee */}
             <div className="text-center mb-8">
@@ -128,7 +125,9 @@ export default function PricingPage() {
               
               <div className="flex items-center space-x-3">
                 <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: 'var(--brand-primary)', opacity: 0.1 }}>
-                  <span className="text-sm" style={{ color: 'var(--brand-primary)' }}>✓</span>
+                  <svg className="w-3 h-3" style={{ color: 'var(--brand-primary)' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                  </svg>
                 </div>
                 <span className="text-gray-700">24/7 email support</span>
               </div>
@@ -152,9 +151,7 @@ export default function PricingPage() {
               {b.enabled ? `Launch for ${company.companyName || 'Your Company'}` : "Get Started Now"}
             </motion.button>
 
-            <p className="text-xs text-gray-500 text-center mt-4">
-              No credit card required for setup
-            </p>
+
           </div>
         </motion.div>
 
