@@ -181,7 +181,7 @@ export default function StatusPage() {
               <p className="text-gray-600">Response Time</p>
             </div>
             <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-200 text-center">
-              <div className="text-3xl font-bold text-purple-600 mb-2">24/7</div>
+              <div className="text-3xl font-bold mb-2" style={{ color: b.enabled && b.primary ? b.primary : '#7c3aed' }}>24/7</div>
               <p className="text-gray-600">Monitoring</p>
             </div>
           </div>

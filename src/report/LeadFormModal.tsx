@@ -100,11 +100,21 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
         >
           {isSuccess ? (
             <div className="text-center">
-              <div className="w-16 h-16 mx-auto bg-green-100 rounded-full flex items-center justify-center mb-4">
-                <span className="text-2xl">✅</span>
+              <div className="w-16 h-16 mx-auto rounded-full flex items-center justify-center mb-4" style={{
+                background: b.enabled && b.primary 
+                  ? `linear-gradient(135deg, ${b.primary}20, ${b.primary}10)` 
+                  : 'linear-gradient(135deg, #fef3c7, #fde68a)'
+              }}>
+                <svg className="w-8 h-8" style={{ color: b.enabled && b.primary ? b.primary : '#d97706' }} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
               </div>
-              <h2 className="text-xl font-semibold text-gray-900 mb-2">Sample Report Requested!</h2>
-              <p className="text-gray-600">Thanks for reaching out! We'll email you a summary and next steps within 24 hours.</p>
+              <h2 className="text-xl font-semibold mb-2" style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}>Sample Report Requested!</h2>
+              <p className="text-gray-600 mb-4">Thanks for reaching out!</p>
+              <div className="bg-gray-50 rounded-lg p-4 text-sm text-gray-700">
+                <p className="font-medium mb-1">What's Next?</p>
+                <p>We'll email you a detailed sample report within 24 hours, along with next steps to get your white-label demo live.</p>
+              </div>
             </div>
           ) : (
             <>
