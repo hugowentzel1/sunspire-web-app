@@ -1,0 +1,87 @@
+# Page snapshot
+
+```yaml
+- alert
+- banner:
+  - text: ☀️
+  - heading "Your Company" [level=1]
+  - paragraph: Solar Intelligence
+  - navigation:
+    - link "Pricing":
+      - /url: /pricing
+    - link "Partners":
+      - /url: /partners
+    - link "Support":
+      - /url: /support
+    - button "New Analysis"
+- main:
+  - text: 📊
+  - heading "New Analysis" [level=1]
+  - paragraph: Comprehensive analysis for your property at 1232
+  - text: "Data Source: Static • Generated on 8/21/2025"
+  - link "Put this on our site":
+    - /url: /tenant-preview?demo=1
+  - text: "Data sources: PVWatts v8 (NREL) • EIA rates • HTTPS encrypted ⚡ 8.6 kW System Size"
+  - button "Unlock Full Report"
+  - text: ☀️ 11,105,634 kWh Annual Production
+  - button "Unlock Full Report"
+  - text: 💰 $18,060 Net Cost (After ITC)
+  - button "Unlock Full Report"
+  - text: 📈 2,254 Year 1 Savings
+  - button "Unlock Full Report"
+  - heading "Your Solar Savings Over Time" [level=3]
+  - paragraph: Simple view of how your solar investment pays off over 25 years
+  - application: 1 5 10 15 20 25 Years $0k $15k $30k $45k $60k Total Savings
+  - text: $18k Investment 11 years Payback Time $42k 25-Year Savings
+  - paragraph: "How to read this: The green area shows your total savings growing over time. After 11 years, you'll have saved enough to cover your initial investment. By year 25, you'll have saved $42k total."
+  - img
+  - button "Unlock Full Report"
+  - heading "Financial Analysis" [level=2]
+  - text: Payback Period 8 years 25-Year NPV $73,000 ROI 504% Electricity Rate $0.14/kWh (Static)
+  - heading "Environmental Impact" [level=2]
+  - text: CO₂ Offset/Year 10,200 lbs Solar Irradiance 4.5 kWh/m²/day System Tilt 20° System Losses 14%
+  - button "Unlock Full Report"
+  - heading "Calculation Assumptions" [level=2]
+  - text: Federal Tax Credit (ITC) 30% Cost per Watt $3 Panel Degradation 0.5%/year O&M Cost $22/kW/year Rate Increase 2.5%/year Discount Rate 7%
+  - paragraph: Last updated 8/21/2025
+  - heading "Ready to Go Solar?" [level=2]
+  - paragraph: Connect with verified solar installers in your area and get started today
+  - button "Get Matched with Installers"
+  - button "📋 Copy Demo Link"
+  - paragraph: Estimates are informational only, based on modeled data (NREL PVWatts® v8 and current utility rates). Actual results vary by site conditions and installation quality. Not a binding quote.
+- contentinfo:
+  - contentinfo:
+    - heading "Sunspire Solar Intelligence" [level=3]
+    - paragraph: 123 Solar Street, Sunny City, SC 12345
+    - paragraph: hello@sunspire.app
+    - paragraph: +1 (555) 123-4567
+    - heading "Legal" [level=3]
+    - link "Privacy Policy":
+      - /url: /privacy
+    - link "Terms of Service":
+      - /url: /terms
+    - link "Data Processing Agreement":
+      - /url: /dpa
+    - link "Calculation Methodology":
+      - /url: /methodology
+    - heading "Support & Resources" [level=3]
+    - link "Support Center":
+      - /url: /support
+    - link "System Status":
+      - /url: /status
+    - link "Email Preferences":
+      - /url: /preferences
+    - link "Partner Program":
+      - /url: /partners
+    - paragraph: Estimates generated using NREL PVWatts® v8.
+    - paragraph: Mapping & location data © Google
+    - paragraph: Powered by Your Company
+- heading "We use cookies to improve your experience" [level=3]
+- paragraph:
+  - text: We use cookies and similar technologies to analyze site usage, personalize content, and provide social media features. By continuing to use our site, you consent to our use of cookies. See our
+  - link "Privacy Policy":
+    - /url: /privacy
+  - text: for more information.
+- button "Decline"
+- button "Accept All"
+```
