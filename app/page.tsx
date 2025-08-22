@@ -362,20 +362,20 @@ function HomeContent() {
             className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto"
           >
             <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              <div className="text-4xl font-black text-gray-900 mb-2">NREL v8</div>
-              <div className="text-gray-600 font-semibold">Industry Standard</div>
+              <div className="text-5xl font-black bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 bg-clip-text text-transparent mb-3 drop-shadow-sm">NREL v8</div>
+              <div className="text-gray-700 font-bold text-lg tracking-wide">Industry Standard</div>
             </div>
             <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              <div className="text-4xl font-black text-gray-900 mb-2">SOC 2</div>
-              <div className="text-gray-600 font-semibold">Compliance</div>
+              <div className="text-5xl font-black bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 bg-clip-text text-transparent mb-3 drop-shadow-sm">SOC 2</div>
+              <div className="text-gray-700 font-bold text-lg tracking-wide">Compliance</div>
             </div>
             <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              <div className="text-4xl font-black text-gray-900 mb-2">CRM Ready</div>
-              <div className="text-gray-600 font-semibold">HubSpot, Salesforce</div>
+              <div className="text-5xl font-black bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 bg-clip-text text-transparent mb-3 drop-shadow-sm">CRM Ready</div>
+              <div className="text-gray-700 font-bold text-lg tracking-wide">HubSpot, Salesforce</div>
             </div>
             <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              <div className="text-4xl font-black text-gray-900 mb-2">24/7</div>
-              <div className="text-gray-600 font-semibold">Support</div>
+              <div className="text-5xl font-black bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 bg-clip-text text-transparent mb-3 drop-shadow-sm">24/7</div>
+              <div className="text-gray-700 font-bold text-lg tracking-wide">Support</div>
             </div>
           </motion.div>
 
