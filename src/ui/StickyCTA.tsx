@@ -27,7 +27,7 @@ export default function StickyCTA() {
         {/* Primary CTA */}
         <button
           onClick={handlePrimaryClick}
-          className="w-full py-3 px-6 bg-orange-600 text-white rounded-2xl font-semibold hover:bg-orange-700 transition-colors"
+          className="w-full py-4 px-6 bg-orange-600 text-white rounded-2xl font-semibold hover:bg-orange-700 transition-colors"
         >
           Launch on {b.domain || b.brand}
         </button>
@@ -35,7 +35,7 @@ export default function StickyCTA() {
         {/* Secondary CTA */}
         <button
           onClick={handleSecondaryClick}
-          className="w-full py-3 px-6 border-2 border-orange-600 text-orange-600 rounded-2xl font-semibold hover:bg-orange-50 transition-colors"
+          className="w-full py-4 px-6 border-2 border-orange-600 text-orange-600 rounded-2xl font-semibold hover:bg-orange-50 transition-colors"
         >
                           Activate Your White-Label Demo
         </button>

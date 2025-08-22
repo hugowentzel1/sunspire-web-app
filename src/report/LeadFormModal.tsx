@@ -174,18 +174,18 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
                     placeholder="Any specific questions or requirements..."
                   />
                 </div>
-              </form>
 
-              {/* Submit button */}
-              <div className="mb-6">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full pill-brand no-blur inline-flex items-center justify-center rounded-lg px-6 py-3 text-white font-semibold shadow-md hover:brightness-95 active:brightness-90 transition-colors"
-                >
-                  {isSubmitting ? "Submitting..." : "Request Sample Report"}
-                </button>
-              </div>
+                {/* Submit button */}
+                <div className="mb-6">
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full pill-brand no-blur inline-flex items-center justify-center rounded-lg px-6 py-3 text-white font-semibold shadow-md hover:brightness-95 active:brightness-90 transition-colors"
+                  >
+                    {isSubmitting ? "Submitting..." : "Request Sample Report"}
+                  </button>
+                </div>
+              </form>
               
               <div className="text-center text-sm text-slate-600">
                 <p>We'll send your sample report within 24 hours.</p>

@@ -222,7 +222,7 @@ export default function PricingPage() {
             </p>
             <motion.button 
               onClick={handleLaunchClick}
-              className="px-8 py-3 rounded-lg font-semibold text-white transition-colors"
+              className="px-8 py-4 rounded-lg font-semibold text-white transition-colors"
               style={{ backgroundColor: 'var(--brand-primary)' }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}

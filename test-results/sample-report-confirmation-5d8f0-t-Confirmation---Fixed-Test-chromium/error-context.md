@@ -1,0 +1,78 @@
+# Page snapshot
+
+```yaml
+- text: Demo Mode — White-Label Preview Pre-branded preview. Not a contract quote.
+- link "Put this on our site":
+  - /url: /report?company=Apple&brandColor=%23000000&demo=1
+- button "Copy demo link"
+- banner:
+  - img "Apple logo"
+  - heading "Apple" [level=1]
+  - paragraph: Solar Intelligence Report
+  - navigation:
+    - link "Pricing":
+      - /url: /pricing
+    - link "Partners":
+      - /url: /partners
+    - link "Support":
+      - /url: /support
+    - button "New Analysis"
+- main:
+  - paragraph: A ready-to-embed, white-label quote tool that turns traffic into booked consults — live on your site in minutes.
+  - img "Apple logo"
+  - heading "Solar Intelligence Report" [level=1]
+  - paragraph: Comprehensive analysis for your property at 123 Solar Street, San Diego, CA
+  - text: "Data Source: Demo • Generated on 8/22/2025 ⚡ 6.2 kW System Size ☀️ 9,637 kWh Annual Production 💰 $11,300–$13,900 Net Cost (After ITC) 📈 $1,400–$1,800 Year 1 Savings"
+  - heading "Your Solar Savings Over Time" [level=3]
+  - paragraph: Simple view of how your solar investment pays off over 25 years
+  - application: 1 5 10 15 20 25 Years $0k $9k $17k $26k $34k Total Savings
+  - text: $13k Investment 10 years Payback Time $34k 25-Year Savings
+  - paragraph: "How to read this: The green area shows your total savings growing over time. After 10 years, you'll have saved enough to cover your initial investment. By year 25, you'll have saved $34k total."
+  - img
+  - heading "Financial Analysis" [level=2]
+  - text: Payback Period 8 years 25-Year NPV $8,800–$10,700 ROI ~159-195% Electricity Rate $0.14/kWh
+  - heading "Environmental Impact" [level=2]
+  - text: CO₂ Offset/Year 8,191 lbs Solar Irradiance 5.01 kWh/m²/day System Tilt 20° System Losses 14%
+  - heading "Calculation Assumptions" [level=2]
+  - text: Federal Tax Credit (ITC) 30% Cost per Watt $3 Panel Degradation 0.5%/year O&M Cost $22/kW/year Rate Increase 2.5%/year Discount Rate 7%
+  - heading "Ready to Launch Your Branded Tool?" [level=2]
+  - paragraph: Get complete financial projections, detailed assumptions, and unblurred savings charts
+  - button "Activate Your White-Label Demo"
+  - button "Request Sample Report"
+  - text: Only $99/mo + $399 setup. 14-day refund if it doesn't lift booked calls. Cancel anytime. No long-term contracts.
+  - button "Email me full report"
+  - strong: Full version from just $99/mo + $399 setup.
+  - text: Most tools cost $2,500+/mo.
+  - heading "Why Choose Our Solar Intelligence Platform?" [level=2]
+  - img
+  - heading "Advanced Analytics" [level=3]
+  - paragraph: AI-powered insights with 25-year projections and ROI analysis
+  - img
+  - heading "Premium Network" [level=3]
+  - paragraph: Connect with verified, top-rated solar installers in your area
+  - img
+  - heading "Bank-Level Security" [level=3]
+  - paragraph: End-to-end encryption and SOC 2 compliance for your data
+- heading "Request Sample Report" [level=2]
+- button "×"
+- paragraph: Get a detailed sample of your solar analysis
+- text: Name *
+- textbox "Your full name": Test User
+- text: Email *
+- textbox "your@email.com": test@example.com
+- text: Phone (optional)
+- textbox "(555) 123-4567"
+- text: Notes (optional)
+- textbox "Any specific questions or requirements..."
+- button "Request Sample Report"
+- paragraph: We'll send your sample report within 24 hours.
+- alert
+- heading "We use cookies to improve your experience" [level=3]
+- paragraph:
+  - text: We use cookies and similar technologies to analyze site usage, personalize content, and provide social media features. By continuing to use our site, you consent to our use of cookies. See our
+  - link "Privacy Policy":
+    - /url: /privacy
+  - text: for more information.
+- button "Decline"
+- button "Accept All"
+```
