@@ -17,6 +17,7 @@ import StickyBuyBar from '@/src/demo/StickyBuyBar';
 import InstallSheet from '@/src/demo/InstallSheet';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import HeroBrand from '@/src/brand/HeroBrand';
+import StickyCTA from '@/components/StickyCTA';
 // import { DemoBanner } from '@/src/demo/DemoChrome';
 import Image from 'next/image';
 
@@ -520,6 +521,9 @@ function ReportContent() {
       {/* Demo components - only show when brand takeover is enabled */}
       <InstallSheet />
       <StickyBuyBar />
+      
+      {/* Sticky CTA */}
+      <StickyCTA />
     </div>
   );
 }
