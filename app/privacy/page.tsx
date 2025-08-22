@@ -35,7 +35,7 @@ export default function PrivacyPage() {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl font-bold text-gray-900 mb-6">Privacy Policy</h1>
+          <h1 className="text-4xl font-bold mb-6" style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}>Privacy Policy</h1>
           <p className="text-xl text-gray-600">
             Last updated: {new Date().toLocaleDateString()}
           </p>
@@ -49,7 +49,7 @@ export default function PrivacyPage() {
           className="prose prose-lg max-w-none"
         >
           <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Information We Collect</h2>
+            <h2 className="text-2xl font-bold mb-4" style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}>Information We Collect</h2>
             <p className="text-gray-700 mb-6">
               We collect information you provide directly to us, such as when you create an account, 
               request a demo, or contact us for support. This may include:
@@ -61,7 +61,7 @@ export default function PrivacyPage() {
               <li>Usage data and analytics</li>
             </ul>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">How We Use Your Information</h2>
+            <h2 className="text-2xl font-bold mb-4" style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}>How We Use Your Information</h2>
             <p className="text-gray-700 mb-6">
               We use the information we collect to:
             </p>
@@ -72,19 +72,19 @@ export default function PrivacyPage() {
               <li>Monitor and analyze trends and usage</li>
             </ul>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Information Sharing</h2>
+            <h2 className="text-2xl font-bold mb-4" style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}>Information Sharing</h2>
             <p className="text-gray-700 mb-6">
               We do not sell, trade, or otherwise transfer your personal information to third parties 
               without your consent, except as described in this policy.
             </p>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Data Security</h2>
+            <h2 className="text-2xl font-bold mb-4" style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}>Data Security</h2>
             <p className="text-gray-700 mb-6">
               We implement appropriate security measures to protect your personal information against 
               unauthorized access, alteration, disclosure, or destruction.
             </p>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Your Rights</h2>
+            <h2 className="text-2xl font-bold mb-4" style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}>Your Rights</h2>
             <p className="text-gray-700 mb-6">
               You have the right to:
             </p>
@@ -95,7 +95,19 @@ export default function PrivacyPage() {
               <li>Opt out of marketing communications</li>
             </ul>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Contact Us</h2>
+            <h2 className="text-2xl font-bold mb-4" style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}>GDPR & CCPA Compliance</h2>
+            <p className="text-gray-700 mb-6">
+              We comply with the General Data Protection Regulation (GDPR) and California Consumer Privacy Act (CCPA):
+            </p>
+            <ul className="list-disc pl-6 mb-6 text-gray-700">
+              <li><strong>Data Portability:</strong> You can request a copy of your data in a portable format</li>
+              <li><strong>Right to Deletion:</strong> Request complete removal of your personal information</li>
+              <li><strong>Opt-Out Rights:</strong> Unsubscribe from marketing communications at any time</li>
+              <li><strong>Data Processing:</strong> We only process data with your explicit consent</li>
+              <li><strong>Cross-Border Transfers:</strong> Data is stored and processed in compliance with applicable laws</li>
+            </ul>
+
+            <h2 className="text-2xl font-bold mb-4" style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}>Contact Us</h2>
             <p className="text-gray-700">
               If you have questions about this Privacy Policy, please contact us at{' '}
               <a href="mailto:privacy@sunspire.app" className="text-[var(--brand-primary)] hover:underline">

@@ -35,7 +35,7 @@ export default function MethodologyPage() {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl font-bold text-gray-900 mb-6">Calculation Methodology</h1>
+          <h1 className="text-4xl font-bold mb-6" style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}>Calculation Methodology</h1>
           <p className="text-xl text-gray-600">
             How we calculate your solar energy potential and financial projections
           </p>
@@ -50,7 +50,7 @@ export default function MethodologyPage() {
         >
           {/* Solar Irradiance */}
           <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Solar Irradiance Data</h2>
+            <h2 className="text-2xl font-bold mb-4" style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}>Solar Irradiance Data</h2>
             <p className="text-gray-700 mb-4">
               We use NREL PVWatts® v8, the industry standard for solar energy modeling, to calculate 
               your location's solar potential. This includes:
@@ -65,7 +65,7 @@ export default function MethodologyPage() {
 
           {/* System Sizing */}
           <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">System Sizing Calculations</h2>
+            <h2 className="text-2xl font-bold mb-4" style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}>System Sizing Calculations</h2>
             <p className="text-gray-700 mb-4">
               System size is determined by analyzing your historical electricity consumption and 
               available roof space:
@@ -80,7 +80,7 @@ export default function MethodologyPage() {
 
           {/* Financial Modeling */}
           <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Financial Projections</h2>
+            <h2 className="text-2xl font-bold mb-4" style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}>Financial Projections</h2>
             <p className="text-gray-700 mb-4">
               Our financial model incorporates current market data and federal incentives:
             </p>
@@ -94,7 +94,7 @@ export default function MethodologyPage() {
 
           {/* Assumptions */}
           <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Key Assumptions</h2>
+            <h2 className="text-2xl font-bold mb-4" style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}>Key Assumptions</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <h3 className="text-lg font-semibold text-gray-900 mb-2">System Performance</h3>

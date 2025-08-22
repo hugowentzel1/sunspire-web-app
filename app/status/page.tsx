@@ -75,7 +75,7 @@ export default function StatusPage() {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl font-bold text-gray-900 mb-6">System Status</h1>
+          <h1 className="text-4xl font-bold mb-6" style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}>System Status</h1>
           <p className="text-xl text-gray-600">
             Real-time status of Sunspire services and infrastructure
           </p>
@@ -92,6 +92,11 @@ export default function StatusPage() {
             <div className="text-6xl mb-4">✅</div>
             <h2 className="text-3xl font-bold text-gray-900 mb-2">All Systems Operational</h2>
             <p className="text-gray-600">Last updated: {new Date().toLocaleString()}</p>
+            <div className="mt-4 p-4 bg-blue-50 rounded-lg border border-blue-200">
+              <p className="text-sm text-blue-800">
+                <strong>SLA:</strong> Sunspire guarantees 99.9%+ uptime with 24/7 monitoring
+              </p>
+            </div>
           </div>
         </motion.div>
 

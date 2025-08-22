@@ -35,7 +35,7 @@ export default function TermsPage() {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl font-bold text-gray-900 mb-6">Terms of Service</h1>
+          <h1 className="text-4xl font-bold mb-6" style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}>Terms of Service</h1>
           <p className="text-xl text-gray-600">
             Last updated: {new Date().toLocaleDateString()}
           </p>
@@ -49,20 +49,36 @@ export default function TermsPage() {
           className="prose prose-lg max-w-none"
         >
           <div className="bg-white rounded-2xl shadow-lg p-8">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Acceptance of Terms</h2>
+            <h2 className="text-2xl font-bold mb-4" style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}>Acceptance of Terms</h2>
             <p className="text-gray-700 mb-6">
               By accessing and using Sunspire's solar analysis services, you accept and agree to be bound 
               by the terms and provision of this agreement.
             </p>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Service Description</h2>
+            <h2 className="text-2xl font-bold mb-4" style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}>Service Description</h2>
             <p className="text-gray-700 mb-6">
               Sunspire provides solar energy analysis tools, including estimates, calculations, and 
               installer matching services. Our estimates are based on modeling data and are for 
               informational purposes only.
             </p>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">User Responsibilities</h2>
+            <h2 className="text-2xl font-bold mb-4" style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}>No Financial Advisory</h2>
+            <p className="text-gray-700 mb-6">
+              <strong>Important:</strong> Sunspire does not provide financial, investment, or tax advice. 
+              Our solar estimates and calculations are for informational purposes only and should not be 
+              considered as financial recommendations. Always consult with qualified professionals including:
+            </p>
+            <ul className="list-disc pl-6 mb-6 text-gray-700">
+              <li>Licensed solar installers for system design and installation</li>
+              <li>Certified public accountants for tax implications</li>
+              <li>Financial advisors for investment decisions</li>
+              <li>Legal counsel for contract review</li>
+            </ul>
+            <p className="text-gray-700 mb-6">
+              We disclaim all liability for decisions made based on our estimates or analysis.
+            </p>
+
+            <h2 className="text-2xl font-bold mb-4" style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}>User Responsibilities</h2>
             <p className="text-gray-700 mb-6">
               You agree to:
             </p>
@@ -73,25 +89,25 @@ export default function TermsPage() {
               <li>Maintain the security of your account credentials</li>
             </ul>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Payment Terms</h2>
+            <h2 className="text-2xl font-bold mb-4" style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}>Payment Terms</h2>
             <p className="text-gray-700 mb-6">
               Services are billed monthly in advance. Setup fees are charged once upon activation. 
               You may cancel your subscription at any time with 14 days notice.
             </p>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Refund Policy</h2>
+            <h2 className="text-2xl font-bold mb-4" style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}>Refund Policy</h2>
             <p className="text-gray-700 mb-6">
               We offer a 14-day money-back guarantee. If you're not satisfied with our services 
               within the first 14 days, we'll provide a full refund.
             </p>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Limitation of Liability</h2>
+            <h2 className="text-2xl font-bold mb-4" style={{ color: b.primary ? b.primary : '#111827' }}>Limitation of Liability</h2>
             <p className="text-gray-700 mb-6">
               Sunspire's liability is limited to the amount paid for services in the 12 months 
               preceding any claim. We are not liable for indirect, incidental, or consequential damages.
             </p>
 
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Contact Information</h2>
+            <h2 className="text-2xl font-bold mb-4" style={{ color: b.enabled && b.primary ? b.primary : '#111827' }}>Contact Information</h2>
             <p className="text-gray-700">
               For questions about these terms, contact us at{' '}
               <a href="mailto:legal@sunspire.app" className="text-[var(--brand-primary)] hover:underline">
