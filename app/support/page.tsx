@@ -112,7 +112,7 @@ export default function SupportPage() {
             className="bg-white rounded-lg shadow-lg p-6 text-center"
           >
             <div className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-[0_8px_30px_rgba(0,0,0,.12)]" style={{ 
-              background: 'linear-gradient(135deg, #ffffff, var(--brand-primary))'
+              background: b.enabled && b.primary ? `linear-gradient(135deg, #ffffff, ${b.primary})` : 'linear-gradient(135deg, #ffffff, #d97706)'
             }}>
               <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.220C2.307 15.697 2 13.892 2 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
@@ -136,10 +136,10 @@ export default function SupportPage() {
             className="bg-white rounded-lg shadow-lg p-6 text-center"
           >
             <div className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-[0_8px_30px_rgba(0,0,0,.12)]" style={{ 
-              background: 'linear-gradient(135deg, #ffffff, var(--brand-primary))'
+              background: b.enabled && b.primary ? `linear-gradient(135deg, #ffffff, ${b.primary})` : 'linear-gradient(135deg, #ffffff, #d97706)'
             }}>
               <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 00-2 2v10a2 2 0 002 2z"/>
               </svg>
             </div>
             <h3 className="text-lg font-semibold text-gray-900 mb-2">Email Support</h3>
@@ -160,7 +160,7 @@ export default function SupportPage() {
             className="bg-white rounded-lg shadow-lg p-6 text-center"
           >
             <div className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-[0_8px_30px_rgba(0,0,0,.12)]" style={{ 
-              background: 'linear-gradient(135deg, #ffffff, var(--brand-primary))'
+              background: b.enabled && b.primary ? `linear-gradient(135deg, #ffffff, ${b.primary})` : 'linear-gradient(135deg, #ffffff, #d97706)'
             }}>
               <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
@@ -189,7 +189,7 @@ export default function SupportPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             <a href="/docs/setup" className="bg-white rounded-lg shadow-sm p-6 border border-gray-200 hover:shadow-md transition-shadow text-center">
               <div className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-[0_8px_30px_rgba(0,0,0,.12)]" style={{ 
-                background: 'linear-gradient(135deg, #ffffff, var(--brand-primary))'
+                background: b.enabled && b.primary ? `linear-gradient(135deg, #ffffff, ${b.primary})` : 'linear-gradient(135deg, #ffffff, #d97706)'
               }}>
                 <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
@@ -201,7 +201,7 @@ export default function SupportPage() {
             
             <a href="/docs/embed" className="bg-white rounded-lg shadow-sm p-6 border border-gray-200 hover:shadow-md transition-shadow text-center">
               <div className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-[0_8px_30px_rgba(0,0,0,.12)]" style={{ 
-                background: 'linear-gradient(135deg, #ffffff, var(--brand-primary))'
+                background: b.enabled && b.primary ? `linear-gradient(135deg, #ffffff, ${b.primary})` : 'linear-gradient(135deg, #ffffff, #d97706)'
               }}>
                 <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
@@ -225,7 +225,7 @@ export default function SupportPage() {
             
             <a href="/status" className="bg-white rounded-lg shadow-sm p-6 border border-gray-200 hover:shadow-md transition-shadow text-center">
               <div className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-[0_8px_30px_rgba(0,0,0,.12)]" style={{ 
-                background: 'linear-gradient(135deg, #ffffff, var(--brand-primary))'
+                background: b.enabled && b.primary ? `linear-gradient(135deg, #ffffff, ${b.primary})` : 'linear-gradient(135deg, #ffffff, #d97706)'
               }}>
                 <svg className="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>

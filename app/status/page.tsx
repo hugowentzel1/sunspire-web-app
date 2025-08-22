@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+import LegalFooter from '@/components/legal/LegalFooter';
 
 export default function StatusPage() {
   const b = useBrandTakeover();
@@ -170,6 +171,8 @@ export default function StatusPage() {
           </div>
         </motion.div>
       </main>
+      
+      <LegalFooter brand={b.enabled ? b.brand : undefined} />
     </div>
   );
 }
