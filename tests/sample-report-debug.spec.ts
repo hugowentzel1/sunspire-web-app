@@ -68,6 +68,36 @@ test('Sample Report Confirmation Debug', async ({ page }) => {
       const successCount = await successElements.count();
       console.log(`🔍 Success elements found: ${successCount}`);
       
+      // Check what's actually in the modal content
+      const modalContent = page.locator('.modal-content, .lead-form-modal > div').first();
+      if (await modalContent.count() > 0) {
+        const modalText = await modalContent.textContent();
+        console.log('🔍 Modal content text:', modalText?.substring(0, 200) + '...');
+        
+        // Check if success text is in the DOM but hidden
+        const successInDOM = modalText?.includes('Sample Report Requested!') || modalText?.includes("You're All Set!");
+        console.log(`🔍 Success text in DOM: ${successInDOM}`);
+      }
+      
+      // Check for any hidden elements
+      const hiddenElements = await page.locator('*').evaluateAll((elements) => {
+        return elements
+          .filter(el => el.textContent?.includes('Sample Report Requested!') || el.textContent?.includes("You're All Set!"))
+          .map(el => ({
+            tag: el.tagName,
+            text: el.textContent?.substring(0, 50),
+            visible: el.offsetParent !== null,
+            display: window.getComputedStyle(el).display,
+            opacity: window.getComputedStyle(el).opacity
+          }));
+      });
+      
+      if (hiddenElements.length > 0) {
+        console.log('🔍 Hidden success elements found:', hiddenElements);
+      } else {
+        console.log('🔍 No success elements found in DOM at all');
+      }
+      
       if (successCount > 0) {
         console.log('🎉 Success confirmation is visible!');
         await page.screenshot({ path: 'sample-report-success-debug.png' });

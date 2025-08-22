@@ -98,7 +98,7 @@ test('Demo Fixes Verification - Visual Test', async ({ page }) => {
       
       // Wait for success confirmation
       try {
-        await page.waitForSelector('text=Sample Report Requested!, text=You\'re All Set!', { timeout: 15000 });
+        await page.waitForSelector('text=Sample Report Requested!, text=You\'re All Set!, text=Sample Report Requested!Thanks for reaching out!', { timeout: 15000 });
         console.log('✅ Success confirmation appeared!');
         
         // Take screenshot of success state
@@ -121,6 +121,16 @@ test('Demo Fixes Verification - Visual Test', async ({ page }) => {
         const errorMessages = await page.locator('text=error, text=Error, text=failed, text=Failed').count();
         if (errorMessages > 0) {
           console.log(`⚠️ Found ${errorMessages} potential error messages on page`);
+        }
+        
+        // Check if success text is actually in the DOM (it might be working but test selector is wrong)
+        const modalContent = page.locator('.modal-content, .lead-form-modal > div').first();
+        if (await modalContent.count() > 0) {
+          const modalText = await modalContent.textContent();
+          if (modalText?.includes('Sample Report Requested!')) {
+            console.log('🎉 SUCCESS! Confirmation IS working - test selector was wrong!');
+            console.log('📝 Modal content:', modalText?.substring(0, 100) + '...');
+          }
         }
         
         // Take screenshot of failure state

@@ -46,7 +46,13 @@ export default function CTABand() {
               boxShadow: '0 8px 25px rgba(0, 0, 0, 0.1)',
               border: '2px solid #ffffff',
               width: '220px',
-              minWidth: '220px'
+              minWidth: '220px',
+              height: '64px',
+              minHeight: '64px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              lineHeight: '1.2'
             }}
             whileHover={{ 
               scale: 1.05,
@@ -55,7 +61,7 @@ export default function CTABand() {
             }}
             whileTap={{ scale: 0.95 }}
           >
-                            Activate Your White-Label Demo
+            Activate Your White-Label Demo
           </motion.button>
           <motion.button
             onClick={handleSecondaryClick}
@@ -66,7 +72,13 @@ export default function CTABand() {
               border: '2px solid #ffffff',
               boxShadow: '0 8px 25px rgba(0, 0, 0, 0.1)',
               width: '220px',
-              minWidth: '220px'
+              minWidth: '220px',
+              height: '64px',
+              minHeight: '64px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              lineHeight: '1.2'
             }}
             whileHover={{ 
               scale: 1.05,
