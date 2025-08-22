@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+import LegalFooter from '@/components/legal/LegalFooter';
 
 export default function PreferencesPage() {
   const b = useBrandTakeover();
@@ -93,7 +94,7 @@ export default function PreferencesPage() {
                   onChange={() => handleToggle('marketing')}
                   className="sr-only peer"
                 />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[var(--brand-primary)]/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[var(--brand-primary)]"></div>
               </label>
             </div>
 
@@ -110,7 +111,7 @@ export default function PreferencesPage() {
                   onChange={() => handleToggle('productUpdates')}
                   className="sr-only peer"
                 />
-                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-blue-600"></div>
+                <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-[var(--brand-primary)]/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[var(--brand-primary)]"></div>
               </label>
             </div>
 
@@ -121,7 +122,7 @@ export default function PreferencesPage() {
                 <p className="text-sm text-gray-600">Billing, support, and account-related communications</p>
               </div>
               <div className="flex items-center">
-                <div className="w-11 h-6 bg-blue-600 rounded-full flex items-center justify-center">
+                <div className="w-11 h-6 bg-[var(--brand-primary)] rounded-full flex items-center justify-center">
                   <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                   </svg>
@@ -136,7 +137,7 @@ export default function PreferencesPage() {
             <button
               onClick={handleSave}
               disabled={isSaving}
-              className="px-8 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="px-8 py-3 bg-[var(--brand-primary)] text-white rounded-lg font-medium hover:bg-[var(--brand-primary)]/80 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               {isSaving ? 'Saving...' : 'Save Preferences'}
             </button>
@@ -154,13 +155,13 @@ export default function PreferencesPage() {
             <div className="space-y-3">
               <a 
                 href={`/unsubscribe?token=${Math.random().toString(36).substr(2, 9)}`}
-                className="block text-blue-600 hover:text-blue-800 transition-colors"
+                className="block text-[var(--brand-primary)] hover:text-[var(--brand-primary)]/80 transition-colors"
               >
                 Unsubscribe from all marketing emails
               </a>
               <a 
                 href="mailto:support@sunspire.app?subject=Email%20Preferences%20Help"
-                className="block text-blue-600 hover:text-blue-800 transition-colors"
+                className="block text-[var(--brand-primary)] hover:text-[var(--brand-primary)]/80 transition-colors"
               >
                 Contact support for help
               </a>
@@ -168,6 +169,9 @@ export default function PreferencesPage() {
           </div>
         </motion.div>
       </main>
+      
+      {/* Footer */}
+      <LegalFooter />
     </div>
   );
 }

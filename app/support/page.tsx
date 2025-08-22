@@ -102,24 +102,24 @@ export default function SupportPage() {
           
           {/* SLA Callout */}
           <div className="mt-8 max-w-4xl mx-auto">
-            <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-blue-900 mb-4 text-center">Response Time Guarantees</h3>
+            <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Response Time Guarantees</h3>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
                 <div>
-                  <div className="text-2xl font-bold text-blue-600">Standard</div>
-                  <div className="text-sm text-blue-700">24h</div>
+                  <div className="text-2xl font-bold text-[var(--brand-primary)]">Standard</div>
+                  <div className="text-sm text-gray-700">24h</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-blue-600">High</div>
-                  <div className="text-sm text-blue-700">4h</div>
+                  <div className="text-2xl font-bold text-[var(--brand-primary)]">High</div>
+                  <div className="text-sm text-gray-700">4h</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-blue-600">Urgent</div>
-                  <div className="text-sm text-blue-700">1h</div>
+                  <div className="text-2xl font-bold text-[var(--brand-primary)]">Urgent</div>
+                  <div className="text-sm text-gray-700">1h</div>
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-blue-600">Enterprise</div>
-                  <div className="text-sm text-blue-700">2h guaranteed</div>
+                  <div className="text-2xl font-bold text-[var(--brand-primary)]">Enterprise</div>
+                  <div className="text-sm text-gray-700">2h guaranteed</div>
                 </div>
               </div>
             </div>

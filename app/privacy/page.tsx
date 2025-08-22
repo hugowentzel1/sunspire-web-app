@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+import LegalFooter from '@/components/legal/LegalFooter';
 
 export default function PrivacyPage() {
   const b = useBrandTakeover();
@@ -97,13 +98,16 @@ export default function PrivacyPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Contact Us</h2>
             <p className="text-gray-700">
               If you have questions about this Privacy Policy, please contact us at{' '}
-              <a href="mailto:privacy@sunspire.app" className="text-blue-600 hover:underline">
+              <a href="mailto:privacy@sunspire.app" className="text-[var(--brand-primary)] hover:underline">
                 privacy@sunspire.app
               </a>
             </p>
           </div>
         </motion.div>
       </main>
+      
+      {/* Footer */}
+      <LegalFooter />
     </div>
   );
 }

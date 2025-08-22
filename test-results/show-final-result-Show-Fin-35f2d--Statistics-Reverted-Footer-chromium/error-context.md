@@ -1,0 +1,143 @@
+# Page snapshot
+
+```yaml
+- banner:
+  - text: ☀️
+  - heading "Your Company" [level=1]
+  - paragraph: Solar Intelligence
+  - navigation:
+    - link "Pricing":
+      - /url: /pricing
+    - link "Partners":
+      - /url: /partners
+    - link "Support":
+      - /url: /support
+    - button "Get Started"
+- main:
+  - link "Back to Home":
+    - /url: /
+    - img
+    - text: Back to Home
+  - heading "Support Center" [level=1]
+  - paragraph: Get help with setup, integration, and optimization. Our team responds to all tickets within 24 hours (2 hours for priority support).
+  - heading "Response Time Guarantees" [level=3]
+  - text: Standard 24h High 4h Urgent 1h Enterprise 2h guaranteed
+  - img
+  - heading "Live Chat" [level=3]
+  - paragraph: Get instant help from our support team
+  - button "Start Chat"
+  - img
+  - heading "Email Support" [level=3]
+  - paragraph: Send us a detailed message
+  - link "Email Us":
+    - /url: mailto:support@sunspire.app
+  - img
+  - heading "Priority Support" [level=3]
+  - paragraph: Enterprise clients get phone support
+  - link "Upgrade":
+    - /url: /pricing
+  - heading "Helpful Guides & Resources" [level=2]
+  - link "📚 Setup Guide Step-by-step installation":
+    - /url: /docs/setup
+    - text: 📚
+    - heading "Setup Guide" [level=3]
+    - paragraph: Step-by-step installation
+  - link "🔗 Embed Guide Add to your website":
+    - /url: /docs/embed
+    - text: 🔗
+    - heading "Embed Guide" [level=3]
+    - paragraph: Add to your website
+  - link "📊 CRM Guides HubSpot, Salesforce, Airtable":
+    - /url: /docs/crm
+    - text: 📊
+    - heading "CRM Guides" [level=3]
+    - paragraph: HubSpot, Salesforce, Airtable
+  - link "📈 System Status Live uptime & performance":
+    - /url: /status
+    - text: 📈
+    - heading "System Status" [level=3]
+    - paragraph: Live uptime & performance
+  - heading "Frequently Asked Questions" [level=2]
+  - heading "How accurate are the solar estimates?" [level=3]
+  - paragraph: Our estimates use NREL PVWatts v8, EIA electricity rates, and local solar irradiance data. Accuracy is typically ±10-15%, comparable to professional site surveys.
+  - heading "How quickly can I get the tool live on my website?" [level=3]
+  - paragraph: Standard setup takes 24-48 hours. Enterprise clients get priority setup within 12 hours.
+  - heading "Can I customize the branding and colors?" [level=3]
+  - paragraph: Yes! All plans include full white-label customization with your colors, logo, and domain.
+  - heading "Do you integrate with CRM systems?" [level=3]
+  - paragraph: Yes, we integrate with most major CRMs including Salesforce, HubSpot, and Pipedrive. Custom integrations available for enterprise clients.
+  - heading "What if the tool doesn't increase my conversions?" [level=3]
+  - paragraph: We offer a 14-day money-back guarantee. If you don't see increased booked calls, you get a full refund.
+  - heading "Is there a setup fee?" [level=3]
+  - paragraph: Standard plans include a $399 setup fee. Enterprise plans have custom setup pricing based on requirements.
+  - heading "Helpful Resources" [level=3]
+  - link "📊 Calculation Methodology":
+    - /url: /methodology
+  - link "🏢 Enterprise Features":
+    - /url: /pricing
+  - link "🤝 Partner Program":
+    - /url: /partners
+  - link "⚡ Setup Assistance":
+    - /url: mailto:setup@sunspire.app
+  - heading "Create Support Ticket" [level=2]
+  - text: Name
+  - textbox "Your name"
+  - text: Email
+  - textbox "your@email.com"
+  - text: Company
+  - textbox "Your company name"
+  - text: Priority
+  - combobox:
+    - option "Select priority" [selected]
+    - option "Low - General question"
+    - option "Normal - Need help"
+    - option "High - System issue"
+    - option "Urgent - Site down"
+  - text: Category
+  - combobox:
+    - option "Select category" [selected]
+    - option "Setup & Installation"
+    - option "CRM Integration"
+    - option "Branding & Customization"
+    - option "Billing & Account"
+    - option "Technical Issue"
+    - option "Other"
+  - text: Subject
+  - textbox "Brief description of your issue"
+  - text: Message
+  - textbox "Please provide as much detail as possible..."
+  - button "Create Support Ticket"
+  - heading "Response Times" [level=4]
+  - list:
+    - listitem: "• Standard: 24 hours"
+    - listitem: "• High Priority: 4 hours"
+    - listitem: "• Urgent: 1 hour"
+    - listitem: "• Enterprise: 2 hours guaranteed"
+- contentinfo:
+  - heading "Sunspire Solar Intelligence" [level=3]
+  - paragraph: 123 Solar Street, Sunny City, SC 12345
+  - paragraph: hello@sunspire.app
+  - paragraph: +1 (555) 123-4567
+  - heading "Legal" [level=3]
+  - link "Privacy Policy":
+    - /url: /privacy
+  - link "Terms of Service":
+    - /url: /terms
+  - link "Data Processing Agreement":
+    - /url: /dpa
+  - link "Calculation Methodology":
+    - /url: /methodology
+  - heading "Support & Resources" [level=3]
+  - link "Support Center":
+    - /url: /support
+  - link "System Status":
+    - /url: /status
+  - link "Email Preferences":
+    - /url: /preferences
+  - link "Partner Program":
+    - /url: /partners
+  - paragraph: Estimates generated using NREL PVWatts® v8.
+  - paragraph: Mapping & location data © Google
+  - paragraph: Powered by Your Company
+- alert
+```

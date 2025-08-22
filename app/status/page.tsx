@@ -31,7 +31,7 @@ export default function StatusPage() {
       case 'operational': return 'text-green-600 bg-green-100';
       case 'degraded': return 'text-yellow-600 bg-yellow-100';
       case 'outage': return 'text-red-600 bg-red-100';
-      case 'maintenance': return 'text-blue-600 bg-blue-100';
+              case 'maintenance': return 'text-[var(--brand-primary)] bg-gray-100';
       default: return 'text-gray-600 bg-gray-100';
     }
   };
@@ -156,7 +156,7 @@ export default function StatusPage() {
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Performance Metrics</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-200 text-center">
-              <div className="text-3xl font-bold text-blue-600 mb-2">99.9%</div>
+                              <div className="text-3xl font-bold text-[var(--brand-primary)] mb-2">99.9%</div>
               <p className="text-gray-600">Average Uptime</p>
             </div>
             <div className="bg-white rounded-lg shadow-sm p-6 border border-gray-200 text-center">

@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+import LegalFooter from '@/components/legal/LegalFooter';
 
 export default function MethodologyPage() {
   const b = useBrandTakeover();
@@ -134,6 +135,9 @@ export default function MethodologyPage() {
           </div>
         </motion.div>
       </main>
+      
+      {/* Footer */}
+      <LegalFooter />
     </div>
   );
 }
