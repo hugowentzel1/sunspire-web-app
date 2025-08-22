@@ -137,7 +137,7 @@ export default function SharedNavigation() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {b.enabled ? `Launch for ${company.companyName || 'Your Company'}` : "Get Started"}
+                              Activate Your White-Label Demo
             </motion.button>
           </nav>
         </div>

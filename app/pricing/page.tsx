@@ -56,10 +56,10 @@ export default function PricingPage() {
           className="text-center mb-16"
         >
           <h1 className="text-4xl font-bold text-gray-900 mb-6">
-            Simple, Transparent Pricing
+            Flat Pricing. No Surprises.
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            One plan. No hidden fees. Get your white-label solar tool live in 24 hours.
+            Your branded solar quoting app — live in 24 hours.
           </p>
         </motion.div>
 
@@ -148,7 +148,7 @@ export default function PricingPage() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              {b.enabled ? `Launch for ${company.companyName || 'Your Company'}` : "Get Started Now"}
+                              Activate Your White-Label Demo
             </motion.button>
 
 
@@ -227,7 +227,7 @@ export default function PricingPage() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              {b.enabled ? `Launch for ${company.companyName || 'Your Company'}` : "Start Your 14-Day Trial"}
+                              Activate Your White-Label Demo
             </motion.button>
           </div>
         </motion.div>

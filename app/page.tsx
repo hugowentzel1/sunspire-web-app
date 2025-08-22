@@ -199,10 +199,10 @@ function HomeContent() {
               <div className="bg-white/80 backdrop-blur-sm rounded-3xl py-6 px-8 border border-gray-200/50 shadow-lg mx-auto max-w-2xl">
                 <div className="space-y-4 text-center">
                   <h2 className="text-3xl font-bold text-gray-900">
-                    Built for Your Company
+                    Demo for {b.brand || 'Your Company'} — Powered by Sunspire
                   </h2>
                   <p className="text-lg text-gray-600">
-                    Exclusive preview of your white-label solar intelligence tool
+                    Your Logo. Your URL. Instant Solar Quotes — Live in 10 Minutes
                   </p>
                   <button 
                     onClick={handleLaunchClick}
@@ -210,7 +210,7 @@ function HomeContent() {
                     style={{ backgroundColor: 'var(--brand-primary)' }}
                   >
                     <span className="mr-2">⚡</span>
-                    White-label ready
+                    Activate Your White-Label Demo
                   </button>
                 </div>
               </div>
@@ -251,8 +251,8 @@ function HomeContent() {
               >
                 {b.enabled ? (
                   <>
-                    White-Label Solar Tool
-                    <span className="block text-[var(--brand-primary)]">— Live in 10 Minutes</span>
+                    Your Logo. Your URL.
+                    <span className="block text-[var(--brand-primary)]">Instant Solar Quotes</span>
                   </>
                 ) : (
                   <>
@@ -268,7 +268,7 @@ function HomeContent() {
                 transition={{ delay: 0.6, duration: 0.8 }}
               >
                 {b.enabled 
-                  ? `Embed a branded quote tool on your domain. Turn visitors into booked calls. 14-day refund if it doesn't lift conversions.`
+                  ? `Branded solar quotes, lead capture, and CRM integration in under 10 minutes. 14-day refund if it doesn't lift conversions.`
                   : "Transform your property with AI-powered solar analysis. Get instant estimates, detailed reports, and connect with premium installers."
                 }
               </motion.p>

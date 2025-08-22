@@ -16,9 +16,9 @@ export default function LegalFooter({ showPoweredBy = true, brand }: { showPower
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 text-center">
           {/* Company Information */}
           <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">{companyName} Solar Intelligence</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-4">Sunspire Solar Intelligence</h3>
             <p className="text-gray-600 mb-4 max-w-md mx-auto">
-              Transforming solar analysis with AI-powered intelligence and white-label solutions.
+              Demo for {companyName} — Powered by Sunspire
             </p>
             <div className="space-y-3 text-sm text-gray-500">
               <p className="flex items-center justify-center">
@@ -89,7 +89,7 @@ export default function LegalFooter({ showPoweredBy = true, brand }: { showPower
             {showPoweredBy && (
               <div className="text-center">
                 <p className="text-gray-600 text-sm">
-                  Powered by <span className="font-medium" style={{ color: brandColor }}>{companyName}</span>
+                  Powered by <span className="font-medium" style={{ color: brandColor }}>Sunspire</span>
                 </p>
               </div>
             )}

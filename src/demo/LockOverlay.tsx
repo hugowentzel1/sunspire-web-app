@@ -179,7 +179,7 @@ export default function LockOverlay() {
               boxShadow: "0 8px 25px rgba(255, 166, 61, 0.3)"
             }}
           >
-            Request Sample Report
+                            Activate Your White-Label Demo
           </button>
         </div>
 

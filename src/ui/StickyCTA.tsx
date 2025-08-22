@@ -37,7 +37,7 @@ export default function StickyCTA() {
           onClick={handleSecondaryClick}
           className="w-full py-3 px-6 border-2 border-orange-600 text-orange-600 rounded-2xl font-semibold hover:bg-orange-50 transition-colors"
         >
-          Request Sample Report
+                          Activate Your White-Label Demo
         </button>
         
         {/* Price anchor */}

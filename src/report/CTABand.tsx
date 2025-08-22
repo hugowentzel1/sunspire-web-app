@@ -55,7 +55,7 @@ export default function CTABand() {
             }}
             whileTap={{ scale: 0.95 }}
           >
-            Launch for {company.companyName || 'Your Company'}
+                            Activate Your White-Label Demo
           </motion.button>
           <motion.button
             onClick={handleSecondaryClick}
