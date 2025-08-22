@@ -7,7 +7,7 @@ export default function LegalFooter({ showPoweredBy = true, brand }: { showPower
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Top Section - Company Info & Legal Links */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          {/* Company Information - Left */}
+          {/* Company Information */}
           <div className="text-center md:text-left">
             <h3 className="font-semibold text-gray-900 mb-3">Sunspire Solar Intelligence</h3>
             <div className="space-y-1 text-sm text-gray-600">
@@ -17,8 +17,8 @@ export default function LegalFooter({ showPoweredBy = true, brand }: { showPower
             </div>
           </div>
 
-          {/* Legal Links - Center */}
-          <div className="text-center">
+          {/* Legal Links */}
+          <div className="text-center md:text-left">
             <h3 className="font-semibold text-gray-900 mb-3">Legal</h3>
             <div className="space-y-2 text-sm">
               <a className="block text-gray-600 hover:text-gray-900 transition-colors" href="/privacy">Privacy Policy</a>
@@ -28,8 +28,8 @@ export default function LegalFooter({ showPoweredBy = true, brand }: { showPower
             </div>
           </div>
 
-          {/* Support & Resources - Right */}
-          <div className="text-center md:text-right">
+          {/* Support & Resources */}
+          <div className="text-center md:text-left">
             <h3 className="font-semibold text-gray-900 mb-3">Support & Resources</h3>
             <div className="space-y-2 text-sm">
               <a className="block text-gray-600 hover:text-gray-900 transition-colors" href="/support">Support Center</a>
