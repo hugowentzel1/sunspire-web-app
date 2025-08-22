@@ -33,6 +33,7 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    console.log('🚀 Form submission started');
 
     try {
       const payload = {
@@ -41,24 +42,37 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
         address
       };
       
+      console.log('📤 Sending payload:', payload);
+      
       const response = await fetch("/api/demo-event", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       });
 
+      console.log('📥 Response status:', response.status);
+      console.log('📥 Response ok:', response.ok);
+
       if (response.ok) {
+        console.log('✅ Form submission successful, setting success state');
         track("sample_request", { 
           name: formData.name, 
           email: formData.email,
           address 
         });
+        
+        // Set success state immediately
         setIsSuccess(true);
+        console.log('🎉 Success state set to true');
+        
+        // Don't close the modal immediately - let user see the success message
+        // Only close after they've had time to read it
         setTimeout(() => {
+          console.log('⏰ Timeout reached, closing modal');
           onClose();
           setIsSuccess(false);
           setFormData({ name: "", email: "", phone: "", notes: "" });
-        }, 3000);
+        }, 5000); // Increased to 5 seconds
       } else {
         console.error("Form submission failed with status:", response.status);
       }
@@ -66,6 +80,7 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
       console.error("Error submitting form:", error);
     } finally {
       setIsSubmitting(false);
+      console.log('🏁 Form submission finished, isSubmitting set to false');
     }
   };
 
@@ -74,6 +89,9 @@ export default function LeadFormModal({ isOpen, onClose, address }: LeadFormModa
   };
 
   if (!isOpen) return null;
+
+  // Debug logging
+  console.log('🔍 LeadFormModal render state:', { isOpen, isSubmitting, isSuccess });
 
   // Use company brand colors for button
   const buttonStyle = b.enabled && b.primary ? {
