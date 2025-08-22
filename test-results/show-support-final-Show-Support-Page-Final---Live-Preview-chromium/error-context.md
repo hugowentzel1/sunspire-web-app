@@ -35,27 +35,6 @@
   - paragraph: Enterprise clients get phone support
   - link "Upgrade":
     - /url: /pricing
-  - heading "Helpful Guides & Resources" [level=2]
-  - link "Setup Guide Step-by-step installation":
-    - /url: /docs/setup
-    - img
-    - heading "Setup Guide" [level=3]
-    - paragraph: Step-by-step installation
-  - link "Embed Guide Add to your website":
-    - /url: /docs/embed
-    - img
-    - heading "Embed Guide" [level=3]
-    - paragraph: Add to your website
-  - link "CRM Guides HubSpot, Salesforce, Airtable":
-    - /url: /docs/crm
-    - img
-    - heading "CRM Guides" [level=3]
-    - paragraph: HubSpot, Salesforce, Airtable
-  - link "System Status Live uptime & performance":
-    - /url: /status
-    - img
-    - heading "System Status" [level=3]
-    - paragraph: Live uptime & performance
   - heading "Frequently Asked Questions" [level=2]
   - heading "How accurate are the solar estimates?" [level=3]
   - paragraph: Our estimates use NREL PVWatts v8, EIA electricity rates, and local solar irradiance data. Accuracy is typically ±10-15%, comparable to professional site surveys.
@@ -120,8 +99,29 @@
     - listitem: "• High Priority: 4 hours"
     - listitem: "• Urgent: 1 hour"
     - listitem: "• Enterprise: 2 hours guaranteed"
+- heading "Helpful Guides & Resources" [level=2]
+- link "Setup Guide Step-by-step installation":
+  - /url: /docs/setup
+  - img
+  - heading "Setup Guide" [level=3]
+  - paragraph: Step-by-step installation
+- link "Embed Guide Add to your website":
+  - /url: /docs/embed
+  - img
+  - heading "Embed Guide" [level=3]
+  - paragraph: Add to your website
+- link "CRM Guides HubSpot, Salesforce, Airtable":
+  - /url: /docs/crm
+  - img
+  - heading "CRM Guides" [level=3]
+  - paragraph: HubSpot, Salesforce, Airtable
+- link "System Status Live uptime & performance":
+  - /url: /status
+  - img
+  - heading "System Status" [level=3]
+  - paragraph: Live uptime & performance
 - contentinfo:
-  - heading "Google Solar Intelligence" [level=3]
+  - heading "Sunspire Solar Intelligence" [level=3]
   - paragraph: Transforming solar analysis with AI-powered intelligence and white-label solutions.
   - paragraph:
     - img
@@ -154,7 +154,7 @@
   - text: Estimates generated using NREL PVWatts® v8 •
   - img
   - text: Mapping & location data © Google
-  - paragraph: Powered by Google
+  - paragraph: Powered by Your Company
 - alert
 - heading "We use cookies to improve your experience" [level=3]
 - paragraph:

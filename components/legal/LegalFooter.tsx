@@ -1,6 +1,13 @@
 'use client';
 
+import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+
 export default function LegalFooter({ showPoweredBy = true, brand }: { showPoweredBy?: boolean; brand?: string }) {
+  const b = useBrandTakeover();
+  
+  // Use passed brand prop or fall back to brand takeover
+  const companyName = brand || (b.enabled && b.brand ? b.brand : 'Sunspire');
+  const brandColor = b.enabled && b.primary ? b.primary : '#d97706';
 
   return (
     <footer className="bg-gradient-to-b from-gray-50 via-white to-gray-100 border-t border-gray-200 mt-20">
@@ -9,7 +16,7 @@ export default function LegalFooter({ showPoweredBy = true, brand }: { showPower
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 text-center">
           {/* Company Information */}
           <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">Sunspire Solar Intelligence</h3>
+            <h3 className="text-xl font-bold text-gray-900 mb-4">{companyName} Solar Intelligence</h3>
             <p className="text-gray-600 mb-4 max-w-md mx-auto">
               Transforming solar analysis with AI-powered intelligence and white-label solutions.
             </p>
@@ -40,10 +47,10 @@ export default function LegalFooter({ showPoweredBy = true, brand }: { showPower
           <div>
             <h4 className="font-semibold text-gray-900 mb-4 text-lg">Quick Links</h4>
             <div className="space-y-3">
-              <a href="/pricing" className="block text-gray-600 hover:text-orange-600 transition-colors duration-200">Pricing</a>
-              <a href="/partners" className="block text-gray-600 hover:text-orange-600 transition-colors duration-200">Partners</a>
-              <a href="/support" className="block text-gray-600 hover:text-orange-600 transition-colors duration-200">Support</a>
-              <a href="/demo" className="block text-gray-600 hover:text-orange-600 transition-colors duration-200">Demo</a>
+              <a href="/pricing" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Pricing</a>
+              <a href="/partners" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Partners</a>
+              <a href="/support" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Support</a>
+              <a href="/demo" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Demo</a>
             </div>
           </div>
 
@@ -51,10 +58,10 @@ export default function LegalFooter({ showPoweredBy = true, brand }: { showPower
           <div>
             <h4 className="font-semibold text-gray-900 mb-4 text-lg">Legal & Support</h4>
             <div className="space-y-3">
-              <a href="/privacy" className="block text-gray-600 hover:text-orange-600 transition-colors duration-200">Privacy Policy</a>
-              <a href="/terms" className="block text-gray-600 hover:text-orange-600 transition-colors duration-200">Terms of Service</a>
-              <a href="/methodology" className="block text-gray-600 hover:text-orange-600 transition-colors duration-200">Methodology</a>
-              <a href="/status" className="block text-gray-600 hover:text-orange-600 transition-colors duration-200">System Status</a>
+              <a href="/privacy" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Privacy Policy</a>
+              <a href="/terms" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Terms of Service</a>
+              <a href="/methodology" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Methodology</a>
+              <a href="/status" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>System Status</a>
             </div>
           </div>
         </div>
@@ -83,7 +90,7 @@ export default function LegalFooter({ showPoweredBy = true, brand }: { showPower
             {showPoweredBy && (
               <div className="text-center">
                 <p className="text-gray-600 text-sm">
-                  Powered by <span className="font-medium text-orange-600">Your Company</span>
+                  Powered by <span className="font-medium" style={{ color: brandColor }}>{companyName}</span>
                 </p>
               </div>
             )}
