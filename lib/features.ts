@@ -10,7 +10,11 @@ const FEATURE_FLAGS: FeatureFlags = {
 };
 
 export function isFeatureEnabled(feature: keyof FeatureFlags): boolean {
-  return FEATURE_FLAGS[feature] || false;
+  const value = FEATURE_FLAGS[feature];
+  if (feature === 'trialEnabled') {
+    return typeof value === 'boolean' ? value : false;
+  }
+  return false;
 }
 
 export function isTrialEnabledForCompany(companyHandle: string): boolean {

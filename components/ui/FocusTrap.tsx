@@ -66,7 +66,7 @@ export default function FocusTrap({ children, isActive = true, onEscape }: Focus
         )
       ).filter(el => {
         const element = el as HTMLElement;
-        return element.offsetParent !== null && !element.disabled;
+        return element.offsetParent !== null && !(element as HTMLButtonElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement).disabled;
       }) as HTMLElement[];
 
       if (focusableElements.length === 0) return;
