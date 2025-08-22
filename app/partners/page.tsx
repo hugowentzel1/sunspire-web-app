@@ -75,9 +75,9 @@ export default function PartnersPage() {
           </p>
           
           {/* Eligibility and Payout Terms */}
-          <div className="mt-6 p-4 bg-blue-50 rounded-lg border border-blue-200">
+          <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
             <div className="text-center">
-              <p className="text-sm text-blue-800">
+              <p className="text-sm text-gray-700">
                 <strong>Eligibility:</strong> Agencies with ≥5 solar clients • 
                 <strong>Payout:</strong> 30% recurring, Net-30, 30-day cookie
               </p>

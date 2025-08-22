@@ -361,21 +361,21 @@ function HomeContent() {
             transition={{ delay: 1.2, duration: 0.8 }} 
             className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto"
           >
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              <div className="text-4xl font-black text-gray-900 mb-2">50K+</div>
-              <div className="text-gray-600 font-semibold">Properties Analyzed</div>
+            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
+              <div className="text-4xl font-black text-gray-900 mb-2">NREL v8</div>
+              <div className="text-gray-600 font-semibold">Industry Standard</div>
             </div>
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              <div className="text-4xl font-black text-gray-900 mb-2">$2.5M</div>
-              <div className="text-gray-600 font-semibold">Total Savings Generated</div>
+            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
+              <div className="text-4xl font-black text-gray-900 mb-2">SOC 2</div>
+              <div className="text-gray-600 font-semibold">Compliance</div>
             </div>
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              <div className="text-4xl font-black text-gray-900 mb-2">98%</div>
-              <div className="text-gray-600 font-semibold">Accuracy Rate</div>
+            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
+              <div className="text-4xl font-black text-gray-900 mb-2">CRM Ready</div>
+              <div className="text-gray-600 font-semibold">HubSpot, Salesforce</div>
             </div>
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
+            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
               <div className="text-4xl font-black text-gray-900 mb-2">24/7</div>
-              <div className="text-gray-600 font-semibold">AI Support</div>
+              <div className="text-gray-600 font-semibold">Support</div>
             </div>
           </motion.div>
 
