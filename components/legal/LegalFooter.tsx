@@ -68,22 +68,21 @@ export default function LegalFooter({ showPoweredBy = true, brand }: { showPower
 
         {/* Bottom Section */}
         <div className="border-t border-gray-200 pt-10">
-          <div className="flex flex-col md:flex-row items-center justify-center gap-8 text-center">
-            {/* Disclaimers */}
-            <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-500">
-              <span className="flex items-center">
-                <svg className="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                </svg>
-                Estimates generated using NREL PVWatts® v8
-              </span>
-              <span className="hidden md:inline text-gray-300">•</span>
-              <span className="flex items-center">
-                <svg className="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m0 0L9 7"/>
-                </svg>
-                Mapping & location data © Google
-              </span>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center items-center">
+            {/* NREL Disclaimer */}
+            <div className="flex items-center justify-center text-sm text-gray-500">
+              <svg className="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+              Estimates generated using NREL PVWatts® v8
+            </div>
+
+            {/* Google Disclaimer */}
+            <div className="flex items-center justify-center text-sm text-gray-500">
+              <svg className="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m0 0L9 7"/>
+              </svg>
+              Mapping & location data © Google
             </div>
 
             {/* Powered By */}
