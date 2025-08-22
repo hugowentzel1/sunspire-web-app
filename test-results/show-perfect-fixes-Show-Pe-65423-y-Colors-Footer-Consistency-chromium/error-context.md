@@ -154,5 +154,4 @@
   - img
   - text: Mapping & location data © Google
   - paragraph: Powered by Your Company
-- alert
 ```
