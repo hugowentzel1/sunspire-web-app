@@ -1,0 +1,114 @@
+# Page snapshot
+
+```yaml
+- banner:
+  - img "BlueSolar logo"
+  - heading "BlueSolar" [level=1]
+  - paragraph: Solar Intelligence
+  - navigation:
+    - link "Pricing":
+      - /url: /pricing
+    - link "Partners":
+      - /url: /partners
+    - link "Support":
+      - /url: /support
+    - button "Launch for Bluesolar"
+  - paragraph: Private demo for Bluesolar. Not affiliated.
+- main:
+  - heading "Built for Your Company" [level=2]
+  - paragraph: Exclusive preview of your white-label solar intelligence tool
+  - text: ⚡ White-label ready
+  - img "BlueSolar logo"
+  - text: ✓
+  - heading "White-Label Solar Tool — Live in 10 Minutes" [level=1]
+  - paragraph: Embed a branded quote tool on your domain. Turn visitors into booked calls. 14-day refund if it doesn't lift conversions.
+  - heading "Enter Your Property Address" [level=2]
+  - paragraph: Get a comprehensive solar analysis tailored to your specific location
+  - textbox "Start typing your property address..."
+  - paragraph: Enter your property address to get started
+  - button "Launch Tool":
+    - text: Launch Tool
+    - img
+  - paragraph: "Preview: 2 runs left."
+  - paragraph: Expires in 6d 23h 59m 48s
+  - text: NREL v8 Industry Standard SOC 2 Compliance CRM Ready HubSpot, Salesforce 24/7 Support
+  - img
+  - text: NREL PVWatts® v8 Industry-standard solar modeling with current utility rates
+  - img
+  - text: CRM Integration Direct push to HubSpot, Salesforce, and Airtable
+  - img
+  - text: End-to-End Encryption SOC 2-aligned controls and data protection Dozens of installers • CRM-ready • SOC 2-aligned
+  - heading "How It Works" [level=2]
+  - text: "1"
+  - heading "Add the widget" [level=3]
+  - paragraph: One line of code to embed on your website
+  - text: "2"
+  - heading "Visitors get instant quotes" [level=3]
+  - paragraph: AI-powered analysis in seconds
+  - text: "3"
+  - heading "Your team gets booked calls" [level=3]
+  - paragraph: Qualified leads ready to convert
+  - heading "Frequently Asked Questions" [level=2]
+  - heading "CMS? — Yes, 1-line <script>. Hosted option too." [level=3]
+  - paragraph: Works with any website platform. Just add one line of code.
+  - heading "Accuracy? — NREL PVWatts v8 • EIA rates • local irradiance" [level=3]
+  - paragraph:
+    - text: Industry-standard data sources.
+    - link "View methodology":
+      - /url: /methodology
+    - text: .
+  - heading "Security? — Encrypted in transit & at rest" [level=3]
+  - paragraph: Bank-level security for all customer data.
+  - heading "Cancel? — Yes, 14-day refund if it doesn't lift booked calls" [level=3]
+  - paragraph: No long-term contracts. Cancel anytime.
+  - heading "Support? — Email support 24/7" [level=3]
+  - paragraph: Get help whenever you need it.
+- contentinfo:
+  - contentinfo:
+    - heading "BlueSolar Solar Intelligence" [level=3]
+    - paragraph: Transforming solar analysis with AI-powered intelligence and white-label solutions.
+    - paragraph:
+      - img
+      - text: 123 Solar Street, Sunny City, SC 12345
+    - paragraph:
+      - img
+      - text: hello@sunspire.app
+    - paragraph:
+      - img
+      - text: +1 (555) 123-4567
+    - heading "Quick Links" [level=4]
+    - link "Pricing":
+      - /url: /pricing
+    - link "Partners":
+      - /url: /partners
+    - link "Support":
+      - /url: /support
+    - link "Demo":
+      - /url: /demo
+    - heading "Legal & Support" [level=4]
+    - link "Privacy Policy":
+      - /url: /privacy
+    - link "Terms of Service":
+      - /url: /terms
+    - link "Methodology":
+      - /url: /methodology
+    - link "System Status":
+      - /url: /status
+    - img
+    - text: Estimates generated using NREL PVWatts® v8 •
+    - img
+    - text: Mapping & location data © Google
+    - paragraph: Powered by BlueSolar
+- button "Add to Your Site"
+- button "Copy link"
+- text: Trusted by 50+ Solar Brands Bank-Level Security • SOC 2 Compliant • 98% Accuracy
+- alert
+- heading "We use cookies to improve your experience" [level=3]
+- paragraph:
+  - text: We use cookies and similar technologies to analyze site usage, personalize content, and provide social media features. By continuing to use our site, you consent to our use of cookies. See our
+  - link "Privacy Policy":
+    - /url: /privacy
+  - text: for more information.
+- button "Decline"
+- button "Accept All"
+```

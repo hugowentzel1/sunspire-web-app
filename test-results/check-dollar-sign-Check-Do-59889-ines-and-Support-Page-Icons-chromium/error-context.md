@@ -2,8 +2,8 @@
 
 ```yaml
 - banner:
-  - text: ☀️
-  - heading "Your Company" [level=1]
+  - img "Google logo"
+  - heading "Google" [level=1]
   - paragraph: Solar Intelligence
   - navigation:
     - link "Pricing":
@@ -12,7 +12,8 @@
       - /url: /partners
     - link "Support":
       - /url: /support
-    - button "Get Started"
+    - button "Launch for Google"
+  - paragraph: Private demo for Google. Not affiliated.
 - main:
   - link "Back to Home":
     - /url: /
@@ -120,7 +121,7 @@
     - listitem: "• Urgent: 1 hour"
     - listitem: "• Enterprise: 2 hours guaranteed"
 - contentinfo:
-  - heading "Sunspire Solar Intelligence" [level=3]
+  - heading "Google Solar Intelligence" [level=3]
   - paragraph: Transforming solar analysis with AI-powered intelligence and white-label solutions.
   - paragraph:
     - img
@@ -153,5 +154,14 @@
   - text: Estimates generated using NREL PVWatts® v8 •
   - img
   - text: Mapping & location data © Google
-  - paragraph: Powered by Your Company
+  - paragraph: Powered by Google
+- alert
+- heading "We use cookies to improve your experience" [level=3]
+- paragraph:
+  - text: We use cookies and similar technologies to analyze site usage, personalize content, and provide social media features. By continuing to use our site, you consent to our use of cookies. See our
+  - link "Privacy Policy":
+    - /url: /privacy
+  - text: for more information.
+- button "Decline"
+- button "Accept All"
 ```
