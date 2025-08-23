@@ -61,7 +61,7 @@ export default function CTABand() {
             }}
             whileTap={{ scale: 0.95 }}
           >
-            Activate Your White-Label Demo
+            Activate on Your Domain — 24 Hours
           </motion.button>
           <motion.button
             onClick={handleSecondaryClick}

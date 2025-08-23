@@ -1,96 +1,179 @@
-export interface LeadData {
-  name: string;
-  email: string;
-  phone?: string;
-  address: string;
-  notes?: string;
-  tenantSlug: string;
-  systemSizeKW: number;
-  estimatedCost: number;
-  estimatedSavings: number;
-  paybackPeriodYears: number;
-  npv25Year: number;
-  co2OffsetPerYear: number;
-  createdAt: string;
+// Server-only Airtable client with batching and throttling
+
+interface AirtableConfig {
+  apiKey: string;
+  baseId: string;
+  tableName: string;
 }
 
-export async function storeLead(leadData: LeadData): Promise<{ success: boolean; error?: string }> {
-  const tableNames = ['Table 1', 'Leads', 'tblybSQVPXv2GbwUq']; // Try multiple possible names
-  
-  for (const tableName of tableNames) {
-    try {
-      const url = `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE_ID}/${encodeURIComponent(tableName)}`;
-      console.log(`Trying Airtable table: ${tableName}, URL: ${url}`);
-      
-      const payload = {
-        fields: {
-          'Name': leadData.name,
-          'Notes': `Email: ${leadData.email}
-Phone: ${leadData.phone || 'Not provided'}
-Address: ${leadData.address}
-System Size: ${leadData.systemSizeKW} kW
-Estimated Cost: $${leadData.estimatedCost.toLocaleString()}
-Year 1 Savings: $${leadData.estimatedSavings.toLocaleString()}
-Payback: ${leadData.paybackPeriodYears} years
-25-Year Value: $${leadData.npv25Year.toLocaleString()}
-CO2 Offset: ${leadData.co2OffsetPerYear.toLocaleString()} lbs/year
-Tenant: ${leadData.tenantSlug}
-Created: ${leadData.createdAt}
+interface AirtableRecord {
+  id?: string;
+  fields: Record<string, any>;
+}
 
-Additional Notes: ${leadData.notes || 'None'}`
-        }
-      };
-      
-      console.log('Payload:', JSON.stringify(payload, null, 2));
-      
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${process.env.AIRTABLE_API_KEY}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload)
+class AirtableClient {
+  private config: AirtableConfig;
+  private requestQueue: Array<() => Promise<void>> = [];
+  private isProcessing = false;
+  private lastRequestTime = 0;
+  private readonly minInterval = 250; // 4 requests per second
+
+  constructor(config: AirtableConfig) {
+    this.config = config;
+  }
+
+  // Throttled request method
+  private async throttledRequest<T>(requestFn: () => Promise<T>): Promise<T> {
+    const now = Date.now();
+    const timeSinceLastRequest = now - this.lastRequestTime;
+    
+    if (timeSinceLastRequest < this.minInterval) {
+      await new Promise(resolve => setTimeout(resolve, this.minInterval - timeSinceLastRequest));
+    }
+    
+    this.lastRequestTime = Date.now();
+    return requestFn();
+  }
+
+  // Create or update records with batching
+  async upsertRecords(records: AirtableRecord[]): Promise<void> {
+    if (records.length === 0) return;
+
+    // Split into batches of 10 (Airtable limit)
+    const batches = [];
+    for (let i = 0; i < records.length; i += 10) {
+      batches.push(records.slice(i, i + 10));
+    }
+
+    // Process batches with throttling
+    for (const batch of batches) {
+      await this.throttledRequest(async () => {
+        await this.processBatch(batch);
       });
+    }
+  }
 
-      if (response.ok) {
-        console.log(`Successfully stored lead using table name: ${tableName}`);
-        return { success: true };
-      } else {
-        const errorText = await response.text();
-        console.error(`Failed with table ${tableName}:`, response.status, errorText);
-        
-        // If this is the last table name, throw the error
-        if (tableName === tableNames[tableNames.length - 1]) {
-          throw new Error(`Airtable API error: ${response.status} - ${errorText}`);
+  private async processBatch(records: AirtableRecord[]): Promise<void> {
+    try {
+      const response = await fetch(
+        `https://api.airtable.com/v0/${this.config.baseId}/${this.config.tableName}`,
+        {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${this.config.apiKey}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            records: records.map(record => ({
+              fields: record.fields
+            }))
+          })
+        }
+      );
+
+      if (!response.ok) {
+        if (response.status === 429) {
+          // Rate limited - implement exponential backoff
+          const retryAfter = response.headers.get('Retry-After');
+          const delay = retryAfter ? parseInt(retryAfter) * 1000 : 5000;
+          await new Promise(resolve => setTimeout(resolve, delay));
+          // Retry the batch
+          await this.processBatch(records);
+        } else {
+          throw new Error(`Airtable API error: ${response.status} ${response.statusText}`);
         }
       }
     } catch (error) {
-      console.error(`Error with table ${tableName}:`, error);
-      
-      // If this is the last table name, return the error
-      if (tableName === tableNames[tableNames.length - 1]) {
-        return { 
-          success: false, 
-          error: error instanceof Error ? error.message : 'Unknown error' 
-        };
-      }
+      console.error('Airtable batch processing error:', error);
+      throw error;
     }
   }
-  
-  return { success: false, error: 'All table names failed' };
+
+  // Queue a record for processing
+  async queueRecord(record: AirtableRecord): Promise<void> {
+    this.requestQueue.push(async () => {
+      await this.upsertRecords([record]);
+    });
+
+    if (!this.isProcessing) {
+      this.processQueue();
+    }
+  }
+
+  // Process the request queue
+  private async processQueue(): Promise<void> {
+    if (this.isProcessing || this.requestQueue.length === 0) return;
+
+    this.isProcessing = true;
+
+    try {
+      while (this.requestQueue.length > 0) {
+        const request = this.requestQueue.shift();
+        if (request) {
+          await request();
+        }
+      }
+    } catch (error) {
+      console.error('Queue processing error:', error);
+    } finally {
+      this.isProcessing = false;
+    }
+  }
 }
 
-// Fallback storage for development/testing
-export async function storeLeadFallback(leadData: LeadData): Promise<{ success: boolean; error?: string }> {
-  try {
-    // In production, this would store to a database
-    console.log('Lead stored (fallback):', leadData);
-    return { success: true };
-  } catch (error) {
-    return { 
-      success: false, 
-      error: error instanceof Error ? error.message : 'Unknown error' 
-    };
-  }
+// Export singleton instance
+export const airtableClient = new AirtableClient({
+  apiKey: process.env.AIRTABLE_API_KEY || '',
+  baseId: process.env.AIRTABLE_BASE_ID || '',
+  tableName: process.env.AIRTABLE_TABLE_NAME || 'Leads'
+});
+
+// Helper functions
+export async function upsertLead(leadData: {
+  email: string;
+  companyHandle: string;
+  fullName?: string;
+  company?: string;
+  address?: string;
+  lat?: number;
+  lng?: number;
+  crm?: string;
+  source?: string;
+  campaignId?: string;
+}): Promise<void> {
+  await airtableClient.queueRecord({
+    fields: {
+      Email: leadData.email,
+      CompanyHandle: leadData.companyHandle,
+      FullName: leadData.fullName || '',
+      Company: leadData.company || '',
+      Address: leadData.address || '',
+      Latitude: leadData.lat || '',
+      Longitude: leadData.lng || '',
+      CRM: leadData.crm || '',
+      Source: leadData.source || '',
+      CampaignID: leadData.campaignId || '',
+      CreatedAt: new Date().toISOString()
+    }
+  });
+}
+
+export async function logEvent(eventData: {
+  companyHandle: string;
+  type: string;
+  email?: string;
+  metadata?: Record<string, any>;
+  campaignId?: string;
+}): Promise<void> {
+  await airtableClient.queueRecord({
+    fields: {
+      CompanyHandle: eventData.companyHandle,
+      EventType: eventData.type,
+      Email: eventData.email || '',
+      Metadata: JSON.stringify(eventData.metadata || {}),
+      CampaignID: eventData.campaignId || '',
+      Timestamp: new Date().toISOString()
+    }
+  });
 }
 

@@ -137,7 +137,7 @@ export default function SharedNavigation() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-                              Activate Your White-Label Demo
+                              Activate on Your Domain — 24 Hours
             </motion.button>
           </nav>
         </div>

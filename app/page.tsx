@@ -210,7 +210,7 @@ function HomeContent() {
                     style={{ backgroundColor: 'var(--brand-primary)' }}
                   >
                     <span className="mr-2">⚡</span>
-                    Activate Your White-Label Demo
+                    Activate on Your Domain — 24 Hours
                   </button>
                 </div>
               </div>
@@ -268,7 +268,7 @@ function HomeContent() {
                 transition={{ delay: 0.6, duration: 0.8 }}
               >
                 {b.enabled 
-                  ? `Branded solar quotes, lead capture, and CRM integration in under 10 minutes. 14-day refund if it doesn't lift conversions.`
+                  ? `Branded solar quotes, lead capture, and CRM integration in 24 hours. 14-day refund if it doesn't lift conversions.`
                   : "Transform your property with AI-powered solar analysis. Get instant estimates, detailed reports, and connect with premium installers."
                 }
               </motion.p>

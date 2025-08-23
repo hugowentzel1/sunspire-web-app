@@ -148,7 +148,7 @@ export default function PricingPage() {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-                              Activate Your White-Label Demo
+                              Activate on Your Domain — 24 Hours
             </motion.button>
 
 
@@ -227,7 +227,7 @@ export default function PricingPage() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-                              Activate Your White-Label Demo
+                              Activate on Your Domain — 24 Hours
             </motion.button>
           </div>
         </motion.div>
