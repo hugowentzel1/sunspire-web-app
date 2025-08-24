@@ -655,9 +655,8 @@ function ReportContent() {
                        required
                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
                        style={{ 
-                         focusRingColor: b.enabled && b.primary ? b.primary : 'var(--brand-primary)',
                          '--tw-ring-color': b.enabled && b.primary ? b.primary : 'var(--brand-primary)'
-                       }}
+                       } as React.CSSProperties}
                        placeholder="Enter your email address"
                      />
                    </div>

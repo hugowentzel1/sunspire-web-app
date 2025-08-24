@@ -409,7 +409,7 @@ function HomeContent() {
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900">Sample Report Requested!</h3>
                 <p className="text-gray-600">
-                  Thanks for reaching out! We'll send your sample report to your email within 24 hours.
+                  Thanks for reaching out! We&apos;ll send your sample report to your email within 24 hours.
                 </p>
               </div>
             )}
