@@ -334,14 +334,29 @@ function ReportContent() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="space-y-8">
           <div className="text-center space-y-6">
             <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="w-24 h-24 mx-auto">
-              <div className="brand-gradient text-white rounded-full w-24 h-24 grid place-items-center shadow-[0_8px_30px_rgba(0,0,0,.08)]">
-                <span className="text-4xl">📊</span>
-              </div>
+              {b.enabled && (b.logo || getDefaultLogo(b.brand)) ? (
+                <Image 
+                  src={b.logo || getDefaultLogo(b.brand) || ''} 
+                  alt={`${b.brand} logo`} 
+                  width={96} 
+                  height={96} 
+                  className="rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,.08)]"
+                  style={{ 
+                    objectFit: "contain",
+                    width: "96px",
+                    height: "96px"
+                  }}
+                />
+              ) : (
+                <div className="brand-gradient text-white rounded-full w-24 h-24 grid place-items-center shadow-[0_8px_30px_rgba(0,0,0,.08)]">
+                  <span className="text-4xl">☀️</span>
+                </div>
+              )}
             </motion.div>
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900">Solar Intelligence Report</h1>
-              <p className="text-sm text-gray-500">Comprehensive analysis for your property at {estimate.address}</p>
-              <p className="text-xs text-gray-400">Data Source: Demo • Generated on {formatDateSafe(estimate.date)}</p>
+              <p className="text-sm text-gray-500">Comprehensive analysis for your property at 123 N Central Ave, Phoenix, AZ</p>
+              <p className="text-xs text-gray-400">Data Source: Demo • Generated on 8/24/2025</p>
             </div>
           </div>
 

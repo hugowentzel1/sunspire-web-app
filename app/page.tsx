@@ -349,7 +349,7 @@ function HomeContent() {
                 <p className="text-gray-600">No long-term contracts. Cancel anytime.</p>
               </div>
               <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Support? — 📮 Email support 24/7</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Support? — Email support 24/7</h3>
                 <p className="text-gray-600">Get help whenever you need it.</p>
               </div>
             </div>
