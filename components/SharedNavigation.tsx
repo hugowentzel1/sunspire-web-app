@@ -141,16 +141,14 @@ export default function SharedNavigation() {
         </div>
       </div>
       
-      {/* Disclaimer Footer */}
-      {b.enabled && (
-        <div className="border-t border-gray-100 bg-gray-50/50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
-            <p className="text-xs text-gray-500 text-center">
-              Private demo for {company.companyName}. Not affiliated.
-            </p>
-          </div>
+      {/* Disclaimer Footer - Old banner from c548b88 */}
+      <div className="border-t border-gray-100 bg-gray-50/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+          <p className="text-xs text-gray-500 text-center">
+            Private demo for {b.enabled ? b.brand : 'Your Company'}. Not affiliated.
+          </p>
         </div>
-      )}
+      </div>
     </header>
   );
 }

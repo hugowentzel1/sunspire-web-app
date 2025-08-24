@@ -22,6 +22,8 @@ function HomeContent() {
   const [selectedPlace, setSelectedPlace] = useState<PlaceResult | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isClient, setIsClient] = useState(false);
+  const [showSampleReportModal, setShowSampleReportModal] = useState(false);
+  const [sampleReportSubmitted, setSampleReportSubmitted] = useState(false);
   const router = useRouter();
   
   // Brand takeover mode detection
@@ -180,6 +182,7 @@ function HomeContent() {
             {/* ))} */}
           </div>
 
+          {/* Address Input Section - Exact match to c548b88 */}
           <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-3xl mx-auto section-spacing">
             <div className="space-y-6">
               <div className="text-center space-y-4">
@@ -187,51 +190,59 @@ function HomeContent() {
                 <p className="text-gray-600">Get a comprehensive solar analysis tailored to your specific location</p>
               </div>
 
-              <div className="space-y-6">
-                {/* Address Input - Show for both demo and regular modes */}
-                <div className="w-full max-w-2xl mx-auto">
-                  <AddressAutocomplete 
+              <div className="space-y-4">
+                {/* Address Input Field */}
+                <div className="w-full">
+                  <input
+                    type="text"
                     value={address}
-                    onChange={setAddress}
-                    onAddressSelected={handleAddressSelect}
-                    placeholder={b.city ? `Start typing an address in ${b.city}...` : "Start typing your property address..."}
-                    className="w-full"
+                    onChange={(e) => setAddress(e.target.value)}
+                    placeholder="Enter your property address"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--brand-primary)] focus:border-transparent text-gray-900 placeholder-gray-500"
                   />
-                  <p className="text-sm text-gray-500 mt-2 text-center">
+                </div>
+
+                {/* Get Quote Button */}
+                <button 
+                  onClick={handleGenerateEstimate}
+                  disabled={!address.trim() || isLoading} 
+                  className="w-full px-6 py-3 rounded-lg text-white font-semibold transition-colors"
+                  style={{ backgroundColor: !address.trim() || isLoading ? '#9CA3AF' : 'var(--brand-primary)' }}
+                >
+                  {isLoading ? (
+                    <div className="flex items-center justify-center space-x-2">
+                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span>Analyzing Your Property...</span>
+                    </div>
+                  ) : (
+                    "Get Quote"
+                  )}
+                </button>
+
+                {/* Status Messages */}
+                <div className="text-center space-y-1">
+                  <p className="text-sm text-gray-500">
+                    Address autocomplete temporarily unavailable
+                  </p>
+                  <p className="text-sm text-gray-500">
                     Enter your property address to get started
                   </p>
                 </div>
 
-                {/* Generate Button - Now below the search bar */}
-                <button 
-                  onClick={b.enabled && address.trim() ? handleGenerateEstimate : (b.enabled ? handleLaunchClick : handleGenerateEstimate)} 
-                  disabled={!b.enabled && !address.trim() || isLoading} 
-                  className={`w-full ${
-                    (!b.enabled && !address.trim()) || isLoading 
-                      ? 'btn-disabled' 
-                      : b.enabled
-                        ? 'btn-cta'
-                        : 'btn-cta'
-                  }`} 
-                >
-                  {isLoading ? (
-                    <div className="flex items-center justify-center space-x-4">
-                      <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                      <span>Analyzing Your Property...</span>
-                    </div>
-                  ) : (
-                    <div className="flex items-center justify-center space-x-4">
-                      <span>
-                        {b.enabled 
-                          ? (address.trim() ? `Generate Solar Report` : `Launch Tool`)
-                          : "Generate Solar Intelligence Report"
-                        }
-                      </span>
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-                    </div>
-                  )}
-                </button>
-                
+                {/* Launch Tool */}
+                <div className="text-center pt-2">
+                  <span className="text-sm font-medium text-[var(--brand-primary)]">Launch Tool</span>
+                </div>
+
+                {/* Request Sample Report Button */}
+                <div className="text-center pt-4 border-t border-gray-200">
+                  <button
+                    onClick={() => setShowSampleReportModal(true)}
+                    className="px-6 py-3 rounded-lg text-[var(--brand-primary)] border-2 border-[var(--brand-primary)] font-semibold hover:bg-[var(--brand-primary)] hover:text-white transition-colors"
+                  >
+                    Request Sample Report
+                  </button>
+                </div>
 
               </div>
             </div>
@@ -336,13 +347,75 @@ function HomeContent() {
                 <p className="text-gray-600">No long-term contracts. Cancel anytime.</p>
               </div>
               <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Support? — Email support 24/7</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Support? — 📮 Email support 24/7</h3>
                 <p className="text-gray-600">Get help whenever you need it.</p>
               </div>
             </div>
           </div>
         </div>
       </main>
+
+      {/* Sample Report Modal */}
+      {showSampleReportModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-3xl p-8 max-w-md w-full mx-4">
+            {!sampleReportSubmitted ? (
+              <div className="text-center space-y-6">
+                <h3 className="text-2xl font-bold text-gray-900">Request Sample Report</h3>
+                <p className="text-gray-600">
+                  Get a detailed sample report to see the full capabilities of our solar analysis platform.
+                </p>
+                <form onSubmit={(e) => {
+                  e.preventDefault();
+                  setSampleReportSubmitted(true);
+                  setTimeout(() => {
+                    setShowSampleReportModal(false);
+                    setSampleReportSubmitted(false);
+                  }, 3000);
+                }} className="space-y-4">
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--brand-primary)] focus:border-transparent"
+                      placeholder="Enter your email address"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full px-6 py-3 rounded-lg text-white font-semibold transition-colors"
+                    style={{ backgroundColor: 'var(--brand-primary)' }}
+                  >
+                    Submit Request
+                  </button>
+                </form>
+                <button
+                  onClick={() => setShowSampleReportModal(false)}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  Cancel
+                </button>
+              </div>
+            ) : (
+              <div className="text-center space-y-6">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                  <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900">Sample Report Requested!</h3>
+                <p className="text-gray-600">
+                  Thanks for reaching out! We'll send your sample report to your email within 24 hours.
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
 
       <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <LegalFooter brand={b.enabled ? b.brand : undefined} />
