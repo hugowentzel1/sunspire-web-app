@@ -20,6 +20,19 @@ export default function DoNotSellPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter">
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Back to Home Button */}
+        <div className="mb-8">
+          <a
+            href="/"
+            className="inline-flex items-center text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
+          >
+            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Home
+          </a>
+        </div>
+        
         <div className="space-y-12">
           
           {/* Header */}
@@ -54,22 +67,23 @@ export default function DoNotSellPage() {
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       required
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--brand-primary)] focus:border-transparent"
                       placeholder="Enter your email address"
                     />
                   </div>
                   
                   <button
                     type="submit"
-                    className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                    className="w-full text-white px-6 py-3 rounded-lg font-semibold transition-colors"
+                    style={{ backgroundColor: 'var(--brand-primary)' }}
                   >
                     Submit Opt-Out Request
                   </button>
                 </form>
                 
-                <div className="bg-blue-50 rounded-lg p-6 mt-6">
-                  <h3 className="font-semibold text-blue-900 mb-2">What happens after I submit?</h3>
-                  <ul className="text-blue-800 text-sm space-y-1">
+                <div className="bg-gray-50 rounded-lg p-6 mt-6 border border-gray-200">
+                  <h3 className="font-semibold text-gray-900 mb-2">What happens after I submit?</h3>
+                  <ul className="text-gray-700 text-sm space-y-1">
                     <li>• We will process your request within 15 business days</li>
                     <li>• You will receive a confirmation email</li>
                     <li>• Your email will be added to our opt-out list</li>
@@ -91,7 +105,8 @@ export default function DoNotSellPage() {
                 </p>
                 <button
                   onClick={() => setSubmitted(false)}
-                  className="text-blue-600 hover:underline"
+                  className="hover:underline"
+                  style={{ color: 'var(--brand-primary)' }}
                 >
                   Submit another request
                 </button>
