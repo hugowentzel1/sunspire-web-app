@@ -1,6 +1,6 @@
 "use client";
 
-import { useBrandTakeover } from '@/hooks/useBrandTakeover';
+import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import LegalFooter from '@/components/legal/LegalFooter';
 
 export default function PrivacyPage() {
@@ -43,7 +43,7 @@ export default function PrivacyPage() {
               </p>
               
               <p>
-                Sunspire ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our solar intelligence platform.
+                Sunspire (&ldquo;we,&rdquo; &ldquo;our,&rdquo; or &ldquo;us&rdquo;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our solar intelligence platform.
               </p>
               
               <h3 className="text-xl font-semibold text-gray-900 mt-8 mb-4">Information We Collect</h3>

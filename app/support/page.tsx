@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { useBrandTakeover } from '@/hooks/useBrandTakeover';
+import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 
 import LegalFooter from '@/components/legal/LegalFooter';
 
@@ -362,7 +362,7 @@ export default function SupportPage() {
           </div>
           <div className="p-4">
             <p className="text-gray-600 mb-4">
-              Hi! I'm here to help. What can I assist you with today?
+              Hi! I&apos;m here to help. What can I assist you with today?
             </p>
             <div className="flex space-x-2">
               <input 

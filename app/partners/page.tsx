@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { useBrandTakeover } from '@/hooks/useBrandTakeover';
+import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import { useCompany } from '@/components/CompanyContext';
 import { IconBadge } from '@/components/ui/IconBadge';
 
@@ -153,9 +153,9 @@ export default function PartnersPage() {
             <div className="bg-gray-50 rounded-lg p-6">
               <h4 className="font-semibold text-gray-900 mb-2">Partner Success Story</h4>
               <p className="text-gray-600 italic mb-3">
-                "We've generated over $15,000 in recurring revenue in just 6 months by 
+                &ldquo;We&apos;ve generated over $15,000 in recurring revenue in just 6 months by 
                 recommending {b.enabled ? b.brand : 'Your Company'} to our solar clients. The commission payments are
-                reliable and the product sells itself."
+                reliable and the product sells itself.&rdquo;
               </p>
               <p className="text-sm text-gray-500">— Sarah Chen, Digital Marketing Agency</p>
             </div>
