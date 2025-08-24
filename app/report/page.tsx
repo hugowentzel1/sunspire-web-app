@@ -11,6 +11,8 @@ import { formatDateSafe } from '@/lib/format';
 import LegalFooter from '@/components/legal/LegalFooter';
 import { IconBadge } from '@/components/ui/IconBadge';
 import UnlockButton from '@/components/UnlockButton';
+import LockedBlur from '@/src/components/LockedBlur';
+import { ensureBlurSupport } from '@/src/lib/ensureBlur';
 
 import { useBrandColors } from '@/hooks/useBrandColors';
 import { getBrandTheme } from '@/lib/brandTheme';
@@ -30,6 +32,7 @@ function ReportContent() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showLeadModal, setShowLeadModal] = useState(false);
+  const [demoMode, setDemoMode] = useState(false);
   
   // Brand takeover mode detection
   const b = useBrandTakeover();
@@ -119,6 +122,13 @@ function ReportContent() {
     const company = searchParams.get('company');
     const isDemo = !!demoFlag && demoFlag !== '0' && demoFlag !== 'false';
     const hasBrand = !!company; // If we have a company parameter, treat it as a demo
+    const demoModeValue = isDemo || hasBrand; // Combined demo mode for LockedBlur
+    
+    // Set demo mode state
+    setDemoMode(demoModeValue);
+
+    // Ensure blur support is available
+    ensureBlurSupport();
 
     let address = searchParams.get('address') || '';
     let lat = parseFloat(searchParams.get('lat') || '');
@@ -400,7 +410,9 @@ function ReportContent() {
               {/* CONTENT LAYER - NO BLUR, NO LOCK BUTTON */}
               <div className="relative z-10 p-8 text-center">
                 <div className="mb-4 flex justify-center"><IconBadge>⚡</IconBadge></div>
-                <div className="text-3xl font-black text-gray-900 mb-2">{estimate.systemSizeKW} kW</div>
+                <LockedBlur active={demoMode} className="mb-2">
+                  <div className="text-3xl font-black text-gray-900">{estimate.systemSizeKW} kW</div>
+                </LockedBlur>
                 <div className="text-gray-600 font-semibold">System Size</div>
               </div>
             </div>
@@ -408,18 +420,19 @@ function ReportContent() {
               {/* CONTENT LAYER - NO BLUR, NO LOCK BUTTON */}
               <div className="relative z-10 p-8 text-center">
                 <div className="mb-4 flex justify-center"><IconBadge>☀️</IconBadge></div>
-                <div className="text-3xl font-black text-gray-900 mb-2">{estimate.annualProductionKWh.toLocaleString()} kWh</div>
+                <LockedBlur active={demoMode} className="mb-2">
+                  <div className="text-3xl font-black text-gray-900">{estimate.annualProductionKWh.toLocaleString()} kWh</div>
+                </LockedBlur>
                 <div className="text-gray-600 font-semibold">Annual Production</div>
               </div>
             </div>
             <div data-testid="tile-lifetimeSavings" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              {/* BLUR LAYER */}
-              <div className="absolute inset-0 bg-white/60 backdrop-blur-sm pointer-events-none" aria-hidden />
-              
               {/* CONTENT LAYER */}
               <div className="relative z-10 p-8 text-center">
                 <div className="mb-4 flex justify-center"><IconBadge>💰</IconBadge></div>
-                <div className="text-3xl font-black text-gray-900 mb-2">${estimate.netCostAfterITC.toLocaleString()}</div>
+                <LockedBlur active={demoMode} className="mb-2">
+                  <div className="text-3xl font-black text-gray-900">${estimate.netCostAfterITC.toLocaleString()}</div>
+                </LockedBlur>
                 <div className="text-gray-600 font-semibold">Net Cost (After ITC)</div>
               </div>
 
@@ -431,13 +444,12 @@ function ReportContent() {
               />
             </div>
             <div data-testid="tile-leads" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              {/* BLUR LAYER */}
-              <div className="absolute inset-0 bg-white/60 backdrop-blur-sm pointer-events-none" aria-hidden />
-              
               {/* CONTENT LAYER */}
               <div className="relative z-10 p-8 text-center">
                 <div className="mb-4 flex justify-center"><IconBadge>📈</IconBadge></div>
-                <div className="text-3xl font-black text-gray-900 mb-2">{estimate.year1Savings.toLocaleString()}</div>
+                <LockedBlur active={demoMode} className="mb-2">
+                  <div className="text-3xl font-black text-gray-900">{estimate.year1Savings.toLocaleString()}</div>
+                </LockedBlur>
                 <div className="text-gray-600 font-semibold">Year 1 Savings</div>
               </div>
 
@@ -460,18 +472,17 @@ function ReportContent() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.8 }} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Financial Analysis - Blurred */}
             <div data-testid="locked-panel" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50">
-              {/* BLUR LAYER */}
-              <div className="absolute inset-0 bg-white/60 backdrop-blur-sm pointer-events-none" aria-hidden />
-              
               {/* CONTENT LAYER */}
               <div className="relative z-10 p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Financial Analysis</h2>
-                <div className="space-y-6">
-                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Payback Period</span><span className="font-bold text-gray-900">{estimate.paybackYear} years</span></div>
-                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">25-Year NPV</span><span className="font-bold text-gray-900">${estimate.npv25Year.toLocaleString()}</span></div>
-                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">ROI</span><span className="font-bold text-gray-900">{Math.round(((estimate.npv25Year + estimate.netCostAfterITC) / estimate.netCostAfterITC) * 100)}%</span></div>
-                  <div className="flex justify-between items-center py-4"><span className="text-gray-600">Electricity Rate</span><span className="font-bold text-gray-900">${estimate.utilityRate}/kWh ({estimate.utilityRateSource})</span></div>
-                </div>
+                <LockedBlur active={demoMode}>
+                  <div className="space-y-6">
+                    <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Payback Period</span><span className="font-bold text-gray-900">{estimate.paybackYear} years</span></div>
+                    <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">25-Year NPV</span><span className="font-bold text-gray-900">${estimate.npv25Year.toLocaleString()}</span></div>
+                    <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">ROI</span><span className="font-bold text-gray-900">{Math.round(((estimate.npv25Year + estimate.netCostAfterITC) / estimate.netCostAfterITC) * 100)}%</span></div>
+                    <div className="flex justify-between items-center py-4"><span className="text-gray-600">Electricity Rate</span><span className="font-bold text-gray-900">${estimate.utilityRate}/kWh ({estimate.utilityRateSource})</span></div>
+                  </div>
+                </LockedBlur>
               </div>
 
               {/* UNLOCK BUTTON */}
@@ -484,18 +495,17 @@ function ReportContent() {
 
             {/* Environmental Impact - Blurred */}
             <div data-testid="locked-panel" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50">
-              {/* BLUR LAYER */}
-              <div className="absolute inset-0 bg-white/60 backdrop-blur-sm pointer-events-none" aria-hidden />
-              
               {/* CONTENT LAYER */}
               <div className="relative z-10 p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Environmental Impact</h2>
-                <div className="space-y-6">
-                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">CO₂ Offset/Year</span><span className="font-bold text-gray-900">{estimate.co2OffsetPerYear.toLocaleString()} lbs</span></div>
-                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Solar Irradiance</span><span className="font-bold text-gray-900">{estimate.solarIrradiance} kWh/m²/day</span></div>
-                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">System Tilt</span><span className="text-gray-900">{estimate.tilt}°</span></div>
-                  <div className="flex justify-between items-center py-4"><span className="text-gray-600">System Losses</span><span className="font-bold text-gray-900">{estimate.losses}%</span></div>
-                </div>
+                <LockedBlur active={demoMode}>
+                  <div className="space-y-6">
+                    <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">CO₂ Offset/Year</span><span className="font-bold text-gray-900">{estimate.co2OffsetPerYear.toLocaleString()} lbs</span></div>
+                    <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Solar Irradiance</span><span className="font-bold text-gray-900">{estimate.solarIrradiance} kWh/m²/day</span></div>
+                    <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">System Tilt</span><span className="text-gray-900">{estimate.tilt}°</span></div>
+                    <div className="flex justify-between items-center py-4"><span className="text-gray-600">System Losses</span><span className="font-bold text-gray-900">{estimate.losses}%</span></div>
+                  </div>
+                </LockedBlur>
               </div>
 
               {/* UNLOCK BUTTON */}
