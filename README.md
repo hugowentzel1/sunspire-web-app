@@ -18,3 +18,4 @@ Your beautiful Sunspire site is back and working!
 # Trigger deployment
 # Trigger fresh deployment - revert complete
 # FORCE IMMEDIATE DEPLOYMENT - Emergency fixes not showing
+# Trigger deployment
