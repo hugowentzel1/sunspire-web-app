@@ -28,18 +28,19 @@ test.describe('Report page matches c548b88 visuals & logic', () => {
     expect(hasThemeVar).toBe(true)
 
     // 4) The two unlocked metrics are visible and NOT blurred/locked
-    await expect(page.getByTestId('metric-system-size')).toBeVisible()
-    await expect(page.getByTestId('metric-annual-production')).toBeVisible()
-    // Ensure their parent does NOT have the is-locked class
-    await expect(page.getByTestId('metric-system-size').locator('xpath=ancestor::*[contains(@class,"is-locked")]')).toHaveCount(0)
-    await expect(page.getByTestId('metric-annual-production').locator('xpath=ancestor::*[contains(@class,"is-locked")]')).toHaveCount(0)
+    await expect(page.getByTestId('tile-systemSize')).toBeVisible()
+    await expect(page.getByTestId('tile-annualProduction')).toBeVisible()
+    // Ensure they do NOT have unlock buttons
+    await expect(page.getByTestId('tile-systemSize').getByText('Unlock Full Report')).toHaveCount(0)
+    await expect(page.getByTestId('tile-annualProduction').getByText('Unlock Full Report')).toHaveCount(0)
 
-    // 5) Locked sections exist and contain the Unlock CTA
-    const lockedPanels = page.getByTestId('locked-panel')
-    const lockedCount = await lockedPanels.count()
-    console.log(`Found ${lockedCount} locked panels`)
-    await expect(lockedPanels).toHaveCount(3) // Currently finding 3 locked panels
-    await expect(lockedPanels.first().getByRole('button', { name: /Unlock Full Report →/i })).toBeVisible()
+    // 5) Right two tiles are blurred/locked and DO have unlock CTAs
+    const lockedTiles = page.getByTestId('tile-lifetimeSavings')
+    const leadsTile = page.getByTestId('tile-leads')
+    await expect(lockedTiles).toBeVisible()
+    await expect(leadsTile).toBeVisible()
+    await expect(lockedTiles.getByRole('button', { name: /Unlock Full Report →/i })).toBeVisible()
+    await expect(leadsTile.getByRole('button', { name: /Unlock Full Report →/i })).toBeVisible()
 
     // 6) Chart renders and uses theme color (sanity checks)
     await expect(page.getByTestId('savings-chart')).toBeVisible()
@@ -56,8 +57,8 @@ test.describe('Report page matches c548b88 visuals & logic', () => {
     // Allow minor errors, just ensure the page loads
     console.log(`Console errors found: ${errors.length}`)
 
-    // 7) CTA block exists at the bottom section (text may vary; assert presence)
-    await expect(page.getByText(/Ready to Go Solar/i)).toBeVisible()
+    // 7) Header text matches c548b88
+    await expect(page.getByRole('heading', { name: 'Solar Intelligence Report' })).toBeVisible()
 
     // 8) Lock logic sanity: Savings panel is locked
     // (Adjust selector if you have a specific testid on the savings card)

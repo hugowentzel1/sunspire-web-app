@@ -13,6 +13,7 @@ import { IconBadge } from '@/components/ui/IconBadge';
 import UnlockButton from '@/components/UnlockButton';
 
 import { useBrandColors } from '@/hooks/useBrandColors';
+import { getBrandTheme } from '@/lib/brandTheme';
 import StickyBuyBar from '@/src/demo/StickyBuyBar';
 import InstallSheet from '@/src/demo/InstallSheet';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
@@ -328,6 +329,8 @@ function ReportContent() {
       <main data-testid="report-page" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Theme probe for testing */}
         <div data-testid="theme-probe" style={{ color: 'var(--brand)' }} className="hidden" />
+        {/* Brand theme CSS variable */}
+        <style>{`:root{--brand:${getBrandTheme(searchParams.get('company') || undefined)};}`}</style>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="space-y-8">
           <div className="text-center space-y-6">
             <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="w-24 h-24 mx-auto">
@@ -336,13 +339,9 @@ function ReportContent() {
               </div>
             </motion.div>
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl font-black text-gray-900">New Analysis</h1>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">Comprehensive analysis for your property at {estimate.address}</p>
-              <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
-                <span>Data Source: {estimate.utilityRateSource}</span>
-                <span>•</span>
-                <span>Generated on {formatDateSafe(estimate.date)}</span>
-              </div>
+              <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900">Solar Intelligence Report</h1>
+              <p className="text-sm text-gray-500">Comprehensive analysis for your property at {estimate.address}</p>
+              <p className="text-xs text-gray-400">Data Source: Demo • Generated on {formatDateSafe(estimate.date)}</p>
             </div>
           </div>
 
@@ -364,44 +363,24 @@ function ReportContent() {
           </motion.div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
-            <div data-testid="metric-system-size" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              {/* BLUR LAYER (kept behind button) */}
-              <div className="absolute inset-0 bg-white/60 backdrop-blur-sm pointer-events-none" aria-hidden />
-              
-              {/* CONTENT LAYER */}
+            <div data-testid="tile-systemSize" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
+              {/* CONTENT LAYER - NO BLUR, NO LOCK BUTTON */}
               <div className="relative z-10 p-8 text-center">
                 <div className="mb-4"><IconBadge>⚡</IconBadge></div>
                 <div className="text-3xl font-black text-gray-900 mb-2">{estimate.systemSizeKW} kW</div>
                 <div className="text-gray-600 font-semibold">System Size</div>
               </div>
-
-              {/* UNLOCK BUTTON (always sharp, centered, consistent spacing) */}
-              <UnlockButton
-                label="Unlock Full Report →"
-                onClick={() => {}} // TODO: Add checkout function
-                className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
-              />
             </div>
-            <div data-testid="metric-annual-production" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              {/* BLUR LAYER (kept behind button) */}
-              <div className="absolute inset-0 bg-white/60 backdrop-blur-sm pointer-events-none" aria-hidden />
-              
-              {/* CONTENT LAYER */}
+            <div data-testid="tile-annualProduction" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
+              {/* CONTENT LAYER - NO BLUR, NO LOCK BUTTON */}
               <div className="relative z-10 p-8 text-center">
                 <div className="mb-4"><IconBadge>☀️</IconBadge></div>
                 <div className="text-3xl font-black text-gray-900 mb-2">{estimate.annualProductionKWh.toLocaleString()} kWh</div>
                 <div className="text-gray-600 font-semibold">Annual Production</div>
               </div>
-
-              {/* UNLOCK BUTTON (always sharp, centered, consistent spacing) */}
-              <UnlockButton
-                label="Unlock Full Report →"
-                onClick={() => {}} // TODO: Add checkout function
-                className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
-              />
             </div>
-            <div data-testid="locked-panel" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              {/* BLUR LAYER (kept behind button) */}
+            <div data-testid="tile-lifetimeSavings" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
+              {/* BLUR LAYER */}
               <div className="absolute inset-0 bg-white/60 backdrop-blur-sm pointer-events-none" aria-hidden />
               
               {/* CONTENT LAYER */}
@@ -411,15 +390,15 @@ function ReportContent() {
                 <div className="text-gray-600 font-semibold">Net Cost (After ITC)</div>
               </div>
 
-              {/* UNLOCK BUTTON (always sharp, centered, consistent spacing) */}
+              {/* UNLOCK BUTTON - BLACK PILL CTA */}
               <UnlockButton
                 label="Unlock Full Report →"
                 onClick={() => {}} // TODO: Add checkout function
-                className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
+                className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2 bg-black text-white hover:bg-gray-800"
               />
             </div>
-            <div data-testid="locked-panel" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              {/* BLUR LAYER (kept behind button) */}
+            <div data-testid="tile-leads" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
+              {/* BLUR LAYER */}
               <div className="absolute inset-0 bg-white/60 backdrop-blur-sm pointer-events-none" aria-hidden />
               
               {/* CONTENT LAYER */}
@@ -429,11 +408,11 @@ function ReportContent() {
                 <div className="text-gray-600 font-semibold">Year 1 Savings</div>
               </div>
 
-              {/* UNLOCK BUTTON (always sharp, centered, consistent spacing) */}
+              {/* UNLOCK BUTTON - BLACK PILL CTA */}
               <UnlockButton
                 label="Unlock Full Report →"
                 onClick={() => {}} // TODO: Add checkout function
-                className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
+                className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2 bg-black text-white hover:bg-gray-800"
               />
             </div>
           </motion.div>
