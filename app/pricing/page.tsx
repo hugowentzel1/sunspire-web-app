@@ -26,6 +26,19 @@ export default function PricingPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter">
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        {/* Back to Home Button */}
+        <div className="mb-8">
+          <a 
+            href="/" 
+            className="inline-flex items-center text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
+          >
+            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Home
+          </a>
+        </div>
+        
         <div className="text-center space-y-12">
           
           {/* Hero Section */}
@@ -51,8 +64,8 @@ export default function PricingPage() {
           <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-2xl mx-auto">
             <div className="text-center space-y-8">
               <div>
-                <h2 className="text-4xl font-black text-gray-900 mb-2">$99</h2>
-                <p className="text-xl text-gray-600">per month</p>
+                <h2 className="text-4xl font-black text-gray-900 mb-2">$399</h2>
+                <p className="text-xl text-gray-600">setup + $99/month</p>
               </div>
               
               <div className="space-y-4">

@@ -31,13 +31,22 @@ export default function LegalFooter({ showPoweredBy = true, brand }: { showPower
               
               {/* Compliance Badges */}
               <div className="flex items-center justify-center space-x-4 mt-4">
-                <a href="/security#gdpr" className="inline-flex items-center px-3 py-1 bg-purple-100 text-purple-800 text-xs font-medium rounded-full hover:bg-purple-200 transition-colors">
+                <a href="/security#gdpr" className="inline-flex items-center px-3 py-1 text-white text-xs font-medium rounded-full transition-all duration-200 hover:shadow-lg" style={{ 
+                  background: b.enabled && b.primary ? `linear-gradient(135deg, ${b.primary}, ${b.primary}dd)` : 'linear-gradient(135deg, #d97706, #b45309)',
+                  boxShadow: b.enabled && b.primary ? `0 4px 14px ${b.primary}40` : '0 4px 14px #d9770640'
+                }}>
                   GDPR
                 </a>
-                <a href="/security#ccpa" className="inline-flex items-center px-3 py-1 bg-orange-100 text-orange-800 text-xs font-medium rounded-full hover:bg-orange-200 transition-colors">
+                <a href="/security#ccpa" className="inline-flex items-center px-3 py-1 text-white text-xs font-medium rounded-full transition-all duration-200 hover:shadow-lg" style={{ 
+                  background: b.enabled && b.primary ? `linear-gradient(135deg, ${b.primary}, ${b.primary}dd)` : 'linear-gradient(135deg, #d97706, #b45309)',
+                  boxShadow: b.enabled && b.primary ? `0 4px 14px ${b.primary}40` : '0 4px 14px #d9770640'
+                }}>
                   CCPA
                 </a>
-                <a href="/security#soc2" className="inline-flex items-center px-3 py-1 bg-green-100 text-green-800 text-xs font-medium rounded-full hover:bg-green-200 transition-colors">
+                <a href="/security#soc2" className="inline-flex items-center px-3 py-1 text-white text-xs font-medium rounded-full transition-all duration-200 hover:shadow-lg" style={{ 
+                  background: b.enabled && b.primary ? `linear-gradient(135deg, ${b.primary}, ${b.primary}dd)` : 'linear-gradient(135deg, #d97706, #b45309)',
+                  boxShadow: b.enabled && b.primary ? `0 4px 14px ${b.primary}40` : '0 4px 14px #d9770640'
+                }}>
                   SOC 2
                 </a>
               </div>

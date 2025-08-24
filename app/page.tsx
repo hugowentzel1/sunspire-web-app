@@ -101,18 +101,18 @@ function HomeContent() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter" data-demo={b.enabled}>
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="text-center space-y-12">
+        <div className="text-center space-y-16">
           
           {/* Company Branding Section */}
           {b.enabled && (
-            <div className="mt-4 mb-8">
+            <div>
               <div className="bg-white/80 backdrop-blur-sm rounded-3xl py-6 px-8 border border-gray-200/50 shadow-lg mx-auto max-w-2xl">
                 <div className="space-y-4 text-center">
                   <h2 className="text-3xl font-bold text-gray-900">
                     Demo for {b.brand || 'Your Company'} — Powered by Sunspire
                   </h2>
                   <p className="text-lg text-gray-600">
-                    Your Logo. Your URL. Instant Solar Quotes — Live in 10 Minutes
+                    Your Logo. Your URL. Instant Solar Quotes — Live in 24 Hours
                   </p>
                   <button 
                     onClick={handleLaunchClick}
@@ -140,7 +140,7 @@ function HomeContent() {
             <HeroBrand />
           )}
           
-          <div className="space-y-8">
+          <div className="space-y-6">
             <div className="relative">
               <div className="absolute -top-4 -right-4 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
                 <span className="text-white text-lg">✓</span>
@@ -151,20 +151,20 @@ function HomeContent() {
               <h1 className="text-5xl md:text-7xl font-black text-gray-900 leading-tight">
                 {b.enabled ? (
                   <>
-                    Your Logo. Your URL.
-                    <span className="block text-[var(--brand-primary)]">Instant Solar Quotes</span>
+                    Your Branded Solar Quote Tool
+                    <span className="block text-[var(--brand-primary)]">— Ready to Launch</span>
                   </>
                 ) : (
                   <>
-                    Solar Intelligence
-                    <span className="block text-[var(--brand-primary)]">in Seconds</span>
+                    Your Branded Solar Quote Tool
+                    <span className="block text-[var(--brand-primary)]">— Ready to Launch</span>
                   </>
                 )}
               </h1>
               <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 {b.enabled 
-                  ? `Branded solar quotes, lead capture, and CRM integration in 24 hours. 14-day refund if it doesn&apos;t lift conversions.`
-                  : "Transform your property with AI-powered solar analysis. Get instant estimates, detailed reports, and connect with premium installers."
+                  ? `Go live in 24 hours. Convert more leads, book more consultations, and sync every inquiry seamlessly to your CRM — all fully branded for your company.`
+                  : "Go live in 24 hours. Convert more leads, book more consultations, and sync every inquiry seamlessly to your CRM — all fully branded for your company."
                 }
               </p>
             </div>
