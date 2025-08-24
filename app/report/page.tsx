@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-
 import { useSearchParams, useRouter } from 'next/navigation';
 import { TenantProvider, useTenant } from '@/components/TenantProvider';
 import { LeadModal } from '@/components/LeadModal';
@@ -27,8 +26,6 @@ function ReportContent() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [showLeadModal, setShowLeadModal] = useState(false);
-  const [showSampleReportModal, setShowSampleReportModal] = useState(false);
-  const [sampleReportSubmitted, setSampleReportSubmitted] = useState(false);
   
   // Brand takeover mode detection
   const b = useBrandTakeover();
@@ -237,19 +234,6 @@ function ReportContent() {
     }
   };
 
-  const handleSubmitSampleReport = async (e: React.FormEvent) => {
-    e.preventDefault();
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setSampleReportSubmitted(true);
-    
-    // Hide modal after 3 seconds
-    setTimeout(() => {
-      setShowSampleReportModal(false);
-      setSampleReportSubmitted(false);
-    }, 3000);
-  };
-
   if (tenantLoading || isLoading) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter flex items-center justify-center">
@@ -340,11 +324,11 @@ function ReportContent() {
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="space-y-8">
           <div className="text-center space-y-6">
-                         <div className="w-24 h-24 mx-auto">
-               <div className="text-white rounded-full w-24 h-24 grid place-items-center shadow-[0_8px_30px_rgba(0,0,0,.08)]" style={{ background: `linear-gradient(135deg, ${b.enabled && b.primary ? b.primary : 'var(--brand-primary)'}, ${b.enabled && b.primary ? b.primary + 'CC' : 'var(--brand-primary)CC'})` }}>
-                 <span className="text-4xl">📊</span>
-               </div>
-             </div>
+            <div className="w-24 h-24 mx-auto">
+              <div className="brand-gradient text-white rounded-full w-24 h-24 grid place-items-center shadow-[0_8px_30px_rgba(0,0,0,.08)]">
+                <span className="text-4xl">📊</span>
+              </div>
+            </div>
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl font-black text-gray-900">New Analysis</h1>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">Comprehensive analysis for your property at {estimate.address}</p>
@@ -358,16 +342,16 @@ function ReportContent() {
 
           {/* Trust elements and CTA */}
           <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
-                         <a
-               href="/tenant-preview?demo=1"
-               className="px-5 py-3 rounded-xl font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-200"
-               style={{ 
-                 backgroundColor: b.enabled && b.primary ? b.primary : 'var(--brand-primary)',
-                 background: b.enabled && b.primary ? b.primary : 'linear-gradient(to right, #f97316, #ef4444, #ec4899)'
-               }}
-             >
-               Put this on our site
-             </a>
+            <a
+              href="/tenant-preview?demo=1"
+              className={`px-5 py-3 rounded-xl font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-200 ${
+                b.enabled 
+                  ? 'bg-[var(--brand-primary)] hover:bg-[var(--brand-primary)]/90' 
+                  : 'bg-gradient-to-r from-orange-500 via-red-500 to-pink-500'
+              }`}
+            >
+              Put this on our site
+            </a>
             <div className="text-xs text-slate-500">
               Data sources: PVWatts v8 (NREL) • EIA rates • HTTPS encrypted
             </div>
@@ -521,82 +505,11 @@ function ReportContent() {
             </div>
           </div>
 
-                     <div className="bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 rounded-3xl py-12 px-8 text-center text-white">
-             <h2 className="text-3xl font-bold mb-6">Ready to Go Solar?</h2>
-             <p className="text-xl mb-10 opacity-90">Connect with verified solar installers in your area and get started today</p>
-             <button onClick={() => setShowLeadModal(true)} className="px-8 py-4 bg-white text-orange-600 rounded-2xl font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">Get Matched with Installers</button>
-           </div>
-           
-           {/* CTA Band - Exact match to c548b88 */}
-           <div 
-             className="cta-band p-8 text-center relative overflow-hidden rounded-3xl"
-             style={{
-               background: b.enabled && b.primary ? b.primary : 'var(--brand-primary)',
-               color: '#ffffff'
-             }}
-           >
-             <div className="relative z-10">
-               <h2 className="text-3xl font-bold mb-4">Ready to Launch Your Branded Tool?</h2>
-               <p className="text-xl mb-8 opacity-90">
-                 Get complete financial projections, detailed assumptions, and unblurred savings charts
-               </p>
-               <div className="flex flex-wrap items-center justify-center gap-4 mb-6">
-                 <button
-                   onClick={() => document.dispatchEvent(new CustomEvent("openInstall"))}
-                   className="px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:-translate-y-1 bg-white"
-                   style={{
-                     color: b.enabled && b.primary ? b.primary : 'var(--brand-primary)',
-                     boxShadow: '0 8px 25px rgba(0, 0, 0, 0.1)',
-                     border: '2px solid #ffffff',
-                     width: '220px',
-                     minWidth: '220px',
-                     height: '64px',
-                     minHeight: '64px',
-                     display: 'flex',
-                     alignItems: 'center',
-                     justifyContent: 'center',
-                     lineHeight: '1.2'
-                   }}
-                 >
-                   Activate Your White-Label Demo
-                 </button>
-                 <button
-                   onClick={() => setShowSampleReportModal(true)}
-                   className="px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:-translate-y-1 bg-white"
-                   style={{
-                     color: b.enabled && b.primary ? b.primary : 'var(--brand-primary)',
-                     border: '2px solid #ffffff',
-                     boxShadow: '0 8px 25px rgba(0, 0, 0, 0.1)',
-                     width: '220px',
-                     minWidth: '220px',
-                     height: '64px',
-                     minHeight: '64px',
-                     display: 'flex',
-                     alignItems: 'center',
-                     justifyContent: 'center',
-                     lineHeight: '1.2'
-                   }}
-                 >
-                   Request Sample Report
-                 </button>
-               </div>
-               <div className="text-sm opacity-90 mb-4">
-                 Only $99/mo + $399 setup. 14-day refund if it doesn&apos;t lift booked calls.
-               </div>
-               <div className="text-xs opacity-75 mb-4">
-                 Cancel anytime. No long-term contracts.
-               </div>
-               <div className="text-sm opacity-90">
-                 <button 
-                   onClick={() => setShowSampleReportModal(true)}
-                   className="underline hover:no-underline transition-all"
-                   style={{ color: '#ffffff' }}
-                 >
-                   Email me full report
-                 </button>
-               </div>
-             </div>
-           </div>
+          <div className="bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 rounded-3xl py-12 px-8 text-center text-white">
+            <h2 className="text-3xl font-bold mb-6">Ready to Go Solar?</h2>
+            <p className="text-xl mb-10 opacity-90">Connect with verified solar installers in your area and get started today</p>
+            <button onClick={() => setShowLeadModal(true)} className="px-8 py-4 bg-white text-orange-600 rounded-2xl font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1">Get Matched with Installers</button>
+          </div>
           
           {/* Copy Demo Link Button */}
           <div className="text-center mb-8">
@@ -627,81 +540,12 @@ function ReportContent() {
         <LegalFooter brand={b.enabled ? b.brand : undefined} />
       </footer>
 
-             {estimate && (
-         <LeadModal isOpen={showLeadModal} onClose={() => setShowLeadModal(false)} estimate={estimate} address={estimate.address} />
-       )}
-       
-       {/* Sample Report Modal - Exact match to c548b88 */}
-       {showSampleReportModal && (
-         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-           <div className="bg-white rounded-3xl p-8 max-w-md w-full mx-4">
-             {!sampleReportSubmitted ? (
-               <div className="text-center space-y-6">
-                 <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto" style={{ backgroundColor: b.enabled && b.primary ? b.primary + '20' : 'var(--brand-primary)20' }}>
-                   <span className="text-3xl">📋</span>
-                 </div>
-                 <h3 className="text-2xl font-bold text-gray-900">Request Sample Report</h3>
-                 <p className="text-gray-600">
-                   Get a detailed sample report to see the full capabilities of our solar analysis platform.
-                 </p>
-                 <form onSubmit={handleSubmitSampleReport} className="space-y-4">
-                   <div className="text-left">
-                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                       Email Address
-                     </label>
-                     <input
-                       type="email"
-                       id="email"
-                       required
-                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
-                       style={{ 
-                         '--tw-ring-color': b.enabled && b.primary ? b.primary : 'var(--brand-primary)'
-                       } as React.CSSProperties}
-                       placeholder="Enter your email address"
-                     />
-                   </div>
-                   <button
-                     type="submit"
-                     className="w-full px-6 py-3 rounded-lg text-white font-semibold transition-colors"
-                     style={{ backgroundColor: b.enabled && b.primary ? b.primary : 'var(--brand-primary)' }}
-                   >
-                     Submit Request
-                   </button>
-                 </form>
-                 <button
-                   onClick={() => setShowSampleReportModal(false)}
-                   className="text-gray-500 hover:text-gray-700 text-sm"
-                 >
-                   Cancel
-                 </button>
-               </div>
-             ) : (
-               <div className="text-center space-y-6">
-                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                   <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                   </svg>
-                 </div>
-                 <h3 className="text-2xl font-bold text-gray-900">Sample Report Requested!</h3>
-                 <p className="text-gray-600">
-                   Thanks for reaching out! We&apos;ll send your sample report to your email within 24 hours.
-                 </p>
-                 <div className="text-center">
-                   <div className="inline-flex items-center text-sm text-gray-500">
-                     <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                     </svg>
-                     This modal will close automatically
-                   </div>
-                 </div>
-               </div>
-             )}
-           </div>
-         </div>
-       )}
-       
-       {/* Demo components - only show when brand takeover is enabled */}
-       <StickyBuyBar />
+      {estimate && (
+        <LeadModal isOpen={showLeadModal} onClose={() => setShowLeadModal(false)} estimate={estimate} address={estimate.address} />
+      )}
+      
+      {/* Demo components - only show when brand takeover is enabled */}
+      <StickyBuyBar />
       
       {/* Sticky CTA */}
       <StickyCTA />

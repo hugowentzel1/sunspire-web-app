@@ -8,6 +8,8 @@ import LegalFooter from '@/components/legal/LegalFooter';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import HeroBrand from '@/src/brand/HeroBrand';
 import { useBrandColors } from '@/hooks/useBrandColors';
+import { usePreviewQuota } from '@/src/demo/usePreviewQuota';
+import { useCountdown } from '@/src/demo/useCountdown';
 import React from 'react';
 
 const AddressAutocomplete = dynamic(() => import('@/components/AddressAutocomplete'), { 
@@ -37,6 +39,9 @@ function HomeContent() {
   
   // Brand colors from URL
   useBrandColors();
+  const { read, consume } = usePreviewQuota(2);
+  const remaining = read();
+  const countdown = useCountdown(b.expireDays);
 
   // Ensure client-side rendering
   useEffect(() => {
@@ -190,60 +195,57 @@ function HomeContent() {
                 <p className="text-gray-600">Get a comprehensive solar analysis tailored to your specific location</p>
               </div>
 
-              <div className="space-y-4">
-                {/* Address Input Field */}
-                <div className="w-full">
-                  <input
-                    type="text"
+              <div className="space-y-6">
+                {/* Address Input - Show for both demo and regular modes */}
+                <div className="w-full max-w-2xl mx-auto">
+                  <AddressAutocomplete 
                     value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                    placeholder="Enter your property address"
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--brand-primary)] focus:border-transparent text-gray-900 placeholder-gray-500"
+                    onChange={setAddress}
+                    onSelect={handleAddressSelect}
+                    placeholder={b.city ? `Start typing an address in ${b.city}...` : "Start typing your property address..."}
+                    className="w-full"
                   />
-                </div>
-
-                {/* Get Quote Button */}
-                <button 
-                  onClick={handleGenerateEstimate}
-                  disabled={!address.trim() || isLoading} 
-                  className="w-full px-6 py-3 rounded-lg text-white font-semibold transition-colors"
-                  style={{ backgroundColor: !address.trim() || isLoading ? '#9CA3AF' : 'var(--brand-primary)' }}
-                >
-                  {isLoading ? (
-                    <div className="flex items-center justify-center space-x-2">
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                      <span>Analyzing Your Property...</span>
-                    </div>
-                  ) : (
-                    "Get Quote"
-                  )}
-                </button>
-
-                {/* Status Messages */}
-                <div className="text-center space-y-1">
-                  <p className="text-sm text-gray-500">
-                    Address autocomplete temporarily unavailable
-                  </p>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-gray-500 mt-2 text-center">
                     Enter your property address to get started
                   </p>
                 </div>
 
-                {/* Launch Tool */}
-                <div className="text-center pt-2">
-                  <span className="text-sm font-medium text-[var(--brand-primary)]">Launch Tool</span>
-                </div>
-
-                {/* Request Sample Report Button */}
-                <div className="text-center pt-4 border-t border-gray-200">
-                  <button
-                    onClick={() => setShowSampleReportModal(true)}
-                    className="px-6 py-3 rounded-lg text-[var(--brand-primary)] border-2 border-[var(--brand-primary)] font-semibold hover:bg-[var(--brand-primary)] hover:text-white transition-colors"
-                  >
-                    Request Sample Report
-                  </button>
-                </div>
-
+                {/* Generate Button - Now below the search bar */}
+                <button 
+                  onClick={b.enabled && address.trim() ? handleGenerateEstimate : (b.enabled ? handleLaunchClick : handleGenerateEstimate)}
+                  disabled={!b.enabled && !address.trim() || isLoading} 
+                  className={`w-full ${
+                    (!b.enabled && !address.trim()) || isLoading 
+                      ? 'btn-disabled' 
+                      : b.enabled
+                        ? 'btn-cta'
+                        : 'btn-cta'
+                  }`} 
+                >
+                  {isLoading ? (
+                    <div className="flex items-center justify-center space-x-4">
+                      <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span>Analyzing Your Property...</span>
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-center space-x-4">
+                      <span>
+                        {b.enabled 
+                          ? (address.trim() ? `Generate Solar Report` : `Launch Tool`)
+                          : "Generate Solar Intelligence Report"
+                        }
+                      </span>
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                    </div>
+                  )}
+                </button>
+                
+                {b.enabled && (
+                  <div className="text-sm text-gray-500 text-center space-y-2">
+                    <p>Preview: {remaining} run{remaining===1?"":"s"} left.</p>
+                    <p>Expires in {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</p>
+                  </div>
+                )}
               </div>
             </div>
           </div>

@@ -222,6 +222,32 @@ a {
   transition: all 0.1s ease;
 }
 
+/* Disabled Button State */
+.btn-disabled {
+  @apply inline-flex items-center justify-center rounded-3xl px-8 py-5 font-black text-lg transition-all duration-500 transform;
+  
+  background: #9CA3AF;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  letter-spacing: 0.025em;
+  
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.1),
+    0 4px 10px rgba(0, 0, 0, 0.08);
+  
+  border: 1px solid #9CA3AF;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.btn-disabled:hover {
+  @apply scale-100 translate-y-0;
+  transform: none;
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.1),
+    0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
 /* Secondary Button - Clean white with company accent */
 .btn-secondary {
   @apply inline-flex items-center justify-center rounded-2xl px-6 py-4 font-semibold transition-all duration-300 transform;
