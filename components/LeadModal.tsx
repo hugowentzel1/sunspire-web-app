@@ -93,65 +93,69 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
               <>
                 <div className="text-center mb-6">
                   <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                    Get Your Solar Report
+                    Request Sample Report
                   </h2>
                   <p className="text-gray-600">
-                    Enter your details to receive the complete solar analysis for {address}
+                    Get a detailed sample of your solar analysis
                   </p>
                 </div>
 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
                       Name *
                     </label>
                     <input
                       {...register('name')}
                       type="text"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      id="name"
                       placeholder="Your full name"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                     {errors.name && (
-                      <p className="text-red-600 text-sm mt-1">{errors.name.message}</p>
+                      <p className="mt-1 text-sm text-red-600">{errors.name.message}</p>
                     )}
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
                       Email *
                     </label>
                     <input
                       {...register('email')}
                       type="email"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="your.email@example.com"
+                      id="email"
+                      placeholder="your@email.com"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                     {errors.email && (
-                      <p className="text-red-600 text-sm mt-1">{errors.email.message}</p>
+                      <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
                     )}
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Phone Number
+                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                      Phone (optional)
                     </label>
                     <input
                       {...register('phone')}
                       type="tel"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      id="phone"
                       placeholder="(555) 123-4567"
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">
-                      Additional Notes
+                    <label htmlFor="notes" className="block text-sm font-medium text-gray-700 mb-1">
+                      Notes (optional)
                     </label>
                     <textarea
                       {...register('notes')}
+                      id="notes"
                       rows={3}
-                      className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                      placeholder="Any specific questions or requirements?"
+                      placeholder="Any specific questions or requirements..."
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>
 
@@ -172,24 +176,42 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="flex-1 bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors disabled:opacity-50"
+                      className="w-full px-6 py-3 bg-black text-white rounded-2xl font-bold text-lg hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                      {isSubmitting ? 'Submitting...' : 'Get Report'}
+                      {isSubmitting ? 'Submitting...' : 'Request Sample Report'}
                     </button>
+                  </div>
+                  
+                  <div className="mt-4 text-center">
+                    <p className="text-sm text-gray-500">
+                      We'll send your sample report within 24 hours.
+                    </p>
                   </div>
                 </form>
               </>
             ) : (
               <div className="text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl text-green-600">✓</span>
+                <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <svg className="w-8 h-8 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-2">
-                  Thank you!
-                </h3>
-                <p className="text-gray-600">
-                  We&apos;ve received your request and will send your solar report shortly.
-                </p>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">Sample Report Requested!</h2>
+                <p className="text-gray-600 mb-6">Thanks for reaching out!</p>
+                
+                <div className="text-left">
+                  <h3 className="font-bold text-gray-900 mb-2">What's Next?</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    We'll email you a detailed sample report within 24 hours, along with next steps to get your white-label demo live.
+                  </p>
+                </div>
+                
+                <button
+                  onClick={onClose}
+                  className="mt-6 px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg font-medium transition-colors"
+                >
+                  Close
+                </button>
               </div>
             )}
           </div>

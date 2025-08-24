@@ -1,0 +1,46 @@
+/* COLORS */
+[data-report] .btn-primary      { background: var(--report-primary); color:#fff; }
+[data-report] .btn-primary:hover{ background: var(--report-accent); }
+[data-report] .badge-accent     { background: var(--report-accent); color:#fff; }
+[data-report] .card-muted       { background: var(--report-muted); }
+
+/* UNLOCK button must be pure black as per screenshots */
+[data-report] .unlock-btn       { background: var(--report-unlockblack); color:#fff; }
+
+/* BUTTON HEIGHTS – match c548b88 exactly */
+[data-report] .btn,
+[data-report] .unlock-btn,
+[data-report] .cta-btn {
+  height:64px; min-height:64px;
+  display:flex; align-items:center; justify-content:center;
+  line-height:1.2; font-weight:600; border-radius:12px;
+}
+
+/* TILE / CARD SHADOWS & RADII – identical to c548b88 */
+[data-report] .tile, 
+[data-report] .card, 
+[data-report] .graph-card, 
+[data-report] .cta-band {
+  border-radius:16px;
+  box-shadow: 0 8px 24px rgba(16, 24, 40, 0.08);
+}
+
+/* BLUR/LOCK OVERLAY – identical strength */
+[data-report] .blur-target      { filter: blur(7px); pointer-events:none; }
+[data-report] .blur-overlay     { position:absolute; inset:0; background:rgba(255,255,255,0.55); border-radius:inherit; }
+
+/* KPIs under chart – spacing and typography */
+[data-report] .kpi-row { display:grid; grid-template-columns: repeat(3, 1fr); gap:16px; margin-top:16px; }
+
+/* Headline & subheadline spacing */
+[data-report] .headline    { margin-top:24px; margin-bottom:8px; }
+[data-report] .subhead     { margin-bottom:24px; color:#475467; }
+
+/* Responsive breakpoints same as c548b88 */
+@media (max-width: 1024px) {
+  [data-report] .tiles { grid-template-columns: 1fr 1fr; }
+  [data-report] .kpi-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  [data-report] .tiles { grid-template-columns: 1fr; }
+}

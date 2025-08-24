@@ -304,7 +304,7 @@ function ReportContent() {
                   {b.enabled ? b.brand : 'Your Company'}
                 </h1>
                 <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
-                  Solar Intelligence
+                  SOLAR INTELLIGENCE REPORT
                 </p>
               </div>
             </div>
@@ -345,6 +345,13 @@ function ReportContent() {
             </div>
           </div>
 
+          {/* Top Banner */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.8 }} className="text-center">
+            <p className="text-sm text-gray-500">
+              A ready-to-embed, white-label quote tool that turns traffic into booked consults — live on your site in minutes.
+            </p>
+          </motion.div>
+
           {/* Trust elements and CTA */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8 }} className="mt-4 flex flex-wrap items-center justify-center gap-3">
             <a
@@ -357,16 +364,27 @@ function ReportContent() {
             >
               Put this on our site
             </a>
+            <a
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                navigator.clipboard.writeText(window.location.href);
+              }}
+              className="text-blue-600 hover:text-blue-700 font-medium text-sm"
+            >
+              Copy demo link
+            </a>
             <div className="text-xs text-slate-500">
               Data sources: PVWatts v8 (NREL) • EIA rates • HTTPS encrypted
             </div>
           </motion.div>
 
+          {/* Metric Tiles */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
             <div data-testid="tile-systemSize" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
               {/* CONTENT LAYER - NO BLUR, NO LOCK BUTTON */}
               <div className="relative z-10 p-8 text-center">
-                <div className="mb-4"><IconBadge>⚡</IconBadge></div>
+                <div className="mb-4 flex justify-center"><IconBadge>⚡</IconBadge></div>
                 <div className="text-3xl font-black text-gray-900 mb-2">{estimate.systemSizeKW} kW</div>
                 <div className="text-gray-600 font-semibold">System Size</div>
               </div>
@@ -374,7 +392,7 @@ function ReportContent() {
             <div data-testid="tile-annualProduction" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
               {/* CONTENT LAYER - NO BLUR, NO LOCK BUTTON */}
               <div className="relative z-10 p-8 text-center">
-                <div className="mb-4"><IconBadge>☀️</IconBadge></div>
+                <div className="mb-4 flex justify-center"><IconBadge>☀️</IconBadge></div>
                 <div className="text-3xl font-black text-gray-900 mb-2">{estimate.annualProductionKWh.toLocaleString()} kWh</div>
                 <div className="text-gray-600 font-semibold">Annual Production</div>
               </div>
@@ -385,16 +403,16 @@ function ReportContent() {
               
               {/* CONTENT LAYER */}
               <div className="relative z-10 p-8 text-center">
-                <div className="mb-4"><IconBadge>💰</IconBadge></div>
+                <div className="mb-4 flex justify-center"><IconBadge>💰</IconBadge></div>
                 <div className="text-3xl font-black text-gray-900 mb-2">${estimate.netCostAfterITC.toLocaleString()}</div>
                 <div className="text-gray-600 font-semibold">Net Cost (After ITC)</div>
               </div>
 
-              {/* UNLOCK BUTTON - BLACK PILL CTA */}
+              {/* UNLOCK BUTTON */}
               <UnlockButton
                 label="Unlock Full Report →"
                 onClick={() => {}} // TODO: Add checkout function
-                className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2 bg-black text-white hover:bg-gray-800"
+                className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
               />
             </div>
             <div data-testid="tile-leads" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
@@ -403,36 +421,35 @@ function ReportContent() {
               
               {/* CONTENT LAYER */}
               <div className="relative z-10 p-8 text-center">
-                <div className="mb-4"><IconBadge>📈</IconBadge></div>
+                <div className="mb-4 flex justify-center"><IconBadge>📈</IconBadge></div>
                 <div className="text-3xl font-black text-gray-900 mb-2">{estimate.year1Savings.toLocaleString()}</div>
                 <div className="text-gray-600 font-semibold">Year 1 Savings</div>
               </div>
 
-              {/* UNLOCK BUTTON - BLACK PILL CTA */}
+              {/* UNLOCK BUTTON */}
               <UnlockButton
                 label="Unlock Full Report →"
                 onClick={() => {}} // TODO: Add checkout function
-                className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2 bg-black text-white hover:bg-gray-800"
+                className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
               />
             </div>
           </motion.div>
 
+          {/* Chart */}
           <div data-testid="savings-chart" className="relative rounded-2xl bg-white p-5 overflow-hidden">
             <div className="relative z-10 min-h-[400px]">
               <EstimateChart cashflowData={estimate.cashflowProjection} netCostAfterITC={estimate.netCostAfterITC} />
             </div>
-            <div className="relative z-10 flex justify-center mt-4">
-              <UnlockButton
-                label="Unlock Full Report →"
-                onClick={() => {}} // TODO: Add checkout function
-              />
-            </div>
           </div>
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.8 }} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-            {/* Financial Analysis - Unblurred */}
-            <div className="relative rounded-2xl p-8 bg-white border border-gray-200/50">
-              <div className="relative z-10">
+            {/* Financial Analysis - Blurred */}
+            <div data-testid="locked-panel" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50">
+              {/* BLUR LAYER */}
+              <div className="absolute inset-0 bg-white/60 backdrop-blur-sm pointer-events-none" aria-hidden />
+              
+              {/* CONTENT LAYER */}
+              <div className="relative z-10 p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Financial Analysis</h2>
                 <div className="space-y-6">
                   <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Payback Period</span><span className="font-bold text-gray-900">{estimate.paybackYear} years</span></div>
@@ -441,6 +458,13 @@ function ReportContent() {
                   <div className="flex justify-between items-center py-4"><span className="text-gray-600">Electricity Rate</span><span className="font-bold text-gray-900">${estimate.utilityRate}/kWh ({estimate.utilityRateSource})</span></div>
                 </div>
               </div>
+
+              {/* UNLOCK BUTTON */}
+              <UnlockButton
+                label="Unlock Full Report →"
+                onClick={() => {}} // TODO: Add checkout function
+                className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
+              />
             </div>
 
             {/* Environmental Impact - Blurred */}
@@ -454,12 +478,12 @@ function ReportContent() {
                 <div className="space-y-6">
                   <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">CO₂ Offset/Year</span><span className="font-bold text-gray-900">{estimate.co2OffsetPerYear.toLocaleString()} lbs</span></div>
                   <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Solar Irradiance</span><span className="font-bold text-gray-900">{estimate.solarIrradiance} kWh/m²/day</span></div>
-                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">System Tilt</span><span className="font-bold text-gray-900">{estimate.tilt}°</span></div>
+                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">System Tilt</span><span className="text-gray-900">{estimate.tilt}°</span></div>
                   <div className="flex justify-between items-center py-4"><span className="text-gray-600">System Losses</span><span className="font-bold text-gray-900">{estimate.losses}%</span></div>
                 </div>
               </div>
 
-              {/* UNLOCK BUTTON (always sharp, centered, consistent spacing) */}
+              {/* UNLOCK BUTTON */}
               <UnlockButton
                 label="Unlock Full Report →"
                 onClick={() => {}} // TODO: Add checkout function
@@ -490,10 +514,40 @@ function ReportContent() {
             </div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 rounded-3xl py-12 px-8 text-center text-white">
-            <h2 className="text-3xl font-bold mb-6">Ready to Go Solar?</h2>
-            <p className="text-xl mb-10 opacity-90">Connect with verified solar installers in your area and get started today</p>
-            <motion.button onClick={() => setShowLeadModal(true)} className="px-8 py-4 bg-white text-orange-600 rounded-2xl font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>Get Matched with Installers</motion.button>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="bg-black rounded-3xl py-12 px-8 text-center text-white">
+            <h2 className="text-3xl font-bold mb-6">Ready to Launch Your Branded Tool?</h2>
+            <p className="text-xl mb-10 opacity-90">Get complete financial projections, detailed assumptions, and unblurred savings charts</p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <motion.button 
+                onClick={() => router.push('/tenant-preview?demo=1')}
+                className="px-8 py-4 bg-white text-black rounded-2xl font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" 
+                whileHover={{ scale: 1.05 }} 
+                whileTap={{ scale: 0.95 }}
+              >
+                Activate on Your Domain
+              </motion.button>
+              <motion.button 
+                onClick={() => setShowLeadModal(true)}
+                className="px-8 py-4 bg-black text-white rounded-2xl font-bold text-lg border-2 border-white hover:bg-white hover:text-black transition-all duration-300 transform hover:-translate-y-1" 
+                whileHover={{ scale: 1.05 }} 
+                whileTap={{ scale: 0.95 }}
+              >
+                Request Sample Report
+              </motion.button>
+            </div>
+            <div className="mt-8 text-center">
+              <p className="text-lg mb-2">Only $99/mo + $399 setup. 14-day refund if it doesn&apos;t lift booked calls.</p>
+              <p className="text-base opacity-90 mb-4">Cancel anytime. No long-term contracts.</p>
+              <button 
+                onClick={() => setShowLeadModal(true)}
+                className="text-blue-400 underline hover:no-underline font-medium"
+              >
+                Email me full report
+              </button>
+            </div>
+            <div className="mt-6 pt-4 border-t border-white/20">
+              <p className="text-sm opacity-90">Full version from just $99/mo + $399 setup. Most tools cost $2,500+/mo.</p>
+            </div>
           </motion.div>
           
           {/* Copy Demo Link Button */}
