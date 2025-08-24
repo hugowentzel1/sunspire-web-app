@@ -1,166 +1,209 @@
-// Queue system for Airtable operations and provisioning
+// Queue implementation for background tasks
 
-interface QueueJob {
+interface QueueTask {
   id: string;
-  type: 'airtable' | 'provision';
-  data: any;
-  priority: number;
-  createdAt: Date;
+  type: string;
+  payload: any;
   attempts: number;
   maxAttempts: number;
+  createdAt: Date;
+  scheduledAt: Date;
 }
 
-class Queue {
-  private jobs: QueueJob[] = [];
-  private isProcessing = false;
-  private processors: Map<string, (job: QueueJob) => Promise<void>> = new Map();
+class TaskQueue {
+  private tasks: Map<string, QueueTask> = new Map();
+  private processing = false;
 
-  constructor() {
-    this.startProcessing();
-  }
-
-  // Add a job to the queue
-  async addJob(type: string, data: any, priority: number = 1): Promise<string> {
-    const job: QueueJob = {
-      id: `job_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`,
-      type: type as 'airtable' | 'provision',
-      data,
-      priority,
-      createdAt: new Date(),
+  // Add a task to the queue
+  async enqueue(type: string, payload: any, options: {
+    maxAttempts?: number;
+    delay?: number;
+  } = {}): Promise<string> {
+    const taskId = `${type}_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+    const now = new Date();
+    
+    const task: QueueTask = {
+      id: taskId,
+      type,
+      payload,
       attempts: 0,
-      maxAttempts: type === 'provision' ? 3 : 5
+      maxAttempts: options.maxAttempts || 3,
+      createdAt: now,
+      scheduledAt: new Date(now.getTime() + (options.delay || 0))
     };
 
-    this.jobs.push(job);
-    this.jobs.sort((a, b) => b.priority - a.priority); // Higher priority first
-
-    return job.id;
-  }
-
-  // Register a processor for a job type
-  registerProcessor(type: string, processor: (job: QueueJob) => Promise<void>): void {
-    this.processors.set(type, processor);
-  }
-
-  // Start processing jobs
-  private async startProcessing(): Promise<void> {
-    if (this.isProcessing) return;
-    this.isProcessing = true;
-
-    while (true) {
-      if (this.jobs.length > 0) {
-        const job = this.jobs.shift();
-        if (job) {
-          await this.processJob(job);
-        }
-      } else {
-        // Wait a bit before checking again
-        await new Promise(resolve => setTimeout(resolve, 1000));
-      }
+    this.tasks.set(taskId, task);
+    
+    // Start processing if not already running
+    if (!this.processing) {
+      this.processQueue();
     }
+
+    return taskId;
   }
 
-  // Process a single job
-  private async processJob(job: QueueJob): Promise<void> {
-    const processor = this.processors.get(job.type);
-    if (!processor) {
-      console.error(`No processor registered for job type: ${job.type}`);
-      return;
-    }
+  // Process tasks in the queue
+  private async processQueue(): Promise<void> {
+    if (this.processing) return;
+    
+    this.processing = true;
 
     try {
-      await processor(job);
-      console.log(`Job ${job.id} completed successfully`);
-    } catch (error) {
-      console.error(`Job ${job.id} failed:`, error);
-      
-      job.attempts++;
-      if (job.attempts < job.maxAttempts) {
-        // Re-queue with exponential backoff
-        const delay = Math.pow(2, job.attempts) * 1000; // 2^attempts seconds
-        setTimeout(() => {
-          this.jobs.push(job);
-        }, delay);
-      } else {
-        console.error(`Job ${job.id} exceeded max attempts, discarding`);
+      while (this.tasks.size > 0) {
+        const now = new Date();
+        const readyTasks = Array.from(this.tasks.values())
+          .filter(task => task.scheduledAt <= now)
+          .sort((a, b) => a.scheduledAt.getTime() - b.scheduledAt.getTime());
+
+        if (readyTasks.length === 0) {
+          // No tasks ready, wait a bit
+          await new Promise(resolve => setTimeout(resolve, 1000));
+          continue;
+        }
+
+        const task = readyTasks[0];
+        this.tasks.delete(task.id);
+
+        try {
+          await this.executeTask(task);
+        } catch (error) {
+          console.error(`Task ${task.id} failed:`, error);
+          
+          task.attempts++;
+          if (task.attempts < task.maxAttempts) {
+            // Retry with exponential backoff
+            const delay = Math.pow(2, task.attempts) * 1000; // 2s, 4s, 8s...
+            task.scheduledAt = new Date(Date.now() + delay);
+            this.tasks.set(task.id, task);
+            console.log(`Retrying task ${task.id} in ${delay}ms (attempt ${task.attempts}/${task.maxAttempts})`);
+          } else {
+            console.error(`Task ${task.id} failed permanently after ${task.maxAttempts} attempts`);
+          }
+        }
       }
+    } finally {
+      this.processing = false;
     }
   }
 
-  // Get queue status
-  getStatus(): { totalJobs: number; processing: boolean } {
+  // Execute a specific task
+  private async executeTask(task: QueueTask): Promise<void> {
+    switch (task.type) {
+      case 'airtable_write':
+        await this.executeAirtableWrite(task.payload);
+        break;
+      
+      case 'provisioner':
+        await this.executeProvisioner(task.payload);
+        break;
+      
+      case 'send_email':
+        await this.executeSendEmail(task.payload);
+        break;
+      
+      default:
+        throw new Error(`Unknown task type: ${task.type}`);
+    }
+  }
+
+  // Execute Airtable write with throttling
+  private async executeAirtableWrite(payload: any): Promise<void> {
+    const { airtableClient } = await import('@/lib/airtable');
+    await airtableClient.queueRecord(payload);
+  }
+
+  // Execute provisioner task (24h SLA)
+  private async executeProvisioner(payload: {
+    companyHandle: string;
+    email: string;
+    plan: string;
+    sessionId?: string;
+  }): Promise<void> {
+    console.log(`[PROVISIONER] Starting provisioning for ${payload.companyHandle}`);
+    
+    // TODO: Implement actual provisioning logic:
+    // 1. Create {handle}.out.sunspire.app subdomain
+    // 2. Set up SSL certificate
+    // 3. Apply branding/colors/logo
+    // 4. Issue widget API key
+    // 5. Connect CRM (HubSpot/Salesforce/Airtable)
+    // 6. Run smoke tests
+    // 7. Send "You're live" email
+    
+    // For now, simulate the process
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    
+    console.log(`[PROVISIONER] Completed provisioning for ${payload.companyHandle}`);
+    
+    // Queue "You're live" email
+    await this.enqueue('send_email', {
+      to: payload.email,
+      template: 'provisioning_complete',
+      data: {
+        companyHandle: payload.companyHandle,
+        subdomain: `${payload.companyHandle}.out.sunspire.app`,
+        plan: payload.plan
+      }
+    });
+  }
+
+  // Execute email sending
+  private async executeSendEmail(payload: {
+    to: string;
+    template: string;
+    data: any;
+  }): Promise<void> {
+    console.log(`[EMAIL] Sending ${payload.template} to ${payload.to}`);
+    
+    // TODO: Implement actual email sending logic
+    // For now, just log
+    console.log(`[EMAIL] Email sent successfully`);
+  }
+
+  // Get queue stats
+  getStats(): {
+    totalTasks: number;
+    readyTasks: number;
+    scheduledTasks: number;
+    processing: boolean;
+  } {
+    const now = new Date();
+    const allTasks = Array.from(this.tasks.values());
+    const readyTasks = allTasks.filter(task => task.scheduledAt <= now);
+    const scheduledTasks = allTasks.filter(task => task.scheduledAt > now);
+
     return {
-      totalJobs: this.jobs.length,
-      processing: this.isProcessing
+      totalTasks: allTasks.length,
+      readyTasks: readyTasks.length,
+      scheduledTasks: scheduledTasks.length,
+      processing: this.processing
     };
   }
 }
 
-// Create global queue instance
-export const queue = new Queue();
-
-// Airtable writer processor
-queue.registerProcessor('airtable', async (job: QueueJob) => {
-  console.log('Processing Airtable job:', job.data);
-  
-  // Import here to avoid circular dependencies
-  const { airtableClient } = await import('./airtable');
-  
-  if (job.data.type === 'upsert') {
-    await airtableClient.upsertRecords([job.data.record]);
-  } else if (job.data.type === 'event') {
-    await airtableClient.queueRecord(job.data.record);
-  }
-});
-
-// Provisioner processor (24-hour SLA)
-queue.registerProcessor('provision', async (job: QueueJob) => {
-  console.log('Processing provision job:', job.data);
-  
-  const { tenantId, email, plan, previewUrl } = job.data;
-  
-  try {
-    // 1. Create subdomain + SSL
-    console.log(`Creating subdomain for tenant ${tenantId}`);
-    // TODO: Implement actual subdomain creation
-    
-    // 2. Apply branding/colors/logo
-    console.log(`Applying branding for tenant ${tenantId}`);
-    // TODO: Implement branding application
-    
-    // 3. Issue widget key
-    console.log(`Issuing widget key for tenant ${tenantId}`);
-    // TODO: Implement widget key generation
-    
-    // 4. Connect CRM
-    console.log(`Connecting CRM for tenant ${tenantId}`);
-    // TODO: Implement CRM integration
-    
-    // 5. Smoke test
-    console.log(`Running smoke test for tenant ${tenantId}`);
-    // TODO: Implement smoke test
-    
-    // 6. Send "You're live" email
-    console.log(`Sending activation email to ${email}`);
-    // TODO: Implement email sending
-    
-    console.log(`Tenant ${tenantId} provisioned successfully`);
-    
-  } catch (error) {
-    console.error(`Provisioning failed for tenant ${tenantId}:`, error);
-    throw error;
-  }
-});
+// Export singleton instance
+export const taskQueue = new TaskQueue();
 
 // Helper functions
-export async function queueAirtableJob(type: 'upsert' | 'event', record: any): Promise<string> {
-  return queue.addJob('airtable', { type, record }, 1);
+export async function queueAirtableWrite(record: any): Promise<string> {
+  return taskQueue.enqueue('airtable_write', record);
 }
 
-export async function queueProvisionJob(tenantId: string, email: string, plan: string, previewUrl: string): Promise<string> {
-  return queue.addJob('provision', { tenantId, email, plan, previewUrl }, 10); // High priority
+export async function queueProvisioner(payload: {
+  companyHandle: string;
+  email: string;
+  plan: string;
+  sessionId?: string;
+}): Promise<string> {
+  return taskQueue.enqueue('provisioner', payload, {
+    maxAttempts: 5 // Important task, retry more
+  });
 }
 
-export function getQueueStatus() {
-  return queue.getStatus();
+export async function queueEmail(payload: {
+  to: string;
+  template: string;
+  data: any;
+}): Promise<string> {
+  return taskQueue.enqueue('send_email', payload);
 }

@@ -1,53 +1,56 @@
 import { NextRequest, NextResponse } from 'next/server';
-
-interface EventData {
-  email?: string;
-  companyHandle: string;
-  type: 'demo_open' | 'address_selected' | 'activation_clicked' | 'signup_complete';
-  metadata?: Record<string, any>;
-  campaignId?: string;
-}
+import { logEvent } from '@/lib/airtable';
 
 export async function POST(request: NextRequest) {
   try {
-    const body: EventData = await request.json();
+    const body = await request.json();
     
+    const {
+      email,
+      companyHandle,
+      type,
+      metadata,
+      campaignId
+    } = body;
+
     // Validate required fields
-    if (!body.companyHandle || !body.type) {
+    if (!companyHandle || !type) {
       return NextResponse.json(
-        { success: false, error: 'Company handle and event type are required' },
+        { error: 'companyHandle and type are required' },
         { status: 400 }
       );
     }
 
     // Validate event type
-    const validTypes = ['demo_open', 'address_selected', 'activation_clicked', 'signup_complete'];
-    if (!validTypes.includes(body.type)) {
+    const validTypes = [
+      'demo_open',
+      'address_selected',
+      'activation_clicked',
+      'signup_complete',
+      'report_generated',
+      'lead_submitted'
+    ];
+    
+    if (!validTypes.includes(type)) {
       return NextResponse.json(
-        { success: false, error: 'Invalid event type' },
+        { error: `Invalid event type. Must be one of: ${validTypes.join(', ')}` },
         { status: 400 }
       );
     }
 
-    // TODO: Implement actual Airtable integration
-    console.log('Event log request:', body);
-    
-    // Mock successful response
-    return NextResponse.json({
-      success: true,
-      message: 'Event logged successfully',
-      data: {
-        id: `event_${Date.now()}`,
-        companyHandle: body.companyHandle,
-        type: body.type,
-        loggedAt: new Date().toISOString()
-      }
+    await logEvent({
+      companyHandle,
+      type,
+      email,
+      metadata,
+      campaignId
     });
 
+    return NextResponse.json({ success: true });
   } catch (error) {
-    console.error('Event log error:', error);
+    console.error('Event logging error:', error);
     return NextResponse.json(
-      { success: false, error: 'Internal server error' },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }

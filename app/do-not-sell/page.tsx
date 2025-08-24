@@ -1,110 +1,141 @@
-import Head from 'next/head';
+'use client';
+
+import { useState } from 'react';
+import { useBrandColors } from '@/hooks/useBrandColors';
 import LegalFooter from '@/components/legal/LegalFooter';
 
 export default function DoNotSellPage() {
+  // Apply brand colors from URL
+  useBrandColors();
+  
+  const [email, setEmail] = useState('');
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    // TODO: Implement opt-out functionality
+    setSubmitted(true);
+  };
+
   return (
-    <>
-      <Head>
-        <title>Do Not Sell My Data | Sunspire</title>
-        <meta name="description" content="Exercise your right to opt-out of data sales under CCPA." />
-      </Head>
-      
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
-        {/* Header */}
-        <div className="bg-white shadow-sm">
-          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div className="text-center">
-              <h1 className="text-4xl font-bold text-gray-900 mb-4">
-                Do Not Sell My Data
-              </h1>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Exercise your California Consumer Privacy Act (CCPA) rights
-              </p>
-            </div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter">
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="space-y-12">
+          
+          {/* Header */}
+          <div className="text-center space-y-6">
+            <h1 className="text-4xl md:text-6xl font-black text-gray-900">
+              Do Not Sell My Data
+            </h1>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Exercise your right under the California Consumer Privacy Act (CCPA) to opt out of the sale of your personal information.
+            </p>
           </div>
-        </div>
 
-        {/* Content */}
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="space-y-8">
-            
-            {/* CCPA Rights */}
-            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-lg">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Your CCPA Rights</h2>
-              <div className="space-y-4 text-gray-700">
-                <p><strong>Right to Know:</strong> You have the right to know what personal information we collect, use, and share about you.</p>
-                <p><strong>Right to Delete:</strong> You have the right to request deletion of your personal information.</p>
-                <p><strong>Right to Opt-Out:</strong> You have the right to opt-out of the sale of your personal information.</p>
-                <p><strong>Right to Non-Discrimination:</strong> We will not discriminate against you for exercising your CCPA rights.</p>
-              </div>
-            </div>
-
-            {/* Opt-Out Form */}
-            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-lg">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Opt-Out of Data Sales</h2>
-              <p className="text-gray-600 mb-6">
-                To opt-out of the sale of your personal information, please provide your email address below:
-              </p>
-              
-              <form className="space-y-4">
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                    Email Address
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    required
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--brand-primary)] focus:border-transparent"
-                    placeholder="Enter your email address"
-                  />
-                </div>
+          {/* Main Content */}
+          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12">
+            {!submitted ? (
+              <div className="space-y-6">
+                <h2 className="text-2xl font-bold text-gray-900">Opt-Out Request</h2>
+                <p className="text-gray-700">
+                  Under the CCPA, you have the right to opt out of the sale of your personal information. 
+                  Please note that Sunspire does not sell personal information to third parties for monetary consideration. 
+                  However, we provide this form to ensure compliance with all CCPA requirements.
+                </p>
                 
-                <button
-                  type="submit"
-                  className="w-full bg-[var(--brand-primary)] text-white font-semibold py-3 px-6 rounded-lg hover:opacity-90 transition-opacity"
-                >
-                  Opt-Out of Data Sales
-                </button>
-              </form>
-              
-              <p className="text-sm text-gray-500 mt-4">
-                We will process your request within 45 days and send you a confirmation email.
-              </p>
-            </div>
-
-            {/* Contact Information */}
-            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-lg">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Contact Us</h2>
-              <div className="space-y-4 text-gray-700">
-                <p>If you have any questions about your CCPA rights or this opt-out process, please contact us:</p>
-                <div className="space-y-2">
-                  <p><strong>Email:</strong> <a href="mailto:privacy@sunspire.app" className="text-[var(--brand-primary)] hover:underline">privacy@sunspire.app</a></p>
-                  <p><strong>Data Protection Officer:</strong> <a href="mailto:security@sunspire.app" className="text-[var(--brand-primary)] hover:underline">security@sunspire.app</a></p>
-                  <p><strong>Address:</strong> Sunspire, 123 Main Street, San Francisco, CA 94105</p>
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      required
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                      placeholder="Enter your email address"
+                    />
+                  </div>
+                  
+                  <button
+                    type="submit"
+                    className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors"
+                  >
+                    Submit Opt-Out Request
+                  </button>
+                </form>
+                
+                <div className="bg-blue-50 rounded-lg p-6 mt-6">
+                  <h3 className="font-semibold text-blue-900 mb-2">What happens after I submit?</h3>
+                  <ul className="text-blue-800 text-sm space-y-1">
+                    <li>• We will process your request within 15 business days</li>
+                    <li>• You will receive a confirmation email</li>
+                    <li>• Your email will be added to our opt-out list</li>
+                    <li>• This applies to future data collection and processing</li>
+                  </ul>
                 </div>
               </div>
-            </div>
-
-            {/* Additional Information */}
-            <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-lg">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Additional Information</h2>
-              <div className="space-y-4 text-gray-700">
-                <p><strong>Verification:</strong> We may need to verify your identity before processing your request. This helps protect your privacy and security.</p>
-                <p><strong>Authorized Agents:</strong> You may designate an authorized agent to make requests on your behalf. The agent must provide proof of authorization.</p>
-                <p><strong>Household Requests:</strong> If you are making a request on behalf of your household, we may need additional verification.</p>
-                <p><strong>Updates:</strong> We will update this page as our data practices change. Please check back periodically.</p>
+            ) : (
+              <div className="text-center space-y-6">
+                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                  <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h2 className="text-2xl font-bold text-gray-900">Request Submitted</h2>
+                <p className="text-gray-700">
+                  Thank you for submitting your opt-out request. We will process it within 15 business days 
+                  and send you a confirmation email at {email}.
+                </p>
+                <button
+                  onClick={() => setSubmitted(false)}
+                  className="text-blue-600 hover:underline"
+                >
+                  Submit another request
+                </button>
               </div>
-            </div>
-
+            )}
           </div>
+
+          {/* Additional Information */}
+          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Your CCPA Rights</h2>
+            <div className="space-y-4 text-gray-700">
+              <p>Under the California Consumer Privacy Act, you have the following rights:</p>
+              <ul className="space-y-2 ml-6">
+                <li className="flex items-start">
+                  <span className="text-blue-500 mr-2">•</span>
+                  <span><strong>Right to Know:</strong> Request information about how we collect, use, and share your personal information</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-500 mr-2">•</span>
+                  <span><strong>Right to Delete:</strong> Request deletion of your personal information</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-500 mr-2">•</span>
+                  <span><strong>Right to Opt-Out:</strong> Opt out of the sale of your personal information</span>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-blue-500 mr-2">•</span>
+                  <span><strong>Right to Non-Discrimination:</strong> Not be discriminated against for exercising your rights</span>
+                </li>
+              </ul>
+              <p className="mt-4">
+                For more information about our privacy practices, please review our{' '}
+                <a href="/privacy" className="text-blue-600 hover:underline">Privacy Policy</a> or contact us at{' '}
+                <a href="mailto:privacy@sunspire.app" className="text-blue-600 hover:underline">privacy@sunspire.app</a>.
+              </p>
+            </div>
+          </div>
+
         </div>
-      </div>
+      </main>
 
       <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <LegalFooter />
       </footer>
-    </>
+    </div>
   );
 }

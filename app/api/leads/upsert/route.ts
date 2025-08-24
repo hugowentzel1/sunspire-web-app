@@ -1,49 +1,58 @@
 import { NextRequest, NextResponse } from 'next/server';
-
-interface LeadData {
-  email: string;
-  fullName?: string;
-  company?: string;
-  companyHandle: string;
-  address?: string;
-  lat?: number;
-  lng?: number;
-  crm?: string;
-  source?: string;
-  campaignId?: string;
-}
+import { upsertLead } from '@/lib/airtable';
 
 export async function POST(request: NextRequest) {
   try {
-    const body: LeadData = await request.json();
+    const body = await request.json();
     
+    const {
+      email,
+      fullName,
+      company,
+      companyHandle,
+      address,
+      lat,
+      lng,
+      crm,
+      source,
+      campaignId
+    } = body;
+
     // Validate required fields
-    if (!body.email || !body.companyHandle) {
+    if (!email || !companyHandle) {
       return NextResponse.json(
-        { success: false, error: 'Email and companyHandle are required' },
+        { error: 'Email and companyHandle are required' },
         { status: 400 }
       );
     }
 
-    // TODO: Implement actual Airtable integration
-    console.log('Lead upsert request:', body);
-    
-    // Mock successful response
-    return NextResponse.json({
-      success: true,
-      message: 'Lead upserted successfully',
-      data: {
-        id: `lead_${Date.now()}`,
-        email: body.email,
-        companyHandle: body.companyHandle,
-        upsertedAt: new Date().toISOString()
-      }
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return NextResponse.json(
+        { error: 'Invalid email format' },
+        { status: 400 }
+      );
+    }
+
+    await upsertLead({
+      email,
+      fullName,
+      company,
+      companyHandle,
+      address,
+      lat: lat ? parseFloat(lat) : undefined,
+      lng: lng ? parseFloat(lng) : undefined,
+      crm,
+      source,
+      campaignId
     });
 
+    return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Lead upsert error:', error);
     return NextResponse.json(
-      { success: false, error: 'Internal server error' },
+      { error: 'Internal server error' },
       { status: 500 }
     );
   }

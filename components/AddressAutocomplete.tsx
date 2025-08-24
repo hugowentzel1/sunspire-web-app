@@ -61,29 +61,33 @@ export default function AddressAutocomplete({
 
   // Debounced search function
   const debouncedSearch = useCallback(
-    debounce(async (input: string) => {
-      if (!input.trim() || !sessionToken || !isInitialized) {
-        setPredictions([]);
-        setShowDropdown(false);
-        return;
-      }
+    (input: string) => {
+      const search = debounce(async (searchInput: string) => {
+        if (!searchInput.trim() || !sessionToken || !isInitialized) {
+          setPredictions([]);
+          setShowDropdown(false);
+          return;
+        }
 
-      setIsLoading(true);
-      setError(null);
+        setIsLoading(true);
+        setError(null);
 
-      try {
-        const results = await getPlacePredictions(input, sessionToken);
-        setPredictions(results);
-        setShowDropdown(results.length > 0);
-      } catch (error) {
-        console.error('Places API error:', error);
-        setError('Address search temporarily unavailable');
-        setPredictions([]);
-        setShowDropdown(false);
-      } finally {
-        setIsLoading(false);
-      }
-    }, 250),
+        try {
+          const results = await getPlacePredictions(searchInput, sessionToken);
+          setPredictions(results);
+          setShowDropdown(results.length > 0);
+        } catch (error) {
+          console.error('Places API error:', error);
+          setError('Address search temporarily unavailable');
+          setPredictions([]);
+          setShowDropdown(false);
+        } finally {
+          setIsLoading(false);
+        }
+      }, 250);
+      
+      search(input);
+    },
     [sessionToken, isInitialized]
   );
 
@@ -132,7 +136,24 @@ export default function AddressAutocomplete({
         setPredictions([]);
       } catch (geocodeError) {
         console.error('Geocoding fallback failed:', geocodeError);
-        setError('Failed to get address details. Please try again.');
+        
+        // Last resort: server-side fallback
+        try {
+          const serverResponse = await fetch(`/api/geo/normalize?address=${encodeURIComponent(prediction.description)}`);
+          if (serverResponse.ok) {
+            const serverResult = await serverResponse.json();
+            setInputValue(serverResult.formattedAddress);
+            onChange?.(serverResult.formattedAddress);
+            onAddressSelected(serverResult);
+            setShowDropdown(false);
+            setPredictions([]);
+          } else {
+            throw new Error('Server geocoding failed');
+          }
+        } catch (serverError) {
+          console.error('Server geocoding fallback failed:', serverError);
+          setError('Failed to get address details. Please try manually entering your address.');
+        }
       }
     } finally {
       setIsLoading(false);
@@ -153,7 +174,21 @@ export default function AddressAutocomplete({
       setShowDropdown(false);
     } catch (error) {
       console.error('Manual geocoding failed:', error);
-      setError('Could not find this address. Please check the spelling and try again.');
+      
+      // Fallback to server-side geocoding
+      try {
+        const serverResponse = await fetch(`/api/geo/normalize?address=${encodeURIComponent(inputValue)}`);
+        if (serverResponse.ok) {
+          const serverResult = await serverResponse.json();
+          onAddressSelected(serverResult);
+          setShowDropdown(false);
+        } else {
+          throw new Error('Server geocoding failed');
+        }
+      } catch (serverError) {
+        console.error('Server geocoding fallback failed:', serverError);
+        setError('Could not find this address. Please check the spelling and try again.');
+      }
     } finally {
       setIsLoading(false);
     }

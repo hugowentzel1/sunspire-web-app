@@ -51,7 +51,7 @@ const nextConfig = {
   
   // Performance optimizations
   experimental: {
-    optimizePackageImports: ['framer-motion', '@heroicons/react'],
+          optimizePackageImports: ['@heroicons/react'],
   },
   
   // Bundle analyzer (optional - remove in production)

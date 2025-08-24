@@ -110,7 +110,7 @@ export function DemoFormModal({ isOpen, onClose }: DemoFormModalProps) {
         </form>
         
         <p className="text-xs text-gray-500 mt-4 text-center">
-          We'll contact you within 24 hours to set up your branded solar intelligence platform.
+          We&apos;ll contact you within 24 hours to set up your branded solar intelligence platform.
         </p>
       </div>
     </div>

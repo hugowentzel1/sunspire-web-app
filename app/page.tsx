@@ -1,26 +1,13 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { PlaceResult } from '@/lib/calc';
 import LegalFooter from '@/components/legal/LegalFooter';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import HeroBrand from '@/src/brand/HeroBrand';
-import StickyBuyBar from '@/src/demo/StickyBuyBar';
-import InstallSheet from '@/src/demo/InstallSheet';
-import NavBrandOverride from '@/src/brand/NavBrandOverride';
-// import { DemoBanner } from '@/src/demo/DemoChrome';
-import { usePreviewQuota } from '@/src/demo/usePreviewQuota';
-import { useCountdown } from '@/src/demo/useCountdown';
-import SocialProof from '@/src/demo/SocialProof';
-import LockOverlay from '@/src/demo/LockOverlay';
-import { track } from '@/src/demo/track';
-import Image from 'next/image';
-import { IconBadge } from '@/components/ui/IconBadge';
 import { useBrandColors } from '@/hooks/useBrandColors';
-import LoadingFallback from '@/components/LoadingFallback';
 import React from 'react';
 
 const AddressAutocomplete = dynamic(() => import('@/components/AddressAutocomplete'), { 
@@ -48,92 +35,25 @@ function HomeContent() {
   
   // Brand colors from URL
   useBrandColors();
-  const { read, consume } = usePreviewQuota(2);
-  const remaining = read();
-  const countdown = useCountdown(b.expireDays);
-  
-  // Auto-open install sheet after first run
-  const [hasShownInstall, setHasShownInstall] = useState(false);
-  const shouldShowLock = b.enabled && (remaining <= 0 || countdown.isExpired);
 
   // Ensure client-side rendering
   useEffect(() => {
     setIsClient(true);
   }, []);
 
-  // Track page view
-  useEffect(() => {
-    if (!isClient) return;
-    
-    if (b.enabled) {
-      try {
-        track("session_company", { 
-          brand: b.brand || undefined,
-          domain: b.domain || undefined,
-          firstName: b.firstName || undefined,
-          role: b.role || undefined,
-          logo: b.logo || undefined
-        });
-      } catch (error) {
-        console.warn('Tracking failed:', error);
-      }
-    }
-  }, [isClient, b.enabled, b.brand, b.domain, b.firstName, b.role, b.logo]);
 
-  const handleAddressSelect = (placeResult: PlaceResult) => {
-    setAddress(placeResult.formattedAddress);
-    setSelectedPlace(placeResult);
+
+  const handleAddressSelect = (result: any) => {
+    setAddress(result.formattedAddress);
+    setSelectedPlace(result);
     
     if (b.enabled && isClient) {
-      try {
-        track("address_entered", {
-          brand: b.brand || undefined,
-          domain: b.domain || undefined,
-          address: placeResult.formattedAddress
-        });
-      } catch (error) {
-        console.warn('Tracking failed:', error);
-      }
+
     }
   };
 
   const handleGenerateEstimate = () => {
     if (!address.trim()) return;
-    
-    if (b.enabled) {
-      if (remaining <= 0 || countdown.isExpired) {
-        return; // LockOverlay will handle this
-      }
-      
-      consume();
-      
-      try {
-        track("run_start", { event: "run_start", runsUsed: 2 - remaining + 1 });
-        
-        // Track report generation
-        track("report_generated", {
-          brand: b.brand || undefined,
-          domain: b.domain || undefined,
-          address: address
-        });
-      } catch (error) {
-        console.warn('Tracking failed:', error);
-      }
-      
-      // Auto-open install sheet after first run (sessionStorage guard)
-      if (remaining === 2 && !hasShownInstall) {
-        setHasShownInstall(true);
-        setTimeout(() => {
-          document.dispatchEvent(new CustomEvent("openInstall"));
-        }, 1000);
-      }
-      
-      // Navigate to demo result page
-      const u = new URL("/demo-result", location.origin);
-      u.search = location.search; // keep personalization
-      location.href = u.toString();
-      return;
-    }
     
     setIsLoading(true);
     if (selectedPlace) {
@@ -152,12 +72,10 @@ function HomeContent() {
 
   const handleLaunchClick = () => {
     if (b.enabled) {
-      track("cta_launch_clicked", {
-        brand: b.brand || undefined,
-        domain: b.domain || undefined,
-        placement: "header"
-      });
       document.dispatchEvent(new CustomEvent("openInstall"));
+    } else {
+      // Route to signup page for non-branded experience
+      router.push('/signup');
     }
   };
 
@@ -182,20 +100,12 @@ function HomeContent() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter" data-demo={b.enabled}>
-              {/* <DemoBanner /> */}
-
-
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="text-center space-y-12">
+        <div className="text-center space-y-12">
           
           {/* Company Branding Section */}
           {b.enabled && (
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ delay: 0.1, duration: 0.8 }}
-              className="mt-4 mb-8"
-            >
+            <div className="mt-4 mb-8">
               <div className="bg-white/80 backdrop-blur-sm rounded-3xl py-6 px-8 border border-gray-200/50 shadow-lg mx-auto max-w-2xl">
                 <div className="space-y-4 text-center">
                   <h2 className="text-3xl font-bold text-gray-900">
@@ -212,19 +122,18 @@ function HomeContent() {
                     <span className="mr-2">⚡</span>
                     Activate on Your Domain — 24 Hours
                   </button>
+                  <p className="text-sm text-gray-600 mt-2">
+                    No call required. $399 setup + $99/mo. 14-day refund if it doesn&apos;t lift booked calls.
+                  </p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           )}
           
           {/* HERO ICON: render only one (fix double) */}
           {!b.enabled ? (
             <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${b.primary}, ${b.primary}CC)` }}>
-              <motion.div 
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" 
-                animate={{ x: ['-100%', '100%'] }} 
-                transition={{ duration: 2, repeat: Infinity, ease: 'linear' }} 
-              />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
               <span className="text-6xl relative z-10">☀️</span>
             </div>
           ) : (
@@ -232,23 +141,14 @@ function HomeContent() {
           )}
           
           <div className="space-y-8">
-            <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="relative">
-              <motion.div 
-                className="absolute -top-4 -right-4 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg" 
-                animate={{ scale: [1, 1.2, 1] }} 
-                transition={{ duration: 2, repeat: Infinity }}
-              >
+            <div className="relative">
+              <div className="absolute -top-4 -right-4 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
                 <span className="text-white text-lg">✓</span>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
 
             <div className="space-y-6">
-              <motion.h1 
-                className="text-5xl md:text-7xl font-black text-gray-900 leading-tight" 
-                initial={{ opacity: 0, y: 20 }} 
-                animate={{ opacity: 1, y: 0 }} 
-                transition={{ delay: 0.4, duration: 0.8 }}
-              >
+              <h1 className="text-5xl md:text-7xl font-black text-gray-900 leading-tight">
                 {b.enabled ? (
                   <>
                     Your Logo. Your URL.
@@ -260,27 +160,17 @@ function HomeContent() {
                     <span className="block text-[var(--brand-primary)]">in Seconds</span>
                   </>
                 )}
-              </motion.h1>
-              <motion.p 
-                className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed" 
-                initial={{ opacity: 0, y: 20 }} 
-                animate={{ opacity: 1, y: 0 }} 
-                transition={{ delay: 0.6, duration: 0.8 }}
-              >
+              </h1>
+              <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 {b.enabled 
-                  ? `Branded solar quotes, lead capture, and CRM integration in 24 hours. 14-day refund if it doesn't lift conversions.`
+                  ? `Branded solar quotes, lead capture, and CRM integration in 24 hours. 14-day refund if it doesn&apos;t lift conversions.`
                   : "Transform your property with AI-powered solar analysis. Get instant estimates, detailed reports, and connect with premium installers."
                 }
-              </motion.p>
+              </p>
             </div>
           </div>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ delay: 0.8, duration: 0.8 }} 
-            className="flex flex-wrap justify-center gap-8 text-sm"
-          >
+          <div className="flex flex-wrap justify-center gap-8 text-sm">
             {/* Tenant trust badges are removed as per edit hint */}
             {/* {tenant.trustBadges.slice(0, 3).map((badge, index) => ( */}
             {/*   <div key={index} className="flex items-center space-x-3 bg-white/60 backdrop-blur-sm rounded-2xl px-6 py-3 border border-gray-200/50"> */}
@@ -288,14 +178,9 @@ function HomeContent() {
             {/*     <span className="font-semibold text-gray-700">{badge}</span> */}
             {/*   </div> */}
             {/* ))} */}
-          </motion.div>
+          </div>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ delay: 1.0, duration: 0.8 }} 
-            className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-3xl mx-auto"
-          >
+          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-3xl mx-auto">
             <div className="space-y-8">
               <div className="text-center space-y-4">
                 <h2 className="text-2xl font-bold text-gray-900">Enter Your Property Address</h2>
@@ -308,7 +193,7 @@ function HomeContent() {
                   <AddressAutocomplete 
                     value={address}
                     onChange={setAddress}
-                    onSelect={handleAddressSelect}
+                    onAddressSelected={handleAddressSelect}
                     placeholder={b.city ? `Start typing an address in ${b.city}...` : "Start typing your property address..."}
                     className="w-full"
                   />
@@ -318,7 +203,7 @@ function HomeContent() {
                 </div>
 
                 {/* Generate Button - Now below the search bar */}
-                <motion.button 
+                <button 
                   onClick={b.enabled && address.trim() ? handleGenerateEstimate : (b.enabled ? handleLaunchClick : handleGenerateEstimate)} 
                   disabled={!b.enabled && !address.trim() || isLoading} 
                   className={`w-full ${
@@ -328,8 +213,6 @@ function HomeContent() {
                         ? 'btn-cta'
                         : 'btn-cta'
                   }`} 
-                  whileHover={(!b.enabled && !address.trim()) || isLoading ? {} : { scale: 1.02 }} 
-                  whileTap={(!b.enabled && !address.trim()) || isLoading ? {} : { scale: 0.98 }}
                 >
                   {isLoading ? (
                     <div className="flex items-center justify-center space-x-4">
@@ -347,24 +230,14 @@ function HomeContent() {
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
                     </div>
                   )}
-                </motion.button>
+                </button>
                 
-                {b.enabled && (
-                  <div className="text-sm text-gray-500 text-center space-y-2">
-                    <p>Preview: {remaining} run{remaining===1?"":"s"} left.</p>
-                    <p>Expires in {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</p>
-                  </div>
-                )}
+
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ delay: 1.2, duration: 0.8 }} 
-            className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
             <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
               <div className="text-4xl font-black text-gray-900 mb-2">NREL v8</div>
               <div className="text-gray-600 font-semibold">Industry Standard</div>
@@ -381,14 +254,9 @@ function HomeContent() {
               <div className="text-4xl font-black text-gray-900 mb-2">24/7</div>
               <div className="text-gray-600 font-semibold">Support</div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ delay: 1.4, duration: 0.8 }} 
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto"
-          >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             <div className="feature-card p-5 text-center">
               <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center shadow-lg">
                 <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
@@ -410,28 +278,17 @@ function HomeContent() {
               <div className="title">End-to-End Encryption</div>
               <div className="desc">SOC 2-aligned controls and data protection</div>
             </div>
-
-          </motion.div>
+          </div>
 
           {/* Logos Strip */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ delay: 1.5, duration: 0.8 }} 
-            className="text-center"
-          >
+          <div className="text-center">
             <div className="inline-flex items-center px-6 py-3 bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200/50">
               <span className="text-gray-600 font-medium">Dozens of installers • CRM-ready • SOC 2-aligned</span>
             </div>
-          </motion.div>
+          </div>
 
           {/* How It Works Section */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ delay: 1.6, duration: 0.8 }} 
-            className="max-w-5xl mx-auto"
-          >
+          <div className="max-w-5xl mx-auto">
             <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">How It Works</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center space-y-4">
@@ -456,15 +313,10 @@ function HomeContent() {
                 <p className="text-gray-600">Qualified leads ready to convert</p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* FAQ Section */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ delay: 1.8, duration: 0.8 }} 
-            className="max-w-4xl mx-auto"
-          >
+          <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Frequently Asked Questions</h2>
             <div className="space-y-6">
               <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
@@ -480,7 +332,7 @@ function HomeContent() {
                 <p className="text-gray-600">Bank-level security for all customer data.</p>
               </div>
               <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Cancel? — Yes, 14-day refund if it doesn't lift booked calls</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2">Cancel? — Yes, 14-day refund if it doesn&apos;t lift booked calls</h3>
                 <p className="text-gray-600">No long-term contracts. Cancel anytime.</p>
               </div>
               <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
@@ -488,19 +340,15 @@ function HomeContent() {
                 <p className="text-gray-600">Get help whenever you need it.</p>
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </main>
 
       <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <LegalFooter brand={b.enabled ? b.brand : undefined} />
       </footer>
       
-      {/* Demo components - only show when brand takeover is enabled */}
-      <InstallSheet />
-      <StickyBuyBar />
-      {shouldShowLock && <LockOverlay />}
-      <SocialProof />
+
     </div>
   );
 }
@@ -508,4 +356,3 @@ function HomeContent() {
 export default function Home() {
   return <HomeContent />;
 }
-// Force Vercel deployment

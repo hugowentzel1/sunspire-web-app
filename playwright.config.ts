@@ -19,12 +19,12 @@ export default defineConfig({
     trace: 'on-first-retry',
   },
 
-  webServer: {
-    command: process.env.CI ? 'npm run start' : 'npm run dev',
-    url: BASE_URL,
-    reuseExistingServer: !process.env.CI,
-    timeout: 120_000,                 // fail if server not ready in 2m
-  },
+  // webServer: {
+  //   command: process.env.CI ? 'npm run start' : 'npm run dev',
+  //   url: BASE_URL,
+  //   reuseExistingServer: !process.env.CI,
+  //   timeout: 120_000,                 // fail if server not ready in 2m
+  // },
 
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } },

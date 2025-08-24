@@ -188,8 +188,8 @@ export default function EstimateChart({ cashflowData, netCostAfterITC, className
       <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
         <p className="text-sm text-gray-700">
           <span className="font-semibold">How to read this:</span> The green area shows your total savings growing over time. 
-          After {paybackYear} years, you'll have saved enough to cover your initial investment. 
-          By year 25, you'll have saved ${Math.round(cashflowData[24]?.cumulativeSavings / 1000)}k total.
+          After {paybackYear} years, you&apos;ll have saved enough to cover your initial investment. 
+          By year 25, you&apos;ll have saved ${Math.round(cashflowData[24]?.cumulativeSavings / 1000)}k total.
         </p>
       </div>
 
