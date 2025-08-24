@@ -11,6 +11,23 @@ interface AirtableRecord {
   fields: Record<string, any>;
 }
 
+// Lead data interface for the API route
+export interface LeadData {
+  name: string;
+  email: string;
+  phone?: string;
+  address: string;
+  notes?: string;
+  tenantSlug: string;
+  systemSizeKW?: number;
+  estimatedCost?: number;
+  estimatedSavings?: number;
+  paybackPeriodYears?: number;
+  npv25Year?: number;
+  co2OffsetPerYear?: number;
+  createdAt: string;
+}
+
 class AirtableClient {
   private config: AirtableConfig;
   private requestQueue: Array<() => Promise<void>> = [];
@@ -175,5 +192,50 @@ export async function logEvent(eventData: {
       Timestamp: new Date().toISOString()
     }
   });
+}
+
+// Store lead function for the API route
+export async function storeLead(leadData: LeadData): Promise<{ success: boolean; error?: string }> {
+  try {
+    await airtableClient.queueRecord({
+      fields: {
+        Name: leadData.name,
+        Email: leadData.email,
+        Phone: leadData.phone || '',
+        Address: leadData.address,
+        Notes: leadData.notes || '',
+        TenantSlug: leadData.tenantSlug,
+        SystemSizeKW: leadData.systemSizeKW || '',
+        EstimatedCost: leadData.estimatedCost || '',
+        EstimatedSavings: leadData.estimatedSavings || '',
+        PaybackPeriodYears: leadData.paybackPeriodYears || '',
+        NPV25Year: leadData.npv25Year || '',
+        CO2OffsetPerYear: leadData.co2OffsetPerYear || '',
+        CreatedAt: leadData.createdAt
+      }
+    });
+    return { success: true };
+  } catch (error) {
+    console.error('Error storing lead in Airtable:', error);
+    return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
+  }
+}
+
+// Fallback storage function when Airtable is not available
+export async function storeLeadFallback(leadData: LeadData): Promise<{ success: boolean; error?: string }> {
+  try {
+    // Log to console as fallback
+    console.log('Lead stored in fallback mode:', {
+      ...leadData,
+      storedAt: new Date().toISOString(),
+      fallback: true
+    });
+    
+    // You could also store in a local file or database here
+    return { success: true };
+  } catch (error) {
+    console.error('Error in fallback storage:', error);
+    return { success: false, error: error instanceof Error ? error.message : 'Unknown error' };
+  }
 }
 
