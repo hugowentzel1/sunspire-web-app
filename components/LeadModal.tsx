@@ -184,7 +184,7 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
                   
                   <div className="mt-4 text-center">
                     <p className="text-sm text-gray-500">
-                      We'll send your sample report within 24 hours.
+                      We&apos;ll send your sample report within 24 hours.
                     </p>
                   </div>
                 </form>
@@ -200,9 +200,9 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
                 <p className="text-gray-600 mb-6">Thanks for reaching out!</p>
                 
                 <div className="text-left">
-                  <h3 className="font-bold text-gray-900 mb-2">What's Next?</h3>
+                  <h3 className="font-bold text-gray-900 mb-2">What&apos;s Next?</h3>
                   <p className="text-gray-600 text-sm leading-relaxed">
-                    We'll email you a detailed sample report within 24 hours, along with next steps to get your white-label demo live.
+                    We&apos;ll email you a detailed sample report within 24 hours, along with next steps to get your white-label demo live.
                   </p>
                 </div>
                 
