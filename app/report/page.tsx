@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-// motion removed - no animation libraries allowed
+import { motion } from 'framer-motion';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { TenantProvider, useTenant } from '@/components/TenantProvider';
 import { LeadModal } from '@/components/LeadModal';
@@ -312,12 +312,14 @@ function ReportContent() {
               <a href="/pricing" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Pricing</a>
               <a href="/partners" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Partners</a>
               <a href="/support" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Support</a>
-              <button 
+              <motion.button 
                 onClick={() => router.push('/')}
                 className="btn-primary ml-12"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 New Analysis
-              </button>
+              </motion.button>
             </nav>
           </div>
         </div>
@@ -326,13 +328,13 @@ function ReportContent() {
       <main data-testid="report-page" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Theme probe for testing */}
         <div data-testid="theme-probe" style={{ color: 'var(--brand)' }} className="hidden" />
-        <div className="space-y-8">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="space-y-8">
           <div className="text-center space-y-6">
-            <div className="w-24 h-24 mx-auto">
+            <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="w-24 h-24 mx-auto">
               <div className="brand-gradient text-white rounded-full w-24 h-24 grid place-items-center shadow-[0_8px_30px_rgba(0,0,0,.08)]">
                 <span className="text-4xl">📊</span>
               </div>
-            </div>
+            </motion.div>
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl font-black text-gray-900">New Analysis</h1>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">Comprehensive analysis for your property at {estimate.address}</p>
@@ -345,7 +347,7 @@ function ReportContent() {
           </div>
 
           {/* Trust elements and CTA */}
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8 }} className="mt-4 flex flex-wrap items-center justify-center gap-3">
             <a
               href="/tenant-preview?demo=1"
               className={`px-5 py-3 rounded-xl font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-200 ${
@@ -359,9 +361,9 @@ function ReportContent() {
             <div className="text-xs text-slate-500">
               Data sources: PVWatts v8 (NREL) • EIA rates • HTTPS encrypted
             </div>
-          </div>
+          </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
             <div data-testid="metric-system-size" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
               {/* BLUR LAYER (kept behind button) */}
               <div className="absolute inset-0 bg-white/60 backdrop-blur-sm pointer-events-none" aria-hidden />
@@ -398,7 +400,7 @@ function ReportContent() {
                 className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
               />
             </div>
-            <div data-testid="locked-panel" className="is-locked relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
+            <div data-testid="locked-panel" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
               {/* BLUR LAYER (kept behind button) */}
               <div className="absolute inset-0 bg-white/60 backdrop-blur-sm pointer-events-none" aria-hidden />
               
@@ -416,7 +418,7 @@ function ReportContent() {
                 className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
               />
             </div>
-            <div data-testid="locked-panel" className="is-locked relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
+            <div data-testid="locked-panel" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
               {/* BLUR LAYER (kept behind button) */}
               <div className="absolute inset-0 bg-white/60 backdrop-blur-sm pointer-events-none" aria-hidden />
               
@@ -434,7 +436,7 @@ function ReportContent() {
                 className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
               />
             </div>
-          </div>
+          </motion.div>
 
           <div data-testid="savings-chart" className="relative rounded-2xl bg-white p-5 overflow-hidden">
             <div className="relative z-10 min-h-[400px]">
@@ -448,7 +450,7 @@ function ReportContent() {
             </div>
           </div>
 
-          <div    className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.8 }} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Financial Analysis - Unblurred */}
             <div className="relative rounded-2xl p-8 bg-white border border-gray-200/50">
               <div className="relative z-10">
@@ -463,7 +465,7 @@ function ReportContent() {
             </div>
 
             {/* Environmental Impact - Blurred */}
-            <div data-testid="locked-panel" className="is-locked relative rounded-2xl overflow-hidden bg-white border border-gray-200/50">
+            <div data-testid="locked-panel" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50">
               {/* BLUR LAYER */}
               <div className="absolute inset-0 bg-white/60 backdrop-blur-sm pointer-events-none" aria-hidden />
               
@@ -507,19 +509,19 @@ function ReportContent() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
-          <div    className="bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 rounded-3xl py-12 px-8 text-center text-white">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="bg-gradient-to-r from-orange-500 via-red-500 to-pink-500 rounded-3xl py-12 px-8 text-center text-white">
             <h2 className="text-3xl font-bold mb-6">Ready to Go Solar?</h2>
             <p className="text-xl mb-10 opacity-90">Connect with verified solar installers in your area and get started today</p>
-            <button onClick={() => setShowLeadModal(true)} className="px-8 py-4 bg-white text-orange-600 rounded-2xl font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1"  >Get Matched with Installers</button>
-          </div>
+            <motion.button onClick={() => setShowLeadModal(true)} className="px-8 py-4 bg-white text-orange-600 rounded-2xl font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>Get Matched with Installers</motion.button>
+          </motion.div>
           
           {/* Copy Demo Link Button */}
-          <div 
-             
-             
-             
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 1.2, duration: 0.8 }} 
             className="text-center mb-8"
           >
             <button 
@@ -531,13 +533,13 @@ function ReportContent() {
             >
               📋 Copy Demo Link
             </button>
-          </div>
+          </motion.div>
           
           {/* Disclaimer */}
-          <div 
-             
-             
-             
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 1.4, duration: 0.8 }} 
             className="max-w-4xl mx-auto text-center"
           >
             <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
@@ -546,8 +548,8 @@ function ReportContent() {
                 Actual results vary by site conditions and installation quality. Not a binding quote.
               </p>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </main>
 
       <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
