@@ -73,7 +73,7 @@ export default function HeroBrand(){
   const logoUrl = b.logo || getDefaultLogo(b.brand);
   
   return (
-    <div style={{ display:"grid", placeItems:"center", margin:"24px 0" }}>
+    <div className="section-spacing" style={{ display:"grid", placeItems:"center" }}>
       {logoUrl ? (
         <Image 
           src={logoUrl} 

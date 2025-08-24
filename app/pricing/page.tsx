@@ -44,7 +44,7 @@ export default function PricingPage() {
           {/* Hero Section */}
           <div className="space-y-8">
             <div className="relative">
-              <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden bg-gradient-to-br from-blue-500 to-purple-600">
+              <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${b.enabled && b.primary ? b.primary : 'var(--brand-primary)'}, ${b.enabled && b.primary ? b.primary + 'CC' : 'var(--brand-primary)CC'})` }}>
                 <span className="text-6xl relative z-10">💰</span>
               </div>
             </div>
@@ -52,7 +52,7 @@ export default function PricingPage() {
             <div className="space-y-6">
               <h1 className="text-5xl md:text-7xl font-black text-gray-900 leading-tight">
                 Simple, Transparent
-                <span className="block text-blue-600">Pricing</span>
+                <span className="block" style={{ color: b.enabled && b.primary ? b.primary : 'var(--brand-primary)' }}>Pricing</span>
               </h1>
               <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 One flat rate. No hidden fees. 14-day refund guarantee if it doesn&apos;t lift your booked calls.
@@ -70,31 +70,31 @@ export default function PricingPage() {
               
               <div className="space-y-4">
                 <div className="flex items-center justify-center space-x-3">
-                  <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
+                  <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: b.enabled && b.primary ? b.primary : 'var(--brand-primary)' }}>
                     <span className="text-white text-sm">✓</span>
                   </div>
                   <span className="text-gray-700">Unlimited solar quotes</span>
                 </div>
                 <div className="flex items-center justify-center space-x-3">
-                  <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
+                  <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: b.enabled && b.primary ? b.primary : 'var(--brand-primary)' }}>
                     <span className="text-white text-sm">✓</span>
                   </div>
                   <span className="text-gray-700">CRM integration (HubSpot, Salesforce)</span>
                 </div>
                 <div className="flex items-center justify-center space-x-3">
-                  <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
+                  <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: b.enabled && b.primary ? b.primary : 'var(--brand-primary)' }}>
                     <span className="text-white text-sm">✓</span>
                   </div>
                   <span className="text-gray-700">White-label branding</span>
                 </div>
                 <div className="flex items-center justify-center space-x-3">
-                  <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
+                  <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: b.enabled && b.primary ? b.primary : 'var(--brand-primary)' }}>
                     <span className="text-white text-sm">✓</span>
                   </div>
                   <span className="text-gray-700">24/7 support</span>
                 </div>
                 <div className="flex items-center justify-center space-x-3">
-                  <div className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
+                  <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: b.enabled && b.primary ? b.primary : 'var(--brand-primary)' }}>
                     <span className="text-white text-sm">✓</span>
                   </div>
                   <span className="text-gray-700">SOC 2 compliance</span>

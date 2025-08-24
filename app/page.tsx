@@ -101,7 +101,7 @@ function HomeContent() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter" data-demo={b.enabled}>
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="text-center space-y-16">
+        <div className="text-center space-y-6">
           
           {/* Company Branding Section */}
           {b.enabled && (
@@ -170,7 +170,7 @@ function HomeContent() {
             </div>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-8 text-sm">
+          <div className="flex flex-wrap justify-center gap-8 text-sm section-spacing">
             {/* Tenant trust badges are removed as per edit hint */}
             {/* {tenant.trustBadges.slice(0, 3).map((badge, index) => ( */}
             {/*   <div key={index} className="flex items-center space-x-3 bg-white/60 backdrop-blur-sm rounded-2xl px-6 py-3 border border-gray-200/50"> */}
@@ -180,8 +180,8 @@ function HomeContent() {
             {/* ))} */}
           </div>
 
-          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-3xl mx-auto">
-            <div className="space-y-8">
+          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-3xl mx-auto section-spacing">
+            <div className="space-y-6">
               <div className="text-center space-y-4">
                 <h2 className="text-2xl font-bold text-gray-900">Enter Your Property Address</h2>
                 <p className="text-gray-600">Get a comprehensive solar analysis tailored to your specific location</p>
@@ -237,7 +237,7 @@ function HomeContent() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto section-spacing">
             <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
               <div className="text-4xl font-black text-gray-900 mb-2">NREL v8</div>
               <div className="text-gray-600 font-semibold">Industry Standard</div>
@@ -256,7 +256,7 @@ function HomeContent() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto section-spacing">
             <div className="feature-card p-5 text-center">
               <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center shadow-lg">
                 <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
@@ -281,14 +281,14 @@ function HomeContent() {
           </div>
 
           {/* Logos Strip */}
-          <div className="text-center">
+          <div className="text-center section-spacing">
             <div className="inline-flex items-center px-6 py-3 bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200/50">
               <span className="text-gray-600 font-medium">Dozens of installers • CRM-ready • SOC 2-aligned</span>
             </div>
           </div>
 
           {/* How It Works Section */}
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-5xl mx-auto section-spacing">
             <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">How It Works</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <div className="text-center space-y-4">
@@ -316,7 +316,7 @@ function HomeContent() {
           </div>
 
           {/* FAQ Section */}
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-4xl mx-auto section-spacing">
             <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Frequently Asked Questions</h2>
             <div className="space-y-6">
               <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
