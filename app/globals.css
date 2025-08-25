@@ -745,3 +745,30 @@ h3 {
 html.force-show .global-loading-overlay { 
   display: none !important; 
 }
+
+/* Blur fallback */
+.blur-fallback { filter: blur(12px); }
+
+/* CTA Box Branding */
+.cta-box {
+  --brandBg: var(--brand, #0071E3);
+  background: color-mix(in srgb, var(--brandBg) 10%, white);
+  border: 1px solid color-mix(in srgb, var(--brandBg) 35%, transparent);
+  box-shadow: 0 6px 20px color-mix(in srgb, var(--brandBg) 18%, transparent);
+}
+.cta-box .cta-title { color: var(--brandBg); font-weight: 700; }
+.cta-box .cta-button-primary {
+  background: var(--brandBg);
+  color: white;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+}
+.cta-box .cta-button-secondary {
+  background: white;
+  color: var(--brandBg);
+  border: 1px solid var(--brandBg);
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+}
