@@ -576,7 +576,8 @@ function ReportContent() {
                 navigator.clipboard.writeText(window.location.href);
                 // Could add a toast notification here
               }}
-              className="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg font-medium transition-colors"
+              className="px-6 py-3 rounded-lg font-medium transition-colors text-white"
+              style={{ backgroundColor: 'var(--brand)' }}
             >
               📋 Copy Demo Link
             </button>
