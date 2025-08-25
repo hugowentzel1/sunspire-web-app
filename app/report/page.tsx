@@ -373,45 +373,20 @@ function ReportContent() {
               )}
             </motion.div>
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-gray-900">Solar Intelligence Report</h1>
-              <p className="text-sm text-gray-500">Comprehensive analysis for your property at 123 N Central Ave, Phoenix, AZ</p>
-              <p className="text-xs text-gray-400">Data Source: Demo • Generated on 8/24/2025</p>
+              <h1 className="text-4xl md:text-5xl font-black text-gray-900">New Analysis</h1>
+              <p className="text-xl text-gray-600 max-w-2xl mx-auto">Comprehensive analysis for your property at {estimate.address}</p>
+
+              <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
+                <span>Data Source: {estimate.utilityRateSource}</span>
+                <span>•</span>
+                <span>Generated on {formatDateSafe(estimate.date)}</span>
+              </div>
             </div>
           </div>
 
-          {/* Top Banner */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.8 }} className="text-center">
-            <p className="text-sm text-gray-500">
-              A ready-to-embed, white-label quote tool that turns traffic into booked consults — live on your site in minutes.
-            </p>
-          </motion.div>
 
-          {/* Trust elements and CTA */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8 }} className="mt-4 flex flex-wrap items-center justify-center gap-3">
-            <a
-              href="/tenant-preview?demo=1"
-              className={`px-5 py-3 rounded-xl font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-200 ${
-                demoMode 
-                  ? 'bg-[var(--brand-primary)] hover:bg-[var(--brand-primary)]/90' 
-                  : 'bg-gradient-to-r from-orange-500 via-red-500 to-pink-500'
-              }`}
-            >
-              Put this on our site
-            </a>
-            <a
-              href="#"
-              onClick={(e) => {
-                e.preventDefault();
-                navigator.clipboard.writeText(window.location.href);
-              }}
-              className="text-blue-600 hover:text-blue-700 font-medium text-sm"
-            >
-              Copy demo link
-            </a>
-            <div className="text-xs text-slate-500">
-              Data sources: PVWatts v8 (NREL) • EIA rates • HTTPS encrypted
-            </div>
-          </motion.div>
+
+
 
           {/* Metric Tiles */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
@@ -553,7 +528,7 @@ function ReportContent() {
             </div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="rounded-3xl py-12 px-8 text-center text-white" style={{ backgroundColor: 'color-mix(in srgb, var(--brand, #FF7A00) 20%, white)' }}>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="rounded-3xl py-12 px-8 text-center text-white" style={{ backgroundColor: 'var(--brand)' }}>
             <h2 className="text-3xl font-bold mb-6">Ready to Launch Your Branded Tool?</h2>
             <p className="text-xl mb-10 opacity-90">Get complete financial projections, detailed assumptions, and unblurred savings charts</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
