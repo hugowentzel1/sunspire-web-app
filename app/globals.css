@@ -623,11 +623,12 @@ h3 {
   text-align: center;
 }
 
-/* Unlock button - sprint-compliant styling */
+/* Unlock button - sprint-compliant styling from c548b88 */
 .unlock-pill {
   background: var(--brand) !important;
   border: none !important;
   transition: all 0.2s ease !important;
+  font-weight: 600 !important; /* Ensure semibold weight */
 }
 
 .unlock-pill:hover {

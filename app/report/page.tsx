@@ -447,7 +447,7 @@ function ReportContent() {
               <UnlockButton
                 label="Unlock Full Report →"
                 onClick={() => {}} // TODO: Add checkout function
-                className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
+                className="absolute z-20 bottom-6 left-1/2 -translate-x-1/2"
               />
             </div>
             
@@ -465,7 +465,7 @@ function ReportContent() {
               <UnlockButton
                 label="Unlock Full Report →"
                 onClick={() => {}} // TODO: Add checkout function
-                className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
+                className="absolute z-20 bottom-6 left-1/2 -translate-x-1/2"
               />
             </div>
           </motion.div>
@@ -497,7 +497,7 @@ function ReportContent() {
               <UnlockButton
                 label="Unlock Full Report →"
                 onClick={() => {}} // TODO: Add checkout function
-                className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
+                className="absolute z-20 bottom-6 left-1/2 -translate-x-1/2"
               />
             </div>
 
@@ -520,7 +520,7 @@ function ReportContent() {
               <UnlockButton
                 label="Unlock Full Report →"
                 onClick={() => {}} // TODO: Add checkout function
-                className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
+                className="absolute z-20 bottom-6 left-1/2 -translate-x-1/2"
               />
             </div>
 
