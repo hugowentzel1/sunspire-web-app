@@ -921,3 +921,27 @@ div[data-demo="true"] div.locked-blur div.locked-blur__content::after {
   mix-blend-mode: overlay;
   isolation: isolate;
 }
+
+/* Force blur to work - explicit CSS classes */
+.blur-layer {
+  position: absolute !important;
+  inset: 0 !important;
+  background-color: rgba(255, 255, 255, 0.8) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  pointer-events: none !important;
+  z-index: 15 !important; /* Above content (10) but below unlock button (20) */
+  border-radius: inherit !important;
+}
+
+/* Ensure content is below blur */
+.content-layer {
+  position: relative !important;
+  z-index: 10 !important;
+}
+
+/* Ensure unlock button is above everything */
+.unlock-button-layer {
+  position: absolute !important;
+  z-index: 20 !important;
+}

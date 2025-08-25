@@ -436,10 +436,10 @@ function ReportContent() {
             {/* Net Cost - BLURRED WITH UNLOCK BUTTON */}
             <div data-testid="tile-lifetimeSavings" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
               {/* BLUR LAYER (kept behind button) */}
-              <div className="absolute inset-0 bg-white/60 backdrop-blur-sm pointer-events-none" aria-hidden />
+              <div className="blur-layer" aria-hidden />
               
               {/* CONTENT LAYER */}
-              <div className="relative z-10 p-8 text-center">
+              <div className="content-layer p-8 text-center">
                 <div className="mb-4 flex justify-center"><IconBadge>💰</IconBadge></div>
                 <div className="text-3xl font-black text-gray-900 mb-2">${estimate.netCostAfterITC.toLocaleString()}</div>
                 <div className="text-gray-600 font-semibold">Net Cost (After ITC)</div>
@@ -456,10 +456,10 @@ function ReportContent() {
             {/* Year 1 Savings - BLURRED WITH UNLOCK BUTTON */}
             <div data-testid="tile-leads" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
               {/* BLUR LAYER (kept behind button) */}
-              <div className="absolute inset-0 bg-white/60 backdrop-blur-sm pointer-events-none" aria-hidden />
+              <div className="blur-layer" aria-hidden />
               
               {/* CONTENT LAYER */}
-              <div className="relative z-10 p-8 text-center">
+              <div className="content-layer p-8 text-center">
                 <div className="mb-4 flex justify-center"><IconBadge>📈</IconBadge></div>
                 <div className="text-3xl font-black text-gray-900 mb-2">${estimate.year1Savings.toLocaleString()}</div>
                 <div className="text-gray-600 font-semibold">Year 1 Savings</div>
@@ -485,10 +485,10 @@ function ReportContent() {
             {/* Financial Analysis - Blurred */}
             <div data-testid="locked-panel" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50">
               {/* BLUR LAYER */}
-              <div className="absolute inset-0 bg-white/60 backdrop-blur-sm pointer-events-none" aria-hidden />
+              <div className="blur-layer" aria-hidden />
               
               {/* CONTENT LAYER */}
-              <div className="relative z-10 p-8">
+              <div className="content-layer p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Financial Analysis</h2>
                 <div className="space-y-6">
                   <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Payback Period</span><span className="font-bold text-gray-900">{estimate.paybackYear} years</span></div>
@@ -509,10 +509,10 @@ function ReportContent() {
             {/* Environmental Impact - Blurred */}
             <div data-testid="locked-panel" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50">
               {/* BLUR LAYER */}
-              <div className="absolute inset-0 bg-white/60 backdrop-blur-sm pointer-events-none" aria-hidden />
+              <div className="blur-layer" aria-hidden />
               
               {/* CONTENT LAYER */}
-              <div className="relative z-10 p-8">
+              <div className="content-layer p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Environmental Impact</h2>
                 <div className="space-y-6">
                   <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">CO₂ Offset/Year</span><span className="font-bold text-gray-900">{estimate.co2OffsetPerYear.toLocaleString()} lbs</span></div>
@@ -553,7 +553,7 @@ function ReportContent() {
             </div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="rounded-3xl py-12 px-8 text-center text-white" style={{ backgroundColor: 'var(--brand, #0071E3)' }}>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="rounded-3xl py-12 px-8 text-center text-white" style={{ backgroundColor: 'color-mix(in srgb, var(--brand, #FF7A00) 20%, white)' }}>
             <h2 className="text-3xl font-bold mb-6">Ready to Launch Your Branded Tool?</h2>
             <p className="text-xl mb-10 opacity-90">Get complete financial projections, detailed assumptions, and unblurred savings charts</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -579,7 +579,7 @@ function ReportContent() {
               <p className="text-base opacity-90 mb-4">Cancel anytime. No long-term contracts.</p>
               <button 
                 onClick={() => setShowLeadModal(true)}
-                className="text-blue-400 underline hover:no-underline font-medium"
+                className="text-white underline hover:no-underline font-medium"
               >
                 Email me full report
               </button>

@@ -24,16 +24,17 @@ export default function UnlockButton({
         "inline-flex items-center justify-center gap-2",
         "h-11 px-5 min-w-[220px] whitespace-nowrap rounded-full",
         // solid company color + depth - match c548b88 exactly
-        "bg-[color:var(--brand)] text-white shadow-md",
+        "bg-[var(--brand)] text-white shadow-[0_6px_18px_rgba(0,0,0,.18)]",
         // interaction - match c548b88 exactly
-        "transition-all duration-200",
-        "hover:shadow-lg hover:brightness-110",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2",
+        "transition-transform duration-150 will-change-transform",
+        "hover:scale-[1.01] hover:shadow-[0_10px_24px_rgba(0,0,0,.22)]",
+        "active:translate-y-[1px] active:brightness-95",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand)] focus-visible:ring-offset-2",
         className,
       ].join(" ")}
     >
-      <span role="img" aria-label="locked">🔒</span>
-      <span className="font-semibold">{label}</span>
+      <Lock size={16} aria-hidden className="shrink-0" />
+      <span className="font-semibold tracking-[-0.01em]">{label}</span>
       <span aria-hidden>→</span>
     </button>
   );
