@@ -124,6 +124,15 @@ function ReportContent() {
     const hasBrand = !!company; // If we have a company parameter, treat it as a demo
     const demoModeValue = isDemo || hasBrand; // Combined demo mode for LockedBlur
     
+    console.log('🔍 Demo mode detection:', {
+      demoFlag,
+      company,
+      isDemo,
+      hasBrand,
+      demoModeValue,
+      searchParams: Object.fromEntries(searchParams.entries())
+    });
+    
     // Set demo mode state
     setDemoMode(demoModeValue);
 
@@ -275,13 +284,13 @@ function ReportContent() {
   if (!estimate) return null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter" data-demo={b.enabled}>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter" data-demo={demoMode}>
       {/* Custom banner for report page */}
       <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center space-x-4">
-              {b.enabled ? (
+              {demoMode ? (
                 (b.logo || getDefaultLogo(b.brand)) ? (
                   <Image 
                     src={b.logo || getDefaultLogo(b.brand) || ''} 
@@ -311,7 +320,7 @@ function ReportContent() {
               )}
               <div>
                 <h1 className="text-2xl font-black text-[var(--brand-primary)]">
-                  {b.enabled ? b.brand : 'Your Company'}
+                  {demoMode ? b.brand : 'Your Company'}
                 </h1>
                 <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
                   SOLAR INTELLIGENCE REPORT
@@ -344,7 +353,7 @@ function ReportContent() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="space-y-8">
           <div className="text-center space-y-6">
             <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="w-24 h-24 mx-auto">
-              {b.enabled && (b.logo || getDefaultLogo(b.brand)) ? (
+              {demoMode && (b.logo || getDefaultLogo(b.brand)) ? (
                 <Image 
                   src={b.logo || getDefaultLogo(b.brand) || ''} 
                   alt={`${b.brand} logo`} 
@@ -382,7 +391,7 @@ function ReportContent() {
             <a
               href="/tenant-preview?demo=1"
               className={`px-5 py-3 rounded-xl font-semibold text-white shadow-lg hover:shadow-xl transition-all duration-200 ${
-                b.enabled 
+                demoMode 
                   ? 'bg-[var(--brand-primary)] hover:bg-[var(--brand-primary)]/90' 
                   : 'bg-gradient-to-r from-orange-500 via-red-500 to-pink-500'
               }`}

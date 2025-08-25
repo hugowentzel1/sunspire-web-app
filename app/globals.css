@@ -782,6 +782,8 @@ html.force-show .global-loading-overlay {
 
 .locked-blur__content {
   position: relative;
+  /* Ensure content is properly positioned for blur overlay */
+  z-index: 1;
 }
 
 /* Primary blur method: backdrop-filter with enhanced visibility */
@@ -789,20 +791,76 @@ html.force-show .global-loading-overlay {
   content: "";
   position: absolute;
   inset: 0;
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  background: rgba(255, 255, 255, 0.4); /* Increased opacity for visibility */
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  background: rgba(255, 255, 255, 0.6) !important; /* Increased opacity for visibility */
   pointer-events: none;
-  z-index: 1;
+  z-index: 10; /* Ensure blur is above content */
+}
+
+/* Force blur to be visible when demo mode is active */
+[data-demo="true"] .locked-blur__content::after {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  background: rgba(255, 255, 255, 0.6) !important;
+  z-index: 10 !important;
+}
+
+/* Additional force blur for all locked content */
+.locked-blur__content::after {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  background: rgba(255, 255, 255, 0.6) !important;
+  z-index: 10 !important;
+}
+
+/* Ensure the blur is always visible regardless of other CSS */
+.locked-blur[data-active="true"] .locked-blur__content::after,
+.locked-blur.active .locked-blur__content::after {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  background: rgba(255, 255, 255, 0.6) !important;
+  z-index: 10 !important;
+}
+
+/* Force blur visibility with maximum specificity */
+div.locked-blur div.locked-blur__content::after {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  background: rgba(255, 255, 255, 0.6) !important;
+  z-index: 10 !important;
+}
+
+/* Additional specificity for demo mode */
+div[data-demo="true"] div.locked-blur div.locked-blur__content::after {
+  opacity: 1 !important;
+  visibility: visible !important;
+  display: block !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  background: rgba(255, 255, 255, 0.6) !important;
+  z-index: 10 !important;
 }
 
 /* Fallback blur when backdrop-filter is not supported */
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   .locked-blur__content::after {
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-    background: rgba(255, 255, 255, 0.8); /* Solid white overlay */
-    filter: blur(8px); /* CSS filter fallback */
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    background: rgba(255, 255, 255, 0.8) !important; /* Solid white overlay */
+    filter: blur(8px) !important; /* CSS filter fallback */
   }
   
   /* Add console warning for debugging */
@@ -820,14 +878,15 @@ html.force-show .global-loading-overlay {
   }
 }
 
-/* Overlay text layer - always visible */
+/* Ensure the blur overlay is always visible */
 .locked-blur__overlay {
   position: absolute;
   inset: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2;
+  z-index: 20; /* Above the blur layer */
+  pointer-events: none; /* Allow clicks to pass through to content below */
 }
 
 .locked-blur__text {
@@ -840,6 +899,7 @@ html.force-show .global-loading-overlay {
   color: #fff; /* White text on brand background */
   box-shadow: 0 2px 10px rgba(0,0,0,0.15);
   border: 2px solid rgba(255, 255, 255, 0.3);
+  pointer-events: auto; /* Re-enable pointer events for the button */
 }
 
 /* Force blur visibility on all tenant themes */
