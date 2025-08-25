@@ -35,7 +35,6 @@ export default function UnlockButton({
     >
       <Lock size={16} aria-hidden className="shrink-0" />
       <span className="font-semibold tracking-[-0.01em]">{label}</span>
-      <span aria-hidden>→</span>
     </button>
   );
 }

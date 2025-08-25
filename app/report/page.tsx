@@ -447,7 +447,7 @@ function ReportContent() {
 
               {/* UNLOCK BUTTON */}
               <UnlockButton
-                label="Unlock Full Report →"
+                label="Unlock Full Report"
                 onClick={() => {}} // TODO: Add checkout function
                 className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
               />
@@ -467,7 +467,7 @@ function ReportContent() {
 
               {/* UNLOCK BUTTON */}
               <UnlockButton
-                label="Unlock Full Report →"
+                label="Unlock Full Report"
                 onClick={() => {}} // TODO: Add checkout function
                 className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
               />
@@ -500,7 +500,7 @@ function ReportContent() {
 
               {/* UNLOCK BUTTON */}
               <UnlockButton
-                label="Unlock Full Report →"
+                label="Unlock Full Report"
                 onClick={() => {}} // TODO: Add checkout function
                 className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
               />
@@ -524,7 +524,7 @@ function ReportContent() {
 
               {/* UNLOCK BUTTON */}
               <UnlockButton
-                label="Unlock Full Report →"
+                label="Unlock Full Report"
                 onClick={() => {}} // TODO: Add checkout function
                 className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
               />
