@@ -415,28 +415,26 @@ function ReportContent() {
 
           {/* Metric Tiles */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
+            {/* System Size - NO BLUR, ALWAYS VISIBLE */}
             <div data-testid="tile-systemSize" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              {/* CONTENT LAYER - NO BLUR, NO LOCK BUTTON */}
               <div className="relative z-10 p-8 text-center">
                 <div className="mb-4 flex justify-center"><IconBadge>⚡</IconBadge></div>
-                <LockedBlur active={demoMode} className="mb-2">
-                  <div className="text-3xl font-black text-gray-900">{estimate.systemSizeKW} kW</div>
-                </LockedBlur>
+                <div className="text-3xl font-black text-gray-900 mb-2">{estimate.systemSizeKW} kW</div>
                 <div className="text-gray-600 font-semibold">System Size</div>
               </div>
             </div>
+            
+            {/* Annual Production - NO BLUR, ALWAYS VISIBLE */}
             <div data-testid="tile-annualProduction" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              {/* CONTENT LAYER - NO BLUR, NO LOCK BUTTON */}
               <div className="relative z-10 p-8 text-center">
                 <div className="mb-4 flex justify-center"><IconBadge>☀️</IconBadge></div>
-                <LockedBlur active={demoMode} className="mb-2">
-                  <div className="text-3xl font-black text-gray-900">{estimate.annualProductionKWh.toLocaleString()} kWh</div>
-                </LockedBlur>
+                <div className="text-3xl font-black text-gray-900 mb-2">{estimate.annualProductionKWh.toLocaleString()} kWh</div>
                 <div className="text-gray-600 font-semibold">Annual Production</div>
               </div>
             </div>
+            
+            {/* Net Cost - BLURRED WITH UNLOCK BUTTON */}
             <div data-testid="tile-lifetimeSavings" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              {/* CONTENT LAYER */}
               <div className="relative z-10 p-8 text-center">
                 <div className="mb-4 flex justify-center"><IconBadge>💰</IconBadge></div>
                 <LockedBlur active={demoMode} className="mb-2">
@@ -452,12 +450,13 @@ function ReportContent() {
                 className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
               />
             </div>
+            
+            {/* Year 1 Savings - BLURRED WITH UNLOCK BUTTON */}
             <div data-testid="tile-leads" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              {/* CONTENT LAYER */}
               <div className="relative z-10 p-8 text-center">
                 <div className="mb-4 flex justify-center"><IconBadge>📈</IconBadge></div>
                 <LockedBlur active={demoMode} className="mb-2">
-                  <div className="text-3xl font-black text-gray-900">{estimate.year1Savings.toLocaleString()}</div>
+                  <div className="text-3xl font-black text-gray-900">${estimate.year1Savings.toLocaleString()}</div>
                 </LockedBlur>
                 <div className="text-gray-600 font-semibold">Year 1 Savings</div>
               </div>
