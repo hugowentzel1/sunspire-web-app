@@ -11,7 +11,7 @@ import { formatDateSafe } from '@/lib/format';
 import LegalFooter from '@/components/legal/LegalFooter';
 import { IconBadge } from '@/components/ui/IconBadge';
 import UnlockButton from '@/components/UnlockButton';
-import LockedBlur from '@/src/components/LockedBlur';
+
 import { ensureBlurSupport } from '@/src/lib/ensureBlur';
 
 import { useBrandColors } from '@/hooks/useBrandColors';
@@ -435,11 +435,13 @@ function ReportContent() {
             
             {/* Net Cost - BLURRED WITH UNLOCK BUTTON */}
             <div data-testid="tile-lifetimeSavings" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
+              {/* BLUR LAYER (kept behind button) */}
+              <div className="absolute inset-0 bg-white/60 backdrop-blur-sm pointer-events-none" aria-hidden />
+              
+              {/* CONTENT LAYER */}
               <div className="relative z-10 p-8 text-center">
                 <div className="mb-4 flex justify-center"><IconBadge>💰</IconBadge></div>
-                <LockedBlur active={demoMode} className="mb-2">
-                  <div className="text-3xl font-black text-gray-900">${estimate.netCostAfterITC.toLocaleString()}</div>
-                </LockedBlur>
+                <div className="text-3xl font-black text-gray-900 mb-2">${estimate.netCostAfterITC.toLocaleString()}</div>
                 <div className="text-gray-600 font-semibold">Net Cost (After ITC)</div>
               </div>
 
@@ -447,17 +449,19 @@ function ReportContent() {
               <UnlockButton
                 label="Unlock Full Report →"
                 onClick={() => {}} // TODO: Add checkout function
-                className="absolute z-20 bottom-6 left-1/2 -translate-x-1/2"
+                className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
               />
             </div>
-            
+
             {/* Year 1 Savings - BLURRED WITH UNLOCK BUTTON */}
             <div data-testid="tile-leads" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
+              {/* BLUR LAYER (kept behind button) */}
+              <div className="absolute inset-0 bg-white/60 backdrop-blur-sm pointer-events-none" aria-hidden />
+              
+              {/* CONTENT LAYER */}
               <div className="relative z-10 p-8 text-center">
                 <div className="mb-4 flex justify-center"><IconBadge>📈</IconBadge></div>
-                <LockedBlur active={demoMode} className="mb-2">
-                  <div className="text-3xl font-black text-gray-900">${estimate.year1Savings.toLocaleString()}</div>
-                </LockedBlur>
+                <div className="text-3xl font-black text-gray-900 mb-2">${estimate.year1Savings.toLocaleString()}</div>
                 <div className="text-gray-600 font-semibold">Year 1 Savings</div>
               </div>
 
@@ -465,7 +469,7 @@ function ReportContent() {
               <UnlockButton
                 label="Unlock Full Report →"
                 onClick={() => {}} // TODO: Add checkout function
-                className="absolute z-20 bottom-6 left-1/2 -translate-x-1/2"
+                className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
               />
             </div>
           </motion.div>
@@ -480,47 +484,49 @@ function ReportContent() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.8 }} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Financial Analysis - Blurred */}
             <div data-testid="locked-panel" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50">
+              {/* BLUR LAYER */}
+              <div className="absolute inset-0 bg-white/60 backdrop-blur-sm pointer-events-none" aria-hidden />
+              
               {/* CONTENT LAYER */}
               <div className="relative z-10 p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Financial Analysis</h2>
-                <LockedBlur active={demoMode}>
-                  <div className="space-y-6">
-                    <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Payback Period</span><span className="font-bold text-gray-900">{estimate.paybackYear} years</span></div>
-                    <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">25-Year NPV</span><span className="font-bold text-gray-900">${estimate.npv25Year.toLocaleString()}</span></div>
-                    <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">ROI</span><span className="font-bold text-gray-900">{Math.round(((estimate.npv25Year + estimate.netCostAfterITC) / estimate.netCostAfterITC) * 100)}%</span></div>
-                    <div className="flex justify-between items-center py-4"><span className="text-gray-600">Electricity Rate</span><span className="font-bold text-gray-900">${estimate.utilityRate}/kWh ({estimate.utilityRateSource})</span></div>
-                  </div>
-                </LockedBlur>
+                <div className="space-y-6">
+                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Payback Period</span><span className="font-bold text-gray-900">{estimate.paybackYear} years</span></div>
+                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">25-Year NPV</span><span className="font-bold text-gray-900">${estimate.npv25Year.toLocaleString()}</span></div>
+                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">ROI</span><span className="font-bold text-gray-900">{Math.round(((estimate.npv25Year + estimate.netCostAfterITC) / estimate.netCostAfterITC) * 100)}%</span></div>
+                  <div className="flex justify-between items-center py-4"><span className="text-gray-600">Electricity Rate</span><span className="font-bold text-gray-900">${estimate.utilityRate}/kWh ({estimate.utilityRateSource})</span></div>
+                </div>
               </div>
 
               {/* UNLOCK BUTTON */}
               <UnlockButton
                 label="Unlock Full Report →"
                 onClick={() => {}} // TODO: Add checkout function
-                className="absolute z-20 bottom-6 left-1/2 -translate-x-1/2"
+                className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
               />
             </div>
 
             {/* Environmental Impact - Blurred */}
             <div data-testid="locked-panel" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50">
+              {/* BLUR LAYER */}
+              <div className="absolute inset-0 bg-white/60 backdrop-blur-sm pointer-events-none" aria-hidden />
+              
               {/* CONTENT LAYER */}
               <div className="relative z-10 p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Environmental Impact</h2>
-                <LockedBlur active={demoMode}>
-                  <div className="space-y-6">
-                    <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">CO₂ Offset/Year</span><span className="font-bold text-gray-900">{estimate.co2OffsetPerYear.toLocaleString()} lbs</span></div>
-                    <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Solar Irradiance</span><span className="font-bold text-gray-900">{estimate.solarIrradiance} kWh/m²/day</span></div>
-                    <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">System Tilt</span><span className="text-gray-900">{estimate.tilt}°</span></div>
-                    <div className="flex justify-between items-center py-4"><span className="text-gray-600">System Losses</span><span className="font-bold text-gray-900">{estimate.losses}%</span></div>
-                  </div>
-                </LockedBlur>
+                <div className="space-y-6">
+                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">CO₂ Offset/Year</span><span className="font-bold text-gray-900">{estimate.co2OffsetPerYear.toLocaleString()} lbs</span></div>
+                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Solar Irradiance</span><span className="text-gray-900">{estimate.solarIrradiance} kWh/m²/day</span></div>
+                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">System Tilt</span><span className="text-gray-900">{estimate.tilt}°</span></div>
+                  <div className="flex justify-between items-center py-4"><span className="text-gray-600">System Losses</span><span className="font-bold text-gray-900">{estimate.losses}%</span></div>
+                </div>
               </div>
 
               {/* UNLOCK BUTTON */}
               <UnlockButton
                 label="Unlock Full Report →"
                 onClick={() => {}} // TODO: Add checkout function
-                className="absolute z-20 bottom-6 left-1/2 -translate-x-1/2"
+                className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
               />
             </div>
 
@@ -547,7 +553,7 @@ function ReportContent() {
             </div>
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="bg-black rounded-3xl py-12 px-8 text-center text-white">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="rounded-3xl py-12 px-8 text-center text-white" style={{ backgroundColor: 'var(--brand, #0071E3)' }}>
             <h2 className="text-3xl font-bold mb-6">Ready to Launch Your Branded Tool?</h2>
             <p className="text-xl mb-10 opacity-90">Get complete financial projections, detailed assumptions, and unblurred savings charts</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -561,7 +567,7 @@ function ReportContent() {
               </motion.button>
               <motion.button 
                 onClick={() => setShowLeadModal(true)}
-                className="px-8 py-4 bg-black text-white rounded-2xl font-bold text-lg border-2 border-white hover:bg-white hover:text-black transition-all duration-300 transform hover:-translate-y-1" 
+                className="px-8 py-4 bg-white text-black rounded-2xl font-bold text-lg border-2 border-white hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1" 
                 whileHover={{ scale: 1.05 }} 
                 whileTap={{ scale: 0.95 }}
               >
