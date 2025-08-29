@@ -155,37 +155,80 @@ export async function findTenantByApiKey(key: string): Promise<Tenant | null> {
   }
 }
 
-export async function upsertTenantByHandle(fields: Partial<Tenant>): Promise<Tenant> {
-  try {
-    const { COMPANY_HANDLE } = TENANT_FIELDS;
-    const handle = fields[COMPANY_HANDLE];
-    
-    if (!handle) {
-      throw new Error('Company Handle is required for tenant upsert');
-    }
-    
-    // Check if tenant exists
-    const existing = await findTenantByHandle(handle);
-    
-    if (existing) {
-      // Update existing tenant
-      const record = await getBase()(TABLES.TENANTS).update(existing.id!, fields);
-      return {
-        id: record.id,
-        ...record.fields
-      } as Tenant;
-    } else {
-      // Create new tenant
-      const record = await getBase()(TABLES.TENANTS).create(fields);
-      return {
-        id: record.id,
-        ...record.fields
-      } as Tenant;
-    }
-  } catch (error) {
-    logger.error('Error upserting tenant:', error);
-    throw error;
+export async function upsertTenantByHandle(handle: string, fields: Record<string, any>) {
+  const found = await getBase()(TABLES.TENANTS).select({
+    filterByFormula: `{${TENANT_FIELDS.COMPANY_HANDLE}} = "${handle}"`
+  }).firstPage();
+  if (found[0]) {
+    const updated = await getBase()(TABLES.TENANTS).update([{ id: found[0].id, fields }]);
+    return { id: updated[0].id };
   }
+  const created = await getBase()(TABLES.TENANTS).create([{ fields }]);
+  return { id: created[0].id };
+}
+
+export async function createOrLinkUserOwner(tenantId: string, email: string) {
+  const users = await getBase()(TABLES.USERS).select({
+    filterByFormula: `AND({${USER_FIELDS.EMAIL}} = "${email}", {${USER_FIELDS.TENANT}} = "${tenantId}")`,
+    maxRecords: 1
+  }).firstPage();
+
+  if (users[0]) return users[0].id;
+
+  const created = await getBase()(TABLES.USERS).create([{
+    fields: {
+      [USER_FIELDS.EMAIL]: email,
+      [USER_FIELDS.ROLE]: "Owner",
+      [USER_FIELDS.TENANT]: [tenantId],
+    }
+  }]);
+
+  return created[0].id;
+}
+
+export async function findOrCreateMasterTenant() {
+  // Adjust "sunspire-master" to whatever you want your master handle to be
+  const handle = "sunspire-master";
+  const found = await getBase()(TABLES.TENANTS).select({
+    filterByFormula: `{${TENANT_FIELDS.COMPANY_HANDLE}} = "${handle}"`,
+    maxRecords: 1
+  }).firstPage();
+  if (found[0]) return { id: found[0].id };
+  const created = await getBase()(TABLES.TENANTS).create([{
+    fields: { [TENANT_FIELDS.COMPANY_HANDLE]: handle, [TENANT_FIELDS.PLAN]: "Scale" }
+  }]);
+  return { id: created[0].id };
+}
+
+export async function upsertLeadByEmailAndTenant(
+  email: string,
+  tenantId: string,
+  fields: Record<string, any>
+): Promise<Lead> {
+  const found = await getBase()(TABLES.LEADS).select({
+    filterByFormula: `AND(LOWER({${LEAD_FIELDS.EMAIL}}) = "${email.toLowerCase()}", ARRAYJOIN({${LEAD_FIELDS.TENANT}}) = "${tenantId}")`,
+    maxRecords: 1
+  }).firstPage();
+
+  const merged = {
+    ...fields,
+    [LEAD_FIELDS.EMAIL]: email,
+    [LEAD_FIELDS.TENANT]: [tenantId],
+    [LEAD_FIELDS.LAST_ACTIVITY]: getCurrentTimestamp()
+  };
+
+  if (found[0]) {
+    const updated = await getBase()(TABLES.LEADS).update([{ id: found[0].id, fields: merged }]);
+    return {
+      id: updated[0].id,
+      ...updated[0].fields
+    } as Lead;
+  }
+  const created = await getBase()(TABLES.LEADS).create([{ fields: merged }]);
+  return {
+    id: created[0].id,
+    ...created[0].fields
+  } as Lead;
 }
 
 // User functions
@@ -224,42 +267,7 @@ export async function findLeadByEmailAndTenant(email: string, tenantId: string):
   }
 }
 
-export async function upsertLeadByEmailAndTenant(
-  email: string, 
-  tenantId: string, 
-  fields: Partial<Lead>
-): Promise<Lead> {
-  try {
-    // Check if lead exists
-    const existing = await findLeadByEmailAndTenant(email, tenantId);
-    
-    const leadData: Partial<Lead> = {
-      ...fields,
-      [LEAD_FIELDS.EMAIL]: email,
-      [LEAD_FIELDS.TENANT]: [tenantId],
-      [LEAD_FIELDS.LAST_ACTIVITY]: getCurrentTimestamp()
-    };
-    
-          if (existing) {
-        // Update existing lead
-        const record = await getBase()(TABLES.LEADS).update(existing.id!, leadData);
-        return {
-          id: record.id,
-          ...record.fields
-        } as Lead;
-      } else {
-        // Create new lead
-        const record = await getBase()(TABLES.LEADS).create(leadData);
-        return {
-          id: record.id,
-          ...record.fields
-        } as Lead;
-      }
-  } catch (error) {
-    logger.error('Error upserting lead:', error);
-    throw error;
-  }
-}
+
 
 export async function updateLead(recordId: string, fields: Partial<Lead>): Promise<Lead> {
   try {

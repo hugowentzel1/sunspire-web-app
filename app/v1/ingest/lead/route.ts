@@ -3,6 +3,7 @@ import { findTenantByApiKey, upsertLeadByEmailAndTenant } from '../../../../src/
 import { getRate } from '../../../../src/services/rate';
 import { logger } from '../../../../src/lib/logger';
 import { z } from 'zod';
+import { corsPreflightOrHeaders } from '../../../../src/lib/cors';
 
 // In-memory rate limiting (in production, use Redis or similar)
 const rateLimitMap = new Map<string, { count: number; resetTime: number }>();
@@ -52,14 +53,21 @@ function checkRateLimit(apiKey: string): boolean {
   return true;
 }
 
-async function handleLeadIngest(req: NextRequest): Promise<NextResponse> {
+export async function OPTIONS(req: Request) {
+  return corsPreflightOrHeaders(req) as any;
+}
+
+export const POST = async (req: NextRequest) => {
+  const cors = corsPreflightOrHeaders(req);
+  if (cors instanceof Response) return cors; // OPTIONS handled
+
   try {
     // Check API key in header
     const apiKey = req.headers.get('x-api-key');
     if (!apiKey) {
       return NextResponse.json(
         { error: 'Missing x-api-key header' },
-        { status: 401 }
+        { status: 401, headers: cors as Headers }
       );
     }
     
@@ -68,7 +76,7 @@ async function handleLeadIngest(req: NextRequest): Promise<NextResponse> {
     if (!tenant) {
       return NextResponse.json(
         { error: 'Invalid API key' },
-        { status: 401 }
+        { status: 401, headers: cors as Headers }
       );
     }
     
@@ -76,7 +84,7 @@ async function handleLeadIngest(req: NextRequest): Promise<NextResponse> {
     if (!checkRateLimit(apiKey)) {
       return NextResponse.json(
         { error: 'Rate limit exceeded. Maximum 60 requests per minute.' },
-        { status: 429 }
+        { status: 429, headers: cors as Headers }
       );
     }
     
@@ -155,7 +163,7 @@ async function handleLeadIngest(req: NextRequest): Promise<NextResponse> {
       ok: true, 
       leadId: lead.id,
       tenant: tenant['Company Handle']
-    });
+    }, { headers: cors as Headers });
     
   } catch (error) {
     logger.error('Lead ingest error:', error);
@@ -163,15 +171,13 @@ async function handleLeadIngest(req: NextRequest): Promise<NextResponse> {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
         { error: 'Invalid request data', details: error.format() },
-        { status: 400 }
+        { status: 400, headers: cors as Headers }
       );
     }
     
     return NextResponse.json(
       { error: 'Internal server error' },
-      { status: 500 }
+      { status: 500, headers: cors as Headers }
     );
   }
-}
-
-export const POST = handleLeadIngest;
+};
