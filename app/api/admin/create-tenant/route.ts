@@ -61,7 +61,7 @@ async function handleCreateTenant(req: NextRequest): Promise<NextResponse> {
     };
     
     // Create/update tenant
-    const tenant = await upsertTenantByHandle(tenantData);
+    const tenant = await upsertTenantByHandle(companyHandle, tenantData);
     
     logger.info('Tenant created successfully:', { 
       companyHandle, 
@@ -72,7 +72,7 @@ async function handleCreateTenant(req: NextRequest): Promise<NextResponse> {
     return NextResponse.json({
       tenantId: tenant.id,
       apiKey,
-      loginUrl: tenant['Domain / Login URL'] || `${process.env.NEXT_PUBLIC_APP_URL || 'https://app.sunspire.com'}/${companyHandle}`,
+      loginUrl: `${process.env.NEXT_PUBLIC_APP_URL || 'https://app.sunspire.com'}/${companyHandle}`,
       captureUrl
     });
     
