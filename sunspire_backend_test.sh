@@ -3,6 +3,7 @@
 # Sunspire Backend Smoke Test Script
 # Tests all backend endpoints excluding Stripe functionality
 # Ready for production deployment - Vercel redeploy trigger
+# Last deployment attempt: $(date)
 
 set -e  # Exit on any error
 
