@@ -5,10 +5,11 @@ import { ENV } from '@/src/config/env';
 // FORCE COMPLETE REDEPLOY - CLEAR ALL CACHES - $(date)
 // Production priority: STRIPE_LIVE_SECRET_KEY first, then fallback to local test keys
 // TIMESTAMP: 2025-08-30 22:30:00 - Force redeploy to load new environment variables
+// NEW VARIABLE: STRIPE_PRODUCTION_KEY - completely new name to bypass Vercel caching
 
 // Priority order: Production live key first, then local test keys
-const stripe = (process.env.STRIPE_LIVE_SECRET_KEY || process.env.STRIPE_SECRET_KEY) ?
-  new Stripe(process.env.STRIPE_LIVE_SECRET_KEY || process.env.STRIPE_SECRET_KEY!, {
+const stripe = (process.env.STRIPE_PRODUCTION_KEY || process.env.STRIPE_LIVE_SECRET_KEY || process.env.STRIPE_SECRET_KEY) ?
+  new Stripe(process.env.STRIPE_PRODUCTION_KEY || process.env.STRIPE_LIVE_SECRET_KEY || process.env.STRIPE_SECRET_KEY!, {
     apiVersion: '2025-08-27.basil',
   }) : null;
 
@@ -16,9 +17,10 @@ export async function POST(req: NextRequest) {
   try {
     console.log('🔍 Stripe checkout request received');
     console.log('🔍 Stripe instance:', !!stripe);
+    console.log('🔍 STRIPE_PRODUCTION_KEY (new):', !!process.env.STRIPE_PRODUCTION_KEY);
     console.log('🔍 STRIPE_LIVE_SECRET_KEY (prod):', !!process.env.STRIPE_LIVE_SECRET_KEY);
     console.log('🔍 STRIPE_SECRET_KEY (local):', !!process.env.STRIPE_SECRET_KEY);
-    console.log('🔍 Using key starting with:', (process.env.STRIPE_LIVE_SECRET_KEY || process.env.STRIPE_SECRET_KEY)?.substring(0, 10) || 'undefined');
+    console.log('🔍 Using key starting with:', (process.env.STRIPE_PRODUCTION_KEY || process.env.STRIPE_LIVE_SECRET_KEY || process.env.STRIPE_SECRET_KEY)?.substring(0, 10) || 'undefined');
 
     if (!stripe) {
       console.error('❌ Stripe not configured');

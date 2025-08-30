@@ -12,6 +12,7 @@ export async function GET() {
     NREL: ENV.NREL_API_KEY ? '!!' : '❌',
     EIA: ENV.EIA_API_KEY ? '!!' : '❌',
     ADMIN_TOKEN: ENV.ADMIN_TOKEN ? '!!' : '❌',
+    STRIPE_PRODUCTION_KEY: process.env.STRIPE_PRODUCTION_KEY ? '!!' : '❌',
     STRIPE_LIVE_SECRET_KEY: process.env.STRIPE_LIVE_SECRET_KEY ? '!!' : '❌',
     STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY ? '!!' : '❌',
     STRIPE_PUBLISHABLE_KEY: process.env.STRIPE_PUBLISHABLE_KEY ? '!!' : '❌',
