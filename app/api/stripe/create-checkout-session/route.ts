@@ -13,6 +13,8 @@ export async function POST(req: NextRequest) {
     console.log('🔍 Stripe checkout request received');
     console.log('🔍 Stripe instance:', !!stripe);
     console.log('🔍 ENV.STRIPE_SECRET_KEY exists:', !!ENV.STRIPE_SECRET_KEY);
+    console.log('🔍 ENV.STRIPE_SECRET_KEY length:', ENV.STRIPE_SECRET_KEY?.length || 0);
+    console.log('🔍 ENV.STRIPE_SECRET_KEY starts with:', ENV.STRIPE_SECRET_KEY?.substring(0, 10) || 'undefined');
     
     if (!stripe) {
       console.error('❌ Stripe not configured');
