@@ -1,29 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { ENV } from '@/src/config/env';
 
-// FORCE COMPLETE REDEPLOY - CLEAR ALL CACHES - $(date)
-// Using completely new env var name: STRIPE_LIVE_SECRET_KEY
+// COMPLETELY NEW ROUTE - BYPASS ALL CACHING
+// Using direct process.env access only
 
-// Try multiple environment variable names with completely new one first
-const stripe = (process.env.STRIPE_LIVE_SECRET_KEY || process.env.STRIPE_KEY || ENV.STRIPE_SECRET_KEY) ?
-  new Stripe(process.env.STRIPE_LIVE_SECRET_KEY || process.env.STRIPE_KEY || ENV.STRIPE_SECRET_KEY!, {
+const stripe = process.env.STRIPE_LIVE_SECRET_KEY ? 
+  new Stripe(process.env.STRIPE_LIVE_SECRET_KEY, {
     apiVersion: '2025-08-27.basil',
   }) : null;
 
 export async function POST(req: NextRequest) {
   try {
-    console.log('🔍 Stripe checkout request received');
-    console.log('🔍 Stripe instance:', !!stripe);
-    console.log('🔍 STRIPE_LIVE_SECRET_KEY exists:', !!process.env.STRIPE_LIVE_SECRET_KEY);
-    console.log('🔍 STRIPE_LIVE_SECRET_KEY length:', process.env.STRIPE_LIVE_SECRET_KEY?.length || 0);
-    console.log('🔍 STRIPE_LIVE_SECRET_KEY starts with:', process.env.STRIPE_LIVE_SECRET_KEY?.substring(0, 10) || 'undefined');
-    console.log('🔍 ENV.STRIPE_SECRET_KEY exists:', !!ENV.STRIPE_SECRET_KEY);
-    console.log('🔍 ENV.STRIPE_SECRET_KEY length:', ENV.STRIPE_SECRET_KEY?.length || 0);
-    console.log('🔍 ENV.STRIPE_SECRET_KEY starts with:', ENV.STRIPE_SECRET_KEY?.substring(0, 10) || 'undefined');
+    console.log('🚀 NEW STRIPE ROUTE - checkout request received');
+    console.log('🚀 Stripe instance:', !!stripe);
+    console.log('🚀 STRIPE_LIVE_SECRET_KEY exists:', !!process.env.STRIPE_LIVE_SECRET_KEY);
+    console.log('🚀 STRIPE_LIVE_SECRET_KEY length:', process.env.STRIPE_LIVE_SECRET_KEY?.length || 0);
+    console.log('🚀 STRIPE_LIVE_SECRET_KEY starts with:', process.env.STRIPE_LIVE_SECRET_KEY?.substring(0, 10) || 'undefined');
 
     if (!stripe) {
-      console.error('❌ Stripe not configured');
+      console.error('❌ Stripe not configured in new route');
       return NextResponse.json(
         { error: 'Stripe not configured' },
         { status: 500 }
@@ -40,13 +35,13 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    console.log('🔍 Creating Stripe checkout session...');
-    console.log('🔍 Request data:', { companyHandle, plan, payerEmail, brandColors, logoURL });
+    console.log('🚀 Creating Stripe checkout session in new route...');
+    console.log('🚀 Request data:', { companyHandle, plan, payerEmail, brandColors, logoURL });
 
     // Create Stripe checkout session
     const checkoutSession = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
-      mode: 'payment', // Use 'subscription' for recurring plans
+      mode: 'payment',
       line_items: [
         {
           price_data: {
@@ -56,7 +51,7 @@ export async function POST(req: NextRequest) {
               description: `Solar lead generation platform for ${companyHandle}`,
               images: logoURL ? [logoURL] : [],
             },
-            unit_amount: getPlanPrice(plan), // Amount in cents
+            unit_amount: getPlanPrice(plan),
           },
           quantity: 1,
         },
@@ -68,14 +63,14 @@ export async function POST(req: NextRequest) {
         logoURL: logoURL || '',
         plan,
       },
-      success_url: `${ENV.NEXT_PUBLIC_APP_URL}/c/${companyHandle}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${ENV.NEXT_PUBLIC_APP_URL}/c/${companyHandle}/cancel`,
+      success_url: `${process.env.NEXT_PUBLIC_APP_URL || 'https://sunspire-web-app.vercel.app'}/c/${companyHandle}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${process.env.NEXT_PUBLIC_APP_URL || 'https://sunspire-web-app.vercel.app'}/c/${companyHandle}/cancel`,
       customer_email: payerEmail,
     });
 
     return NextResponse.json({ url: checkoutSession.url });
   } catch (error) {
-    console.error('Stripe checkout error:', error);
+    console.error('🚀 NEW ROUTE Stripe checkout error:', error);
     return NextResponse.json(
       { error: 'Failed to create checkout session' },
       { status: 500 }
