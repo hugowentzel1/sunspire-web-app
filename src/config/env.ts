@@ -23,6 +23,7 @@ const envSchema = z.object({
 
   // Stripe keys are validated in the Stripe section; keep optional here so non-Stripe builds still run
   STRIPE_SECRET_KEY: z.string().optional(),
+  STRIPE_PUBLISHABLE_KEY: z.string().optional(),
   STRIPE_WEBHOOK_SECRET: z.string().optional(),
 });
 
