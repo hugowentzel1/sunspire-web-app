@@ -4,9 +4,11 @@ import { ENV } from '@/src/config/env';
 
 // Force complete redeploy - clear all caches - $(date)
 
-const stripe = ENV.STRIPE_SECRET_KEY ? new Stripe(ENV.STRIPE_SECRET_KEY, {
-  apiVersion: '2025-08-27.basil',
-}) : null;
+// Try multiple environment variable names
+const stripe = (process.env.STRIPE_KEY || ENV.STRIPE_SECRET_KEY) ? 
+  new Stripe(process.env.STRIPE_KEY || ENV.STRIPE_SECRET_KEY!, {
+    apiVersion: '2025-08-27.basil',
+  }) : null;
 
 export async function POST(req: NextRequest) {
   try {
