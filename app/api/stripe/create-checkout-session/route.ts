@@ -5,9 +5,9 @@ import { ENV } from '@/src/config/env';
 // FORCE COMPLETE REDEPLOY - CLEAR ALL CACHES - $(date)
 // Using completely new env var name: STRIPE_LIVE_SECRET_KEY
 
-// Try multiple environment variable names with completely new one first
-const stripe = (process.env.STRIPE_LIVE_SECRET_KEY || process.env.STRIPE_KEY || ENV.STRIPE_SECRET_KEY) ?
-  new Stripe(process.env.STRIPE_LIVE_SECRET_KEY || process.env.STRIPE_KEY || ENV.STRIPE_SECRET_KEY!, {
+// Priority order: Local test key first, then production keys
+const stripe = (process.env.STRIPE_SECRET_KEY || process.env.STRIPE_LIVE_SECRET_KEY || process.env.STRIPE_KEY || ENV.STRIPE_SECRET_KEY) ?
+  new Stripe(process.env.STRIPE_SECRET_KEY || process.env.STRIPE_LIVE_SECRET_KEY || process.env.STRIPE_KEY || ENV.STRIPE_SECRET_KEY!, {
     apiVersion: '2025-08-27.basil',
   }) : null;
 
@@ -15,9 +15,9 @@ export async function POST(req: NextRequest) {
   try {
     console.log('🔍 Stripe checkout request received');
     console.log('🔍 Stripe instance:', !!stripe);
-    console.log('🔍 STRIPE_LIVE_SECRET_KEY exists:', !!process.env.STRIPE_LIVE_SECRET_KEY);
-    console.log('🔍 STRIPE_LIVE_SECRET_KEY length:', process.env.STRIPE_LIVE_SECRET_KEY?.length || 0);
-    console.log('🔍 STRIPE_LIVE_SECRET_KEY starts with:', process.env.STRIPE_LIVE_SECRET_KEY?.substring(0, 10) || 'undefined');
+    console.log('🔍 STRIPE_SECRET_KEY (local):', !!process.env.STRIPE_SECRET_KEY);
+    console.log('🔍 STRIPE_LIVE_SECRET_KEY (prod):', !!process.env.STRIPE_LIVE_SECRET_KEY);
+    console.log('🔍 Using key starting with:', (process.env.STRIPE_SECRET_KEY || process.env.STRIPE_LIVE_SECRET_KEY || process.env.STRIPE_KEY || ENV.STRIPE_SECRET_KEY)?.substring(0, 10) || 'undefined');
 
     if (!stripe) {
       console.error('❌ Stripe not configured');
