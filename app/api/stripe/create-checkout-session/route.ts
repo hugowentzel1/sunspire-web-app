@@ -10,7 +10,12 @@ const stripe = ENV.STRIPE_SECRET_KEY ? new Stripe(ENV.STRIPE_SECRET_KEY, {
 
 export async function POST(req: NextRequest) {
   try {
+    console.log('🔍 Stripe checkout request received');
+    console.log('🔍 Stripe instance:', !!stripe);
+    console.log('🔍 ENV.STRIPE_SECRET_KEY exists:', !!ENV.STRIPE_SECRET_KEY);
+    
     if (!stripe) {
+      console.error('❌ Stripe not configured');
       return NextResponse.json(
         { error: 'Stripe not configured' },
         { status: 500 }
@@ -27,6 +32,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    console.log('🔍 Creating Stripe checkout session...');
+    console.log('🔍 Request data:', { companyHandle, plan, payerEmail, brandColors, logoURL });
+    
     // Create Stripe checkout session
     const checkoutSession = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
