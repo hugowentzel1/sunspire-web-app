@@ -18,9 +18,6 @@ export async function POST(req: NextRequest) {
     console.log('🔍 STRIPE_LIVE_SECRET_KEY exists:', !!process.env.STRIPE_LIVE_SECRET_KEY);
     console.log('🔍 STRIPE_LIVE_SECRET_KEY length:', process.env.STRIPE_LIVE_SECRET_KEY?.length || 0);
     console.log('🔍 STRIPE_LIVE_SECRET_KEY starts with:', process.env.STRIPE_LIVE_SECRET_KEY?.substring(0, 10) || 'undefined');
-    console.log('🔍 ENV.STRIPE_SECRET_KEY exists:', !!ENV.STRIPE_SECRET_KEY);
-    console.log('🔍 ENV.STRIPE_SECRET_KEY length:', ENV.STRIPE_SECRET_KEY?.length || 0);
-    console.log('🔍 ENV.STRIPE_SECRET_KEY starts with:', ENV.STRIPE_SECRET_KEY?.substring(0, 10) || 'undefined');
 
     if (!stripe) {
       console.error('❌ Stripe not configured');
