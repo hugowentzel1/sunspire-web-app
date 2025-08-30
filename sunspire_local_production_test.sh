@@ -9,9 +9,9 @@
 set -e  # Exit on any error
 
 # Constants
-BASE_URL="https://sunspire-web-app.vercel.app"
+BASE_URL="http://localhost:3000"
 TENANT_HANDLE="demo"
-TENANT_API_KEY="c68b77f7992a64631b3bca806ad883fd8d6b3d7a3c3e2ea5"
+TENANT_API_KEY="REPLACE_WITH_REAL_TENANT_API_KEY"
 ADMIN_TOKEN="5fa1b2c3d4e6f7g8h9i0j1k2l3m4n5o6p7q8r9s0t1u2v3w4x5y6z7a8b9c0d1e2"
 
 # Test email for lead creation
@@ -164,15 +164,15 @@ echo ""
 
 # Test 6: Solar Quote Calculation
 echo "========== 6. Solar Quote Calculation =========="
-echo "Testing: POST /api/calc/quote"
+echo "Testing: POST /c/demo/api/calc/quote"
 data="{
-  \"lat\":37.7749,
-  \"lng\":-122.4194,
-  \"dc_kw\":5.0
+  \"address\":\"123 Test St, San Francisco, CA 94102\",
+  \"systemSize\":8.5,
+  \"utilityRate\":0.25,
+  \"electricityUsage\":12000
 }"
-response=$(curl -sS -X POST "$BASE_URL/api/calc/quote" \
+response=$(curl -sS -X POST "$BASE_URL/c/$TENANT_HANDLE/api/calc/quote" \
     -H "Content-Type: application/json" \
-    -H "x-api-key: $TENANT_API_KEY" \
     -d "$data")
 echo "$response" | jq '.'
 echo "✅ Solar quote calculation passed"

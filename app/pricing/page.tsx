@@ -1,163 +1,205 @@
 'use client';
 
-import { useEffect } from 'react';
-import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
-import { useBrandColors } from '@/hooks/useBrandColors';
-import LegalFooter from '@/components/legal/LegalFooter';
-import { track } from '@/src/demo/track';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { CheckIcon, StarIcon } from '@heroicons/react/24/solid';
+import { SimpleCheckoutButton } from '@/components/StripeCheckoutButton';
+
+const plans = [
+  {
+    name: 'Starter',
+    price: '$99',
+    description: 'Perfect for small solar companies getting started',
+    features: [
+      'Up to 100 leads per month',
+      'Basic solar calculations',
+      'Email support',
+      'Custom branding',
+      'API access',
+      'Lead export to CSV'
+    ],
+    popular: false
+  },
+  {
+    name: 'Growth',
+    price: '$199',
+    description: 'Ideal for growing solar businesses',
+    features: [
+      'Up to 500 leads per month',
+      'Advanced solar analytics',
+      'Priority support',
+      'Custom branding',
+      'API access',
+      'CRM integrations',
+      'Campaign tracking',
+      'Performance analytics'
+    ],
+    popular: true
+  },
+  {
+    name: 'Scale',
+    price: '$499',
+    description: 'For established solar companies',
+    features: [
+      'Unlimited leads',
+      'Enterprise solar analytics',
+      'Dedicated support',
+      'Custom branding',
+      'Full API access',
+      'Advanced CRM integrations',
+      'Multi-campaign tracking',
+      'ROI analytics',
+      'White-label options',
+      'Custom integrations'
+    ],
+    popular: false
+  }
+];
 
 export default function PricingPage() {
-  const b = useBrandTakeover();
-  
-  // Apply brand colors from URL
-  useBrandColors();
-  
-
-
-  const handleLaunchClick = () => {
-    if (b.enabled) {
-      document.dispatchEvent(new CustomEvent("openInstall"));
-    } else {
-      // Route to signup page
-      window.location.href = '/signup';
-    }
-  };
+  const [selectedPlan, setSelectedPlan] = useState('Growth');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter">
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {/* Back to Home Button */}
-        <div className="mb-8">
-          <a 
-            href="/" 
-            className="inline-flex items-center text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
-          >
-            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            Back to Home
-          </a>
+    <div className="min-h-screen bg-gradient-to-br from-orange-50 to-orange-100">
+      <div className="max-w-7xl mx-auto px-4 py-16">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h1 className="text-5xl font-bold text-gray-900 mb-6">
+            Simple, Transparent Pricing
+          </h1>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Choose the plan that fits your solar business. All plans include our core 
+            lead generation platform with no hidden fees.
+          </p>
+        </motion.div>
+
+        {/* Pricing Cards */}
+        <div className="grid lg:grid-cols-3 gap-8 mb-16">
+          {plans.map((plan, index) => (
+            <motion.div
+              key={plan.name}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              className={`relative bg-white rounded-2xl shadow-xl p-8 ${
+                plan.popular ? 'ring-2 ring-orange-500 scale-105' : ''
+              }`}
+            >
+              {plan.popular && (
+                <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                  <span className="bg-orange-500 text-white px-4 py-2 rounded-full text-sm font-semibold flex items-center">
+                    <StarIcon className="w-4 h-4 mr-1" />
+                    Most Popular
+                  </span>
+                </div>
+              )}
+
+              <div className="text-center mb-8">
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
+                <div className="mb-4">
+                  <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
+                  <span className="text-gray-600">/month</span>
+                </div>
+                <p className="text-gray-600">{plan.description}</p>
+              </div>
+
+              <ul className="space-y-4 mb-8">
+                {plan.features.map((feature, featureIndex) => (
+                  <li key={featureIndex} className="flex items-start">
+                    <CheckIcon className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="text-center">
+                <SimpleCheckoutButton
+                  plan={plan.name}
+                  className="w-full"
+                >
+                  Get Started with {plan.name}
+                </SimpleCheckoutButton>
+              </div>
+            </motion.div>
+          ))}
         </div>
-        
-        <div className="text-center space-y-12">
+
+        {/* FAQ Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="bg-white rounded-2xl shadow-xl p-8"
+        >
+          <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">
+            Frequently Asked Questions
+          </h2>
           
-          {/* Hero Section */}
-          <div className="space-y-8">
-            <div className="relative">
-              <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${b.enabled && b.primary ? b.primary : 'var(--brand-primary)'}, ${b.enabled && b.primary ? b.primary + 'CC' : 'var(--brand-primary)CC'})` }}>
-                <span className="text-6xl relative z-10">💰</span>
-              </div>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                Can I change plans later?
+              </h3>
+              <p className="text-gray-600">
+                Yes! You can upgrade or downgrade your plan at any time. Changes take effect immediately.
+              </p>
             </div>
-
-            <div className="space-y-6">
-              <h1 className="text-5xl md:text-7xl font-black text-gray-900 leading-tight">
-                Simple, Transparent
-                <span className="block" style={{ color: b.enabled && b.primary ? b.primary : 'var(--brand-primary)' }}>Pricing</span>
-              </h1>
-              <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                One flat rate. No hidden fees. 14-day refund guarantee if it doesn&apos;t lift your booked calls.
+            
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                Is there a setup fee?
+              </h3>
+              <p className="text-gray-600">
+                No setup fees! You only pay the monthly subscription price. Get started immediately.
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                What payment methods do you accept?
+              </h3>
+              <p className="text-gray-600">
+                We accept all major credit cards through Stripe. Secure, encrypted payments.
+              </p>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                Can I cancel anytime?
+              </h3>
+              <p className="text-gray-600">
+                Absolutely! Cancel your subscription anytime with no penalties or hidden fees.
               </p>
             </div>
           </div>
+        </motion.div>
 
-          {/* Pricing Card */}
-          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-2xl mx-auto">
-            <div className="text-center space-y-8">
-              <div>
-                <h2 className="text-4xl font-black text-gray-900 mb-2">$399</h2>
-                <p className="text-xl text-gray-600">setup + $99/month</p>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="flex items-center justify-center space-x-3">
-                  <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: b.enabled && b.primary ? b.primary : 'var(--brand-primary)' }}>
-                    <span className="text-white text-sm">✓</span>
-                  </div>
-                  <span className="text-gray-700">Unlimited solar quotes</span>
-                </div>
-                <div className="flex items-center justify-center space-x-3">
-                  <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: b.enabled && b.primary ? b.primary : 'var(--brand-primary)' }}>
-                    <span className="text-white text-sm">✓</span>
-                  </div>
-                  <span className="text-gray-700">CRM integration (HubSpot, Salesforce)</span>
-                </div>
-                <div className="flex items-center justify-center space-x-3">
-                  <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: b.enabled && b.primary ? b.primary : 'var(--brand-primary)' }}>
-                    <span className="text-white text-sm">✓</span>
-                  </div>
-                  <span className="text-gray-700">White-label branding</span>
-                </div>
-                <div className="flex items-center justify-center space-x-3">
-                  <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: b.enabled && b.primary ? b.primary : 'var(--brand-primary)' }}>
-                    <span className="text-white text-sm">✓</span>
-                  </div>
-                  <span className="text-gray-700">24/7 support</span>
-                </div>
-                <div className="flex items-center justify-center space-x-3">
-                  <div className="w-5 h-5 rounded-full flex items-center justify-center" style={{ backgroundColor: b.enabled && b.primary ? b.primary : 'var(--brand-primary)' }}>
-                    <span className="text-white text-sm">✓</span>
-                  </div>
-                  <span className="text-gray-700">SOC 2 compliance</span>
-                </div>
-              </div>
-
-              <button 
-                onClick={handleLaunchClick}
-                className="w-full inline-flex items-center justify-center px-8 py-4 rounded-full text-lg font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer" 
-                style={{ backgroundColor: 'var(--brand-primary)' }}
-              >
-                <span className="mr-2">⚡</span>
-                Activate on Your Domain — 24 Hours
-              </button>
-              
-              <p className="text-sm text-gray-600 mt-2">
-                No call required. 14-day refund if it doesn&apos;t lift booked calls.
-              </p>
-            </div>
-          </div>
-
-          {/* Setup Fee */}
-          <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 max-w-2xl mx-auto">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-2">What&apos;s included in the setup fee?</h3>
-            <div className="space-y-3 text-sm text-gray-600">
-              <p>• Custom domain setup and SSL certificate</p>
-              <p>• White-label branding and logo integration</p>
-              <p>• CRM connection (HubSpot, Salesforce, Airtable)</p>
-              <p>• Team training and onboarding</p>
-              <p>• 24/7 priority support for first 30 days</p>
-            </div>
-          </div>
-
-          {/* FAQ Section */}
-          <div className="max-w-4xl mx-auto space-y-6">
-            <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Frequently Asked Questions</h2>
-            
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">How long does setup take?</h3>
-              <p className="text-gray-600">Most customers are live within 24 hours. Complex integrations may take up to 48 hours.</p>
-            </div>
-            
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Can I cancel anytime?</h3>
-              <p className="text-gray-600">Yes, no long-term contracts. Cancel anytime with 30 days notice.</p>
-            </div>
-            
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">What if it doesn&apos;t work for my business?</h3>
-              <p className="text-gray-600">We offer a 14-day refund guarantee if the platform doesn&apos;t help increase your booked calls.</p>
-            </div>
-            
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">Do you offer volume discounts?</h3>
-              <p className="text-gray-600">Yes, for companies with 10+ locations. Contact us for enterprise pricing.</p>
-            </div>
-          </div>
-        </div>
-      </main>
-
-      <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <LegalFooter brand={b.enabled ? b.brand : undefined} />
-      </footer>
+        {/* CTA Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="text-center mt-16"
+        >
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            Ready to Generate More Solar Leads?
+          </h2>
+          <p className="text-xl text-gray-600 mb-8">
+            Join hundreds of solar companies already using Sunspire to grow their business.
+          </p>
+          <SimpleCheckoutButton
+            plan="Starter"
+            className="px-8 py-4 text-lg"
+          >
+            Start Your Free Trial
+          </SimpleCheckoutButton>
+        </motion.div>
+      </div>
     </div>
   );
 }
