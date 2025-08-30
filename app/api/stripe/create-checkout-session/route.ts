@@ -2,6 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { ENV } from '@/src/config/env';
 
+// Trigger redeploy for Stripe environment variables - $(date)
+
 const stripe = ENV.STRIPE_SECRET_KEY ? new Stripe(ENV.STRIPE_SECRET_KEY, {
   apiVersion: '2025-08-27.basil',
 }) : null;
