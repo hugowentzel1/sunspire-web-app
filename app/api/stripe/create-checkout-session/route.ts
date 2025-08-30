@@ -4,6 +4,7 @@ import { ENV } from '@/src/config/env';
 
 // FORCE COMPLETE REDEPLOY - CLEAR ALL CACHES - $(date)
 // Production priority: STRIPE_LIVE_SECRET_KEY first, then fallback to local test keys
+// TIMESTAMP: 2025-08-30 22:30:00 - Force redeploy to load new environment variables
 
 // Priority order: Production live key first, then local test keys
 const stripe = (process.env.STRIPE_LIVE_SECRET_KEY || process.env.STRIPE_SECRET_KEY) ?
