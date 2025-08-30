@@ -12,7 +12,10 @@ export async function GET() {
         GOOGLE_MAPS: process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY ? '!!' : 'MISSING',
         NREL: process.env.NREL_API_KEY ? '!!' : 'MISSING',
         EIA: process.env.EIA_API_KEY ? '!!' : 'MISSING',
-        ADMIN_TOKEN: process.env.ADMIN_TOKEN ? '!!' : 'MISSING'
+        ADMIN_TOKEN: process.env.ADMIN_TOKEN ? '!!' : 'MISSING',
+        STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY ? '!!' : 'MISSING',
+        STRIPE_PUBLISHABLE_KEY: process.env.STRIPE_PUBLISHABLE_KEY ? '!!' : 'MISSING',
+        STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET ? '!!' : 'MISSING'
       },
       defaults: {
         DEFAULT_RATE_ESCALATION: process.env.DEFAULT_RATE_ESCALATION || 0.025,
