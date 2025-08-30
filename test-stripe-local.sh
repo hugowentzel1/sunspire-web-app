@@ -3,8 +3,8 @@
 echo "🧪 Testing Stripe Checkout Locally"
 echo "=================================="
 
-# Test the checkout endpoint
-echo "🔍 Testing /api/stripe/create-checkout-session..."
+# Test the checkout endpoint on port 3000
+echo "🔍 Testing /api/stripe/create-checkout-session on port 3000..."
 curl -sS -X POST "http://localhost:3000/api/stripe/create-checkout-session" \
   -H "Content-Type: application/json" \
   -d '{
