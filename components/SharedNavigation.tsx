@@ -46,6 +46,10 @@ export default function SharedNavigation() {
     if (brandLower.includes('sunrun')) return 'https://logo.clearbit.com/sunrun.com';
     if (brandLower.includes('sunnova')) return 'https://logo.clearbit.com/sunnova.com';
     if (brandLower.includes('tealenergy')) return 'https://logo.clearbit.com/tealenergy.com';
+    if (brandLower.includes('solarpro')) return 'https://logo.clearbit.com/solarpro.com';
+    if (brandLower.includes('ecosolar')) return 'https://logo.clearbit.com/ecosolar.com';
+    if (brandLower.includes('premiumsolar')) return 'https://logo.clearbit.com/premiumsolar.com';
+    if (brandLower.includes('acme')) return 'https://logo.clearbit.com/acme.com';
     
     // Energy companies
     if (brandLower.includes('bp')) return 'https://logo.clearbit.com/bp.com';

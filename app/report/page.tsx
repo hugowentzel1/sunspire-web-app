@@ -40,6 +40,41 @@ function ReportContent() {
   // Brand colors from URL
   useBrandColors();
 
+  // Stripe checkout handler
+  const handleCheckout = async () => {
+    try {
+      // Collect tracking parameters from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get('token');
+      const company = urlParams.get('company');
+      const utm_source = urlParams.get('utm_source');
+      const utm_campaign = urlParams.get('utm_campaign');
+      
+      // Start checkout
+      const response = await fetch('/api/stripe/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          plan: 'starter',
+          token,
+          company,
+          utm_source,
+          utm_campaign
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Checkout failed');
+      }
+      
+      const { url } = await response.json();
+      window.location.href = url;
+    } catch (error) {
+      console.error('Checkout error:', error);
+      alert('Unable to start checkout. Please try again.');
+    }
+  };
+
   // Generate a default logo URL for common companies when no logo is provided
   const getDefaultLogo = (brand: string) => {
     const brandLower = brand.toLowerCase();
@@ -70,6 +105,10 @@ function ReportContent() {
     if (brandLower.includes('sunrun')) return 'https://logo.clearbit.com/sunrun.com';
     if (brandLower.includes('sunnova')) return 'https://logo.clearbit.com/sunnova.com';
     if (brandLower.includes('tealenergy')) return 'https://logo.clearbit.com/tealenergy.com';
+    if (brandLower.includes('solarpro')) return 'https://logo.clearbit.com/solarpro.com';
+    if (brandLower.includes('ecosolar')) return 'https://logo.clearbit.com/ecosolar.com';
+    if (brandLower.includes('premiumsolar')) return 'https://logo.clearbit.com/premiumsolar.com';
+    if (brandLower.includes('acme')) return 'https://logo.clearbit.com/acme.com';
     
     // Energy companies
     if (brandLower.includes('bp')) return 'https://logo.clearbit.com/bp.com';
@@ -346,6 +385,66 @@ function ReportContent() {
       </header>
 
       <main data-testid="report-page" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* BRANDED HEADER - Company Logo and Name */}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.6 }} 
+          className="mb-8"
+        >
+          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-6">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-4">
+                {/* Company Logo */}
+                {b.enabled && (b.logo || getDefaultLogo(b.brand)) ? (
+                  <Image 
+                    src={b.logo || getDefaultLogo(b.brand) || ''} 
+                    alt={`${b.brand} logo`} 
+                    width={48} 
+                    height={48} 
+                    className="rounded-lg"
+                    style={{ 
+                      objectFit: "contain",
+                      width: "48px",
+                      height: "48px",
+                      minWidth: "48px",
+                      minHeight: "48px",
+                      maxWidth: "48px",
+                      maxHeight: "48px"
+                    }}
+                  />
+                ) : (
+                  <div className="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center">
+                    <span className="text-white text-lg font-bold">☀️</span>
+                  </div>
+                )}
+                
+                {/* Company Name and Tagline */}
+                <div>
+                  <h1 className="text-2xl font-black text-[var(--brand-primary)]">
+                    {b.enabled ? b.brand : 'Your Company'}
+                  </h1>
+                  <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
+                    Solar Intelligence Report
+                  </p>
+                </div>
+              </div>
+              
+              {/* Demo Disclaimer */}
+              {b.enabled && (
+                <div className="text-right">
+                  <p className="text-xs text-gray-500">
+                    Private demo for {b.brand}
+                  </p>
+                  <p className="text-xs text-gray-400">
+                    Not affiliated
+                  </p>
+                </div>
+              )}
+            </div>
+          </div>
+        </motion.div>
+
         {/* Theme probe for testing */}
         <div data-testid="theme-probe" style={{ color: 'var(--brand)' }} className="hidden" />
         {/* Brand theme CSS variable */}
@@ -423,13 +522,13 @@ function ReportContent() {
               {/* UNLOCK BUTTON */}
               <UnlockButton
                 label="Unlock Full Report"
-                onClick={() => {}} // TODO: Add checkout function
+                onClick={handleCheckout}
                 className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
               />
             </div>
 
             {/* Year 1 Savings - BLURRED WITH UNLOCK BUTTON */}
-            <div data-testid="tile-leads" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
+            <div data-testid="tile-large" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
               {/* BLUR LAYER (kept behind button) */}
               <div className="blur-layer" aria-hidden />
               
@@ -443,7 +542,7 @@ function ReportContent() {
               {/* UNLOCK BUTTON */}
               <UnlockButton
                 label="Unlock Full Report"
-                onClick={() => {}} // TODO: Add checkout function
+                onClick={handleCheckout}
                 className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
               />
             </div>
@@ -476,7 +575,7 @@ function ReportContent() {
               {/* UNLOCK BUTTON */}
               <UnlockButton
                 label="Unlock Full Report"
-                onClick={() => {}} // TODO: Add checkout function
+                onClick={handleCheckout}
                 className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
               />
             </div>
@@ -500,7 +599,7 @@ function ReportContent() {
               {/* UNLOCK BUTTON */}
               <UnlockButton
                 label="Unlock Full Report"
-                onClick={() => {}} // TODO: Add checkout function
+                onClick={handleCheckout}
                 className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
               />
             </div>
@@ -533,12 +632,12 @@ function ReportContent() {
             <p className="text-xl mb-10 opacity-90">Get complete financial projections, detailed assumptions, and unblurred savings charts</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <motion.button 
-                onClick={() => router.push('/tenant-preview?demo=1')}
+                onClick={handleCheckout}
                 className="px-8 py-4 bg-white text-black rounded-2xl font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" 
                 whileHover={{ scale: 1.05 }} 
                 whileTap={{ scale: 0.95 }}
               >
-                Activate on Your Domain
+                Unlock Full Report - $99/mo + $399
               </motion.button>
               <motion.button 
                 onClick={() => setShowLeadModal(true)}

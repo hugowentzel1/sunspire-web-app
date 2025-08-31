@@ -91,10 +91,10 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
   console.log('Customer Email:', session.customer_email);
   console.log('Metadata:', session.metadata);
   
-  const { companyHandle, payerEmail, brandColors, logoURL, plan } = session.metadata || {};
+  const { token, company, plan, utm_source, utm_campaign } = session.metadata || {};
   
-  if (!companyHandle || !payerEmail) {
-    console.error('Missing metadata in checkout session');
+  if (!company) {
+    console.error('Missing company metadata in checkout session');
     return;
   }
 
@@ -111,25 +111,27 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
     // Generate API key for the tenant
     const apiKey = generateApiKey();
     const baseUrl = ENV.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
-    const loginUrl = `${baseUrl}/c/${companyHandle}`;
+    const loginUrl = `${baseUrl}/c/${company}`;
     const captureUrl = `${baseUrl}/v1/ingest/lead`;
 
     console.log('🔍 Tenant data:', {
-      companyHandle,
+      company,
       plan: plan || "Starter",
-      brandColors: brandColors || "",
-      logoURL: logoURL || "",
+      token,
+      utm_source,
+      utm_campaign,
       apiKey: apiKey.substring(0, 8) + '...',
       loginUrl,
       captureUrl
     });
 
     // Create/update tenant in Airtable
-    const tenant = await upsertTenantByHandle(companyHandle, {
-      "Company Handle": companyHandle,
+    const tenant = await upsertTenantByHandle(company, {
+      "Company Handle": company,
       "Plan": plan || "Starter",
-      "Brand Colors": brandColors || "",
-      "Logo URL": logoURL || "",
+      "Token": token || "",
+      "UTM Source": utm_source || "",
+      "UTM Campaign": utm_campaign || "",
       "API Key": apiKey,
       "Domain / Login URL": loginUrl,
       "Capture URL": captureUrl,
@@ -140,11 +142,13 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
 
     console.log('✅ Tenant created/updated:', tenant.id);
 
-    // Link the payer as owner
-    const userId = await createOrLinkUserOwner(tenant.id, payerEmail);
-    console.log('✅ User linked as owner:', userId);
+    // Link the payer as owner if email exists
+    if (session.customer_email) {
+      const userId = await createOrLinkUserOwner(tenant.id, session.customer_email);
+      console.log('✅ User linked as owner:', userId);
+    }
 
-    console.log(`✅ Tenant provisioned successfully: ${companyHandle}`);
+    console.log(`✅ Tenant provisioned successfully: ${company}`);
     
     // TODO: Send onboarding email with loginUrl, apiKey, captureUrl
     

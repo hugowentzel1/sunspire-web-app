@@ -40,17 +40,10 @@ export async function POST(req: NextRequest) {
     }
 
     const body = await req.json();
-    const { companyHandle, plan, payerEmail, brandColors, logoURL } = body;
-
-    if (!companyHandle || !payerEmail || !plan) {
-      return NextResponse.json(
-        { error: 'companyHandle, payerEmail, and plan are required' },
-        { status: 400 }
-      );
-    }
+    const { plan = 'starter', token, company, email, utm_source, utm_campaign } = body;
 
     console.log('🔍 Creating Stripe checkout session...');
-    console.log('🔍 Request data:', { companyHandle, plan, payerEmail, brandColors, logoURL });
+    console.log('🔍 Request data:', { plan, token, company, email, utm_source, utm_campaign });
 
     // Map plan to Stripe Price IDs (recurring + setup fee)
     const monthlyPrice = process.env.STRIPE_PRICE_MONTHLY_99!;
@@ -79,15 +72,15 @@ export async function POST(req: NextRequest) {
         },
       ],
       metadata: {
-        companyHandle,
-        payerEmail,
-        brandColors: brandColors || '',
-        logoURL: logoURL || '',
+        token: token || '',
+        company: company || '',
         plan,
+        utm_source: utm_source || '',
+        utm_campaign: utm_campaign || '',
       },
       success_url: `${ENV.NEXT_PUBLIC_APP_URL || new URL(req.url).origin}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${ENV.NEXT_PUBLIC_APP_URL || new URL(req.url).origin}/cancel`,
-      customer_email: payerEmail,
+      customer_email: email,
     });
 
     return NextResponse.json({ url: checkoutSession.url });

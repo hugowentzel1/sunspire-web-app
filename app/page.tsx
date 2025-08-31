@@ -77,9 +77,48 @@ function HomeContent() {
     }
   };
 
-  const handleLaunchClick = () => {
+  const handleLaunchClick = async () => {
     if (b.enabled) {
-      document.dispatchEvent(new CustomEvent("openInstall"));
+      // Start Stripe checkout with tracking
+      try {
+        // Collect tracking parameters from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+        const company = urlParams.get('company');
+        const utm_source = urlParams.get('utm_source');
+        const utm_campaign = urlParams.get('utm_campaign');
+        
+        // Show loading state
+        const button = document.querySelector('[data-cta-button]') as HTMLButtonElement;
+        if (button) {
+          const originalText = button.textContent;
+          button.textContent = 'Loading...';
+          button.disabled = true;
+          
+          // Start checkout
+          const response = await fetch('/api/stripe/create-checkout-session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              plan: 'starter',
+              token,
+              company,
+              utm_source,
+              utm_campaign
+            })
+          });
+          
+          if (!response.ok) {
+            throw new Error('Checkout failed');
+          }
+          
+          const { url } = await response.json();
+          window.location.href = url;
+        }
+      } catch (error) {
+        console.error('Checkout error:', error);
+        alert('Unable to start checkout. Please try again.');
+      }
     } else {
       // Route to signup page for non-branded experience
       router.push('/signup');
@@ -123,6 +162,7 @@ function HomeContent() {
                   </p>
                   <button 
                     onClick={handleLaunchClick}
+                    data-cta-button
                     className="inline-flex items-center px-4 py-4 rounded-full text-sm font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer" 
                     style={{ backgroundColor: 'var(--brand-primary)' }}
                   >
@@ -214,6 +254,7 @@ function HomeContent() {
                 <button 
                   onClick={b.enabled && address.trim() ? handleGenerateEstimate : (b.enabled ? handleLaunchClick : handleGenerateEstimate)}
                   disabled={!b.enabled && !address.trim() || isLoading} 
+                  data-cta-button
                   className={`w-full ${
                     (!b.enabled && !address.trim()) || isLoading 
                       ? 'btn-disabled' 

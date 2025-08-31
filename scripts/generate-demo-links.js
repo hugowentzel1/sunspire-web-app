@@ -12,29 +12,33 @@ const companies = [
     name: "SolarPro Energy",
     slug: "solarpro",
     colors: "Green (#059669)",
-    demoUrl: "http://localhost:3000?solarpro=1&demo=1",
-    productionUrl: "https://yourdomain.com?solarpro=1&demo=1"
+    logo: "https://logo.clearbit.com/solarpro.com",
+    demoUrl: "http://localhost:3000?company=SolarPro%20Energy&brandColor=%23059669&logo=https://logo.clearbit.com/solarpro.com&demo=1",
+    productionUrl: "https://sunspire-web-app.vercel.app?company=SolarPro%20Energy&brandColor=%23059669&logo=https://logo.clearbit.com/solarpro.com&demo=1"
   },
   {
     name: "EcoSolar Solutions", 
     slug: "ecosolar",
     colors: "Eco Green (#16A34A)",
-    demoUrl: "http://localhost:3000?ecosolar=1&demo=1",
-    productionUrl: "https://yourdomain.com?ecosolar=1&demo=1"
+    logo: "https://logo.clearbit.com/ecosolar.com",
+    demoUrl: "http://localhost:3000?company=EcoSolar%20Solutions&brandColor=%2316A34A&logo=https://logo.clearbit.com/ecosolar.com&demo=1",
+    productionUrl: "https://sunspire-web-app.vercel.app?company=EcoSolar%20Solutions&brandColor=%2316A34A&logo=https://logo.clearbit.com/ecosolar.com&demo=1"
   },
   {
     name: "Premium Solar Group",
     slug: "premiumsolar", 
     colors: "Purple (#7C3AED)",
-    demoUrl: "http://localhost:3000?premiumsolar=1&demo=1",
-    productionUrl: "https://yourdomain.com?premiumsolar=1&demo=1"
+    logo: "https://logo.clearbit.com/premiumsolar.com",
+    demoUrl: "http://localhost:3000?company=Premium%20Solar%20Group&brandColor=%237C3AED&logo=https://logo.clearbit.com/premiumsolar.com&demo=1",
+    productionUrl: "https://sunspire-web-app.vercel.app?company=Premium%20Solar%20Group&brandColor=%237C3AED&logo=https://logo.clearbit.com/premiumsolar.com&demo=1"
   },
   {
     name: "ACME Solar",
     slug: "acme",
     colors: "Blue (#2563EB)", 
-    demoUrl: "http://localhost:3000?acme=1&demo=1",
-    productionUrl: "https://yourdomain.com?acme=1&demo=1"
+    logo: "https://logo.clearbit.com/acme.com",
+    demoUrl: "http://localhost:3000?company=ACME%20Solar&brandColor=%232563EB&logo=https://logo.clearbit.com/acme.com&demo=1",
+    productionUrl: "https://sunspire-web-app.vercel.app?company=ACME%20Solar&brandColor=%232563EB&logo=https://logo.clearbit.com/acme.com&demo=1"
   }
 ];
 
