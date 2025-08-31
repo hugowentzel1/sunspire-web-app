@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('Simple Show Report Page', async ({ page }) => {
   console.log('📊 Loading report page to show current state...');
-  await page.goto('http://localhost:3002/report?demo=1&company=TestCompany');
+  await page.goto('http://localhost:3000/report?demo=1&company=TestCompany');
   await page.waitForLoadState('networkidle');
   
   console.log('✅ Report page loaded!');

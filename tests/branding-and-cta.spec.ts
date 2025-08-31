@@ -14,7 +14,25 @@ test('banner shows company logo and brand color', async ({ page }) => {
 
 test('report page shows company logo', async ({ page }) => {
   await page.goto(`${base}/report?company=Meta&brandColor=%231877F2`);
-  await expect(page.getByAltText(/meta logo/i)).toBeVisible({ timeout: 5000 });
+  
+  // Wait for the page to be ready
+  await page.waitForLoadState('networkidle');
+  
+  // Check the prominent center logo (96x96px) - specifically the large one
+  const centerLogo = page.locator('img[alt*="Meta logo"][width="96"][height="96"]');
+  await expect(centerLogo).toBeVisible({ timeout: 5000 });
+});
+
+test('report page visual verification', async ({ page }) => {
+  await page.goto(`${base}/report?company=Meta&brandColor=%231877F2`);
+  
+  // Wait for the page to be ready
+  await page.waitForLoadState('networkidle');
+  
+  // Take a screenshot to show the visual result
+  await page.screenshot({ path: 'test-results/report-page-meta-logo.png', fullPage: true });
+  
+  console.log('✅ Report page screenshot saved! Check test-results/report-page-meta-logo.png');
 });
 
 test('pricing uses brand color and matches snapshot', async ({ page }) => {

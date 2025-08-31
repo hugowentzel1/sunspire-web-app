@@ -4,7 +4,7 @@ import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { TenantProvider, useTenant } from '@/components/TenantProvider';
-import { LeadModal } from '@/components/LeadModal';
+// LeadModal import removed - no popups wanted
 import { SolarEstimate } from '@/lib/estimate';
 import EstimateChart from '@/components/EstimateChart';
 import { formatDateSafe } from '@/lib/format';
@@ -20,7 +20,7 @@ import { attachCheckoutHandlers } from '@/src/lib/checkout';
 // import InstallSheet from '@/src/demo/InstallSheet';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import HeroBrand from '@/src/brand/HeroBrand';
-import StickyCTA from '@/components/StickyCTA';
+// StickyCTA import removed - no popups wanted
 // import { DemoBanner } from '@/src/demo/DemoChrome';
 import Image from 'next/image';
 
@@ -41,7 +41,7 @@ function ReportContent() {
   const [estimate, setEstimate] = useState<SolarEstimate | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [showLeadModal, setShowLeadModal] = useState(false);
+  // showLeadModal state removed - no popups wanted
   const [demoMode, setDemoMode] = useState(false);
   
   // Brand takeover mode detection
@@ -684,7 +684,7 @@ function ReportContent() {
             </div>
           </motion.div>
 
-          {/* Ready-to text section */}
+          {/* Ready-to text section - Restored from c548b88 */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 
             animate={{ opacity: 1, y: 0 }} 
@@ -692,7 +692,7 @@ function ReportContent() {
             className="text-center mb-8"
           >
             <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 border border-gray-200/30">
-                            <p className="text-lg text-gray-700 leading-relaxed">
+              <p className="text-lg text-gray-700 leading-relaxed">
                 A ready-to-deploy solar intelligence tool — live on your site within 24 hours.
                 {b.enabled && (
                   <span className="block mt-2 text-sm text-gray-500">
@@ -780,14 +780,11 @@ function ReportContent() {
         <LegalFooter brand={b.enabled ? b.brand : undefined} />
       </footer>
 
-      {estimate && (
-        <LeadModal isOpen={showLeadModal} onClose={() => setShowLeadModal(false)} estimate={estimate} address={estimate.address} />
-      )}
+      {/* LeadModal removed - no popups wanted */}
       
       {/* Demo components removed - no more popup */}
       
-      {/* Sticky CTA */}
-      <StickyCTA />
+      {/* StickyCTA removed - no popups wanted */}
     </div>
   );
 }
