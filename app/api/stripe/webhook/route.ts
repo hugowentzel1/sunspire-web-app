@@ -152,13 +152,14 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
     
     // TODO: Send onboarding email with loginUrl, apiKey, captureUrl
     
-  } catch (error) {
-    console.error('❌ Failed to provision tenant:', error);
-    console.error('❌ Error details:', {
-      message: error instanceof Error ? error.message : String(error),
-      stack: error instanceof Error ? error.stack : undefined,
-      name: error instanceof Error ? error.name : undefined
-    });
+  } catch (err: unknown) {
+    console.error('❌ Failed to provision tenant:', err);
+    const meta =
+      err instanceof Error
+        ? { message: err.message, stack: err.stack, name: err.name }
+        : { message: String(err) };
+    console.error('❌ Error details:', meta);
+    return NextResponse.json({ ok: false, error: meta.message }, { status: 500 });
   }
 }
 

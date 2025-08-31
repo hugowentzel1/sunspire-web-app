@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
@@ -29,7 +29,7 @@ export default function SuccessPage() {
     }
   }, [sessionId]);
 
-  const fetchSessionDetails = async () => {
+  const fetchSessionDetails = useCallback(async () => {
     try {
       const response = await fetch(`/api/stripe/session?session_id=${sessionId}`);
       if (!response.ok) {
@@ -42,7 +42,7 @@ export default function SuccessPage() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [sessionId]);
 
   const handleManageBilling = async () => {
     try {

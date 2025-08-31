@@ -30,18 +30,22 @@ export function StripeCheckoutButton({
     setIsLoading(true);
     
     try {
+      // Collect tracking parameters from URL
+      const params = new URLSearchParams(window.location.search);
+      const payload = {
+        plan: plan.toLowerCase(),
+        company: params.get('company') || companyHandle || 'Demo',
+        token: params.get('token') || undefined,
+        utm_source: params.get('utm_source') || undefined,
+        utm_campaign: params.get('utm_campaign') || undefined
+      };
+      
       const response = await fetch('/api/stripe/create-checkout-session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          companyHandle,
-          plan,
-          payerEmail,
-          brandColors,
-          logoURL,
-        }),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
@@ -108,16 +112,22 @@ export function SimpleCheckoutButton({
     setIsLoading(true);
     
     try {
+      // Collect tracking parameters from URL
+      const params = new URLSearchParams(window.location.search);
+      const payload = {
+        plan: plan.toLowerCase(),
+        company: params.get('company') || 'Demo',
+        token: params.get('token') || undefined,
+        utm_source: params.get('utm_source') || undefined,
+        utm_campaign: params.get('utm_campaign') || undefined
+      };
+      
       const response = await fetch('/api/stripe/create-checkout-session', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          companyHandle: 'demo', // You can make this dynamic
-          plan,
-          payerEmail: 'demo@example.com', // You can make this dynamic
-        }),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {

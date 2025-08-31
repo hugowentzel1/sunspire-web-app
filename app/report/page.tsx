@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { TenantProvider, useTenant } from '@/components/TenantProvider';
@@ -151,10 +151,10 @@ function ReportContent() {
     NV: { address: "400 Stewart Ave, Las Vegas, NV", lat: 36.1716, lng: -115.1391 }
   };
 
-  function pickDemoAddress(state?: string) {
+  const pickDemoAddress = useCallback((state?: string) => {
     if (state && demoAddressesByState[state]) return demoAddressesByState[state];
     return demoAddressesByState["AZ"]; // sunny default
-  }
+  }, [demoAddressesByState]);
 
   useEffect(() => {
     const demoFlag = searchParams.get('demo');

@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
+import Image from "next/image";
 import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
 import { getCTA } from "./cta";
 import { useABVariant } from "./useABVariant";
@@ -74,15 +75,15 @@ export default function LockOverlay() {
         {/* Brand Logo/Name */}
         <div style={{ marginBottom: "24px" }}>
           {b.logo ? (
-            <img 
+            <Image 
               src={b.logo} 
               alt={`${b.brand} logo`} 
-              style={{ 
-                width: "80px", 
-                height: "80px", 
-                objectFit: "contain",
-                margin: "0 auto 16px"
-              }} 
+              width={80}
+              height={80}
+              unoptimized
+              className="mx-auto mb-4"
+              sizes="100vw"
+              style={{ height: 'auto', width: 'auto' }}
             />
           ) : (
             <div style={{

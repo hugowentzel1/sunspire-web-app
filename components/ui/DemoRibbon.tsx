@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
+import Image from 'next/image';
 
 export default function DemoRibbon() {
   const [enabled, setEnabled] = useState(false);
@@ -39,7 +40,7 @@ export default function DemoRibbon() {
   return (
     <div className="fixed top-24 left-1/2 -translate-x-1/2 z-[100]">
       <div className="flex items-center gap-4 px-5 py-3 rounded-2xl border border-white/50 bg-white/95 backdrop-blur shadow-[0_16px_60px_rgba(15,23,42,.12)]">
-        {logo ? <img src={logo} alt="logo" className="w-8 h-8 rounded-lg object-contain" /> : null}
+        {logo ? <Image src={logo} alt="logo" width={32} height={32} unoptimized className="w-8 h-8 rounded-lg object-contain" sizes="100vw" style={{ height: 'auto', width: 'auto' }} /> : null}
         <div className="text-sm">
           <div className="font-semibold">Demo Mode — White-Label Preview</div>
           <div className="text-xs text-slate-500">Pre-branded preview. Not a contract quote.</div>
