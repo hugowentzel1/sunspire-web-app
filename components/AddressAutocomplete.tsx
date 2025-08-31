@@ -32,7 +32,7 @@ export default function AddressAutocomplete({
 
   // Load Google Places API script
   useEffect(() => {
-    if (!window.google?.places) {
+    if (!(window as any).google?.places) {
       const script = document.createElement('script');
       script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places`;
       script.async = true;
@@ -58,7 +58,7 @@ export default function AddressAutocomplete({
   }, [query]);
 
   const searchAddresses = async (searchQuery: string) => {
-    if (!window.google?.places) {
+    if (!(window as any).google?.places) {
       console.log('Google Places API not loaded yet');
       return;
     }

@@ -20,11 +20,11 @@ class Analytics {
     }
 
     try {
-      const { PostHog } = await import('posthog-js');
-      PostHog.init(this.posthogKey, {
+      const posthog = await import('posthog-js');
+      posthog.default.init(this.posthogKey, {
         api_host: 'https://app.posthog.com',
-        loaded: (posthog) => {
-          if (posthog) {
+        loaded: (posthogInstance) => {
+          if (posthogInstance) {
             this.isInitialized = true;
           }
         }

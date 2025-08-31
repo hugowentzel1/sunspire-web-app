@@ -36,21 +36,22 @@ export async function POST(request: NextRequest) {
       if (companyHandle) {
         // Mark as activated in Airtable
         await upsertLead({
+          name: companyHandle, // Use companyHandle as name for now
           email: email || '',
-          companyHandle,
-          company: companyHandle,
-          source: 'stripe_activation'
+          address: 'Stripe Activation',
+          tenantSlug: companyHandle, // Map companyHandle to tenantSlug
+          notes: 'Source: stripe_activation'
         });
 
         // Log activation event
         await logEvent({
-          companyHandle,
+          tenantId: companyHandle, // Use companyHandle as tenantId for now
           type: 'activation_clicked',
-          email,
           metadata: {
             plan,
             sessionId: session.id,
-            amount: session.amount_total
+            amount: session.amount_total,
+            email
           }
         });
 

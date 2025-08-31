@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2023-10-16',
+  apiVersion: '2025-08-27.basil',
 });
 
 export async function GET(request: NextRequest) {
@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
       id: session.id,
       metadata: session.metadata,
       subscription: session.subscription ? {
-        current_period_end: (session.subscription as Stripe.Subscription).current_period_end
+        current_period_end: (session.subscription as any).current_period_end
       } : undefined
     });
 

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { storeLead, storeLeadFallback, LeadData } from '@/src/lib/airtable';
+import { storeLead, storeLeadFallback } from '@/src/lib/airtable';
 import { checkRateLimit } from '@/src/lib/ratelimit';
 
 // Helper function to extract client IP
@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Prepare lead data with updated field names
-    const leadData: LeadData = {
+    const leadData = {
       name,
       email,
       phone: body.phone || '',

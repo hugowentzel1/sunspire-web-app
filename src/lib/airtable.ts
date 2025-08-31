@@ -203,7 +203,7 @@ export async function upsertTenantByHandle(handle: string, fields: Record<string
   try {
     const existing = await findTenantByHandle(handle);
     
-    if (existing) {
+    if (existing && existing.id) {
       const updated = await getBase()(TABLES.TENANTS).update([{ id: existing.id, fields }]);
       return updated[0];
     } else {
@@ -400,7 +400,7 @@ export async function findLinkByToken(token: string): Promise<{ id: string; targ
     const record = records[0];
     return {
       id: record.id,
-      targetParams: record.fields[LINK_FIELDS.TARGET_PARAMS] || ''
+      targetParams: String(record.fields[LINK_FIELDS.TARGET_PARAMS] || '')
     };
   } catch (error) {
     logger.error('Error finding link by token:', error);

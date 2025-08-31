@@ -54,16 +54,11 @@ export async function POST(request: NextRequest) {
     }
 
     await upsertLead({
+      name: fullName, // Map fullName to name
       email,
-      fullName,
-      company,
-      companyHandle,
       address,
-      lat: lat ? parseFloat(lat) : undefined,
-      lng: lng ? parseFloat(lng) : undefined,
-      crm,
-      source,
-      campaignId
+      tenantSlug: companyHandle, // Map companyHandle to tenantSlug
+      notes: `Company: ${company}, CRM: ${crm}, Source: ${source}, Campaign: ${campaignId}, Lat: ${lat}, Lng: ${lng}`
     });
 
     return NextResponse.json({ success: true });

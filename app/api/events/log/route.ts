@@ -39,11 +39,13 @@ export async function POST(request: NextRequest) {
     }
 
     await logEvent({
-      companyHandle,
+      tenantId: companyHandle, // Use companyHandle as tenantId for now
       type,
-      email,
-      metadata,
-      campaignId
+      metadata: {
+        email,
+        campaignId,
+        ...metadata
+      }
     });
 
     return NextResponse.json({ success: true });
