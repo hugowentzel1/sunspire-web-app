@@ -10,7 +10,7 @@ const envSchema = z.object({
 
   // Non-Stripe app secrets
   ADMIN_TOKEN: z.string(),
-  NEXT_PUBLIC_APP_URL: z.string().url(),
+  NEXT_PUBLIC_APP_URL: z.string().url().optional(),
 
   // Optional numeric defaults (strings OK in env)
   DEFAULT_RATE_ESCALATION: z.coerce.number().default(0.025),
@@ -25,6 +25,8 @@ const envSchema = z.object({
   STRIPE_SECRET_KEY: z.string().optional(),
   STRIPE_PUBLISHABLE_KEY: z.string().optional(),
   STRIPE_WEBHOOK_SECRET: z.string().optional(),
+  STRIPE_PRICE_MONTHLY_99: z.string().optional(),
+  STRIPE_PRICE_SETUP_399: z.string().optional(),
 });
 
 export const ENV = envSchema.parse(process.env);

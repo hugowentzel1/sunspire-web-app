@@ -26,7 +26,7 @@ export default function LegalFooter({ showPoweredBy = true, brand }: { showPower
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/>
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/>
                 </svg>
-                Sunspire, 123 Main Street, San Francisco, CA 94105
+                3133 Maple Dr Ne Ste 240 #1156 Atlanta, GA 30305
               </p>
               
               {/* Compliance Badges */}

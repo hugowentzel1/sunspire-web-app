@@ -56,7 +56,7 @@ async function testComprehensiveImplementation() {
     await page.goto('http://localhost:3000');
     
     // Check address
-    const address = await page.locator('text=Sunspire, 123 Main Street, San Francisco, CA 94105');
+    const address = await page.locator('text=3133 Maple Dr Ne Ste 240 #1156 Atlanta, GA 30305');
     if (await address.isVisible()) {
       console.log('✅ Company address updated');
     } else {

@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test('footer has legal address and links', async ({ page }) => {
   console.log('✅ Legal footer component created with:');
-  console.log('  - Sunspire address: 123 Main Street, San Francisco, CA 94105');
+  console.log('  - Sunspire address: 3133 Maple Dr Ne Ste 240 #1156 Atlanta, GA 30305');
   console.log('  - Legal links: Privacy, Terms, Security, DPA, Do Not Sell My Data');
   console.log('  - Compliance badges: GDPR, CCPA, SOC 2');
   console.log('✅ Security page created with compliance sections');

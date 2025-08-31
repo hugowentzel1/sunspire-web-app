@@ -54,6 +54,22 @@ export async function POST(req: NextRequest) {
         await handlePaymentSucceeded(event.data.object as Stripe.PaymentIntent);
         break;
       
+      case 'invoice.payment_succeeded':
+        await handleInvoicePaymentSucceeded(event.data.object as Stripe.Invoice);
+        break;
+      
+      case 'invoice.payment_failed':
+        await handleInvoicePaymentFailed(event.data.object as Stripe.Invoice);
+        break;
+      
+      case 'customer.subscription.updated':
+        await handleSubscriptionUpdated(event.data.object as Stripe.Subscription);
+        break;
+      
+      case 'customer.subscription.deleted':
+        await handleSubscriptionDeleted(event.data.object as Stripe.Subscription);
+        break;
+      
       default:
         console.log(`Unhandled event type: ${event.type}`);
     }
@@ -83,10 +99,30 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
   }
 
   try {
+    // Debug environment variables
+    console.log('🔍 Environment check:', {
+      hasAirtableKey: !!ENV.AIRTABLE_API_KEY,
+      hasAirtableBase: !!ENV.AIRTABLE_BASE_ID,
+      airtableKeyLength: ENV.AIRTABLE_API_KEY?.length,
+      airtableBase: ENV.AIRTABLE_BASE_ID,
+      nextPublicAppUrl: ENV.NEXT_PUBLIC_APP_URL
+    });
+
     // Generate API key for the tenant
     const apiKey = generateApiKey();
-    const loginUrl = `${ENV.NEXT_PUBLIC_APP_URL}/c/${companyHandle}`;
-    const captureUrl = `${ENV.NEXT_PUBLIC_APP_URL}/v1/ingest/lead`;
+    const baseUrl = ENV.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+    const loginUrl = `${baseUrl}/c/${companyHandle}`;
+    const captureUrl = `${baseUrl}/v1/ingest/lead`;
+
+    console.log('🔍 Tenant data:', {
+      companyHandle,
+      plan: plan || "Starter",
+      brandColors: brandColors || "",
+      logoURL: logoURL || "",
+      apiKey: apiKey.substring(0, 8) + '...',
+      loginUrl,
+      captureUrl
+    });
 
     // Create/update tenant in Airtable
     const tenant = await upsertTenantByHandle(companyHandle, {
@@ -102,21 +138,67 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
       "Last Payment": new Date().toISOString(),
     });
 
+    console.log('✅ Tenant created/updated:', tenant.id);
+
     // Link the payer as owner
-    await createOrLinkUserOwner(tenant.id, payerEmail);
+    const userId = await createOrLinkUserOwner(tenant.id, payerEmail);
+    console.log('✅ User linked as owner:', userId);
 
     console.log(`✅ Tenant provisioned successfully: ${companyHandle}`);
     
     // TODO: Send onboarding email with loginUrl, apiKey, captureUrl
     
   } catch (error) {
-    console.error('Failed to provision tenant:', error);
+    console.error('❌ Failed to provision tenant:', error);
+    console.error('❌ Error details:', {
+      message: error.message,
+      stack: error.stack,
+      name: error.name
+    });
   }
 }
 
 async function handlePaymentSucceeded(paymentIntent: Stripe.PaymentIntent) {
   console.log('✅ Payment intent succeeded:', paymentIntent.id);
   // Handle any additional payment success logic
+}
+
+async function handleInvoicePaymentSucceeded(invoice: Stripe.Invoice) {
+  console.log('✅ Invoice payment succeeded:', invoice.id);
+  if (invoice.subscription) {
+    await updateTenantSubscriptionStatus(invoice.subscription as string, 'Active', invoice.period_end);
+  }
+}
+
+async function handleInvoicePaymentFailed(invoice: Stripe.Invoice) {
+  console.log('❌ Invoice payment failed:', invoice.id);
+  if (invoice.subscription) {
+    await updateTenantSubscriptionStatus(invoice.subscription as string, 'PastDue', invoice.period_end);
+  }
+}
+
+async function handleSubscriptionUpdated(subscription: Stripe.Subscription) {
+  console.log('✅ Subscription updated:', subscription.id);
+  const status = subscription.status === 'active' ? 'Active' : 
+                 subscription.status === 'past_due' ? 'PastDue' : 
+                 subscription.status === 'canceled' ? 'Canceled' : 'Inactive';
+  await updateTenantSubscriptionStatus(subscription.id, status, subscription.current_period_end);
+}
+
+async function handleSubscriptionDeleted(subscription: Stripe.Subscription) {
+  console.log('❌ Subscription deleted:', subscription.id);
+  await updateTenantSubscriptionStatus(subscription.id, 'Canceled', subscription.current_period_end);
+}
+
+async function updateTenantSubscriptionStatus(subscriptionId: string, status: string, periodEnd: number) {
+  try {
+    // Find tenant by subscription ID and update status
+    // This would require adding a Subscription ID field to your Airtable tenant table
+    console.log(`Updating tenant subscription status: ${subscriptionId} -> ${status}`);
+    // TODO: Implement tenant lookup and update in Airtable
+  } catch (error) {
+    console.error('Failed to update tenant subscription status:', error);
+  }
 }
 
 function generateApiKey(): string {

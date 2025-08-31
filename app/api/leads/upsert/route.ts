@@ -1,7 +1,25 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { upsertLead } from '@/lib/airtable';
+import { upsertLead } from '@/src/lib/airtable';
+import { checkRateLimit } from '@/src/lib/ratelimit';
+
+// Helper function to extract client IP
+function getClientIP(request: NextRequest): string {
+  return request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 
+         request.headers.get('x-real-ip') || 
+         'unknown';
+}
 
 export async function POST(request: NextRequest) {
+  // Rate limiting check
+  const clientIP = getClientIP(request);
+  if (checkRateLimit(clientIP, 'leads-upsert')) {
+    console.warn(`Rate limited: ${clientIP} for leads-upsert`);
+    return NextResponse.json(
+      { ok: false, error: 'rate_limited' },
+      { status: 429 }
+    );
+  }
+
   try {
     const body = await request.json();
     

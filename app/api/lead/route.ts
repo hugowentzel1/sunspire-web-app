@@ -1,12 +1,30 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { storeLead, storeLeadFallback, LeadData } from '@/lib/airtable';
+import { storeLead, storeLeadFallback, LeadData } from '@/src/lib/airtable';
+import { checkRateLimit } from '@/src/lib/ratelimit';
+
+// Helper function to extract client IP
+function getClientIP(request: NextRequest): string {
+  return request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 
+         request.headers.get('x-real-ip') || 
+         'unknown';
+}
 
 export async function POST(request: NextRequest) {
+  // Rate limiting check
+  const clientIP = getClientIP(request);
+  if (checkRateLimit(clientIP, 'submit-lead')) {
+    console.warn(`Rate limited: ${clientIP} for submit-lead`);
+    return NextResponse.json(
+      { ok: false, error: 'rate_limited' },
+      { status: 429 }
+    );
+  }
+
   try {
     const body = await request.json();
     
     // Validate required fields
-    const { name, email, address, tenantSlug, systemSizeKW, netCostAfterITC, year1Savings, paybackYear, npv25Year, co2OffsetPerYear } = body;
+    const { name, email, address, tenantSlug, systemSizeKW, netCostAfterITC, year1Savings, paybackYear, npv25Year, co2OffsetPerYear, token } = body;
     
     if (!name || !email || !address || !tenantSlug) {
       return NextResponse.json(
@@ -29,6 +47,7 @@ export async function POST(request: NextRequest) {
       paybackPeriodYears: paybackYear, // Map new field to old for Airtable compatibility
       npv25Year,
       co2OffsetPerYear,
+      token: token || '', // Add token for attribution
       createdAt: new Date().toISOString(),
     };
 

@@ -1,27 +1,35 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { ENV } from '@/src/config/env';
+import { checkRateLimit } from '@/src/lib/ratelimit';
 
-// FORCE COMPLETE REDEPLOY - CLEAR ALL CACHES - $(date)
-// Production priority: STRIPE_LIVE_SECRET_KEY first, then fallback to local test keys
-// TIMESTAMP: 2025-08-30 22:30:00 - Force redeploy to load new environment variables
-// NEW VARIABLE: STRIPE_PRODUCTION_KEY - completely new name to bypass Vercel caching
-// UPDATED: Now prioritizing STRIPE_LIVE_SECRET_KEY since it's working in production
+// Helper function to extract client IP
+function getClientIP(request: NextRequest): string {
+  return request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 
+         request.headers.get('x-real-ip') || 
+         'unknown';
+}
 
-// Priority order: Production live key first, then local test keys
-const stripe = (process.env.STRIPE_LIVE_SECRET_KEY || process.env.STRIPE_PRODUCTION_KEY || process.env.STRIPE_SECRET_KEY) ?
-  new Stripe(process.env.STRIPE_LIVE_SECRET_KEY || process.env.STRIPE_PRODUCTION_KEY || process.env.STRIPE_SECRET_KEY!, {
-    apiVersion: '2025-08-27.basil',
-  }) : null;
+// Stripe instance using standardized environment variable
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: '2023-10-16',
+});
 
 export async function POST(req: NextRequest) {
+  // Rate limiting check
+  const clientIP = getClientIP(req);
+  if (checkRateLimit(clientIP, 'stripe-checkout')) {
+    console.warn(`Rate limited: ${clientIP} for stripe-checkout`);
+    return NextResponse.json(
+      { error: 'rate_limited' },
+      { status: 429 }
+    );
+  }
+
   try {
     console.log('🔍 Stripe checkout request received');
     console.log('🔍 Stripe instance:', !!stripe);
-    console.log('🔍 STRIPE_LIVE_SECRET_KEY (prod):', !!process.env.STRIPE_LIVE_SECRET_KEY);
-    console.log('🔍 STRIPE_PRODUCTION_KEY (new):', !!process.env.STRIPE_PRODUCTION_KEY);
-    console.log('🔍 STRIPE_SECRET_KEY (local):', !!process.env.STRIPE_SECRET_KEY);
-    console.log('🔍 Using key starting with:', (process.env.STRIPE_LIVE_SECRET_KEY || process.env.STRIPE_PRODUCTION_KEY || process.env.STRIPE_SECRET_KEY)?.substring(0, 10) || 'undefined');
+    console.log('🔍 Using key starting with:', process.env.STRIPE_SECRET_KEY?.substring(0, 10) || 'undefined');
 
     if (!stripe) {
       console.error('❌ Stripe not configured');
@@ -44,21 +52,29 @@ export async function POST(req: NextRequest) {
     console.log('🔍 Creating Stripe checkout session...');
     console.log('🔍 Request data:', { companyHandle, plan, payerEmail, brandColors, logoURL });
 
+    // Map plan to Stripe Price IDs (recurring + setup fee)
+    const monthlyPrice = process.env.STRIPE_PRICE_MONTHLY_99!;
+    const setupPrice = process.env.STRIPE_PRICE_SETUP_399!;
+    
+    console.log('🔍 Stripe Price IDs:', { monthlyPrice, setupPrice });
+    console.log('🔍 Environment check:', {
+      hasMonthlyPrice: !!monthlyPrice,
+      hasSetupPrice: !!setupPrice,
+      monthlyPriceLength: monthlyPrice?.length,
+      setupPriceLength: setupPrice?.length
+    });
+    
     // Create Stripe checkout session
     const checkoutSession = await stripe.checkout.sessions.create({
       payment_method_types: ['card'],
-      mode: 'payment', // Use 'subscription' for recurring plans
+      mode: 'subscription',
       line_items: [
         {
-          price_data: {
-            currency: 'usd',
-            product_data: {
-              name: `Sunspire ${plan} Plan`,
-              description: `Solar lead generation platform for ${companyHandle}`,
-              images: logoURL ? [logoURL] : [],
-            },
-            unit_amount: getPlanPrice(plan), // Amount in cents
-          },
+          price: monthlyPrice,
+          quantity: 1,
+        },
+        {
+          price: setupPrice,
           quantity: 1,
         },
       ],
@@ -69,8 +85,8 @@ export async function POST(req: NextRequest) {
         logoURL: logoURL || '',
         plan,
       },
-      success_url: `${ENV.NEXT_PUBLIC_APP_URL}/c/${companyHandle}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${ENV.NEXT_PUBLIC_APP_URL}/c/${companyHandle}/cancel`,
+      success_url: `${ENV.NEXT_PUBLIC_APP_URL || new URL(req.url).origin}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${ENV.NEXT_PUBLIC_APP_URL || new URL(req.url).origin}/cancel`,
       customer_email: payerEmail,
     });
 
@@ -84,15 +100,4 @@ export async function POST(req: NextRequest) {
   }
 }
 
-function getPlanPrice(plan: string): number {
-  switch (plan.toLowerCase()) {
-    case 'starter':
-      return 9900; // $99.00
-    case 'growth':
-      return 19900; // $199.00
-    case 'scale':
-      return 49900; // $499.00
-    default:
-      return 9900; // Default to starter
-  }
-}
+

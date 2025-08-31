@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { upsertLead, logEvent } from '@/lib/airtable';
+import { upsertLead, logEvent } from '@/src/lib/airtable';
 
 export async function POST(request: NextRequest) {
   try {
