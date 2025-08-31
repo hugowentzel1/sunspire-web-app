@@ -1,0 +1,147 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - img "Meta logo" [ref=e6]
+        - generic [ref=e7]:
+          - heading "Meta" [level=1] [ref=e8]
+          - paragraph [ref=e9]: Solar Intelligence
+      - navigation [ref=e10]:
+        - link "Pricing" [ref=e11] [cursor=pointer]:
+          - /url: /pricing
+        - link "Partners" [ref=e12] [cursor=pointer]:
+          - /url: /partners
+        - link "Support" [ref=e13] [cursor=pointer]:
+          - /url: /support
+        - button "Activate on Your Domain — 24 Hours" [ref=e14] [cursor=pointer]
+    - paragraph [ref=e17]: Private demo for Meta. Not affiliated.
+  - generic [ref=e18]:
+    - main [ref=e19]:
+      - link "Back to Home" [ref=e21] [cursor=pointer]:
+        - /url: /
+        - img [ref=e22] [cursor=pointer]
+        - text: Back to Home
+      - generic [ref=e24]:
+        - generic [ref=e25]:
+          - generic [ref=e28]: 💰
+          - generic [ref=e29]:
+            - heading "Simple, Transparent Pricing" [level=1] [ref=e30]:
+              - text: Simple, Transparent
+              - generic [ref=e31]: Pricing
+            - paragraph [ref=e32]: One flat rate. No hidden fees. 14-day refund guarantee if it doesn't lift your booked calls.
+        - generic [ref=e34]:
+          - generic [ref=e35]:
+            - heading "$399" [level=2] [ref=e36]
+            - paragraph [ref=e37]: setup + $99/month
+          - generic [ref=e38]:
+            - generic [ref=e39]:
+              - generic [ref=e41]: ✓
+              - generic [ref=e42]: Unlimited solar quotes
+            - generic [ref=e43]:
+              - generic [ref=e45]: ✓
+              - generic [ref=e46]: CRM integration (HubSpot, Salesforce)
+            - generic [ref=e47]:
+              - generic [ref=e49]: ✓
+              - generic [ref=e50]: White-label branding
+            - generic [ref=e51]:
+              - generic [ref=e53]: ✓
+              - generic [ref=e54]: 24/7 support
+            - generic [ref=e55]:
+              - generic [ref=e57]: ✓
+              - generic [ref=e58]: SOC 2 compliance
+          - button "⚡ Activate on Your Domain — 24 Hours" [active] [ref=e59] [cursor=pointer]:
+            - generic [ref=e60] [cursor=pointer]: ⚡
+            - text: Activate on Your Domain — 24 Hours
+          - paragraph [ref=e61]: No call required. 14-day refund if it doesn't lift booked calls.
+        - generic [ref=e62]:
+          - heading "What's included in the setup fee?" [level=3] [ref=e63]
+          - generic [ref=e64]:
+            - paragraph [ref=e65]: • Custom domain setup and SSL certificate
+            - paragraph [ref=e66]: • White-label branding and logo integration
+            - paragraph [ref=e67]: • CRM connection (HubSpot, Salesforce, Airtable)
+            - paragraph [ref=e68]: • Team training and onboarding
+            - paragraph [ref=e69]: • 24/7 priority support for first 30 days
+        - generic [ref=e70]:
+          - heading "Frequently Asked Questions" [level=2] [ref=e71]
+          - generic [ref=e72]:
+            - heading "How long does setup take?" [level=3] [ref=e73]
+            - paragraph [ref=e74]: Most customers are live within 24 hours. Complex integrations may take up to 48 hours.
+          - generic [ref=e75]:
+            - heading "Can I cancel anytime?" [level=3] [ref=e76]
+            - paragraph [ref=e77]: Yes, no long-term contracts. Cancel anytime with 30 days notice.
+          - generic [ref=e78]:
+            - heading "What if it doesn't work for my business?" [level=3] [ref=e79]
+            - paragraph [ref=e80]: We offer a 14-day refund guarantee if the platform doesn't help increase your booked calls.
+          - generic [ref=e81]:
+            - heading "Do you offer volume discounts?" [level=3] [ref=e82]
+            - paragraph [ref=e83]: Yes, for companies with 10+ locations. Contact us for enterprise pricing.
+    - contentinfo [ref=e84]:
+      - contentinfo [ref=e85]:
+        - generic [ref=e86]:
+          - generic [ref=e87]:
+            - generic [ref=e88]:
+              - heading "Sunspire Solar Intelligence" [level=3] [ref=e89]
+              - paragraph [ref=e90]: Demo for Meta — Powered by Sunspire
+              - generic [ref=e91]:
+                - paragraph [ref=e92]:
+                  - img [ref=e93]
+                  - text: "3133 Maple Dr Ne Ste 240 #1156 Atlanta, GA 30305"
+                - generic [ref=e96]:
+                  - link "GDPR" [ref=e97] [cursor=pointer]:
+                    - /url: /security#gdpr
+                  - link "CCPA" [ref=e98] [cursor=pointer]:
+                    - /url: /security#ccpa
+                  - link "SOC 2" [ref=e99] [cursor=pointer]:
+                    - /url: /security#soc2
+                - paragraph [ref=e100]:
+                  - img [ref=e101]
+                  - text: hello@sunspire.app
+                - paragraph [ref=e103]:
+                  - img [ref=e104]
+                  - text: +1 (555) 123-4567
+            - generic [ref=e106]:
+              - heading "Quick Links" [level=4] [ref=e107]
+              - generic [ref=e108]:
+                - link "Pricing" [ref=e109] [cursor=pointer]:
+                  - /url: /pricing
+                - link "Partners" [ref=e110] [cursor=pointer]:
+                  - /url: /partners
+                - link "Support" [ref=e111] [cursor=pointer]:
+                  - /url: /support
+                - link "Demo" [ref=e112] [cursor=pointer]:
+                  - /url: /demo
+            - generic [ref=e113]:
+              - heading "Legal & Support" [level=4] [ref=e114]
+              - generic [ref=e115]:
+                - link "Privacy Policy" [ref=e116] [cursor=pointer]:
+                  - /url: /privacy
+                - link "Terms of Service" [ref=e117] [cursor=pointer]:
+                  - /url: /terms
+                - link "Security" [ref=e118] [cursor=pointer]:
+                  - /url: /security
+                - link "DPA" [ref=e119] [cursor=pointer]:
+                  - /url: /dpa
+                - link "Do Not Sell My Data" [ref=e120] [cursor=pointer]:
+                  - /url: /do-not-sell
+          - generic [ref=e122]:
+            - generic [ref=e123]:
+              - img [ref=e124]
+              - generic [ref=e126]: Estimates generated using NREL PVWatts® v8
+            - generic [ref=e127]:
+              - img [ref=e128]
+              - generic [ref=e130]: Mapping & location data © Google
+            - paragraph [ref=e132]:
+              - text: Powered by
+              - generic [ref=e133]: Sunspire
+  - alert [ref=e134]
+  - generic [ref=e137]:
+    - generic [ref=e138]:
+      - heading "We use cookies to improve your experience" [level=3] [ref=e139]
+      - paragraph [ref=e140]: We use cookies and similar technologies to analyze site usage, personalize content, and provide social media features. By continuing to use our site, you consent to our use of cookies.
+    - generic [ref=e141]:
+      - button "Decline" [ref=e142] [cursor=pointer]
+      - button "Accept All" [ref=e143] [cursor=pointer]
+```

@@ -5,12 +5,18 @@ import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import { useBrandColors } from '@/hooks/useBrandColors';
 import LegalFooter from '@/components/legal/LegalFooter';
 import { track } from '@/src/demo/track';
+import { attachCheckoutHandlers } from '@/src/lib/checkout';
 
 export default function PricingPage() {
   const b = useBrandTakeover();
   
   // Apply brand colors from URL
   useBrandColors();
+
+  // Attach checkout handlers to CTAs
+  useEffect(() => {
+    attachCheckoutHandlers();
+  }, []);
   
 
 
@@ -102,6 +108,7 @@ export default function PricingPage() {
               </div>
 
               <button 
+                data-cta="primary"
                 onClick={handleLaunchClick}
                 className="w-full inline-flex items-center justify-center px-8 py-4 rounded-full text-lg font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer bg-[var(--brand)]"
               >

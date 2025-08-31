@@ -11,6 +11,7 @@ import { useBrandColors } from '@/hooks/useBrandColors';
 import { usePreviewQuota } from '@/src/demo/usePreviewQuota';
 import { useCountdown } from '@/src/demo/useCountdown';
 import React from 'react';
+import { attachCheckoutHandlers } from '@/src/lib/checkout';
 
 const AddressAutocomplete = dynamic(() => import('@/components/AddressAutocomplete'), { 
   ssr: false,
@@ -46,6 +47,11 @@ function HomeContent() {
   // Ensure client-side rendering
   useEffect(() => {
     setIsClient(true);
+  }, []);
+
+  // Attach checkout handlers to CTAs
+  useEffect(() => {
+    attachCheckoutHandlers();
   }, []);
 
 
@@ -161,6 +167,7 @@ function HomeContent() {
                     Your Logo. Your URL. Instant Solar Quotes — Live in 24 Hours
                   </p>
                   <button 
+                    data-cta="primary"
                     onClick={handleLaunchClick}
                     data-cta-button
                     className="inline-flex items-center px-4 py-4 rounded-full text-sm font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer" 
@@ -252,6 +259,7 @@ function HomeContent() {
 
                 {/* Generate Button - Now below the search bar */}
                 <button 
+                  data-cta="primary"
                   onClick={b.enabled && address.trim() ? handleGenerateEstimate : (b.enabled ? handleLaunchClick : handleGenerateEstimate)}
                   disabled={!b.enabled && !address.trim() || isLoading} 
                   data-cta-button
