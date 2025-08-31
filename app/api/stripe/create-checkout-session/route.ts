@@ -90,7 +90,7 @@ export async function POST(req: NextRequest) {
       },
       success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${origin}/cancel`,
-      customer_email: email,
+      customer_email: email || undefined,
     });
 
     return NextResponse.json({ url: checkoutSession.url });

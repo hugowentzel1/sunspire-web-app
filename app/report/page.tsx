@@ -14,8 +14,8 @@ import UnlockButton from '@/components/UnlockButton';
 
 import { ensureBlurSupport } from '@/src/lib/ensureBlur';
 
-import { useBrandColors } from '@/hooks/useBrandColors';
 import { getBrandTheme } from '@/lib/brandTheme';
+import { attachCheckoutHandlers } from '@/src/lib/checkout';
 import StickyBuyBar from '@/src/demo/StickyBuyBar';
 import InstallSheet from '@/src/demo/InstallSheet';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
@@ -23,6 +23,16 @@ import HeroBrand from '@/src/brand/HeroBrand';
 import StickyCTA from '@/components/StickyCTA';
 // import { DemoBanner } from '@/src/demo/DemoChrome';
 import Image from 'next/image';
+
+// Demo addresses for different states
+const demoAddressesByState: Record<string, {address:string, lat:number, lng:number}> = {
+  AZ: { address: "123 N Central Ave, Phoenix, AZ", lat: 33.4484, lng: -112.0740 },
+  CA: { address: "111 S Spring St, Los Angeles, CA", lat: 34.0537, lng: -118.2428 },
+  FL: { address: "200 S Orange Ave, Orlando, FL", lat: 28.5384, lng: -81.3789 },
+  GA: { address: "2 City Plaza, Atlanta, GA", lat: 33.749, lng: -84.388 },
+  TX: { address: "901 S Mopac Expy, Austin, TX", lat: 30.2672, lng: -97.7431 },
+  NV: { address: "400 Stewart Ave, Las Vegas, NV", lat: 36.1716, lng: -115.1391 }
+};
 
 function ReportContent() {
   const searchParams = useSearchParams();
@@ -37,8 +47,10 @@ function ReportContent() {
   // Brand takeover mode detection
   const b = useBrandTakeover();
   
-  // Brand colors from URL
-  useBrandColors();
+  // Attach checkout handlers to CTAs
+  useEffect(() => {
+    attachCheckoutHandlers();
+  }, []);
 
   // Stripe checkout handler
   const handleCheckout = async () => {
@@ -142,19 +154,63 @@ function ReportContent() {
     return null;
   };
 
-  const demoAddressesByState: Record<string, {address:string, lat:number, lng:number}> = {
-    AZ: { address: "123 N Central Ave, Phoenix, AZ", lat: 33.4484, lng: -112.0740 },
-    CA: { address: "111 S Spring St, Los Angeles, CA", lat: 34.0537, lng: -118.2428 },
-    FL: { address: "200 S Orange Ave, Orlando, FL", lat: 28.5384, lng: -81.3789 },
-    GA: { address: "2 City Plaza, Atlanta, GA", lat: 33.749, lng: -84.388 },
-    TX: { address: "901 S Mopac Expy, Austin, TX", lat: 30.2672, lng: -97.7431 },
-    NV: { address: "400 Stewart Ave, Las Vegas, NV", lat: 36.1716, lng: -115.1391 }
-  };
+
 
   const pickDemoAddress = useCallback((state?: string) => {
     if (state && demoAddressesByState[state]) return demoAddressesByState[state];
     return demoAddressesByState["AZ"]; // sunny default
-  }, [demoAddressesByState]);
+  }, []);
+
+  const fetchEstimate = async (address: string, lat: number, lng: number, placeId?: string | null) => {
+    try {
+      const params = new URLSearchParams({ address, lat: String(lat), lng: String(lng), ...(placeId && { placeId }) });
+      const response = await fetch(`/api/estimate?${params}`);
+      if (!response.ok) throw new Error(`Failed to fetch estimate: ${response.status}`);
+      const data = await response.json();
+      if (!data.estimate) throw new Error('No estimate data in response');
+      setEstimate(data.estimate);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Unknown error');
+      setEstimate({
+        id: Date.now().toString(),
+        address,
+        coordinates: { lat, lng },
+        date: new Date(),
+        systemSizeKW: 8.6,
+        tilt: 20,
+        azimuth: 180,
+        losses: 14,
+        annualProductionKWh: 11105634,
+        monthlyProduction: Array(12).fill(1000),
+        solarIrradiance: 4.5,
+        grossCost: 25800,
+        netCostAfterITC: 18060,
+        year1Savings: 2254,
+        paybackYear: 8,
+        npv25Year: 73000,
+        co2OffsetPerYear: 10200,
+        utilityRate: 0.14,
+        utilityRateSource: 'Static',
+        assumptions: {
+          itcPercentage: 0.30,
+          costPerWatt: 3.00,
+          degradationRate: 0.005,
+          oandmPerKWYear: 22,
+          electricityRateIncrease: 0.025,
+          discountRate: 0.07,
+        },
+        cashflowProjection: Array.from({ length: 25 }, (_, i) => ({
+          year: i + 1,
+          production: Math.round(12000 * Math.pow(0.995, i)),
+          savings: Math.round(12000 * Math.pow(0.995, i) * 0.14),
+          cumulativeSavings: Math.round(12000 * 0.14 * (i + 1)),
+          netCashflow: Math.round(12000 * 0.14 * (i + 1) - 18060),
+        })),
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
     const demoFlag = searchParams.get('demo');
@@ -242,58 +298,7 @@ function ReportContent() {
       setError('Missing address or coordinates.');
       setIsLoading(false);
     }
-  }, [searchParams]);
-
-  const fetchEstimate = async (address: string, lat: number, lng: number, placeId?: string | null) => {
-    try {
-      const params = new URLSearchParams({ address, lat: String(lat), lng: String(lng), ...(placeId && { placeId }) });
-      const response = await fetch(`/api/estimate?${params}`);
-      if (!response.ok) throw new Error(`Failed to fetch estimate: ${response.status}`);
-      const data = await response.json();
-      if (!data.estimate) throw new Error('No estimate data in response');
-      setEstimate(data.estimate);
-    } catch (e) {
-      setError(e instanceof Error ? e.message : 'Unknown error');
-      setEstimate({
-        id: Date.now().toString(),
-        address,
-        coordinates: { lat, lng },
-        date: new Date(),
-        systemSizeKW: 8.6,
-        tilt: 20,
-        azimuth: 180,
-        losses: 14,
-        annualProductionKWh: 11105634,
-        monthlyProduction: Array(12).fill(1000),
-        solarIrradiance: 4.5,
-        grossCost: 25800,
-        netCostAfterITC: 18060,
-        year1Savings: 2254,
-        paybackYear: 8,
-        npv25Year: 73000,
-        co2OffsetPerYear: 10200,
-        utilityRate: 0.14,
-        utilityRateSource: 'Static',
-        assumptions: {
-          itcPercentage: 0.30,
-          costPerWatt: 3.00,
-          degradationRate: 0.005,
-          oandmPerKWYear: 22,
-          electricityRateIncrease: 0.025,
-          discountRate: 0.07,
-        },
-        cashflowProjection: Array.from({ length: 25 }, (_, i) => ({
-          year: i + 1,
-          production: Math.round(12000 * Math.pow(0.995, i)),
-          savings: Math.round(12000 * Math.pow(0.995, i) * 0.14),
-          cumulativeSavings: Math.round(12000 * 0.14 * (i + 1)),
-          netCashflow: Math.round(12000 * 0.14 * (i + 1) - 18060),
-        })),
-      });
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    }, [searchParams, pickDemoAddress]);
 
   if (tenantLoading || isLoading) {
     return (
@@ -632,6 +637,7 @@ function ReportContent() {
             <p className="text-xl mb-10 opacity-90">Get complete financial projections, detailed assumptions, and unblurred savings charts</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <motion.button 
+                data-cta="primary"
                 onClick={handleCheckout}
                 className="px-8 py-4 bg-white text-black rounded-2xl font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" 
                 whileHover={{ scale: 1.05 }} 
