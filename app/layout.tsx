@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import '@/components/ui/sunset-theme.css'
 import AppErrorBoundary from '@/components/AppErrorBoundary'
-import DemoRibbon from '@/components/ui/DemoRibbon'
+// import DemoRibbon from '@/components/ui/DemoRibbon'
 import BrandProvider from '@/src/brand/BrandProvider'
 import BrandCSSInjector from '@/components/BrandCSSInjector'
 import BootProbe from './BootProbe'
@@ -30,7 +30,7 @@ export default function RootLayout({
         <AppErrorBoundary>
           <BrandProvider>
             <CompanyProvider>
-              <DemoRibbon />
+              {/* DemoRibbon removed */}
               <SharedNavigation />
               {children}
             </CompanyProvider>

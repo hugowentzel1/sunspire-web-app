@@ -16,8 +16,8 @@ import { ensureBlurSupport } from '@/src/lib/ensureBlur';
 
 import { getBrandTheme } from '@/lib/brandTheme';
 import { attachCheckoutHandlers } from '@/src/lib/checkout';
-import StickyBuyBar from '@/src/demo/StickyBuyBar';
-import InstallSheet from '@/src/demo/InstallSheet';
+// import StickyBuyBar from '@/src/demo/StickyBuyBar';
+// import InstallSheet from '@/src/demo/InstallSheet';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import HeroBrand from '@/src/brand/HeroBrand';
 import StickyCTA from '@/components/StickyCTA';
@@ -85,6 +85,68 @@ function ReportContent() {
       console.error('Checkout error:', error);
       alert('Unable to start checkout. Please try again.');
     }
+  };
+
+  // Capitalize company names properly
+  const capitalizeCompanyName = (brand: string) => {
+    if (!brand) return '';
+    
+    // Handle special cases
+    const specialCases: Record<string, string> = {
+      'meta': 'Meta',
+      'facebook': 'Facebook',
+      'google': 'Google',
+      'microsoft': 'Microsoft',
+      'apple': 'Apple',
+      'amazon': 'Amazon',
+      'netflix': 'Netflix',
+      'spotify': 'Spotify',
+      'twitter': 'Twitter',
+      'linkedin': 'LinkedIn',
+      'instagram': 'Instagram',
+      'twitch': 'Twitch',
+      'discord': 'Discord',
+      'slack': 'Slack',
+      'shopify': 'Shopify',
+      'uber': 'Uber',
+      'lyft': 'Lyft',
+      'tesla': 'Tesla',
+      'sunpower': 'SunPower',
+      'solarcity': 'SolarCity',
+      'vivint': 'Vivint',
+      'sunrun': 'Sunrun',
+      'sunnova': 'Sunnova',
+      'tealenergy': 'Teal Energy',
+      'solarpro': 'SolarPro',
+      'ecosolar': 'EcoSolar',
+      'premiumsolar': 'Premium Solar',
+      'acme': 'ACME',
+      'bp': 'BP',
+      'shell': 'Shell',
+      'exxon': 'ExxonMobil',
+      'chevron': 'Chevron',
+      'zillow': 'Zillow',
+      'redfin': 'Redfin',
+      'realtor': 'Realtor.com',
+      'homedepot': 'The Home Depot',
+      'chase': 'Chase',
+      'wellsfargo': 'Wells Fargo',
+      'bankofamerica': 'Bank of America',
+      'goldmansachs': 'Goldman Sachs',
+      'starbucks': 'Starbucks',
+      'mcdonalds': 'McDonald\'s',
+      'cocacola': 'Coca-Cola',
+      'coca': 'Coca-Cola',
+      'target': 'Target',
+      'bestbuy': 'Best Buy',
+      'snapchat': 'Snapchat',
+      'whatsapp': 'WhatsApp',
+      'firefox': 'Firefox',
+      'harleydavidson': 'Harley-Davidson'
+    };
+    
+    const brandLower = brand.toLowerCase();
+    return specialCases[brandLower] || brand.charAt(0).toUpperCase() + brand.slice(1).toLowerCase();
   };
 
   // Generate a default logo URL for common companies when no logo is provided
@@ -364,7 +426,7 @@ function ReportContent() {
               )}
               <div>
                 <h1 className="text-2xl font-black text-[var(--brand-primary)]">
-                  {demoMode ? b.brand : 'Your Company'}
+                  {demoMode ? capitalizeCompanyName(b.brand) : 'Your Company'}
                 </h1>
                 <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
                   SOLAR INTELLIGENCE REPORT
@@ -427,10 +489,10 @@ function ReportContent() {
                 {/* Company Name and Tagline */}
                 <div>
                   <h1 className="text-2xl font-black text-[var(--brand-primary)]">
-                    {b.enabled ? b.brand : 'Your Company'}
+                    {b.enabled ? capitalizeCompanyName(b.brand) : 'Your Company'}
                   </h1>
                   <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
-                    Solar Intelligence Report
+                    SOLAR INTELLIGENCE REPORT
                   </p>
                 </div>
               </div>
@@ -439,7 +501,7 @@ function ReportContent() {
               {b.enabled && (
                 <div className="text-right">
                   <p className="text-xs text-gray-500">
-                    Private demo for {b.brand}
+                    Private demo for {capitalizeCompanyName(b.brand)}
                   </p>
                   <p className="text-xs text-gray-400">
                     Not affiliated
@@ -477,7 +539,7 @@ function ReportContent() {
               )}
             </motion.div>
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl font-black text-gray-900">New Analysis</h1>
+              <h1 className="text-4xl md:text-5xl font-black text-gray-900">Solar Intelligence Report</h1>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">Comprehensive analysis for your property at {estimate.address}</p>
 
               <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
@@ -632,6 +694,25 @@ function ReportContent() {
             </div>
           </motion.div>
 
+          {/* Ready-to text section */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 0.8, duration: 0.8 }} 
+            className="text-center mb-8"
+          >
+            <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 border border-gray-200/30">
+              <p className="text-lg text-gray-700 leading-relaxed">
+                A ready-to-deploy solar intelligence tool — live on your site in minutes.
+                {b.enabled && (
+                                  <span className="block mt-2 text-sm text-gray-500">
+                  Private demo for {capitalizeCompanyName(b.brand)}, not affiliated
+                </span>
+                )}
+              </p>
+            </div>
+          </motion.div>
+
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="rounded-3xl py-12 px-8 text-center text-white" style={{ backgroundColor: 'var(--brand)' }}>
             <h2 className="text-3xl font-bold mb-6">Ready to Launch Your Branded Tool?</h2>
             <p className="text-xl mb-10 opacity-90">Get complete financial projections, detailed assumptions, and unblurred savings charts</p>
@@ -646,22 +727,24 @@ function ReportContent() {
                 Unlock Full Report - $99/mo + $399
               </motion.button>
               <motion.button 
-                onClick={() => setShowLeadModal(true)}
+                data-cta="primary"
+                onClick={handleCheckout}
                 className="px-8 py-4 bg-white text-black rounded-2xl font-bold text-lg border-2 border-white hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1" 
                 whileHover={{ scale: 1.05 }} 
                 whileTap={{ scale: 0.95 }}
               >
-                Request Sample Report
+                Activate on Your Domain - $99/mo + $399
               </motion.button>
             </div>
             <div className="mt-8 text-center">
               <p className="text-lg mb-2">Only $99/mo + $399 setup. 14-day refund if it doesn&apos;t lift booked calls.</p>
               <p className="text-base opacity-90 mb-4">Cancel anytime. No long-term contracts.</p>
               <button 
-                onClick={() => setShowLeadModal(true)}
+                data-cta="primary"
+                onClick={handleCheckout}
                 className="text-white underline hover:no-underline font-medium"
               >
-                Email me full report
+                Activate on Your Domain
               </button>
             </div>
             <div className="mt-6 pt-4 border-t border-white/20">
@@ -677,14 +760,12 @@ function ReportContent() {
             className="text-center mb-8"
           >
             <button 
-              onClick={() => {
-                navigator.clipboard.writeText(window.location.href);
-                // Could add a toast notification here
-              }}
+              data-cta="primary"
+              onClick={handleCheckout}
               className="px-6 py-3 rounded-lg font-medium transition-colors text-white"
               style={{ backgroundColor: 'var(--brand)' }}
             >
-              📋 Copy Demo Link
+              🚀 Activate on Your Domain
             </button>
           </motion.div>
           
@@ -713,9 +794,7 @@ function ReportContent() {
         <LeadModal isOpen={showLeadModal} onClose={() => setShowLeadModal(false)} estimate={estimate} address={estimate.address} />
       )}
       
-      {/* Demo components - only show when brand takeover is enabled */}
-      <InstallSheet />
-      <StickyBuyBar />
+      {/* Demo components removed - no more popup */}
       
       {/* Sticky CTA */}
       <StickyCTA />
