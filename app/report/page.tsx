@@ -429,7 +429,7 @@ function ReportContent() {
                   {demoMode ? capitalizeCompanyName(b.brand) : 'Your Company'}
                 </h1>
                 <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
-                  SOLAR INTELLIGENCE REPORT
+                  Solar Intelligence
                 </p>
               </div>
             </div>
@@ -492,22 +492,12 @@ function ReportContent() {
                     {b.enabled ? capitalizeCompanyName(b.brand) : 'Your Company'}
                   </h1>
                   <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
-                    SOLAR INTELLIGENCE REPORT
+                    Solar Intelligence
                   </p>
                 </div>
               </div>
               
-              {/* Demo Disclaimer */}
-              {b.enabled && (
-                <div className="text-right">
-                  <p className="text-xs text-gray-500">
-                    Private demo for {capitalizeCompanyName(b.brand)}
-                  </p>
-                  <p className="text-xs text-gray-400">
-                    Not affiliated
-                  </p>
-                </div>
-              )}
+              {/* Demo Disclaimer - Removed to match c548b88 design */}
             </div>
           </div>
         </motion.div>
@@ -539,7 +529,7 @@ function ReportContent() {
               )}
             </motion.div>
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl font-black text-gray-900">Solar Intelligence Report</h1>
+              <h1 className="text-4xl md:text-5xl font-black text-gray-900">New Analysis</h1>
               <p className="text-xl text-gray-600 max-w-2xl mx-auto">Comprehensive analysis for your property at {estimate.address}</p>
 
               <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
@@ -702,12 +692,12 @@ function ReportContent() {
             className="text-center mb-8"
           >
             <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 border border-gray-200/30">
-              <p className="text-lg text-gray-700 leading-relaxed">
-                A ready-to-deploy solar intelligence tool — live on your site in minutes.
+                            <p className="text-lg text-gray-700 leading-relaxed">
+                A ready-to-deploy solar intelligence tool — live on your site within 24 hours.
                 {b.enabled && (
-                                  <span className="block mt-2 text-sm text-gray-500">
-                  Private demo for {capitalizeCompanyName(b.brand)}, not affiliated
-                </span>
+                  <span className="block mt-2 text-sm text-gray-500">
+                    Not affiliated with {capitalizeCompanyName(b.brand)}
+                  </span>
                 )}
               </p>
             </div>
