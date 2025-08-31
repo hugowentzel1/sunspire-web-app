@@ -1,0 +1,237 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e5]:
+        - generic [ref=e6]:
+          - img "Apple logo" [ref=e7]
+          - generic [ref=e8]:
+            - heading "Apple" [level=1] [ref=e9]
+            - paragraph [ref=e10]: Solar Intelligence
+        - navigation [ref=e11]:
+          - link "Pricing" [ref=e12] [cursor=pointer]:
+            - /url: /pricing
+          - link "Partners" [ref=e13] [cursor=pointer]:
+            - /url: /partners
+          - link "Support" [ref=e14] [cursor=pointer]:
+            - /url: /support
+          - button "New Analysis" [ref=e15] [cursor=pointer]
+    - main [ref=e16]:
+      - generic [ref=e18]:
+        - paragraph [ref=e19]: A ready-to-deploy solar intelligence tool — live on your site within 24 hours.
+        - generic [ref=e20]: Not affiliated with Apple
+      - generic [ref=e21]:
+        - generic [ref=e22]:
+          - img "Apple logo" [ref=e24]
+          - generic [ref=e25]:
+            - heading "New Analysis" [level=1] [ref=e26]
+            - paragraph [ref=e27]: Comprehensive analysis for your property at 123 N Central Ave, Phoenix, AZ
+            - generic [ref=e28]:
+              - generic [ref=e29]: "Data Source: generic"
+              - generic [ref=e30]: •
+              - generic [ref=e31]: Generated on 8/31/2025
+        - generic [ref=e32]:
+          - generic [ref=e34]:
+            - generic [ref=e36]: ⚡
+            - generic [ref=e37]: 6 kW
+            - generic [ref=e38]: System Size
+          - generic [ref=e40]:
+            - generic [ref=e42]: ☀️
+            - generic [ref=e43]: 13,859 kWh
+            - generic [ref=e44]: Annual Production
+          - generic [ref=e45]:
+            - generic [ref=e46]:
+              - generic [ref=e48]: 💰
+              - generic [ref=e49]: $12,600
+              - generic [ref=e50]: Net Cost (After ITC)
+            - button "Unlock Full Report" [ref=e51] [cursor=pointer]:
+              - img [ref=e52] [cursor=pointer]
+              - generic [ref=e55] [cursor=pointer]: Unlock Full Report
+          - generic [ref=e56]:
+            - generic [ref=e57]:
+              - generic [ref=e59]: 📈
+              - generic [ref=e60]: $2,363
+              - generic [ref=e61]: Year 1 Savings
+            - button "Unlock Full Report" [ref=e62] [cursor=pointer]:
+              - img [ref=e63] [cursor=pointer]
+              - generic [ref=e66] [cursor=pointer]: Unlock Full Report
+        - generic [ref=e69]:
+          - generic [ref=e70]:
+            - heading "Your Solar Savings Over Time" [level=3] [ref=e71]
+            - paragraph [ref=e72]: Simple view of how your solar investment pays off over 25 years
+          - application [ref=e76]:
+            - generic [ref=e80]:
+              - generic [ref=e81]:
+                - generic [ref=e84]: "1"
+                - generic [ref=e87]: "5"
+                - generic [ref=e90]: "10"
+                - generic [ref=e93]: "15"
+                - generic [ref=e96]: "20"
+                - generic [ref=e99]: "25"
+              - generic [ref=e101]: Years
+            - generic [ref=e102]:
+              - generic [ref=e103]:
+                - generic [ref=e106]: $0k
+                - generic [ref=e109]: $20k
+                - generic [ref=e112]: $40k
+                - generic [ref=e115]: $60k
+                - generic [ref=e118]: $80k
+              - generic [ref=e120]: Total Savings
+          - generic [ref=e132]:
+            - generic [ref=e133]:
+              - generic [ref=e135]: $13k
+              - generic [ref=e136]: Investment
+            - generic [ref=e137]:
+              - generic [ref=e139]: 6 years
+              - generic [ref=e140]: Payback Time
+            - generic [ref=e141]:
+              - generic [ref=e143]: $76k
+              - generic [ref=e144]: 25-Year Savings
+          - paragraph [ref=e146]:
+            - generic [ref=e147]: "How to read this:"
+            - text: The green area shows your total savings growing over time. After 6 years, you'll have saved enough to cover your initial investment. By year 25, you'll have saved $76k total.
+          - img
+        - generic [ref=e148]:
+          - generic [ref=e149]:
+            - generic [ref=e150]:
+              - heading "Financial Analysis" [level=2] [ref=e151]
+              - generic [ref=e152]:
+                - generic [ref=e153]:
+                  - generic [ref=e154]: Payback Period
+                  - generic [ref=e155]: 6 years
+                - generic [ref=e156]:
+                  - generic [ref=e157]: 25-Year NPV
+                  - generic [ref=e158]: $20,329
+                - generic [ref=e159]:
+                  - generic [ref=e160]: ROI
+                  - generic [ref=e161]: 261%
+                - generic [ref=e162]:
+                  - generic [ref=e163]: Electricity Rate
+                  - generic [ref=e164]: $0.18/kWh (generic)
+            - button "Unlock Full Report" [ref=e165] [cursor=pointer]:
+              - img [ref=e166] [cursor=pointer]
+              - generic [ref=e169] [cursor=pointer]: Unlock Full Report
+          - generic [ref=e170]:
+            - generic [ref=e171]:
+              - heading "Environmental Impact" [level=2] [ref=e172]
+              - generic [ref=e173]:
+                - generic [ref=e174]:
+                  - generic [ref=e175]: CO₂ Offset/Year
+                  - generic [ref=e176]: 11,780 lbs
+                - generic [ref=e177]:
+                  - generic [ref=e178]: Solar Irradiance
+                  - generic [ref=e179]: 7.63 kWh/m²/day
+                - generic [ref=e180]:
+                  - generic [ref=e181]: System Tilt
+                  - generic [ref=e182]: 0°
+                - generic [ref=e183]:
+                  - generic [ref=e184]: System Losses
+                  - generic [ref=e185]: 5%
+            - button "Unlock Full Report" [ref=e186] [cursor=pointer]:
+              - img [ref=e187] [cursor=pointer]
+              - generic [ref=e190] [cursor=pointer]: Unlock Full Report
+          - generic [ref=e192]:
+            - heading "Calculation Assumptions" [level=2] [ref=e193]
+            - generic [ref=e194]:
+              - generic [ref=e195]:
+                - generic [ref=e196]: Federal Tax Credit (ITC)
+                - generic [ref=e197]: 30%
+              - generic [ref=e198]:
+                - generic [ref=e199]: Cost per Watt
+                - generic [ref=e200]: $3
+              - generic [ref=e201]:
+                - generic [ref=e202]: Panel Degradation
+                - generic [ref=e203]: 0.5%/year
+              - generic [ref=e204]:
+                - generic [ref=e205]: O&M Cost
+                - generic [ref=e206]: $22/kW/year
+              - generic [ref=e207]:
+                - generic [ref=e208]: Rate Increase
+                - generic [ref=e209]: 2.5%/year
+              - generic [ref=e210]:
+                - generic [ref=e211]: Discount Rate
+                - generic [ref=e212]: 7%
+            - paragraph [ref=e214]: Last updated 8/31/2025
+        - generic [ref=e215]:
+          - heading "Ready to Launch Your Branded Tool?" [level=2] [ref=e216]
+          - paragraph [ref=e217]: Get complete financial projections, detailed assumptions, and unblurred savings charts
+          - generic [ref=e218]:
+            - button "Unlock Full Report - $99/mo + $399" [ref=e219] [cursor=pointer]
+            - button "Activate on Your Domain - $99/mo + $399" [ref=e220] [cursor=pointer]
+          - generic [ref=e221]:
+            - paragraph [ref=e222]: Only $99/mo + $399 setup. 14-day refund if it doesn't lift booked calls.
+            - paragraph [ref=e223]: Cancel anytime. No long-term contracts.
+            - button "Activate on Your Domain" [ref=e224] [cursor=pointer]
+          - paragraph [ref=e226]: Full version from just $99/mo + $399 setup. Most tools cost $2,500+/mo.
+        - button "🚀 Activate on Your Domain" [ref=e228] [cursor=pointer]
+        - paragraph [ref=e231]: Estimates are informational only, based on modeled data (NREL PVWatts® v8 and current utility rates). Actual results vary by site conditions and installation quality. Not a binding quote.
+    - contentinfo [ref=e232]:
+      - contentinfo [ref=e233]:
+        - generic [ref=e234]:
+          - generic [ref=e235]:
+            - generic [ref=e236]:
+              - heading "Sunspire Solar Intelligence" [level=3] [ref=e237]
+              - paragraph [ref=e238]: Demo for Apple — Powered by Sunspire
+              - generic [ref=e239]:
+                - paragraph [ref=e240]:
+                  - img [ref=e241]
+                  - text: "3133 Maple Dr Ne Ste 240 #1156 Atlanta, GA 30305"
+                - generic [ref=e244]:
+                  - link "GDPR" [ref=e245] [cursor=pointer]:
+                    - /url: /security#gdpr
+                  - link "CCPA" [ref=e246] [cursor=pointer]:
+                    - /url: /security#ccpa
+                  - link "SOC 2" [ref=e247] [cursor=pointer]:
+                    - /url: /security#soc2
+                - paragraph [ref=e248]:
+                  - img [ref=e249]
+                  - text: hello@sunspire.app
+                - paragraph [ref=e251]:
+                  - img [ref=e252]
+                  - text: +1 (555) 123-4567
+            - generic [ref=e254]:
+              - heading "Quick Links" [level=4] [ref=e255]
+              - generic [ref=e256]:
+                - link "Pricing" [ref=e257] [cursor=pointer]:
+                  - /url: /pricing
+                - link "Partners" [ref=e258] [cursor=pointer]:
+                  - /url: /partners
+                - link "Support" [ref=e259] [cursor=pointer]:
+                  - /url: /support
+                - link "Demo" [ref=e260] [cursor=pointer]:
+                  - /url: /demo
+            - generic [ref=e261]:
+              - heading "Legal & Support" [level=4] [ref=e262]
+              - generic [ref=e263]:
+                - link "Privacy Policy" [ref=e264] [cursor=pointer]:
+                  - /url: /privacy
+                - link "Terms of Service" [ref=e265] [cursor=pointer]:
+                  - /url: /terms
+                - link "Security" [ref=e266] [cursor=pointer]:
+                  - /url: /security
+                - link "DPA" [ref=e267] [cursor=pointer]:
+                  - /url: /dpa
+                - link "Do Not Sell My Data" [ref=e268] [cursor=pointer]:
+                  - /url: /do-not-sell
+          - generic [ref=e270]:
+            - generic [ref=e271]:
+              - img [ref=e272]
+              - generic [ref=e274]: Estimates generated using NREL PVWatts® v8
+            - generic [ref=e275]:
+              - img [ref=e276]
+              - generic [ref=e278]: Mapping & location data © Google
+            - paragraph [ref=e280]:
+              - text: Powered by
+              - generic [ref=e281]: Sunspire
+  - alert [ref=e282]
+  - generic [ref=e285]:
+    - generic [ref=e286]:
+      - heading "We use cookies to improve your experience" [level=3] [ref=e287]
+      - paragraph [ref=e288]: We use cookies and similar technologies to analyze site usage, personalize content, and provide social media features. By continuing to use our site, you consent to our use of cookies.
+    - generic [ref=e289]:
+      - button "Decline" [ref=e290] [cursor=pointer]
+      - button "Accept All" [ref=e291] [cursor=pointer]
+  - generic [ref=e292]: $20k
+```

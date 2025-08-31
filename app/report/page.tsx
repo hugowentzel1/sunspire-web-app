@@ -395,42 +395,29 @@ function ReportContent() {
       <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
+            {/* Company logo section restored */}
             <div className="flex items-center space-x-4">
-              {demoMode ? (
-                (b.logo || getDefaultLogo(b.brand)) ? (
-                  <Image 
-                    src={b.logo || getDefaultLogo(b.brand) || ''} 
-                    alt={`${b.brand} logo`} 
-                    width={48} 
-                    height={48} 
-                    className="rounded-lg"
-                    style={{ 
-                      objectFit: "contain",
-                      width: "48px",
-                      height: "48px",
-                      minWidth: "48px",
-                      minHeight: "48px",
-                      maxWidth: "48px",
-                      maxHeight: "48px"
-                    }}
-                  />
-                ) : (
-                  <div className="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center">
-                    <span className="text-white text-lg font-bold">☀️</span>
-                  </div>
-                )
+              {demoMode && (b.logo || getDefaultLogo(b.brand)) ? (
+                <Image 
+                  src={b.logo || getDefaultLogo(b.brand) || ''} 
+                  alt={`${b.brand} logo`} 
+                  width={48} 
+                  height={48} 
+                  className="rounded-xl shadow-[0_4px_15px_rgba(0,0,0,.08)]"
+                  style={{ 
+                    objectFit: "contain",
+                    width: "48px",
+                    height: "48px"
+                  }}
+                />
               ) : (
-                <div className="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center">
-                  <span className="text-white text-lg font-bold">☀️</span>
+                <div className="brand-gradient text-white rounded-full w-12 h-12 grid place-items-center shadow-[0_4px_15px_rgba(0,0,0,.08)]">
+                  <span className="text-2xl">☀️</span>
                 </div>
               )}
               <div>
-                <h1 className="text-2xl font-black text-[var(--brand-primary)]">
-                  {demoMode ? capitalizeCompanyName(b.brand) : 'Your Company'}
-                </h1>
-                <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
-                  Solar Intelligence
-                </p>
+                <h1 className="text-2xl font-bold text-gray-900">{capitalizeCompanyName(b.brand)}</h1>
+                <p className="text-sm text-gray-600">Solar Intelligence</p>
               </div>
             </div>
             
@@ -452,53 +439,22 @@ function ReportContent() {
       </header>
 
       <main data-testid="report-page" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* BRANDED HEADER - Company Logo and Name */}
+        {/* Ready-to text section - Exactly like c548b88 (no white box) */}
         <motion.div 
           initial={{ opacity: 0, y: -20 }} 
           animate={{ opacity: 1, y: 0 }} 
           transition={{ duration: 0.6 }} 
           className="mb-8"
         >
-          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-6">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-4">
-                {/* Company Logo */}
-                {b.enabled && (b.logo || getDefaultLogo(b.brand)) ? (
-                  <Image 
-                    src={b.logo || getDefaultLogo(b.brand) || ''} 
-                    alt={`${b.brand} logo`} 
-                    width={48} 
-                    height={48} 
-                    className="rounded-lg"
-                    style={{ 
-                      objectFit: "contain",
-                      width: "48px",
-                      height: "48px",
-                      minWidth: "48px",
-                      minHeight: "48px",
-                      maxWidth: "48px",
-                      maxHeight: "48px"
-                    }}
-                  />
-                ) : (
-                  <div className="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center">
-                    <span className="text-white text-lg font-bold">☀️</span>
-                  </div>
-                )}
-                
-                {/* Company Name and Tagline */}
-                <div>
-                  <h1 className="text-2xl font-black text-[var(--brand-primary)]">
-                    {b.enabled ? capitalizeCompanyName(b.brand) : 'Your Company'}
-                  </h1>
-                  <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
-                    Solar Intelligence
-                  </p>
-                </div>
-              </div>
-              
-              {/* Demo Disclaimer - Removed to match c548b88 design */}
-            </div>
+          <div className="text-center">
+            <p className="text-xl text-gray-700 leading-relaxed">
+              A ready-to-deploy solar intelligence tool — live on your site within 24 hours.
+            </p>
+            {b.enabled && (
+              <span className="block mt-3 text-sm text-gray-500">
+                Not affiliated with {capitalizeCompanyName(b.brand)}
+              </span>
+            )}
           </div>
         </motion.div>
 
@@ -684,24 +640,7 @@ function ReportContent() {
             </div>
           </motion.div>
 
-          {/* Ready-to text section - Restored from c548b88 */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ delay: 0.8, duration: 0.8 }} 
-            className="text-center mb-8"
-          >
-            <div className="bg-white/80 backdrop-blur-xl rounded-2xl p-6 border border-gray-200/30">
-              <p className="text-lg text-gray-700 leading-relaxed">
-                A ready-to-deploy solar intelligence tool — live on your site within 24 hours.
-                {b.enabled && (
-                  <span className="block mt-2 text-sm text-gray-500">
-                    Not affiliated with {capitalizeCompanyName(b.brand)}
-                  </span>
-                )}
-              </p>
-            </div>
-          </motion.div>
+          {/* Ready-to text section moved to header - no duplicate needed */}
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="rounded-3xl py-12 px-8 text-center text-white" style={{ backgroundColor: 'var(--brand)' }}>
             <h2 className="text-3xl font-bold mb-6">Ready to Launch Your Branded Tool?</h2>
@@ -729,13 +668,7 @@ function ReportContent() {
             <div className="mt-8 text-center">
               <p className="text-lg mb-2">Only $99/mo + $399 setup. 14-day refund if it doesn&apos;t lift booked calls.</p>
               <p className="text-base opacity-90 mb-4">Cancel anytime. No long-term contracts.</p>
-              <button 
-                data-cta="primary"
-                onClick={handleCheckout}
-                className="text-white underline hover:no-underline font-medium"
-              >
-                Activate on Your Domain
-              </button>
+              {/* Activate button removed from footer box */}
             </div>
             <div className="mt-6 pt-4 border-t border-white/20">
               <p className="text-sm opacity-90">Full version from just $99/mo + $399 setup. Most tools cost $2,500+/mo.</p>

@@ -1,51 +1,51 @@
-import { test } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 
-test('Show Final Result - Compact Footer & Support Colors', async ({ page }) => {
-  console.log('🎨 Testing the final fixes: compact footer and support page colors...');
-
-  // Go to home page
-  console.log('🏠 Loading home page...');
-  await page.goto('http://localhost:3000');
-  await page.waitForLoadState('domcontentloaded');
+test('Show Final Result - Ready-to Text Implementation', async ({ page }) => {
+  console.log('🚀 Loading the final result...');
   
-  // Wait for animations
-  console.log('⏳ Waiting for animations...');
-  await page.waitForTimeout(3000);
+  // Navigate to report page with demo parameters
+  await page.goto('http://localhost:3000/report?demo=1&company=Apple');
+  await page.waitForLoadState('networkidle');
   
-  // Scroll to footer
-  console.log('📜 Scrolling to footer...');
-  await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
-  await page.waitForTimeout(2000);
+  console.log('✅ Report page loaded!');
   
-  // Take screenshot of footer
-  console.log('📸 Capturing compact footer layout...');
-  await page.screenshot({ path: 'test-results/compact-footer-final.png', fullPage: false });
-  console.log('✅ Footer screenshot saved!');
+  // Verify the key changes
+  console.log('🔍 Verifying the implementation...');
   
-  // Test support page colors
-  console.log('🆘 Testing support page color consistency...');
-  await page.goto('http://localhost:3000/support');
-  await page.waitForLoadState('domcontentloaded');
-  await page.waitForTimeout(2000);
-  await page.screenshot({ path: 'test-results/support-final-colors.png' });
-  console.log('✅ Support page screenshot saved!');
+  // Check that the old company logo box is gone from header
+  const appleLogo = page.locator('header').locator('text=Apple');
+  await expect(appleLogo).toHaveCount(0);
+  console.log('✅ Apple logo box removed from header');
   
-  // Go back to home for final inspection
-  console.log('🏠 Returning to home page for final inspection...');
-  await page.goto('http://localhost:3000');
-  await page.waitForLoadState('domcontentloaded');
+  // Check that the ready-to text is now in the main content area
+  const readyToText = page.locator('main').locator('text=ready-to-deploy');
+  await expect(readyToText).toBeVisible();
+  console.log('✅ Ready-to text now in main content area');
   
-  console.log('');
-  console.log('🎯 FINAL FIXES IMPLEMENTED:');
-  console.log('✅ Footer: Compact layout from cb083ed commit');
-  console.log('✅ Address spacing: Better spacing with space-y-1 and mb-1');
-  console.log('✅ Support page: All colored backgrounds now gray-100 for consistency');
-  console.log('✅ Brand consistency: All pages use consistent color scheme');
-  console.log('✅ Statistics: NREL v8, SOC 2, CRM Ready, 24/7 with centered text');
-  console.log('');
-  console.log('🔍 Browser will stay open for manual inspection...');
-  console.log('Press Ctrl+C in terminal to close when done.');
+  // Check for "within 24 hours" text
+  await expect(page.locator('text=within 24 hours')).toBeVisible();
+  console.log('✅ "within 24 hours" text visible');
   
-  // Keep browser open for manual inspection
-  await page.waitForTimeout(300000); // 5 minutes
+  // Check for "Not affiliated with Apple" text
+  await expect(page.locator('text=Not affiliated with Apple')).toBeVisible();
+  console.log('✅ "Not affiliated with Apple" text visible');
+  
+  console.log('🎉 All changes verified successfully!');
+  console.log('📱 You should now see:');
+  console.log('   - NO white company logo box in header');
+  console.log('   - YES "A ready-to-deploy solar intelligence tool — live on your site within 24 hours"');
+  console.log('   - YES "Not affiliated with Apple"');
+  console.log('   - NO popups or modals');
+  console.log('   - Ready-to text prominently displayed in main content area');
+  
+  // Take a screenshot
+  await page.screenshot({ path: 'test-results/final-result.png', fullPage: true });
+  console.log('📸 Screenshot saved: final-result.png');
+  
+  console.log('🔍 Browser will stay open for 2 minutes for visual inspection...');
+  
+  // Keep browser open for inspection
+  await page.waitForTimeout(120000); // 2 minutes
+  
+  console.log('⏰ Time is up! Closing browser...');
 });

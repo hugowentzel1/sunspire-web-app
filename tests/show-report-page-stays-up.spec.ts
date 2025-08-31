@@ -40,6 +40,25 @@ test('Show Report Page - Stays Open for Inspection', async ({ page }) => {
   console.log('✅ No popups or modals found');
   
   console.log('🎉 All verifications passed!');
+  console.log('🔍 Now scrolling down to show you the ready-to section...');
+  
+  // Scroll down to show the ready-to section
+  await page.evaluate(() => {
+    const allDivs = Array.from(document.querySelectorAll('div'));
+    const readyToSection = allDivs.find(el => 
+      el.textContent?.includes('ready-to-deploy')
+    );
+    if (readyToSection) {
+      readyToSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  });
+  
+  await page.waitForTimeout(2000); // Wait for scroll animation
+  
+  console.log('✅ Scrolled to ready-to section!');
+  console.log('🔍 You should now see:');
+  console.log('   - "A ready-to-deploy solar intelligence tool — live on your site within 24 hours"');
+  console.log('   - "Not affiliated with TestCompany"');
   console.log('⏰ Browser will stay open for 5 minutes for visual inspection...');
   console.log('🔍 You can scroll around and inspect the page');
   console.log('📸 Take screenshots if needed');
