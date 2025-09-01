@@ -461,13 +461,8 @@ function ReportContent() {
         >
           <div className="text-center">
             <p className="text-xl text-gray-700 leading-relaxed">
-              A ready-to-deploy solar intelligence tool — live on your site in 24 hours.
+              Ready to Launch Your Branded Tool?
             </p>
-            {b.enabled && (
-              <span className="block mt-3 text-sm text-gray-500">
-                Private demo for {capitalizeCompanyName(b.brand)}. Not affiliated.
-              </span>
-            )}
           </div>
         </motion.div>
 
@@ -723,6 +718,17 @@ function ReportContent() {
           </motion.div>
         </motion.div>
       </main>
+      
+      {/* Disclaimer Footer - Banner like other pages */}
+      {b.enabled && (
+        <div className="border-t border-gray-100 bg-gray-50/50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+            <p className="text-xs text-gray-500 text-center">
+              Private demo for {capitalizeCompanyName(b.brand)}. Not affiliated.
+            </p>
+          </div>
+        </div>
+      )}
 
       <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <LegalFooter brand={b.enabled ? b.brand : undefined} />

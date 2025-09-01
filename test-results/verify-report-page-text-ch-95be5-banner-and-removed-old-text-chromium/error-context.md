@@ -6,9 +6,9 @@
     - banner [ref=e3]:
       - generic [ref=e5]:
         - generic [ref=e6]:
-          - img "Apple logo" [ref=e7]
+          - img "Tesla logo" [ref=e7]
           - generic [ref=e8]:
-            - heading "Apple" [level=1] [ref=e9]
+            - heading "Tesla" [level=1] [ref=e9]
             - paragraph [ref=e10]: Solar Intelligence
         - navigation [ref=e11]:
           - link "Pricing" [ref=e12] [cursor=pointer]:
@@ -21,13 +21,13 @@
     - main [ref=e16]:
       - generic [ref=e18]:
         - paragraph [ref=e19]: A ready-to-deploy solar intelligence tool — live on your site in 24 hours.
-        - generic [ref=e20]: Private demo for Apple. Not affiliated.
+        - generic [ref=e20]: Private demo for Tesla. Not affiliated.
       - generic [ref=e21]:
         - generic [ref=e22]:
-          - img "Apple logo" [ref=e24]
+          - img "Tesla logo" [ref=e24]
           - generic [ref=e25]:
             - heading "New Analysis" [level=1] [ref=e26]
-            - paragraph [ref=e27]: Comprehensive analysis for your property at 123 Main St, San Francisco, CA
+            - paragraph [ref=e27]: Comprehensive analysis for your property at 2
             - generic [ref=e28]:
               - generic [ref=e29]: "Data Source: generic"
               - generic [ref=e30]: •
@@ -39,7 +39,7 @@
             - generic [ref=e38]: System Size
           - generic [ref=e40]:
             - generic [ref=e42]: ☀️
-            - generic [ref=e43]: 12,082 kWh
+            - generic [ref=e43]: 9,637 kWh
             - generic [ref=e44]: Annual Production
           - generic [ref=e45]:
             - generic [ref=e46]:
@@ -52,7 +52,7 @@
           - generic [ref=e56]:
             - generic [ref=e57]:
               - generic [ref=e59]: 📈
-              - generic [ref=e60]: $2,043
+              - generic [ref=e60]: $1,603
               - generic [ref=e61]: Year 1 Savings
             - button "Unlock Full Report" [ref=e62] [cursor=pointer]:
               - img [ref=e63] [cursor=pointer]
@@ -74,24 +74,24 @@
             - generic [ref=e102]:
               - generic [ref=e103]:
                 - generic [ref=e106]: $0k
-                - generic [ref=e109]: $20k
-                - generic [ref=e112]: $40k
-                - generic [ref=e115]: $60k
-                - generic [ref=e118]: $80k
+                - generic [ref=e109]: $15k
+                - generic [ref=e112]: $30k
+                - generic [ref=e115]: $45k
+                - generic [ref=e118]: $60k
               - generic [ref=e120]: Total Savings
           - generic [ref=e132]:
             - generic [ref=e133]:
               - generic [ref=e135]: $13k
               - generic [ref=e136]: Investment
             - generic [ref=e137]:
-              - generic [ref=e139]: 6 years
+              - generic [ref=e139]: 8 years
               - generic [ref=e140]: Payback Time
             - generic [ref=e141]:
-              - generic [ref=e143]: $65k
+              - generic [ref=e143]: $51k
               - generic [ref=e144]: 25-Year Savings
           - paragraph [ref=e146]:
             - generic [ref=e147]: "How to read this:"
-            - text: The green area shows your total savings growing over time. After 6 years, you'll have saved enough to cover your initial investment. By year 25, you'll have saved $65k total.
+            - text: The green area shows your total savings growing over time. After 8 years, you'll have saved enough to cover your initial investment. By year 25, you'll have saved $51k total.
           - img
         - generic [ref=e148]:
           - generic [ref=e149]:
@@ -100,13 +100,13 @@
               - generic [ref=e152]:
                 - generic [ref=e153]:
                   - generic [ref=e154]: Payback Period
-                  - generic [ref=e155]: 6 years
+                  - generic [ref=e155]: 8 years
                 - generic [ref=e156]:
                   - generic [ref=e157]: 25-Year NPV
-                  - generic [ref=e158]: $15,870
+                  - generic [ref=e158]: $9,736
                 - generic [ref=e159]:
                   - generic [ref=e160]: ROI
-                  - generic [ref=e161]: 226%
+                  - generic [ref=e161]: 177%
                 - generic [ref=e162]:
                   - generic [ref=e163]: Electricity Rate
                   - generic [ref=e164]: $0.18/kWh (generic)
@@ -119,10 +119,10 @@
               - generic [ref=e173]:
                 - generic [ref=e174]:
                   - generic [ref=e175]: CO₂ Offset/Year
-                  - generic [ref=e176]: 10,270 lbs
+                  - generic [ref=e176]: 8,191 lbs
                 - generic [ref=e177]:
                   - generic [ref=e178]: Solar Irradiance
-                  - generic [ref=e179]: 6.38 kWh/m²/day
+                  - generic [ref=e179]: 5.01 kWh/m²/day
                 - generic [ref=e180]:
                   - generic [ref=e181]: System Tilt
                   - generic [ref=e182]: 0°
@@ -172,7 +172,7 @@
           - generic [ref=e234]:
             - generic [ref=e235]:
               - heading "Sunspire Solar Intelligence" [level=3] [ref=e236]
-              - paragraph [ref=e237]: Demo for Apple — Powered by Sunspire
+              - paragraph [ref=e237]: Demo for Tesla — Powered by Sunspire
               - generic [ref=e238]:
                 - paragraph [ref=e239]:
                   - img [ref=e240]
@@ -232,5 +232,5 @@
     - generic [ref=e288]:
       - button "Decline" [ref=e289] [cursor=pointer]
       - button "Accept All" [ref=e290] [cursor=pointer]
-  - generic [ref=e291]: $20k
+  - generic [ref=e291]: $0k
 ```
