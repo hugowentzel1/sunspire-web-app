@@ -395,29 +395,42 @@ function ReportContent() {
       <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
-            {/* Company logo section restored */}
             <div className="flex items-center space-x-4">
-              {demoMode && (b.logo || getDefaultLogo(b.brand)) ? (
-                <Image 
-                  src={b.logo || getDefaultLogo(b.brand) || ''} 
-                  alt={`${b.brand} logo`} 
-                  width={48} 
-                  height={48} 
-                  className="rounded-xl shadow-[0_4px_15px_rgba(0,0,0,.08)]"
-                  style={{ 
-                    objectFit: "contain",
-                    width: "48px",
-                    height: "48px"
-                  }}
-                />
+              {demoMode ? (
+                (b.logo || getDefaultLogo(b.brand)) ? (
+                  <Image 
+                    src={b.logo || getDefaultLogo(b.brand) || ''} 
+                    alt={`${b.brand} logo`} 
+                    width={48} 
+                    height={48} 
+                    className="rounded-lg"
+                    style={{ 
+                      objectFit: "contain",
+                      width: "48px",
+                      height: "48px",
+                      minWidth: "48px",
+                      minHeight: "48px",
+                      maxWidth: "48px",
+                      maxHeight: "48px"
+                    }}
+                  />
+                ) : (
+                  <div className="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center">
+                    <span className="text-white text-lg font-bold">☀️</span>
+                  </div>
+                )
               ) : (
-                <div className="brand-gradient text-white rounded-full w-12 h-12 grid place-items-center shadow-[0_4px_15px_rgba(0,0,0,.08)]">
-                  <span className="text-2xl">☀️</span>
+                <div className="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center">
+                  <span className="text-white text-lg font-bold">☀️</span>
                 </div>
               )}
               <div>
-                <h1 className="text-2xl font-bold text-gray-900">{capitalizeCompanyName(b.brand)}</h1>
-                <p className="text-sm text-gray-600">Solar Intelligence</p>
+                <h1 className="text-2xl font-black text-[var(--brand-primary)]">
+                  {demoMode ? capitalizeCompanyName(b.brand) : 'Your Company'}
+                </h1>
+                <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
+                  Solar Intelligence
+                </p>
               </div>
             </div>
             

@@ -1,6 +1,5 @@
 "use client";
 
-
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
@@ -85,40 +84,9 @@ export default function SharedNavigation() {
 
   const logoUrl = b.logo || getDefaultLogo(b.brand);
 
-  const handleLaunchClick = async () => {
+  const handleLaunchClick = () => {
     if (b.enabled) {
-      // Start Stripe checkout with tracking
-      try {
-        // Collect tracking parameters from URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const token = urlParams.get('token');
-        const company = urlParams.get('company');
-        const utm_source = urlParams.get('utm_source');
-        const utm_campaign = urlParams.get('utm_campaign');
-        
-        // Start checkout
-        const response = await fetch('/api/stripe/create-checkout-session', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            plan: 'starter',
-            token,
-            company,
-            utm_source,
-            utm_campaign
-          })
-        });
-        
-        if (!response.ok) {
-          throw new Error('Checkout failed');
-        }
-        
-        const { url } = await response.json();
-        window.location.href = url;
-      } catch (error) {
-        console.error('Checkout error:', error);
-        alert('Unable to start checkout. Please try again.');
-      }
+      window.open(`https://sunspire-web-app.vercel.app/?company=${encodeURIComponent(b.brand)}&primary=${encodeURIComponent(b.primary)}&logo=${encodeURIComponent(b.logo || '')}`, '_blank');
     } else {
       // Default demo behavior
       window.location.href = '/demo-result';
@@ -129,27 +97,44 @@ export default function SharedNavigation() {
     <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          {/* Company logo section removed - replaced with ready-to text */}
-          <div className="text-center">
-            <p className="text-sm text-gray-700 leading-relaxed">
-              A ready-to-deploy solar intelligence tool — live on your site within 24 hours.
-              {b.enabled ? (
-                <span className="block mt-1 text-xs text-gray-500">
-                  Not affiliated with {b.brand}
-                </span>
-              ) : (
-                <span className="block mt-1 text-xs text-gray-500">
-                  Not affiliated with Your Company
-                </span>
-              )}
-            </p>
+          <div className="flex items-center space-x-4">
+            {b.enabled && logoUrl ? (
+              <Image 
+                src={logoUrl} 
+                alt={`${b.brand} logo`} 
+                width={48} 
+                height={48} 
+                className="rounded-lg"
+                style={{ 
+                  objectFit: "contain",
+                  width: "48px",
+                  height: "48px",
+                  minWidth: "48px",
+                  minHeight: "48px",
+                  maxWidth: "48px",
+                  maxHeight: "48px"
+                }}
+              />
+            ) : (
+              <div className="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center">
+                <span className="text-white text-lg font-bold">☀️</span>
+              </div>
+            )}
+            <div>
+              <h1 className="text-2xl font-black text-[var(--brand-primary)]">
+                {b.enabled ? b.brand : 'Your Company'}
+              </h1>
+              <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
+                Solar Intelligence
+              </p>
+            </div>
           </div>
           
           <nav className="hidden md:flex items-center space-x-12">
             <a href="/pricing" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Pricing</a>
             <a href="/partners" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Partners</a>
             <a href="/support" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Support</a>
-                        <button 
+            <button 
               onClick={handleLaunchClick}
               className="btn-primary ml-12"
             >
@@ -159,7 +144,14 @@ export default function SharedNavigation() {
         </div>
       </div>
       
-      {/* Bottom section removed - ready-to text is now in the main header */}
+      {/* Disclaimer Footer - Old banner from c548b88 */}
+      <div className="border-t border-gray-100 bg-gray-50/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+          <p className="text-xs text-gray-500 text-center">
+            Private demo for {b.enabled ? b.brand : 'Your Company'}. Not affiliated.
+          </p>
+        </div>
+      </div>
     </header>
   );
 }
