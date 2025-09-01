@@ -68,18 +68,34 @@ function HomeContent() {
   const handleGenerateEstimate = () => {
     if (!address.trim()) return;
     
+    console.log('Generating estimate for address:', address);
+    console.log('Selected place:', selectedPlace);
+    
     setIsLoading(true);
-    if (selectedPlace) {
-      const q = new URLSearchParams({
-        address: selectedPlace.formattedAddress,
-        lat: String(selectedPlace.lat),
-        lng: String(selectedPlace.lng),
-        placeId: selectedPlace.placeId,
-      });
-      router.push(`/report?${q.toString()}`);
-    } else {
-      const q = new URLSearchParams({ address, lat: '40.7128', lng: '-74.0060', placeId: 'demo' });
-      router.push(`/report?${q.toString()}`);
+    
+    try {
+      if (selectedPlace && selectedPlace.formattedAddress) {
+        const q = new URLSearchParams({
+          address: selectedPlace.formattedAddress,
+          lat: String(selectedPlace.lat),
+          lng: String(selectedPlace.lng),
+          placeId: selectedPlace.placeId,
+        });
+        console.log('Navigating to report with selected place:', q.toString());
+        router.push(`/report?${q.toString()}`);
+      } else {
+        const q = new URLSearchParams({ 
+          address, 
+          lat: '40.7128', 
+          lng: '-74.0060', 
+          placeId: 'demo' 
+        });
+        console.log('Navigating to report with manual address:', q.toString());
+        router.push(`/report?${q.toString()}`);
+      }
+    } catch (error) {
+      console.error('Error generating estimate:', error);
+      setIsLoading(false);
     }
   };
 
@@ -259,16 +275,13 @@ function HomeContent() {
 
                 {/* Generate Button - Now below the search bar */}
                 <button 
-                  data-cta="primary"
-                  onClick={b.enabled && address.trim() ? handleGenerateEstimate : (b.enabled ? handleLaunchClick : handleGenerateEstimate)}
-                  disabled={!b.enabled && !address.trim() || isLoading} 
+                  onClick={address.trim() ? handleGenerateEstimate : (b.enabled ? handleLaunchClick : handleGenerateEstimate)}
+                  disabled={!address.trim() || isLoading} 
                   data-cta-button
                   className={`w-full ${
-                    (!b.enabled && !address.trim()) || isLoading 
+                    !address.trim() || isLoading 
                       ? 'btn-disabled' 
-                      : b.enabled
-                        ? 'btn-cta'
-                        : 'btn-cta'
+                      : 'btn-cta'
                   }`} 
                 >
                   {isLoading ? (

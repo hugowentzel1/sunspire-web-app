@@ -1,0 +1,171 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - paragraph [ref=e6]:
+        - text: A ready-to-deploy solar intelligence tool — live on your site within 24 hours.
+        - generic [ref=e7]: Not affiliated with Your Company
+      - navigation [ref=e8]:
+        - link "Pricing" [ref=e9] [cursor=pointer]:
+          - /url: /pricing
+        - link "Partners" [ref=e10] [cursor=pointer]:
+          - /url: /partners
+        - link "Support" [ref=e11] [cursor=pointer]:
+          - /url: /support
+        - button "Activate on Your Domain — 24 Hours" [ref=e12] [cursor=pointer]
+  - generic [ref=e13]:
+    - main [ref=e14]:
+      - generic [ref=e15]:
+        - generic [ref=e18]: ☀️
+        - generic [ref=e19]:
+          - generic [ref=e21]: ✓
+          - generic [ref=e22]:
+            - heading "Your Branded Solar Quote Tool — Ready to Launch" [level=1] [ref=e23]:
+              - text: Your Branded Solar Quote Tool
+              - generic [ref=e24]: — Ready to Launch
+            - paragraph [ref=e25]: Go live in 24 hours. Convert more leads, book more consultations, and sync every inquiry seamlessly to your CRM — all fully branded for your company.
+        - generic [ref=e27]:
+          - generic [ref=e28]:
+            - heading "Enter Your Property Address" [level=2] [ref=e29]
+            - paragraph [ref=e30]: Get a comprehensive solar analysis tailored to your specific location
+          - generic [ref=e31]:
+            - generic [ref=e32]:
+              - textbox "Start typing your property address..." [active] [ref=e34]: "123"
+              - paragraph [ref=e35]: Enter your property address to get started
+            - button "Generate Solar Intelligence Report" [ref=e36] [cursor=pointer]:
+              - generic [ref=e37] [cursor=pointer]:
+                - generic [ref=e38] [cursor=pointer]: Generate Solar Intelligence Report
+                - img [ref=e39] [cursor=pointer]
+        - generic [ref=e41]:
+          - generic [ref=e42]:
+            - generic [ref=e43]: NREL v8
+            - generic [ref=e44]: Industry Standard
+          - generic [ref=e45]:
+            - generic [ref=e46]: SOC 2
+            - generic [ref=e47]: Compliance
+          - generic [ref=e48]:
+            - generic [ref=e49]: CRM Ready
+            - generic [ref=e50]: HubSpot, Salesforce
+          - generic [ref=e51]:
+            - generic [ref=e52]: 24/7
+            - generic [ref=e53]: Support
+        - generic [ref=e54]:
+          - generic [ref=e55]:
+            - img [ref=e57]
+            - generic [ref=e59]: NREL PVWatts® v8
+            - generic [ref=e60]: Industry-standard solar modeling with current utility rates
+          - generic [ref=e61]:
+            - img [ref=e63]
+            - generic [ref=e65]: CRM Integration
+            - generic [ref=e66]: Direct push to HubSpot, Salesforce, and Airtable
+          - generic [ref=e67]:
+            - img [ref=e69]
+            - generic [ref=e71]: End-to-End Encryption
+            - generic [ref=e72]: SOC 2-aligned controls and data protection
+        - generic [ref=e75]: Dozens of installers • CRM-ready • SOC 2-aligned
+        - generic [ref=e76]:
+          - heading "How It Works" [level=2] [ref=e77]
+          - generic [ref=e78]:
+            - generic [ref=e79]:
+              - generic [ref=e81]: "1"
+              - heading "Add the widget" [level=3] [ref=e82]
+              - paragraph [ref=e83]: One line of code to embed on your website
+            - generic [ref=e84]:
+              - generic [ref=e86]: "2"
+              - heading "Visitors get instant quotes" [level=3] [ref=e87]
+              - paragraph [ref=e88]: AI-powered analysis in seconds
+            - generic [ref=e89]:
+              - generic [ref=e91]: "3"
+              - heading "Your team gets booked calls" [level=3] [ref=e92]
+              - paragraph [ref=e93]: Qualified leads ready to convert
+        - generic [ref=e94]:
+          - heading "Frequently Asked Questions" [level=2] [ref=e95]
+          - generic [ref=e96]:
+            - generic [ref=e97]:
+              - heading "CMS? — Yes, 1-line <script>. Hosted option too." [level=3] [ref=e98]
+              - paragraph [ref=e99]: Works with any website platform. Just add one line of code.
+            - generic [ref=e100]:
+              - heading "Accuracy? — NREL PVWatts v8 • EIA rates • local irradiance" [level=3] [ref=e101]
+              - paragraph [ref=e102]:
+                - text: Industry-standard data sources.
+                - link "View methodology" [ref=e103] [cursor=pointer]:
+                  - /url: /methodology
+                - text: .
+            - generic [ref=e104]:
+              - heading "Security? — Encrypted in transit & at rest" [level=3] [ref=e105]
+              - paragraph [ref=e106]: Bank-level security for all customer data.
+            - generic [ref=e107]:
+              - heading "Cancel? — Yes, 14-day refund if it doesn't lift booked calls" [level=3] [ref=e108]
+              - paragraph [ref=e109]: No long-term contracts. Cancel anytime.
+            - generic [ref=e110]:
+              - heading "Support? — Email support 24/7" [level=3] [ref=e111]
+              - paragraph [ref=e112]: Get help whenever you need it.
+    - contentinfo [ref=e113]:
+      - contentinfo [ref=e114]:
+        - generic [ref=e115]:
+          - generic [ref=e116]:
+            - generic [ref=e117]:
+              - heading "Sunspire Solar Intelligence" [level=3] [ref=e118]
+              - paragraph [ref=e119]: Demo for Sunspire — Powered by Sunspire
+              - generic [ref=e120]:
+                - paragraph [ref=e121]:
+                  - img [ref=e122]
+                  - text: "3133 Maple Dr Ne Ste 240 #1156 Atlanta, GA 30305"
+                - generic [ref=e125]:
+                  - link "GDPR" [ref=e126] [cursor=pointer]:
+                    - /url: /security#gdpr
+                  - link "CCPA" [ref=e127] [cursor=pointer]:
+                    - /url: /security#ccpa
+                  - link "SOC 2" [ref=e128] [cursor=pointer]:
+                    - /url: /security#soc2
+                - paragraph [ref=e129]:
+                  - img [ref=e130]
+                  - text: hello@sunspire.app
+                - paragraph [ref=e132]:
+                  - img [ref=e133]
+                  - text: +1 (555) 123-4567
+            - generic [ref=e135]:
+              - heading "Quick Links" [level=4] [ref=e136]
+              - generic [ref=e137]:
+                - link "Pricing" [ref=e138] [cursor=pointer]:
+                  - /url: /pricing
+                - link "Partners" [ref=e139] [cursor=pointer]:
+                  - /url: /partners
+                - link "Support" [ref=e140] [cursor=pointer]:
+                  - /url: /support
+                - link "Demo" [ref=e141] [cursor=pointer]:
+                  - /url: /demo
+            - generic [ref=e142]:
+              - heading "Legal & Support" [level=4] [ref=e143]
+              - generic [ref=e144]:
+                - link "Privacy Policy" [ref=e145] [cursor=pointer]:
+                  - /url: /privacy
+                - link "Terms of Service" [ref=e146] [cursor=pointer]:
+                  - /url: /terms
+                - link "Security" [ref=e147] [cursor=pointer]:
+                  - /url: /security
+                - link "DPA" [ref=e148] [cursor=pointer]:
+                  - /url: /dpa
+                - link "Do Not Sell My Data" [ref=e149] [cursor=pointer]:
+                  - /url: /do-not-sell
+          - generic [ref=e151]:
+            - generic [ref=e152]:
+              - img [ref=e153]
+              - generic [ref=e155]: Estimates generated using NREL PVWatts® v8
+            - generic [ref=e156]:
+              - img [ref=e157]
+              - generic [ref=e159]: Mapping & location data © Google
+            - paragraph [ref=e161]:
+              - text: Powered by
+              - generic [ref=e162]: Sunspire
+  - alert [ref=e163]
+  - generic [ref=e166]:
+    - generic [ref=e167]:
+      - heading "We use cookies to improve your experience" [level=3] [ref=e168]
+      - paragraph [ref=e169]: We use cookies and similar technologies to analyze site usage, personalize content, and provide social media features. By continuing to use our site, you consent to our use of cookies.
+    - generic [ref=e170]:
+      - button "Decline" [ref=e171] [cursor=pointer]
+      - button "Accept All" [ref=e172] [cursor=pointer]
+```
