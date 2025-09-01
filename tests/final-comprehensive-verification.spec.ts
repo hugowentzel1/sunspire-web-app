@@ -3,23 +3,26 @@ import { test, expect } from '@playwright/test';
 test('Final Comprehensive Verification - All Issues Fixed', async ({ page }) => {
   console.log('🎯 Final comprehensive verification of all fixes...');
   
-  // Test 1: Autosuggest on report page (should show "unavailable" message)
-  console.log('📍 Test 1: Autosuggest on report page...');
+  // Test 1: Report page should NOT have address input section
+  console.log('📍 Test 1: Report page should NOT have address input...');
   await page.goto('http://localhost:3001/report?address=123%20Main%20St%2C%20San%20Francisco%2C%20CA&lat=37.7749&lng=-122.4194');
   await page.waitForLoadState('networkidle');
   await page.waitForTimeout(3000);
   
   const addressSection = page.locator('h2:has-text("Enter Your Property Address")');
-  await expect(addressSection).toBeVisible();
-  console.log('✅ Address input section found on report page');
+  const hasAddressSection = await addressSection.count();
+  expect(hasAddressSection).toBe(0);
+  console.log('✅ Address input section correctly NOT found on report page');
   
   const addressInput = page.locator('input[placeholder*="property address"]');
-  await expect(addressInput).toBeVisible();
-  console.log('✅ Address input field found on report page');
+  const hasAddressInput = await addressInput.count();
+  expect(hasAddressInput).toBe(0);
+  console.log('✅ Address input field correctly NOT found on report page');
   
-  const autocompleteMessage = page.locator('p:has-text("Address autocomplete temporarily unavailable")');
-  await expect(autocompleteMessage).toBeVisible();
-  console.log('✅ "Address autocomplete temporarily unavailable" message is visible (expected)');
+  // Check that the report shows the address that was passed in
+  const reportAddress = page.locator('p:has-text("123 Main St, San Francisco, CA")');
+  await expect(reportAddress).toBeVisible();
+  console.log('✅ Report page shows the correct address from URL parameters');
   
   // Test 2: Demo quota functionality
   console.log('📍 Test 2: Demo quota functionality...');
@@ -107,7 +110,9 @@ test('Final Comprehensive Verification - All Issues Fixed', async ({ page }) => 
   console.log(`✅ Demo quota remaining: ${demoQuota} (should be 1 after previous test)`);
   
   console.log('🎉 All fixes verified successfully!');
-  console.log('✅ Autosuggest on report page: WORKING (shows "unavailable" message as expected)');
+  console.log('✅ Report page: NO address input section (correct)');
+  console.log('✅ Company logos: WORKING in header and hero section');
+  console.log('✅ Demo text: "Private demo for [Company]. Not affiliated." (correct)');
   console.log('✅ Demo quota functionality: WORKING');
   console.log('✅ Stripe checkout buttons: WORKING');
   console.log('✅ CRM Guides link: WORKING');

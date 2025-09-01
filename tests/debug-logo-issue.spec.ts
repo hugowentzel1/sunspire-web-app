@@ -1,56 +1,63 @@
 import { test, expect } from '@playwright/test';
 
-test('Debug logo display issue', async ({ page }) => {
-  // Listen to console messages
-  page.on('console', msg => console.log('Browser console:', msg.text()));
-  page.on('pageerror', error => console.log('Page error:', error.message));
+test('Debug Logo Issue - Check Why Company Logo Not Showing', async ({ page }) => {
+  console.log('🔍 Debugging logo display issue on report page...');
   
-  await page.goto('http://127.0.0.1:3000/report?company=meta&demo=1');
-  
-  // Wait for page to load
+  // Test with a company that should have a logo
+  await page.goto('http://localhost:3001/report?company=Apple&demo=1&address=123%20Main%20St%2C%20San%20Francisco%2C%20CA&lat=37.7749&lng=-122.4194');
   await page.waitForLoadState('networkidle');
+  await page.waitForTimeout(3000);
   
-  // Wait a bit more for any async operations
-  await page.waitForTimeout(2000);
-  
-  // Take a screenshot to see what's actually there
+  // Take a screenshot
   await page.screenshot({ path: 'debug-logo-issue.png', fullPage: true });
+  console.log('📸 Screenshot saved as debug-logo-issue.png');
   
-  // Log the page content to see what's happening
-  const pageContent = await page.content();
-  console.log('Page HTML:', pageContent.substring(0, 2000));
+  // Check header logo
+  const headerLogos = page.locator('header img');
+  const headerLogoCount = await headerLogos.count();
+  console.log(`🔍 Found ${headerLogoCount} images in header`);
   
-  // Check if we're still loading
-  const loadingText = await page.locator('text=Generating your solar intelligence report...').count();
-  console.log('Loading text found:', loadingText);
-  
-  // Check what elements are actually present
-  const allImages = await page.locator('img').all();
-  console.log(`Found ${allImages.length} images on the page`);
-  
-  for (let i = 0; i < allImages.length; i++) {
-    const src = await allImages[i].getAttribute('src');
-    const alt = await allImages[i].getAttribute('url');
-    console.log(`Image ${i}: src="${src}", alt="${alt}"`);
+  for (let i = 0; i < headerLogoCount; i++) {
+    const src = await headerLogos.nth(i).getAttribute('src');
+    const alt = await headerLogos.nth(i).getAttribute('alt');
+    console.log(`Header image ${i}: src="${src}", alt="${alt}"`);
   }
   
-  // Check if the company name is showing
-  const h1Elements = await page.locator('h1').all();
-  console.log(`Found ${h1Elements.length} h1 elements`);
+  // Check for sun emoji in header
+  const headerSunEmojis = page.locator('header span:has-text("☀️")');
+  const headerSunCount = await headerSunEmojis.count();
+  console.log(`🔍 Found ${headerSunCount} sun emojis in header`);
   
-  for (let i = 0; i < h1Elements.length; i++) {
-    const text = await h1Elements[i].textContent();
-    console.log(`H1 ${i}: "${text}"`);
+  // Check hero section logo
+  const heroLogos = page.locator('main img');
+  const heroLogoCount = await heroLogos.count();
+  console.log(`🔍 Found ${heroLogoCount} images in main/hero section`);
+  
+  for (let i = 0; i < heroLogoCount; i++) {
+    const src = await heroLogos.nth(i).getAttribute('src');
+    const alt = await heroLogos.nth(i).getAttribute('alt');
+    console.log(`Hero image ${i}: src="${src}", alt="${alt}"`);
   }
+  
+  // Check for sun emoji in hero section
+  const heroSunEmojis = page.locator('main span:has-text("☀️")');
+  const heroSunCount = await heroSunEmojis.count();
+  console.log(`🔍 Found ${heroSunCount} sun emojis in hero section`);
+  
+  // Check brand takeover state
+  const brandState = await page.evaluate(() => {
+    return {
+      localStorage: localStorage.getItem('sunspire-brand-takeover'),
+      urlParams: new URLSearchParams(window.location.search).toString()
+    };
+  });
+  console.log('🔍 Brand state:', brandState);
   
   // Check if demo mode is active
-  const demoModeIndicator = await page.locator('[data-demo="true"]').count();
-  console.log('Demo mode indicator found:', demoModeIndicator);
+  const demoIndicator = page.locator('[data-demo="true"]');
+  const isDemo = await demoIndicator.count();
+  console.log(`🔍 Demo mode active: ${isDemo > 0}`);
   
-  // Check the brand takeover state
-  const brandTakeover = await page.evaluate(() => {
-    // @ts-ignore
-    return window.__BRAND_TAKEOVER__ || 'Not found';
-  });
-  console.log('Brand takeover state:', brandTakeover);
+  // Keep browser open for manual inspection
+  await page.waitForTimeout(10000);
 });
