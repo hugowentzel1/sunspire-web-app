@@ -71,6 +71,11 @@ function HomeContent() {
     console.log('Generating estimate for address:', address);
     console.log('Selected place:', selectedPlace);
     
+    // Consume demo quota if in demo mode
+    if (b.enabled) {
+      consume();
+    }
+    
     setIsLoading(true);
     
     try {

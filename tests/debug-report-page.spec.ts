@@ -1,41 +1,45 @@
 import { test, expect } from '@playwright/test';
 
-test('Debug report page - see what is actually there', async ({ page }) => {
-  console.log('🚀 Starting report page debug...');
+test('Debug Report Page - See What\'s Actually There', async ({ page }) => {
+  console.log('🔍 Debugging report page...');
   
-  // Go to report page
-  console.log('📊 Going to report page...');
-  await page.goto('/report?company=Starbucks&brandColor=%23006241');
+  await page.goto('http://localhost:3001/report?address=123%20Main%20St%2C%20San%20Francisco%2C%20CA&lat=37.7749&lng=-122.4194');
+  await page.waitForLoadState('networkidle');
+  await page.waitForTimeout(3000);
   
-  // Wait a bit for any redirects or loading
-  await page.waitForTimeout(5000);
+  // Take a screenshot to see what's there
+  await page.screenshot({ path: 'debug-report-page.png', fullPage: true });
+  console.log('📸 Screenshot saved as debug-report-page.png');
   
-  // Take screenshot of what we see
-  await page.screenshot({ path: 'test-results/debug-report-page.png', fullPage: true });
-  console.log('📸 Full page screenshot saved');
+  // Check what text is actually on the page
+  const pageText = await page.textContent('body');
+  console.log('📄 Page text:', pageText?.substring(0, 500));
   
-  // Check what's actually in the HTML
-  const bodyText = await page.textContent('body');
-  console.log('📄 Body text (first 500 chars):', bodyText?.substring(0, 500));
+  // Check if there are any h2 elements
+  const h2Elements = await page.locator('h2').count();
+  console.log(`🔍 Found ${h2Elements} h2 elements`);
   
-  // Check if there are any elements
-  const allElements = await page.locator('*').count();
-  console.log(`🔍 Total elements on page: ${allElements}`);
+  // List all h2 elements
+  for (let i = 0; i < h2Elements; i++) {
+    const h2Text = await page.locator('h2').nth(i).textContent();
+    console.log(`H2 ${i}: ${h2Text}`);
+  }
   
-  // Check for specific elements
-  const headerCount = await page.locator('header').count();
-  const mainCount = await page.locator('main').count();
-  const divCount = await page.locator('div').count();
+  // Check if the address input section exists
+  const addressSection = page.locator('h2:has-text("Enter Your Property Address")');
+  const hasAddressSection = await addressSection.count();
+  console.log(`🔍 Address section found: ${hasAddressSection > 0}`);
   
-  console.log(`🏷️ Headers: ${headerCount}, Mains: ${mainCount}, Divs: ${divCount}`);
+  // Check if there are any input fields
+  const inputFields = await page.locator('input').count();
+  console.log(`🔍 Found ${inputFields} input fields`);
   
-  // Check for any error messages
-  const errorElements = await page.locator('[class*="error"], [class*="Error"], [class*="loading"], [class*="Loading"]').count();
-  console.log(`⚠️ Error/Loading elements: ${errorElements}`);
+  // List all input placeholders
+  for (let i = 0; i < inputFields; i++) {
+    const placeholder = await page.locator('input').nth(i).getAttribute('placeholder');
+    console.log(`Input ${i} placeholder: ${placeholder}`);
+  }
   
-  // Check the current URL
-  const currentUrl = page.url();
-  console.log(`📍 Current URL: ${currentUrl}`);
-  
-  console.log('✅ Debug complete!');
+  // Keep browser open for manual inspection
+  await page.waitForTimeout(10000);
 });

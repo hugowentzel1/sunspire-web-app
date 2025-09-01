@@ -16,6 +16,12 @@ import { ensureBlurSupport } from '@/src/lib/ensureBlur';
 
 import { getBrandTheme } from '@/lib/brandTheme';
 import { attachCheckoutHandlers } from '@/src/lib/checkout';
+import dynamic from 'next/dynamic';
+
+const AddressAutocomplete = dynamic(() => import('@/components/AddressAutocomplete'), { 
+  ssr: false,
+  loading: () => <div className="h-12 bg-gray-100 rounded-lg animate-pulse" />
+});
 // import StickyBuyBar from '@/src/demo/StickyBuyBar';
 // import InstallSheet from '@/src/demo/InstallSheet';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
@@ -507,6 +513,54 @@ function ReportContent() {
                 <span>Generated on {formatDateSafe(estimate.date)}</span>
               </div>
             </div>
+
+            {/* Address Input Section - For New Analysis */}
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ delay: 0.3, duration: 0.8 }} 
+              className="max-w-2xl mx-auto bg-white rounded-2xl p-8 shadow-lg border border-gray-200/50"
+            >
+              <h2 className="text-2xl font-bold text-gray-900 mb-4 text-center">Enter Your Property Address</h2>
+              <p className="text-gray-600 mb-6 text-center">
+                Get a comprehensive solar analysis tailored to your specific location
+              </p>
+              
+              <div className="space-y-4">
+                <AddressAutocomplete
+                  onSelect={(address: string, placeId?: string) => {
+                    // Handle address selection for new analysis
+                    const params = new URLSearchParams(window.location.search);
+                    params.set('address', address);
+                    if (placeId) {
+                      params.set('placeId', placeId);
+                    }
+                    router.push(`/report?${params.toString()}`);
+                  }}
+                  placeholder="Enter your property address to get started"
+                  className="w-full"
+                />
+                
+                <p className="text-sm text-gray-500 text-center">
+                  Address autocomplete temporarily unavailable
+                </p>
+                
+                <button 
+                  className="w-full py-3 px-6 bg-[var(--brand-primary)] text-white rounded-lg font-semibold hover:bg-[var(--brand-primary-dark)] transition-colors"
+                  onClick={() => {
+                    // Handle manual address submission
+                    const addressInput = document.querySelector('input[placeholder*="address"]') as HTMLInputElement;
+                    if (addressInput && addressInput.value.trim()) {
+                      const params = new URLSearchParams(window.location.search);
+                      params.set('address', addressInput.value.trim());
+                      router.push(`/report?${params.toString()}`);
+                    }
+                  }}
+                >
+                  Get Quote
+                </button>
+              </div>
+            </motion.div>
           </div>
 
 
