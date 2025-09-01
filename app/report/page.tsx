@@ -461,7 +461,7 @@ function ReportContent() {
         >
           <div className="text-center">
             <p className="text-xl text-gray-700 leading-relaxed">
-              A ready-to-deploy solar intelligence tool — live on your site within 24 hours.
+              A ready-to-deploy solar intelligence tool — live on your site in 24 hours.
             </p>
             {b.enabled && (
               <span className="block mt-3 text-sm text-gray-500">
