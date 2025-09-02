@@ -451,9 +451,9 @@ function ReportContent() {
         </div>
       </header>
       
-      {/* Disclaimer Footer - Banner like other pages */}
+      {/* Disclaimer Footer - White bar like home page */}
       {b.enabled && (
-        <div className="border-t border-gray-100 bg-gray-50/50">
+        <div className="border-t border-gray-100 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
             <p className="text-xs text-gray-500 text-center">
               Private demo for {capitalizeCompanyName(b.brand)}. Not affiliated.
