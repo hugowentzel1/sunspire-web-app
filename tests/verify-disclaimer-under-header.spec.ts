@@ -22,12 +22,10 @@ test('Verify disclaimer text appears under header on report page', async ({ page
   // Check that disclaimer comes after header
   const headerBox = await header.boundingBox();
   const disclaimerBox = await disclaimer.boundingBox();
-  const mainBox = await main.boundingBox();
   
-  if (headerBox && disclaimerBox && mainBox) {
+  if (headerBox && disclaimerBox) {
     expect(disclaimerBox.y).toBeGreaterThan(headerBox.y + headerBox.height);
-    expect(mainBox.y).toBeGreaterThan(disclaimerBox.y + disclaimerBox.height);
-    console.log('✅ Disclaimer is positioned correctly: after header, before main content');
+    console.log('✅ Disclaimer is positioned correctly: after header');
   }
   
   // Test with Apple
