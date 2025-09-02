@@ -450,6 +450,17 @@ function ReportContent() {
           </div>
         </div>
       </header>
+      
+      {/* Disclaimer Footer - Banner like other pages */}
+      {b.enabled && (
+        <div className="border-t border-gray-100 bg-gray-50/50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+            <p className="text-xs text-gray-500 text-center">
+              Private demo for {capitalizeCompanyName(b.brand)}. Not affiliated.
+            </p>
+          </div>
+        </div>
+      )}
 
       <main data-testid="report-page" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Ready-to text section - Exactly like c548b88 (no white box) */}
@@ -718,17 +729,6 @@ function ReportContent() {
           </motion.div>
         </motion.div>
       </main>
-      
-      {/* Disclaimer Footer - Banner like other pages */}
-      {b.enabled && (
-        <div className="border-t border-gray-100 bg-gray-50/50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
-            <p className="text-xs text-gray-500 text-center">
-              Private demo for {capitalizeCompanyName(b.brand)}. Not affiliated.
-            </p>
-          </div>
-        </div>
-      )}
 
       <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <LegalFooter brand={b.enabled ? b.brand : undefined} />
