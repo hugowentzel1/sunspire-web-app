@@ -9,9 +9,35 @@ export default function BrandProvider({ children }: { children: React.ReactNode 
   useEffect(() => {
     console.log('BrandProvider: enabled=', b.enabled, 'primary=', b.primary, 'brand=', b.brand);
     if (!b.enabled) return;
-    document.documentElement.style.setProperty("--brand-primary", b.primary);
-    document.documentElement.style.setProperty("--brand", b.primary);
-    console.log('BrandProvider: CSS variables set to', b.primary);
+    
+    // Force correct brand colors based on company name
+    let forcedColor = b.primary;
+    if (b.brand.toLowerCase() === 'tesla') {
+      forcedColor = '#CC0000';
+      console.log('BrandProvider: Forcing Tesla red:', forcedColor);
+    } else if (b.brand.toLowerCase() === 'apple') {
+      forcedColor = '#0071E3';
+      console.log('BrandProvider: Forcing Apple blue:', forcedColor);
+    } else if (b.brand.toLowerCase() === 'netflix') {
+      forcedColor = '#E50914';
+      console.log('BrandProvider: Forcing Netflix red:', forcedColor);
+    } else if (b.brand.toLowerCase() === 'google') {
+      forcedColor = '#4285F4';
+      console.log('BrandProvider: Forcing Google blue:', forcedColor);
+    } else if (b.brand.toLowerCase() === 'microsoft') {
+      forcedColor = '#00A4EF';
+      console.log('BrandProvider: Forcing Microsoft blue:', forcedColor);
+    } else if (b.brand.toLowerCase() === 'amazon') {
+      forcedColor = '#FF9900';
+      console.log('BrandProvider: Forcing Amazon orange:', forcedColor);
+    } else if (b.brand.toLowerCase() === 'meta' || b.brand.toLowerCase() === 'facebook') {
+      forcedColor = '#1877F2';
+      console.log('BrandProvider: Forcing Meta blue:', forcedColor);
+    }
+    
+    document.documentElement.style.setProperty("--brand-primary", forcedColor);
+    document.documentElement.style.setProperty("--brand", forcedColor);
+    console.log('BrandProvider: CSS variables set to', forcedColor);
   }, [b.enabled, b.primary, b.brand]);
 
   // Favicon override
