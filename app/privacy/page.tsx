@@ -39,7 +39,7 @@ export default function PrivacyPage() {
             
             <div className="space-y-6 text-gray-700">
               <p>
-                <strong>Last updated:</strong> {new Date().toLocaleDateString()}
+                <strong>Last updated:</strong> September 4, 2025
               </p>
               
               <p>
@@ -90,7 +90,7 @@ export default function PrivacyPage() {
               </p>
               <div className="bg-gray-50 p-4 rounded-lg mt-4">
                 <p className="text-gray-700">
-                  <strong>Email:</strong> privacy@sunspire.app<br/>
+                  <strong>Email:</strong> support@usesunspire.com<br/>
                   <strong>Address:</strong> 3133 Maple Dr Ne Ste 240 #1156 Atlanta, GA 30305
                 </p>
               </div>

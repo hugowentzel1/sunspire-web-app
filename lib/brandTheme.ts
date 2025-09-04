@@ -11,6 +11,7 @@ export function getBrandTheme(companyHandle?: string) {
     spotify: '#1DB954',
     twitter: '#1DA1F2',
     linkedin: '#0A66C2',
+    tesla: '#CC0000',
     zillow: '#006AFF',
     redfin: '#D21F3C',
     chase: '#117ACA',

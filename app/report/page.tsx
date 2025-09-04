@@ -11,6 +11,7 @@ import { formatDateSafe } from '@/lib/format';
 import LegalFooter from '@/components/legal/LegalFooter';
 import { IconBadge } from '@/components/ui/IconBadge';
 import UnlockButton from '@/components/UnlockButton';
+import { ResultsAttribution } from '@/components/legal/ResultsAttribution';
 
 import { ensureBlurSupport } from '@/src/lib/ensureBlur';
 
@@ -22,6 +23,8 @@ import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import HeroBrand from '@/src/brand/HeroBrand';
 // StickyCTA import removed - no popups wanted
 // import { DemoBanner } from '@/src/demo/DemoChrome';
+import LockOverlay from '@/src/demo/LockOverlay';
+import { usePreviewQuota } from '@/src/demo/usePreviewQuota';
 import Image from 'next/image';
 
 // Demo addresses for different states
@@ -46,6 +49,10 @@ function ReportContent() {
   
   // Brand takeover mode detection
   const b = useBrandTakeover();
+  
+  // Demo quota management
+  const { read, consume } = usePreviewQuota(2);
+  const remaining = read();
   
   // Attach checkout handlers to CTAs
   useEffect(() => {
@@ -352,6 +359,11 @@ function ReportContent() {
       setEstimate(fallbackEstimate);
       setIsLoading(false);
       
+      // Consume a demo run if in demo mode (after successful report generation)
+      if (isDemo || hasBrand) {
+        consume();
+      }
+      
       // Try to fetch real estimate in background if we have coordinates
       if (address && Number.isFinite(lat) && Number.isFinite(lng)) {
         fetchEstimate(address, lat, lng, placeId);
@@ -388,6 +400,11 @@ function ReportContent() {
   }
 
   if (!estimate) return null;
+
+  // Show lock overlay if demo quota is exhausted
+  if (demoMode && remaining <= 0) {
+    return <LockOverlay />;
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter" data-demo={demoMode}>
@@ -711,6 +728,16 @@ function ReportContent() {
             >
               🚀 Activate on Your Domain
             </button>
+          </motion.div>
+          
+          {/* Attribution */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 1.3, duration: 0.8 }} 
+            className="max-w-4xl mx-auto text-center"
+          >
+            <ResultsAttribution />
           </motion.div>
           
           {/* Disclaimer */}

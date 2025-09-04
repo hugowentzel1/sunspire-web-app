@@ -29,7 +29,7 @@ export default function TermsPage() {
 
           <div className="prose prose-lg max-w-none">
             <p className="text-gray-600 mb-6">
-              <strong>Last updated:</strong> {new Date().toLocaleDateString()}
+              <strong>Last updated:</strong> September 4, 2025
             </p>
 
             <section className="mb-8">
@@ -109,8 +109,8 @@ export default function TermsPage() {
               </p>
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-gray-700">
-                  <strong>Email:</strong> legal@sunspire.com<br />
-                  <strong>Address:</strong> Sunspire Legal Department<br />
+                  <strong>Email:</strong> support@usesunspire.com<br />
+                  <strong>Address:</strong> 3133 Maple Dr Ne Ste 240 #1156 Atlanta, GA 30305<br />
                   <strong>Phone:</strong> (555) 123-4567
                 </p>
               </div>

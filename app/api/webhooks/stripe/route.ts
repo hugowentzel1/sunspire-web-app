@@ -1,5 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { upsertLead, logEvent } from '@/src/lib/airtable';
+import { upsertLead, logEvent, upsertTenant, findTenantByHandle } from '@/src/lib/airtable';
+import Stripe from 'stripe';
+
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: '2025-08-27.basil',
+});
 
 export async function POST(request: NextRequest) {
   try {
@@ -13,55 +18,95 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // TODO: Verify Stripe webhook signature
-    // const event = stripe.webhooks.constructEvent(body, signature, process.env.STRIPE_WEBHOOK_SECRET);
-
-    // For now, parse the body as JSON for development
+    // Verify Stripe webhook signature
     let event;
     try {
-      event = JSON.parse(body);
-    } catch (parseError) {
+      event = stripe.webhooks.constructEvent(body, signature, process.env.STRIPE_WEBHOOK_SECRET!);
+    } catch (err) {
+      console.error('Webhook signature verification failed:', err);
       return NextResponse.json(
-        { error: 'Invalid JSON payload' },
+        { error: 'Invalid signature' },
         { status: 400 }
       );
     }
 
     if (event.type === 'checkout.session.completed') {
       const session = event.data.object;
-      const companyHandle = session.metadata?.companyHandle;
+      const tenantHandle = session.metadata?.tenant_handle || session.metadata?.company;
       const email = session.customer_details?.email;
-      const plan = session.metadata?.plan || 'standard';
+      const plan = session.metadata?.plan || 'starter';
+      const subscriptionId = session.subscription;
 
-      if (companyHandle) {
-        // Mark as activated in Airtable
-        await upsertLead({
-          name: companyHandle, // Use companyHandle as name for now
-          email: email || '',
-          address: 'Stripe Activation',
-          tenantSlug: companyHandle, // Map companyHandle to tenantSlug
-          notes: 'Source: stripe_activation'
+      if (tenantHandle) {
+        // Upsert tenant with active status
+        await upsertTenant({
+          companyHandle: tenantHandle,
+          plan: 'Starter',
+          status: 'active',
+          stripeCustomerId: session.customer,
+          stripeSubscriptionId: subscriptionId,
+          paymentStatus: 'active',
+          lastPayment: new Date().toISOString(),
+          currentPeriodEnd: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString(), // 30 days from now
         });
 
         // Log activation event
         await logEvent({
-          tenantId: companyHandle, // Use companyHandle as tenantId for now
-          type: 'activation_clicked',
+          tenantId: tenantHandle,
+          type: 'tenant_activated',
           metadata: {
             plan,
             sessionId: session.id,
             amount: session.amount_total,
-            email
+            email,
+            subscriptionId
           }
         });
 
-        // TODO: Enqueue provisioner task
-        // await queueProvisioner({
-        //   companyHandle,
-        //   email,
-        //   plan,
-        //   sessionId: session.id
-        // });
+        console.log(`✅ Tenant ${tenantHandle} activated with subscription ${subscriptionId}`);
+      }
+    }
+
+    if (event.type === 'invoice.payment_failed') {
+      const invoice = event.data.object;
+      const subscriptionId = invoice.subscription;
+      
+      if (subscriptionId) {
+        // Get subscription to find tenant
+        const subscription = await stripe.subscriptions.retrieve(subscriptionId);
+        const tenantHandle = subscription.metadata?.tenant_handle;
+        
+        if (tenantHandle) {
+          // Update tenant status to delinquent
+          const tenant = await findTenantByHandle(tenantHandle);
+          if (tenant) {
+            await upsertTenant({
+              ...tenant,
+              paymentStatus: 'delinquent',
+            });
+            
+            console.log(`⚠️ Tenant ${tenantHandle} marked as delinquent`);
+          }
+        }
+      }
+    }
+
+    if (event.type === 'customer.subscription.deleted') {
+      const subscription = event.data.object;
+      const tenantHandle = subscription.metadata?.tenant_handle;
+      
+      if (tenantHandle) {
+        // Update tenant status to disabled
+        const tenant = await findTenantByHandle(tenantHandle);
+        if (tenant) {
+          await upsertTenant({
+            ...tenant,
+            status: 'disabled',
+            paymentStatus: 'cancelled',
+          });
+          
+          console.log(`❌ Tenant ${tenantHandle} disabled due to subscription cancellation`);
+        }
       }
     }
 

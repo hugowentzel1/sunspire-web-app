@@ -514,3 +514,50 @@ export async function storeLeadFallback(leadData: {
   // Fallback implementation - same as storeLead for now
   return upsertLead(leadData);
 }
+
+// Lead suppression functions
+export async function upsertLeadSuppressionByEmail(email: string): Promise<void> {
+  try {
+    const base = getBase();
+    
+    // Find all leads with this email across all tenants
+    const leads = await base(TABLES.LEADS)
+      .select({
+        filterByFormula: `{${LEAD_FIELDS.EMAIL}} = '${email}'`
+      })
+      .all();
+    
+    if (leads.length === 0) {
+      logger.info(`No leads found for email: ${email}`);
+      return;
+    }
+    
+    // Update all leads to suppressed status
+    const updates = leads.map(lead => ({
+      id: lead.id,
+      fields: {
+        [LEAD_FIELDS.STATUS]: 'Suppression',
+        [LEAD_FIELDS.LAST_ACTIVITY]: getCurrentTimestamp()
+      }
+    }));
+    
+    await base(TABLES.LEADS).update(updates);
+    logger.info(`Suppressed ${leads.length} lead(s) for email: ${email}`);
+    
+  } catch (error) {
+    logger.error('Error suppressing lead by email:', error);
+    throw error;
+  }
+}
+
+export async function suppressByHash(hash: string): Promise<void> {
+  try {
+    // This would need to be implemented based on your hash system
+    // For now, we'll just log it
+    logger.info(`Suppression requested for hash: ${hash}`);
+    // TODO: Implement hash-to-email resolution
+  } catch (error) {
+    logger.error('Error suppressing by hash:', error);
+    throw error;
+  }
+}

@@ -30,6 +30,7 @@ export default function RootLayout({
         <AppErrorBoundary>
           <BrandProvider>
             <CompanyProvider>
+              <BrandCSSInjector />
               {/* DemoRibbon removed */}
               <SharedNavigation />
               {children}

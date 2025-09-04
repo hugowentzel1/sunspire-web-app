@@ -15,8 +15,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2025-08-27.basil',
 });
 
-
-
 export async function POST(req: NextRequest) {
   // Rate limiting check
   const clientIP = getClientIP(req);
@@ -39,14 +37,38 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Stripe configuration missing' }, { status: 500 });
     }
 
-    if (!process.env.STRIPE_PRICE_MONTHLY_99) {
-      console.error('❌ STRIPE_PRICE_MONTHLY_99 missing');
-      return NextResponse.json({ error: 'Monthly price configuration missing' }, { status: 500 });
-    }
-
-    if (!process.env.STRIPE_PRICE_SETUP_399) {
-      console.error('❌ STRIPE_PRICE_SETUP_399 missing');
-      return NextResponse.json({ error: 'Setup price configuration missing' }, { status: 500 });
+    // For local development, create test products and prices if not configured
+    let monthlyPriceId = process.env.STRIPE_PRICE_MONTHLY_99;
+    let setupPriceId = process.env.STRIPE_PRICE_SETUP_399;
+    
+    if (!monthlyPriceId || !setupPriceId) {
+      console.log('🔧 Creating test products and prices for local development...');
+      
+      // Create test product
+      const product = await stripe.products.create({
+        name: 'Sunspire Solar Intelligence Platform',
+        description: 'Monthly subscription for solar intelligence platform',
+      });
+      
+      // Create monthly price
+      const monthlyPrice = await stripe.prices.create({
+        product: product.id,
+        unit_amount: 9900, // $99.00
+        currency: 'usd',
+        recurring: { interval: 'month' },
+      });
+      
+      // Create setup price
+      const setupPrice = await stripe.prices.create({
+        product: product.id,
+        unit_amount: 39900, // $399.00
+        currency: 'usd',
+      });
+      
+      monthlyPriceId = monthlyPrice.id;
+      setupPriceId = setupPrice.id;
+      
+      console.log('✅ Created test prices:', { monthlyPriceId, setupPriceId });
     }
 
     if (!stripe) {
@@ -59,10 +81,10 @@ export async function POST(req: NextRequest) {
 
     // Read params from POST JSON
     const body = await req.json();
-    const { plan = 'starter', token, company, email, utm_source, utm_campaign } = body;
+    const { plan = 'starter', token, company, email, utm_source, utm_campaign, tenant_handle } = body;
 
     console.log('🔍 Creating Stripe checkout session...');
-    console.log('🔍 Request data:', { plan, token, company, email, utm_source, utm_campaign });
+    console.log('🔍 Request data:', { plan, token, company, email, utm_source, utm_campaign, tenant_handle });
 
     // Build origin for URLs
     const origin = process.env.NEXT_PUBLIC_APP_URL || new URL(req.url).origin;
@@ -73,24 +95,35 @@ export async function POST(req: NextRequest) {
       mode: 'subscription',
       line_items: [
         {
-          price: process.env.STRIPE_PRICE_MONTHLY_99!,
+          price: monthlyPriceId!,
           quantity: 1,
         },
         {
-          price: process.env.STRIPE_PRICE_SETUP_399!,
+          price: setupPriceId!,
           quantity: 1,
         },
       ],
+      subscription_data: {
+        metadata: { 
+          tenant_handle: tenant_handle || company || '',
+          plan,
+          utm_source: utm_source || '',
+          utm_campaign: utm_campaign || '',
+        },
+      },
       metadata: {
         token: token || '',
         company: company || '',
+        tenant_handle: tenant_handle || company || '',
         plan,
         utm_source: utm_source || '',
         utm_campaign: utm_campaign || '',
       },
-      success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/cancel`,
+      success_url: `${origin}/c/${tenant_handle || company || 'success'}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${origin}/c/${tenant_handle || company || 'cancel'}/cancel`,
       customer_email: email || undefined,
+      allow_promotion_codes: true,
+      automatic_tax: { enabled: true },
     });
 
     return NextResponse.json({ url: checkoutSession.url });
@@ -124,14 +157,38 @@ export async function GET(req: NextRequest) {
       return NextResponse.json({ error: 'Stripe configuration missing' }, { status: 500 });
     }
 
-    if (!process.env.STRIPE_PRICE_MONTHLY_99) {
-      console.error('❌ STRIPE_PRICE_MONTHLY_99 missing');
-      return NextResponse.json({ error: 'Monthly price configuration missing' }, { status: 500 });
-    }
-
-    if (!process.env.STRIPE_PRICE_SETUP_399) {
-      console.error('❌ STRIPE_PRICE_SETUP_399 missing');
-      return NextResponse.json({ error: 'Setup price configuration missing' }, { status: 500 });
+    // For local development, create test products and prices if not configured
+    let monthlyPriceId = process.env.STRIPE_PRICE_MONTHLY_99;
+    let setupPriceId = process.env.STRIPE_PRICE_SETUP_399;
+    
+    if (!monthlyPriceId || !setupPriceId) {
+      console.log('🔧 Creating test products and prices for local development...');
+      
+      // Create test product
+      const product = await stripe.products.create({
+        name: 'Sunspire Solar Intelligence Platform',
+        description: 'Monthly subscription for solar intelligence platform',
+      });
+      
+      // Create monthly price
+      const monthlyPrice = await stripe.prices.create({
+        product: product.id,
+        unit_amount: 9900, // $99.00
+        currency: 'usd',
+        recurring: { interval: 'month' },
+      });
+      
+      // Create setup price
+      const setupPrice = await stripe.prices.create({
+        product: product.id,
+        unit_amount: 39900, // $399.00
+        currency: 'usd',
+      });
+      
+      monthlyPriceId = monthlyPrice.id;
+      setupPriceId = setupPrice.id;
+      
+      console.log('✅ Created test prices:', { monthlyPriceId, setupPriceId });
     }
     
     if (!stripe) {
@@ -150,9 +207,10 @@ export async function GET(req: NextRequest) {
     const email = url.searchParams.get('email');
     const utm_source = url.searchParams.get('utm_source');
     const utm_campaign = url.searchParams.get('utm_campaign');
+    const tenant_handle = url.searchParams.get('tenant_handle');
 
     console.log('🔍 Creating Stripe checkout session from GET...');
-    console.log('🔍 Request data:', { plan, token, company, email, utm_source, utm_campaign });
+    console.log('🔍 Request data:', { plan, token, company, email, utm_source, utm_campaign, tenant_handle });
 
     // Build origin for URLs
     const origin = process.env.NEXT_PUBLIC_APP_URL || new URL(req.url).origin;
@@ -163,24 +221,35 @@ export async function GET(req: NextRequest) {
       mode: 'subscription',
       line_items: [
         {
-          price: process.env.STRIPE_PRICE_MONTHLY_99!,
+          price: monthlyPriceId!,
           quantity: 1,
         },
         {
-          price: process.env.STRIPE_PRICE_SETUP_399!,
+          price: setupPriceId!,
           quantity: 1,
         },
       ],
+      subscription_data: {
+        metadata: { 
+          tenant_handle: tenant_handle || company || '',
+          plan,
+          utm_source: utm_source || '',
+          utm_campaign: utm_campaign || '',
+        },
+      },
       metadata: {
         token: token || '',
         company: company || '',
+        tenant_handle: tenant_handle || company || '',
         plan,
         utm_source: utm_source || '',
         utm_campaign: utm_campaign || '',
       },
-      success_url: `${origin}/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${origin}/cancel`,
+      success_url: `${origin}/c/${tenant_handle || company || 'success'}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${origin}/c/${tenant_handle || company || 'cancel'}/cancel`,
       customer_email: email || undefined,
+      allow_promotion_codes: true,
+      automatic_tax: { enabled: true },
     });
 
     return NextResponse.json({ url: checkoutSession.url });
@@ -193,5 +262,3 @@ export async function GET(req: NextRequest) {
     );
   }
 }
-
-

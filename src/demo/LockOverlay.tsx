@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
 import { getCTA } from "./cta";
 import { useABVariant } from "./useABVariant";
-import PriceAnchor from "./PriceAnchor";
 
 export default function LockOverlay() {
   const b = useBrandTakeover();
@@ -33,19 +32,38 @@ export default function LockOverlay() {
 
   if (!b.enabled) return null;
 
-  function openStripeCheckout() {
-    const params = new URLSearchParams({
-      brand: b.brand,
-      domain: b.domain || "yourdomain.com",
-      rep: b.rep || "demo",
-      utm_source: "demo_lock",
-      utm_medium: "overlay",
-      utm_campaign: "lock_screen"
-    });
-    
-    // Test Stripe checkout - replace with your actual checkout URL
-    const checkoutUrl = `https://checkout.stripe.com/test?${params.toString()}`;
-    window.open(checkoutUrl, "_blank");
+  async function openStripeCheckout() {
+    try {
+      // Collect tracking parameters from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get('token');
+      const company = urlParams.get('company');
+      const utm_source = urlParams.get('utm_source');
+      const utm_campaign = urlParams.get('utm_campaign');
+      
+      // Start checkout
+      const response = await fetch('/api/stripe/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          plan: 'starter',
+          token,
+          company,
+          utm_source,
+          utm_campaign
+        })
+      });
+      
+      if (!response.ok) {
+        throw new Error('Checkout failed');
+      }
+      
+      const { url } = await response.json();
+      window.location.href = url;
+    } catch (error) {
+      console.error('Checkout error:', error);
+      alert('Unable to start checkout. Please try again.');
+    }
   }
 
   function openInstallSheet() {
@@ -60,131 +78,234 @@ export default function LockOverlay() {
       inset: 0,
       background: "rgba(0,0,0,0.95)",
       zIndex: 2000,
-      display: "grid",
-      placeItems: "center",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
       padding: "24px"
     }}>
       <div style={{
         background: "#fff",
         borderRadius: "24px",
-        padding: "32px",
-        maxWidth: "800px",
+        padding: "48px",
+        maxWidth: "900px",
         width: "100%",
-        textAlign: "center"
+        textAlign: "center",
+        boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)"
       }}>
         {/* Brand Logo/Name */}
-        <div style={{ marginBottom: "24px" }}>
+        <div style={{ marginBottom: "40px" }}>
           {b.logo ? (
             <Image 
               src={b.logo} 
               alt={`${b.brand} logo`} 
-              width={80}
-              height={80}
+              width={100}
+              height={100}
               unoptimized
-              className="mx-auto mb-4"
+              className="mx-auto mb-6"
               sizes="100vw"
               style={{ height: 'auto', width: 'auto' }}
             />
           ) : (
             <div style={{
-              width: "80px",
-              height: "80px",
-              borderRadius: "20px",
-              background: b.primary,
-              color: "#0D0D0D",
+              width: "100px",
+              height: "100px",
+              borderRadius: "24px",
+              background: "var(--brand-primary)",
+              color: "#ffffff",
               display: "grid",
               placeItems: "center",
-              fontSize: "24px",
+              fontSize: "32px",
               fontWeight: "800",
-              margin: "0 auto 16px"
+              margin: "0 auto 24px",
+              boxShadow: "0 8px 32px rgba(0, 0, 0, 0.15)"
             }}>
               {b.brand.split(/\s+/).filter(Boolean).slice(0,2).map(w=>w[0]?.toUpperCase()).join("")}
             </div>
           )}
-          <h2 style={{ fontSize: "28px", fontWeight: "800", color: "#111827" }}>
+          <h2 style={{ 
+            fontSize: "32px", 
+            fontWeight: "800", 
+            color: "#111827",
+            marginBottom: "8px",
+            lineHeight: "1.2"
+          }}>
             Your Solar Intelligence Tool is now locked.
           </h2>
+          <p style={{
+            fontSize: "18px",
+            color: "#6B7280",
+            margin: "0"
+          }}>
+            Unlock full access to see complete solar reports
+          </p>
         </div>
 
         {/* Side-by-side comparison */}
         <div style={{
           display: "grid",
           gridTemplateColumns: "1fr 1fr",
-          gap: "24px",
-          marginBottom: "32px"
+          gap: "32px",
+          marginBottom: "48px",
+          alignItems: "start"
         }}>
           <div style={{ textAlign: "center" }}>
-            <h3 style={{ fontSize: "18px", fontWeight: "600", marginBottom: "12px", color: "#6B7280" }}>
-              What You See Now
-            </h3>
             <div style={{
-              height: "120px",
-              background: "#F3F4F6",
-              border: "2px dashed #D1D5DB",
-              borderRadius: "12px",
-              display: "grid",
-              placeItems: "center",
-              color: "#9CA3AF"
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginBottom: "16px"
             }}>
-              Blurred Data
+              <div style={{
+                width: "8px",
+                height: "8px",
+                borderRadius: "50%",
+                background: "var(--brand-primary)",
+                marginRight: "8px"
+              }}></div>
+              <h3 style={{ 
+                fontSize: "20px", 
+                fontWeight: "700", 
+                margin: "0", 
+                color: "var(--brand-primary)" 
+              }}>
+                What You See Now
+              </h3>
+            </div>
+            <div style={{
+              height: "140px",
+              background: `color-mix(in srgb, var(--brand-primary) 5%, #FEF2F2)`,
+              border: `3px dashed color-mix(in srgb, var(--brand-primary) 60%, #FCA5A5)`,
+              borderRadius: "16px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              color: `color-mix(in srgb, var(--brand-primary) 80%, #DC2626)`,
+              fontWeight: "600",
+              fontSize: "16px",
+              position: "relative"
+            }}>
+              <div style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                fontSize: "48px",
+                opacity: "0.3"
+              }}>🔒</div>
+              <div style={{ zIndex: 1 }}>Blurred Data</div>
             </div>
           </div>
           
           <div style={{ textAlign: "center" }}>
-            <h3 style={{ fontSize: "18px", fontWeight: "600", marginBottom: "12px", color: "#059669" }}>
-              What You Get Live
-            </h3>
             <div style={{
-              height: "120px",
-              background: "#ECFDF5",
-              border: "2px solid #10B981",
-              borderRadius: "12px",
-              display: "grid",
-              placeItems: "center",
-              color: "#059669",
-              fontWeight: "600"
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              marginBottom: "16px"
             }}>
-              Full Reports
+              <div style={{
+                width: "8px",
+                height: "8px",
+                borderRadius: "50%",
+                background: "#10B981",
+                marginRight: "8px"
+              }}></div>
+              <h3 style={{ 
+                fontSize: "20px", 
+                fontWeight: "700", 
+                margin: "0", 
+                color: "#10B981" 
+              }}>
+                What You Get Live
+              </h3>
+            </div>
+            <div style={{
+              height: "140px",
+              background: "#ECFDF5",
+              border: "3px solid #10B981",
+              borderRadius: "16px",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              color: "#059669",
+              fontWeight: "700",
+              fontSize: "16px",
+              position: "relative",
+              boxShadow: "0 4px 12px rgba(16, 185, 129, 0.15)"
+            }}>
+              <div style={{
+                position: "absolute",
+                top: "50%",
+                left: "50%",
+                transform: "translate(-50%, -50%)",
+                fontSize: "48px",
+                opacity: "0.3"
+              }}>✨</div>
+              <div style={{ zIndex: 1 }}>Full Reports</div>
             </div>
           </div>
         </div>
 
-        {/* CTAs */}
-        <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
+        {/* CTA */}
+        <div style={{ 
+          display: "flex", 
+          justifyContent: "center", 
+          marginBottom: "32px"
+        }}>
           <button 
             onClick={openStripeCheckout}
             style={{
-              padding: "16px 32px",
+              padding: "18px 36px",
               background: "var(--brand-primary)",
               color: "#fff",
               border: "none",
-              borderRadius: "12px",
-              fontSize: "16px",
-              fontWeight: "600",
-              cursor: "pointer"
-            }}
-          >
-            {getCTA(variant, "primary", b.domain)}
-          </button>
-          
-          <button 
-            onClick={openInstallSheet}
-            className="px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 transform hover:-translate-y-1"
-            style={{
-              fontSize: "16px",
-              fontWeight: "600",
+              borderRadius: "16px",
+              fontSize: "18px",
+              fontWeight: "700",
               cursor: "pointer",
-              background: "var(--brand-primary, #FFA63D)",
-              color: "#ffffff",
-              border: "2px solid var(--brand-primary, #FFA63D)",
-              boxShadow: "0 8px 25px rgba(255, 166, 61, 0.3)"
+              boxShadow: "0 8px 32px rgba(0, 0, 0, 0.15)",
+              transition: "all 0.2s ease",
+              minWidth: "200px"
+            }}
+            onMouseOver={(e) => {
+              e.currentTarget.style.transform = "translateY(-2px)";
+              e.currentTarget.style.boxShadow = "0 12px 40px rgba(0, 0, 0, 0.25)";
+            }}
+            onMouseOut={(e) => {
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow = "0 8px 32px rgba(0, 0, 0, 0.15)";
             }}
           >
-                            Activate on Your Domain — 24 Hours
+            Activate on Your Domain — 24 Hours
           </button>
         </div>
 
-        <PriceAnchor />
+        {/* Pricing Info */}
+        <div style={{
+          background: "#F8FAFC",
+          borderRadius: "12px",
+          padding: "20px",
+          marginBottom: "24px"
+        }}>
+          <p style={{
+            fontSize: "16px",
+            fontWeight: "600",
+            color: "#374151",
+            margin: "0 0 8px 0"
+          }}>
+            Full version from just $99/mo + $399 setup
+          </p>
+          <p style={{
+            fontSize: "14px",
+            color: "#6B7280",
+            margin: "0"
+          }}>
+            Most tools cost $2,500+/mo. Cancel anytime. No long-term contracts.
+          </p>
+        </div>
+
       </div>
     </div>
   );

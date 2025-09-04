@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
+import { getBrandTheme } from "@/lib/brandTheme";
 
 const ALLOWED = new Set([
   "logo.clearbit.com",
@@ -47,7 +48,7 @@ const STORAGE_KEY = 'sunspire-brand-takeover';
 
 export function useBrandTakeover(): BrandState {
   const [st, setSt] = useState<BrandState>({
-    enabled:false, brand:"Your Company", primary:"#FFA63D", logo:null,
+    enabled:false, brand:"Your Company", primary:getBrandTheme("default"), logo:null,
     domain:null, city:null, rep:null, firstName:null, role:null, expireDays:7, runs:2, blur:true, pilot:false
   });
 
@@ -92,10 +93,18 @@ export function useBrandTakeover(): BrandState {
       console.log('useBrandTakeover: URL has brand parameters, processing...');
       
       // URL has brand parameters - use them and save to localStorage
+      const companyName = clean(sp.get("company") || sp.get("brand")) || "Your Company";
+      const customColor = sp.get("primary") || sp.get("brandColor");
+      const themeColor = getBrandTheme(companyName);
+      
+      console.log('useBrandTakeover: Company name:', companyName);
+      console.log('useBrandTakeover: Custom color:', customColor);
+      console.log('useBrandTakeover: Theme color:', themeColor);
+      
       const brandState: BrandState = {
         enabled: urlEnabled,
-        brand: clean(sp.get("company") || sp.get("brand")) || "Your Company",
-        primary: hex(sp.get("primary") || sp.get("brandColor")),
+        brand: companyName,
+        primary: customColor ? hex(customColor) : themeColor,
         logo: allowLogo(sp.get("logo")),
         domain: sp.get("domain") || sp.get("company"),
         city: sp.get("city"),
@@ -157,7 +166,7 @@ export function useBrandTakeover(): BrandState {
       setSt({
         enabled: false,
         brand: "Your Company",
-        primary: "#FFA63D",
+        primary: getBrandTheme("default"),
         logo: null,
         domain: null,
         city: null,
