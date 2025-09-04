@@ -693,7 +693,8 @@ function ReportContent() {
               <motion.button 
                 data-cta="primary"
                 onClick={handleCheckout}
-                className="px-8 py-4 bg-white text-black rounded-2xl font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" 
+                className="px-8 py-4 text-white rounded-2xl font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" 
+                style={{ backgroundColor: 'var(--brand-primary)' }}
                 whileHover={{ scale: 1.05 }} 
                 whileTap={{ scale: 0.95 }}
               >
@@ -702,7 +703,8 @@ function ReportContent() {
               <motion.button 
                 data-cta="primary"
                 onClick={handleCheckout}
-                className="px-8 py-4 bg-white text-black rounded-2xl font-bold text-lg border-2 border-white hover:bg-gray-100 transition-all duration-300 transform hover:-translate-y-1" 
+                className="px-8 py-4 text-white rounded-2xl font-bold text-lg border-2 border-white/20 hover:opacity-90 transition-all duration-300 transform hover:-translate-y-1" 
+                style={{ backgroundColor: 'var(--brand-primary)' }}
                 whileHover={{ scale: 1.05 }} 
                 whileTap={{ scale: 0.95 }}
               >
