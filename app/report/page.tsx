@@ -722,21 +722,7 @@ function ReportContent() {
           </motion.div>
           
           {/* Copy Demo Link Button */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ delay: 1.2, duration: 0.8 }} 
-            className="text-center mb-8"
-          >
-            <button 
-              data-cta="primary"
-              onClick={handleCheckout}
-              className="px-6 py-3 rounded-lg font-medium transition-colors text-white"
-              style={{ backgroundColor: 'var(--brand)' }}
-            >
-              🚀 Activate on Your Domain
-            </button>
-          </motion.div>
+          {/* Redundant button removed */}
           
           {/* Attribution */}
           <motion.div 

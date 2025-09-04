@@ -95,11 +95,30 @@ export function useBrandTakeover(): BrandState {
       // URL has brand parameters - use them and save to localStorage
       const companyName = clean(sp.get("company") || sp.get("brand")) || "Your Company";
       const customColor = sp.get("primary") || sp.get("brandColor");
-      // Hardcode Tesla color for now to fix the live site
+      // Hardcode brand colors to fix the live site
       let themeColor;
-      if (companyName.toLowerCase() === 'tesla') {
+      const brandLower = companyName.toLowerCase();
+      if (brandLower === 'tesla') {
         themeColor = '#CC0000'; // Tesla red
         console.log('useBrandTakeover: Using hardcoded Tesla red:', themeColor);
+      } else if (brandLower === 'apple') {
+        themeColor = '#0071E3'; // Apple blue
+        console.log('useBrandTakeover: Using hardcoded Apple blue:', themeColor);
+      } else if (brandLower === 'netflix') {
+        themeColor = '#E50914'; // Netflix red
+        console.log('useBrandTakeover: Using hardcoded Netflix red:', themeColor);
+      } else if (brandLower === 'google') {
+        themeColor = '#4285F4'; // Google blue
+        console.log('useBrandTakeover: Using hardcoded Google blue:', themeColor);
+      } else if (brandLower === 'microsoft') {
+        themeColor = '#00A4EF'; // Microsoft blue
+        console.log('useBrandTakeover: Using hardcoded Microsoft blue:', themeColor);
+      } else if (brandLower === 'amazon') {
+        themeColor = '#FF9900'; // Amazon orange
+        console.log('useBrandTakeover: Using hardcoded Amazon orange:', themeColor);
+      } else if (brandLower === 'meta' || brandLower === 'facebook') {
+        themeColor = '#1877F2'; // Meta blue
+        console.log('useBrandTakeover: Using hardcoded Meta blue:', themeColor);
       } else {
         try {
           console.log('useBrandTakeover: About to call getBrandTheme with:', companyName);
