@@ -256,6 +256,7 @@ export default function LockOverlay() {
         }}>
           <button 
             onClick={openStripeCheckout}
+            data-cta="primary"
             style={{
               padding: "18px 36px",
               background: "var(--brand-primary)",
