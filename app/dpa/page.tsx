@@ -150,7 +150,7 @@ export default function DPAPage() {
               </p>
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-gray-700">
-                  <strong>Data Protection Officer:</strong> support@usesunspire.com<br />
+                  <strong>Data Protection Officer:</strong> support@getsunspire.com<br />
                   <strong>Address:</strong> 3133 Maple Dr Ne Ste 240 #1156 Atlanta, GA 30305<br />
                   <strong>Phone:</strong> (555) 123-4567
                 </p>

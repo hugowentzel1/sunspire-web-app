@@ -25,12 +25,12 @@ export default function RefundPage() {
       <h2>How to Cancel</h2>
       <p>
         Use the billing portal link in your account. If you need assistance, contact
-        <a href="mailto:support@usesunspire.com"> support@usesunspire.com</a>.
+        <a href="mailto:support@getsunspire.com"> support@getsunspire.com</a>.
       </p>
 
       <h2>Contact</h2>
       <p>
-        Support: <a href="mailto:support@usesunspire.com">support@usesunspire.com</a><br />
+        Support: <a href="mailto:support@getsunspire.com">support@getsunspire.com</a><br />
         Postal address: [Your Anytime Mailbox Address Here]
       </p>
     </main>

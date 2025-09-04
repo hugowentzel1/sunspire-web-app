@@ -52,7 +52,12 @@ function ReportContent() {
   
   // Demo quota management
   const { read, consume } = usePreviewQuota(2);
-  const remaining = read();
+  const [remaining, setRemaining] = useState(2);
+  
+  // Update remaining quota
+  useEffect(() => {
+    setRemaining(read());
+  }, [read]);
   
   // Attach checkout handlers to CTAs
   useEffect(() => {
@@ -359,11 +364,6 @@ function ReportContent() {
       setEstimate(fallbackEstimate);
       setIsLoading(false);
       
-      // Consume a demo run if in demo mode (after successful report generation)
-      if (isDemo || hasBrand) {
-        consume();
-      }
-      
       // Try to fetch real estimate in background if we have coordinates
       if (address && Number.isFinite(lat) && Number.isFinite(lng)) {
         fetchEstimate(address, lat, lng, placeId);
@@ -371,6 +371,12 @@ function ReportContent() {
     } else {
       setError('Missing address or coordinates.');
       setIsLoading(false);
+    }
+    
+    // Consume a demo run if in demo mode (after successful report generation)
+    if (isDemo || hasBrand) {
+      consume();
+      setRemaining(read()); // Update remaining after consuming
     }
     }, [searchParams, pickDemoAddress]);
 
