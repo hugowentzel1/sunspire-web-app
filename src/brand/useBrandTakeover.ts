@@ -90,7 +90,7 @@ export function useBrandTakeover(): BrandState {
     console.log('useBrandTakeover: URL enabled:', urlEnabled);
     
     if (urlEnabled) {
-      console.log('useBrandTakeover: URL has brand parameters, processing...');
+      console.log('useBrandTakeover: URL has brand parameters, processing... [DEPLOYMENT TEST]');
       
       // URL has brand parameters - use them and save to localStorage
       const companyName = clean(sp.get("company") || sp.get("brand")) || "Your Company";
