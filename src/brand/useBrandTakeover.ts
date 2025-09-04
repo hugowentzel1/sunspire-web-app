@@ -95,14 +95,20 @@ export function useBrandTakeover(): BrandState {
       // URL has brand parameters - use them and save to localStorage
       const companyName = clean(sp.get("company") || sp.get("brand")) || "Your Company";
       const customColor = sp.get("primary") || sp.get("brandColor");
+      // Hardcode Tesla color for now to fix the live site
       let themeColor;
-      try {
-        console.log('useBrandTakeover: About to call getBrandTheme with:', companyName);
-        themeColor = getBrandTheme(companyName);
-        console.log('useBrandTakeover: getBrandTheme returned:', themeColor);
-      } catch (error) {
-        console.error('useBrandTakeover: Error calling getBrandTheme:', error);
-        themeColor = '#FFA63D'; // fallback
+      if (companyName.toLowerCase() === 'tesla') {
+        themeColor = '#CC0000'; // Tesla red
+        console.log('useBrandTakeover: Using hardcoded Tesla red:', themeColor);
+      } else {
+        try {
+          console.log('useBrandTakeover: About to call getBrandTheme with:', companyName);
+          themeColor = getBrandTheme(companyName);
+          console.log('useBrandTakeover: getBrandTheme returned:', themeColor);
+        } catch (error) {
+          console.error('useBrandTakeover: Error calling getBrandTheme:', error);
+          themeColor = '#FFA63D'; // fallback
+        }
       }
       
       console.log('useBrandTakeover: Company name:', companyName);

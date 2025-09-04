@@ -33,13 +33,21 @@ export default function AddressAutocomplete({
   // Load Google Places API script
   useEffect(() => {
     if (!(window as any).google?.places) {
-      const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}&libraries=places`;
-      script.async = true;
-      script.onload = () => {
-        console.log('Google Places API loaded');
-      };
-      document.head.appendChild(script);
+      const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+      if (apiKey) {
+        const script = document.createElement('script');
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
+        script.async = true;
+        script.onload = () => {
+          console.log('Google Places API loaded');
+        };
+        script.onerror = () => {
+          console.error('Failed to load Google Places API');
+        };
+        document.head.appendChild(script);
+      } else {
+        console.warn('Google Maps API key not found - autocomplete will not work');
+      }
     }
   }, []);
 
