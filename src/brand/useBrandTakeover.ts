@@ -95,11 +95,20 @@ export function useBrandTakeover(): BrandState {
       // URL has brand parameters - use them and save to localStorage
       const companyName = clean(sp.get("company") || sp.get("brand")) || "Your Company";
       const customColor = sp.get("primary") || sp.get("brandColor");
-      const themeColor = getBrandTheme(companyName);
+      let themeColor;
+      try {
+        console.log('useBrandTakeover: About to call getBrandTheme with:', companyName);
+        themeColor = getBrandTheme(companyName);
+        console.log('useBrandTakeover: getBrandTheme returned:', themeColor);
+      } catch (error) {
+        console.error('useBrandTakeover: Error calling getBrandTheme:', error);
+        themeColor = '#FFA63D'; // fallback
+      }
       
       console.log('useBrandTakeover: Company name:', companyName);
       console.log('useBrandTakeover: Custom color:', customColor);
       console.log('useBrandTakeover: Theme color:', themeColor);
+      console.log('useBrandTakeover: getBrandTheme called with:', companyName);
       
       const brandState: BrandState = {
         enabled: urlEnabled,
