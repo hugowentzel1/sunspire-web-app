@@ -56,7 +56,9 @@ function ReportContent() {
   
   // Update remaining quota
   useEffect(() => {
-    setRemaining(read());
+    const currentRemaining = read();
+    console.log('🔒 Demo quota - read():', currentRemaining);
+    setRemaining(currentRemaining);
   }, [read]);
   
   // Attach checkout handlers to CTAs
@@ -375,8 +377,14 @@ function ReportContent() {
     
     // Consume a demo run if in demo mode (after successful report generation)
     if (isDemo || hasBrand) {
+      console.log('🔒 Demo quota - consuming run, remaining before:', read());
       consume();
-      setRemaining(read()); // Update remaining after consuming
+      // Update remaining after consuming - use setTimeout to ensure state update
+      setTimeout(() => {
+        const newRemaining = read();
+        console.log('🔒 Demo quota - after consume, remaining:', newRemaining);
+        setRemaining(newRemaining);
+      }, 100);
     }
     }, [searchParams, pickDemoAddress]);
 
@@ -408,7 +416,9 @@ function ReportContent() {
   if (!estimate) return null;
 
   // Show lock overlay if demo quota is exhausted
+  console.log('🔒 Demo quota check - demoMode:', demoMode, 'remaining:', remaining);
   if (demoMode && remaining <= 0) {
+    console.log('🔒 Showing lock overlay - quota exhausted');
     return <LockOverlay />;
   }
 
