@@ -307,23 +307,6 @@ export default function LockOverlay() {
           </p>
         </div>
 
-        {/* PVWatts Attribution */}
-        <div style={{
-          background: "#F9FAFB",
-          borderRadius: "8px",
-          padding: "16px",
-          marginBottom: "24px"
-        }}>
-          <p style={{
-            fontSize: "14px",
-            color: "#6B7280",
-            margin: "0",
-            lineHeight: "1.5"
-          }}>
-            Estimates are informational only, based on modeled data (NREL PVWatts® v8 and current utility rates).<br/>
-            Actual results vary by site conditions and installation quality. Not a binding quote.
-          </p>
-        </div>
 
       </div>
     </div>
