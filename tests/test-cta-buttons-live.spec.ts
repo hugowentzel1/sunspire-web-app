@@ -6,6 +6,15 @@ test('Test CTA Buttons on Live Site', async ({ page }) => {
   const testUrl = 'https://sunspire-web-app.vercel.app/report?address=1&lat=40.7128&lng=-74.0060&placeId=demo&company=Tesla&demo=1';
   
   console.log('🌐 Navigating to live site...');
+  
+  // Listen for console messages
+  const consoleMessages: string[] = [];
+  page.on('console', msg => {
+    const text = msg.text();
+    consoleMessages.push(text);
+    console.log('📝 Console:', text);
+  });
+  
   await page.goto(testUrl);
   await page.waitForLoadState('networkidle');
   
@@ -41,6 +50,9 @@ test('Test CTA Buttons on Live Site', async ({ page }) => {
     
     await firstCta.click();
     
+    // Wait a bit for any console messages
+    await page.waitForTimeout(2000);
+    
     // Wait for navigation or error
     const navigationResult = await navigationPromise;
     
@@ -58,6 +70,12 @@ test('Test CTA Buttons on Live Site', async ({ page }) => {
   } else {
     console.log('❌ No CTA buttons found');
   }
+  
+  // Check for checkout-related console messages
+  const checkoutMessages = consoleMessages.filter(msg => 
+    msg.includes('🛒') || msg.includes('checkout') || msg.includes('Checkout')
+  );
+  console.log('📊 Checkout-related console messages:', checkoutMessages);
   
   // Take screenshot
   await page.screenshot({ path: 'cta-buttons-test.png' });
