@@ -391,7 +391,7 @@ function ReportContent() {
         const newRemaining = read();
         console.log('🔒 Demo quota - after consume, remaining:', newRemaining);
         setRemaining(newRemaining);
-      }, 2000); // 2 second delay to allow user to see content
+      }, 5000); // 5 second delay to allow user to see content
     }
     }, [searchParams]);
 
@@ -423,9 +423,9 @@ function ReportContent() {
   if (!estimate) return null;
 
   // Show lock overlay if demo quota is exhausted
-  // Only show lock overlay if quota was consumed AND we're at 0
+  // Show lock when remaining = 0 (after 2 views have been consumed)
   console.log('🔒 Demo quota check - demoMode:', demoMode, 'remaining:', remaining, 'quotaConsumed:', quotaConsumed);
-  if (demoMode && remaining <= 0 && quotaConsumed) {
+  if (demoMode && remaining <= 0) {
     console.log('🔒 Showing lock overlay - quota exhausted');
     return <LockOverlay />;
   }
