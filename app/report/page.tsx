@@ -16,7 +16,6 @@ import { ResultsAttribution } from '@/components/legal/ResultsAttribution';
 import { ensureBlurSupport } from '@/src/lib/ensureBlur';
 
 import { getBrandTheme } from '@/lib/brandTheme';
-import { attachCheckoutHandlers } from '@/src/lib/checkout';
 // import StickyBuyBar from '@/src/demo/StickyBuyBar';
 // import InstallSheet from '@/src/demo/InstallSheet';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
@@ -70,10 +69,7 @@ function ReportContent() {
 
   // Don't reset quota consumed flag - track per URL session
   
-  // Attach checkout handlers to CTAs
-  useEffect(() => {
-    attachCheckoutHandlers();
-  }, []);
+  // Checkout handlers are attached via onClick props on buttons
 
   // Stripe checkout handler
   const handleCheckout = async () => {
