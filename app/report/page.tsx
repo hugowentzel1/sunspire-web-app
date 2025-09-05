@@ -382,14 +382,17 @@ function ReportContent() {
     }
     
     // Consume a demo run if in demo mode (after successful report generation)
+    // Delay consumption to allow user to see content first
     if ((isDemo || hasBrand) && !quotaConsumed) {
-      console.log('🔒 Demo quota - consuming run, remaining before:', read());
-      consume();
-      setQuotaConsumed(true);
-      // Update remaining immediately after consuming
-      const newRemaining = read();
-      console.log('🔒 Demo quota - after consume, remaining:', newRemaining);
-      setRemaining(newRemaining);
+      setTimeout(() => {
+        console.log('🔒 Demo quota - consuming run, remaining before:', read());
+        consume();
+        setQuotaConsumed(true);
+        // Update remaining immediately after consuming
+        const newRemaining = read();
+        console.log('🔒 Demo quota - after consume, remaining:', newRemaining);
+        setRemaining(newRemaining);
+      }, 2000); // 2 second delay to allow user to see content
     }
     }, [searchParams]);
 
