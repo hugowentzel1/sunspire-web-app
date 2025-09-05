@@ -661,24 +661,50 @@ function ReportContent() {
               />
             </div>
 
-            {/* Calculation Assumptions - Unblurred */}
+            {/* Consolidated Information Box */}
             <div className="relative rounded-2xl p-8 bg-white border border-gray-200/50">
               <div className="relative z-10">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Calculation Assumptions</h2>
-                <div className="space-y-6">
-                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Federal Tax Credit (ITC)</span><span className="text-gray-900 font-bold">{(estimate.assumptions.itcPercentage * 100).toFixed(0)}%</span></div>
-                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Cost per Watt</span><span className="text-gray-900 font-bold">${estimate.assumptions.costPerWatt}</span></div>
-                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Panel Degradation</span><span className="text-gray-900 font-bold">{(estimate.assumptions.degradationRate * 100).toFixed(1)}%/year</span></div>
-                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">O&M Cost</span><span className="text-gray-900 font-bold">${estimate.assumptions.oandmPerKWYear}/kW/year</span></div>
-                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Rate Increase</span><span className="text-gray-900 font-bold">{(estimate.assumptions.electricityRateIncrease * 100).toFixed(1)}%/year</span></div>
-                  <div className="flex justify-between items-center py-4"><span className="text-gray-600">Discount Rate</span><span className="text-gray-900 font-bold">{(estimate.assumptions.discountRate * 100).toFixed(0)}%</span></div>
-                </div>
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Calculation Details & Data Sources</h2>
                 
-                {/* Last Updated */}
-                <div className="mt-6 pt-4 border-t border-gray-200">
-                  <p className="text-sm text-gray-500 text-center">
-                    Last updated {new Date().toLocaleDateString()}
-                  </p>
+                {/* Calculation Assumptions */}
+                <div className="mb-8">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-4">Calculation Assumptions</h3>
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center py-3 border-b border-gray-200"><span className="text-gray-600">Federal Tax Credit (ITC)</span><span className="text-gray-900 font-bold">{(estimate.assumptions.itcPercentage * 100).toFixed(0)}%</span></div>
+                    <div className="flex justify-between items-center py-3 border-b border-gray-200"><span className="text-gray-600">Cost per Watt</span><span className="text-gray-900 font-bold">${estimate.assumptions.costPerWatt}</span></div>
+                    <div className="flex justify-between items-center py-3 border-b border-gray-200"><span className="text-gray-600">Panel Degradation</span><span className="text-gray-900 font-bold">{(estimate.assumptions.degradationRate * 100).toFixed(1)}%/year</span></div>
+                    <div className="flex justify-between items-center py-3 border-b border-gray-200"><span className="text-gray-600">O&M Cost</span><span className="text-gray-900 font-bold">${estimate.assumptions.oandmPerKWYear}/kW/year</span></div>
+                    <div className="flex justify-between items-center py-3 border-b border-gray-200"><span className="text-gray-600">Rate Increase</span><span className="text-gray-900 font-bold">{(estimate.assumptions.electricityRateIncrease * 100).toFixed(1)}%/year</span></div>
+                    <div className="flex justify-between items-center py-3"><span className="text-gray-600">Discount Rate</span><span className="text-gray-900 font-bold">{(estimate.assumptions.discountRate * 100).toFixed(0)}%</span></div>
+                  </div>
+                </div>
+
+                {/* Data Sources & Attribution */}
+                <div className="pt-6 border-t border-gray-200">
+                  <h3 className="text-lg font-semibold text-gray-800 mb-4">Data Sources</h3>
+                  <div className="space-y-3 text-sm text-gray-600">
+                    <div className="flex items-center">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                      <span>Solar irradiance data from <strong>NREL PVWatts® v8</strong></span>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                      <span>Utility rates from <strong>Google Maps API</strong> and local utility databases</span>
+                    </div>
+                    <div className="flex items-center">
+                      <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
+                      <span>Financial calculations based on current federal and state incentives</span>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-6 pt-4 border-t border-gray-200">
+                    <p className="text-xs text-gray-500 text-center">
+                      Estimates are informational only. Actual results vary by site conditions and installation quality. Not a binding quote.
+                    </p>
+                    <p className="text-xs text-gray-500 text-center mt-2">
+                      Last updated {new Date().toLocaleDateString()}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -724,30 +750,7 @@ function ReportContent() {
           {/* Copy Demo Link Button */}
           {/* Redundant button removed */}
           
-          {/* Attribution */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ delay: 1.3, duration: 0.8 }} 
-            className="max-w-4xl mx-auto text-center"
-          >
-            <ResultsAttribution />
-          </motion.div>
-          
-          {/* Disclaimer */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ delay: 1.4, duration: 0.8 }} 
-            className="max-w-4xl mx-auto text-center"
-          >
-            <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-              <p className="text-sm text-gray-600 leading-relaxed">
-                Estimates are informational only, based on modeled data (NREL PVWatts® v8 and current utility rates). 
-                Actual results vary by site conditions and installation quality. Not a binding quote.
-              </p>
-            </div>
-          </motion.div>
+          {/* Attribution and disclaimer now consolidated into the white box above */}
         </motion.div>
       </main>
 
