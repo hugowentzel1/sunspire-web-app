@@ -166,21 +166,21 @@ export default function LockOverlay() {
                 fontSize: "20px", 
                 fontWeight: "700", 
                 margin: "0", 
-                color: "var(--brand-primary)" 
+                color: "#DC2626" 
               }}>
                 What You See Now
               </h3>
             </div>
             <div style={{
               height: "140px",
-              background: `color-mix(in srgb, var(--brand-primary) 5%, #FEF2F2)`,
-              border: `3px dashed color-mix(in srgb, var(--brand-primary) 60%, #FCA5A5)`,
+              background: "#FEF2F2",
+              border: "3px dashed #FCA5A5",
               borderRadius: "16px",
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
               justifyContent: "center",
-              color: `color-mix(in srgb, var(--brand-primary) 80%, #DC2626)`,
+              color: "#DC2626",
               fontWeight: "600",
               fontSize: "16px",
               position: "relative"
@@ -304,6 +304,24 @@ export default function LockOverlay() {
             margin: "0"
           }}>
             Most tools cost $2,500+/mo. Cancel anytime. No long-term contracts.
+          </p>
+        </div>
+
+        {/* PVWatts Attribution */}
+        <div style={{
+          background: "#F9FAFB",
+          borderRadius: "8px",
+          padding: "16px",
+          marginBottom: "24px"
+        }}>
+          <p style={{
+            fontSize: "14px",
+            color: "#6B7280",
+            margin: "0",
+            lineHeight: "1.5"
+          }}>
+            Estimates are informational only, based on modeled data (NREL PVWatts® v8 and current utility rates).<br/>
+            Actual results vary by site conditions and installation quality. Not a binding quote.
           </p>
         </div>
 
