@@ -56,6 +56,11 @@ function ReportContent() {
   const [quotaConsumed, setQuotaConsumed] = useState(false);
   const [pageLoadId] = useState(() => Date.now().toString());
   
+  // Reset quota consumed state on each page load
+  useEffect(() => {
+    setQuotaConsumed(false);
+  }, [searchParams]);
+  
   // Update remaining quota
   useEffect(() => {
     const currentRemaining = read();
