@@ -763,14 +763,19 @@ function ReportContent() {
             </div>
           </motion.div>
           
-          {/* Attribution */}
+          {/* Disclaimer */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 
             animate={{ opacity: 1, y: 0 }} 
-            transition={{ delay: 1.3, duration: 0.8 }} 
+            transition={{ delay: 1.4, duration: 0.8 }} 
             className="max-w-4xl mx-auto text-center"
           >
-            <ResultsAttribution />
+            <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
+              <p className="text-sm text-gray-600 leading-relaxed">
+                Estimates are informational only, based on modeled data (NREL PVWatts® v8 and current utility rates).<br/>
+                Actual results vary by site conditions and installation quality. Not a binding quote.
+              </p>
+            </div>
           </motion.div>
         </motion.div>
       </main>
