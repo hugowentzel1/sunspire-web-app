@@ -73,6 +73,7 @@ function ReportContent() {
 
   // Stripe checkout handler
   const handleCheckout = async () => {
+    console.log('🛒 handleCheckout called');
     try {
       // Collect tracking parameters from URL
       const urlParams = new URLSearchParams(window.location.search);
@@ -80,6 +81,8 @@ function ReportContent() {
       const company = urlParams.get('company');
       const utm_source = urlParams.get('utm_source');
       const utm_campaign = urlParams.get('utm_campaign');
+      
+      console.log('🛒 Starting checkout with params:', { token, company, utm_source, utm_campaign });
       
       // Start checkout
       const response = await fetch('/api/stripe/create-checkout-session', {
@@ -101,7 +104,7 @@ function ReportContent() {
       const { url } = await response.json();
       window.location.href = url;
     } catch (error) {
-      console.error('Checkout error:', error);
+      console.error('🛒 Checkout error:', error);
       alert('Unable to start checkout. Please try again.');
     }
   };
