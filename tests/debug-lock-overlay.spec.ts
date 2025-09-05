@@ -1,63 +1,78 @@
 import { test, expect } from '@playwright/test';
 
-test('Debug Lock Overlay', async ({ page }) => {
-  console.log('🔍 Debugging lock overlay...');
+test('Debug Lock Overlay - Check What\'s Actually Showing', async ({ page }) => {
+  console.log('🔍 Debugging lock overlay display...');
   
-  // Clear localStorage first to reset quota
-  await page.goto('http://localhost:3000/');
+  // Clear localStorage and go to third view (should be locked)
+  await page.goto('https://sunspire-web-app.vercel.app');
   await page.evaluate(() => {
     localStorage.clear();
-    sessionStorage.clear();
   });
   
-  // Navigate to Tesla report page
-  await page.goto('http://localhost:3000/report?address=123%20Main%20St&lat=40.7128&lng=-74.0060&placeId=demo&company=Tesla&demo=1');
+  // First view
+  await page.goto('https://sunspire-web-app.vercel.app/report?address=1&lat=40.7128&lng=-74.0060&placeId=demo&company=Tesla&demo=1');
   await page.waitForLoadState('networkidle');
-  await page.waitForTimeout(3000);
   
-  // Check if lock overlay is visible
-  const lockOverlay = page.locator('div[style*="position: fixed"][style*="inset: 0"]');
-  const isLockVisible = await lockOverlay.isVisible();
-  console.log('🔒 Lock overlay visible:', isLockVisible);
+  // Second view
+  await page.goto('https://sunspire-web-app.vercel.app/report?address=1&lat=40.7128&lng=-74.0060&placeId=demo&company=Tesla&demo=1');
+  await page.waitForLoadState('networkidle');
   
-  if (isLockVisible) {
-    // Check for CTA buttons in lock overlay
-    const ctaButtons = await page.locator('[data-cta="primary"]').count();
-    console.log('🔘 CTA buttons in lock overlay:', ctaButtons);
+  // Third view (should be locked)
+  console.log('👀 Third view - should be locked...');
+  await page.goto('https://sunspire-web-app.vercel.app/report?address=1&lat=40.7128&lng=-74.0060&placeId=demo&company=Tesla&demo=1');
+  await page.waitForLoadState('networkidle');
+  
+  // Check what elements are visible
+  const elements = await page.evaluate(() => {
+    const lockOverlay = document.querySelector('[data-testid="lock-overlay"], .lock-overlay, [class*="lock"]');
+    const reportContent = document.querySelector('h2');
+    const mainContent = document.querySelector('main');
     
-    // Check for any buttons with "Activate" text
-    const activateButtons = await page.locator('button:has-text("Activate")').count();
-    console.log('🔘 Activate buttons found:', activateButtons);
-    
-    // Check for any buttons at all
-    const allButtons = await page.locator('button').count();
-    console.log('🔘 Total buttons found:', allButtons);
-    
-    // Check lock overlay content
-    const lockText = await page.textContent('body');
-    console.log('📝 Lock overlay contains "Activate":', lockText?.includes('Activate'));
-    console.log('📝 Lock overlay contains "locked":', lockText?.includes('locked'));
-    
-    // Try to find any clickable elements
-    const clickableElements = await page.locator('button, a, [onclick]').count();
-    console.log('🖱️ Clickable elements found:', clickableElements);
-    
-    // Check if there are any buttons with specific text
-    const buttonTexts = await page.locator('button').allTextContents();
-    console.log('🔘 Button texts:', buttonTexts);
+    return {
+      lockOverlay: {
+        exists: !!lockOverlay,
+        visible: lockOverlay ? getComputedStyle(lockOverlay).display !== 'none' : false,
+        text: lockOverlay ? lockOverlay.textContent : null
+      },
+      reportContent: {
+        exists: !!reportContent,
+        visible: reportContent ? getComputedStyle(reportContent).display !== 'none' : false,
+        text: reportContent ? reportContent.textContent : null
+      },
+      mainContent: {
+        exists: !!mainContent,
+        visible: mainContent ? getComputedStyle(mainContent).display !== 'none' : false,
+        children: mainContent ? mainContent.children.length : 0
+      }
+    };
+  });
+  
+  console.log('🔍 Element visibility:', elements);
+  
+  // Check if we can see "What You See Now" text
+  const whatYouSeeNow = page.locator('text=What You See Now').first();
+  const isWhatYouSeeVisible = await whatYouSeeNow.isVisible();
+  console.log('👁️ "What You See Now" visible:', isWhatYouSeeVisible);
+  
+  // Check if we can see "What You Get Live" text
+  const whatYouGetLive = page.locator('text=What You Get Live').first();
+  const isWhatYouGetVisible = await whatYouGetLive.isVisible();
+  console.log('🚀 "What You Get Live" visible:', isWhatYouGetVisible);
+  
+  // Check if we can see CTA buttons
+  const ctaButtons = await page.locator('[data-cta="primary"]').all();
+  console.log('🔘 CTA buttons found:', ctaButtons.length);
+  
+  // Take screenshot
+  await page.screenshot({ path: 'debug-lock-overlay.png', fullPage: true });
+  console.log('📸 Debug screenshot saved');
+  
+  console.log('\n🎯 ANALYSIS:');
+  if (isWhatYouSeeVisible && isWhatYouGetVisible) {
+    console.log('✅ Lock overlay is working - showing "What You See Now" vs "What You Get Live"');
+  } else if (elements.lockOverlay.exists) {
+    console.log('⚠️ Lock overlay exists but content might be different');
   } else {
-    console.log('📊 No lock overlay, checking for report content...');
-    
-    // Check for CTA buttons in report
-    const ctaButtons = await page.locator('[data-cta="primary"]').count();
-    console.log('🔘 CTA buttons in report:', ctaButtons);
-    
-    // Check for any buttons with "Activate" text
-    const activateButtons = await page.locator('button:has-text("Activate")').count();
-    console.log('🔘 Activate buttons found:', activateButtons);
+    console.log('❌ Lock overlay not working properly');
   }
-  
-  // Take a screenshot
-  await page.screenshot({ path: 'debug-lock-overlay.png' });
-  console.log('📸 Screenshot saved as debug-lock-overlay.png');
 });

@@ -1,45 +1,60 @@
 import { test, expect } from '@playwright/test';
 
-test('Debug console logs for brand colors', async ({ page }) => {
-  console.log('🔍 Debugging console logs...');
+test('Debug Console Logs - Check Quota Debugging', async ({ page }) => {
+  console.log('🔍 Checking console logs for quota debugging...');
   
-  // Listen to console logs
-  const logs: string[] = [];
-  page.on('console', msg => {
-    if (msg.text().includes('useBrandTakeover')) {
-      logs.push(msg.text());
-    }
-  });
-  
-  // Clear localStorage first
-  await page.goto('https://sunspire-web-app.vercel.app/');
+  // Clear localStorage
+  await page.goto('https://sunspire-web-app.vercel.app');
   await page.evaluate(() => {
     localStorage.clear();
-    sessionStorage.clear();
   });
   
-  // Test Tesla
+  // Listen for all console messages
+  const consoleMessages: string[] = [];
+  page.on('console', msg => {
+    consoleMessages.push(msg.text());
+  });
+  
+  // First view
+  console.log('👀 First view...');
   await page.goto('https://sunspire-web-app.vercel.app/report?address=1&lat=40.7128&lng=-74.0060&placeId=demo&company=Tesla&demo=1');
   await page.waitForLoadState('networkidle');
-  await page.waitForTimeout(3000);
   
-  console.log('📝 Console logs:');
-  logs.forEach(log => console.log('  ', log));
+  // Filter quota-related messages
+  const quotaMessages = consoleMessages.filter(msg => 
+    msg.includes('Demo quota') || 
+    msg.includes('🔒') || 
+    msg.includes('remaining') ||
+    msg.includes('demoMode')
+  );
   
-  // Check localStorage
-  const localStorageData = await page.evaluate(() => {
-    return localStorage.getItem('sunspire-brand-takeover');
+  console.log('📝 Quota-related console messages:');
+  quotaMessages.forEach((msg, i) => {
+    console.log(`  ${i + 1}. ${msg}`);
   });
-  console.log('📦 localStorage:', localStorageData);
   
-  // Check CSS variables
-  const cssVars = await page.evaluate(() => {
-    const root = document.documentElement;
+  // Check the current state
+  const currentState = await page.evaluate(() => {
+    const demoQuota = localStorage.getItem('demo_quota_v3');
     return {
-      brand: getComputedStyle(root).getPropertyValue('--brand').trim(),
-      brand2: getComputedStyle(root).getPropertyValue('--brand-2').trim(),
-      brandPrimary: getComputedStyle(root).getPropertyValue('--brand-primary').trim(),
+      demoQuota: demoQuota ? JSON.parse(demoQuota) : null,
+      url: window.location.href
     };
   });
-  console.log('🎨 CSS variables:', cssVars);
+  
+  console.log('📦 Current state:', currentState);
+  
+  // Check if lock overlay should be visible
+  const lockOverlay = page.locator('[data-testid="lock-overlay"], .lock-overlay, [class*="lock"]').first();
+  const isLockVisible = await lockOverlay.isVisible();
+  console.log('🔒 Lock overlay visible:', isLockVisible);
+  
+  // Check if report content is visible
+  const reportContent = page.locator('text=Your Solar Savings Over Time').first();
+  const isReportVisible = await reportContent.isVisible();
+  console.log('📊 Report content visible:', isReportVisible);
+  
+  // Take screenshot
+  await page.screenshot({ path: 'debug-console-logs.png', fullPage: true });
+  console.log('📸 Debug screenshot saved');
 });

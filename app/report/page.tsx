@@ -53,6 +53,7 @@ function ReportContent() {
   // Demo quota management
   const { read, consume } = usePreviewQuota(2);
   const [remaining, setRemaining] = useState(2);
+  const [quotaConsumed, setQuotaConsumed] = useState(false);
   
   // Update remaining quota
   useEffect(() => {
@@ -376,9 +377,10 @@ function ReportContent() {
     }
     
     // Consume a demo run if in demo mode (after successful report generation)
-    if (isDemo || hasBrand) {
+    if ((isDemo || hasBrand) && !quotaConsumed) {
       console.log('🔒 Demo quota - consuming run, remaining before:', read());
       consume();
+      setQuotaConsumed(true);
       // Update remaining after consuming - use setTimeout to ensure state update
       setTimeout(() => {
         const newRemaining = read();
@@ -386,7 +388,7 @@ function ReportContent() {
         setRemaining(newRemaining);
       }, 100);
     }
-    }, [searchParams, pickDemoAddress]);
+    }, [searchParams]);
 
   if (tenantLoading || isLoading) {
     return (
