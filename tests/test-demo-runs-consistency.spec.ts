@@ -14,7 +14,7 @@ test('Test Demo Runs and Visual Consistency', async ({ page }) => {
   console.log('🔍 FIRST VISIT - Should show report with Tesla branding');
   await page.goto(testUrl);
   await page.waitForLoadState('networkidle');
-  await page.waitForTimeout(3000);
+  await page.waitForTimeout(12000); // Wait for quota consumption
   
   // Check first visit
   const firstQuota = await page.evaluate(() => {
@@ -53,7 +53,7 @@ test('Test Demo Runs and Visual Consistency', async ({ page }) => {
   console.log('🔍 SECOND VISIT - Should show report again with same Tesla branding');
   await page.goto(testUrl);
   await page.waitForLoadState('networkidle');
-  await page.waitForTimeout(3000);
+  await page.waitForTimeout(12000); // Wait for quota consumption
   
   // Check second visit
   const secondQuota = await page.evaluate(() => {

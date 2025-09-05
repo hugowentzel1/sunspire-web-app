@@ -403,7 +403,7 @@ function ReportContent() {
         } else {
           console.log('🔒 Demo quota - already at 0, not consuming');
         }
-      }, 2000); // 2 second delay to allow user to see content
+      }, 10000); // 10 second delay to allow user to see content
     } else {
       console.log('🔒 Demo quota - not consuming, isDemo:', isDemo, 'hasBrand:', hasBrand, 'quotaConsumed:', quotaConsumed);
     }
@@ -437,11 +437,11 @@ function ReportContent() {
   if (!estimate) return null;
 
   // Show lock overlay if demo quota is exhausted  
-  // Check quota AFTER consumption - if we're at 0 or will be after consuming, show lock
+  // Check quota BEFORE consumption - if we're at 0, show lock
   const currentQuota = read();
   console.log('🔒 Demo quota check - demoMode:', demoMode, 'currentQuota:', currentQuota, 'remaining:', remaining);
-  if (demoMode && currentQuota <= 1) {
-    console.log('🔒 Showing lock overlay - quota exhausted or will be after consumption');
+  if (demoMode && currentQuota <= 0) {
+    console.log('🔒 Showing lock overlay - quota exhausted');
     return <LockOverlay />;
   }
 
