@@ -32,23 +32,49 @@ export default function AddressAutocomplete({
 
   // Load Google Places API script
   useEffect(() => {
-    if (!(window as any).google?.places) {
-      const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-      if (apiKey) {
-        const script = document.createElement('script');
-        script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
-        script.async = true;
-        script.onload = () => {
-          console.log('Google Places API loaded');
-        };
-        script.onerror = () => {
-          console.error('Failed to load Google Places API');
-        };
-        document.head.appendChild(script);
+    const loadGoogleMapsAPI = () => {
+      if (!(window as any).google?.places) {
+        const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+        if (apiKey) {
+          // Check if script already exists
+          const existingScript = document.querySelector('script[src*="maps.googleapis.com"]');
+          if (existingScript) {
+            console.log('Google Maps script already exists, waiting for load...');
+            // Wait for the existing script to load
+            const checkInterval = setInterval(() => {
+              if ((window as any).google?.places) {
+                console.log('Google Places API loaded from existing script');
+                clearInterval(checkInterval);
+              }
+            }, 100);
+            return;
+          }
+          
+          const script = document.createElement('script');
+          script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
+          script.async = true;
+          script.onload = () => {
+            console.log('Google Places API loaded');
+          };
+          script.onerror = () => {
+            console.error('Failed to load Google Places API');
+          };
+          document.head.appendChild(script);
+        } else {
+          console.warn('Google Maps API key not found - autocomplete will not work');
+        }
       } else {
-        console.warn('Google Maps API key not found - autocomplete will not work');
+        console.log('Google Places API already loaded');
       }
-    }
+    };
+
+    // Try to load immediately
+    loadGoogleMapsAPI();
+    
+    // Also try after a short delay in case the script is still loading
+    const timeoutId = setTimeout(loadGoogleMapsAPI, 1000);
+    
+    return () => clearTimeout(timeoutId);
   }, []);
 
   // Debounced search
@@ -66,11 +92,21 @@ export default function AddressAutocomplete({
   }, [query]);
 
   const searchAddresses = async (searchQuery: string) => {
+    // Wait for Google Places API to be available
+    let attempts = 0;
+    const maxAttempts = 50; // 5 seconds max wait
+    
+    while (!(window as any).google?.places && attempts < maxAttempts) {
+      await new Promise(resolve => setTimeout(resolve, 100));
+      attempts++;
+    }
+    
     if (!(window as any).google?.places) {
-      console.log('Google Places API not loaded yet');
+      console.log('Google Places API not loaded after waiting');
       return;
     }
 
+    console.log('Google Places API is ready, searching for:', searchQuery);
     setIsLoading(true);
     try {
       const service = new window.google.maps.places.AutocompleteService();
@@ -82,6 +118,7 @@ export default function AddressAutocomplete({
 
       service.getPlacePredictions(request, (results, status) => {
         setIsLoading(false);
+        console.log('Autocomplete response:', { status, resultsCount: results?.length || 0 });
         if (status === window.google.maps.places.PlacesServiceStatus.OK && results) {
           const formattedPredictions = results.map(result => ({
             description: result.description || '',
@@ -90,7 +127,9 @@ export default function AddressAutocomplete({
           setPredictions(formattedPredictions);
           setShowDropdown(true);
           setSelectedIndex(-1);
+          console.log('Set predictions:', formattedPredictions.length);
         } else {
+          console.log('No predictions found or error:', status);
           setPredictions([]);
           setShowDropdown(false);
         }
