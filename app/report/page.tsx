@@ -424,8 +424,9 @@ function ReportContent() {
   if (!estimate) return null;
 
   // Show lock overlay if demo quota is exhausted
-  console.log('🔒 Demo quota check - demoMode:', demoMode, 'remaining:', remaining);
-  if (demoMode && remaining <= 0) {
+  // Only show lock overlay if quota was consumed AND we're at 0
+  console.log('🔒 Demo quota check - demoMode:', demoMode, 'remaining:', remaining, 'quotaConsumed:', quotaConsumed);
+  if (demoMode && remaining <= 0 && quotaConsumed) {
     console.log('🔒 Showing lock overlay - quota exhausted');
     return <LockOverlay />;
   }
