@@ -384,26 +384,25 @@ function ReportContent() {
     }
     
     // Consume a demo run if in demo mode (after successful report generation)
-    // Delay consumption to allow user to see content first
+    // Consume immediately to ensure it happens
     if ((isDemo || hasBrand) && !quotaConsumed) {
-      console.log('🔒 Demo quota - setting up consumption for page load:', pageLoadId);
+      console.log('🔒 Demo quota - consuming immediately for page load:', pageLoadId);
       console.log('🔒 Demo quota - isDemo:', isDemo, 'hasBrand:', hasBrand, 'quotaConsumed:', quotaConsumed);
-      setTimeout(() => {
-        const beforeConsume = read();
-        console.log('🔒 Demo quota - consuming run, remaining before:', beforeConsume);
-        
-        if (beforeConsume > 0) {
-          console.log('🔒 Demo quota - calling consume()...');
-          consume();
-          setQuotaConsumed(true);
-          // Update remaining immediately after consuming
-          const newRemaining = read();
-          console.log('🔒 Demo quota - after consume, remaining:', newRemaining);
-          setRemaining(newRemaining);
-        } else {
-          console.log('🔒 Demo quota - already at 0, not consuming');
-        }
-      }, 3000); // 3 second delay to allow user to see content
+      
+      const beforeConsume = read();
+      console.log('🔒 Demo quota - consuming run, remaining before:', beforeConsume);
+      
+      if (beforeConsume > 0) {
+        console.log('🔒 Demo quota - calling consume()...');
+        consume();
+        setQuotaConsumed(true);
+        // Update remaining immediately after consuming
+        const newRemaining = read();
+        console.log('🔒 Demo quota - after consume, remaining:', newRemaining);
+        setRemaining(newRemaining);
+      } else {
+        console.log('🔒 Demo quota - already at 0, not consuming');
+      }
     } else {
       console.log('🔒 Demo quota - not consuming, isDemo:', isDemo, 'hasBrand:', hasBrand, 'quotaConsumed:', quotaConsumed);
     }
