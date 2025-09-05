@@ -54,6 +54,7 @@ function ReportContent() {
   const { read, consume } = usePreviewQuota(2);
   const [remaining, setRemaining] = useState(2);
   const [quotaConsumed, setQuotaConsumed] = useState(false);
+  const [pageLoadId] = useState(() => Date.now().toString());
   
   // Update remaining quota
   useEffect(() => {
@@ -62,10 +63,7 @@ function ReportContent() {
     setRemaining(currentRemaining);
   }, [read]);
 
-  // Reset quota consumed flag when URL changes
-  useEffect(() => {
-    setQuotaConsumed(false);
-  }, [searchParams]);
+  // Don't reset quota consumed flag - track per URL session
   
   // Attach checkout handlers to CTAs
   useEffect(() => {
@@ -384,6 +382,7 @@ function ReportContent() {
     // Consume a demo run if in demo mode (after successful report generation)
     // Delay consumption to allow user to see content first
     if ((isDemo || hasBrand) && !quotaConsumed) {
+      console.log('🔒 Demo quota - setting up consumption for page load:', pageLoadId);
       setTimeout(() => {
         console.log('🔒 Demo quota - consuming run, remaining before:', read());
         consume();
