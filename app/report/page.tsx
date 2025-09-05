@@ -403,7 +403,7 @@ function ReportContent() {
         } else {
           console.log('🔒 Demo quota - already at 0, not consuming');
         }
-      }, 10000); // 10 second delay to allow user to see content
+      }, 3000); // 3 second delay to allow user to see content
     } else {
       console.log('🔒 Demo quota - not consuming, isDemo:', isDemo, 'hasBrand:', hasBrand, 'quotaConsumed:', quotaConsumed);
     }
