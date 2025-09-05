@@ -388,11 +388,13 @@ function ReportContent() {
     // Delay consumption to allow user to see content first
     if ((isDemo || hasBrand) && !quotaConsumed) {
       console.log('🔒 Demo quota - setting up consumption for page load:', pageLoadId);
+      console.log('🔒 Demo quota - isDemo:', isDemo, 'hasBrand:', hasBrand, 'quotaConsumed:', quotaConsumed);
       setTimeout(() => {
         const beforeConsume = read();
         console.log('🔒 Demo quota - consuming run, remaining before:', beforeConsume);
         
         if (beforeConsume > 0) {
+          console.log('🔒 Demo quota - calling consume()...');
           consume();
           setQuotaConsumed(true);
           // Update remaining immediately after consuming
@@ -403,6 +405,8 @@ function ReportContent() {
           console.log('🔒 Demo quota - already at 0, not consuming');
         }
       }, 2000); // 2 second delay to allow user to see content
+    } else {
+      console.log('🔒 Demo quota - not consuming, isDemo:', isDemo, 'hasBrand:', hasBrand, 'quotaConsumed:', quotaConsumed);
     }
     }, [searchParams]);
 
