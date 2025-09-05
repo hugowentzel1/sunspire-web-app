@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { upsertLead, logEvent, upsertTenant, findTenantByHandle } from '@/src/lib/airtable';
+import { upsertLead, logEvent, upsertTenantByHandle, findTenantByHandle } from '@/src/lib/airtable';
 import Stripe from 'stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -39,10 +39,9 @@ export async function POST(request: NextRequest) {
 
       if (tenantHandle) {
         // Upsert tenant with active status
-        await upsertTenant({
-          companyHandle: tenantHandle,
-          plan: 'Starter',
-          status: 'active',
+        await upsertTenantByHandle(tenantHandle, {
+          'Plan': 'Starter',
+          'Payment Status': 'active',
           stripeCustomerId: session.customer,
           stripeSubscriptionId: subscriptionId,
           paymentStatus: 'active',
@@ -69,7 +68,7 @@ export async function POST(request: NextRequest) {
 
     if (event.type === 'invoice.payment_failed') {
       const invoice = event.data.object;
-      const subscriptionId = invoice.subscription;
+      const subscriptionId = (invoice as any).subscription;
       
       if (subscriptionId) {
         // Get subscription to find tenant
@@ -80,9 +79,8 @@ export async function POST(request: NextRequest) {
           // Update tenant status to delinquent
           const tenant = await findTenantByHandle(tenantHandle);
           if (tenant) {
-            await upsertTenant({
-              ...tenant,
-              paymentStatus: 'delinquent',
+            await upsertTenantByHandle(tenantHandle, {
+              'Payment Status': 'delinquent',
             });
             
             console.log(`⚠️ Tenant ${tenantHandle} marked as delinquent`);
@@ -99,10 +97,8 @@ export async function POST(request: NextRequest) {
         // Update tenant status to disabled
         const tenant = await findTenantByHandle(tenantHandle);
         if (tenant) {
-          await upsertTenant({
-            ...tenant,
-            status: 'disabled',
-            paymentStatus: 'cancelled',
+          await upsertTenantByHandle(tenantHandle, {
+            'Payment Status': 'cancelled',
           });
           
           console.log(`❌ Tenant ${tenantHandle} disabled due to subscription cancellation`);
