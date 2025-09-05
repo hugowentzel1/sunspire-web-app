@@ -756,11 +756,6 @@ function ReportContent() {
                 Activate on Your Domain - $99/mo + $399
               </motion.button>
             </div>
-            <div className="mt-8 text-center">
-              <p className="text-lg mb-2">Only $99/mo + $399 setup. 14-day refund if it doesn&apos;t lift booked calls.</p>
-              <p className="text-base opacity-90 mb-4">Cancel anytime. No long-term contracts.</p>
-              {/* Activate button removed from footer box */}
-            </div>
           </motion.div>
           
           {/* Disclaimer */}
