@@ -698,17 +698,17 @@ function ReportContent() {
                   </div>
                 </div>
 
-                {/* Data Sources & Attribution */}
+                {/* Data Sources */}
                 <div className="pt-6 border-t border-gray-200">
                   <h3 className="text-lg font-semibold text-gray-800 mb-4">Data Sources</h3>
                   <div className="space-y-3 text-sm text-gray-600">
                     <div className="flex items-center">
                       <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
-                      <span>Solar irradiance data from <strong>NREL PVWatts® v8</strong></span>
+                      <span>Solar irradiance data from industry-standard models</span>
                     </div>
                     <div className="flex items-center">
                       <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
-                      <span>Utility rates from <strong>Google Maps API</strong> and local utility databases</span>
+                      <span>Utility rates from local utility databases</span>
                     </div>
                     <div className="flex items-center">
                       <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
