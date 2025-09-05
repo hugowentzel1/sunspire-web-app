@@ -3,7 +3,22 @@ const KEY="demo_quota_v3";
 const AUTO_OPEN_KEY="demo_auto_open_v1";
 
 export function usePreviewQuota(allowed:number=2){
-  const link = typeof window !== "undefined" ? window.location.href : "link";
+  // Normalize URL to only include essential parameters for demo quota
+  const getNormalizedUrl = () => {
+    if (typeof window === "undefined") return "link";
+    const url = new URL(window.location.href);
+    // Only keep essential parameters for demo quota
+    const essentialParams = ['company', 'demo'];
+    const newUrl = new URL(url.origin + url.pathname);
+    essentialParams.forEach(param => {
+      if (url.searchParams.has(param)) {
+        newUrl.searchParams.set(param, url.searchParams.get(param) || '');
+      }
+    });
+    return newUrl.toString();
+  };
+  
+  const link = getNormalizedUrl();
   
   function read(){
     if (typeof window === "undefined") return allowed;
