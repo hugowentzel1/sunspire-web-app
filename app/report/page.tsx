@@ -761,51 +761,6 @@ function ReportContent() {
               <p className="text-base opacity-90 mb-4">Cancel anytime. No long-term contracts.</p>
               {/* Activate button removed from footer box */}
             </div>
-            <div className="mt-6 pt-4 border-t border-white/20">
-              <p className="text-sm opacity-90">Full version from just $99/mo + $399 setup. Most tools cost $2,500+/mo.</p>
-            </div>
-          </motion.div>
-          
-          {/* Copy Demo Link Button */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ delay: 1.2, duration: 0.8 }} 
-            className="text-center mb-8"
-          >
-            <button 
-              data-cta="primary"
-              onClick={handleCheckout}
-              className="px-6 py-3 rounded-lg font-medium transition-colors text-white"
-              style={{ backgroundColor: 'var(--brand)' }}
-            >
-              🚀 Activate on Your Domain
-            </button>
-          </motion.div>
-          
-          {/* Attribution */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ delay: 1.3, duration: 0.8 }} 
-            className="max-w-4xl mx-auto text-center"
-          >
-            <ResultsAttribution />
-          </motion.div>
-          
-          {/* Disclaimer */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ delay: 1.4, duration: 0.8 }} 
-            className="max-w-4xl mx-auto text-center"
-          >
-            <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-              <p className="text-sm text-gray-600 leading-relaxed">
-                Estimates are informational only, based on modeled data (NREL PVWatts® v8 and current utility rates).<br/>
-                Actual results vary by site conditions and installation quality. Not a binding quote.
-              </p>
-            </div>
           </motion.div>
         </motion.div>
       </main>
