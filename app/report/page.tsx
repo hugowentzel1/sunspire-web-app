@@ -756,7 +756,7 @@ function ReportContent() {
                 Activate on Your Domain - $99/mo + $399
               </motion.button>
             </div>
-            <div className="mt-6 pt-4 border-t border-white/20 flex items-center justify-center min-h-[60px]">
+            <div className="mt-6 pt-6 pb-6 border-t border-white/20 flex items-center justify-center min-h-[80px]">
               <p className="text-sm opacity-90">Full version from just $99/mo + $399 setup. Most tools cost $2,500+/mo.</p>
             </div>
           </motion.div>
