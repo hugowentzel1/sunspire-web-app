@@ -731,7 +731,7 @@ function ReportContent() {
 
           {/* Ready-to text section moved to header - no duplicate needed */}
 
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="rounded-3xl py-8 px-8 text-center text-white mt-8" style={{ backgroundColor: 'var(--brand)' }}>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="rounded-3xl py-8 px-8 text-center text-white mt-4" style={{ backgroundColor: 'var(--brand)' }}>
             <h2 className="text-3xl font-bold mb-6">Ready to Launch Your Branded Tool?</h2>
             <p className="text-xl mb-10 opacity-90">Get complete financial projections, detailed assumptions, and unblurred savings charts</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -755,6 +755,9 @@ function ReportContent() {
               >
                 Activate on Your Domain - $99/mo + $399
               </motion.button>
+            </div>
+            <div className="mt-6 pt-4 border-t border-white/20">
+              <p className="text-sm opacity-90">Full version from just $99/mo + $399 setup. Most tools cost $2,500+/mo.</p>
             </div>
           </motion.div>
           
