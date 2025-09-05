@@ -61,6 +61,11 @@ function ReportContent() {
     console.log('🔒 Demo quota - read():', currentRemaining);
     setRemaining(currentRemaining);
   }, [read]);
+
+  // Reset quota consumed flag when URL changes
+  useEffect(() => {
+    setQuotaConsumed(false);
+  }, [searchParams]);
   
   // Attach checkout handlers to CTAs
   useEffect(() => {
@@ -381,12 +386,10 @@ function ReportContent() {
       console.log('🔒 Demo quota - consuming run, remaining before:', read());
       consume();
       setQuotaConsumed(true);
-      // Update remaining after consuming - use setTimeout to ensure state update
-      setTimeout(() => {
-        const newRemaining = read();
-        console.log('🔒 Demo quota - after consume, remaining:', newRemaining);
-        setRemaining(newRemaining);
-      }, 100);
+      // Update remaining immediately after consuming
+      const newRemaining = read();
+      console.log('🔒 Demo quota - after consume, remaining:', newRemaining);
+      setRemaining(newRemaining);
     }
     }, [searchParams]);
 
