@@ -113,7 +113,7 @@ export function useBrandTakeover(): BrandState {
         const brandState: BrandState = {
           enabled: true,
           brand: companyName,
-          primary: hex(customColor) || themeColor,
+          primary: themeColor, // Use hardcoded theme color directly
           logo: allowLogo(sp.get("logo")),
           domain: clean(sp.get("domain")),
           city: clean(sp.get("city")),
