@@ -77,8 +77,23 @@ function HomeContent() {
       console.log('🔒 Homepage quota check - currentQuota:', currentQuota);
       
       if (currentQuota <= 0) {
-        console.log('🔒 Quota exhausted, showing lock message');
-        alert('Demo quota exhausted. Please contact us to get full access.');
+        console.log('🔒 Quota exhausted, navigating to report page to show lockout');
+        // Navigate to report page which will show lockout overlay
+        const currentParams = new URLSearchParams(window.location.search);
+        const company = currentParams.get('company');
+        const demo = currentParams.get('demo');
+        
+        const q = new URLSearchParams({ 
+          address: address || '123 Main St', 
+          lat: '40.7128', 
+          lng: '-74.0060', 
+          placeId: 'demo' 
+        });
+        
+        if (company) q.set('company', company);
+        if (demo) q.set('demo', demo);
+        
+        router.push(`/report?${q.toString()}`);
         return;
       }
       
