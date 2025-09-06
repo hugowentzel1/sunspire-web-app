@@ -5,7 +5,7 @@ import { headers } from 'next/headers';
 import { ENV } from '@/src/config/env';
 import { upsertTenantByHandle, createOrLinkUserOwner } from '@/src/lib/airtable';
 
-const stripe = ENV.STRIPE_SECRET_KEY ? new Stripe(ENV.STRIPE_SECRET_KEY, {
+const stripe = ENV.STRIPE_LIVE_SECRET_KEY ? new Stripe(ENV.STRIPE_LIVE_SECRET_KEY, {
   apiVersion: '2024-06-20',
 }) : null;
 
