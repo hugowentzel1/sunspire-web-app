@@ -4,10 +4,12 @@ import Image from "next/image";
 import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
 import { getCTA } from "./cta";
 import { useABVariant } from "./useABVariant";
+import { useCountdown } from "./useCountdown";
 
 export default function LockOverlay() {
   const b = useBrandTakeover();
   const variant = useABVariant();
+  const countdown = useCountdown(b.expireDays || 7);
 
   // Block scrolling and tab focus
   useEffect(() => {
@@ -134,10 +136,28 @@ export default function LockOverlay() {
           <p style={{
             fontSize: "18px",
             color: "#6B7280",
-            margin: "0"
+            margin: "0 0 16px 0"
           }}>
             Unlock full access to see complete solar reports
           </p>
+          
+          {/* Countdown Timer */}
+          <div style={{
+            background: "var(--brand-primary)",
+            color: "#fff",
+            padding: "12px 24px",
+            borderRadius: "12px",
+            display: "inline-block",
+            fontSize: "16px",
+            fontWeight: "600",
+            boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)"
+          }}>
+            {countdown.isExpired ? (
+              "Demo Expired"
+            ) : (
+              `Expires in ${countdown.days}d ${countdown.hours}h ${countdown.minutes}m`
+            )}
+          </div>
         </div>
 
         {/* Side-by-side comparison */}
