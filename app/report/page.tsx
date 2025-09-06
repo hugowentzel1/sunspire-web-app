@@ -439,8 +439,11 @@ function ReportContent() {
   // Check quota BEFORE consumption - if we're at 0, show lock
   const currentQuota = read();
   console.log('🔒 Demo quota check - demoMode:', demoMode, 'currentQuota:', currentQuota, 'remaining:', remaining);
-  if (demoMode && currentQuota <= 0) {
-    console.log('🔒 Showing lock overlay - quota exhausted');
+  
+  // Only show lock overlay if we've consumed a quota and it's now 0
+  // Don't show lock on first visit when quota is being consumed
+  if (demoMode && currentQuota <= 0 && quotaConsumed) {
+    console.log('🔒 Showing lock overlay - quota exhausted after consumption');
     return <LockOverlay />;
   }
 
