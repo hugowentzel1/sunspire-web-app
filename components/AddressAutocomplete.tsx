@@ -33,7 +33,7 @@ export default function AddressAutocomplete({
   // Load Google Places API script
   useEffect(() => {
     const loadGoogleMapsAPI = () => {
-      if (!(window as any).google?.places) {
+      if (!(window as any).google?.maps?.places) {
         const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
         console.log('🔑 Google Maps API key:', apiKey ? 'Present' : 'Missing');
         if (apiKey) {
@@ -43,7 +43,7 @@ export default function AddressAutocomplete({
             console.log('Google Maps script already exists, waiting for load...');
             // Wait for the existing script to load
             const checkInterval = setInterval(() => {
-              if ((window as any).google?.places) {
+              if ((window as any).google?.maps?.places) {
                 console.log('Google Places API loaded from existing script');
                 clearInterval(checkInterval);
               }
@@ -97,12 +97,12 @@ export default function AddressAutocomplete({
     let attempts = 0;
     const maxAttempts = 50; // 5 seconds max wait
     
-    while (!(window as any).google?.places && attempts < maxAttempts) {
+    while (!(window as any).google?.maps?.places && attempts < maxAttempts) {
       await new Promise(resolve => setTimeout(resolve, 100));
       attempts++;
     }
     
-    if (!(window as any).google?.places) {
+    if (!(window as any).google?.maps?.places) {
       console.log('Google Places API not loaded after waiting');
       return;
     }
