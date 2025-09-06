@@ -403,23 +403,29 @@ function ReportContent() {
       setIsLoading(false);
     }
     
-    // Don't consume quota automatically - let user interact first
-    console.log('🔒 Demo quota - report generated, quota not consumed yet');
-    console.log('🔒 Demo quota - isDemo:', isDemo, 'hasBrand:', hasBrand, 'quotaConsumed:', quotaConsumed, 'estimate:', !!estimate);
-    
-    // Define consumeQuotaIfNeeded function inside useEffect where isDemo and hasBrand are available
-    window.consumeQuotaIfNeeded = () => {
-      if ((isDemo || hasBrand) && !quotaConsumed) {
-        console.log('🔒 Demo quota - consuming on user interaction');
-        const beforeConsume = read();
-        if (beforeConsume > 0) {
-          consume();
-          setQuotaConsumed(true);
-          const newRemaining = read();
-          setRemaining(newRemaining);
-          console.log('🔒 Demo quota - consumed, remaining:', newRemaining);
-        }
+    // Consume quota after report is successfully generated (for demo mode)
+    if ((isDemo || hasBrand) && !quotaConsumed) {
+      console.log('🔒 Demo quota - consuming after successful report generation');
+      const beforeConsume = read();
+      console.log('🔒 Demo quota - consuming run, remaining before:', beforeConsume);
+      
+      if (beforeConsume > 0) {
+        console.log('🔒 Demo quota - calling consume()...');
+        consume();
+        setQuotaConsumed(true);
+        const newRemaining = read();
+        console.log('🔒 Demo quota - after consume, remaining:', newRemaining);
+        setRemaining(newRemaining);
+      } else {
+        console.log('🔒 Demo quota - already at 0, not consuming');
       }
+    } else {
+      console.log('🔒 Demo quota - not consuming, isDemo:', isDemo, 'hasBrand:', hasBrand, 'quotaConsumed:', quotaConsumed);
+    }
+    
+    // Define consumeQuotaIfNeeded function for checkout clicks (no additional consumption)
+    window.consumeQuotaIfNeeded = () => {
+      console.log('🔒 Demo quota - checkout clicked, quota already consumed on report view');
     };
     }, [searchParams]);
 
@@ -512,7 +518,12 @@ function ReportContent() {
               <a href="/partners" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Partners</a>
               <a href="/support" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Support</a>
               <motion.button 
-                onClick={() => router.push('/')}
+                onClick={() => {
+                  const company = searchParams.get('company');
+                  const demo = searchParams.get('demo');
+                  const url = company && demo ? `/?company=${company}&demo=${demo}` : '/';
+                  router.push(url);
+                }}
                 className="btn-primary ml-12"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
