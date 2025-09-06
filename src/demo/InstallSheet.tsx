@@ -190,8 +190,7 @@ export default function InstallSheet(){
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
                   >
-                    <div className="text-lg font-semibold text-gray-900">$99/mo</div>
-                    <div className="text-sm text-gray-600">+ $399 setup</div>
+                    <div className="text-lg font-semibold text-gray-900">$99/mo + $399 setup</div>
                   </button>
                   <button
                     onClick={() => setPlan('annual')}
@@ -201,8 +200,7 @@ export default function InstallSheet(){
                         : 'border-gray-200 hover:border-gray-300'
                     }`}
                   >
-                    <div className="text-lg font-semibold text-gray-900">$999/yr</div>
-                    <div className="text-sm text-gray-600">+ $399 setup</div>
+                    <div className="text-lg font-semibold text-gray-900">$999/yr + $399 setup</div>
                     <div className="text-xs text-green-600 font-medium">Save vs monthly</div>
                   </button>
                 </div>
@@ -246,8 +244,8 @@ export default function InstallSheet(){
               {/* Billing Note */}
               <div className="text-xs text-gray-500 text-center">
                 {plan === 'monthly' 
-                  ? "We'll charge the $399 setup today. Your plan is $99/mo after the trial."
-                  : "We'll charge the $399 setup + $999/yr today."
+                  ? "We'll charge the $99/mo + $399 setup today. Your plan continues at $99/mo after the trial."
+                  : "We'll charge the $99/mo + $399 setup + $999/yr today."
                 }
               </div>
             </div>
@@ -327,8 +325,8 @@ export default function InstallSheet(){
 
                 <div className="text-xs text-gray-500 text-center mt-3">
                   {plan === 'monthly' 
-                    ? "We'll charge the $399 setup today. Your plan is $99/mo after the trial."
-                    : "We'll charge the $399 setup + $999/yr today."
+                    ? "We'll charge the $99/mo + $399 setup today. Your plan continues at $99/mo after the trial."
+                    : "We'll charge the $99/mo + $399 setup + $999/yr today."
                   }
                 </div>
               </div>

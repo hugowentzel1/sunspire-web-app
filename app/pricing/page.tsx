@@ -101,8 +101,7 @@ export default function PricingPage() {
           <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-2xl mx-auto">
             <div className="text-center space-y-8">
               <div>
-                <h2 className="text-4xl font-black text-gray-900 mb-2">$399</h2>
-                <p className="text-xl text-gray-600">setup + $99/month</p>
+                <h2 className="text-4xl font-black text-gray-900 mb-2">$99/mo + $399 setup</h2>
               </div>
               
               <div className="space-y-4">

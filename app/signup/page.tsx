@@ -96,7 +96,7 @@ export default function SignupPage() {
             
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-500">
-                No call required. $399 setup + $99/mo. 14-day refund if it doesn&apos;t lift booked calls.
+                No call required. $99/mo + $399 setup. 14-day refund if it doesn&apos;t lift booked calls.
               </p>
             </div>
           </div>

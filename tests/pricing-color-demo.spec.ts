@@ -24,7 +24,7 @@ test('Show Color-Coded Pricing Page', async ({ page }) => {
   // Check the pricing display
   const priceDisplay = page.locator('h2').first();
   await expect(priceDisplay).toContainText('$399');
-  console.log('✅ $399 setup + $99/month pricing displayed');
+  console.log('✅ $99/mo + $399 setup pricing displayed');
   
   // Check back to home button
   const backButton = page.locator('a[href="/"]');
@@ -32,7 +32,7 @@ test('Show Color-Coded Pricing Page', async ({ page }) => {
   console.log('✅ Back to Home navigation button');
   
   console.log('🎉 Pricing page is now fully color-coded with brand colors!');
-  console.log('💰 Showing: $399 setup + $99/month pricing');
+  console.log('💰 Showing: $99/mo + $399 setup pricing');
   console.log('🎨 All elements use company brand colors');
   
   // Keep the page open for visual inspection

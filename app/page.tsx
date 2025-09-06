@@ -241,7 +241,7 @@ function HomeContent() {
                     Activate on Your Domain — 24 Hours
                   </button>
                   <p className="text-sm text-gray-600 mt-2">
-                    No call required. $399 setup + $99/mo. 14-day refund if it doesn&apos;t lift booked calls.
+                    No call required. $99/mo + $399 setup. 14-day refund if it doesn&apos;t lift booked calls.
                   </p>
                 </div>
               </div>

@@ -71,7 +71,7 @@ test('Show All New Pages and Functionality', async ({ page }) => {
   await page.goto('http://localhost:3002/pricing');
   await page.waitForLoadState('networkidle');
   console.log('✅ Pricing page loaded - showing color-coded design');
-  console.log('💰 Shows: $399 setup + $99/month pricing');
+  console.log('💰 Shows: $99/mo + $399 setup pricing');
   console.log('🎨 All elements use brand colors consistently');
   await page.waitForTimeout(3000);
   
