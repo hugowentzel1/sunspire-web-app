@@ -80,10 +80,13 @@ export default function AddressAutocomplete({
 
   // Debounced search
   useEffect(() => {
+    console.log('🔍 AddressAutocomplete useEffect triggered, query:', query, 'length:', query.length);
     const timeoutId = setTimeout(() => {
       if (query.length >= 3) {
+        console.log('🔍 Query length >= 3, calling searchAddresses');
         searchAddresses(query);
       } else {
+        console.log('🔍 Query length < 3, clearing predictions');
         setPredictions([]);
         setShowDropdown(false);
       }
@@ -145,6 +148,7 @@ export default function AddressAutocomplete({
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
+    console.log('🔍 AddressAutocomplete handleInputChange called with:', newValue);
     setQuery(newValue);
     onChange?.(newValue);
     setShowDropdown(true);
