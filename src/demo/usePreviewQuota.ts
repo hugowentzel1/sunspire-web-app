@@ -9,7 +9,7 @@ export function usePreviewQuota(allowed:number=2){
     const url = new URL(window.location.href);
     // Only keep essential parameters for demo quota - use same key for entire demo session
     const essentialParams = ['company', 'demo'];
-    const newUrl = new URL(url.origin); // Use just the origin, not the pathname
+    const newUrl = new URL(url.origin + '/'); // Use just the origin with root path
     essentialParams.forEach(param => {
       if (url.searchParams.has(param)) {
         newUrl.searchParams.set(param, url.searchParams.get(param) || '');
