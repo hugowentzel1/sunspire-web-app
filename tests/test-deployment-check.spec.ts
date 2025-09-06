@@ -1,43 +1,62 @@
 import { test, expect } from '@playwright/test';
 
-test.describe('Deployment Check', () => {
-  test('Check if fix is deployed', async ({ page }) => {
-    const appleDemoUrl = 'https://sunspire-web-app.vercel.app/?company=Apple&demo=1';
-    
-    console.log('🔍 Checking deployment...');
-    
-    await page.goto(appleDemoUrl);
-    await page.waitForLoadState('networkidle');
-    
-    // Check console logs for the fix
-    const consoleLogs = [];
-    page.on('console', msg => {
-      if (msg.text().includes('Navigating to report')) {
-        consoleLogs.push(msg.text());
-      }
-    });
-    
-    // Test address input and generate
-    const addressInput = page.locator('input[placeholder*="address" i]');
-    await addressInput.fill('123 Main St, New York, NY');
-    await page.waitForTimeout(1000);
-    
-    const generateBtn = page.locator('button:has-text("Generate"), button:has-text("Estimate")');
-    await generateBtn.click();
-    
-    // Wait for report page
-    await page.waitForURL('**/report**');
-    await page.waitForLoadState('networkidle');
-    
-    console.log('Final URL:', page.url());
-    console.log('Console logs:', consoleLogs);
-    
-    // Check if URL has the right parameters
-    const hasCompany = page.url().includes('company=Apple');
-    const hasDemo = page.url().includes('demo=1');
-    console.log('Has company=Apple:', hasCompany);
-    console.log('Has demo=1:', hasDemo);
-    
-    console.log('✅ Deployment check completed');
+test('Check Deployment Status', async ({ page }) => {
+  console.log('🚀 Checking deployment status...');
+  
+  // Navigate to Apple demo
+  await page.goto('https://sunspire-web-app.vercel.app/?company=Apple&demo=1');
+  await page.waitForLoadState('networkidle');
+  
+  // Check if we can see any console logs that would indicate the new logic
+  const consoleLogs: string[] = [];
+  page.on('console', msg => {
+    if (msg.text().includes('🔒')) {
+      consoleLogs.push(msg.text());
+    }
   });
+  
+  // Clear quota and test
+  await page.evaluate(() => {
+    localStorage.removeItem('demo_quota_v3');
+    localStorage.removeItem('demo_countdown_deadline');
+  });
+  
+  const addressInput = page.locator('input[placeholder*="address"]').first();
+  const generateButton = page.locator('button:has-text("Generate"), button:has-text("Launch")').first();
+  
+  // First click
+  await addressInput.fill('123 Main St, New York, NY');
+  await page.waitForTimeout(1000);
+  await generateButton.click();
+  await page.waitForLoadState('networkidle');
+  await page.waitForTimeout(3000);
+  
+  // Second click
+  await page.goto('https://sunspire-web-app.vercel.app/?company=Apple&demo=1');
+  await page.waitForLoadState('networkidle');
+  
+  await addressInput.fill('456 Oak Ave, Los Angeles, CA');
+  await page.waitForTimeout(1000);
+  await generateButton.click();
+  await page.waitForLoadState('networkidle');
+  await page.waitForTimeout(3000);
+  
+  console.log('📝 Console logs captured:', consoleLogs);
+  
+  const reportContent = page.locator('text=Your Solar Savings Over Time').first();
+  const isReportVisible = await reportContent.isVisible();
+  const lockOverlay = page.locator('div[style*="position: fixed"][style*="inset: 0"]');
+  const isLockOverlayVisible = await lockOverlay.count() > 0;
+  
+  console.log('📊 Report visible:', isReportVisible);
+  console.log('🔒 Lock overlay visible:', isLockOverlayVisible);
+  
+  if (isReportVisible) {
+    console.log('✅ Deployment updated - showing report on second click');
+  } else if (isLockOverlayVisible) {
+    console.log('❌ Deployment not updated - still showing lockout on second click');
+  }
+  
+  // Take screenshot
+  await page.screenshot({ path: 'deployment-check.png', fullPage: true });
 });
