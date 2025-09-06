@@ -77,8 +77,26 @@ function ReportContent() {
   
   // Checkout handlers are attached via onClick props on buttons
 
+  // Consume quota when user interacts with report
+  const consumeQuotaIfNeeded = () => {
+    if ((isDemo || hasBrand) && !quotaConsumed) {
+      console.log('🔒 Demo quota - consuming on user interaction');
+      const beforeConsume = read();
+      if (beforeConsume > 0) {
+        consume();
+        setQuotaConsumed(true);
+        const newRemaining = read();
+        setRemaining(newRemaining);
+        console.log('🔒 Demo quota - consumed, remaining:', newRemaining);
+      }
+    }
+  };
+
   // Stripe checkout handler
   const handleCheckout = async () => {
+    // Consume quota when user clicks checkout
+    consumeQuotaIfNeeded();
+    
     console.log('🛒 handleCheckout called');
     try {
       // Collect tracking parameters from URL
@@ -389,29 +407,9 @@ function ReportContent() {
       setIsLoading(false);
     }
     
-    // Consume a demo run if in demo mode (after successful report generation)
-    // Only consume after report is successfully generated
-    if ((isDemo || hasBrand) && !quotaConsumed && estimate) {
-      console.log('🔒 Demo quota - consuming after successful report generation:', pageLoadId);
-      console.log('🔒 Demo quota - isDemo:', isDemo, 'hasBrand:', hasBrand, 'quotaConsumed:', quotaConsumed);
-      
-      const beforeConsume = read();
-      console.log('🔒 Demo quota - consuming run, remaining before:', beforeConsume);
-      
-      if (beforeConsume > 0) {
-        console.log('🔒 Demo quota - calling consume()...');
-        consume();
-        setQuotaConsumed(true);
-        // Update remaining immediately after consuming
-        const newRemaining = read();
-        console.log('🔒 Demo quota - after consume, remaining:', newRemaining);
-        setRemaining(newRemaining);
-      } else {
-        console.log('🔒 Demo quota - already at 0, not consuming');
-      }
-    } else {
-      console.log('🔒 Demo quota - not consuming, isDemo:', isDemo, 'hasBrand:', hasBrand, 'quotaConsumed:', quotaConsumed, 'estimate:', !!estimate);
-    }
+    // Don't consume quota automatically - let user interact first
+    console.log('🔒 Demo quota - report generated, quota not consumed yet');
+    console.log('🔒 Demo quota - isDemo:', isDemo, 'hasBrand:', hasBrand, 'quotaConsumed:', quotaConsumed, 'estimate:', !!estimate);
     }, [searchParams]);
 
   if (tenantLoading || isLoading) {
