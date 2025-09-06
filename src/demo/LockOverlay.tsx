@@ -131,14 +131,14 @@ export default function LockOverlay() {
             marginBottom: "8px",
             lineHeight: "1.2"
           }}>
-            Your Solar Intelligence Tool is now locked.
+            🚫 Demo quota exhausted
           </h2>
           <p style={{
             fontSize: "18px",
             color: "#6B7280",
             margin: "0 0 16px 0"
           }}>
-            Unlock full access to see complete solar reports
+            Activate to get full access
           </p>
           
           {/* Countdown Timer */}
