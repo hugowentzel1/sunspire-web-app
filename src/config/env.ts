@@ -22,7 +22,7 @@ const envSchema = z.object({
   DEFAULT_COST_PER_WATT: z.coerce.number().default(3.5),
 
   // Stripe keys are validated in the Stripe section; keep optional here so non-Stripe builds still run
-  STRIPE_SECRET_KEY: z.string().optional(),
+  STRIPE_LIVE_SECRET_KEY: z.string().optional(),
   STRIPE_PUBLISHABLE_KEY: z.string().optional(),
   STRIPE_WEBHOOK_SECRET: z.string().optional(),
   STRIPE_PRICE_MONTHLY_99: z.string().optional(),

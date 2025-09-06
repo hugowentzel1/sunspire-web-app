@@ -8,7 +8,7 @@ interface HealthStatus {
   env: {
     AIRTABLE_API_KEY: string;
     AIRTABLE_BASE_ID: string;
-    STRIPE_SECRET_KEY: string;
+    STRIPE_LIVE_SECRET_KEY: string;
     STRIPE_PUBLISHABLE_KEY: string;
     STRIPE_WEBHOOK_SECRET: string;
     GOOGLE_MAPS: string;
@@ -106,9 +106,9 @@ export default function StatusPage() {
                 <p className="text-sm text-gray-500">Payment processing</p>
               </div>
               <div className="flex items-center">
-                <span className="text-2xl mr-2">{getStatusIcon(health.env.STRIPE_SECRET_KEY)}</span>
-                <span className={`text-sm font-medium ${health.env.STRIPE_SECRET_KEY === '!!' ? 'text-green-600' : 'text-red-600'}`}>
-                  {getStatusText(health.env.STRIPE_SECRET_KEY)}
+                <span className="text-2xl mr-2">{getStatusIcon(health.env.STRIPE_LIVE_SECRET_KEY)}</span>
+                <span className={`text-sm font-medium ${health.env.STRIPE_LIVE_SECRET_KEY === '!!' ? 'text-green-600' : 'text-red-600'}`}>
+                  {getStatusText(health.env.STRIPE_LIVE_SECRET_KEY)}
                 </span>
               </div>
             </div>
