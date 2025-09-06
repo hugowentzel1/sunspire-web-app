@@ -157,7 +157,7 @@ export default function AddressAutocomplete({
   const handleSelect = (prediction: Prediction) => {
     setQuery(prediction.description);
     onChange?.(prediction.description);
-    onSelect(prediction.description, prediction.place_id);
+    // Don't call onSelect automatically - let user click Generate button
     setShowDropdown(false);
     setPredictions([]);
     setSelectedIndex(-1);
