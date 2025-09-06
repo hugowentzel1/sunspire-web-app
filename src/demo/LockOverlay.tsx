@@ -131,14 +131,14 @@ export default function LockOverlay() {
             marginBottom: "8px",
             lineHeight: "1.2"
           }}>
-            🚫 Demo quota exhausted
+            🚫 Demo limit reached
           </h2>
           <p style={{
             fontSize: "18px",
             color: "#6B7280",
             margin: "0 0 16px 0"
           }}>
-            Activate to get full access
+            Upgrade to continue
           </p>
           
           {/* Countdown Timer */}

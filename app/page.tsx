@@ -359,7 +359,7 @@ function HomeContent() {
                       </>
                     ) : (
                       <div className="text-red-600 font-semibold">
-                        <p>🚫 Demo quota exhausted</p>
+                        <p>🚫 Demo limit reached</p>
                         <p>Contact us to get full access</p>
                       </div>
                     )}
