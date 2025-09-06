@@ -90,6 +90,11 @@ function HomeContent() {
     setIsLoading(true);
     
     try {
+      // Get current URL parameters to preserve company and demo
+      const currentParams = new URLSearchParams(window.location.search);
+      const company = currentParams.get('company');
+      const demo = currentParams.get('demo');
+      
       if (selectedPlace && selectedPlace.formattedAddress) {
         const q = new URLSearchParams({
           address: selectedPlace.formattedAddress,
@@ -97,6 +102,11 @@ function HomeContent() {
           lng: String(selectedPlace.lng),
           placeId: selectedPlace.placeId,
         });
+        
+        // Add company and demo parameters if they exist
+        if (company) q.set('company', company);
+        if (demo) q.set('demo', demo);
+        
         console.log('Navigating to report with selected place:', q.toString());
         router.push(`/report?${q.toString()}`);
       } else {
@@ -106,6 +116,11 @@ function HomeContent() {
           lng: '-74.0060', 
           placeId: 'demo' 
         });
+        
+        // Add company and demo parameters if they exist
+        if (company) q.set('company', company);
+        if (demo) q.set('demo', demo);
+        
         console.log('Navigating to report with manual address:', q.toString());
         router.push(`/report?${q.toString()}`);
       }
