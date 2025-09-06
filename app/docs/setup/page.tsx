@@ -8,7 +8,7 @@ export default function SetupGuidePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter">
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Back to Home Button */}
         <div className="mb-8">
           <a
@@ -22,23 +22,22 @@ export default function SetupGuidePage() {
           </a>
         </div>
 
-        <div className="text-center space-y-8">
-          <div>
-            <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
-              Setup Guide
-            </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg">
+          <h1 className="text-4xl font-black text-gray-900 mb-8 text-center">
+            Setup Guide
+          </h1>
+
+          <div className="prose prose-lg max-w-none">
+            <p className="text-gray-600 mb-6">
+              <strong>Last updated:</strong> September 2025
+            </p>
+
+            <p className="text-gray-600 mb-6">
               Get your branded solar quote tool up and running in 24 hours
             </p>
-          </div>
 
-          {/* Step-by-step installation */}
-          <div className="max-w-4xl mx-auto space-y-8">
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                Step-by-step Installation
-              </h2>
-              
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Step-by-step Installation</h2>
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
                   <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-full flex items-center justify-center text-gray-900 font-bold text-sm shadow-lg">
@@ -90,13 +89,10 @@ export default function SetupGuidePage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </section>
 
-            {/* Embed Guide */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                Embed Guide
-              </h2>
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Embed Guide</h2>
               
               <div className="space-y-6">
                 <div>
@@ -130,13 +126,10 @@ export default function SetupGuidePage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </section>
 
-            {/* CRM Guides */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                CRM Guides
-              </h2>
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">CRM Guides</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="text-center space-y-4">
@@ -187,13 +180,10 @@ export default function SetupGuidePage() {
                   </a>
                 </div>
               </div>
-            </div>
+            </section>
 
-            {/* System Status */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                System Status
-              </h2>
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">System Status</h2>
               
               <div className="space-y-6">
                 <div className="flex items-center justify-between p-4 bg-green-50 rounded-lg border border-green-200">
@@ -232,7 +222,7 @@ export default function SetupGuidePage() {
                   </a>
                 </div>
               </div>
-            </div>
+            </section>
           </div>
         </div>
       </main>

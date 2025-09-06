@@ -1,30 +1,43 @@
 'use client';
 
-import { useBrandColors } from '@/hooks/useBrandColors';
+import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import LegalFooter from '@/components/legal/LegalFooter';
 
 export default function SecurityPage() {
-  // Apply brand colors from URL
-  useBrandColors();
+  const b = useBrandTakeover();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter">
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="space-y-12">
-          
-          {/* Header */}
-          <div className="text-center space-y-6">
-            <h1 className="text-4xl md:text-6xl font-black text-gray-900">
-              Security & Compliance
-            </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Back to Home Button */}
+        <div className="mb-8">
+          <a
+            href="/"
+            className="inline-flex items-center text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
+          >
+            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Home
+          </a>
+        </div>
+
+        <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg">
+          <h1 className="text-4xl font-black text-gray-900 mb-8 text-center">
+            Security & Compliance
+          </h1>
+
+          <div className="prose prose-lg max-w-none">
+            <p className="text-gray-600 mb-6">
+              <strong>Last updated:</strong> September 2025
+            </p>
+
+            <p className="text-gray-600 mb-6">
               Your data security and privacy are our top priorities. Learn about our comprehensive security measures and compliance standards.
             </p>
-          </div>
 
-          {/* Encryption Section */}
-          <section id="encryption" className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Data Encryption</h2>
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Data Encryption</h2>
             <div className="space-y-4 text-gray-700">
               <p>We employ industry-standard encryption to protect your data both in transit and at rest:</p>
               <ul className="space-y-2 ml-6">
@@ -42,11 +55,10 @@ export default function SecurityPage() {
                 </li>
               </ul>
             </div>
-          </section>
+            </section>
 
-          {/* SOC 2 Section */}
-          <section id="soc2" className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">SOC 2 Compliance</h2>
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">SOC 2 Compliance</h2>
             <div className="space-y-4 text-gray-700">
               <p>Sunspire maintains SOC 2 Type II compliance, demonstrating our commitment to:</p>
               <ul className="space-y-2 ml-6">
@@ -69,11 +81,10 @@ export default function SecurityPage() {
               </ul>
               <p className="mt-4 text-sm text-gray-600">SOC 2 reports are available to enterprise customers upon request.</p>
             </div>
-          </section>
+            </section>
 
-          {/* GDPR Section */}
-          <section id="gdpr" className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">GDPR Compliance</h2>
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">GDPR Compliance</h2>
             <div className="space-y-4 text-gray-700">
               <p>We adhere to the General Data Protection Regulation (GDPR) requirements:</p>
               <ul className="space-y-2 ml-6">
@@ -99,11 +110,10 @@ export default function SecurityPage() {
                 </li>
               </ul>
             </div>
-          </section>
+            </section>
 
-          {/* CCPA Section */}
-          <section id="ccpa" className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">CCPA Compliance</h2>
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">CCPA Compliance</h2>
             <div className="space-y-4 text-gray-700">
               <p>We comply with the California Consumer Privacy Act (CCPA) by providing:</p>
               <ul className="space-y-2 ml-6">
@@ -129,11 +139,10 @@ export default function SecurityPage() {
                 <a href="/do-not-sell" className="text-blue-600 hover:underline">Do Not Sell My Data</a> page.
               </p>
             </div>
-          </section>
+            </section>
 
-          {/* Breach Procedures */}
-          <section id="breach" className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Data Breach Procedures</h2>
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Data Breach Procedures</h2>
             <div className="space-y-4 text-gray-700">
               <p>In the unlikely event of a data breach, we follow strict procedures:</p>
               <ul className="space-y-2 ml-6">
@@ -159,11 +168,10 @@ export default function SecurityPage() {
                 </li>
               </ul>
             </div>
-          </section>
+            </section>
 
-          {/* Data Protection Officer */}
-          <section id="dpo" className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Data Protection Officer</h2>
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Data Protection Officer</h2>
             <div className="space-y-4 text-gray-700">
               <p>For any security, privacy, or compliance questions, contact our Data Protection Officer:</p>
               <div className="bg-gray-50 rounded-lg p-6 mt-4">
@@ -172,14 +180,12 @@ export default function SecurityPage() {
                 <p className="text-gray-700">Response time: Within 48 hours</p>
               </div>
             </div>
-          </section>
-
+            </section>
+          </div>
         </div>
       </main>
 
-      <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <LegalFooter />
-      </footer>
+      <LegalFooter brand={b.enabled ? b.brand : undefined} />
     </div>
   );
 }

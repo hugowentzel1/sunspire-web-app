@@ -8,7 +8,7 @@ export default function AirtableCRMGuidePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter">
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Back to Home Button */}
         <div className="mb-8">
           <a
@@ -22,22 +22,22 @@ export default function AirtableCRMGuidePage() {
           </a>
         </div>
 
-        <div className="text-center space-y-8">
-          <div>
-            <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
-              Airtable CRM Integration
-            </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+        <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg">
+          <h1 className="text-4xl font-black text-gray-900 mb-8 text-center">
+            Airtable CRM Integration
+          </h1>
+
+          <div className="prose prose-lg max-w-none">
+            <p className="text-gray-600 mb-6">
+              <strong>Last updated:</strong> September 2025
+            </p>
+
+            <p className="text-gray-600 mb-6">
               Build custom solar lead management workflows with Airtable&apos;s flexible database
             </p>
-          </div>
 
-          <div className="max-w-4xl mx-auto space-y-8">
-            {/* Integration Steps */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                Setup Steps
-              </h2>
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Setup Steps</h2>
               
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
@@ -80,13 +80,10 @@ export default function AirtableCRMGuidePage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </section>
 
-            {/* Table Structure */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                Table Structure
-              </h2>
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Table Structure</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
@@ -155,13 +152,10 @@ export default function AirtableCRMGuidePage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </section>
 
-            {/* Automation Features */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                Automation Features
-              </h2>
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Automation Features</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="text-center space-y-4">
@@ -204,7 +198,7 @@ export default function AirtableCRMGuidePage() {
                   <p className="text-sm text-gray-600">Generate custom reports on lead conversion and performance</p>
                 </div>
               </div>
-            </div>
+            </section>
           </div>
         </div>
       </main>
