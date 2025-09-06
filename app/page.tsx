@@ -76,9 +76,14 @@ function HomeContent() {
       const currentQuota = read();
       console.log('🔒 Homepage quota check - currentQuota:', currentQuota);
       
-      // If quota is already 0, navigate to lockout page
-      if (currentQuota <= 0) {
-        console.log('🔒 Quota already exhausted, navigating to report page to show lockout');
+      // Consume demo quota first
+      consume();
+      const newQuota = read();
+      console.log('🔒 Homepage quota consumed, remaining:', newQuota);
+      
+      // If quota is now 0 or less, navigate to lockout page
+      if (newQuota <= 0) {
+        console.log('🔒 Quota exhausted after consumption, navigating to report page to show lockout');
         // Navigate to report page which will show lockout overlay
         const currentParams = new URLSearchParams(window.location.search);
         const company = currentParams.get('company');
@@ -97,11 +102,6 @@ function HomeContent() {
         router.push(`/report?${q.toString()}`);
         return;
       }
-      
-      // Consume demo quota
-      consume();
-      const newQuota = read();
-      console.log('🔒 Homepage quota consumed, remaining:', newQuota);
     }
     
     setIsLoading(true);
