@@ -10,8 +10,8 @@ function getClientIP(request: NextRequest): string {
          'unknown';
 }
 
-// Stripe instance using live secret key
-const stripe = new Stripe(process.env.STRIPE_LIVE_SECRET_KEY!, {
+// Stripe instance using live secret key or fallback to regular secret key
+const stripe = new Stripe(process.env.STRIPE_LIVE_SECRET_KEY || process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2024-06-20',
 });
 
@@ -29,11 +29,12 @@ export async function POST(req: NextRequest) {
   try {
     console.log('🔍 Stripe checkout request received');
     console.log('🔍 Stripe instance:', !!stripe);
-    console.log('🔍 Using key starting with:', process.env.STRIPE_LIVE_SECRET_KEY?.substring(0, 10) || 'undefined');
+    const stripeKey = process.env.STRIPE_LIVE_SECRET_KEY || process.env.STRIPE_SECRET_KEY;
+    console.log('🔍 Using key starting with:', stripeKey?.substring(0, 10) || 'undefined');
 
     // Assert required environment variables
-    if (!process.env.STRIPE_LIVE_SECRET_KEY) {
-      console.error('❌ STRIPE_LIVE_SECRET_KEY missing');
+    if (!stripeKey) {
+      console.error('❌ No Stripe secret key found');
       return NextResponse.json({ error: 'Stripe configuration missing' }, { status: 500 });
     }
 
@@ -152,8 +153,9 @@ export async function GET(req: NextRequest) {
     console.log('🔍 Stripe checkout GET request received');
     
     // Assert required environment variables
-    if (!process.env.STRIPE_LIVE_SECRET_KEY) {
-      console.error('❌ STRIPE_LIVE_SECRET_KEY missing');
+    const stripeKey = process.env.STRIPE_LIVE_SECRET_KEY || process.env.STRIPE_SECRET_KEY;
+    if (!stripeKey) {
+      console.error('❌ No Stripe secret key found');
       return NextResponse.json({ error: 'Stripe configuration missing' }, { status: 500 });
     }
 
