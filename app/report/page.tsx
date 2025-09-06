@@ -1,6 +1,13 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
+
+// Extend window object to include our function
+declare global {
+  interface Window {
+    consumeQuotaIfNeeded?: () => void;
+  }
+}
 import { motion } from 'framer-motion';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { TenantProvider, useTenant } from '@/components/TenantProvider';
@@ -77,25 +84,14 @@ function ReportContent() {
   
   // Checkout handlers are attached via onClick props on buttons
 
-  // Consume quota when user interacts with report
-  const consumeQuotaIfNeeded = () => {
-    if ((isDemo || hasBrand) && !quotaConsumed) {
-      console.log('🔒 Demo quota - consuming on user interaction');
-      const beforeConsume = read();
-      if (beforeConsume > 0) {
-        consume();
-        setQuotaConsumed(true);
-        const newRemaining = read();
-        setRemaining(newRemaining);
-        console.log('🔒 Demo quota - consumed, remaining:', newRemaining);
-      }
-    }
-  };
+  // Consume quota when user interacts with report - will be defined inside useEffect
 
   // Stripe checkout handler
   const handleCheckout = async () => {
     // Consume quota when user clicks checkout
-    consumeQuotaIfNeeded();
+    if (typeof window.consumeQuotaIfNeeded === 'function') {
+      window.consumeQuotaIfNeeded();
+    }
     
     console.log('🛒 handleCheckout called');
     try {
@@ -410,6 +406,21 @@ function ReportContent() {
     // Don't consume quota automatically - let user interact first
     console.log('🔒 Demo quota - report generated, quota not consumed yet');
     console.log('🔒 Demo quota - isDemo:', isDemo, 'hasBrand:', hasBrand, 'quotaConsumed:', quotaConsumed, 'estimate:', !!estimate);
+    
+    // Define consumeQuotaIfNeeded function inside useEffect where isDemo and hasBrand are available
+    window.consumeQuotaIfNeeded = () => {
+      if ((isDemo || hasBrand) && !quotaConsumed) {
+        console.log('🔒 Demo quota - consuming on user interaction');
+        const beforeConsume = read();
+        if (beforeConsume > 0) {
+          consume();
+          setQuotaConsumed(true);
+          const newRemaining = read();
+          setRemaining(newRemaining);
+          console.log('🔒 Demo quota - consumed, remaining:', newRemaining);
+        }
+      }
+    };
     }, [searchParams]);
 
   if (tenantLoading || isLoading) {
