@@ -71,9 +71,20 @@ function HomeContent() {
     console.log('Generating estimate for address:', address);
     console.log('Selected place:', selectedPlace);
     
-    // Consume demo quota if in demo mode
+    // Check quota before generating
     if (b.enabled) {
+      const currentQuota = read();
+      console.log('🔒 Homepage quota check - currentQuota:', currentQuota);
+      
+      if (currentQuota <= 0) {
+        console.log('🔒 Quota exhausted, showing lock message');
+        alert('Demo quota exhausted. Please contact us to get full access.');
+        return;
+      }
+      
+      // Consume demo quota
       consume();
+      console.log('🔒 Homepage quota consumed, remaining:', read());
     }
     
     setIsLoading(true);
@@ -309,8 +320,17 @@ function HomeContent() {
                 
                 {b.enabled && (
                   <div className="text-sm text-gray-500 text-center space-y-2">
-                    <p>Preview: {remaining} run{remaining===1?"":"s"} left.</p>
-                    <p>Expires in {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</p>
+                    {remaining > 0 ? (
+                      <>
+                        <p>Preview: {remaining} run{remaining===1?"":"s"} left.</p>
+                        <p>Expires in {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</p>
+                      </>
+                    ) : (
+                      <div className="text-red-600 font-semibold">
+                        <p>🚫 Demo quota exhausted</p>
+                        <p>Contact us to get full access</p>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>

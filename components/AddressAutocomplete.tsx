@@ -35,6 +35,7 @@ export default function AddressAutocomplete({
     const loadGoogleMapsAPI = () => {
       if (!(window as any).google?.places) {
         const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+        console.log('🔑 Google Maps API key:', apiKey ? 'Present' : 'Missing');
         if (apiKey) {
           // Check if script already exists
           const existingScript = document.querySelector('script[src*="maps.googleapis.com"]');
@@ -54,17 +55,17 @@ export default function AddressAutocomplete({
           script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
           script.async = true;
           script.onload = () => {
-            console.log('Google Places API loaded');
+            console.log('✅ Google Places API loaded successfully');
           };
-          script.onerror = () => {
-            console.error('Failed to load Google Places API');
+          script.onerror = (error) => {
+            console.error('❌ Failed to load Google Places API:', error);
           };
           document.head.appendChild(script);
         } else {
-          console.warn('Google Maps API key not found - autocomplete will not work');
+          console.warn('⚠️ Google Maps API key not found - autocomplete will not work');
         }
       } else {
-        console.log('Google Places API already loaded');
+        console.log('✅ Google Places API already loaded');
       }
     };
 
