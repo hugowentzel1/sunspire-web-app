@@ -11,11 +11,18 @@ function getClientIP(request: NextRequest): string {
 }
 
 // Stripe instance using live secret key or fallback to regular secret key
-const stripe = new Stripe(process.env.STRIPE_LIVE_SECRET_KEY!, {
+const stripe = process.env.STRIPE_LIVE_SECRET_KEY ? new Stripe(process.env.STRIPE_LIVE_SECRET_KEY, {
   apiVersion: '2025-08-27.basil',
-});
+}) : null;
 
 export async function POST(req: NextRequest) {
+  if (!stripe) {
+    return NextResponse.json(
+      { error: 'Stripe not configured' },
+      { status: 500 }
+    );
+  }
+
   // Rate limiting check
   const clientIP = getClientIP(req);
   if (checkRateLimit(clientIP, 'stripe-checkout')) {
@@ -31,6 +38,9 @@ export async function POST(req: NextRequest) {
     console.log('🔍 Stripe instance:', !!stripe);
     const stripeKey = process.env.STRIPE_LIVE_SECRET_KEY;
     console.log('🔍 Using key starting with:', stripeKey?.substring(0, 10) || 'undefined');
+    
+    // Non-null assertion since we already checked stripe is not null
+    const stripeClient = stripe!;
 
     // Assert required environment variables
     if (!stripeKey) {
@@ -46,13 +56,13 @@ export async function POST(req: NextRequest) {
       console.log('🔧 Creating test products and prices for local development...');
       
       // Create test product
-      const product = await stripe.products.create({
+      const product = await stripeClient.products.create({
         name: 'Sunspire Solar Intelligence Platform',
         description: 'Monthly subscription for solar intelligence platform',
       });
       
       // Create monthly price
-      const monthlyPrice = await stripe.prices.create({
+      const monthlyPrice = await stripeClient.prices.create({
         product: product.id,
         unit_amount: 9900, // $99.00
         currency: 'usd',
@@ -60,7 +70,7 @@ export async function POST(req: NextRequest) {
       });
       
       // Create setup price
-      const setupPrice = await stripe.prices.create({
+      const setupPrice = await stripeClient.prices.create({
         product: product.id,
         unit_amount: 39900, // $399.00
         currency: 'usd',
@@ -91,7 +101,7 @@ export async function POST(req: NextRequest) {
     const origin = process.env.NEXT_PUBLIC_APP_URL || new URL(req.url).origin;
     
     // Create Stripe checkout session
-    const checkoutSession = await stripe.checkout.sessions.create({
+    const checkoutSession = await stripeClient.checkout.sessions.create({
       payment_method_types: ['card'],
       mode: 'subscription',
       line_items: [
@@ -152,6 +162,9 @@ export async function GET(req: NextRequest) {
   try {
     console.log('🔍 Stripe checkout GET request received');
     
+    // Non-null assertion since we already checked stripe is not null
+    const stripeClient = stripe!;
+    
     // Assert required environment variables
     const stripeKey = process.env.STRIPE_LIVE_SECRET_KEY;
     if (!stripeKey) {
@@ -167,13 +180,13 @@ export async function GET(req: NextRequest) {
       console.log('🔧 Creating test products and prices for local development...');
       
       // Create test product
-      const product = await stripe.products.create({
+      const product = await stripeClient.products.create({
         name: 'Sunspire Solar Intelligence Platform',
         description: 'Monthly subscription for solar intelligence platform',
       });
       
       // Create monthly price
-      const monthlyPrice = await stripe.prices.create({
+      const monthlyPrice = await stripeClient.prices.create({
         product: product.id,
         unit_amount: 9900, // $99.00
         currency: 'usd',
@@ -181,7 +194,7 @@ export async function GET(req: NextRequest) {
       });
       
       // Create setup price
-      const setupPrice = await stripe.prices.create({
+      const setupPrice = await stripeClient.prices.create({
         product: product.id,
         unit_amount: 39900, // $399.00
         currency: 'usd',
@@ -218,7 +231,7 @@ export async function GET(req: NextRequest) {
     const origin = process.env.NEXT_PUBLIC_APP_URL || new URL(req.url).origin;
     
     // Create Stripe checkout session
-    const checkoutSession = await stripe.checkout.sessions.create({
+    const checkoutSession = await stripeClient.checkout.sessions.create({
       payment_method_types: ['card'],
       mode: 'subscription',
       line_items: [

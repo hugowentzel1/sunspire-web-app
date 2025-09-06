@@ -12,7 +12,7 @@ export async function POST(req: Request) {
   try {
     const json = await req.json();
     const { email } = Body.parse(json);
-    await upsertLeadSuppressionByEmail(email);
+    await upsertLeadSuppressionByEmail(email, "webhook");
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("unsubscribe webhook error", err);

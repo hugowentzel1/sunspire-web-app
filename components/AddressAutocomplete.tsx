@@ -127,7 +127,7 @@ export default function AddressAutocomplete({
         input: searchQuery,
         types: ['address'],
         componentRestrictions: { country: 'us' },
-        sessionToken: tokenRef.current
+        sessionToken: tokenRef.current || undefined
       };
 
       service.getPlacePredictions(request, (results, status) => {
