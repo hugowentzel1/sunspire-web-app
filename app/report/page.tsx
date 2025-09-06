@@ -55,6 +55,12 @@ function ReportContent() {
   const [quotaConsumed, setQuotaConsumed] = useState(false);
   const [pageLoadId] = useState(() => Date.now().toString());
   
+  // Initialize remaining from quota
+  useEffect(() => {
+    const currentQuota = read();
+    setRemaining(currentQuota);
+  }, [read]);
+  
   // Reset quota consumed state on each page load
   useEffect(() => {
     setQuotaConsumed(false);
@@ -384,9 +390,9 @@ function ReportContent() {
     }
     
     // Consume a demo run if in demo mode (after successful report generation)
-    // Consume immediately to ensure it happens
-    if ((isDemo || hasBrand) && !quotaConsumed) {
-      console.log('🔒 Demo quota - consuming immediately for page load:', pageLoadId);
+    // Only consume after report is successfully generated
+    if ((isDemo || hasBrand) && !quotaConsumed && estimate) {
+      console.log('🔒 Demo quota - consuming after successful report generation:', pageLoadId);
       console.log('🔒 Demo quota - isDemo:', isDemo, 'hasBrand:', hasBrand, 'quotaConsumed:', quotaConsumed);
       
       const beforeConsume = read();
@@ -404,7 +410,7 @@ function ReportContent() {
         console.log('🔒 Demo quota - already at 0, not consuming');
       }
     } else {
-      console.log('🔒 Demo quota - not consuming, isDemo:', isDemo, 'hasBrand:', hasBrand, 'quotaConsumed:', quotaConsumed);
+      console.log('🔒 Demo quota - not consuming, isDemo:', isDemo, 'hasBrand:', hasBrand, 'quotaConsumed:', quotaConsumed, 'estimate:', !!estimate);
     }
     }, [searchParams]);
 
