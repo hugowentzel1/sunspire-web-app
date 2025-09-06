@@ -6,7 +6,7 @@ import { ENV } from '@/src/config/env';
 import { upsertTenantByHandle, createOrLinkUserOwner } from '@/src/lib/airtable';
 
 const stripe = ENV.STRIPE_LIVE_SECRET_KEY ? new Stripe(ENV.STRIPE_LIVE_SECRET_KEY, {
-  apiVersion: '2025-08-27.basil',
+  apiVersion: '2023-10-16',
 }) : null;
 
 export async function POST(req: NextRequest) {

@@ -12,7 +12,7 @@ function getClientIP(request: NextRequest): string {
 
 // Stripe instance using live secret key or fallback to regular secret key
 const stripe = new Stripe(process.env.STRIPE_LIVE_SECRET_KEY || process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-08-27.basil',
+  apiVersion: '2023-10-16',
 });
 
 export async function POST(req: NextRequest) {
