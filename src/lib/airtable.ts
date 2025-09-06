@@ -516,7 +516,7 @@ export async function storeLeadFallback(leadData: {
 }
 
 // Lead suppression functions
-export async function upsertLeadSuppressionByEmail(email: string): Promise<void> {
+export async function upsertLeadSuppressionByEmail(email: string, source: string): Promise<void> {
   try {
     const base = getBase();
     
@@ -528,7 +528,16 @@ export async function upsertLeadSuppressionByEmail(email: string): Promise<void>
       .all();
     
     if (leads.length === 0) {
-      logger.info(`No leads found for email: ${email}`);
+      // Create a suppression record if no leads found
+      await base(TABLES.LEADS).create([{
+        fields: {
+          [LEAD_FIELDS.EMAIL]: email,
+          [LEAD_FIELDS.STATUS]: 'Suppression',
+          [LEAD_FIELDS.LAST_ACTIVITY]: getCurrentTimestamp(),
+          [LEAD_FIELDS.NOTES]: `Suppressed via ${source} on ${getCurrentTimestamp()}`
+        }
+      }]);
+      logger.info(`Created suppression record for email: ${email}`);
       return;
     }
     
@@ -537,12 +546,13 @@ export async function upsertLeadSuppressionByEmail(email: string): Promise<void>
       id: lead.id,
       fields: {
         [LEAD_FIELDS.STATUS]: 'Suppression',
-        [LEAD_FIELDS.LAST_ACTIVITY]: getCurrentTimestamp()
+        [LEAD_FIELDS.LAST_ACTIVITY]: getCurrentTimestamp(),
+        [LEAD_FIELDS.NOTES]: `${lead.fields[LEAD_FIELDS.NOTES] || ''}\nSuppressed via ${source} on ${getCurrentTimestamp()}`.trim()
       }
     }));
     
     await base(TABLES.LEADS).update(updates);
-    logger.info(`Suppressed ${leads.length} lead(s) for email: ${email}`);
+    logger.info(`Suppressed ${leads.length} lead(s) for email: ${email} via ${source}`);
     
   } catch (error) {
     logger.error('Error suppressing lead by email:', error);

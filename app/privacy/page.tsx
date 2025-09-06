@@ -39,7 +39,7 @@ export default function PrivacyPage() {
             
             <div className="space-y-6 text-gray-700">
               <p>
-                <strong>Last updated:</strong> September 4, 2025
+                <strong>Last updated:</strong> September 2025
               </p>
               
               <p>
@@ -84,13 +84,21 @@ export default function PrivacyPage() {
                 You have the right to access, correct, or delete your personal information. You may also opt out of certain communications from us.
               </p>
               
+              <h3 className="text-xl font-semibold text-gray-900 mt-8 mb-4">Marketing emails: legal bases & your rights</h3>
+              <p><strong>US (CAN-SPAM):</strong> We identify Sunspire Software, include our postal address, and provide an unsubscribe that works.</p>
+              <p><strong>Canada (CASL):</strong> Our emails include our identity, mailing address, and a functional unsubscribe. We honor unsubscribes within 10 business days (typically immediately).</p>
+              <p><strong>EU/UK (GDPR & ePrivacy):</strong> For B2B outreach we rely on <em>Legitimate interests</em> to contact relevant business recipients. You can object to marketing at any time via the unsubscribe link or by emailing <a href="mailto:support@getsunspire.com">support@getsunspire.com</a>.</p>
+              <p><strong>Your EU/UK rights:</strong> access, rectification, erasure, restriction, portability, and <em>objection to direct marketing</em>. To exercise these rights, email <a href="mailto:support@getsunspire.com">support@getsunspire.com</a>. You may also contact your local data protection authority.</p>
+              <p>We maintain a suppression list to ensure we do not email you again after you unsubscribe.</p>
+              
               <h3 className="text-xl font-semibold text-gray-900 mt-8 mb-4">Contact Us</h3>
               <p>
                 If you have questions about this Privacy Policy, please contact us at:
               </p>
               <div className="bg-gray-50 p-4 rounded-lg mt-4">
                 <p className="text-gray-700">
-                  <strong>Email:</strong> support@getsunspire.com<br/>
+                  <strong>Support:</strong> <a href="mailto:support@getsunspire.com">support@getsunspire.com</a><br/>
+                  <strong>Billing:</strong> <a href="mailto:billing@getsunspire.com">billing@getsunspire.com</a><br/>
                   <strong>Address:</strong> 3133 Maple Dr Ne Ste 240 #1156 Atlanta, GA 30305
                 </p>
               </div>

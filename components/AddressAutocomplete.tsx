@@ -29,6 +29,7 @@ export default function AddressAutocomplete({
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const tokenRef = useRef<google.maps.places.AutocompleteSessionToken | null>(null);
 
   // Load Google Places API script
   useEffect(() => {
@@ -56,6 +57,10 @@ export default function AddressAutocomplete({
           script.async = true;
           script.onload = () => {
             console.log('✅ Google Places API loaded successfully');
+            // Initialize session token when API loads
+            if ((window as any).google?.maps?.places) {
+              tokenRef.current = new (window as any).google.maps.places.AutocompleteSessionToken();
+            }
           };
           script.onerror = (error) => {
             console.error('❌ Failed to load Google Places API:', error);
@@ -66,6 +71,10 @@ export default function AddressAutocomplete({
         }
       } else {
         console.log('✅ Google Places API already loaded');
+        // Initialize session token if API is already loaded
+        if ((window as any).google?.maps?.places) {
+          tokenRef.current = new (window as any).google.maps.places.AutocompleteSessionToken();
+        }
       }
     };
 
@@ -117,7 +126,8 @@ export default function AddressAutocomplete({
       const request = {
         input: searchQuery,
         types: ['address'],
-        componentRestrictions: { country: 'us' }
+        componentRestrictions: { country: 'us' },
+        sessionToken: tokenRef.current
       };
 
       service.getPlacePredictions(request, (results, status) => {
@@ -245,6 +255,9 @@ export default function AddressAutocomplete({
           ))}
         </div>
       )}
+      
+      {/* Google attribution */}
+      <p className="mt-1 text-[11px] opacity-70">Powered by Google</p>
     </div>
   );
 }

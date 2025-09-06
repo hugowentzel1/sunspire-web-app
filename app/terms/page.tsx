@@ -29,7 +29,7 @@ export default function TermsPage() {
 
           <div className="prose prose-lg max-w-none">
             <p className="text-gray-600 mb-6">
-              <strong>Last updated:</strong> September 4, 2025
+              <strong>Last updated:</strong> September 2025
             </p>
 
             <section className="mb-8">
@@ -109,7 +109,8 @@ export default function TermsPage() {
               </p>
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-gray-700">
-                  <strong>Email:</strong> support@getsunspire.com<br />
+                  <strong>Support:</strong> <a href="mailto:support@getsunspire.com">support@getsunspire.com</a><br />
+                  <strong>Billing:</strong> <a href="mailto:billing@getsunspire.com">billing@getsunspire.com</a><br />
                   <strong>Address:</strong> 3133 Maple Dr Ne Ste 240 #1156 Atlanta, GA 30305<br />
                   <strong>Phone:</strong> (555) 123-4567
                 </p>
