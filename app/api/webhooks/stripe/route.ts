@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { upsertLead, logEvent, upsertTenantByHandle, findTenantByHandle } from '@/src/lib/airtable';
 import Stripe from 'stripe';
 
-const stripe = new Stripe(process.env.STRIPE_LIVE_SECRET_KEY!, {
-  apiVersion: '2023-10-16',
+const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  apiVersion: '2024-06-20',
 });
 
 export async function POST(request: NextRequest) {
