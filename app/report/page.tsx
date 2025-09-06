@@ -407,25 +407,8 @@ function ReportContent() {
       setIsLoading(false);
     }
     
-    // Consume quota after report is successfully generated (for demo mode)
-    if ((isDemo || hasBrand) && !quotaConsumed) {
-      console.log('🔒 Demo quota - consuming after successful report generation');
-      const beforeConsume = read();
-      console.log('🔒 Demo quota - consuming run, remaining before:', beforeConsume);
-      
-      if (beforeConsume > 0) {
-        console.log('🔒 Demo quota - calling consume()...');
-        consume();
-        setQuotaConsumed(true);
-        const newRemaining = read();
-        console.log('🔒 Demo quota - after consume, remaining:', newRemaining);
-        setRemaining(newRemaining);
-      } else {
-        console.log('🔒 Demo quota - already at 0, not consuming');
-      }
-    } else {
-      console.log('🔒 Demo quota - not consuming, isDemo:', isDemo, 'hasBrand:', hasBrand, 'quotaConsumed:', quotaConsumed);
-    }
+    // Don't consume quota immediately - only when user interacts with report
+    console.log('🔒 Demo quota - report loaded, not consuming quota yet');
     
     // Define consumeQuotaIfNeeded function for checkout clicks (no additional consumption)
     window.consumeQuotaIfNeeded = () => {
