@@ -31,6 +31,7 @@ import HeroBrand from '@/src/brand/HeroBrand';
 // import { DemoBanner } from '@/src/demo/DemoChrome';
 import LockOverlay from '@/src/demo/LockOverlay';
 import { usePreviewQuota } from '@/src/demo/usePreviewQuota';
+import { useCountdown } from '@/src/demo/useCountdown';
 import Image from 'next/image';
 
 // Demo addresses for different states
@@ -61,6 +62,9 @@ function ReportContent() {
   const [remaining, setRemaining] = useState(2);
   const [quotaConsumed, setQuotaConsumed] = useState(false);
   const [pageLoadId] = useState(() => Date.now().toString());
+  
+  // Countdown for demo expiry
+  const countdown = useCountdown(b.expireDays || 7);
   
   // Initialize remaining from quota
   useEffect(() => {
@@ -594,6 +598,14 @@ function ReportContent() {
                 <span>•</span>
                 <span>Generated on {formatDateSafe(estimate.date)}</span>
               </div>
+              
+              {/* Demo quota counter */}
+              {demoMode && (
+                <div className="text-sm text-gray-500 text-center space-y-2 mt-4">
+                  <p>Preview: {remaining} run{remaining === 1 ? "" : "s"} left.</p>
+                  <p>Expires in {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</p>
+                </div>
+              )}
             </div>
 
 
