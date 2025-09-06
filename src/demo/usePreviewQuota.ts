@@ -33,7 +33,7 @@ export function usePreviewQuota(allowed:number=2){
     console.log('🔒 usePreviewQuota consume() called for link:', link);
     const map=JSON.parse(localStorage.getItem(KEY)||"{}");
     const currentRuns = map[link] ?? allowed;
-    const newRuns = Math.max(0, currentRuns - 1);
+    const newRuns = currentRuns - 1;
     console.log('🔒 usePreviewQuota - currentRuns:', currentRuns, 'newRuns:', newRuns);
     map[link] = newRuns;
     localStorage.setItem(KEY,JSON.stringify(map));
