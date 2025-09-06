@@ -81,8 +81,8 @@ function HomeContent() {
       const newQuota = read();
       console.log('🔒 Homepage quota consumed, remaining:', newQuota);
       
-      // If quota is now 0 or negative, navigate to lockout page
-      if (newQuota <= 0) {
+      // If quota is now negative, navigate to lockout page
+      if (newQuota < 0) {
         console.log('🔒 Quota exhausted after consumption, navigating to report page to show lockout');
         // Navigate to report page which will show lockout overlay
         const currentParams = new URLSearchParams(window.location.search);
