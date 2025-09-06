@@ -447,8 +447,8 @@ function ReportContent() {
   const currentQuota = read();
   console.log('🔒 Demo quota check - demoMode:', demoMode, 'currentQuota:', currentQuota, 'remaining:', remaining);
   
-  // Show lock overlay if quota is 0 or negative (when all runs are exhausted)
-  if (demoMode && currentQuota <= 0) {
+  // Show lock overlay if quota is negative (only after all runs are exhausted)
+  if (demoMode && currentQuota < 0) {
     console.log('🔒 Showing lock overlay - quota exhausted');
     return <LockOverlay />;
   }
