@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getRootDomain, isValidSubdomain } from '@/src/lib/domainRoot';
 
 export function middleware(req: Request) {
   const url = new URL(req.url);
@@ -15,19 +16,37 @@ export function middleware(req: Request) {
     res.headers.set("x-demo", "1");
   }
   
-  // Handle company-specific URLs for white-label demos
+  // Handle tenant resolution
   const hostname = url.hostname;
   const pathname = url.pathname;
   
-  // Check if this is a company-specific subdomain or path
-  if (hostname.includes('solarpro') || pathname.startsWith('/solarpro')) {
-    res.headers.set("x-tenant", "solarpro");
-  } else if (hostname.includes('ecosolar') || pathname.startsWith('/ecosolar')) {
-    res.headers.set("x-tenant", "ecosolar");
-  } else if (hostname.includes('premiumsolar') || pathname.startsWith('/premiumsolar')) {
-    res.headers.set("x-tenant", "premiumsolar");
-  } else if (hostname.includes('acme') || pathname.startsWith('/acme')) {
-    res.headers.set("x-tenant", "acme");
+  // Check if this is a custom domain (not usesunspire.com)
+  if (!hostname.includes('usesunspire.com') && !hostname.includes('localhost')) {
+    // This is a custom domain - extract tenant from subdomain or use default
+    if (isValidSubdomain(hostname)) {
+      const subdomain = hostname.split('.')[0];
+      res.headers.set("x-tenant", subdomain);
+      res.headers.set("x-custom-domain", "true");
+    } else {
+      // Apex domain - use default tenant or redirect to subdomain
+      res.headers.set("x-tenant", "default");
+      res.headers.set("x-custom-domain", "true");
+    }
+  } else {
+    // Handle company-specific URLs for white-label demos and fallback domains
+    if (hostname.includes('solarpro') || pathname.startsWith('/solarpro')) {
+      res.headers.set("x-tenant", "solarpro");
+    } else if (hostname.includes('ecosolar') || pathname.startsWith('/ecosolar')) {
+      res.headers.set("x-tenant", "ecosolar");
+    } else if (hostname.includes('premiumsolar') || pathname.startsWith('/premiumsolar')) {
+      res.headers.set("x-tenant", "premiumsolar");
+    } else if (hostname.includes('acme') || pathname.startsWith('/acme')) {
+      res.headers.set("x-tenant", "acme");
+    } else if (hostname.includes('.usesunspire.com')) {
+      // Extract tenant from subdomain
+      const subdomain = hostname.split('.')[0];
+      res.headers.set("x-tenant", subdomain);
+    }
   }
   
   return res;

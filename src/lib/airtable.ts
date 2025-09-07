@@ -69,7 +69,10 @@ const TENANT_FIELDS = {
   STRIPE_CUSTOMER_ID: 'Stripe Customer ID',
   LAST_PAYMENT: 'Last Payment',
   SUBSCRIPTION_ID: 'Subscription ID',
-  CURRENT_PERIOD_END: 'Current Period End'
+  CURRENT_PERIOD_END: 'Current Period End',
+  REQUESTED_DOMAIN: 'Requested Domain',
+  DOMAIN_STATUS: 'Domain Status',
+  DOMAIN: 'Domain'
 } as const;
 
 const USER_FIELDS = {
@@ -129,6 +132,9 @@ export interface Tenant {
   [TENANT_FIELDS.LAST_PAYMENT]?: string;
   [TENANT_FIELDS.SUBSCRIPTION_ID]?: string;
   [TENANT_FIELDS.CURRENT_PERIOD_END]?: string;
+  [TENANT_FIELDS.REQUESTED_DOMAIN]?: string;
+  [TENANT_FIELDS.DOMAIN_STATUS]?: string;
+  [TENANT_FIELDS.DOMAIN]?: string;
 }
 
 export interface User {
@@ -568,6 +574,74 @@ export async function suppressByHash(hash: string): Promise<void> {
     // TODO: Implement hash-to-email resolution
   } catch (error) {
     logger.error('Error suppressing by hash:', error);
+    throw error;
+  }
+}
+
+// Domain management functions
+export async function getTenantByHandle(handle: string): Promise<Tenant | null> {
+  return findTenantByHandle(handle);
+}
+
+export async function updateTenantDomain(handle: string, domain: string): Promise<void> {
+  try {
+    const tenant = await findTenantByHandle(handle);
+    if (!tenant || !tenant.id) {
+      throw new Error('Tenant not found');
+    }
+    
+    await getBase()(TABLES.TENANTS).update([{
+      id: tenant.id,
+      fields: {
+        [TENANT_FIELDS.DOMAIN]: domain
+      }
+    }]);
+    
+    logger.info(`Updated domain for tenant ${handle}: ${domain}`);
+  } catch (error) {
+    logger.error('Error updating tenant domain:', error);
+    throw error;
+  }
+}
+
+export async function setTenantDomainStatus(handle: string, status: string): Promise<void> {
+  try {
+    const tenant = await findTenantByHandle(handle);
+    if (!tenant || !tenant.id) {
+      throw new Error('Tenant not found');
+    }
+    
+    await getBase()(TABLES.TENANTS).update([{
+      id: tenant.id,
+      fields: {
+        [TENANT_FIELDS.DOMAIN_STATUS]: status
+      }
+    }]);
+    
+    logger.info(`Updated domain status for tenant ${handle}: ${status}`);
+  } catch (error) {
+    logger.error('Error setting tenant domain status:', error);
+    throw error;
+  }
+}
+
+export async function setRequestedDomain(handle: string, domain: string): Promise<void> {
+  try {
+    const tenant = await findTenantByHandle(handle);
+    if (!tenant || !tenant.id) {
+      throw new Error('Tenant not found');
+    }
+    
+    await getBase()(TABLES.TENANTS).update([{
+      id: tenant.id,
+      fields: {
+        [TENANT_FIELDS.REQUESTED_DOMAIN]: domain
+      }
+    }]);
+    
+    logger.info(`Set requested domain for tenant ${handle}: ${domain}`);
+  } catch (error) {
+    logger.error('Error setting requested domain:', error);
     throw error;
   }
 }

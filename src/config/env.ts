@@ -27,6 +27,10 @@ const envSchema = z.object({
   STRIPE_WEBHOOK_SECRET: z.string().optional(),
   STRIPE_PRICE_MONTHLY_99: z.string().optional(),
   STRIPE_PRICE_SETUP_399: z.string().optional(),
+
+  // Vercel domain management
+  VERCEL_TOKEN: z.string().optional(),
+  VERCEL_PROJECT_ID: z.string().optional(),
 });
 
 export const ENV = envSchema.parse(process.env);

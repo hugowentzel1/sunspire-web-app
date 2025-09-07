@@ -3,7 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { headers } from 'next/headers';
 import { ENV } from '@/src/config/env';
-import { upsertTenantByHandle, createOrLinkUserOwner } from '@/src/lib/airtable';
+import { upsertTenantByHandle, createOrLinkUserOwner, setRequestedDomain, setTenantDomainStatus } from '@/src/lib/airtable';
+import { getRootDomain, buildFixedQuoteDomain, extractCompanyWebsite } from '@/src/lib/domainRoot';
 
 const stripe = ENV.STRIPE_LIVE_SECRET_KEY ? new Stripe(ENV.STRIPE_LIVE_SECRET_KEY, {
   apiVersion: '2025-08-27.basil',
@@ -141,6 +142,20 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
     });
 
     console.log('✅ Tenant created/updated:', tenant.id);
+
+    // Set up custom domain if company website is available
+    const companyWebsite = extractCompanyWebsite(company);
+    if (companyWebsite) {
+      const root = getRootDomain(companyWebsite);
+      if (root) {
+        const requestedDomain = buildFixedQuoteDomain(root);
+        if (requestedDomain) {
+          await setRequestedDomain(company, requestedDomain);
+          await setTenantDomainStatus(company, 'proposed');
+          console.log(`✅ Domain setup initiated: ${requestedDomain}`);
+        }
+      }
+    }
 
     // Link the payer as owner if email exists
     if (session.customer_email) {
