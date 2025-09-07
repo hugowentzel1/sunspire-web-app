@@ -109,8 +109,8 @@ export default function TermsPage() {
               </p>
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-gray-700">
-                  <strong>Support:</strong> <a href="mailto:support@getsunspire.com">support@getsunspire.com</a><br />
-                  <strong>Billing:</strong> <a href="mailto:billing@getsunspire.com">billing@getsunspire.com</a><br />
+                  <strong>Support:</strong> <a href="mailto:support@getsunspire.com" className="hover:underline">support@getsunspire.com</a><br />
+                  <strong>Billing:</strong> <a href="mailto:billing@getsunspire.com" className="hover:underline">billing@getsunspire.com</a><br />
                   <strong>Address:</strong> 3133 Maple Dr Ne Ste 240 #1156 Atlanta, GA 30305<br />
                   <strong>Phone:</strong> (555) 123-4567
                 </p>

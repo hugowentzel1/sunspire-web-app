@@ -41,10 +41,10 @@ export default function PrivacyPage() {
                 We collect information you provide directly to us, such as when you create an account, submit a solar analysis request, or contact our support team. This may include:
               </p>
               <ul className="list-disc pl-6 space-y-2 text-gray-600">
-                <li>Name and contact information</li>
-                <li>Property address and details</li>
-                <li>Company information</li>
-                <li>Payment information</li>
+                <li className="text-[var(--brand-primary)]">Name and contact information</li>
+                <li className="text-[var(--brand-primary)]">Property address and details</li>
+                <li className="text-[var(--brand-primary)]">Company information</li>
+                <li className="text-[var(--brand-primary)]">Payment information</li>
               </ul>
             </section>
               
@@ -54,11 +54,11 @@ export default function PrivacyPage() {
                 We use the information we collect to:
               </p>
               <ul className="list-disc pl-6 space-y-2 text-gray-600">
-                <li>Provide and maintain our services</li>
-                <li>Process transactions and send related information</li>
-                <li>Send technical notices and support messages</li>
-                <li>Respond to your comments and questions</li>
-                <li>Improve our services and develop new features</li>
+                <li className="text-[var(--brand-primary)]">Provide and maintain our services</li>
+                <li className="text-[var(--brand-primary)]">Process transactions and send related information</li>
+                <li className="text-[var(--brand-primary)]">Send technical notices and support messages</li>
+                <li className="text-[var(--brand-primary)]">Respond to your comments and questions</li>
+                <li className="text-[var(--brand-primary)]">Improve our services and develop new features</li>
               </ul>
             </section>
               
@@ -87,8 +87,8 @@ export default function PrivacyPage() {
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Marketing emails: legal bases & your rights</h2>
               <p className="text-gray-600 mb-4"><strong>US (CAN-SPAM):</strong> We identify Sunspire Software, include our postal address, and provide an unsubscribe that works.</p>
               <p className="text-gray-600 mb-4"><strong>Canada (CASL):</strong> Our emails include our identity, mailing address, and a functional unsubscribe. We honor unsubscribes within 10 business days (typically immediately).</p>
-              <p className="text-gray-600 mb-4"><strong>EU/UK (GDPR & ePrivacy):</strong> For B2B outreach we rely on <em>Legitimate interests</em> to contact relevant business recipients. You can object to marketing at any time via the unsubscribe link or by emailing <a href="mailto:support@getsunspire.com" className="text-blue-600 hover:underline">support@getsunspire.com</a>.</p>
-              <p className="text-gray-600 mb-4"><strong>Your EU/UK rights:</strong> access, rectification, erasure, restriction, portability, and <em>objection to direct marketing</em>. To exercise these rights, email <a href="mailto:support@getsunspire.com" className="text-blue-600 hover:underline">support@getsunspire.com</a>. You may also contact your local data protection authority.</p>
+              <p className="text-gray-600 mb-4"><strong>EU/UK (GDPR & ePrivacy):</strong> For B2B outreach we rely on <em>Legitimate interests</em> to contact relevant business recipients. You can object to marketing at any time via the unsubscribe link or by emailing <a href="mailto:support@getsunspire.com" className="hover:underline">support@getsunspire.com</a>.</p>
+              <p className="text-gray-600 mb-4"><strong>Your EU/UK rights:</strong> access, rectification, erasure, restriction, portability, and <em>objection to direct marketing</em>. To exercise these rights, email <a href="mailto:support@getsunspire.com" className="hover:underline">support@getsunspire.com</a>. You may also contact your local data protection authority.</p>
               <p className="text-gray-600 mb-4">We maintain a suppression list to ensure we do not email you again after you unsubscribe.</p>
             </section>
               
@@ -99,8 +99,8 @@ export default function PrivacyPage() {
               </p>
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-gray-700">
-                  <strong>Support:</strong> <a href="mailto:support@getsunspire.com" className="text-blue-600 hover:underline">support@getsunspire.com</a><br/>
-                  <strong>Billing:</strong> <a href="mailto:billing@getsunspire.com" className="text-blue-600 hover:underline">billing@getsunspire.com</a><br/>
+                  <strong>Support:</strong> <a href="mailto:support@getsunspire.com" className="hover:underline">support@getsunspire.com</a><br/>
+                  <strong>Billing:</strong> <a href="mailto:billing@getsunspire.com" className="hover:underline">billing@getsunspire.com</a><br/>
                   <strong>Address:</strong> 3133 Maple Dr Ne Ste 240 #1156 Atlanta, GA 30305
                 </p>
               </div>

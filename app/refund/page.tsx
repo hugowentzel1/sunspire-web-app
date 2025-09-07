@@ -49,7 +49,7 @@ export default function RefundPage() {
             <section className="mb-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">How to Cancel</h2>
               <p className="text-gray-600 mb-4">
-                Use the billing portal link in your account. Need help? <a href="mailto:support@getsunspire.com" className="text-[var(--brand-primary)] hover:underline">support@getsunspire.com</a>.
+                Use the billing portal link in your account. Need help? <a href="mailto:support@getsunspire.com" className="hover:underline">support@getsunspire.com</a>.
               </p>
             </section>
 
@@ -60,8 +60,8 @@ export default function RefundPage() {
               </p>
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-gray-700">
-                  <strong>Support:</strong> <a href="mailto:support@getsunspire.com" className="text-[var(--brand-primary)] hover:underline">support@getsunspire.com</a><br />
-                  <strong>Billing:</strong> <a href="mailto:billing@getsunspire.com" className="text-[var(--brand-primary)] hover:underline">billing@getsunspire.com</a><br />
+                  <strong>Support:</strong> <a href="mailto:support@getsunspire.com" className="hover:underline">support@getsunspire.com</a><br />
+                  <strong>Billing:</strong> <a href="mailto:billing@getsunspire.com" className="hover:underline">billing@getsunspire.com</a><br />
                   <strong>Address:</strong> 3133 Maple Dr Ne Ste 240 #1156 Atlanta, GA 30305<br />
                   <strong>Phone:</strong> (555) 123-4567
                 </p>

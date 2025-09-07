@@ -60,11 +60,11 @@ export default function DPAPage() {
                 Sunspire processes personal data for the following purposes:
               </p>
               <ul className="list-disc pl-6 space-y-2 text-gray-600">
-                <li>Providing solar analysis and quote generation services</li>
-                <li>Lead management and CRM integration</li>
-                <li>Customer support and communication</li>
-                <li>Service improvement and analytics</li>
-                <li>Compliance with legal obligations</li>
+                <li className="text-[var(--brand-primary)]">Providing solar analysis and quote generation services</li>
+                <li className="text-[var(--brand-primary)]">Lead management and CRM integration</li>
+                <li className="text-[var(--brand-primary)]">Customer support and communication</li>
+                <li className="text-[var(--brand-primary)]">Service improvement and analytics</li>
+                <li className="text-[var(--brand-primary)]">Compliance with legal obligations</li>
               </ul>
             </section>
 
@@ -122,10 +122,10 @@ export default function DPAPage() {
                 In the event of a personal data breach, Sunspire will:
               </p>
               <ul className="list-disc pl-6 space-y-2 text-gray-600">
-                <li>Notify the Data Controller within 72 hours of becoming aware</li>
-                <li>Provide detailed information about the breach</li>
-                <li>Take immediate steps to contain and remediate the breach</li>
-                <li>Cooperate with relevant authorities and Data Controller</li>
+                <li className="text-[var(--brand-primary)]">Notify the Data Controller within 72 hours of becoming aware</li>
+                <li className="text-[var(--brand-primary)]">Provide detailed information about the breach</li>
+                <li className="text-[var(--brand-primary)]">Take immediate steps to contain and remediate the breach</li>
+                <li className="text-[var(--brand-primary)]">Cooperate with relevant authorities and Data Controller</li>
               </ul>
             </section>
 
@@ -150,7 +150,7 @@ export default function DPAPage() {
               </p>
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-gray-700">
-                  <strong>Data Protection Officer:</strong> support@getsunspire.com<br />
+                  <strong>Data Protection Officer:</strong> <a href="mailto:support@getsunspire.com" className="hover:underline">support@getsunspire.com</a><br />
                   <strong>Address:</strong> 3133 Maple Dr Ne Ste 240 #1156 Atlanta, GA 30305<br />
                   <strong>Phone:</strong> (555) 123-4567
                 </p>

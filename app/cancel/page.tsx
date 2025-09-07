@@ -48,7 +48,7 @@ export default function CancelPage() {
               </a>
               
               <p className="text-sm text-gray-500">
-                Need help? Contact us at <a href="mailto:support@getsunspire.com" className="text-[var(--brand-primary)] hover:underline">support@getsunspire.com</a>
+                Need help? Contact us at <a href="mailto:support@getsunspire.com" className="hover:underline">support@getsunspire.com</a>
               </p>
             </div>
           </div>

@@ -176,7 +176,7 @@ export default function SecurityPage() {
               <p>For any security, privacy, or compliance questions, contact our Data Protection Officer:</p>
               <div className="bg-gray-50 rounded-lg p-6 mt-4">
                 <p className="font-semibold text-gray-900">Data Protection Officer</p>
-                <p className="text-gray-700">Email: <a href="mailto:security@sunspire.app" className="text-blue-600 hover:underline">security@sunspire.app</a></p>
+                <p className="text-gray-700">Email: <a href="mailto:security@sunspire.app" className="hover:underline">security@sunspire.app</a></p>
                 <p className="text-gray-700">Response time: Within 48 hours</p>
               </div>
             </div>

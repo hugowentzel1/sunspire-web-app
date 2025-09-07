@@ -136,7 +136,7 @@ export default function DoNotSellPage() {
                 <p className="mt-4">
                   For more information about our privacy practices, please review our{' '}
                   <a href="/privacy" className="text-blue-600 hover:underline">Privacy Policy</a> or contact us at{' '}
-                  <a href="mailto:privacy@sunspire.app" className="text-blue-600 hover:underline">privacy@sunspire.app</a>.
+                  <a href="mailto:privacy@sunspire.app" className="hover:underline">privacy@sunspire.app</a>.
                 </p>
               </div>
             </section>
