@@ -17,7 +17,7 @@ export default function DomainOnboardingPage() {
   const [verificationStatus, setVerificationStatus] = useState<any>(null);
 
   // Apply brand takeover
-  useBrandTakeover(tenantHandle || '');
+  const b = useBrandTakeover();
 
   useEffect(() => {
     if (companyWebsite) {
@@ -134,7 +134,7 @@ export default function DomainOnboardingPage() {
                 Set Up Your Custom Domain
               </h1>
               <p className="text-lg text-gray-600">
-                We're setting you up at <strong className="text-[var(--brand-primary)]">{requestedDomain || 'quote.yourdomain.com'}</strong>
+                We&apos;re setting you up at <strong className="text-[var(--brand-primary)]">{requestedDomain || 'quote.yourdomain.com'}</strong>
               </p>
             </div>
 
@@ -165,7 +165,7 @@ export default function DomainOnboardingPage() {
 
                 <div className="mt-4 p-4 bg-blue-50 rounded-lg">
                   <p className="text-sm text-blue-800">
-                    <strong>Note:</strong> If you're using Cloudflare, make sure to set the DNS record to <strong>DNS-only</strong> (not proxied).
+                    <strong>Note:</strong> If you&apos;re using Cloudflare, make sure to set the DNS record to <strong>DNS-only</strong> (not proxied).
                   </p>
                 </div>
               </div>
@@ -189,7 +189,7 @@ export default function DomainOnboardingPage() {
                         <span className="text-gray-700">Verifying domain configuration...</span>
                       </div>
                       <p className="text-sm text-gray-600">
-                        This may take a few minutes while DNS propagates. We'll check every 10 seconds.
+                        This may take a few minutes while DNS propagates. We&apos;ll check every 10 seconds.
                       </p>
                     </div>
                   )}

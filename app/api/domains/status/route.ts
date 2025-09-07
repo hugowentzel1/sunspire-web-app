@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getTenantByHandle, updateTenantDomain, setTenantDomainStatus } from '@/src/lib/airtable';
+import { getTenantByHandle, updateTenantDomain, setTenantDomainStatus, TENANT_FIELDS } from '@/src/lib/airtable';
 import { ENV } from '@/src/config/env';
 
 export async function GET(req: Request) {
@@ -16,12 +16,13 @@ export async function GET(req: Request) {
     }
 
     const tenant = await getTenantByHandle(tenantHandle);
-    if (!tenant?.requested_domain) {
+    if (!tenant?.[TENANT_FIELDS.REQUESTED_DOMAIN]) {
       return NextResponse.json({ ok: false, error: 'no_requested_domain' }, { status: 400 });
     }
 
     // Check domain status with Vercel
-    const response = await fetch(`https://api.vercel.com/v9/projects/${ENV.VERCEL_PROJECT_ID}/domains/${encodeURIComponent(tenant.requested_domain)}`, {
+    const requestedDomain = tenant[TENANT_FIELDS.REQUESTED_DOMAIN]!;
+    const response = await fetch(`https://api.vercel.com/v9/projects/${ENV.VERCEL_PROJECT_ID}/domains/${encodeURIComponent(requestedDomain)}`, {
       headers: {
         'Authorization': `Bearer ${ENV.VERCEL_TOKEN}`
       }
@@ -42,16 +43,16 @@ export async function GET(req: Request) {
     const isVerified = !!domainData.verified;
 
     // If domain is verified, update tenant with the custom domain
-    if (isVerified && tenant.domain_status !== 'live') {
-      await updateTenantDomain(tenantHandle, `https://${tenant.requested_domain}`);
+    if (isVerified && tenant[TENANT_FIELDS.DOMAIN_STATUS] !== 'live') {
+      await updateTenantDomain(tenantHandle, `https://${requestedDomain}`);
       await setTenantDomainStatus(tenantHandle, 'live');
     }
 
     return NextResponse.json({ 
       verified: isVerified, 
       raw: domainData,
-      requestedDomain: tenant.requested_domain,
-      currentDomain: tenant.domain
+      requestedDomain: requestedDomain,
+      currentDomain: tenant[TENANT_FIELDS.DOMAIN]
     });
 
   } catch (error) {

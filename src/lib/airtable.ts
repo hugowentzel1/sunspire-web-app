@@ -55,7 +55,7 @@ const LEAD_FIELDS = {
   TOKEN: 'Token'
 } as const;
 
-const TENANT_FIELDS = {
+export const TENANT_FIELDS = {
   COMPANY_HANDLE: 'Company Handle',
   PLAN: 'Plan',
   DOMAIN_LOGIN_URL: 'Domain / Login URL',

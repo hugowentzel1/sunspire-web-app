@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { getTenantByHandle, setTenantDomainStatus } from '@/src/lib/airtable';
+import { getTenantByHandle, setTenantDomainStatus, TENANT_FIELDS } from '@/src/lib/airtable';
 import { ENV } from '@/src/config/env';
 
 export async function POST(req: Request) {
@@ -15,18 +15,19 @@ export async function POST(req: Request) {
     }
 
     const tenant = await getTenantByHandle(tenantHandle);
-    if (!tenant?.requested_domain) {
+    if (!tenant?.[TENANT_FIELDS.REQUESTED_DOMAIN]) {
       return NextResponse.json({ ok: false, error: 'no_requested_domain' }, { status: 400 });
     }
 
     // Attach domain to Vercel
+    const requestedDomain = tenant[TENANT_FIELDS.REQUESTED_DOMAIN]!;
     const response = await fetch(`https://api.vercel.com/v10/projects/${ENV.VERCEL_PROJECT_ID}/domains`, {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${ENV.VERCEL_TOKEN}`,
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ name: tenant.requested_domain })
+      body: JSON.stringify({ name: requestedDomain })
     });
 
     if (!response.ok) {
