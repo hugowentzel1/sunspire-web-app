@@ -28,9 +28,6 @@ export default function SecurityPage() {
           </h1>
 
           <div className="prose prose-lg max-w-none">
-            <p className="text-gray-600 mb-6">
-              <strong>Last updated:</strong> September 2025
-            </p>
 
             <p className="text-gray-600 mb-6">
               Your data security and privacy are our top priorities. Learn about our comprehensive security measures and compliance standards.

@@ -89,7 +89,6 @@ export default function LegalFooter({ showPoweredBy = true, brand }: { showPower
             <div className="space-y-3">
               <a href="/privacy" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Privacy Policy</a>
               <a href="/terms" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Terms of Service</a>
-              <a href="/terms#refunds" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Refunds</a>
               <a href="/security" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Security</a>
               <a href="/dpa" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>DPA</a>
               <a href="/do-not-sell" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Do Not Sell My Data</a>

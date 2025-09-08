@@ -119,7 +119,7 @@ export default function EmbedGuidePage() {
               </h2>
               
               <div className="space-y-4">
-                <div className="flex items-start space-x-3">
+                <div className="flex items-center space-x-3">
                   <div className="w-6 h-6 bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-full flex items-center justify-center text-gray-900 font-bold text-sm">
                     1
                   </div>
@@ -129,7 +129,7 @@ export default function EmbedGuidePage() {
                   </div>
                 </div>
                 
-                <div className="flex items-start space-x-3">
+                <div className="flex items-center space-x-3">
                   <div className="w-6 h-6 bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-full flex items-center justify-center text-gray-900 font-bold text-sm">
                     2
                   </div>
@@ -139,7 +139,7 @@ export default function EmbedGuidePage() {
                   </div>
                 </div>
                 
-                <div className="flex items-start space-x-3">
+                <div className="flex items-center space-x-3">
                   <div className="w-6 h-6 bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-full flex items-center justify-center text-gray-900 font-bold text-sm">
                     3
                   </div>

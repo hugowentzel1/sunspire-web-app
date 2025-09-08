@@ -40,7 +40,7 @@ export default function SalesforceCRMGuidePage() {
               <h2 className="text-2xl font-bold text-gray-900 mb-4">Setup Steps</h2>
               
               <div className="space-y-6">
-                <div className="flex items-start space-x-4">
+                <div className="flex items-center space-x-4">
                   <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-full flex items-center justify-center text-gray-900 font-bold text-sm shadow-lg">
                     1
                   </div>
@@ -50,7 +50,7 @@ export default function SalesforceCRMGuidePage() {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
+                <div className="flex items-center space-x-4">
                   <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-full flex items-center justify-center text-gray-900 font-bold text-sm shadow-lg">
                     2
                   </div>
@@ -60,7 +60,7 @@ export default function SalesforceCRMGuidePage() {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
+                <div className="flex items-center space-x-4">
                   <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-full flex items-center justify-center text-gray-900 font-bold text-sm shadow-lg">
                     3
                   </div>
@@ -70,7 +70,7 @@ export default function SalesforceCRMGuidePage() {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
+                <div className="flex items-center space-x-4">
                   <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-full flex items-center justify-center text-gray-900 font-bold text-sm shadow-lg">
                     4
                   </div>

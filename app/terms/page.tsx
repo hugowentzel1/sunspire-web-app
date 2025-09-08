@@ -28,9 +28,6 @@ export default function TermsPage() {
           </h1>
 
           <div className="prose prose-lg max-w-none">
-            <p className="text-gray-600 mb-6">
-              <strong>Last updated:</strong> September 2025
-            </p>
 
             <section className="mb-8">
               <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Acceptance of Terms</h2>

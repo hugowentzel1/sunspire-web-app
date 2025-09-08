@@ -38,9 +38,6 @@ export default function DoNotSellPage() {
           </h1>
 
           <div className="prose prose-lg max-w-none">
-            <p className="text-gray-600 mb-6">
-              <strong>Last updated:</strong> September 2025
-            </p>
 
             <p className="text-gray-600 mb-6">
               Exercise your right under the California Consumer Privacy Act (CCPA) to opt out of the sale of your personal information.
