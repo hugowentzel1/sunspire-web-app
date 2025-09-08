@@ -3,6 +3,12 @@ import { getRootDomain, isValidSubdomain } from '@/src/lib/domainRoot';
 
 export function middleware(req: Request) {
   const url = new URL(req.url);
+  
+  // Redirect refund page to terms#refunds
+  if (url.pathname === '/refund') {
+    return NextResponse.redirect(new URL('/terms#refunds', url.origin));
+  }
+  
   const res = NextResponse.next();
   
   // Security headers

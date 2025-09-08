@@ -20,14 +20,14 @@ test.describe('Final Live Site Verification', () => {
     expect(content!.length).toBeGreaterThan(1000);
   });
 
-  test('Refund page now returns 404', async ({ page }) => {
+  test('Refund page redirects to terms#refunds', async ({ page }) => {
     const response = await page.goto(`${LIVE_URL}/refund`);
-    expect(response?.status()).toBe(404);
+    expect(response?.status()).toBe(200);
     
-    // Check 404 page content
-    await expect(page.getByText('404')).toBeVisible();
-    await expect(page.getByText('Page Not Found')).toBeVisible();
-    await expect(page.getByText('Return Home')).toBeVisible();
+    // Check that we're redirected to terms page with refunds section
+    await expect(page.getByText('Terms of Service')).toBeVisible();
+    await expect(page.getByText('Refunds & Guarantee')).toBeVisible();
+    await expect(page.getByText('14-day pilot guarantee')).toBeVisible();
   });
 
   test('Terms page has refunds section but no last updated text', async ({ page }) => {
@@ -223,10 +223,10 @@ test.describe('Final Live Site Verification', () => {
     await page.goto(`${LIVE_URL}/terms`);
     await page.screenshot({ path: 'final-terms.png', fullPage: true });
     
-    // 404 page screenshot
+    // Refund redirect screenshot
     await page.goto(`${LIVE_URL}/refund`);
-    await page.screenshot({ path: 'final-404.png', fullPage: true });
+    await page.screenshot({ path: 'final-refund-redirect.png', fullPage: true });
     
-    console.log('Screenshots saved: final-homepage.png, final-terms.png, final-404.png');
+    console.log('Screenshots saved: final-homepage.png, final-terms.png, final-refund-redirect.png');
   });
 });
