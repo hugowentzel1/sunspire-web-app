@@ -351,3 +351,4 @@ npm run build
 ## Support
 
 For questions or issues, check the health endpoint first to verify environment variables are properly configured.
+# Force deployment Mon Sep  8 12:43:43 EDT 2025
