@@ -8,7 +8,7 @@ export default function HubSpotCRMGuidePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter">
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Back to Home Button */}
         <div className="mb-8">
           <a
@@ -22,116 +22,68 @@ export default function HubSpotCRMGuidePage() {
           </a>
         </div>
 
-        <div className="text-center space-y-8">
-          <div>
-            <h1 className="text-4xl md:text-5xl font-black text-gray-900 mb-4">
-              HubSpot CRM Integration
-            </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Seamlessly connect your solar quotes to HubSpot for lead management
+        <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg">
+          <h1 className="text-4xl font-black text-gray-900 mb-8 text-center">
+            HubSpot CRM Integration
+          </h1>
+
+          <div className="prose prose-lg max-w-none">
+            <p className="text-gray-600 mb-6">
+              Seamlessly connect your solar quotes to HubSpot for lead management and automation.
             </p>
-          </div>
 
-          <div className="max-w-4xl mx-auto space-y-8">
-            {/* Integration Steps */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                Setup Steps
-              </h2>
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Setup Steps</h2>
               
-              <div className="space-y-6">
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-full flex items-center justify-center text-gray-900 font-bold text-sm shadow-lg">
-                    1
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Get HubSpot API Key</h3>
-                    <p className="text-gray-600">Navigate to Settings → Integrations → API Keys in your HubSpot account</p>
-                  </div>
-                </div>
+              <ol className="list-decimal ml-6 space-y-4">
+                <li>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Get HubSpot API Key</h3>
+                  <p className="text-gray-600">Navigate to Settings → Integrations → API Keys in your HubSpot account</p>
+                </li>
+                
+                <li>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Configure Contact Properties</h3>
+                  <p className="text-gray-600">Set up custom properties for solar-specific data like roof size, energy usage, etc.</p>
+                </li>
+                
+                <li>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Create Deal Pipeline</h3>
+                  <p className="text-gray-600">Set up stages: Lead → Qualified → Proposal → Closed Won/Lost</p>
+                </li>
+                
+                <li>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Test Integration</h3>
+                  <p className="text-gray-600">Submit a test quote to verify data flows correctly</p>
+                </li>
+              </ol>
+            </section>
 
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-full flex items-center justify-center text-gray-900 font-bold text-sm shadow-lg">
-                    2
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Configure Contact Properties</h3>
-                    <p className="text-gray-600">Set up custom properties for solar-specific data like roof size, energy usage, etc.</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-full flex items-center justify-center text-gray-900 font-bold text-sm shadow-lg">
-                    3
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Create Deal Pipeline</h3>
-                    <p className="text-gray-600">Set up stages: Lead → Qualified → Proposal → Closed Won/Lost</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start space-x-4">
-                  <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-full flex items-center justify-center text-gray-900 font-bold text-sm shadow-lg">
-                    4
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">Test Integration</h3>
-                    <p className="text-gray-600">Submit a test quote to verify data flows correctly</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Data Mapping */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                Data Mapping
-              </h2>
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Data Mapping</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">Contact Properties</h3>
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                      <span className="font-medium">Address</span>
-                      <span className="text-sm text-gray-600">Property Address</span>
-                    </div>
-                    <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                      <span className="font-medium">Roof Size</span>
-                      <span className="text-sm text-gray-600">Square Footage</span>
-                    </div>
-                    <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                      <span className="font-medium">Energy Usage</span>
-                      <span className="text-sm text-gray-600">Monthly kWh</span>
-                    </div>
-                  </div>
+                  <ul className="list-disc ml-6 space-y-2">
+                    <li><strong>Address:</strong> Property Address</li>
+                    <li><strong>Roof Size:</strong> Square Footage</li>
+                    <li><strong>Energy Usage:</strong> Monthly kWh</li>
+                  </ul>
                 </div>
                 
                 <div>
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">Deal Properties</h3>
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                      <span className="font-medium">System Size</span>
-                      <span className="text-sm text-gray-600">kW</span>
-                    </div>
-                    <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                      <span className="font-medium">Estimated Cost</span>
-                      <span className="text-sm text-gray-600">Dollar Amount</span>
-                    </div>
-                    <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
-                      <span className="font-medium">Savings</span>
-                      <span className="text-sm text-gray-600">Annual $</span>
-                    </div>
-                  </div>
+                  <ul className="list-disc ml-6 space-y-2">
+                    <li><strong>System Size:</strong> kW</li>
+                    <li><strong>Estimated Cost:</strong> Dollar Amount</li>
+                    <li><strong>Savings:</strong> Annual $</li>
+                  </ul>
                 </div>
               </div>
-            </div>
+            </section>
 
-            {/* Automation */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
-                Automation Workflows
-              </h2>
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Automation Workflows</h2>
               
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div className="text-center space-y-4">
@@ -164,7 +116,7 @@ export default function HubSpotCRMGuidePage() {
                   <p className="text-sm text-gray-600">Automatically score leads based on quote data</p>
                 </div>
               </div>
-            </div>
+            </section>
           </div>
         </div>
       </main>
