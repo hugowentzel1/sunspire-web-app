@@ -2,6 +2,12 @@ import { NextResponse } from 'next/server';
 import { getTenantByHandle, setTenantDomainStatus, TENANT_FIELDS } from '@/src/lib/airtable';
 import { ENV } from '@/src/config/env';
 
+const AUTH = { 
+  Authorization: `Bearer ${ENV.VERCEL_TOKEN}`, 
+  'Content-Type': 'application/json' 
+};
+const PID = ENV.VERCEL_PROJECT_ID!;
+
 export async function POST(req: Request) {
   try {
     const { tenantHandle } = await req.json();
@@ -19,36 +25,20 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, error: 'no_requested_domain' }, { status: 400 });
     }
 
-    // Attach domain to Vercel
-    const requestedDomain = tenant[TENANT_FIELDS.REQUESTED_DOMAIN]!;
-    const response = await fetch(`https://api.vercel.com/v10/projects/${ENV.VERCEL_PROJECT_ID}/domains`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${ENV.VERCEL_TOKEN}`,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ name: requestedDomain })
+    const name = tenant[TENANT_FIELDS.REQUESTED_DOMAIN]!;
+    const r = await fetch(`https://api.vercel.com/v10/projects/${PID}/domains`, { 
+      method: 'POST', 
+      headers: AUTH, 
+      body: JSON.stringify({ name }) 
     });
-
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      console.error('Vercel API error:', errorData);
-      
-      // Set status to waiting-dns if domain already exists or other attachment issues
-      await setTenantDomainStatus(tenantHandle, 'waiting-dns');
-      
-      return NextResponse.json({ 
-        ok: false, 
-        error: 'Failed to attach domain',
-        details: errorData 
-      }, { status: response.status });
-    }
-
-    // Domain attached successfully
-    await setTenantDomainStatus(tenantHandle, 'attached');
     
+    if (!r.ok) { 
+      await setTenantDomainStatus(tenantHandle, 'waiting-dns'); 
+      return NextResponse.json({ ok: false }, { status: r.status }); 
+    }
+    
+    await setTenantDomainStatus(tenantHandle, 'attached');
     return NextResponse.json({ ok: true });
-
   } catch (error) {
     console.error('Error attaching domain:', error);
     return NextResponse.json({ 

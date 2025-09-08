@@ -2,6 +2,12 @@ import { NextResponse } from 'next/server';
 import { getTenantByHandle, setTenantDomainStatus, TENANT_FIELDS } from '@/src/lib/airtable';
 import { ENV } from '@/src/config/env';
 
+const AUTH = { 
+  Authorization: `Bearer ${ENV.VERCEL_TOKEN}`, 
+  'Content-Type': 'application/json' 
+};
+const PID = ENV.VERCEL_PROJECT_ID!;
+
 export async function POST(req: Request) {
   try {
     const { tenantHandle } = await req.json();
@@ -19,35 +25,19 @@ export async function POST(req: Request) {
       return NextResponse.json({ ok: false, error: 'no_requested_domain' }, { status: 400 });
     }
 
-    // Verify domain with Vercel
-    const requestedDomain = tenant[TENANT_FIELDS.REQUESTED_DOMAIN]!;
-    const response = await fetch(`https://api.vercel.com/v10/projects/${ENV.VERCEL_PROJECT_ID}/domains/${encodeURIComponent(requestedDomain)}/verify`, {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${ENV.VERCEL_TOKEN}`,
-        'Content-Type': 'application/json'
-      }
+    const name = tenant[TENANT_FIELDS.REQUESTED_DOMAIN]!;
+    const r = await fetch(`https://api.vercel.com/v10/projects/${PID}/domains/${encodeURIComponent(name)}/verify`, { 
+      method: 'POST', 
+      headers: AUTH 
     });
-
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      console.error('Vercel verification error:', errorData);
-      
-      // Set status to waiting-dns if verification fails
-      await setTenantDomainStatus(tenantHandle, 'waiting-dns');
-      
-      return NextResponse.json({ 
-        ok: false, 
-        error: 'Failed to verify domain',
-        details: errorData 
-      }, { status: response.status });
-    }
-
-    // Domain verification initiated successfully
-    await setTenantDomainStatus(tenantHandle, 'verified');
     
+    if (!r.ok) { 
+      await setTenantDomainStatus(tenantHandle, 'waiting-dns'); 
+      return NextResponse.json({ ok: false }); 
+    }
+    
+    await setTenantDomainStatus(tenantHandle, 'verified');
     return NextResponse.json({ ok: true });
-
   } catch (error) {
     console.error('Error verifying domain:', error);
     return NextResponse.json({ 

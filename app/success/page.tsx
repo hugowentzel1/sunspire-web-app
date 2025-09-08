@@ -153,6 +153,13 @@ export default function SuccessPage() {
         </div>
 
         <div className="mt-8 space-y-4">
+          <Link
+            href={`/onboard/domain?tenant=${session.metadata.company}&companyWebsite=${encodeURIComponent(session.metadata.company || '')}`}
+            className="block w-full bg-green-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-green-700 transition-colors text-center"
+          >
+            Set up your custom domain (recommended) →
+          </Link>
+          
           <button
             onClick={handleManageBilling}
             className="w-full bg-blue-600 text-white px-6 py-3 rounded-lg font-medium hover:bg-blue-700 transition-colors"
@@ -169,7 +176,8 @@ export default function SuccessPage() {
         </div>
 
         <div className="mt-8 text-center text-sm text-gray-500">
-          <p>Need help? Contact our support team.</p>
+          <p>Covered by our 14-day guarantee — see <a href="/terms#refunds" className="text-blue-600 hover:underline">Refunds</a>.</p>
+          <p className="mt-2">Need help? Contact our support team.</p>
         </div>
       </div>
     </div>

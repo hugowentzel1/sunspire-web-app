@@ -1,0 +1,61 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e7]: ☀️
+        - generic [ref=e8]:
+          - heading "Your Company" [level=1] [ref=e9]
+          - paragraph [ref=e10]: Solar Intelligence
+      - navigation [ref=e11]:
+        - link "Pricing" [ref=e12] [cursor=pointer]:
+          - /url: /pricing
+        - link "Partners" [ref=e13] [cursor=pointer]:
+          - /url: /partners
+        - link "Support" [ref=e14] [cursor=pointer]:
+          - /url: /support
+        - button "Activate on Your Domain — 24 Hours" [ref=e15] [cursor=pointer]
+    - paragraph [ref=e18]: Private demo for Your Company. Not affiliated.
+  - generic [ref=e22]:
+    - generic [ref=e23]:
+      - heading "Set Up Your Custom Domain" [level=1] [ref=e24]
+      - paragraph [ref=e25]:
+        - text: We're setting you up at
+        - strong [ref=e26]: quote.acme.com
+    - generic [ref=e27]:
+      - generic [ref=e28]:
+        - heading "DNS Configuration" [level=2] [ref=e29]
+        - paragraph [ref=e30]: "Add the following DNS record to your domain to complete the setup:"
+        - generic [ref=e32]:
+          - generic [ref=e33]:
+            - generic [ref=e34]: Type
+            - generic [ref=e35]: CNAME
+          - generic [ref=e36]:
+            - generic [ref=e37]: Host
+            - generic [ref=e38]: quote
+          - generic [ref=e39]:
+            - generic [ref=e40]: Value
+            - generic [ref=e41]: cname.vercel-dns.com
+        - paragraph [ref=e43]:
+          - strong [ref=e44]: "Note:"
+          - text: If you're using Cloudflare, make sure to set the DNS record to
+          - strong [ref=e45]: DNS-only
+          - text: (not proxied).
+      - generic [ref=e46]:
+        - button "I Added the Record" [ref=e47] [cursor=pointer]
+        - button "Skip for Now" [ref=e48] [cursor=pointer]
+      - paragraph [ref=e50]:
+        - text: Your site is also available at
+        - link "demo.usesunspire.com" [ref=e51] [cursor=pointer]:
+          - /url: https://demo.usesunspire.com
+  - alert [ref=e52]
+  - generic [ref=e55]:
+    - generic [ref=e56]:
+      - heading "We use cookies to improve your experience" [level=3] [ref=e57]
+      - paragraph [ref=e58]: We use cookies and similar technologies to analyze site usage, personalize content, and provide social media features. By continuing to use our site, you consent to our use of cookies.
+    - generic [ref=e59]:
+      - button "Decline" [ref=e60] [cursor=pointer]
+      - button "Accept All" [ref=e61] [cursor=pointer]
+```

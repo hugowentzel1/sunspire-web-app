@@ -68,42 +68,49 @@ export default function TermsPage() {
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Data and Privacy</h2>
+              <h2 id="refunds" className="text-2xl font-bold text-gray-900 mb-4">6. Refunds & Guarantee</h2>
+              <p className="text-gray-600 mb-4">
+                We offer a 14-day pilot guarantee. If Sunspire doesn&apos;t increase booked calls or you&apos;re dissatisfied for any reason in the first 14 days, email support@getsunspire.com for a full refund of the setup fee. Ongoing subscriptions can be cancelled any time and remain active until the end of the billing period.
+              </p>
+            </section>
+
+            <section className="mb-8">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Data and Privacy</h2>
               <p className="text-gray-600 mb-4">
                 Your data is protected by our Privacy Policy and security measures. We use industry-standard encryption and SOC 2-aligned controls to protect your information. You retain ownership of your data.
               </p>
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Intellectual Property</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Intellectual Property</h2>
               <p className="text-gray-600 mb-4">
                 The service and its original content, features, and functionality are owned by Sunspire and are protected by international copyright, trademark, patent, trade secret, and other intellectual property laws.
               </p>
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Limitation of Liability</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">9. Limitation of Liability</h2>
               <p className="text-gray-600 mb-4">
                 In no event shall Sunspire be liable for any indirect, incidental, special, consequential, or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses.
               </p>
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">9. Termination</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">10. Termination</h2>
               <p className="text-gray-600 mb-4">
                 You may terminate your account at any time by contacting our support team. We may terminate or suspend your account immediately, without prior notice, for any reason whatsoever.
               </p>
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">10. Changes to Terms</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">11. Changes to Terms</h2>
               <p className="text-gray-600 mb-4">
                 We reserve the right to modify or replace these terms at any time. If a revision is material, we will provide at least 30 days notice prior to any new terms taking effect.
               </p>
             </section>
 
             <section className="mb-8">
-              <h2 className="text-2xl font-bold text-gray-900 mb-4">11. Contact Information</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">12. Contact Information</h2>
               <p className="text-gray-600 mb-4">
                 If you have any questions about these Terms of Service, please contact us at:
               </p>

@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import { getTenantByHandle, updateTenantDomain, setTenantDomainStatus, TENANT_FIELDS } from '@/src/lib/airtable';
 import { ENV } from '@/src/config/env';
 
+const PID = ENV.VERCEL_PROJECT_ID!;
+
 export async function GET(req: Request) {
   try {
     const url = new URL(req.url);
@@ -20,45 +22,24 @@ export async function GET(req: Request) {
       return NextResponse.json({ ok: false, error: 'no_requested_domain' }, { status: 400 });
     }
 
-    // Check domain status with Vercel
-    const requestedDomain = tenant[TENANT_FIELDS.REQUESTED_DOMAIN]!;
-    const response = await fetch(`https://api.vercel.com/v9/projects/${ENV.VERCEL_PROJECT_ID}/domains/${encodeURIComponent(requestedDomain)}`, {
-      headers: {
-        'Authorization': `Bearer ${ENV.VERCEL_TOKEN}`
-      }
+    const name = tenant[TENANT_FIELDS.REQUESTED_DOMAIN]!;
+    const r = await fetch(`https://api.vercel.com/v9/projects/${PID}/domains/${encodeURIComponent(name)}`, { 
+      headers: { Authorization: `Bearer ${ENV.VERCEL_TOKEN}` } 
     });
-
-    if (!response.ok) {
-      const errorData = await response.json().catch(() => ({}));
-      console.error('Vercel status check error:', errorData);
-      
-      return NextResponse.json({ 
-        verified: false, 
-        error: 'Failed to check domain status',
-        details: errorData 
-      });
+    
+    const j = await r.json();
+    const verified = !!j.verified;
+    
+    if (verified) { 
+      await updateTenantDomain(tenantHandle, `https://${name}`); 
+      await setTenantDomainStatus(tenantHandle, 'live'); 
     }
-
-    const domainData = await response.json();
-    const isVerified = !!domainData.verified;
-
-    // If domain is verified, update tenant with the custom domain
-    if (isVerified && tenant[TENANT_FIELDS.DOMAIN_STATUS] !== 'live') {
-      await updateTenantDomain(tenantHandle, `https://${requestedDomain}`);
-      await setTenantDomainStatus(tenantHandle, 'live');
-    }
-
-    return NextResponse.json({ 
-      verified: isVerified, 
-      raw: domainData,
-      requestedDomain: requestedDomain,
-      currentDomain: tenant[TENANT_FIELDS.DOMAIN]
-    });
-
+    
+    return NextResponse.json({ verified, raw: j });
   } catch (error) {
     console.error('Error checking domain status:', error);
     return NextResponse.json({ 
-      verified: false, 
+      ok: false, 
       error: error instanceof Error ? error.message : 'Unknown error' 
     }, { status: 500 });
   }
