@@ -164,16 +164,18 @@ export default function SharedNavigation() {
           </div>
           
           <nav className="hidden md:flex items-center space-x-12">
-            <a href="/pricing" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Pricing</a>
-            <a href="/partners" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Partners</a>
-            <a href="/support" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Support</a>
             {isDemo && (
-              <button 
-                onClick={handleLaunchClick}
-                className="btn-primary ml-12"
-              >
-                Activate on Your Domain — 24 Hours
-              </button>
+              <>
+                <a href="/pricing" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Pricing</a>
+                <a href="/partners" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Partners</a>
+                <a href="/support" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Support</a>
+                <button 
+                  onClick={handleLaunchClick}
+                  className="btn-primary ml-12"
+                >
+                  Activate on Your Domain — 24 Hours
+                </button>
+              </>
             )}
           </nav>
         </div>
