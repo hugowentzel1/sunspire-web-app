@@ -4,11 +4,13 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import { useCompany } from './CompanyContext';
+import { useIsDemo } from '@/src/lib/isDemo';
 
 export default function SharedNavigation() {
   const pathname = usePathname();
   const b = useBrandTakeover();
   const { company } = useCompany();
+  const isDemo = useIsDemo();
   
   // Don't render on pages that have their own custom banners
   if (pathname === '/report' || pathname === '/demo-result') {
@@ -165,23 +167,27 @@ export default function SharedNavigation() {
             <a href="/pricing" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Pricing</a>
             <a href="/partners" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Partners</a>
             <a href="/support" className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Support</a>
-            <button 
-              onClick={handleLaunchClick}
-              className="btn-primary ml-12"
-            >
-              Activate on Your Domain — 24 Hours
-            </button>
+            {isDemo && (
+              <button 
+                onClick={handleLaunchClick}
+                className="btn-primary ml-12"
+              >
+                Activate on Your Domain — 24 Hours
+              </button>
+            )}
           </nav>
         </div>
       </div>
       
       {/* Disclaimer Footer - Old banner from c548b88 */}
       <div className="border-t border-gray-100 bg-gray-50/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
-          <p className="text-xs text-gray-500 text-center">
-            Private demo for {b.enabled ? b.brand : 'Your Company'}. Not affiliated.
-          </p>
-        </div>
+        {isDemo && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+            <p className="text-xs text-gray-500 text-center">
+              Private demo for {b.brand || 'Your Company'}. Not affiliated.
+            </p>
+          </div>
+        )}
       </div>
     </header>
   );
