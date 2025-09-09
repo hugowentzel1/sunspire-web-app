@@ -431,7 +431,7 @@ function ReportContent() {
     window.consumeQuotaIfNeeded = () => {
       console.log('🔒 Demo quota - checkout clicked, quota already consumed on report view');
     };
-    }, [searchParams]);
+    }, [searchParams, pickDemoAddress]);
 
   if (tenantLoading || isLoading) {
     return (
@@ -559,7 +559,7 @@ function ReportContent() {
         {/* Success toast for paid mode */}
         {showSuccessToast && (
           <div className="fixed top-4 right-4 z-50 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg">
-            Saved! We've received your inquiry.
+            Saved! We&apos;ve received your inquiry.
           </div>
         )}
 

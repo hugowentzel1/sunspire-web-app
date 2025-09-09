@@ -4,7 +4,7 @@ const LIVE_BASE = process.env.LIVE_BASE || 'https://sunspire-web-app.vercel.app'
 
 // Utility: case-insensitive contains
 async function expectHasText(page, text: string) {
-  await expect(page.getByText(new RegExp(text, 'i'))).toBeVisible();
+  await expect(page.getByText(new RegExp(text, 'i')).first()).toBeVisible();
 }
 
 async function expectNotHasText(page, text: string) {
