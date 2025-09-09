@@ -69,7 +69,7 @@ export function useBrandTakeover(): BrandState {
       console.log('useBrandTakeover: Company param:', sp.get("company"));
       console.log('useBrandTakeover: BrandColor param:', sp.get("brandColor"));
       
-      const urlEnabled = sp.get("demo")==="1" || sp.get("demo")==="true" || !!sp.get("company");
+      const urlEnabled = sp.get("demo")==="1" || sp.get("demo")==="true";
       console.log('useBrandTakeover: URL enabled:', urlEnabled);
       
       if (urlEnabled) {
@@ -231,7 +231,7 @@ export function useBrandTakeover(): BrandState {
     console.log('useBrandTakeover: Company param:', sp.get("company"));
     console.log('useBrandTakeover: BrandColor param:', sp.get("brandColor"));
     
-    const urlEnabled = sp.get("demo")==="1" || sp.get("demo")==="true" || !!sp.get("company");
+    const urlEnabled = sp.get("demo")==="1" || sp.get("demo")==="true";
     console.log('useBrandTakeover: URL enabled:', urlEnabled);
     
     if (urlEnabled) {

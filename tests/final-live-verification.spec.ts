@@ -25,7 +25,7 @@ test.describe('Final Live Site Verification', () => {
     expect(response?.status()).toBe(200);
     
     // Check that we're redirected to terms page with refunds section
-    await expect(page.getByText('Terms of Service')).toBeVisible();
+    await expect(page.getByText('Terms of Service').first()).toBeVisible();
     await expect(page.getByText('Refunds & Guarantee')).toBeVisible();
     await expect(page.getByText('14-day pilot guarantee')).toBeVisible();
   });

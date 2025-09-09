@@ -21,6 +21,7 @@ import UnlockButton from '@/components/UnlockButton';
 import { ResultsAttribution } from '@/components/legal/ResultsAttribution';
 
 import { ensureBlurSupport } from '@/src/lib/ensureBlur';
+import { isDemoFromSearchParams } from '@/src/lib/isDemo';
 
 import { getBrandTheme } from '@/lib/brandTheme';
 // import StickyBuyBar from '@/src/demo/StickyBuyBar';
@@ -62,6 +63,7 @@ function ReportContent() {
   const [remaining, setRemaining] = useState(2);
   const [quotaConsumed, setQuotaConsumed] = useState(false);
   const [pageLoadId] = useState(() => Date.now().toString());
+  const [showSuccessToast, setShowSuccessToast] = useState(false);
   
   // Countdown for demo expiry
   const countdown = useCountdown(b.expireDays || 7);
@@ -130,6 +132,22 @@ function ReportContent() {
     } catch (error) {
       console.error('🛒 Checkout error:', error);
       alert('Unable to start checkout. Please try again.');
+    }
+  };
+
+  // Lead submit handler for paid mode
+  const handleLeadSubmit = async (leadData: any) => {
+    try {
+      // Submit lead to CRM (stubbed for now)
+      console.log('📝 Submitting lead:', leadData);
+      
+      // Show success toast for paid mode only
+      if (!demoMode) {
+        setShowSuccessToast(true);
+        setTimeout(() => setShowSuccessToast(false), 5000);
+      }
+    } catch (error) {
+      console.error('📝 Lead submit error:', error);
     }
   };
 
@@ -321,14 +339,13 @@ function ReportContent() {
   };
 
   useEffect(() => {
-    const demoFlag = searchParams.get('demo');
+    const sp = new URLSearchParams(searchParams as any);
+    const isDemo = isDemoFromSearchParams(sp);
     const company = searchParams.get('company');
-    const isDemo = !!demoFlag && demoFlag !== '0' && demoFlag !== 'false';
-    const hasBrand = !!company; // If we have a company parameter, treat it as a demo
-    const demoModeValue = isDemo || hasBrand; // Combined demo mode for LockedBlur
+    const hasBrand = !!company; // Company parameter does NOT imply demo
+    const demoModeValue = isDemo; // Only demo param determines demo mode
     
     console.log('🔍 Demo mode detection:', {
-      demoFlag,
       company,
       isDemo,
       hasBrand,
@@ -348,16 +365,16 @@ function ReportContent() {
     const placeId = searchParams.get('placeId');
     const state = searchParams.get('state') || undefined;
 
-    // If demo/brand mode and missing coords, pick a good default by state
-    if ((isDemo || hasBrand) && (!Number.isFinite(lat) || !Number.isFinite(lng) || !address)) {
+    // If demo mode and missing coords, pick a good default by state
+    if (isDemo && (!Number.isFinite(lat) || !Number.isFinite(lng) || !address)) {
       const pick = pickDemoAddress(state);
       address = pick.address;
       lat = pick.lat;
       lng = pick.lng;
     }
 
-    // For demo mode, brand mode, or when we have coordinates, create a fallback estimate immediately
-    if (isDemo || hasBrand || (address && Number.isFinite(lat) && Number.isFinite(lng))) {
+    // For demo mode or when we have coordinates, create a fallback estimate immediately
+    if (isDemo || (address && Number.isFinite(lat) && Number.isFinite(lng))) {
       const fallbackEstimate = {
         id: Date.now().toString(),
         address: address || '123 Solar Street, San Diego, CA',
@@ -377,7 +394,7 @@ function ReportContent() {
         npv25Year: 73000,
         co2OffsetPerYear: 10200,
         utilityRate: 0.14,
-        utilityRateSource: hasBrand ? 'Demo' : 'Demo',
+        utilityRateSource: isDemo ? 'Demo' : 'Static',
         assumptions: {
           itcPercentage: 0.30,
           costPerWatt: 3.00,
@@ -532,19 +549,35 @@ function ReportContent() {
       )}
 
       <main data-testid="report-page" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Ready-to text section - Exactly like c548b88 (no white box) */}
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }} 
-          animate={{ opacity: 1, y: 0 }} 
-          transition={{ duration: 0.6 }} 
-          className="mb-8"
-        >
-          <div className="text-center">
-            <p className="text-xl text-gray-700 leading-relaxed">
-              Ready to Launch Your Branded Tool?
-            </p>
+        {/* Live confirmation bar for paid mode */}
+        {!demoMode && (
+          <div className="mx-auto max-w-3xl mt-4 rounded-lg bg-emerald-50 text-emerald-900 text-sm px-4 py-2 border border-emerald-200 mb-8">
+            ✅ Live for <b>{searchParams.get('company') ? capitalizeCompanyName(searchParams.get('company')!) : 'Your Company'}</b>. Leads now save to your CRM.
           </div>
-        </motion.div>
+        )}
+
+        {/* Success toast for paid mode */}
+        {showSuccessToast && (
+          <div className="fixed top-4 right-4 z-50 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg">
+            Saved! We've received your inquiry.
+          </div>
+        )}
+
+        {/* Ready-to text section - Only show in demo mode */}
+        {demoMode && (
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ duration: 0.6 }} 
+            className="mb-8"
+          >
+            <div className="text-center">
+              <p className="text-xl text-gray-700 leading-relaxed">
+                Ready to Launch Your Branded Tool?
+              </p>
+            </div>
+          </motion.div>
+        )}
 
         {/* Theme probe for testing */}
         <div data-testid="theme-probe" style={{ color: 'var(--brand)' }} className="hidden" />
@@ -582,7 +615,7 @@ function ReportContent() {
                 <span>Generated on {formatDateSafe(estimate.date)}</span>
               </div>
               
-              {/* Demo quota counter */}
+              {/* Demo quota counter - only show in demo mode */}
               {demoMode && (
                 <div className="text-sm text-gray-500 text-center space-y-2 mt-4">
                   <p>Preview: {remaining} run{remaining === 1 ? "" : "s"} left.</p>
@@ -764,37 +797,38 @@ function ReportContent() {
             </div>
           </motion.div>
 
-          {/* Ready-to text section moved to header - no duplicate needed */}
-
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="rounded-3xl py-8 px-8 text-center text-white mt-4" style={{ backgroundColor: 'var(--brand)' }}>
-            <h2 className="text-3xl font-bold mb-6">Ready to Launch Your Branded Tool?</h2>
-            <p className="text-xl mb-10 opacity-90">Get complete financial projections, detailed assumptions, and unblurred savings charts</p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <motion.button 
-                data-cta="primary"
-                onClick={handleCheckout}
-                className="px-8 py-4 text-white rounded-2xl font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" 
-                style={{ backgroundColor: 'var(--brand-primary)' }}
-                whileHover={{ scale: 1.05 }} 
-                whileTap={{ scale: 0.95 }}
-              >
-                Unlock Full Report - $99/mo + $399
-              </motion.button>
-              <motion.button 
-                data-cta="primary"
-                onClick={handleCheckout}
-                className="px-8 py-4 text-white rounded-2xl font-bold text-lg border-2 border-white/20 hover:opacity-90 transition-all duration-300 transform hover:-translate-y-1" 
-                style={{ backgroundColor: 'var(--brand-primary)' }}
-                whileHover={{ scale: 1.05 }} 
-                whileTap={{ scale: 0.95 }}
-              >
-                Activate on Your Domain - $99/mo + $399
-              </motion.button>
-            </div>
-            <div className="mt-6 pt-4 border-t border-white/20">
-              <p className="text-sm opacity-90 mt-3">Full version from just $99/mo + $399 setup. Most tools cost $2,500+/mo.</p>
-            </div>
-          </motion.div>
+          {/* Demo-only CTA section */}
+          {demoMode && (
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="rounded-3xl py-8 px-8 text-center text-white mt-4" style={{ backgroundColor: 'var(--brand)' }}>
+              <h2 className="text-3xl font-bold mb-6">Ready to Launch Your Branded Tool?</h2>
+              <p className="text-xl mb-10 opacity-90">Get complete financial projections, detailed assumptions, and unblurred savings charts</p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <motion.button 
+                  data-cta="primary"
+                  onClick={handleCheckout}
+                  className="px-8 py-4 text-white rounded-2xl font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" 
+                  style={{ backgroundColor: 'var(--brand-primary)' }}
+                  whileHover={{ scale: 1.05 }} 
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Unlock Full Report - $99/mo + $399
+                </motion.button>
+                <motion.button 
+                  data-cta="primary"
+                  onClick={handleCheckout}
+                  className="px-8 py-4 text-white rounded-2xl font-bold text-lg border-2 border-white/20 hover:opacity-90 transition-all duration-300 transform hover:-translate-y-1" 
+                  style={{ backgroundColor: 'var(--brand-primary)' }}
+                  whileHover={{ scale: 1.05 }} 
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Activate on Your Domain - $99/mo + $399
+                </motion.button>
+              </div>
+              <div className="mt-6 pt-4 border-t border-white/20">
+                <p className="text-sm opacity-90 mt-3">Full version from just $99/mo + $399 setup. Most tools cost $2,500+/mo.</p>
+              </div>
+            </motion.div>
+          )}
           
           {/* Disclaimer */}
           <motion.div 
@@ -814,7 +848,11 @@ function ReportContent() {
       </main>
 
       <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <LegalFooter brand={b.enabled ? b.brand : undefined} />
+        <LegalFooter 
+          hideMarketingLinks={!demoMode} 
+          showPoweredBy={true} 
+          brand={b.enabled ? b.brand : undefined} 
+        />
       </footer>
 
       {/* LeadModal removed - no popups wanted */}

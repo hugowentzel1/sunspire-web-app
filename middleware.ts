@@ -12,8 +12,20 @@ export function middleware(req: Request) {
   const res = NextResponse.next();
   
   // Security headers
-  res.headers.set('Content-Security-Policy', "default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://maps.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https:;");
-  res.headers.set('X-Frame-Options', 'DENY');
+  let csp = "default-src 'self'; img-src 'self' data: https:; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://maps.googleapis.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https:;";
+  
+  // Handle embed permissions
+  if (process.env.ALLOW_EMBED === '1') {
+    // Allow embedding from any domain (for testing)
+    csp += " frame-ancestors *;";
+    res.headers.set('X-Frame-Options', 'SAMEORIGIN');
+  } else {
+    // Default: deny iframe embedding
+    csp += " frame-ancestors 'none';";
+    res.headers.set('X-Frame-Options', 'DENY');
+  }
+  
+  res.headers.set('Content-Security-Policy', csp);
   res.headers.set('Referrer-Policy', 'strict-origin-when-cross-origin');
   res.headers.set('Permissions-Policy', 'camera=(), microphone=(), geolocation=()');
   

@@ -10,6 +10,7 @@ import HeroBrand from '@/src/brand/HeroBrand';
 import { useBrandColors } from '@/hooks/useBrandColors';
 import { usePreviewQuota } from '@/src/demo/usePreviewQuota';
 import { useCountdown } from '@/src/demo/useCountdown';
+import { useIsDemo } from '@/src/lib/isDemo';
 import React from 'react';
 import { attachCheckoutHandlers } from '@/src/lib/checkout';
 
@@ -32,11 +33,15 @@ function HomeContent() {
   // Brand takeover mode detection
   const b = useBrandTakeover();
   
+  // Demo mode detection
+  const isDemo = useIsDemo();
+  
   // Debug logging for brand state
   useEffect(() => {
     console.log('Main page brand state:', b);
     console.log('Main page localStorage:', localStorage.getItem('sunspire-brand-takeover'));
-  }, [b]);
+    console.log('Main page isDemo:', isDemo);
+  }, [b, isDemo]);
   
   // Brand colors from URL
   useBrandColors();
@@ -215,12 +220,19 @@ function HomeContent() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter" data-demo={b.enabled}>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter" data-demo={isDemo}>
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center space-y-6">
           
-          {/* Company Branding Section */}
-          {b.enabled && (
+          {/* Live confirmation bar for paid mode */}
+          {!isDemo && (
+            <div className="mx-auto max-w-3xl mt-4 rounded-lg bg-emerald-50 text-emerald-900 text-sm px-4 py-2 border border-emerald-200">
+              ✅ Live for <b>{b.brand || 'Your Company'}</b>. Leads now save to your CRM.
+            </div>
+          )}
+          
+          {/* Company Branding Section - Demo only */}
+          {isDemo && b.enabled && (
             <div>
               <div className="bg-white/80 backdrop-blur-sm rounded-3xl py-6 px-8 border border-gray-200/50 shadow-lg mx-auto max-w-2xl">
                 <div className="space-y-4 text-center">
@@ -350,7 +362,7 @@ function HomeContent() {
                   )}
                 </button>
                 
-                {b.enabled && (
+                {isDemo && (
                   <div className="text-sm text-gray-500 text-center space-y-2">
                     {remaining > 0 ? (
                       <>
@@ -419,60 +431,64 @@ function HomeContent() {
             </div>
           </div>
 
-          {/* How It Works Section */}
-          <div className="max-w-5xl mx-auto section-spacing">
-            <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">How It Works</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="text-center space-y-4">
-                <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center text-gray-900 font-bold text-lg shadow-lg">
-                  <span>1</span>
+          {/* How It Works Section - Demo only */}
+          {isDemo && (
+            <div className="max-w-5xl mx-auto section-spacing">
+              <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">How It Works</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="text-center space-y-4">
+                  <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center text-gray-900 font-bold text-lg shadow-lg">
+                    <span>1</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900">Add the widget</h3>
+                  <p className="text-gray-600">One line of code to embed on your website</p>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900">Add the widget</h3>
-                <p className="text-gray-600">One line of code to embed on your website</p>
-              </div>
-              <div className="text-center space-y-4">
-                <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center text-gray-900 font-bold text-lg shadow-lg">
-                  <span>2</span>
+                <div className="text-center space-y-4">
+                  <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center text-gray-900 font-bold text-lg shadow-lg">
+                    <span>2</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900">Visitors get instant quotes</h3>
+                  <p className="text-gray-600">AI-powered analysis in seconds</p>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900">Visitors get instant quotes</h3>
-                <p className="text-gray-600">AI-powered analysis in seconds</p>
-              </div>
-              <div className="text-center space-y-4">
-                <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center text-gray-900 font-bold text-lg shadow-lg">
-                  <span>3</span>
+                <div className="text-center space-y-4">
+                  <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center text-gray-900 font-bold text-lg shadow-lg">
+                    <span>3</span>
+                  </div>
+                  <h3 className="text-xl font-bold text-gray-900">Your team gets booked calls</h3>
+                  <p className="text-gray-600">Qualified leads ready to convert</p>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900">Your team gets booked calls</h3>
-                <p className="text-gray-600">Qualified leads ready to convert</p>
               </div>
             </div>
-          </div>
+          )}
 
-          {/* FAQ Section */}
-          <div className="max-w-4xl mx-auto section-spacing">
-            <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Frequently Asked Questions</h2>
-            <div className="space-y-6">
-              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">CMS? — Yes, 1-line &lt;script&gt;. Hosted option too.</h3>
-                <p className="text-gray-600">Works with any website platform. Just add one line of code.</p>
-              </div>
-              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Accuracy? — NREL PVWatts v8 • EIA rates • local irradiance</h3>
-                <p className="text-gray-600">Industry-standard data sources. <a href="/methodology" className="text-[var(--brand-primary)] hover:underline">View methodology</a>.</p>
-              </div>
-              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Security? — Encrypted in transit & at rest</h3>
-                <p className="text-gray-600">Bank-level security for all customer data.</p>
-              </div>
-              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Cancel? — Yes, 14-day refund if it doesn&apos;t lift booked calls</h3>
-                <p className="text-gray-600">No long-term contracts. Cancel anytime.</p>
-              </div>
-              <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">Support? — Email support 24/7</h3>
-                <p className="text-gray-600">Get help whenever you need it.</p>
+          {/* FAQ Section - Demo only */}
+          {isDemo && (
+            <div className="max-w-4xl mx-auto section-spacing">
+              <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Frequently Asked Questions</h2>
+              <div className="space-y-6">
+                <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">CMS? — Yes, 1-line &lt;script&gt;. Hosted option too.</h3>
+                  <p className="text-gray-600">Works with any website platform. Just add one line of code.</p>
+                </div>
+                <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Accuracy? — NREL PVWatts v8 • EIA rates • local irradiance</h3>
+                  <p className="text-gray-600">Industry-standard data sources. <a href="/methodology" className="text-[var(--brand-primary)] hover:underline">View methodology</a>.</p>
+                </div>
+                <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Security? — Encrypted in transit & at rest</h3>
+                  <p className="text-gray-600">Bank-level security for all customer data.</p>
+                </div>
+                <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Cancel? — Yes, 14-day refund if it doesn&apos;t lift booked calls</h3>
+                  <p className="text-gray-600">No long-term contracts. Cancel anytime.</p>
+                </div>
+                <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Support? — Email support 24/7</h3>
+                  <p className="text-gray-600">Get help whenever you need it.</p>
+                </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </main>
 
@@ -539,7 +555,11 @@ function HomeContent() {
       )}
 
       <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <LegalFooter brand={b.enabled ? b.brand : undefined} />
+        <LegalFooter 
+          hideMarketingLinks={!isDemo} 
+          showPoweredBy={true} 
+          brand={b.enabled ? b.brand : undefined} 
+        />
       </footer>
       
 

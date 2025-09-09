@@ -2,7 +2,15 @@
 
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 
-export default function LegalFooter({ showPoweredBy = true, brand }: { showPoweredBy?: boolean; brand?: string }) {
+export default function LegalFooter({ 
+  hideMarketingLinks = false, 
+  showPoweredBy = true, 
+  brand 
+}: { 
+  hideMarketingLinks?: boolean; 
+  showPoweredBy?: boolean; 
+  brand?: string 
+}) {
   const b = useBrandTakeover();
   
   // Use passed brand prop or fall back to brand takeover
@@ -18,7 +26,7 @@ export default function LegalFooter({ showPoweredBy = true, brand }: { showPower
           <div>
             <h3 className="text-xl font-bold text-gray-900 mb-4">Sunspire Solar Intelligence</h3>
             <p className="text-gray-600 mb-4 max-w-md mx-auto">
-              Demo for {companyName} — Powered by Sunspire
+              {hideMarketingLinks ? 'Solar Intelligence Platform' : `Demo for ${companyName} — Powered by Sunspire`}
             </p>
             <div className="space-y-3 text-sm text-gray-500">
               <p className="flex items-center justify-center">
@@ -72,16 +80,18 @@ export default function LegalFooter({ showPoweredBy = true, brand }: { showPower
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-semibold text-gray-900 mb-4 text-lg">Quick Links</h4>
-            <div className="space-y-3">
-              <a href="/pricing" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Pricing</a>
-              <a href="/partners" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Partners</a>
-              <a href="/support" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Support</a>
-              <a href="/demo" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Demo</a>
+          {/* Quick Links - Only show if not hiding marketing links */}
+          {!hideMarketingLinks && (
+            <div>
+              <h4 className="font-semibold text-gray-900 mb-4 text-lg">Quick Links</h4>
+              <div className="space-y-3">
+                <a href="/pricing" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Pricing</a>
+                <a href="/partners" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Partners</a>
+                <a href="/support" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Support</a>
+                <a href="/demo" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Demo</a>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Legal & Support */}
           <div>
