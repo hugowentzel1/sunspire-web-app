@@ -108,7 +108,7 @@ test.describe('PAID experience', () => {
 
 test.describe('Edge cases', () => {
   test('company param without demo=1 should be paid mode', async ({ page }) => {
-    const url = `${LIVE_BASE}/?company=testco`;
+    const url = `${LIVE_BASE}/?company=testco&_t=${Date.now()}`;
     await page.goto(url, { waitUntil: 'networkidle' });
 
     // Should be treated as paid mode

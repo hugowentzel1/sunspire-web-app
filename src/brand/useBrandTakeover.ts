@@ -69,8 +69,10 @@ export function useBrandTakeover(): BrandState {
       console.log('useBrandTakeover: Company param:', sp.get("company"));
       console.log('useBrandTakeover: BrandColor param:', sp.get("brandColor"));
       
-      const urlEnabled = sp.get("demo")==="1" || sp.get("demo")==="true";
-      console.log('useBrandTakeover: URL enabled:', urlEnabled);
+      const isDemo = sp.get("demo")==="1" || sp.get("demo")==="true";
+      const hasCompany = !!sp.get("company");
+      const urlEnabled = isDemo || hasCompany; // Enable for both demo and company branding
+      console.log('useBrandTakeover: URL enabled:', urlEnabled, 'isDemo:', isDemo, 'hasCompany:', hasCompany);
       
       if (urlEnabled) {
         console.log('useBrandTakeover: URL has brand parameters, processing... [FORCE DEPLOYMENT]');
@@ -111,7 +113,7 @@ export function useBrandTakeover(): BrandState {
         console.log('useBrandTakeover: Theme color:', themeColor);
         
         const brandState: BrandState = {
-          enabled: true,
+          enabled: isDemo, // Only enable demo mode when explicitly requested
           brand: companyName,
           primary: themeColor, // Use hardcoded theme color directly
           logo: allowLogo(sp.get("logo")),
@@ -231,8 +233,10 @@ export function useBrandTakeover(): BrandState {
     console.log('useBrandTakeover: Company param:', sp.get("company"));
     console.log('useBrandTakeover: BrandColor param:', sp.get("brandColor"));
     
-    const urlEnabled = sp.get("demo")==="1" || sp.get("demo")==="true";
-    console.log('useBrandTakeover: URL enabled:', urlEnabled);
+    const isDemo = sp.get("demo")==="1" || sp.get("demo")==="true";
+    const hasCompany = !!sp.get("company");
+    const urlEnabled = isDemo || hasCompany; // Enable for both demo and company branding
+    console.log('useBrandTakeover: URL enabled:', urlEnabled, 'isDemo:', isDemo, 'hasCompany:', hasCompany);
     
     if (urlEnabled) {
       console.log('useBrandTakeover: URL has brand parameters, processing... [FORCE DEPLOYMENT]');
@@ -281,7 +285,7 @@ export function useBrandTakeover(): BrandState {
       console.log('useBrandTakeover: getBrandTheme called with:', companyName);
       
       const brandState: BrandState = {
-        enabled: urlEnabled,
+        enabled: isDemo, // Only enable demo mode when explicitly requested
         brand: companyName,
         primary: themeColor, // Use hardcoded theme color directly
         logo: allowLogo(sp.get("logo")),
