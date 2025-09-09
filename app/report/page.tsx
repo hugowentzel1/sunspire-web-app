@@ -653,8 +653,8 @@ function ReportContent() {
             
             {/* Net Cost - BLURRED WITH UNLOCK BUTTON */}
             <div data-testid="tile-lifetimeSavings" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              {/* BLUR LAYER (kept behind button) */}
-              <div className="blur-layer" aria-hidden />
+              {/* BLUR LAYER (kept behind button) - Demo Only */}
+              {demoMode && <div className="blur-layer" aria-hidden />}
               
               {/* CONTENT LAYER */}
               <div className="content-layer p-8 text-center">
@@ -663,18 +663,20 @@ function ReportContent() {
                 <div className="text-gray-600 font-semibold">Net Cost (After ITC)</div>
               </div>
 
-              {/* UNLOCK BUTTON */}
-              <UnlockButton
-                label="Unlock Full Report"
-                onClick={handleCheckout}
-                className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
-              />
+              {/* UNLOCK BUTTON - Demo Only */}
+              {demoMode && (
+                <UnlockButton
+                  label="Unlock Full Report"
+                  onClick={handleCheckout}
+                  className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
+                />
+              )}
             </div>
 
             {/* Year 1 Savings - BLURRED WITH UNLOCK BUTTON */}
             <div data-testid="tile-large" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
-              {/* BLUR LAYER (kept behind button) */}
-              <div className="blur-layer" aria-hidden />
+              {/* BLUR LAYER (kept behind button) - Demo Only */}
+              {demoMode && <div className="blur-layer" aria-hidden />}
               
               {/* CONTENT LAYER */}
               <div className="content-layer p-8 text-center">
@@ -683,12 +685,14 @@ function ReportContent() {
                 <div className="text-gray-600 font-semibold">Year 1 Savings</div>
               </div>
 
-              {/* UNLOCK BUTTON */}
-              <UnlockButton
-                label="Unlock Full Report"
-                onClick={handleCheckout}
-                className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
-              />
+              {/* UNLOCK BUTTON - Demo Only */}
+              {demoMode && (
+                <UnlockButton
+                  label="Unlock Full Report"
+                  onClick={handleCheckout}
+                  className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
+                />
+              )}
             </div>
           </motion.div>
 
@@ -702,8 +706,8 @@ function ReportContent() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.8 }} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Financial Analysis - Blurred */}
             <div data-testid="locked-panel" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50">
-              {/* BLUR LAYER */}
-              <div className="blur-layer" aria-hidden />
+              {/* BLUR LAYER - Demo Only */}
+              {demoMode && <div className="blur-layer" aria-hidden />}
               
               {/* CONTENT LAYER */}
               <div className="content-layer p-8">
@@ -716,18 +720,20 @@ function ReportContent() {
                 </div>
               </div>
 
-              {/* UNLOCK BUTTON */}
-              <UnlockButton
-                label="Unlock Full Report"
-                onClick={handleCheckout}
-                className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
-              />
+              {/* UNLOCK BUTTON - Demo Only */}
+              {demoMode && (
+                <UnlockButton
+                  label="Unlock Full Report"
+                  onClick={handleCheckout}
+                  className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
+                />
+              )}
             </div>
 
             {/* Environmental Impact - Blurred */}
             <div data-testid="locked-panel" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50">
-              {/* BLUR LAYER */}
-              <div className="blur-layer" aria-hidden />
+              {/* BLUR LAYER - Demo Only */}
+              {demoMode && <div className="blur-layer" aria-hidden />}
               
               {/* CONTENT LAYER */}
               <div className="content-layer p-8">
@@ -740,12 +746,14 @@ function ReportContent() {
                 </div>
               </div>
 
-              {/* UNLOCK BUTTON */}
-              <UnlockButton
-                label="Unlock Full Report"
-                onClick={handleCheckout}
-                className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
-              />
+              {/* UNLOCK BUTTON - Demo Only */}
+              {demoMode && (
+                <UnlockButton
+                  label="Unlock Full Report"
+                  onClick={handleCheckout}
+                  className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
+                />
+              )}
             </div>
 
             {/* Consolidated Information Box */}
