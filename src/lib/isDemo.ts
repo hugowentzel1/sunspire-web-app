@@ -1,15 +1,22 @@
-export function isDemoFromURL(url: URL | string) {
-  const sp = new URL(url.toString(), 'https://dummy').searchParams;
-  return sp.get('demo') === '1' || sp.get('demo') === 'true';
-}
+/**
+ * Demo detection utilities - single source of truth
+ * Demo mode is ONLY active when demo=1 or demo=true in URL
+ * Company parameter alone does NOT imply demo
+ */
 
-export function isDemoFromSearchParams(sp: URLSearchParams) {
-  return sp.get('demo') === '1' || sp.get('demo') === 'true';
-}
+import { useSearchParams } from 'next/navigation';
 
-export function useIsDemo() {
-  if (typeof window === 'undefined') return false;
-  const sp = new URLSearchParams(window.location.search);
-  return isDemoFromSearchParams(sp);
+export const isDemoFromSearch = (sp: URLSearchParams): boolean =>
+  sp.get('demo') === '1' || sp.get('demo') === 'true';
+
+export const isDemoFromURL = (url: URL | string): boolean => {
+  const urlObj = new URL(url.toString(), 'https://dummy');
+  return isDemoFromSearch(urlObj.searchParams);
+};
+
+export const isDemoFromSearchParams = isDemoFromSearch;
+
+export function useIsDemo(): boolean {
+  const searchParams = useSearchParams();
+  return isDemoFromSearch(searchParams);
 }
-// Force deployment Tue Sep  9 19:48:58 EDT 2025

@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { getBrandTheme } from "@/lib/brandTheme";
+import { isDemoFromSearch } from "@/src/lib/isDemo";
 
 const ALLOWED = new Set([
   "logo.clearbit.com",
@@ -69,7 +70,7 @@ export function useBrandTakeover(): BrandState {
       console.log('useBrandTakeover: Company param:', sp.get("company"));
       console.log('useBrandTakeover: BrandColor param:', sp.get("brandColor"));
       
-      const isDemo = sp.get("demo")==="1" || sp.get("demo")==="true";
+      const isDemo = isDemoFromSearch(sp);
       const hasCompany = !!sp.get("company");
       const urlEnabled = isDemo || hasCompany; // Enable for both demo and company branding
       console.log('useBrandTakeover: URL enabled:', urlEnabled, 'isDemo:', isDemo, 'hasCompany:', hasCompany);
@@ -233,7 +234,7 @@ export function useBrandTakeover(): BrandState {
     console.log('useBrandTakeover: Company param:', sp.get("company"));
     console.log('useBrandTakeover: BrandColor param:', sp.get("brandColor"));
     
-    const isDemo = sp.get("demo")==="1" || sp.get("demo")==="true";
+    const isDemo = isDemoFromSearch(sp);
     const hasCompany = !!sp.get("company");
     const urlEnabled = isDemo || hasCompany; // Enable for both demo and company branding
     console.log('useBrandTakeover: URL enabled:', urlEnabled, 'isDemo:', isDemo, 'hasCompany:', hasCompany);
