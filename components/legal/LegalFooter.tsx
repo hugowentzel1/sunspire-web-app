@@ -1,6 +1,7 @@
 'use client';
 
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+import { tid } from '@/src/lib/testids';
 
 export default function LegalFooter({ 
   hideMarketingLinks = false, 
@@ -82,7 +83,7 @@ export default function LegalFooter({
 
           {/* Quick Links - Only show if not hiding marketing links */}
           {!hideMarketingLinks && (
-            <div>
+            <div {...tid('footer-marketing-links')}>
               <h4 className="font-semibold text-gray-900 mb-4 text-lg">Quick Links</h4>
               <div className="space-y-3">
                 <a href="/pricing" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Pricing</a>
@@ -94,7 +95,7 @@ export default function LegalFooter({
           )}
 
           {/* Legal & Support */}
-          <div>
+          <div {...tid('footer-legal-links')}>
             <h4 className="font-semibold text-gray-900 mb-4 text-lg">Legal & Support</h4>
             <div className="space-y-3">
               <a href="/privacy" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Privacy Policy</a>

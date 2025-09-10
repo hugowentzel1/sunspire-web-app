@@ -13,6 +13,7 @@ import { useCountdown } from '@/src/demo/useCountdown';
 import { useIsDemo } from '@/src/lib/isDemo';
 import React from 'react';
 import { attachCheckoutHandlers } from '@/src/lib/checkout';
+import { tid } from '@/src/lib/testids';
 
 const AddressAutocomplete = dynamic(() => import('@/components/AddressAutocomplete'), { 
   ssr: false,
@@ -226,7 +227,7 @@ function HomeContent() {
           
           {/* Live confirmation bar for paid mode */}
           {!isDemo && (
-            <div className="mx-auto max-w-3xl mt-4 rounded-lg bg-emerald-50 text-emerald-900 text-sm px-4 py-2 border border-emerald-200">
+            <div className="mx-auto max-w-3xl mt-4 rounded-lg bg-emerald-50 text-emerald-900 text-sm px-4 py-2 border border-emerald-200" {...tid('live-bar')}>
               ✅ Live for <b>{b.brand || 'Your Company'}</b>. Leads now save to your CRM.
             </div>
           )}
@@ -235,7 +236,7 @@ function HomeContent() {
           {isDemo && b.enabled && (
             <div>
               <div className="bg-white/80 backdrop-blur-sm rounded-3xl py-6 px-8 border border-gray-200/50 shadow-lg mx-auto max-w-2xl">
-                <div className="space-y-4 text-center">
+                <div className="space-y-4 text-center" {...tid('demo-cta')}>
                   <h2 className="text-3xl font-bold text-gray-900">
                     Demo for {b.brand || 'Your Company'} — Powered by Sunspire
                   </h2>
@@ -433,7 +434,7 @@ function HomeContent() {
 
           {/* How It Works Section - Demo only */}
           {isDemo && (
-            <div className="max-w-5xl mx-auto section-spacing">
+            <div className="max-w-5xl mx-auto section-spacing" {...tid('howitworks-section')}>
               <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">How It Works</h2>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div className="text-center space-y-4">
@@ -463,7 +464,7 @@ function HomeContent() {
 
           {/* FAQ Section - Demo only */}
           {isDemo && (
-            <div className="max-w-4xl mx-auto section-spacing">
+            <div className="max-w-4xl mx-auto section-spacing" {...tid('pricing-section')}>
               <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Frequently Asked Questions</h2>
               <div className="space-y-6">
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">

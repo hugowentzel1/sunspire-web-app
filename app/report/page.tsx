@@ -22,6 +22,7 @@ import { ResultsAttribution } from '@/components/legal/ResultsAttribution';
 
 import { ensureBlurSupport } from '@/src/lib/ensureBlur';
 import { isDemoFromSearchParams } from '@/src/lib/isDemo';
+import { tid } from '@/src/lib/testids';
 
 import { getBrandTheme } from '@/lib/brandTheme';
 // import StickyBuyBar from '@/src/demo/StickyBuyBar';
@@ -551,14 +552,14 @@ function ReportContent() {
       <main data-testid="report-page" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Live confirmation bar for paid mode */}
         {!demoMode && (
-          <div className="mx-auto max-w-3xl mt-4 rounded-lg bg-emerald-50 text-emerald-900 text-sm px-4 py-2 border border-emerald-200 mb-8">
+          <div className="mx-auto max-w-3xl mt-4 rounded-lg bg-emerald-50 text-emerald-900 text-sm px-4 py-2 border border-emerald-200 mb-8" {...tid('live-bar')}>
             ✅ Live for <b>{searchParams.get('company') ? capitalizeCompanyName(searchParams.get('company')!) : 'Your Company'}</b>. Leads now save to your CRM.
           </div>
         )}
 
         {/* Success toast for paid mode */}
         {showSuccessToast && (
-          <div className="fixed top-4 right-4 z-50 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg">
+          <div className="fixed top-4 right-4 z-50 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg" {...tid('lead-success-toast')}>
             Saved! We&apos;ve received your inquiry.
           </div>
         )}

@@ -1,149 +1,139 @@
-# Sunspire E2E Testing Guide
+# 🧪 Sunspire E2E Testing Guide
 
-This document explains how to run end-to-end tests against the live Sunspire deployment to verify demo vs paid mode functionality.
-
-## Setup
-
-### 1. Install Playwright
+## Required Environment Variables
 
 ```bash
-npm i -D @playwright/test
+# Required for live tests
+LIVE_BASE=https://sunspire-web-app.vercel.app
+DEMO_BASE=https://demo.sunspiredemo.com   # or same as LIVE_BASE
+QA_TENANT_SLUG=qa-acme                    # ensure this tenant exists in Airtable
+NEXT_PUBLIC_E2E=1                         # exposes data-testid attrs
+
+# Optional for lead verification
+TEST_API_TOKEN=<random-secret>            # enables /api/test/last-lead verification
+```
+
+## Installation
+
+```bash
+# Install dependencies
+npm i -D @playwright/test cross-env
 npx playwright install
 ```
 
-### 2. Set Environment Variables
-
-```bash
-# Set the live base URL (defaults to Vercel deployment)
-export LIVE_BASE="https://sunspire-web-app.vercel.app"
-
-# Set a paid tenant slug for testing (must exist in Airtable with demo=false)
-export QA_TENANT_SLUG="qa-acme"
-```
-
-### 3. Create QA Tenant
-
-Before running paid mode tests, ensure you have a tenant in Airtable with:
-- **Slug**: `qa-acme` (or whatever you set in `QA_TENANT_SLUG`)
-- **Demo**: `false`
-- **Status**: `active`
-
 ## Running Tests
 
-### Run All Tests
-
+### Live E2E Tests (Recommended)
 ```bash
-npx playwright test tests/e2e.sunspire.spec.ts --reporter=list
+# Set environment variables
+export LIVE_BASE="https://sunspire-web-app.vercel.app"
+export DEMO_BASE="https://demo.sunspiredemo.com"
+export QA_TENANT_SLUG="qa-acme"
+export NEXT_PUBLIC_E2E=1
+export TEST_API_TOKEN="your-secret-token"
+
+# Run live tests
+npm run test:e2e:live
 ```
 
-### Run Specific Test Suites
-
+### All Tests
 ```bash
-# Demo tests only
-npx playwright test tests/e2e.sunspire.spec.ts --grep "DEMO experience"
-
-# Paid tests only  
-npx playwright test tests/e2e.sunspire.spec.ts --grep "PAID experience"
-
-# Edge cases
-npx playwright test tests/e2e.sunspire.spec.ts --grep "Edge cases"
+npm run test:e2e
 ```
 
-### Run with Debug Mode
-
+### Debug Mode
 ```bash
-npx playwright test tests/e2e.sunspire.spec.ts --debug
+npm run test:debug
 ```
 
-## Test Scenarios
+### Headed Mode (see browser)
+```bash
+npm run test:headed
+```
 
-### Demo Mode (`?demo=1` or `?demo=true`)
+## Test Coverage
 
-**Homepage (`/?company=testco&demo=1`)**:
-- ✅ Shows "Activate on Your Domain" CTA
-- ✅ Shows demo quota counter ("Preview: X runs left")
-- ✅ Shows countdown timer
-- ✅ Shows "How It Works" section
-- ✅ Shows FAQ section
-- ✅ Footer shows marketing links (Pricing, Partners, Demo)
+### ✅ Health Endpoint
+- `/healthz` returns 200 with `{ok: true}`
 
-**Report Page (`/report?company=testco&demo=1&address=...`)**:
-- ✅ Shows "Ready to Launch Your Branded Tool?" section
-- ✅ Shows "Unlock Full Report" and "Activate on Your Domain" CTAs
-- ✅ Shows demo quota counter
-- ✅ Shows "Demo for {Company}" watermark
+### ✅ Demo Mode (`/?company=testco&demo=1`)
+- Shows `demo-cta` (Activate on Your Domain button)
+- Shows `pricing-section` (FAQ section)
+- Shows `howitworks-section` (How It Works)
+- Does NOT show `live-bar`
 
-### Paid Mode (`?company=slug` without demo param)
+### ✅ Outreach Slugs (`/o/testco-abc123`)
+- Redirects to demo URL
+- Shows demo experience
 
-**Homepage (`/?company=qa-acme`)**:
-- ❌ NO "Activate on Your Domain" CTA
-- ❌ NO demo quota counter
-- ❌ NO countdown timer
-- ❌ NO "How It Works" section
-- ❌ NO FAQ section
-- ✅ Shows "✅ Live for {TenantName}. Leads now save to your CRM." bar
-- ❌ Footer does NOT show marketing links
+### ✅ Paid Mode (`/?company=qa-acme`)
+- Does NOT show `demo-cta`, `pricing-section`, `howitworks-section`
+- Shows `live-bar` (Live for {Company})
+- Shows `footer-legal-links` (Terms, Privacy, etc.)
+- Does NOT show `footer-marketing-links` (Pricing, Partners, Demo)
 
-**Report Page (`/report?company=qa-acme&address=...`)**:
-- ❌ NO "Ready to Launch Your Branded Tool?" section
-- ❌ NO "Unlock Full Report" CTAs
-- ❌ NO demo quota counter
-- ❌ NO "Demo for {Company}" watermark
-- ✅ Shows "✅ Live for {TenantName}. Leads now save to your CRM." bar
+### ✅ Lead Submission
+- Shows `lead-success-toast` on successful submit
+- Optionally verifies lead in Airtable via `/api/test/last-lead`
 
-### Edge Cases
+## Test Data Requirements
 
-- `?company=testco` (no demo param) → **Paid mode**
-- `?company=testco&demo=0` → **Paid mode**
-- `?company=testco&demo=false` → **Paid mode**
-- `?company=testco&demo=1` → **Demo mode**
-- `?company=testco&demo=true` → **Demo mode**
+### Airtable Setup
+1. Create `qa-acme` tenant with `demo=false`
+2. Ensure `Leads` table exists with fields:
+   - `Company Handle`
+   - `Name`
+   - `Email`
+   - `Address`
+   - `Created`
+
+### Test API Token
+1. Set `TEST_API_TOKEN` environment variable
+2. Use same token in test headers for lead verification
 
 ## Troubleshooting
 
+### Tests Failing
+1. **Check environment variables** - all required vars must be set
+2. **Verify live site** - ensure `LIVE_BASE` is accessible
+3. **Check tenant exists** - `QA_TENANT_SLUG` must exist in Airtable
+4. **Verify test IDs** - ensure `NEXT_PUBLIC_E2E=1` is set
+
 ### Common Issues
+- **Timeout errors**: Increase timeout in `playwright.config.ts`
+- **Element not found**: Check if test IDs are properly added
+- **Network errors**: Verify live site is accessible
+- **Lead verification fails**: Check `TEST_API_TOKEN` and Airtable setup
 
-1. **Tests fail with "Live for" not found**
-   - Ensure `QA_TENANT_SLUG` is set to a valid tenant
-   - Verify the tenant exists in Airtable with `demo=false`
+## Test Reports
 
-2. **Tests fail with "Demo" elements still showing**
-   - Check that the URL has `demo=1` or `demo=true` for demo tests
-   - Verify the tenant has `demo=false` for paid tests
+After running tests, check:
+- Console output for test results
+- `playwright-report/` folder for HTML report
+- Screenshots in `test-results/` for failed tests
 
-3. **Network timeouts**
-   - Increase timeout: `npx playwright test --timeout=60000`
-   - Check if the live site is accessible
+## Continuous Integration
 
-### Debug Commands
-
-```bash
-# Run with headed browser to see what's happening
-npx playwright test tests/e2e.sunspire.spec.ts --headed
-
-# Run with slow motion
-npx playwright test tests/e2e.sunspire.spec.ts --slow-mo=1000
-
-# Run specific test
-npx playwright test tests/e2e.sunspire.spec.ts -g "shows demo CTAs"
-```
-
-## Expected Test Results
-
-All tests should pass when:
-1. Demo mode correctly shows all demo elements and hides paid elements
-2. Paid mode correctly shows all paid elements and hides demo elements
-3. Edge cases are handled properly
-4. Footer marketing links are conditionally rendered
-
-## CI/CD Integration
-
-Add to your GitHub Actions or CI pipeline:
-
+Add to your CI pipeline:
 ```yaml
 - name: Run E2E Tests
   run: |
-    export LIVE_BASE="https://sunspire-web-app.vercel.app"
-    export QA_TENANT_SLUG="qa-acme"
-    npx playwright test tests/e2e.sunspire.spec.ts --reporter=github
+    export LIVE_BASE="${{ secrets.LIVE_BASE }}"
+    export QA_TENANT_SLUG="${{ secrets.QA_TENANT_SLUG }}"
+    export NEXT_PUBLIC_E2E=1
+    npm run test:e2e:live
 ```
+
+---
+
+## 🎯 Success Criteria
+
+All tests should pass when:
+- Demo mode shows demo CTAs and marketing
+- Paid mode hides demo content and shows Live bar
+- Outreach slugs redirect correctly
+- Lead submission shows success toast
+- Footer shows appropriate links for each mode
+- Health endpoint returns 200
+
+**Total test time: ~2-3 minutes** 🚀
