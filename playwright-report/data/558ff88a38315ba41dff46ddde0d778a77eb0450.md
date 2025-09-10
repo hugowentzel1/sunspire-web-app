@@ -1,0 +1,130 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e7]: ☀️
+        - generic [ref=e8]:
+          - heading "Your Company" [level=1] [ref=e9]
+          - paragraph [ref=e10]: Solar Intelligence
+      - navigation
+  - generic [ref=e12]:
+    - main [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - text: ✅ Live for
+          - generic [ref=e16]: qa-acme
+          - text: . Leads now save to your CRM.
+        - generic [ref=e19]: ☀️
+        - generic [ref=e20]:
+          - generic [ref=e22]: ✓
+          - generic [ref=e23]:
+            - heading "Your Branded Solar Quote Tool — Ready to Launch" [level=1] [ref=e24]:
+              - text: Your Branded Solar Quote Tool
+              - generic [ref=e25]: — Ready to Launch
+            - paragraph [ref=e26]: Go live in 24 hours. Convert more leads, book more consultations, and sync every inquiry seamlessly to your CRM — all fully branded for your company.
+        - generic [ref=e28]:
+          - generic [ref=e29]:
+            - heading "Enter Your Property Address" [level=2] [ref=e30]
+            - paragraph [ref=e31]: Get a comprehensive solar analysis tailored to your specific location
+          - generic [ref=e32]:
+            - generic [ref=e33]:
+              - generic [ref=e34]:
+                - textbox "Start typing your property address..." [active] [ref=e35]: 1600 Pennsylvania Ave NW, Washington, DC 20500
+                - generic [ref=e37] [cursor=pointer]: 1600 Pennsylvania Ave NW, Washington, DC 20500, USA
+                - paragraph [ref=e38]: Powered by Google
+              - paragraph [ref=e39]: Enter your property address to get started
+            - button "Generate Solar Intelligence Report" [ref=e40] [cursor=pointer]:
+              - generic [ref=e41] [cursor=pointer]:
+                - generic [ref=e42] [cursor=pointer]: Generate Solar Intelligence Report
+                - img [ref=e43] [cursor=pointer]
+        - generic [ref=e45]:
+          - generic [ref=e46]:
+            - generic [ref=e47]: NREL v8
+            - generic [ref=e48]: Industry Standard
+          - generic [ref=e49]:
+            - generic [ref=e50]: SOC 2
+            - generic [ref=e51]: Compliance
+          - generic [ref=e52]:
+            - generic [ref=e53]: CRM Ready
+            - generic [ref=e54]: HubSpot, Salesforce
+          - generic [ref=e55]:
+            - generic [ref=e56]: 24/7
+            - generic [ref=e57]: Support
+        - generic [ref=e58]:
+          - generic [ref=e59]:
+            - img [ref=e61]
+            - generic [ref=e63]: NREL PVWatts® v8
+            - generic [ref=e64]: Industry-standard solar modeling with current utility rates
+          - generic [ref=e65]:
+            - img [ref=e67]
+            - generic [ref=e69]: CRM Integration
+            - generic [ref=e70]: Direct push to HubSpot, Salesforce, and Airtable
+          - generic [ref=e71]:
+            - img [ref=e73]
+            - generic [ref=e75]: End-to-End Encryption
+            - generic [ref=e76]: SOC 2-aligned controls and data protection
+        - generic [ref=e79]: Dozens of installers • CRM-ready • SOC 2-aligned
+    - contentinfo [ref=e80]:
+      - contentinfo [ref=e81]:
+        - generic [ref=e82]:
+          - generic [ref=e83]:
+            - generic [ref=e84]:
+              - heading "Sunspire Solar Intelligence" [level=3] [ref=e85]
+              - paragraph [ref=e86]: Solar Intelligence Platform
+              - generic [ref=e87]:
+                - paragraph [ref=e88]:
+                  - img [ref=e89]
+                  - text: "3133 Maple Dr Ne Ste 240 #1156 Atlanta, GA 30305"
+                - generic [ref=e92]:
+                  - link "GDPR" [ref=e93] [cursor=pointer]:
+                    - /url: /security#gdpr
+                  - link "CCPA" [ref=e94] [cursor=pointer]:
+                    - /url: /security#ccpa
+                  - link "SOC 2" [ref=e95] [cursor=pointer]:
+                    - /url: /security#soc2
+                - paragraph [ref=e96]:
+                  - img [ref=e97]
+                  - link "support@getsunspire.com" [ref=e99] [cursor=pointer]:
+                    - /url: mailto:support@getsunspire.com
+                - paragraph [ref=e100]:
+                  - img [ref=e101]
+                  - link "billing@getsunspire.com" [ref=e103] [cursor=pointer]:
+                    - /url: mailto:billing@getsunspire.com
+                - paragraph [ref=e104]:
+                  - img [ref=e105]
+                  - text: +1 (555) 123-4567
+            - generic [ref=e107]:
+              - heading "Legal & Support" [level=4] [ref=e108]
+              - generic [ref=e109]:
+                - link "Privacy Policy" [ref=e110] [cursor=pointer]:
+                  - /url: /privacy
+                - link "Terms of Service" [ref=e111] [cursor=pointer]:
+                  - /url: /terms
+                - link "Security" [ref=e112] [cursor=pointer]:
+                  - /url: /security
+                - link "DPA" [ref=e113] [cursor=pointer]:
+                  - /url: /dpa
+                - link "Do Not Sell My Data" [ref=e114] [cursor=pointer]:
+                  - /url: /do-not-sell
+          - generic [ref=e116]:
+            - generic [ref=e117]:
+              - img [ref=e118]
+              - generic [ref=e120]: Estimates generated using NREL PVWatts® v8
+            - generic [ref=e121]:
+              - img [ref=e122]
+              - generic [ref=e124]: Mapping & location data © Google
+            - paragraph [ref=e126]:
+              - text: Powered by
+              - generic [ref=e127]: Sunspire
+  - alert [ref=e128]
+  - generic [ref=e131]:
+    - generic [ref=e132]:
+      - heading "We use cookies to improve your experience" [level=3] [ref=e133]
+      - paragraph [ref=e134]: We use cookies and similar technologies to analyze site usage, personalize content, and provide social media features. By continuing to use our site, you consent to our use of cookies.
+    - generic [ref=e135]:
+      - button "Decline" [ref=e136] [cursor=pointer]
+      - button "Accept All" [ref=e137] [cursor=pointer]
+```
