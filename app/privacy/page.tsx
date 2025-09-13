@@ -98,7 +98,7 @@ export default function PrivacyPage() {
                 <p className="text-gray-700">
                   <strong>Support:</strong> <a href="mailto:support@getsunspire.com" className="hover:underline">support@getsunspire.com</a><br/>
                   <strong>Billing:</strong> <a href="mailto:billing@getsunspire.com" className="hover:underline">billing@getsunspire.com</a><br/>
-                  <strong>Address:</strong> 3133 Maple Dr Ne Ste 240 #1156 Atlanta, GA 30305
+                  <strong>Address:</strong> 1700 Northside Drive Suite A7 #5164 Atlanta, GA 30318
                 </p>
               </div>
             </section>
