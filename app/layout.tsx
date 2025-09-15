@@ -10,6 +10,7 @@ import BootProbe from './BootProbe'
 import SharedNavigation from '@/components/SharedNavigation'
 import { CompanyProvider } from '@/components/CompanyContext'
 import CookieConsent from '@/components/CookieConsent'
+import EnvBanner from '@/components/EnvBanner'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -31,6 +32,7 @@ export default function RootLayout({
           <BrandProvider>
             <CompanyProvider>
               <BrandCSSInjector />
+              <EnvBanner />
               {/* DemoRibbon removed */}
               <SharedNavigation />
               {children}

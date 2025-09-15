@@ -1,85 +1,85 @@
 // Test redeploy - Stripe webhook integration ready for testing
 import { NextRequest, NextResponse } from 'next/server';
-import Stripe from 'stripe';
+import { getStripe } from '@/src/lib/stripe';
 import { headers } from 'next/headers';
 import { ENV } from '@/src/config/env';
 import { upsertTenantByHandle, createOrLinkUserOwner, setRequestedDomain, setTenantDomainStatus } from '@/src/lib/airtable';
 import { getRootDomain, buildFixedQuoteDomain, extractCompanyWebsite } from '@/src/lib/domainRoot';
 
-const stripe = ENV.STRIPE_LIVE_SECRET_KEY ? new Stripe(ENV.STRIPE_LIVE_SECRET_KEY, {
-  apiVersion: '2025-08-27.basil',
-}) : null;
-
 export async function POST(req: NextRequest) {
-  if (!stripe) {
-    return NextResponse.json(
-      { error: 'Stripe not configured' },
-      { status: 500 }
-    );
-  }
-
-  const body = await req.text();
-  const headersList = await headers();
-  const signature = headersList.get('stripe-signature');
-
-  if (!signature) {
-    return NextResponse.json(
-      { error: 'Missing stripe-signature header' },
-      { status: 400 }
-    );
-  }
-
-  let event: Stripe.Event;
-
   try {
-    event = stripe.webhooks.constructEvent(
-      body,
-      signature,
-      ENV.STRIPE_WEBHOOK_SECRET!
-    );
-  } catch (err) {
-    console.error('Webhook signature verification failed:', err);
-    return NextResponse.json(
-      { error: 'Invalid signature' },
-      { status: 400 }
-    );
-  }
+    const stripe = getStripe();
 
-  try {
-    switch (event.type) {
-      case 'checkout.session.completed':
-        await handleCheckoutCompleted(event.data.object as Stripe.Checkout.Session);
-        break;
-      
-      case 'payment_intent.succeeded':
-        await handlePaymentSucceeded(event.data.object as Stripe.PaymentIntent);
-        break;
-      
-      case 'invoice.payment_succeeded':
-        await handleInvoicePaymentSucceeded(event.data.object as Stripe.Invoice);
-        break;
-      
-      case 'invoice.payment_failed':
-        await handleInvoicePaymentFailed(event.data.object as Stripe.Invoice);
-        break;
-      
-      case 'customer.subscription.updated':
-        await handleSubscriptionUpdated(event.data.object as Stripe.Subscription);
-        break;
-      
-      case 'customer.subscription.deleted':
-        await handleSubscriptionDeleted(event.data.object as Stripe.Subscription);
-        break;
-      
-      default:
-        console.log(`Unhandled event type: ${event.type}`);
+    const body = await req.text();
+    const headersList = await headers();
+    const signature = headersList.get('stripe-signature');
+
+    if (!signature) {
+      return NextResponse.json(
+        { error: 'Missing stripe-signature header' },
+        { status: 400 }
+      );
     }
 
-    return NextResponse.json({ received: true });
-  } catch (error) {
-    console.error('Webhook handler error:', error);
+    let event: Stripe.Event;
+
+    try {
+      event = stripe.webhooks.constructEvent(
+        body,
+        signature,
+        ENV.STRIPE_WEBHOOK_SECRET!
+      );
+    } catch (err) {
+      console.error('Webhook signature verification failed:', err);
+      return NextResponse.json(
+        { error: 'Invalid signature' },
+        { status: 400 }
+      );
+    }
+
+    try {
+      switch (event.type) {
+        case 'checkout.session.completed':
+          await handleCheckoutCompleted(event.data.object as Stripe.Checkout.Session);
+          break;
+        
+        case 'payment_intent.succeeded':
+          await handlePaymentSucceeded(event.data.object as Stripe.PaymentIntent);
+          break;
+        
+        case 'invoice.payment_succeeded':
+          await handleInvoicePaymentSucceeded(event.data.object as Stripe.Invoice);
+          break;
+        
+        case 'invoice.payment_failed':
+          await handleInvoicePaymentFailed(event.data.object as Stripe.Invoice);
+          break;
+        
+        case 'customer.subscription.updated':
+          await handleSubscriptionUpdated(event.data.object as Stripe.Subscription);
+          break;
+        
+        case 'customer.subscription.deleted':
+          await handleSubscriptionDeleted(event.data.object as Stripe.Subscription);
+          break;
+        
+        default:
+          console.log(`Unhandled event type: ${event.type}`);
+      }
+
+      return NextResponse.json({ received: true });
+    } catch (error) {
+      console.error('Webhook handler error:', error);
+      return NextResponse.json(
+        { error: 'Webhook processing failed' },
+        { status: 500 }
+      );
+    }
+  } catch (err: unknown) {
+    const errorMessage = err instanceof Error ? err.message : String(err);
+    console.error('Stripe webhook error:', err);
     return NextResponse.json(
-      { error: 'Webhook processing failed' },
+      { error: errorMessage },
       { status: 500 }
     );
   }

@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import Stripe from 'stripe';
-import { ENV } from '@/src/config/env';
+import { getStripe } from '@/src/lib/stripe';
 import { checkRateLimit } from '@/src/lib/ratelimit';
 
 // Helper function to extract client IP
@@ -10,19 +9,7 @@ function getClientIP(request: NextRequest): string {
          'unknown';
 }
 
-// Stripe instance using live secret key or fallback to regular secret key
-const stripe = process.env.STRIPE_LIVE_SECRET_KEY ? new Stripe(process.env.STRIPE_LIVE_SECRET_KEY, {
-  apiVersion: '2025-08-27.basil',
-}) : null;
-
 export async function POST(req: NextRequest) {
-  if (!stripe) {
-    return NextResponse.json(
-      { error: 'Stripe not configured' },
-      { status: 500 }
-    );
-  }
-
   // Rate limiting check
   const clientIP = getClientIP(req);
   if (checkRateLimit(clientIP, 'stripe-checkout')) {
@@ -34,61 +21,12 @@ export async function POST(req: NextRequest) {
   }
 
   try {
+    const stripeClient = getStripe();
     console.log('🔍 Stripe checkout request received');
-    console.log('🔍 Stripe instance:', !!stripe);
-    const stripeKey = process.env.STRIPE_LIVE_SECRET_KEY;
-    console.log('🔍 Using key starting with:', stripeKey?.substring(0, 10) || 'undefined');
-    
-    // Non-null assertion since we already checked stripe is not null
-    const stripeClient = stripe!;
 
-    // Assert required environment variables
-    if (!stripeKey) {
-      console.error('❌ No Stripe secret key found');
-      return NextResponse.json({ error: 'Stripe configuration missing' }, { status: 500 });
-    }
-
-    // For local development, create test products and prices if not configured
-    let monthlyPriceId = process.env.STRIPE_PRICE_MONTHLY_99;
-    let setupPriceId = process.env.STRIPE_PRICE_SETUP_399;
-    
-    if (!monthlyPriceId || !setupPriceId) {
-      console.log('🔧 Creating test products and prices for local development...');
-      
-      // Create test product
-      const product = await stripeClient.products.create({
-        name: 'Sunspire Solar Intelligence Platform',
-        description: 'Monthly subscription for solar intelligence platform',
-      });
-      
-      // Create monthly price
-      const monthlyPrice = await stripeClient.prices.create({
-        product: product.id,
-        unit_amount: 9900, // $99.00
-        currency: 'usd',
-        recurring: { interval: 'month' },
-      });
-      
-      // Create setup price
-      const setupPrice = await stripeClient.prices.create({
-        product: product.id,
-        unit_amount: 39900, // $399.00
-        currency: 'usd',
-      });
-      
-      monthlyPriceId = monthlyPrice.id;
-      setupPriceId = setupPrice.id;
-      
-      console.log('✅ Created test prices:', { monthlyPriceId, setupPriceId });
-    }
-
-    if (!stripe) {
-      console.error('❌ Stripe not configured');
-      return NextResponse.json(
-        { error: 'Stripe not configured' },
-        { status: 500 }
-      );
-    }
+    // Get price IDs from environment
+    const price = process.env.STRIPE_PRICE_STARTER || process.env.STRIPE_PRICE_MONTHLY;
+    if (!price) throw new Error('Missing STRIPE price env');
 
     // Read params from POST JSON
     const body = await req.json();
@@ -97,8 +35,8 @@ export async function POST(req: NextRequest) {
     console.log('🔍 Creating Stripe checkout session...');
     console.log('🔍 Request data:', { plan, token, company, email, utm_source, utm_campaign, tenant_handle });
 
-    // Build origin for URLs
-    const origin = process.env.NEXT_PUBLIC_APP_URL || new URL(req.url).origin;
+    // Build URLs
+    const base = process.env.NEXT_PUBLIC_APP_URL || 'https://demo.sunspiredemo.com';
     
     // Create Stripe checkout session
     const checkoutSession = await stripeClient.checkout.sessions.create({
@@ -106,11 +44,7 @@ export async function POST(req: NextRequest) {
       mode: 'subscription',
       line_items: [
         {
-          price: monthlyPriceId!,
-          quantity: 1,
-        },
-        {
-          price: setupPriceId!,
+          price: price,
           quantity: 1,
         },
       ],
@@ -130,8 +64,8 @@ export async function POST(req: NextRequest) {
         utm_source: utm_source || '',
         utm_campaign: utm_campaign || '',
       },
-      success_url: `${origin}/onboard/domain?tenant=${tenant_handle || company || 'success'}&companyWebsite=${encodeURIComponent(company || '')}`,
-      cancel_url: `${origin}/c/${tenant_handle || company || 'cancel'}/cancel`,
+      success_url: `${base}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${base}/pricing?canceled=1`,
       customer_email: email || undefined,
       allow_promotion_codes: true,
       automatic_tax: { enabled: true },
@@ -160,59 +94,12 @@ export async function GET(req: NextRequest) {
   }
 
   try {
+    const stripeClient = getStripe();
     console.log('🔍 Stripe checkout GET request received');
-    
-    // Non-null assertion since we already checked stripe is not null
-    const stripeClient = stripe!;
-    
-    // Assert required environment variables
-    const stripeKey = process.env.STRIPE_LIVE_SECRET_KEY;
-    if (!stripeKey) {
-      console.error('❌ No Stripe secret key found');
-      return NextResponse.json({ error: 'Stripe configuration missing' }, { status: 500 });
-    }
 
-    // For local development, create test products and prices if not configured
-    let monthlyPriceId = process.env.STRIPE_PRICE_MONTHLY_99;
-    let setupPriceId = process.env.STRIPE_PRICE_SETUP_399;
-    
-    if (!monthlyPriceId || !setupPriceId) {
-      console.log('🔧 Creating test products and prices for local development...');
-      
-      // Create test product
-      const product = await stripeClient.products.create({
-        name: 'Sunspire Solar Intelligence Platform',
-        description: 'Monthly subscription for solar intelligence platform',
-      });
-      
-      // Create monthly price
-      const monthlyPrice = await stripeClient.prices.create({
-        product: product.id,
-        unit_amount: 9900, // $99.00
-        currency: 'usd',
-        recurring: { interval: 'month' },
-      });
-      
-      // Create setup price
-      const setupPrice = await stripeClient.prices.create({
-        product: product.id,
-        unit_amount: 39900, // $399.00
-        currency: 'usd',
-      });
-      
-      monthlyPriceId = monthlyPrice.id;
-      setupPriceId = setupPrice.id;
-      
-      console.log('✅ Created test prices:', { monthlyPriceId, setupPriceId });
-    }
-    
-    if (!stripe) {
-      console.error('❌ Stripe not configured');
-      return NextResponse.json(
-        { error: 'Stripe not configured' },
-        { status: 500 }
-      );
-    }
+    // Get price IDs from environment
+    const price = process.env.STRIPE_PRICE_STARTER || process.env.STRIPE_PRICE_MONTHLY;
+    if (!price) throw new Error('Missing STRIPE price env');
 
     // Read params from URL query string
     const url = new URL(req.url);
@@ -227,8 +114,8 @@ export async function GET(req: NextRequest) {
     console.log('🔍 Creating Stripe checkout session from GET...');
     console.log('🔍 Request data:', { plan, token, company, email, utm_source, utm_campaign, tenant_handle });
 
-    // Build origin for URLs
-    const origin = process.env.NEXT_PUBLIC_APP_URL || new URL(req.url).origin;
+    // Build URLs
+    const base = process.env.NEXT_PUBLIC_APP_URL || 'https://demo.sunspiredemo.com';
     
     // Create Stripe checkout session
     const checkoutSession = await stripeClient.checkout.sessions.create({
@@ -236,11 +123,7 @@ export async function GET(req: NextRequest) {
       mode: 'subscription',
       line_items: [
         {
-          price: monthlyPriceId!,
-          quantity: 1,
-        },
-        {
-          price: setupPriceId!,
+          price: price,
           quantity: 1,
         },
       ],
@@ -260,8 +143,8 @@ export async function GET(req: NextRequest) {
         utm_source: utm_source || '',
         utm_campaign: utm_campaign || '',
       },
-      success_url: `${origin}/onboard/domain?tenant=${tenant_handle || company || 'success'}&companyWebsite=${encodeURIComponent(company || '')}`,
-      cancel_url: `${origin}/c/${tenant_handle || company || 'cancel'}/cancel`,
+      success_url: `${base}/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${base}/pricing?canceled=1`,
       customer_email: email || undefined,
       allow_promotion_codes: true,
       automatic_tax: { enabled: true },

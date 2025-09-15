@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 
 export async function GET() {
-  return NextResponse.redirect('https://sunspire-web-app.vercel.app/?company=testco&demo=1', 307);
+  const base = process.env.NEXT_PUBLIC_APP_URL || 'https://demo.sunspiredemo.com';
+  return NextResponse.redirect(`${base}/?company=testco&demo=1`, 307);
 }

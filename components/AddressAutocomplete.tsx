@@ -13,6 +13,7 @@ interface AddressAutocompleteProps {
   className?: string;
   value?: string;
   onChange?: (value: string) => void;
+  'data-testid'?: string;
 }
 
 export default function AddressAutocomplete({
@@ -20,7 +21,8 @@ export default function AddressAutocomplete({
   placeholder = "Enter your address...",
   className = "",
   value = "",
-  onChange
+  onChange,
+  'data-testid': testId
 }: AddressAutocompleteProps) {
   const [query, setQuery] = useState(value);
   const [predictions, setPredictions] = useState<Prediction[]>([]);
@@ -229,6 +231,7 @@ export default function AddressAutocomplete({
         placeholder={placeholder}
         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         autoComplete="off"
+        data-testid={testId}
       />
       
       {isLoading && (

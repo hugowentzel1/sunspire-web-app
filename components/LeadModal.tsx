@@ -8,6 +8,7 @@ import { useTenant } from './TenantProvider';
 import { SolarEstimate } from '@/lib/estimate';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import FocusTrap from './ui/FocusTrap';
+import { tid } from '@/src/lib/testids';
 
 const leadFormSchema = z.object({
   name: z.string().min(1, 'Name is required'),
@@ -48,19 +49,20 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
     setError(null);
 
     try {
-      // Submit lead data
-      const response = await fetch('/api/submit-lead', {
+      // Submit lead data to Airtable upsert
+      const response = await fetch('/api/leads/upsert', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          ...data,
-          address,
-          estimateId: estimate?.id,
+          email: data.email,
+          fullName: data.name,
+          company: b?.brand || tenant?.name || 'Demo',
           companyHandle: tenant?.slug || 'demo',
-          source: 'lead_modal',
-          campaignId: b.enabled ? `brand_${b.brand}` : 'demo'
+          address,
+          crm: 'Airtable',
+          source: 'lead_modal'
         }),
       });
 
@@ -176,6 +178,7 @@ export function LeadModal({ isOpen, onClose, estimate, address }: LeadModalProps
                     <button
                       type="submit"
                       disabled={isSubmitting}
+                      {...tid('lead-submit')}
                       className="w-full px-6 py-3 bg-black text-white rounded-2xl font-bold text-lg hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? 'Submitting...' : 'Request Sample Report'}

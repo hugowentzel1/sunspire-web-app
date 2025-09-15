@@ -237,7 +237,7 @@ function HomeContent() {
             <div>
               <div className="bg-white/80 backdrop-blur-sm rounded-3xl py-6 px-8 border border-gray-200/50 shadow-lg mx-auto max-w-2xl">
                 <div className="space-y-4 text-center" {...tid('demo-cta')}>
-                  <h2 className="text-3xl font-bold text-gray-900">
+                  <h2 className="text-3xl font-bold text-gray-900" {...tid('company-badge')}>
                     Demo for {b.brand || 'Your Company'} — Powered by Sunspire
                   </h2>
                   <p className="text-lg text-gray-600">
@@ -326,6 +326,7 @@ function HomeContent() {
                     value={address}
                     onChange={setAddress}
                     onSelect={handleAddressSelect}
+                    {...tid('address-input')}
                     placeholder={b.city ? `Start typing an address in ${b.city}...` : "Start typing your property address..."}
                     className="w-full"
                   />
@@ -339,6 +340,7 @@ function HomeContent() {
                   onClick={address.trim() ? handleGenerateEstimate : (b.enabled ? handleLaunchClick : handleGenerateEstimate)}
                   disabled={!address.trim() || isLoading} 
                   data-cta-button
+                  {...tid('cta-primary')}
                   className={`w-full ${
                     !address.trim() || isLoading 
                       ? 'btn-disabled' 
