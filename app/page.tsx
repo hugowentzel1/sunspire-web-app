@@ -6,8 +6,10 @@ import dynamic from 'next/dynamic';
 import { PlaceResult } from '@/lib/calc';
 import LegalFooter from '@/components/legal/LegalFooter';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
-import HeroBrand from '@/src/brand/HeroBrand';
+import HeroBrand from '@/components/HeroBrand';
 import { useBrandColors } from '@/hooks/useBrandColors';
+import { paletteFrom, applyBrandPalette } from '@/utils/theme';
+import StickyBar from '@/components/StickyBar';
 import { usePreviewQuota } from '@/src/demo/usePreviewQuota';
 import { useCountdown } from '@/src/demo/useCountdown';
 import { useIsDemo } from '@/src/lib/isDemo';
@@ -46,6 +48,15 @@ function HomeContent() {
   
   // Brand colors from URL
   useBrandColors();
+  
+  // Apply brand palette for paid experience
+  useEffect(() => {
+    if (b.primary && !isDemo) {
+      const palette = paletteFrom(b.primary);
+      applyBrandPalette(palette);
+    }
+  }, [b.primary, isDemo]);
+  
   const { read, consume } = usePreviewQuota(2);
   const remaining = read();
   const countdown = useCountdown(b.expireDays);
@@ -225,12 +236,7 @@ function HomeContent() {
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center space-y-6">
           
-          {/* Live confirmation bar for paid mode */}
-          {!isDemo && (
-            <div className="mx-auto max-w-3xl mt-4 rounded-lg bg-emerald-50 text-emerald-900 text-sm px-4 py-2 border border-emerald-200" {...tid('live-bar')}>
-              ✅ Live for <b>{b.brand || 'Your Company'}</b>. Leads now save to your CRM.
-            </div>
-          )}
+          {/* Remove internal/ops copy from paid UI */}
           
           {/* Company Branding Section - Demo only */}
           {isDemo && b.enabled && (
@@ -261,14 +267,14 @@ function HomeContent() {
             </div>
           )}
           
-          {/* HERO ICON: render only one (fix double) */}
-          {!b.enabled ? (
+          {/* HERO ICON: Show company logo in paid mode, sun icon in demo */}
+          {isDemo ? (
             <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${b.primary}, ${b.primary}CC)` }}>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
               <span className="text-6xl relative z-10">☀️</span>
             </div>
           ) : (
-            <HeroBrand />
+            <HeroBrand size="lg" className="mx-auto" />
           )}
           
           <div className="space-y-6">
@@ -280,22 +286,21 @@ function HomeContent() {
 
             <div className="space-y-6">
               <h1 className="text-5xl md:text-7xl font-black text-gray-900 leading-tight">
-                {b.enabled ? (
+                {isDemo ? (
                   <>
                     Your Branded Solar Quote Tool
                     <span className="block text-[var(--brand-primary)]">— Ready to Launch</span>
                   </>
                 ) : (
                   <>
-                    Your Branded Solar Quote Tool
-                    <span className="block text-[var(--brand-primary)]">— Ready to Launch</span>
+                    Instant Solar Analysis for Your Home
                   </>
                 )}
               </h1>
               <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                {b.enabled 
+                {isDemo 
                   ? `Go live in 24 hours. Convert more leads, book more consultations, and sync every inquiry seamlessly to your CRM — all fully branded for your company.`
-                  : "Go live in 24 hours. Convert more leads, book more consultations, and sync every inquiry seamlessly to your CRM — all fully branded for your company."
+                  : "Enter your address to see projected production, ROI, and payback in seconds."
                 }
               </p>
             </div>
@@ -384,24 +389,45 @@ function HomeContent() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto section-spacing">
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
-              <div className="text-4xl font-black text-gray-900 mb-2">NREL v8</div>
-              <div className="text-gray-600 font-semibold">Industry Standard</div>
+          {/* Credibility section - only show homeowner-relevant info in paid mode */}
+          {!isDemo && (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto section-spacing">
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
+                <div className="text-4xl font-black text-gray-900 mb-2">NREL v8</div>
+                <div className="text-gray-600 font-semibold">Accurate Modeling</div>
+              </div>
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
+                <div className="text-4xl font-black text-gray-900 mb-2">Current Rates</div>
+                <div className="text-gray-600 font-semibold">Local Utility Data</div>
+              </div>
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
+                <div className="text-4xl font-black text-gray-900 mb-2">Private</div>
+                <div className="text-gray-600 font-semibold">Encrypted</div>
+              </div>
             </div>
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
-              <div className="text-4xl font-black text-gray-900 mb-2">SOC 2</div>
-              <div className="text-gray-600 font-semibold">Compliance</div>
+          )}
+          
+          {/* Demo badges - only show in demo mode */}
+          {isDemo && (
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto section-spacing">
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
+                <div className="text-4xl font-black text-gray-900 mb-2">NREL v8</div>
+                <div className="text-gray-600 font-semibold">Industry Standard</div>
+              </div>
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
+                <div className="text-4xl font-black text-gray-900 mb-2">SOC 2</div>
+                <div className="text-gray-600 font-semibold">Compliance</div>
+              </div>
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
+                <div className="text-4xl font-black text-gray-900 mb-2">CRM Ready</div>
+                <div className="text-gray-600 font-semibold">HubSpot, Salesforce</div>
+              </div>
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
+                <div className="text-4xl font-black text-gray-900 mb-2">24/7</div>
+                <div className="text-gray-600 font-semibold">Support</div>
+              </div>
             </div>
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
-              <div className="text-4xl font-black text-gray-900 mb-2">CRM Ready</div>
-              <div className="text-gray-600 font-semibold">HubSpot, Salesforce</div>
-            </div>
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
-              <div className="text-4xl font-black text-gray-900 mb-2">24/7</div>
-              <div className="text-gray-600 font-semibold">Support</div>
-            </div>
-          </div>
+          )}
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto section-spacing">
             <div className="feature-card p-5 text-center">
@@ -565,7 +591,7 @@ function HomeContent() {
         />
       </footer>
       
-
+      <StickyBar />
     </div>
   );
 }

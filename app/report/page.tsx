@@ -28,7 +28,8 @@ import { getBrandTheme } from '@/lib/brandTheme';
 // import StickyBuyBar from '@/src/demo/StickyBuyBar';
 // import InstallSheet from '@/src/demo/InstallSheet';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
-import HeroBrand from '@/src/brand/HeroBrand';
+import HeroBrand from '@/components/HeroBrand';
+import StickyBar from '@/components/StickyBar';
 // StickyCTA import removed - no popups wanted
 // import { DemoBanner } from '@/src/demo/DemoChrome';
 import LockOverlay from '@/src/demo/LockOverlay';
@@ -635,32 +636,32 @@ function ReportContent() {
           {/* Metric Tiles */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
             {/* System Size - NO BLUR, ALWAYS VISIBLE */}
-            <div data-testid="tile-systemSize" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
+            <div data-testid="tile-systemSize" data-kpi className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
               <div className="relative z-10 p-8 text-center">
                 <div className="mb-4 flex justify-center"><IconBadge>⚡</IconBadge></div>
-                <div className="text-3xl font-black text-gray-900 mb-2">{estimate.systemSizeKW} kW</div>
+                <div className="text-3xl font-black text-gray-900 mb-2 tabular-nums">{estimate.systemSizeKW} kW</div>
                 <div className="text-gray-600 font-semibold">System Size</div>
               </div>
             </div>
             
             {/* Annual Production - NO BLUR, ALWAYS VISIBLE */}
-            <div data-testid="tile-annualProduction" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
+            <div data-testid="tile-annualProduction" data-kpi className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
               <div className="relative z-10 p-8 text-center">
                 <div className="mb-4 flex justify-center"><IconBadge>☀️</IconBadge></div>
-                <div className="text-3xl font-black text-gray-900 mb-2">{estimate.annualProductionKWh.toLocaleString()} kWh</div>
+                <div className="text-3xl font-black text-gray-900 mb-2 tabular-nums">{estimate.annualProductionKWh.toLocaleString()} kWh</div>
                 <div className="text-gray-600 font-semibold">Annual Production</div>
               </div>
             </div>
             
             {/* Net Cost - BLURRED WITH UNLOCK BUTTON */}
-            <div data-testid="tile-lifetimeSavings" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
+            <div data-testid="tile-lifetimeSavings" data-kpi className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
               {/* BLUR LAYER (kept behind button) - Demo Only */}
               {demoMode && <div className="blur-layer" aria-hidden />}
               
               {/* CONTENT LAYER */}
               <div className="content-layer p-8 text-center">
                 <div className="mb-4 flex justify-center"><IconBadge>💰</IconBadge></div>
-                <div className="text-3xl font-black text-gray-900 mb-2">${estimate.netCostAfterITC.toLocaleString()}</div>
+                <div className="text-3xl font-black text-gray-900 mb-2 tabular-nums">${estimate.netCostAfterITC.toLocaleString()}</div>
                 <div className="text-gray-600 font-semibold">Net Cost (After ITC)</div>
               </div>
 
@@ -675,14 +676,14 @@ function ReportContent() {
             </div>
 
             {/* Year 1 Savings - BLURRED WITH UNLOCK BUTTON */}
-            <div data-testid="tile-large" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
+            <div data-testid="tile-large" data-kpi className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
               {/* BLUR LAYER (kept behind button) - Demo Only */}
               {demoMode && <div className="blur-layer" aria-hidden />}
               
               {/* CONTENT LAYER */}
               <div className="content-layer p-8 text-center">
                 <div className="mb-4 flex justify-center"><IconBadge>📈</IconBadge></div>
-                <div className="text-3xl font-black text-gray-900 mb-2">${estimate.year1Savings.toLocaleString()}</div>
+                <div className="text-3xl font-black text-gray-900 mb-2 tabular-nums">${estimate.year1Savings.toLocaleString()}</div>
                 <div className="text-gray-600 font-semibold">Year 1 Savings</div>
               </div>
 
@@ -869,6 +870,8 @@ function ReportContent() {
       {/* Demo components removed - no more popup */}
       
       {/* StickyCTA removed - no popups wanted */}
+      
+      <StickyBar />
     </div>
   );
 }
