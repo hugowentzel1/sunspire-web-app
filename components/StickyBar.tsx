@@ -93,7 +93,7 @@ export default function StickyBar() {
 
   return (
     <div 
-      className="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-gray-200 shadow-lg"
+      className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 shadow-lg"
       style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
       data-sticky-bar
     >

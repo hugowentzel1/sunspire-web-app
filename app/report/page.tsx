@@ -28,7 +28,7 @@ import { getBrandTheme } from '@/lib/brandTheme';
 // import StickyBuyBar from '@/src/demo/StickyBuyBar';
 // import InstallSheet from '@/src/demo/InstallSheet';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
-import HeroBrand from '@/components/HeroBrand';
+import HeroBrand from '@/src/brand/HeroBrand';
 import StickyBar from '@/components/StickyBar';
 // StickyCTA import removed - no popups wanted
 // import { DemoBanner } from '@/src/demo/DemoChrome';

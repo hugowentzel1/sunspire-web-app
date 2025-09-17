@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 import { PlaceResult } from '@/lib/calc';
 import LegalFooter from '@/components/legal/LegalFooter';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
-import HeroBrand from '@/components/HeroBrand';
+import HeroBrand from '@/src/brand/HeroBrand';
 import { useBrandColors } from '@/hooks/useBrandColors';
 import { paletteFrom, applyBrandPalette } from '@/utils/theme';
 import StickyBar from '@/components/StickyBar';
@@ -437,13 +437,15 @@ function HomeContent() {
               <div className="title">NREL PVWatts® v8</div>
               <div className="desc">Industry-standard solar modeling with current utility rates</div>
             </div>
-            <div className="feature-card p-5 text-center">
-              <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center shadow-lg">
-                <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+            {isDemo && (
+              <div className="feature-card p-5 text-center">
+                <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center shadow-lg">
+                  <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                </div>
+                <div className="title">CRM Integration</div>
+                <div className="desc">Direct push to HubSpot, Salesforce, and Airtable</div>
               </div>
-              <div className="title">CRM Integration</div>
-              <div className="desc">Direct push to HubSpot, Salesforce, and Airtable</div>
-            </div>
+            )}
             <div className="feature-card p-5 text-center">
               <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center shadow-lg">
                 <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
@@ -586,7 +588,7 @@ function HomeContent() {
       <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <LegalFooter 
           hideMarketingLinks={!isDemo} 
-          showPoweredBy={true} 
+          showPoweredBy={isDemo} 
           brand={b.enabled ? b.brand : undefined} 
         />
       </footer>

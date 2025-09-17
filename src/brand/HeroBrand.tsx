@@ -6,7 +6,9 @@ function initials(name:string){ return name.split(/\s+/).filter(Boolean).slice(0
 
 export default function HeroBrand(){
   const b = useBrandTakeover();
-  if(!b.enabled) return null;
+  // Show in both demo and paid modes when brand is enabled
+  // Also show if we have company branding even if not explicitly enabled
+  if(!b.enabled && !b.brand) return null;
   
   // Generate a default logo URL for common companies when no logo is provided
   const getDefaultLogo = (brand: string) => {
@@ -73,7 +75,7 @@ export default function HeroBrand(){
   const logoUrl = b.logo || getDefaultLogo(b.brand);
   
   return (
-    <div className="section-spacing" style={{ display:"grid", placeItems:"center" }}>
+    <div className="section-spacing" style={{ display:"grid", placeItems:"center" }} data-hero-logo>
       {logoUrl ? (
         <Image 
           src={logoUrl} 
