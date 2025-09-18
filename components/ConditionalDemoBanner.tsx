@@ -27,7 +27,7 @@ export default function ConditionalDemoBanner() {
   ];
   
   // Don't show banner on legal/regulatory pages
-  if (noBannerPages.includes(pathname)) {
+  if (noBannerPages.some(page => pathname.startsWith(page))) {
     return null;
   }
   

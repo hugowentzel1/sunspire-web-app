@@ -2,25 +2,20 @@
 
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import { tid } from '@/src/lib/testids';
-import { useSearchParams } from 'next/navigation';
 
 export default function LegalFooter({ 
   hideMarketingLinks = false, 
   showPoweredBy = true, 
-  brand,
-  logo
+  brand 
 }: { 
   hideMarketingLinks?: boolean; 
   showPoweredBy?: boolean; 
-  brand?: string;
-  logo?: string;
+  brand?: string 
 }) {
   const b = useBrandTakeover();
-  const searchParams = useSearchParams();
   
-  // Use passed brand prop or fall back to brand takeover, or use URL parameter
-  const urlCompany = searchParams.get('company');
-  const companyName = brand || (b.enabled && b.brand ? b.brand : (urlCompany || 'Sunspire'));
+  // Use passed brand prop or fall back to brand takeover
+  const companyName = brand || (b.enabled && b.brand ? b.brand : 'Sunspire');
   const brandColor = b.enabled && b.primary ? b.primary : '#d97706';
 
   return (
@@ -30,17 +25,7 @@ export default function LegalFooter({
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 text-center">
           {/* Company Information */}
           <div>
-            <div className="flex items-center justify-center mb-4">
-              {logo && (
-                <img 
-                  src={logo} 
-                  alt={`${companyName} logo`} 
-                  className="w-12 h-12 rounded-lg mr-4"
-                  style={{ objectFit: 'contain' }}
-                />
-              )}
-              <h3 className="text-xl font-bold text-gray-900">Sunspire Solar Intelligence</h3>
-            </div>
+            <h3 className="text-xl font-bold text-gray-900 mb-4">Sunspire Solar Intelligence</h3>
             <p className="text-gray-600 mb-4 max-w-md mx-auto">
               {hideMarketingLinks ? 'Solar Intelligence Platform' : `Demo for ${companyName} — Powered by Sunspire`}
             </p>

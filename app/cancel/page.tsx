@@ -1,7 +1,7 @@
 "use client";
 
-import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
-import LegalFooter from "@/components/legal/LegalFooter";
+import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+import LegalFooter from '@/components/legal/LegalFooter';
 
 export default function CancelPage() {
   const b = useBrandTakeover();
@@ -15,18 +15,8 @@ export default function CancelPage() {
             href="/"
             className="inline-flex items-center text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
           >
-            <svg
-              className="w-4 h-4 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 19l-7-7 7-7"
-              />
+            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
             Back to Home
           </a>
@@ -36,25 +26,15 @@ export default function CancelPage() {
           <div className="text-center">
             {/* Cancel Icon */}
             <div className="mx-auto flex items-center justify-center h-16 w-16 rounded-full bg-red-100 mb-6">
-              <svg
-                className="h-8 w-8 text-red-600"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
+              <svg className="h-8 w-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </div>
 
             <h1 className="text-4xl font-black text-gray-900 mb-6">
               Checkout Canceled
             </h1>
-
+            
             <p className="text-xl text-gray-600 mb-8">
               You were not charged. You can try again anytime.
             </p>
@@ -66,15 +46,9 @@ export default function CancelPage() {
               >
                 Return Home
               </a>
-
+              
               <p className="text-sm text-gray-500">
-                Need help? Contact us at{" "}
-                <a
-                  href="mailto:support@getsunspire.com"
-                  className="hover:underline"
-                >
-                  support@getsunspire.com
-                </a>
+                Need help? Contact us at <a href="mailto:support@getsunspire.com" className="hover:underline">support@getsunspire.com</a>
               </p>
             </div>
           </div>

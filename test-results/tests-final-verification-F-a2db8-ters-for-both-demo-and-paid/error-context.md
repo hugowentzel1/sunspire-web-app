@@ -1,0 +1,202 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - strong [ref=e4]: Exclusive preview built for Apple
+      - generic [ref=e5]: Exclusive preview — expires in 6:23:59:53
+      - generic [ref=e6]: "Runs left: 2"
+    - generic [ref=e7]:
+      - button "Launch on your domain" [ref=e8] [cursor=pointer]
+      - button "Copy link" [ref=e9] [cursor=pointer]
+      - button "Dismiss" [ref=e10] [cursor=pointer]: ✕
+  - generic [ref=e11]:
+    - banner [ref=e12]:
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - generic [ref=e17]: ☀️
+          - generic [ref=e18]:
+            - heading "Your Company" [level=1] [ref=e19]
+            - paragraph [ref=e20]: Solar Intelligence
+        - navigation [ref=e21]:
+          - link "Pricing" [ref=e22] [cursor=pointer]:
+            - /url: /pricing
+          - link "Partners" [ref=e23] [cursor=pointer]:
+            - /url: /partners
+          - link "Support" [ref=e24] [cursor=pointer]:
+            - /url: /support
+          - button "New Analysis" [ref=e25] [cursor=pointer]
+    - main [ref=e26]:
+      - generic [ref=e27]:
+        - generic [ref=e28]:
+          - generic [ref=e31]: ☀️
+          - generic [ref=e32]:
+            - heading "New Analysis" [level=1] [ref=e33]
+            - paragraph [ref=e34]: Comprehensive analysis for your property at 1
+            - generic [ref=e35]:
+              - generic [ref=e36]: "Data Source: generic"
+              - generic [ref=e37]: •
+              - generic [ref=e38]: Generated on 9/18/2025
+        - generic [ref=e39]:
+          - generic [ref=e41]:
+            - generic [ref=e43]: ⚡
+            - generic [ref=e44]: 6 kW
+            - generic [ref=e45]: System Size
+          - generic [ref=e47]:
+            - generic [ref=e49]: ☀️
+            - generic [ref=e50]: 9,637 kWh
+            - generic [ref=e51]: Annual Production
+          - generic [ref=e53]:
+            - generic [ref=e55]: 💰
+            - generic [ref=e56]: $12,600
+            - generic [ref=e57]: Net Cost (After ITC)
+          - generic [ref=e59]:
+            - generic [ref=e61]: 📈
+            - generic [ref=e62]: $1,603
+            - generic [ref=e63]: Year 1 Savings
+        - generic [ref=e66]:
+          - generic [ref=e67]:
+            - heading "Your Solar Savings Over Time" [level=3] [ref=e68]
+            - paragraph [ref=e69]: Simple view of how your solar investment pays off over 25 years
+          - application [ref=e73]:
+            - generic [ref=e77]:
+              - generic [ref=e78]:
+                - generic [ref=e81]: "1"
+                - generic [ref=e84]: "5"
+                - generic [ref=e87]: "10"
+                - generic [ref=e90]: "15"
+                - generic [ref=e93]: "20"
+                - generic [ref=e96]: "25"
+              - generic [ref=e98]: Years
+            - generic [ref=e99]:
+              - generic [ref=e100]:
+                - generic [ref=e103]: $0k
+                - generic [ref=e106]: $15k
+                - generic [ref=e109]: $30k
+                - generic [ref=e112]: $45k
+                - generic [ref=e115]: $60k
+              - generic [ref=e117]: Total Savings
+          - generic [ref=e129]:
+            - generic [ref=e130]:
+              - generic [ref=e132]: $13k
+              - generic [ref=e133]: Investment
+            - generic [ref=e134]:
+              - generic [ref=e136]: 8 years
+              - generic [ref=e137]: Payback Time
+            - generic [ref=e138]:
+              - generic [ref=e140]: $51k
+              - generic [ref=e141]: 25-Year Savings
+          - paragraph [ref=e143]:
+            - generic [ref=e144]: "How to read this:"
+            - text: The green area shows your total savings growing over time. After 8 years, you'll have saved enough to cover your initial investment. By year 25, you'll have saved $51k total.
+          - img
+        - generic [ref=e145]:
+          - generic [ref=e147]:
+            - heading "Financial Analysis" [level=2] [ref=e148]
+            - generic [ref=e149]:
+              - generic [ref=e150]:
+                - generic [ref=e151]: Payback Period
+                - generic [ref=e152]: 8 years
+              - generic [ref=e153]:
+                - generic [ref=e154]: 25-Year NPV
+                - generic [ref=e155]: $9,736
+              - generic [ref=e156]:
+                - generic [ref=e157]: ROI
+                - generic [ref=e158]: 177%
+              - generic [ref=e159]:
+                - generic [ref=e160]: Electricity Rate
+                - generic [ref=e161]: $0.18/kWh (generic)
+          - generic [ref=e163]:
+            - heading "Environmental Impact" [level=2] [ref=e164]
+            - generic [ref=e165]:
+              - generic [ref=e166]:
+                - generic [ref=e167]: CO₂ Offset/Year
+                - generic [ref=e168]: 8,191 lbs
+              - generic [ref=e169]:
+                - generic [ref=e170]: Solar Irradiance
+                - generic [ref=e171]: 5.01 kWh/m²/day
+              - generic [ref=e172]:
+                - generic [ref=e173]: System Tilt
+                - generic [ref=e174]: 0°
+              - generic [ref=e175]:
+                - generic [ref=e176]: System Losses
+                - generic [ref=e177]: 5%
+          - generic [ref=e179]:
+            - heading "Calculation Details & Data Sources" [level=2] [ref=e180]
+            - generic [ref=e181]:
+              - heading "Calculation Assumptions" [level=3] [ref=e182]
+              - generic [ref=e183]:
+                - generic [ref=e184]:
+                  - generic [ref=e185]: Federal Tax Credit (ITC)
+                  - generic [ref=e186]: 30%
+                - generic [ref=e187]:
+                  - generic [ref=e188]: Cost per Watt
+                  - generic [ref=e189]: $3
+                - generic [ref=e190]:
+                  - generic [ref=e191]: Panel Degradation
+                  - generic [ref=e192]: 0.5%/year
+                - generic [ref=e193]:
+                  - generic [ref=e194]: O&M Cost
+                  - generic [ref=e195]: $22/kW/year
+                - generic [ref=e196]:
+                  - generic [ref=e197]: Rate Increase
+                  - generic [ref=e198]: 2.5%/year
+                - generic [ref=e199]:
+                  - generic [ref=e200]: Discount Rate
+                  - generic [ref=e201]: 7%
+            - generic [ref=e202]:
+              - heading "Data Sources" [level=3] [ref=e203]
+              - generic [ref=e204]:
+                - generic [ref=e207]: Solar irradiance data from industry-standard models
+                - generic [ref=e210]: Utility rates from local utility databases
+                - generic [ref=e213]: Financial calculations based on current federal and state incentives
+              - generic [ref=e214]:
+                - paragraph [ref=e215]: Estimates are informational only. Actual results vary by site conditions and installation quality. Not a binding quote.
+                - paragraph [ref=e216]: Last updated 9/18/2025
+        - paragraph [ref=e219]:
+          - text: Estimates are informational only, based on modeled data (NREL PVWatts® v8 and current utility rates).
+          - text: Actual results vary by site conditions and installation quality. Not a binding quote.
+    - contentinfo [ref=e220]:
+      - generic [ref=e221]:
+        - generic [ref=e222]:
+          - heading "Apple" [level=3] [ref=e224]
+          - generic [ref=e225]:
+            - heading "Legal & Support" [level=4] [ref=e226]
+            - generic [ref=e227]:
+              - link "Privacy Policy" [ref=e228] [cursor=pointer]:
+                - /url: /privacy
+              - link "Terms of Service" [ref=e229] [cursor=pointer]:
+                - /url: /terms
+              - link "Accessibility" [ref=e230] [cursor=pointer]:
+                - /url: /accessibility
+              - link "Cookies" [ref=e231] [cursor=pointer]:
+                - /url: /cookies
+          - generic [ref=e232]:
+            - heading "Contact" [level=4] [ref=e233]
+            - generic [ref=e234]:
+              - paragraph [ref=e235]:
+                - img [ref=e236]
+                - text: +1 (555) 123-4567
+              - paragraph [ref=e238]:
+                - img [ref=e239]
+                - link "support@client-company.com" [ref=e241] [cursor=pointer]:
+                  - /url: mailto:support@client-company.com
+        - generic [ref=e243]:
+          - generic [ref=e244]:
+            - img [ref=e245]
+            - generic [ref=e247]: Estimates generated using NREL PVWatts® v8
+          - generic [ref=e249]:
+            - text: Powered by
+            - generic [ref=e250]: Sunspire
+          - generic [ref=e251]:
+            - img [ref=e252]
+            - generic [ref=e254]: Mapping & location data © Google
+  - alert [ref=e255]
+  - generic [ref=e257]:
+    - paragraph [ref=e258]: We use cookies to improve your experience.
+    - generic [ref=e259]:
+      - button "Manage" [ref=e260] [cursor=pointer]
+      - button "Accept" [ref=e261] [cursor=pointer]
+  - generic [ref=e262]: $0k
+```

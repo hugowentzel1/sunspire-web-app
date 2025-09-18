@@ -1,30 +1,28 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import "@/components/ui/sunset-theme.css";
-import AppErrorBoundary from "@/components/AppErrorBoundary";
+import type { Metadata } from 'next'
+import { Inter } from 'next/font/google'
+import './globals.css'
+import '@/components/ui/sunset-theme.css'
+import AppErrorBoundary from '@/components/AppErrorBoundary'
 // import DemoRibbon from '@/components/ui/DemoRibbon'
-import BrandProvider from "@/src/brand/BrandProvider";
-import BrandCSSInjector from "@/components/BrandCSSInjector";
-import BootProbe from "./BootProbe";
-import SharedNavigation from "@/components/SharedNavigation";
-import { CompanyProvider } from "@/components/CompanyContext";
-import CookieConsent from "@/components/CookieConsent";
-import CookieBanner from "@/components/CookieBanner";
-import EnvBanner from "@/components/EnvBanner";
-import ConditionalDemoBanner from "@/components/ConditionalDemoBanner";
+import BrandProvider from '@/src/brand/BrandProvider'
+import BrandCSSInjector from '@/components/BrandCSSInjector'
+import BootProbe from './BootProbe'
+import SharedNavigation from '@/components/SharedNavigation'
+import { CompanyProvider } from '@/components/CompanyContext'
+import CookieConsent from '@/components/CookieConsent'
+import ConditionalDemoBanner from '@/components/ConditionalDemoBanner'
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: "Sunspire - Solar Intelligence",
-  description: "AI-powered solar analysis and installer matching",
-};
+  title: 'Sunspire - Solar Intelligence',
+  description: 'AI-powered solar analysis and installer matching',
+}
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode
 }) {
   return (
     <html lang="en">
@@ -34,17 +32,17 @@ export default function RootLayout({
           <BrandProvider>
             <CompanyProvider>
               <BrandCSSInjector />
-              <EnvBanner />
+              {/* DemoRibbon removed */}
               <ConditionalDemoBanner />
               <SharedNavigation />
               {children}
             </CompanyProvider>
           </BrandProvider>
         </AppErrorBoundary>
-
+        
         {/* Cookie Consent */}
         <CookieConsent />
       </body>
     </html>
-  );
+  )
 }

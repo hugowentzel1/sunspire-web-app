@@ -886,7 +886,6 @@ function ReportContent() {
           hideMarketingLinks={!demoMode} 
           showPoweredBy={true} 
           brand={b.enabled ? b.brand : undefined}
-          logo={b.logo || searchParams.get('logo') || undefined}
         />
       </footer>
 
