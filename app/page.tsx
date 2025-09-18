@@ -297,12 +297,6 @@ function HomeContent() {
           )}
           
           <div className="space-y-6">
-            <div className="relative">
-              <div className="absolute -top-4 -right-4 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
-                <span className="text-white text-lg">✓</span>
-              </div>
-            </div>
-
             <div className="space-y-6">
               <h1 className="text-5xl md:text-7xl font-black text-gray-900 leading-tight">
                 {b.enabled ? (
@@ -312,11 +306,19 @@ function HomeContent() {
                   </>
                 ) : (
                   <>
-                    Your Branded Solar Quote Tool
+                    Solar Intelligence Platform
                     <span className="block text-[var(--brand-primary)]">— Ready to Launch</span>
                   </>
                 )}
               </h1>
+              
+              {/* Green check mark with proper spacing */}
+              <div className="flex items-center justify-center mt-4">
+                <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
+                  <span className="text-white text-lg">✓</span>
+                </div>
+              </div>
+              
               <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 {b.enabled 
                   ? `Go live in 24 hours. Convert more leads, book more consultations, and sync every inquiry seamlessly to your CRM — all fully branded for your company.`
