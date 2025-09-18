@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
+import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 
 interface HealthStatus {
   ok: boolean;
@@ -23,6 +24,7 @@ export default function StatusPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const searchParams = useSearchParams();
+  const b = useBrandTakeover();
 
   useEffect(() => {
     async function checkHealth() {
@@ -171,7 +173,7 @@ export default function StatusPage() {
 
         <div className="mt-8 text-center">
           <a 
-            href={`/?${searchParams.toString()}`}
+            href={b.isDemo ? `/?${searchParams.toString()}` : `/paid?${searchParams.toString()}`}
             className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700"
           >
             ← Back to Home

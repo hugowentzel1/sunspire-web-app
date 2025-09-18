@@ -39,42 +39,22 @@ function HomeContent() {
   const [showSampleReportModal, setShowSampleReportModal] = useState(false);
   const [sampleReportSubmitted, setSampleReportSubmitted] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   // Brand takeover mode detection
   const b = useBrandTakeover();
 
-  // Demo mode detection - use brand state instead of separate hook
-  const isDemo = b.isDemo;
-  const searchParams = useSearchParams();
-  
-  // Get company name from URL parameter as fallback for footer
-  const urlCompany = searchParams.get('company');
-  const displayCompany = (b.enabled && b.brand) ? b.brand : (urlCompany || "Your Company");
-  
-  // Get logo from URL parameter as fallback for SSR
-  const urlLogo = searchParams.get('logo');
-  const displayLogo = b.logo || urlLogo;
-
-  // Function to create URLs with preserved parameters
-  const createUrlWithParams = (path: string) => {
-    const params = new URLSearchParams();
-    if (urlCompany) params.set('company', urlCompany);
-    if (searchParams.get('brandColor')) params.set('brandColor', searchParams.get('brandColor') || '');
-    if (searchParams.get('logo')) params.set('logo', searchParams.get('logo') || '');
-    if (searchParams.get('demo')) params.set('demo', searchParams.get('demo') || '');
-
-    const queryString = params.toString();
-    return queryString ? `${path}?${queryString}` : path;
-  };
+  // Demo mode detection - use search params for proper detection
+  const isDemo = isDemoFromSearch(searchParams);
 
   // Debug logging for brand state
   useEffect(() => {
-    console.log("Main page brand state:", b);
+    console.log("Paid page brand state:", b);
     console.log(
-      "Main page localStorage:",
+      "Paid page localStorage:",
       localStorage.getItem("sunspire-brand-takeover"),
     );
-    console.log("Main page isDemo:", isDemo);
+    console.log("Paid page isDemo:", isDemo);
   }, [b, isDemo]);
 
   // Brand colors from URL
@@ -82,15 +62,15 @@ function HomeContent() {
 
   // Apply brand palette for paid experience
   useEffect(() => {
-    if (b.primary && !isDemo) {
+    if (b.enabled && !isDemo) {
       const palette = paletteFrom(b.primary);
       applyBrandPalette(palette);
     }
-  }, [b.primary, isDemo]);
+  }, [b.enabled, b.primary, isDemo]);
 
   const { read, consume } = usePreviewQuota(2);
   const remaining = read();
-  const countdown = useCountdown(7); // Fixed to 7 days like 19610ab
+  const countdown = useCountdown(7);
 
   // Ensure client-side rendering
   useEffect(() => {
@@ -102,11 +82,25 @@ function HomeContent() {
     attachCheckoutHandlers();
   }, []);
 
+  // Function to create URLs with preserved parameters
+  const createUrlWithParams = (path: string) => {
+    const params = new URLSearchParams();
+    if (searchParams.get("company")) params.set("company", searchParams.get("company") || "");
+    if (searchParams.get("brandColor")) params.set("brandColor", searchParams.get("brandColor") || "");
+    if (searchParams.get("logo")) params.set("logo", searchParams.get("logo") || "");
+    if (searchParams.get("demo")) params.set("demo", searchParams.get("demo") || "");
+
+    const queryString = params.toString();
+    return queryString ? `${path}?${queryString}` : path;
+  };
+
   const handleAddressSelect = (result: any) => {
     setAddress(result.formattedAddress);
     setSelectedPlace(result);
 
     if (b.enabled && isClient) {
+      // Track address selection for paid experience
+      console.log("Address selected for paid experience:", result);
     }
   };
 
@@ -119,22 +113,17 @@ function HomeContent() {
     // Check and consume quota
     if (b.enabled) {
       const currentQuota = read();
-      console.log("🔒 Homepage quota check - currentQuota:", currentQuota);
+      console.log("🔒 Paid page quota check - currentQuota:", currentQuota);
 
       // Consume demo quota first
       consume();
       const newQuota = read();
-      console.log("🔒 Homepage quota consumed, remaining:", newQuota);
+      console.log("🔒 Paid page quota consumed, remaining:", newQuota);
 
       // If quota is now negative, navigate to lockout page
       if (newQuota < 0) {
-        console.log(
-          "🔒 Quota exhausted after consumption, navigating to report page to show lockout",
-        );
+        console.log("🔒 Quota exhausted after consumption, navigating to report page to show lockout");
         // Navigate to report page which will show lockout overlay
-        const company = searchParams.get("company");
-        const demo = searchParams.get("demo");
-
         const q = new URLSearchParams({
           address: address || "123 Main St",
           lat: "40.7128",
@@ -142,8 +131,10 @@ function HomeContent() {
           placeId: "demo",
         });
 
-        if (company) q.set("company", company);
-        if (demo) q.set("demo", demo);
+        // Add all URL parameters
+        if (searchParams.get("company")) q.set("company", searchParams.get("company") || "");
+        if (searchParams.get("brandColor")) q.set("brandColor", searchParams.get("brandColor") || "");
+        if (searchParams.get("logo")) q.set("logo", searchParams.get("logo") || "");
 
         router.push(`/report?${q.toString()}`);
         return;
@@ -153,10 +144,6 @@ function HomeContent() {
     setIsLoading(true);
 
     try {
-      // Get current URL parameters to preserve company and demo
-      const company = searchParams.get("company");
-      const demo = searchParams.get("demo");
-
       if (selectedPlace && selectedPlace.formattedAddress) {
         const q = new URLSearchParams({
           address: selectedPlace.formattedAddress,
@@ -165,9 +152,10 @@ function HomeContent() {
           placeId: selectedPlace.placeId,
         });
 
-        // Add company and demo parameters if they exist
-        if (company) q.set("company", company);
-        if (demo) q.set("demo", demo);
+        // Add all URL parameters
+        if (searchParams.get("company")) q.set("company", searchParams.get("company") || "");
+        if (searchParams.get("brandColor")) q.set("brandColor", searchParams.get("brandColor") || "");
+        if (searchParams.get("logo")) q.set("logo", searchParams.get("logo") || "");
 
         console.log("Navigating to report with selected place:", q.toString());
         router.push(`/report?${q.toString()}`);
@@ -179,9 +167,10 @@ function HomeContent() {
           placeId: "demo",
         });
 
-        // Add company and demo parameters if they exist
-        if (company) q.set("company", company);
-        if (demo) q.set("demo", demo);
+        // Add all URL parameters
+        if (searchParams.get("company")) q.set("company", searchParams.get("company") || "");
+        if (searchParams.get("brandColor")) q.set("brandColor", searchParams.get("brandColor") || "");
+        if (searchParams.get("logo")) q.set("logo", searchParams.get("logo") || "");
 
         console.log("Navigating to report with manual address:", q.toString());
         router.push(`/report?${q.toString()}`);
@@ -203,9 +192,7 @@ function HomeContent() {
         const utm_campaign = searchParams.get("utm_campaign");
 
         // Show loading state
-        const button = document.querySelector(
-          "[data-cta-button]",
-        ) as HTMLButtonElement;
+        const button = document.querySelector("[data-cta-button]") as HTMLButtonElement;
         if (button) {
           const originalText = button.textContent;
           button.textContent = "Loading...";
@@ -247,10 +234,6 @@ function HomeContent() {
     (window as any).__CONTENT_SHOWN__ = true;
   }, []);
 
-  // Don't block render on brand takeover - show content immediately
-  // The brand takeover will update the UI when ready
-  // Remove the early return to show full content always
-
   const initials = (name: string) => {
     return name
       .split(" ")
@@ -274,8 +257,8 @@ function HomeContent() {
 
           {/* Live confirmation bar for paid mode */}
           {!isDemo && (
-            <div className="mx-auto max-w-3xl mt-4 rounded-lg bg-emerald-50 text-emerald-900 text-sm px-4 py-2 border border-emerald-200" {...tid('live-bar')}>
-              ✅ Live for <b>{b.brand || 'Your Company'}</b>. Leads now save to your CRM.
+            <div className="mx-auto max-w-3xl mt-4 rounded-lg bg-emerald-50 text-emerald-900 text-sm px-4 py-2 border border-emerald-200" {...tid("live-bar")}>
+              ✅ Live for <b>{b.brand || "Your Company"}</b>. Leads now save to your CRM.
             </div>
           )}
 
@@ -335,7 +318,7 @@ function HomeContent() {
             {/* ))} */}
           </div>
 
-          {/* Address Input Section - Exact match to c548b88 */}
+          {/* Address Input Section - Exact match to aa28acf */}
           <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-6 md:p-8 max-w-3xl mx-auto section-spacing">
             <div className="space-y-6">
               <div className="text-center space-y-4">
@@ -639,7 +622,7 @@ function HomeContent() {
                   <p className="text-gray-600">
                     Industry-standard data sources.{" "}
                     <a
-                      href={createUrlWithParams("/methodology")}
+                      href="/methodology"
                       className="text-[var(--brand-primary)] hover:underline"
                     >
                       View methodology
@@ -657,8 +640,7 @@ function HomeContent() {
                 </div>
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    Cancel? — Yes, 14-day refund if it doesn&apos;t lift booked
-                    calls
+                    Cancel? — Yes, 14-day refund if it doesn&apos;t lift booked calls
                   </h3>
                   <p className="text-gray-600">
                     No long-term contracts. Cancel anytime.
@@ -762,175 +744,39 @@ function HomeContent() {
         </div>
       )}
 
-      {isDemo ? (
-        <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <div className="text-center text-gray-600">
-            <p>Demo Footer - Powered by Sunspire</p>
-          </div>
-        </footer>
-      ) : (
-        <>
-          <footer className="bg-gradient-to-b from-gray-50 via-white to-gray-100 border-t border-gray-200 mt-20">
-            <div className="max-w-7xl mx-auto px-6 py-16">
-              {/* Main Footer Content */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 text-center">
-                {/* Company Logo & Name */}
-                <div className="flex flex-col items-center">
-                  {displayLogo && (
-                    <img
-                      src={displayLogo}
-                      alt={`${displayCompany} logo`}
-                      className="h-12 w-12 rounded-lg object-contain mb-4"
-                    />
-                  )}
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                    {displayCompany}
-                  </h3>
-                </div>
-
-                {/* Legal & Support */}
-                <div>
-                  <h4 className="font-semibold text-gray-900 mb-4 text-lg">
-                    Legal & Support
-                  </h4>
-                  <div className="space-y-3">
-                    <a
-                      href={createUrlWithParams("/privacy")}
-                      className="block text-gray-600 hover:opacity-80 transition-colors duration-200"
-                    >
-                      Privacy Policy
-                    </a>
-                    <a
-                      href={createUrlWithParams("/terms")}
-                      className="block text-gray-600 hover:opacity-80 transition-colors duration-200"
-                    >
-                      Terms of Service
-                    </a>
-                    <a
-                      href={createUrlWithParams("/accessibility")}
-                      className="block text-gray-600 hover:opacity-80 transition-colors duration-200"
-                    >
-                      Accessibility
-                    </a>
-                    <a
-                      href={createUrlWithParams("/cookies")}
-                      className="block text-gray-600 hover:opacity-80 transition-colors duration-200"
-                    >
-                      Cookies
-                    </a>
-                  </div>
-                </div>
-
-                {/* Contact Information */}
-                <div>
-                  <h4 className="font-semibold text-gray-900 mb-4 text-lg">
-                    Contact
-                  </h4>
-                  <div className="space-y-3 text-sm text-gray-500">
-                    <p className="flex items-center justify-center">
-                      <svg
-                        className="w-4 h-4 mr-2 text-gray-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                        />
-                      </svg>
-                      +1 (555) 123-4567
-                    </p>
-                    <p className="flex items-center justify-center">
-                      <svg
-                        className="w-4 h-4 mr-2 text-gray-400"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                        />
-                      </svg>
-                      <a
-                        href="mailto:support@client-company.com"
-                        className="hover:opacity-80 transition-colors"
-                      >
-                        support@client-company.com
-                      </a>
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Bottom Section */}
-              <div className="border-t border-gray-200 pt-10">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center items-center">
-                  {/* NREL Disclaimer */}
-                  <div className="flex items-center justify-center text-sm text-gray-500">
-                    <svg
-                      className="w-4 h-4 ml-1 mr-2 text-gray-400 flex-shrink-0 align-middle"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M13 10V3L4 14h7v7l9-11h-7z"
-                      />
-                    </svg>
-                    <span className="leading-tight">
-                      Estimates generated using NREL PVWatts® v8
-                    </span>
-                  </div>
-
-                  {/* Powered by Sunspire */}
-                  <div className="flex items-center justify-center text-sm text-gray-500">
-                    <span className="leading-tight">
-                      Powered by{" "}
-                      <span
-                        className="font-medium"
-                        style={{ color: b.primary || "#2563eb" }}
-                      >
-                        Sunspire
-                      </span>
-                    </span>
-                  </div>
-
-                  {/* Google Disclaimer */}
-                  <div className="flex items-center justify-center text-sm text-gray-500">
-                    <svg
-                      className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m0 0L9 7"
-                      />
-                    </svg>
-                    <span className="leading-tight">
-                      Mapping & location data © Google
-                    </span>
-                  </div>
-                </div>
-              </div>
+      <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="text-center space-y-6">
+          {/* Company Logo and Name */}
+          {b.enabled && b.brand && (
+            <div className="flex flex-col items-center space-y-4">
+              {b.logo && (
+                <img
+                  src={b.logo}
+                  alt={`${b.brand} logo`}
+                  className="h-12 w-auto"
+                  onError={(e) => {
+                    e.currentTarget.style.display = "none";
+                  }}
+                />
+              )}
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                {b.brand}
+              </h3>
             </div>
-          </footer>
-        </>
-      )}
-
-      {isDemo && <StickyBar />}
+          )}
+          
+          {/* Powered by Sunspire */}
+          <div className="text-sm text-gray-500">
+            Powered by{" "}
+            <a
+              href="https://sunspire.ai"
+              className="text-[var(--brand-primary)] hover:underline"
+            >
+              Sunspire
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }

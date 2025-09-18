@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+import { useSearchParams } from 'next/navigation';
 import { useCompany } from '@/components/CompanyContext';
 import { IconBadge } from '@/components/ui/IconBadge';
 
@@ -9,6 +10,7 @@ import LegalFooter from '@/components/legal/LegalFooter';
 
 export default function PartnersPage() {
   const b = useBrandTakeover();
+  const searchParams = useSearchParams();
   const { company } = useCompany();
   const [formData, setFormData] = useState({
     company: '',
@@ -43,7 +45,7 @@ export default function PartnersPage() {
         {/* Back to Home Button */}
         <div className="mb-8">
           <a 
-            href="/" 
+            href={b.isDemo ? `/?${searchParams.toString()}` : `/paid?${searchParams.toString()}`} 
             className="inline-flex items-center text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
           >
             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -52,6 +54,35 @@ export default function PartnersPage() {
             Back to Home
           </a>
         </div>
+
+        {/* Demo Banner */}
+        {b.isDemo && b.enabled && (
+          <div className="mb-8">
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl py-6 px-8 border border-gray-200/50 shadow-lg mx-auto max-w-2xl">
+              <div className="space-y-4 text-center">
+                <h2 className="text-3xl font-bold text-gray-900">
+                  Demo for {b.brand || 'Your Company'} — Powered by Sunspire
+                </h2>
+                <p className="text-lg text-gray-600">
+                  Your Logo. Your URL. Instant Solar Quotes — Live in 24 Hours
+                </p>
+                <button 
+                  data-cta="primary"
+                  onClick={() => window.location.href = `/?${searchParams.toString()}`}
+                  data-cta-button
+                  className="inline-flex items-center px-4 py-4 rounded-full text-sm font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer" 
+                  style={{ backgroundColor: 'var(--brand-primary)' }}
+                >
+                  <span className="mr-2">⚡</span>
+                  Activate on Your Domain — 24 Hours
+                </button>
+                <p className="text-sm text-gray-600 mt-2">
+                  No call required. $99/mo + $399 setup. 14-day refund if it doesn&apos;t lift booked calls.
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Hero Section */}
         <div className="text-center mb-16">
@@ -301,7 +332,11 @@ export default function PartnersPage() {
         </div>
       </main>
 
-      <LegalFooter brand={b.enabled ? b.brand : undefined} />
+      <LegalFooter 
+        hideMarketingLinks={b.isDemo} 
+        showPoweredBy={true} 
+        brand={b.enabled ? b.brand : undefined} 
+      />
     </div>
   );
 }

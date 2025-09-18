@@ -14,7 +14,7 @@ export default function TermsPage() {
         {/* Back to Home Button */}
         <div className="mb-8">
           <a
-            href={`/?${searchParams.toString()}`}
+            href={b.isDemo ? `/?${searchParams.toString()}` : `/paid?${searchParams.toString()}`}
             className="inline-flex items-center text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
           >
             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
