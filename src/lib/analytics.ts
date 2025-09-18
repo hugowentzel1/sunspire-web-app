@@ -7,20 +7,20 @@ const key = process.env.NEXT_PUBLIC_POSTHOG_KEY;
 
 let client: AnalyticsClient = {
   init: async () => {},
-  track: () => {}
+  track: () => {},
 };
 
-if (typeof window !== 'undefined' && key) {
+if (typeof window !== "undefined" && key) {
   // dynamic import guarded by key
-  import('posthog-js')
+  import("posthog-js")
     .then(({ default: posthog }) => {
       posthog.init(key, {
-        api_host: 'https://app.posthog.com',
-        capture_pageview: false
+        api_host: "https://app.posthog.com",
+        capture_pageview: false,
       });
       client = {
         init: async () => {},
-        track: (event, props) => posthog.capture(event, props)
+        track: (event, props) => posthog.capture(event, props),
       };
     })
     .catch(() => {
@@ -29,5 +29,3 @@ if (typeof window !== 'undefined' && key) {
 }
 
 export default client;
-
-

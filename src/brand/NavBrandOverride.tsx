@@ -13,11 +13,11 @@ export default function NavBrandOverride() {
       "header img[alt*='Sunspire' i]",
       "header [aria-label*='Sunspire' i]",
     ];
-    document.querySelectorAll(selectors.join(",")).forEach(el => {
+    document.querySelectorAll(selectors.join(",")).forEach((el) => {
       const node = el as HTMLElement;
       node.style.visibility = "hidden";
       node.style.pointerEvents = "none";
-      node.setAttribute("data-vendor-hidden","true");
+      node.setAttribute("data-vendor-hidden", "true");
     });
   }, [b.enabled]);
   return null;

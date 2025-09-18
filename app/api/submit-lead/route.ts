@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
   try {
@@ -8,8 +8,8 @@ export async function POST(request: NextRequest) {
     // Validate required fields
     if (!name || !email || !address) {
       return NextResponse.json(
-        { error: 'Name, email, and address are required' },
-        { status: 400 }
+        { error: "Name, email, and address are required" },
+        { status: 400 },
       );
     }
 
@@ -17,13 +17,13 @@ export async function POST(request: NextRequest) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return NextResponse.json(
-        { error: 'Invalid email format' },
-        { status: 400 }
+        { error: "Invalid email format" },
+        { status: 400 },
       );
     }
 
     // Simulate API delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     // In production, you would:
     // 1. Save to your database (Airtable, etc.)
@@ -31,19 +31,23 @@ export async function POST(request: NextRequest) {
     // 3. Integrate with CRM systems
     // 4. Track analytics
 
-    console.log('Lead submitted:', { name, email, address, timestamp: new Date().toISOString() });
-
-    return NextResponse.json({ 
-      success: true, 
-      message: 'Lead submitted successfully',
-      leadId: Math.random().toString(36).substr(2, 9)
+    console.log("Lead submitted:", {
+      name,
+      email,
+      address,
+      timestamp: new Date().toISOString(),
     });
 
+    return NextResponse.json({
+      success: true,
+      message: "Lead submitted successfully",
+      leadId: Math.random().toString(36).substr(2, 9),
+    });
   } catch (error) {
-    console.error('Error submitting lead:', error);
+    console.error("Error submitting lead:", error);
     return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
+      { error: "Internal server error" },
+      { status: 500 },
     );
   }
 }

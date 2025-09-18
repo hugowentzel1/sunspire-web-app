@@ -11,7 +11,10 @@ export async function POST(req: NextRequest) {
   const { companyHandle, brandColors, logoURL, crm, payerEmail } = body || {};
 
   if (!companyHandle || !payerEmail) {
-    return NextResponse.json({ ok: false, error: "companyHandle and payerEmail required" }, { status: 400 });
+    return NextResponse.json(
+      { ok: false, error: "companyHandle and payerEmail required" },
+      { status: 400 },
+    );
   }
 
   const apiKey = randomBytes(24).toString("hex");
@@ -20,7 +23,7 @@ export async function POST(req: NextRequest) {
 
   const tenant = await upsertTenantByHandle(companyHandle, {
     "Company Handle": companyHandle,
-    "Plan": "Starter",
+    Plan: "Starter",
     "Brand Colors": brandColors ?? "",
     "Logo URL": logoURL ?? "",
     "CRM Keys": crm ?? "",

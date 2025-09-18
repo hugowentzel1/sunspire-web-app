@@ -1,8 +1,14 @@
-'use client';
-import Image from 'next/image';
+"use client";
+import Image from "next/image";
 
-export default function TenantLogo({ company, logoUrl, size = 40 }:{
-  company: string; logoUrl?: string; size?: number;
+export default function TenantLogo({
+  company,
+  logoUrl,
+  size = 40,
+}: {
+  company: string;
+  logoUrl?: string;
+  size?: number;
 }) {
   if (logoUrl) {
     return (
@@ -22,7 +28,7 @@ export default function TenantLogo({ company, logoUrl, size = 40 }:{
       className="inline-flex items-center justify-center rounded-full bg-[var(--brand)] text-white"
       style={{ width: size, height: size }}
     >
-      <span className="font-semibold">{company.slice(0,1).toUpperCase()}</span>
+      <span className="font-semibold">{company.slice(0, 1).toUpperCase()}</span>
     </div>
   );
 }

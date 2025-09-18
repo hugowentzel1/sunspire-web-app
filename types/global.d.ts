@@ -7,8 +7,3 @@ declare global {
 }
 
 export {};
-
-
-
-
-

@@ -1,6 +1,6 @@
-import { useTenant } from '../TenantProvider';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
+import { useTenant } from "../TenantProvider";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export function TenantPreview() {
   const { tenant } = useTenant();
@@ -14,10 +14,10 @@ export function TenantPreview() {
   };
 
   const resetToDefault = () => {
-    router.push('/');
+    router.push("/");
   };
 
-  if (!tenant || tenant.slug === 'default') {
+  if (!tenant || tenant.slug === "default") {
     return null;
   }
 
@@ -38,7 +38,7 @@ export function TenantPreview() {
             onClick={copyDemoLink}
             className="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg text-sm font-medium transition"
           >
-            {copied ? 'Copied!' : 'Copy Demo Link'}
+            {copied ? "Copied!" : "Copy Demo Link"}
           </button>
         </div>
       </div>

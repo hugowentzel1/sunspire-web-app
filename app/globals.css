@@ -1,5 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
-@import url('../components/ui/premium-tokens.css');
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap");
+@import url("../components/ui/premium-tokens.css");
 
 @tailwind base;
 @tailwind components;
@@ -7,49 +7,49 @@
 
 :root {
   /* Brand gradient system */
-  --brand: #FF7A00; /* fallback */
-  --brand-2: #FF3D81;
-  
+  --brand: #ff7a00; /* fallback */
+  --brand-2: #ff3d81;
+
   /* Premium Orange/Gold Color Palette */
-  --primary: #EA580C;        /* Rich orange */
-  --primary-light: #FB923C;  /* Light orange */
-  --secondary: #F59E0B;      /* Amber gold */
-  --secondary-light: #FCD34D; /* Light gold */
-  --accent: #DC2626;         /* Deep red accent */
-  --accent-light: #F87171;   /* Light red */
-  --orange: #FF7A3D;         /* Vibrant orange */
-  --orange-light: #FF9D6B;   /* Light orange */
-  --gold: #F59E0B;           /* Pure gold */
-  --gold-light: #FCD34D;     /* Light gold */
-  
+  --primary: #ea580c; /* Rich orange */
+  --primary-light: #fb923c; /* Light orange */
+  --secondary: #f59e0b; /* Amber gold */
+  --secondary-light: #fcd34d; /* Light gold */
+  --accent: #dc2626; /* Deep red accent */
+  --accent-light: #f87171; /* Light red */
+  --orange: #ff7a3d; /* Vibrant orange */
+  --orange-light: #ff9d6b; /* Light orange */
+  --gold: #f59e0b; /* Pure gold */
+  --gold-light: #fcd34d; /* Light gold */
+
   /* Brand takeover demo color (overridden by BrandProvider when demo=1) */
   /* --brand-primary: #FFA63D; -- Removed hardcoded value to allow dynamic setting */
-  
+
   /* Neutral palette */
-  --white: #FFFFFF;
-  --gray-50: #F8FAFC;
-  --gray-100: #F1F5F9;
-  --gray-200: #E2E8F0;
-  --gray-300: #CBD5E1;
-  --gray-400: #94A3B8;
-  --gray-500: #64748B;
+  --white: #ffffff;
+  --gray-50: #f8fafc;
+  --gray-100: #f1f5f9;
+  --gray-200: #e2e8f0;
+  --gray-300: #cbd5e1;
+  --gray-400: #94a3b8;
+  --gray-500: #64748b;
   --gray-600: #475569;
   --gray-700: #334155;
-  --gray-800: #1E293B;
-  --gray-900: #0F172A;
-  
-  /* Semantic colors */
-  --success: #10B981;
-  --warning: #F59E0B;
-  --error: #EF4444;
-  --info: #3B82F6;
+  --gray-800: #1e293b;
+  --gray-900: #0f172a;
 
-  --brand: #E11D2E; /* fallback if no company color injected */
-  
+  /* Semantic colors */
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
+  --info: #3b82f6;
+
+  --brand: #e11d2e; /* fallback if no company color injected */
+
   /* Brand theme variables for paid experience */
-  --brand-600: #B91C1C; /* darker variant for hover states */
-  --brand-100: #FEE2E2; /* light tint for backgrounds */
-  --on-brand: #FFFFFF; /* text color for optimal contrast */
+  --brand-600: #b91c1c; /* darker variant for hover states */
+  --brand-100: #fee2e2; /* light tint for backgrounds */
+  --on-brand: #ffffff; /* text color for optimal contrast */
 }
 
 /* Brand theme utility classes */
@@ -86,32 +86,33 @@
 }
 
 /* Never allow blur to affect these nodes */
-.no-blur, .no-blur * {
+.no-blur,
+.no-blur * {
   filter: none !important;
   -webkit-filter: none !important;
   backdrop-filter: none !important;
 }
 
 /* BACKDROP BLUR EFFECTS - exactly like c548b88 */
-.backdrop-blur-sm { 
-  backdrop-filter: blur(8px) !important; 
+.backdrop-blur-sm {
+  backdrop-filter: blur(8px) !important;
   -webkit-backdrop-filter: blur(8px) !important;
 }
-.backdrop-blur-md { 
-  backdrop-filter: blur(16px) !important; 
+.backdrop-blur-md {
+  backdrop-filter: blur(16px) !important;
   -webkit-backdrop-filter: blur(16px) !important;
 }
-.backdrop-blur-lg { 
-  backdrop-filter: blur(24px) !important; 
+.backdrop-blur-lg {
+  backdrop-filter: blur(24px) !important;
   -webkit-backdrop-filter: blur(24px) !important;
 }
 /* WHITE TRANSPARENCY - exactly like c548b88 */
-.bg-white\/60 { 
-  background-color: rgba(255, 255, 255, 0.8) !important; 
+.bg-white\/60 {
+  background-color: rgba(255, 255, 255, 0.8) !important;
 }
 /* Override any Tailwind bg-white/80 that might be interfering */
-.bg-white\/80 { 
-  background-color: rgba(255, 255, 255, 0.8) !important; 
+.bg-white\/80 {
+  background-color: rgba(255, 255, 255, 0.8) !important;
 }
 
 /* ENHANCED BLUR EFFECTS - Make them very visible */
@@ -133,8 +134,8 @@
 .pill-brand::before,
 .pill-brand::after {
   background: var(--brand) !important;
-  background-image: none !important;      /* kill gradients */
-  filter: none !important;                 /* kill any accidental blur */
+  background-image: none !important; /* kill gradients */
+  filter: none !important; /* kill any accidental blur */
 }
 
 /* Global section spacing utility */
@@ -153,8 +154,19 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    "Oxygen",
+    "Ubuntu",
+    "Cantarell",
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
+    sans-serif;
   background: var(--gray-50);
   min-height: 100vh;
   line-height: 1.6;
@@ -173,37 +185,39 @@ a {
 /* Sleek Premium Button System - Company Color + White Theme */
 .btn-primary {
   @apply inline-flex items-center justify-center rounded-2xl px-6 py-4 font-bold text-white transition-all duration-300 transform;
-  
+
   /* Company color with subtle white gradient */
-  background: linear-gradient(135deg, 
-    var(--brand) 0%, 
+  background: linear-gradient(
+    135deg,
+    var(--brand) 0%,
     color-mix(in srgb, var(--brand) 90%, white) 100%
   );
-  
+
   /* Sleek shadows and borders */
-  box-shadow: 
+  box-shadow:
     0 8px 24px rgba(0, 0, 0, 0.12),
     0 4px 12px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  
+
   /* Subtle border with company color */
   border: 1px solid color-mix(in srgb, var(--brand) 85%, white);
-  
+
   /* Position relative for pseudo-elements */
   position: relative;
   overflow: hidden;
 }
 
 .btn-primary::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(255, 255, 255, 0.1), 
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
     transparent
   );
   transition: left 0.6s ease;
@@ -211,13 +225,13 @@ a {
 
 .btn-primary:hover {
   @apply scale-[1.02] -translate-y-1;
-  
+
   /* Enhanced hover with company color focus */
-  box-shadow: 
+  box-shadow:
     0 12px 32px rgba(0, 0, 0, 0.15),
     0 6px 16px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  
+
   /* Subtle brightness increase */
   filter: brightness(1.05);
 }
@@ -234,40 +248,42 @@ a {
 /* CTA Button - Sleek and advanced */
 .btn-cta {
   @apply inline-flex items-center justify-center rounded-3xl px-8 py-5 font-black text-lg transition-all duration-500 transform;
-  
+
   /* Company color with sophisticated white gradient */
-  background: linear-gradient(135deg,
+  background: linear-gradient(
+    135deg,
     var(--brand) 0%,
     color-mix(in srgb, var(--brand) 85%, white) 50%,
     var(--brand) 100%
   );
-  
+
   /* Premium text styling */
   color: white;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   letter-spacing: 0.025em;
-  
+
   /* Sleek shadows */
-  box-shadow: 
+  box-shadow:
     0 16px 40px rgba(0, 0, 0, 0.15),
     0 8px 20px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  
+
   /* Subtle border */
   border: 1px solid color-mix(in srgb, var(--brand) 80%, white);
-  
+
   position: relative;
   overflow: hidden;
 }
 
 .btn-cta::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg,
+  background: linear-gradient(
+    90deg,
     transparent,
     rgba(255, 255, 255, 0.15),
     transparent
@@ -277,13 +293,13 @@ a {
 
 .btn-cta:hover {
   @apply scale-[1.02] -translate-y-1;
-  
+
   /* Enhanced hover effects */
-  box-shadow: 
+  box-shadow:
     0 24px 56px rgba(0, 0, 0, 0.2),
     0 12px 28px rgba(0, 0, 0, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.25);
-  
+
   filter: brightness(1.08);
 }
 
@@ -299,17 +315,17 @@ a {
 /* Disabled Button State */
 .btn-disabled {
   @apply inline-flex items-center justify-center rounded-3xl px-8 py-5 font-black text-lg transition-all duration-500 transform;
-  
-  background: #9CA3AF;
+
+  background: #9ca3af;
   color: white;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   letter-spacing: 0.025em;
-  
-  box-shadow: 
+
+  box-shadow:
     0 8px 20px rgba(0, 0, 0, 0.1),
     0 4px 10px rgba(0, 0, 0, 0.08);
-  
-  border: 1px solid #9CA3AF;
+
+  border: 1px solid #9ca3af;
   cursor: not-allowed;
   opacity: 0.6;
 }
@@ -317,7 +333,7 @@ a {
 .btn-disabled:hover {
   @apply scale-100 translate-y-0;
   transform: none;
-  box-shadow: 
+  box-shadow:
     0 8px 20px rgba(0, 0, 0, 0.1),
     0 4px 10px rgba(0, 0, 0, 0.08);
 }
@@ -325,23 +341,23 @@ a {
 /* Secondary Button - Clean white with company accent */
 .btn-secondary {
   @apply inline-flex items-center justify-center rounded-2xl px-6 py-4 font-semibold transition-all duration-300 transform;
-  
+
   /* Clean white background */
   background: white;
   color: var(--brand);
   border: 2px solid color-mix(in srgb, var(--brand) 20%, transparent);
-  
-  box-shadow: 
+
+  box-shadow:
     0 4px 16px rgba(0, 0, 0, 0.06),
     0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .btn-secondary:hover {
   @apply scale-[1.02] -translate-y-1;
-  
+
   border-color: color-mix(in srgb, var(--brand) 40%, transparent);
-  
-  box-shadow: 
+
+  box-shadow:
     0 8px 24px rgba(0, 0, 0, 0.1),
     0 4px 12px rgba(0, 0, 0, 0.06);
 }
@@ -349,19 +365,23 @@ a {
 /* Disabled Button - Clean and professional */
 .btn-disabled {
   @apply inline-flex items-center justify-center rounded-2xl px-6 py-4 font-semibold transition-all duration-300 cursor-not-allowed;
-  
+
   background: rgba(249, 250, 251, 0.8);
   color: rgba(156, 163, 175, 0.8);
   border: 1px solid rgba(229, 231, 235, 0.5);
-  
-  box-shadow: 
-    0 2px 8px rgba(0, 0, 0, 0.04);
-  
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
   filter: grayscale(0.2) opacity(0.8);
 }
 
 /* Premium Typography */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.025em;
@@ -385,32 +405,38 @@ h3 {
 
 /* Premium Background Gradients */
 .bg-premium {
-  background: linear-gradient(135deg, #EA580C 0%, #F59E0B 100%);
+  background: linear-gradient(135deg, #ea580c 0%, #f59e0b 100%);
 }
 
 .bg-premium-alt {
-  background: linear-gradient(135deg, #FF7A3D 0%, #DC2626 100%);
+  background: linear-gradient(135deg, #ff7a3d 0%, #dc2626 100%);
 }
 
 .bg-premium-dark {
-  background: linear-gradient(135deg, #7C2D12 0%, #92400E 100%);
+  background: linear-gradient(135deg, #7c2d12 0%, #92400e 100%);
 }
 
 .bg-premium-light {
-  background: linear-gradient(135deg, #FEF3C7 0%, #FEF7ED 100%);
+  background: linear-gradient(135deg, #fef3c7 0%, #fef7ed 100%);
 }
 
 /* Animated Background */
 .bg-animated {
-  background: linear-gradient(-45deg, #EA580C, #F59E0B, #FF7A3D, #DC2626);
+  background: linear-gradient(-45deg, #ea580c, #f59e0b, #ff7a3d, #dc2626);
   background-size: 400% 400%;
   animation: gradientShift 15s ease infinite;
 }
 
 @keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Glassmorphism Effects */
@@ -433,13 +459,17 @@ h3 {
   background: var(--white);
   border-radius: 24px;
   border: 1px solid var(--gray-200);
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  box-shadow:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .card-premium:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 .card-glass {
@@ -487,7 +517,11 @@ h3 {
 /* Premium Stats */
 .stat-premium {
   @apply text-center p-8 rounded-3xl;
-  background: linear-gradient(135deg, rgba(248, 250, 252, 0.9) 0%, rgba(241, 245, 249, 0.7) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(248, 250, 252, 0.9) 0%,
+    rgba(241, 245, 249, 0.7) 100%
+  );
   backdrop-filter: blur(20px);
   border: 1px solid rgba(241, 245, 249, 0.3);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -566,16 +600,16 @@ h3 {
   .card-premium {
     border-radius: 16px;
   }
-  
+
   .btn-premium,
   .btn-premium-alt,
   .btn-outline-premium {
     @apply px-6 py-3 text-sm;
   }
-  
+
   .stat-premium {
-  @apply p-6;
-}
+    @apply p-6;
+  }
 
   .icon-premium,
   .icon-premium-alt {
@@ -617,47 +651,50 @@ h3 {
 }
 
 /* Brand gradient system */
-.brand-gradient { 
-  background: linear-gradient(135deg, var(--brand), var(--brand-2)); 
+.brand-gradient {
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
 }
 
 .brand-chip {
-  display: inline-flex; 
-  align-items: center; 
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  border-radius: 1rem; 
-  color: #fff; 
+  border-radius: 1rem;
+  color: #fff;
   background: linear-gradient(135deg, var(--brand), var(--brand-2));
 }
 
 .icon-chip {
-  width: 48px; 
-  height: 48px; 
-  border-radius: 14px; 
-  display: flex; 
-  align-items: center; 
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, var(--brand-primary), white);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, .10);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.1);
 }
 
-.kpi-card, .feature-card {
-  border-radius: 16px; 
-  background: #fff; 
-  box-shadow: 0 8px 30px rgba(0, 0, 0, .06);
+.kpi-card,
+.feature-card {
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
 }
 
-.kpi-card .title, .feature-card .title { 
-  margin-top: 10px; 
-  font-weight: 700; 
-  line-height: 1.1; 
+.kpi-card .title,
+.feature-card .title {
+  margin-top: 10px;
+  font-weight: 700;
+  line-height: 1.1;
   text-align: center;
 }
 
-.kpi-card .desc, .feature-card .desc { 
-  margin-top: 4px; 
-  color: #64748B; 
-  font-size: 14px; 
+.kpi-card .desc,
+.feature-card .desc {
+  margin-top: 4px;
+  color: #64748b;
+  font-size: 14px;
   text-align: center;
 }
 
@@ -680,25 +717,25 @@ h3 {
 }
 
 .blur-overlay {
-  position: absolute; 
-  inset: 0; 
-  z-index: 10; 
+  position: absolute;
+  inset: 0;
+  z-index: 10;
   border-radius: 16px;
   backdrop-filter: blur(8px);
-  background: rgba(255, 255, 255, .35);  /* translucent so chart is visible */
-  pointer-events: none;                 /* overlay doesn't block clicks */
+  background: rgba(255, 255, 255, 0.35); /* translucent so chart is visible */
+  pointer-events: none; /* overlay doesn't block clicks */
 }
 
 .locked-container {
-  position: relative; 
-  border-radius: 16px; 
-  overflow: hidden; 
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
   isolation: isolate; /* stable z-index stack */
 }
 
 /* Brand Takeover Demo Utilities */
-.callout-accent { 
-  border: 1px solid color-mix(in srgb, var(--brand-primary) 35%, #e5e7eb); 
+.callout-accent {
+  border: 1px solid color-mix(in srgb, var(--brand-primary) 35%, #e5e7eb);
 }
 
 /* Demo mode button overrides */
@@ -713,7 +750,7 @@ h3 {
 .cta-band {
   position: relative;
   z-index: 100; /* high enough to go over content but not over modals */
-  background: var(--brand-primary, #FFA63D);
+  background: var(--brand-primary, #ffa63d);
   border-radius: 24px;
   overflow: hidden;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
@@ -781,19 +818,28 @@ h3 {
 }
 
 /* Boot failsafe - force hide loading overlays after 6s */
-html.force-show .global-loading-overlay { 
-  display: none !important; 
+html.force-show .global-loading-overlay {
+  display: none !important;
 }
 
 /* Blur fallback */
-.blur-fallback { filter: blur(12px); }
+.blur-fallback {
+  filter: blur(12px);
+}
 
 /* CTA Box Branding */
 .cta-box {
   background: var(--brand) !important;
-  background: linear-gradient(135deg, var(--brand) 0%, var(--brand) 100%) !important;
+  background: linear-gradient(
+    135deg,
+    var(--brand) 0%,
+    var(--brand) 100%
+  ) !important;
 }
-.cta-box .cta-title { color: var(--brandBg); font-weight: 700; }
+.cta-box .cta-title {
+  color: var(--brandBg);
+  font-weight: 700;
+}
 .cta-box .cta-button-primary {
   background: var(--brandBg);
   color: white;
@@ -830,7 +876,12 @@ html.force-show .global-loading-overlay {
   inset: 0;
   backdrop-filter: blur(14px) !important;
   -webkit-backdrop-filter: blur(14px) !important;
-  background: rgba(255, 255, 255, 0.6) !important; /* Increased opacity for visibility */
+  background: rgba(
+    255,
+    255,
+    255,
+    0.6
+  ) !important; /* Increased opacity for visibility */
   pointer-events: none;
   z-index: 10; /* Ensure blur is above content */
 }
@@ -892,14 +943,16 @@ div[data-demo="true"] div.locked-blur div.locked-blur__content::after {
 }
 
 /* Fallback blur when backdrop-filter is not supported */
-@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+@supports not (
+  (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))
+) {
   .locked-blur__content::after {
     backdrop-filter: none !important;
     -webkit-backdrop-filter: none !important;
     background: rgba(255, 255, 255, 0.8) !important; /* Solid white overlay */
     filter: blur(8px) !important; /* CSS filter fallback */
   }
-  
+
   /* Add console warning for debugging */
   .locked-blur__content::before {
     content: "⚠️ Backdrop-filter not supported, using CSS filter fallback";
@@ -932,9 +985,9 @@ div[data-demo="true"] div.locked-blur div.locked-blur__content::after {
   text-align: center;
   padding: 0.5rem 0.75rem;
   border-radius: 9999px;
-  background: var(--brand, #FF7A00); /* Use brand color with fallback */
+  background: var(--brand, #ff7a00); /* Use brand color with fallback */
   color: #fff; /* White text on brand background */
-  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
   border: 2px solid rgba(255, 255, 255, 0.3);
   pointer-events: auto; /* Re-enable pointer events for the button */
 }

@@ -1,9 +1,9 @@
 import { Lock } from "lucide-react";
 
 type Props = {
-  label?: string;           // e.g., "Unlock Full Report" / "See exact cost"
+  label?: string; // e.g., "Unlock Full Report" / "See exact cost"
   onClick?: () => void;
-  className?: string;       // for positioning (absolute bottom-center on cards)
+  className?: string; // for positioning (absolute bottom-center on cards)
   ariaLabel?: string;
 };
 

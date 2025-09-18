@@ -13,9 +13,10 @@ export function corsPreflightOrHeaders(req: Request) {
     "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
     "Access-Control-Max-Age": "86400",
   });
-  if (ALLOW.some(a => origin.startsWith(a))) {
+  if (ALLOW.some((a) => origin.startsWith(a))) {
     headers.set("Access-Control-Allow-Origin", origin);
   }
-  if (req.method === "OPTIONS") return new NextResponse(null, { status: 204, headers });
+  if (req.method === "OPTIONS")
+    return new NextResponse(null, { status: 204, headers });
   return headers; // attach these to your 200/4xx responses
 }

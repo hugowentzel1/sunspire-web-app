@@ -1,6 +1,7 @@
 # 🚀 Complete Setup Checklist - Personalized URL System
 
 ## ✅ COMPLETED AUTOMATICALLY:
+
 - [x] Redirect app files created (`sunspire-outreach-redirects/`)
 - [x] Company helper functions (`lib/company.ts`)
 - [x] Personalized demo page (`app/page.tsx`)
@@ -12,6 +13,7 @@
 ## 🔄 MANUAL STEPS TO COMPLETE:
 
 ### PHASE A: Deploy Redirect App
+
 1. **Create GitHub Repository:**
    - Go to [github.com](https://github.com) → New repository
    - Name: `sunspire-outreach-redirects`
@@ -19,6 +21,7 @@
    - Don't initialize with README
 
 2. **Push Redirect Code:**
+
    ```bash
    cd sunspire-outreach-redirects
    git remote add origin https://github.com/YOUR_USERNAME/sunspire-outreach-redirects.git
@@ -44,17 +47,20 @@
    - Save, then verify in Vercel
 
 ### PHASE B: Deploy Demo Updates
+
 1. **Main site auto-deploys** (already pushed to GitHub)
 2. **Test personalization:**
    - `https://sunspiredemo.com/?company=AcmeSolar`
    - Should show "Custom Sunspire Demo for AcmeSolar"
 
 ### PHASE C: Generate 100K Links
+
 1. **Create Google Sheet** with company names
 2. **Use formulas from** `docs/google-sheets-formulas.md`
 3. **Export to CSV** for email campaign
 
 ### PHASE D: Email Campaign Setup
+
 1. **Prepare CSV** using template from `data/outreach-campaign-template.csv`
 2. **Set up Instantly/Smartlead** campaign
 3. **Use email template** from `email-campaigns/outreach-email-template.txt`
@@ -62,17 +68,20 @@
 ## 🧪 TESTING CHECKLIST:
 
 ### Test Redirect System:
+
 - [ ] `https://demo.sunspiredemo.com/test-company` redirects to `https://sunspiredemo.com/?company=test-company`
 - [ ] UTM parameters are added correctly
 - [ ] No 404 errors
 
 ### Test Personalization:
+
 - [ ] Company name displays correctly
 - [ ] Dynamic colors change per company
 - [ ] Page title updates
 - [ ] Meta robots tag added for SEO protection
 
 ### Test Email Campaign:
+
 - [ ] CSV imports correctly
 - [ ] Personalization variables work
 - [ ] Links are clickable
@@ -81,12 +90,14 @@
 ## 📊 EXPECTED RESULTS:
 
 ### After Setup:
+
 - **Infinite personalized URLs**: `demo.sunspiredemo.com/[any-slug]`
 - **Each redirects to**: `sunspiredemo.com/?company=[slug]`
 - **Page automatically shows**: Company name, custom colors, branding
 - **Ready for 100K+ prospects**: Each gets their own unique link
 
 ### Performance:
+
 - **Redirect speed**: <100ms
 - **Page load**: <2s
 - **Scalability**: Unlimited prospects
@@ -95,6 +106,7 @@
 ## 🚨 CRITICAL CHECKS:
 
 ### Before Going Live:
+
 - [ ] All redirects work (test 10+ random slugs)
 - [ ] Demo page personalizes correctly
 - [ ] No broken links or 404s
@@ -102,6 +114,7 @@
 - [ ] Tracking and analytics work
 
 ### Compliance:
+
 - [ ] Unsubscribe links included
 - [ ] Postal address in emails
 - [ ] CAN-SPAM compliant
@@ -118,6 +131,7 @@
 ## 📞 SUPPORT:
 
 If you encounter issues:
+
 1. Check Vercel deployment logs
 2. Verify DNS propagation (can take up to 48 hours)
 3. Test redirects manually

@@ -12,7 +12,7 @@ export function DemoFormModal({ isOpen, onClose }: DemoFormModalProps) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    domain: ""
+    domain: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -21,7 +21,7 @@ export function DemoFormModal({ isOpen, onClose }: DemoFormModalProps) {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
       await fetch("/api/demo-lead", {
         method: "POST",
@@ -32,10 +32,10 @@ export function DemoFormModal({ isOpen, onClose }: DemoFormModalProps) {
           primary,
           logo,
           demoLink: window.location.href,
-          source: "demo_modal"
-        })
+          source: "demo_modal",
+        }),
       });
-      
+
       // Reset form and close modal
       setFormData({ name: "", email: "", domain: "" });
       onClose();
@@ -58,7 +58,7 @@ export function DemoFormModal({ isOpen, onClose }: DemoFormModalProps) {
             ×
           </button>
         </div>
-        
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -68,11 +68,13 @@ export function DemoFormModal({ isOpen, onClose }: DemoFormModalProps) {
               type="text"
               required
               value={formData.name}
-              onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, name: e.target.value }))
+              }
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
             />
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Email
@@ -81,11 +83,13 @@ export function DemoFormModal({ isOpen, onClose }: DemoFormModalProps) {
               type="email"
               required
               value={formData.email}
-              onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, email: e.target.value }))
+              }
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
             />
           </div>
-          
+
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-1">
               Domain
@@ -95,11 +99,13 @@ export function DemoFormModal({ isOpen, onClose }: DemoFormModalProps) {
               placeholder="https://yourcompany.com"
               required
               value={formData.domain}
-              onChange={(e) => setFormData(prev => ({ ...prev, domain: e.target.value }))}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, domain: e.target.value }))
+              }
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-orange-500"
             />
           </div>
-          
+
           <button
             type="submit"
             disabled={isSubmitting}
@@ -108,9 +114,10 @@ export function DemoFormModal({ isOpen, onClose }: DemoFormModalProps) {
             {isSubmitting ? "Submitting..." : "Get Started"}
           </button>
         </form>
-        
+
         <p className="text-xs text-gray-500 mt-4 text-center">
-          We&apos;ll contact you within 24 hours to set up your branded solar intelligence platform.
+          We&apos;ll contact you within 24 hours to set up your branded solar
+          intelligence platform.
         </p>
       </div>
     </div>

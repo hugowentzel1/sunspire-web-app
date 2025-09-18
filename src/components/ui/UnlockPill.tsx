@@ -4,7 +4,11 @@ type Props = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   label?: string;
 };
 
-export default function UnlockPill({ label = "Unlock Full Report", className = "", ...rest }: Props) {
+export default function UnlockPill({
+  label = "Unlock Full Report",
+  className = "",
+  ...rest
+}: Props) {
   return (
     <button
       {...rest}
@@ -20,8 +24,12 @@ export default function UnlockPill({ label = "Unlock Full Report", className = "
         className,
       ].join(" ")}
     >
-      <span aria-hidden className="leading-none">🔒</span>
-      <span className="leading-none">{label}&nbsp;<span aria-hidden>→</span></span>
+      <span aria-hidden className="leading-none">
+        🔒
+      </span>
+      <span className="leading-none">
+        {label}&nbsp;<span aria-hidden>→</span>
+      </span>
     </button>
   );
 }

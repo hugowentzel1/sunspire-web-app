@@ -9,8 +9,8 @@ export const logger = {
     console.error(`[ERROR] ${message}`, ...args);
   },
   debug: (message: string, ...args: any[]) => {
-    if (process.env.NODE_ENV === 'development') {
+    if (process.env.NODE_ENV === "development") {
       console.log(`[DEBUG] ${message}`, ...args);
     }
-  }
+  },
 };

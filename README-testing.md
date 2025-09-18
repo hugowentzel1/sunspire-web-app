@@ -24,6 +24,7 @@ npx playwright install
 ## Running Tests
 
 ### Live E2E Tests (Recommended)
+
 ```bash
 # Set environment variables
 export LIVE_BASE="https://sunspire-web-app.vercel.app"
@@ -37,16 +38,19 @@ npm run test:e2e:live
 ```
 
 ### All Tests
+
 ```bash
 npm run test:e2e
 ```
 
 ### Debug Mode
+
 ```bash
 npm run test:debug
 ```
 
 ### Headed Mode (see browser)
+
 ```bash
 npm run test:headed
 ```
@@ -54,31 +58,37 @@ npm run test:headed
 ## Test Coverage
 
 ### ✅ Health Endpoint
+
 - `/healthz` returns 200 with `{ok: true}`
 
 ### ✅ Demo Mode (`/?company=testco&demo=1`)
+
 - Shows `demo-cta` (Activate on Your Domain button)
 - Shows `pricing-section` (FAQ section)
 - Shows `howitworks-section` (How It Works)
 - Does NOT show `live-bar`
 
 ### ✅ Outreach Slugs (`/o/testco-abc123`)
+
 - Redirects to demo URL
 - Shows demo experience
 
 ### ✅ Paid Mode (`/?company=qa-acme`)
+
 - Does NOT show `demo-cta`, `pricing-section`, `howitworks-section`
 - Shows `live-bar` (Live for {Company})
 - Shows `footer-legal-links` (Terms, Privacy, etc.)
 - Does NOT show `footer-marketing-links` (Pricing, Partners, Demo)
 
 ### ✅ Lead Submission
+
 - Shows `lead-success-toast` on successful submit
 - Optionally verifies lead in Airtable via `/api/test/last-lead`
 
 ## Test Data Requirements
 
 ### Airtable Setup
+
 1. Create `qa-acme` tenant with `demo=false`
 2. Ensure `Leads` table exists with fields:
    - `Company Handle`
@@ -88,18 +98,21 @@ npm run test:headed
    - `Created`
 
 ### Test API Token
+
 1. Set `TEST_API_TOKEN` environment variable
 2. Use same token in test headers for lead verification
 
 ## Troubleshooting
 
 ### Tests Failing
+
 1. **Check environment variables** - all required vars must be set
 2. **Verify live site** - ensure `LIVE_BASE` is accessible
 3. **Check tenant exists** - `QA_TENANT_SLUG` must exist in Airtable
 4. **Verify test IDs** - ensure `NEXT_PUBLIC_E2E=1` is set
 
 ### Common Issues
+
 - **Timeout errors**: Increase timeout in `playwright.config.ts`
 - **Element not found**: Check if test IDs are properly added
 - **Network errors**: Verify live site is accessible
@@ -108,6 +121,7 @@ npm run test:headed
 ## Test Reports
 
 After running tests, check:
+
 - Console output for test results
 - `playwright-report/` folder for HTML report
 - Screenshots in `test-results/` for failed tests
@@ -115,6 +129,7 @@ After running tests, check:
 ## Continuous Integration
 
 Add to your CI pipeline:
+
 ```yaml
 - name: Run E2E Tests
   run: |
@@ -129,6 +144,7 @@ Add to your CI pipeline:
 ## 🎯 Success Criteria
 
 All tests should pass when:
+
 - Demo mode shows demo CTAs and marketing
 - Paid mode hides demo content and shows Live bar
 - Outreach slugs redirect correctly

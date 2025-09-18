@@ -28,7 +28,7 @@ export function useCountdown(expireDays: number = 3): CountdownState {
     const link = window.location.href;
     const stored = localStorage.getItem(COUNTDOWN_KEY);
     const deadlines = stored ? JSON.parse(stored) : {};
-    
+
     let deadline: Date;
     if (!deadlines[link]) {
       deadline = new Date();
@@ -42,7 +42,7 @@ export function useCountdown(expireDays: number = 3): CountdownState {
     const updateCountdown = () => {
       const now = new Date();
       const diff = deadline.getTime() - now.getTime();
-      
+
       if (diff <= 0) {
         setState({
           days: 0,
@@ -56,7 +56,9 @@ export function useCountdown(expireDays: number = 3): CountdownState {
       }
 
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const hours = Math.floor(
+        (diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+      );
       const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
       const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 

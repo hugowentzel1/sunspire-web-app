@@ -37,7 +37,7 @@ function allowedLogo(urlStr: string | null): string | null {
 
 export type Personalization = {
   brand: string | null;
-  primary: string;    // always a valid hex
+  primary: string; // always a valid hex
   logo: string | null;
   isPersonalized: boolean;
 };

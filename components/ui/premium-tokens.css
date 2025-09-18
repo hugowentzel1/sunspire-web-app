@@ -1,15 +1,15 @@
 /* Sleek Premium Design Tokens - Company Color + White Theme */
 :root {
-  --brand: #111827;        /* deep neutral */
-  --brand-2: #4F46E5;      /* indigo accent */
-  --ink: #0E1016;
+  --brand: #111827; /* deep neutral */
+  --brand-2: #4f46e5; /* indigo accent */
+  --ink: #0e1016;
   --muted: #667085;
-  --bg-1: #F7FAFF;
-  --bg-2: #EEF4FF;
-  --card: #FFFFFF;
-  --border: #E6E9F0;
-  --good: #16A34A;
-  --warn: #F59E0B;
+  --bg-1: #f7faff;
+  --bg-2: #eef4ff;
+  --card: #ffffff;
+  --border: #e6e9f0;
+  --good: #16a34a;
+  --warn: #f59e0b;
 }
 
 /* Sleek Background */
@@ -30,37 +30,39 @@
 /* Sleek Premium Button System - Company Color + White Theme */
 .btn-primary {
   @apply inline-flex items-center justify-center rounded-2xl px-6 py-4 font-bold text-white transition-all duration-300 transform;
-  
+
   /* Company color with subtle white gradient */
-  background: linear-gradient(135deg, 
-    var(--brand) 0%, 
+  background: linear-gradient(
+    135deg,
+    var(--brand) 0%,
     color-mix(in srgb, var(--brand) 90%, white) 100%
   );
-  
+
   /* Sleek shadows and borders */
-  box-shadow: 
+  box-shadow:
     0 8px 24px rgba(0, 0, 0, 0.12),
     0 4px 12px rgba(0, 0, 0, 0.08),
     inset 0 1px 0 rgba(255, 255, 255, 0.15);
-  
+
   /* Subtle border with company color */
   border: 1px solid color-mix(in srgb, var(--brand) 85%, white);
-  
+
   /* Position relative for pseudo-elements */
   position: relative;
   overflow: hidden;
 }
 
 .btn-primary::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, 
-    transparent, 
-    rgba(255, 255, 255, 0.1), 
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
     transparent
   );
   transition: left 0.6s ease;
@@ -68,13 +70,13 @@
 
 .btn-primary:hover {
   @apply scale-[1.02] -translate-y-1;
-  
+
   /* Enhanced hover with company color focus */
-  box-shadow: 
+  box-shadow:
     0 12px 32px rgba(0, 0, 0, 0.15),
     0 6px 16px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  
+
   /* Subtle brightness increase */
   filter: brightness(1.05);
 }
@@ -91,40 +93,42 @@
 /* CTA Button - Sleek and advanced */
 .btn-cta {
   @apply inline-flex items-center justify-center rounded-3xl px-8 py-5 font-black text-lg transition-all duration-500 transform;
-  
+
   /* Company color with sophisticated white gradient */
-  background: linear-gradient(135deg,
+  background: linear-gradient(
+    135deg,
     var(--brand) 0%,
     color-mix(in srgb, var(--brand) 85%, white) 50%,
     var(--brand) 100%
   );
-  
+
   /* Premium text styling */
   color: white;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   letter-spacing: 0.025em;
-  
+
   /* Sleek shadows */
-  box-shadow: 
+  box-shadow:
     0 16px 40px rgba(0, 0, 0, 0.15),
     0 8px 20px rgba(0, 0, 0, 0.1),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
-  
+
   /* Subtle border */
   border: 1px solid color-mix(in srgb, var(--brand) 80%, white);
-  
+
   position: relative;
   overflow: hidden;
 }
 
 .btn-cta::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg,
+  background: linear-gradient(
+    90deg,
     transparent,
     rgba(255, 255, 255, 0.15),
     transparent
@@ -134,13 +138,13 @@
 
 .btn-cta:hover {
   @apply scale-[1.02] -translate-y-1;
-  
+
   /* Enhanced hover effects */
-  box-shadow: 
+  box-shadow:
     0 24px 56px rgba(0, 0, 0, 0.2),
     0 12px 28px rgba(0, 0, 0, 0.15),
     inset 0 1px 0 rgba(255, 255, 255, 0.25);
-  
+
   filter: brightness(1.08);
 }
 
@@ -156,23 +160,23 @@
 /* Secondary Button - Clean white with company accent */
 .btn-secondary {
   @apply inline-flex items-center justify-center rounded-2xl px-6 py-4 font-semibold transition-all duration-300 transform;
-  
+
   /* Clean white background */
   background: white;
   color: var(--brand);
   border: 2px solid color-mix(in srgb, var(--brand) 20%, transparent);
-  
-  box-shadow: 
+
+  box-shadow:
     0 4px 16px rgba(0, 0, 0, 0.06),
     0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 .btn-secondary:hover {
   @apply scale-[1.02] -translate-y-1;
-  
+
   border-color: color-mix(in srgb, var(--brand) 40%, transparent);
-  
-  box-shadow: 
+
+  box-shadow:
     0 8px 24px rgba(0, 0, 0, 0.1),
     0 4px 12px rgba(0, 0, 0, 0.06);
 }
@@ -180,14 +184,13 @@
 /* Disabled Button - Clean and professional */
 .btn-disabled {
   @apply inline-flex items-center justify-center rounded-2xl px-6 py-4 font-semibold transition-all duration-300 cursor-not-allowed;
-  
+
   background: rgba(249, 250, 251, 0.8);
   color: rgba(156, 163, 175, 0.8);
   border: 1px solid rgba(229, 231, 235, 0.5);
-  
-  box-shadow: 
-    0 2px 8px rgba(0, 0, 0, 0.04);
-  
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
   filter: grayscale(0.2) opacity(0.8);
 }
 

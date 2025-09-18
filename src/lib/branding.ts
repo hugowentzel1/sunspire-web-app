@@ -7,14 +7,16 @@ export type Branding = {
 };
 
 export function normalizeHex(input?: string) {
-  if (!input) return '#1877F2';
-  const decoded = input.startsWith('%23') ? '#' + input.slice(3) : input;
-  const v = decoded.startsWith('#') ? decoded : '#' + decoded;
-  return /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(v) ? v : '#1877F2';
+  if (!input) return "#1877F2";
+  const decoded = input.startsWith("%23") ? "#" + input.slice(3) : input;
+  const v = decoded.startsWith("#") ? decoded : "#" + decoded;
+  return /^#([0-9a-f]{3}|[0-9a-f]{6})$/i.test(v) ? v : "#1877F2";
 }
 
 // Helper to get tenant by company handle
-export async function getTenantByCompany(company: string): Promise<{ id: string; logoUrl?: string; brandColor?: string } | null> {
+export async function getTenantByCompany(
+  company: string,
+): Promise<{ id: string; logoUrl?: string; brandColor?: string } | null> {
   try {
     // For now, return null since we don't have the full Airtable integration
     // This can be implemented later when the full tenant lookup is available
@@ -24,10 +26,12 @@ export async function getTenantByCompany(company: string): Promise<{ id: string;
   }
 }
 
-export async function resolveBrandingFromSearch(search: URLSearchParams): Promise<Branding> {
-  const company = (search.get('company') || 'Demo').trim();
-  const token = search.get('token') || undefined;
-  const brandParam = normalizeHex(search.get('brandColor') || undefined);
+export async function resolveBrandingFromSearch(
+  search: URLSearchParams,
+): Promise<Branding> {
+  const company = (search.get("company") || "Demo").trim();
+  const token = search.get("token") || undefined;
+  const brandParam = normalizeHex(search.get("brandColor") || undefined);
 
   let logoUrl: string | undefined;
   let brandColor = brandParam;

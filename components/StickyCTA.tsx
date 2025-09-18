@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useCompany } from './CompanyContext';
-import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+import { useState, useEffect } from "react";
+import { useCompany } from "./CompanyContext";
+import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
 
 export default function StickyCTA() {
   const { company } = useCompany();
@@ -14,7 +14,7 @@ export default function StickyCTA() {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
       const documentHeight = document.documentElement.scrollHeight;
-      
+
       // Show CTA when user has scrolled past 50% of the page
       if (scrollY > (documentHeight - windowHeight) * 0.5) {
         setIsVisible(true);
@@ -23,8 +23,8 @@ export default function StickyCTA() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const handleLaunchClick = async () => {
@@ -33,33 +33,33 @@ export default function StickyCTA() {
       try {
         // Collect tracking parameters from URL
         const urlParams = new URLSearchParams(window.location.search);
-        const token = urlParams.get('token');
-        const company = urlParams.get('company');
-        const utm_source = urlParams.get('utm_source');
-        const utm_campaign = urlParams.get('utm_campaign');
-        
+        const token = urlParams.get("token");
+        const company = urlParams.get("company");
+        const utm_source = urlParams.get("utm_source");
+        const utm_campaign = urlParams.get("utm_campaign");
+
         // Start checkout
-        const response = await fetch('/api/stripe/create-checkout-session', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+        const response = await fetch("/api/stripe/create-checkout-session", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            plan: 'starter',
+            plan: "starter",
             token,
             company,
             utm_source,
-            utm_campaign
-          })
+            utm_campaign,
+          }),
         });
-        
+
         if (!response.ok) {
-          throw new Error('Checkout failed');
+          throw new Error("Checkout failed");
         }
-        
+
         const { url } = await response.json();
         window.location.href = url;
       } catch (error) {
-        console.error('Checkout error:', error);
-        alert('Unable to start checkout. Please try again.');
+        console.error("Checkout error:", error);
+        alert("Unable to start checkout. Please try again.");
       }
     }
   };
@@ -78,12 +78,12 @@ export default function StickyCTA() {
               Get your branded solar intelligence platform live in 24 hours
             </p>
           </div>
-          
+
           <div className="flex items-center gap-3">
             <button
               onClick={handleLaunchClick}
-              className="inline-flex items-center px-6 py-3 rounded-lg text-sm font-medium text-white shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer" 
-              style={{ backgroundColor: 'var(--brand-primary)' }}
+              className="inline-flex items-center px-6 py-3 rounded-lg text-sm font-medium text-white shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer"
+              style={{ backgroundColor: "var(--brand-primary)" }}
             >
               <span className="mr-2">⚡</span>
               Activate on Your Domain — 24 Hours

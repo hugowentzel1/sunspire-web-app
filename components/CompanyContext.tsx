@@ -1,7 +1,7 @@
 "use client";
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import { CompanyInfo, getCompanyFromUrl } from '@/lib/company';
+import React, { createContext, useContext, useEffect, useState } from "react";
+import { CompanyInfo, getCompanyFromUrl } from "@/lib/company";
 
 interface CompanyContextType {
   company: CompanyInfo;
@@ -12,9 +12,9 @@ const CompanyContext = createContext<CompanyContextType | undefined>(undefined);
 
 export function CompanyProvider({ children }: { children: React.ReactNode }) {
   const [company, setCompany] = useState<CompanyInfo>({
-    companyHandle: 'your-company',
-    companyName: 'Your Company',
-    companyDomain: 'your-company.out.sunspire.app'
+    companyHandle: "your-company",
+    companyName: "Your Company",
+    companyDomain: "your-company.out.sunspire.app",
   });
 
   useEffect(() => {
@@ -28,8 +28,8 @@ export function CompanyProvider({ children }: { children: React.ReactNode }) {
       setCompany(newCompany);
     };
 
-    window.addEventListener('popstate', handleUrlChange);
-    return () => window.removeEventListener('popstate', handleUrlChange);
+    window.addEventListener("popstate", handleUrlChange);
+    return () => window.removeEventListener("popstate", handleUrlChange);
   }, []);
 
   const updateCompany = (newCompany: CompanyInfo) => {
@@ -46,7 +46,7 @@ export function CompanyProvider({ children }: { children: React.ReactNode }) {
 export function useCompany() {
   const context = useContext(CompanyContext);
   if (context === undefined) {
-    throw new Error('useCompany must be used within a CompanyProvider');
+    throw new Error("useCompany must be used within a CompanyProvider");
   }
   return context;
 }

@@ -55,7 +55,8 @@ export interface SolarEstimate {
 
 export type BuildInputs = {
   address: string;
-  lat: number; lng: number;
+  lat: number;
+  lng: number;
   stateCode?: string;
   pv: PvwattsOut;
   rate: RateResult;
@@ -66,7 +67,16 @@ export type BuildInputs = {
 };
 
 export function buildEstimate({
-  address, lat, lng, stateCode, pv, rate, systemKw, tilt, azimuth, lossesPct
+  address,
+  lat,
+  lng,
+  stateCode,
+  pv,
+  rate,
+  systemKw,
+  tilt,
+  azimuth,
+  lossesPct,
 }: BuildInputs): SolarEstimate {
   const costPerWatt = num(process.env.DEFAULT_COST_PER_WATT, 3.0);
   const degr = num(process.env.DEFAULT_DEGRADATION_PCT, 0.5) / 100;
@@ -76,7 +86,7 @@ export function buildEstimate({
   const discount = num(process.env.DISCOUNT_RATE, 0.07);
 
   // Incentives (rebate BEFORE ITC)
-  const itcPct = incentives["US"]?.itc_pct ?? 0.30;
+  const itcPct = incentives["US"]?.itc_pct ?? 0.3;
   const stateReb = stateCode ? (incentives as any)[stateCode] : undefined;
   const rebatePerWatt = stateReb?.rebate_per_watt ?? 0;
   const rebateFlat = stateReb?.rebate_flat ?? 0;
@@ -108,11 +118,12 @@ export function buildEstimate({
       production: Math.round(prodY),
       savings: Math.round(savingsY),
       cumulativeSavings: Math.round(Math.max(0, cumulative + netCost)), // cumulative pre-capex if you need
-      netCashflow: Math.round(cumulative)
+      netCashflow: Math.round(cumulative),
     });
   }
 
-  const paybackYear = cashflowProjection.find((p) => p.netCashflow >= 0)?.year ?? null;
+  const paybackYear =
+    cashflowProjection.find((p) => p.netCashflow >= 0)?.year ?? null;
   const co2Offset = Math.round(annualKWh * 0.85); // lbs CO2 avoided (Year 1)
 
   return {
@@ -122,7 +133,9 @@ export function buildEstimate({
     date: new Date().toISOString(),
 
     systemSizeKW: systemKw,
-    tilt, azimuth, losses: lossesPct,
+    tilt,
+    azimuth,
+    losses: lossesPct,
 
     annualProductionKWh: Math.round(annualKWh),
     monthlyProduction: monthlyKWh,
@@ -145,15 +158,20 @@ export function buildEstimate({
       degradationRate: degr,
       oandmPerKWYear: oandmPerKW,
       electricityRateIncrease: rateEsc,
-      discountRate: discount
+      discountRate: discount,
     },
 
-    cashflowProjection
+    cashflowProjection,
   };
 }
 
-function num(v: string|undefined, dflt: number) {
-  const n = Number(v); return Number.isFinite(n) ? n : dflt;
+function num(v: string | undefined, dflt: number) {
+  const n = Number(v);
+  return Number.isFinite(n) ? n : dflt;
 }
-function round2(n: number) { return Math.round(n * 100) / 100; }
-function round3(n: number) { return Math.round(n * 1000) / 1000; }
+function round2(n: number) {
+  return Math.round(n * 100) / 100;
+}
+function round3(n: number) {
+  return Math.round(n * 1000) / 1000;
+}

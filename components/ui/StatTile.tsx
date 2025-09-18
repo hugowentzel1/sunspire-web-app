@@ -1,5 +1,5 @@
-import { ReactNode } from 'react';
-import { cn } from '@/lib/utils';
+import { ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 interface StatTileProps {
   label: string;
@@ -9,7 +9,13 @@ interface StatTileProps {
   className?: string;
 }
 
-export default function StatTile({ label, value, icon, hint, className }: StatTileProps) {
+export default function StatTile({
+  label,
+  value,
+  icon,
+  hint,
+  className,
+}: StatTileProps) {
   return (
     <div className={cn("card p-6", className)}>
       <div className="space-y-3">
@@ -18,7 +24,7 @@ export default function StatTile({ label, value, icon, hint, className }: StatTi
             {icon}
           </div>
         )}
-        
+
         <div className="text-center">
           <div className="text-3xl md:text-4xl font-black text-[var(--ink)] leading-none">
             {value}
@@ -27,9 +33,7 @@ export default function StatTile({ label, value, icon, hint, className }: StatTi
             {label}
           </div>
           {hint && (
-            <div className="text-xs text-[var(--muted)] mt-1">
-              {hint}
-            </div>
+            <div className="text-xs text-[var(--muted)] mt-1">{hint}</div>
           )}
         </div>
       </div>

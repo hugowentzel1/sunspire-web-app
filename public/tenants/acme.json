@@ -5,7 +5,7 @@
   "logo": "/logo-acme.svg",
   "colors": {
     "primary": "#2563EB",
-    "secondary": "#1D4ED8", 
+    "secondary": "#1D4ED8",
     "accent": "#059669",
     "success": "#10B981",
     "warning": "#F59E0B",
@@ -66,4 +66,3 @@
     "Lifetime Warranty"
   ]
 }
-

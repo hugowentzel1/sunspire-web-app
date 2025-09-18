@@ -5,7 +5,13 @@ import glob from "fast-glob";
 import { minimatch } from "minimatch";
 
 const ROOT = process.cwd();
-const IGNORE = ["node_modules/**", ".next/**", ".git/**", "test-results/**", "playwright-report/**"];
+const IGNORE = [
+  "node_modules/**",
+  ".next/**",
+  ".git/**",
+  "test-results/**",
+  "playwright-report/**",
+];
 
 const KEEP_GLOBS = [
   "public/**",
@@ -42,29 +48,30 @@ const isKeptByRule = (rel: string) => KEEP_GLOBS.some((g) => minimatch(rel, g));
 
 async function main() {
   console.log("🔍 Scanning for potentially unused files...");
-  
-  const allFiles = await glob(
-    ["**/*"],
-    { cwd: ROOT, dot: true, ignore: IGNORE }
-  );
+
+  const allFiles = await glob(["**/*"], {
+    cwd: ROOT,
+    dot: true,
+    ignore: IGNORE,
+  });
 
   // Simple heuristic: look for files that might be unused
   const candidates = allFiles.filter((rel) => {
     if (IGNORE.some((g) => minimatch(rel, g))) return false;
     if (isKeptByRule(rel)) return false;
-    
+
     // Look for common unused file patterns
     const fileName = path.basename(rel);
-    const isUnusedPattern = 
-      fileName.startsWith('.') ||
-      fileName.includes('debug') ||
-      fileName.includes('temp') ||
-      fileName.includes('test') ||
-      fileName.includes('spec') ||
-      fileName.endsWith('.log') ||
-      fileName.endsWith('.tmp') ||
-      fileName.endsWith('.bak');
-    
+    const isUnusedPattern =
+      fileName.startsWith(".") ||
+      fileName.includes("debug") ||
+      fileName.includes("temp") ||
+      fileName.includes("test") ||
+      fileName.includes("spec") ||
+      fileName.endsWith(".log") ||
+      fileName.endsWith(".tmp") ||
+      fileName.endsWith(".bak");
+
     return isUnusedPattern;
   });
 
@@ -72,8 +79,12 @@ async function main() {
   if (!deleteFlag) {
     console.log("DRY RUN — potentially unused files:");
     candidates.sort().forEach((c) => console.log("  ", c));
-    console.log(`\n${candidates.length} file(s) would be removed. Run with --delete to actually delete.`);
-    console.log("\n⚠️  This is a simple heuristic. Please review files before deleting!");
+    console.log(
+      `\n${candidates.length} file(s) would be removed. Run with --delete to actually delete.`,
+    );
+    console.log(
+      "\n⚠️  This is a simple heuristic. Please review files before deleting!",
+    );
   } else {
     console.log("🗑️  Deleting unused files...");
     for (const rel of candidates) {

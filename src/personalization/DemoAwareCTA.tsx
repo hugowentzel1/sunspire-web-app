@@ -14,21 +14,24 @@ export function DemoAwareCTA() {
       {isDemo ? (
         <div className="flex flex-col gap-3 items-center text-center">
           <div className="flex gap-3">
-            <button 
+            <button
               className="px-6 py-3 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 transition-colors shadow-md border border-orange-600"
               onClick={() => setIsModalOpen(true)}
             >
               Put this on our site
             </button>
-            <button 
+            <button
               className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
-              onClick={() => navigator.clipboard.writeText(window.location.href)}
+              onClick={() =>
+                navigator.clipboard.writeText(window.location.href)
+              }
             >
               Copy demo link
             </button>
           </div>
           <p className="text-sm text-gray-600">
-            Pre-branded preview for {brand ?? "Your Company"}. Not a contract quote.
+            Pre-branded preview for {brand ?? "Your Company"}. Not a contract
+            quote.
           </p>
         </div>
       ) : (
@@ -36,8 +39,11 @@ export function DemoAwareCTA() {
           Generate Solar Intelligence Report
         </button>
       )}
-      
-      <DemoFormModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+
+      <DemoFormModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </>
   );
 }

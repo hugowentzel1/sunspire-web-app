@@ -3,6 +3,7 @@
 ## Pre-Launch Setup
 
 ### Environment Variables
+
 - [ ] `AIRTABLE_API_KEY` set
 - [ ] `AIRTABLE_BASE_ID` set
 - [ ] `STRIPE_LIVE_SECRET_KEY` set
@@ -17,6 +18,7 @@
 - [ ] `NEXT_PUBLIC_APP_URL` set
 
 ### Airtable Schema
+
 - [ ] `Tenants` table created with required fields
 - [ ] `Leads` table created with required fields
 - [ ] `Users` table created with required fields
@@ -24,12 +26,14 @@
 - [ ] Test tenant `qa-acme` created with `demo=false`
 
 ### Stripe Setup
+
 - [ ] Live price IDs created ($99 setup, $99 monthly)
 - [ ] Webhook endpoint configured: `https://sunspire-web-app.vercel.app/api/stripe/webhook`
 - [ ] Webhook events: `checkout.session.completed`
 - [ ] Webhook test successful
 
 ### Domain Setup
+
 - [ ] SPF records added to all sender domains
 - [ ] DKIM records added to all sender domains
 - [ ] DMARC records added to all sender domains
@@ -37,6 +41,7 @@
 - [ ] Tracking domain `link.sunspiredemo.com` verified
 
 ### Email Setup
+
 - [ ] Instantly account configured
 - [ ] Campaign created with custom fields
 - [ ] Sequence loaded (5 emails, one link per email)
@@ -44,6 +49,7 @@
 - [ ] Unsubscribe handling configured
 
 ### Prospecting Setup
+
 - [ ] Clay table "Sunspire – Installers Feed" created
 - [ ] Apollo integration configured
 - [ ] AI enrichment for opening lines and benefits
@@ -53,6 +59,7 @@
 ## App Testing
 
 ### Core Functionality
+
 - [ ] Demo mode: `/?company=testco&demo=1` shows demo CTAs
 - [ ] Paid mode: `/?company=qa-acme` shows "Live for" bar
 - [ ] Outreach slug: `/o/testco-abc123` redirects to demo
@@ -61,6 +68,7 @@
 - [ ] Success toast appears on lead submit
 
 ### E2E Tests
+
 - [ ] All 8 Playwright tests passing
 - [ ] Demo experience tests pass
 - [ ] Paid experience tests pass
@@ -68,6 +76,7 @@
 - [ ] Health endpoint tests pass
 
 ### Security
+
 - [ ] CSP headers configured
 - [ ] X-Frame-Options set
 - [ ] Referrer-Policy configured
@@ -76,6 +85,7 @@
 ## Launch Day
 
 ### Morning Setup (15 min)
+
 - [ ] Check all environment variables
 - [ ] Verify Airtable connections
 - [ ] Test Stripe webhook
@@ -83,6 +93,7 @@
 - [ ] Check email deliverability
 
 ### First Customer (10 min)
+
 - [ ] Send demo link: `/?company=theircompany&demo=1`
 - [ ] Customer sees demo experience
 - [ ] Customer clicks "Activate on Your Domain"
@@ -93,6 +104,7 @@
 - [ ] Lead capture test successful
 
 ### Scale Up
+
 - [ ] Start with 200-300 emails/day
 - [ ] Monitor deliverability
 - [ ] Track conversion rates
@@ -102,6 +114,7 @@
 ## Daily Operations
 
 ### Morning Check (5 min)
+
 - [ ] Google Postmaster Tools: spam <0.1%
 - [ ] Yesterday's bounces <2%
 - [ ] Instantly: replies triaged
@@ -110,6 +123,7 @@
 - [ ] Leads flowing to Airtable
 
 ### Weekly Check (15 min)
+
 - [ ] Domain reputation: all green
 - [ ] Email deliverability >90%
 - [ ] Lead conversion rate >2%
@@ -119,24 +133,28 @@
 ## Emergency Procedures
 
 ### Webhook Issues
+
 - [ ] Check Stripe webhook logs
 - [ ] Verify `STRIPE_WEBHOOK_SECRET`
 - [ ] Test with `node test-webhook.js`
 - [ ] Check Airtable API keys
 
 ### Domain Issues
+
 - [ ] Check CNAME records
 - [ ] Wait 5-10 minutes for DNS
 - [ ] Test with `node test-domain.js`
 - [ ] Check Vercel domain settings
 
 ### Demo/Paid Mode Issues
+
 - [ ] Check URL parameters
 - [ ] Verify `isDemoFromSearch` helper
 - [ ] Check browser console
 - [ ] Run E2E tests
 
 ### Email Deliverability Issues
+
 - [ ] Check Postmaster Tools
 - [ ] Reduce sending volume 50%
 - [ ] Review email content
@@ -145,6 +163,7 @@
 ## Success Metrics
 
 ### Technical
+
 - [ ] All E2E tests passing
 - [ ] Health endpoint responding
 - [ ] Demo vs paid working correctly
@@ -152,6 +171,7 @@
 - [ ] Custom domains working
 
 ### Business
+
 - [ ] Email deliverability >90%
 - [ ] Lead conversion >2%
 - [ ] Customer activation <10 min

@@ -26,37 +26,40 @@ export function DemoAwareAddressInput() {
           Enter Your Property Address
         </h3>
         <p className="text-sm text-gray-600 mb-4">
-          {isDemo 
+          {isDemo
             ? `Try an address in ${brand ?? "Your Company"}'s service area...`
-            : "Get a comprehensive solar analysis tailored to your specific location."
-          }
+            : "Get a comprehensive solar analysis tailored to your specific location."}
         </p>
-        
+
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
             type="text"
             value={address}
             onChange={(e) => setAddress(e.target.value)}
-            placeholder={isDemo 
-              ? `Start typing an address in ${brand ?? "Your Company"}'s area...`
-              : "Start typing your property address..."
+            placeholder={
+              isDemo
+                ? `Start typing an address in ${brand ?? "Your Company"}'s area...`
+                : "Start typing your property address..."
             }
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500"
             disabled={isDemo}
           />
-          
+
           <button
             type="submit"
             className="w-full py-3 px-4 bg-gray-500 text-white rounded-lg font-semibold hover:bg-gray-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             disabled={isDemo}
           >
-            {isDemo ? "Demo Mode - Address Disabled" : "Generate Solar Intelligence Report"}
+            {isDemo
+              ? "Demo Mode - Address Disabled"
+              : "Generate Solar Intelligence Report"}
           </button>
         </form>
-        
+
         {isDemo && (
           <p className="text-xs text-gray-500 mt-3 text-center">
-            Demo mode: Address submission is disabled. Contact us to get your own live install.
+            Demo mode: Address submission is disabled. Contact us to get your
+            own live install.
           </p>
         )}
       </div>
@@ -65,9 +68,12 @@ export function DemoAwareAddressInput() {
       {showDemoModal && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
           <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
-            <h3 className="text-lg font-semibold mb-3">Get Your Own Live Install</h3>
+            <h3 className="text-lg font-semibold mb-3">
+              Get Your Own Live Install
+            </h3>
             <p className="text-gray-600 mb-4">
-              This is a demo preview. To get your own branded solar intelligence platform with full functionality, contact our team.
+              This is a demo preview. To get your own branded solar intelligence
+              platform with full functionality, contact our team.
             </p>
             <div className="flex gap-3">
               <button

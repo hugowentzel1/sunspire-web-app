@@ -42,7 +42,7 @@ export function useDemoQuota(allowed: number) {
   useEffect(() => {
     const link = typeof window !== "undefined" ? window.location.href : "link";
     const raw = localStorage.getItem(KEY);
-    const map = raw ? JSON.parse(raw) as Record<string,number> : {};
+    const map = raw ? (JSON.parse(raw) as Record<string, number>) : {};
     if (!(link in map)) map[link] = allowed;
     setRemaining(map[link]);
     localStorage.setItem(KEY, JSON.stringify(map));
@@ -51,7 +51,7 @@ export function useDemoQuota(allowed: number) {
   const consume = () => {
     const link = window.location.href;
     const raw = localStorage.getItem(KEY);
-    const map = raw ? JSON.parse(raw) as Record<string,number> : {};
+    const map = raw ? (JSON.parse(raw) as Record<string, number>) : {};
     map[link] = Math.max(0, (map[link] ?? allowed) - 1);
     localStorage.setItem(KEY, JSON.stringify(map));
     setRemaining(map[link]);

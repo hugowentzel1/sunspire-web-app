@@ -3,9 +3,11 @@
 ## Campaign: SunSpire – Installers US v1
 
 ### Email 1 (Day 1) - Plain Text
+
 **Subject:** quick idea to lift booked solar calls
 
 **Body:**
+
 ```
 Hey {{first_name}} — noticed {{company}} is driving installs in {{state}}.
 
@@ -20,11 +22,13 @@ If it doesn't move the needle, you don't keep it.
 ```
 
 ### Email 2 (Day 3) - One-line bump
+
 **Subject:** Re: quick idea to lift booked solar calls
 
 **Body:**
+
 ```
-{{first_name}} — did you get a chance to check out the demo? 
+{{first_name}} — did you get a chance to check out the demo?
 
 https://demo.sunspiredemo.com/{{demo_slug}}
 
@@ -33,9 +37,11 @@ https://demo.sunspiredemo.com/{{demo_slug}}
 ```
 
 ### Email 3 (Day 6) - Proof + link
+
 **Subject:** Re: quick idea to lift booked solar calls
 
 **Body:**
+
 ```
 {{first_name}} — Acme Solar just closed 3 deals this week using our widget.
 
@@ -46,9 +52,11 @@ Same link if you want to see it: https://demo.sunspiredemo.com/{{demo_slug}}
 ```
 
 ### Email 4 (Day 10) - Pilot terms + checkout
+
 **Subject:** Re: quick idea to lift booked solar calls
 
 **Body:**
+
 ```
 {{first_name}} — 14-day pilot terms:
 
@@ -64,9 +72,11 @@ Ready to start? https://demo.sunspiredemo.com/{{demo_slug}}
 ```
 
 ### Email 5 (Day 14) - Polite breakup
+
 **Subject:** Re: quick idea to lift booked solar calls
 
 **Body:**
+
 ```
 {{first_name}} — last note on this.
 
@@ -81,8 +91,8 @@ Thanks for considering it.
 ```
 
 ## Footer Requirements (CAN-SPAM Compliance)
+
 - Physical mailing address
 - Visible "unsubscribe" line
 - Company name
 - Reply-to address
-

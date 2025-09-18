@@ -1,47 +1,64 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { getStripe } from '@/src/lib/stripe';
-import { checkRateLimit } from '@/src/lib/ratelimit';
+import { NextRequest, NextResponse } from "next/server";
+import { getStripe } from "@/src/lib/stripe";
+import { checkRateLimit } from "@/src/lib/ratelimit";
 
 // Helper function to extract client IP
 function getClientIP(request: NextRequest): string {
-  return request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || 
-         request.headers.get('x-real-ip') || 
-         'unknown';
+  return (
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    request.headers.get("x-real-ip") ||
+    "unknown"
+  );
 }
 
 export async function POST(req: NextRequest) {
   // Rate limiting check
   const clientIP = getClientIP(req);
-  if (checkRateLimit(clientIP, 'stripe-checkout')) {
+  if (checkRateLimit(clientIP, "stripe-checkout")) {
     console.warn(`Rate limited: ${clientIP} for stripe-checkout`);
-    return NextResponse.json(
-      { error: 'rate_limited' },
-      { status: 429 }
-    );
+    return NextResponse.json({ error: "rate_limited" }, { status: 429 });
   }
 
   try {
     const stripeClient = getStripe();
-    console.log('🔍 Stripe checkout request received');
+    console.log("🔍 Stripe checkout request received");
 
     // Get price IDs from environment
-    const price = process.env.STRIPE_PRICE_STARTER || process.env.STRIPE_PRICE_MONTHLY;
-    if (!price) throw new Error('Missing STRIPE price env');
+    const price =
+      process.env.STRIPE_PRICE_STARTER || process.env.STRIPE_PRICE_MONTHLY;
+    if (!price) throw new Error("Missing STRIPE price env");
 
     // Read params from POST JSON
     const body = await req.json();
-    const { plan = 'starter', token, company, email, utm_source, utm_campaign, tenant_handle } = body;
+    const {
+      plan = "starter",
+      token,
+      company,
+      email,
+      utm_source,
+      utm_campaign,
+      tenant_handle,
+    } = body;
 
-    console.log('🔍 Creating Stripe checkout session...');
-    console.log('🔍 Request data:', { plan, token, company, email, utm_source, utm_campaign, tenant_handle });
+    console.log("🔍 Creating Stripe checkout session...");
+    console.log("🔍 Request data:", {
+      plan,
+      token,
+      company,
+      email,
+      utm_source,
+      utm_campaign,
+      tenant_handle,
+    });
 
     // Build URLs
-    const base = process.env.NEXT_PUBLIC_APP_URL || 'https://demo.sunspiredemo.com';
-    
+    const base =
+      process.env.NEXT_PUBLIC_APP_URL || "https://demo.sunspiredemo.com";
+
     // Create Stripe checkout session
     const checkoutSession = await stripeClient.checkout.sessions.create({
-      payment_method_types: ['card'],
-      mode: 'subscription',
+      payment_method_types: ["card"],
+      mode: "subscription",
       line_items: [
         {
           price: price,
@@ -49,20 +66,20 @@ export async function POST(req: NextRequest) {
         },
       ],
       subscription_data: {
-        metadata: { 
-          tenant_handle: tenant_handle || company || '',
+        metadata: {
+          tenant_handle: tenant_handle || company || "",
           plan,
-          utm_source: utm_source || '',
-          utm_campaign: utm_campaign || '',
+          utm_source: utm_source || "",
+          utm_campaign: utm_campaign || "",
         },
       },
       metadata: {
-        token: token || '',
-        company: company || '',
-        tenant_handle: tenant_handle || company || '',
+        token: token || "",
+        company: company || "",
+        tenant_handle: tenant_handle || company || "",
         plan,
-        utm_source: utm_source || '',
-        utm_campaign: utm_campaign || '',
+        utm_source: utm_source || "",
+        utm_campaign: utm_campaign || "",
       },
       success_url: `${base}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${base}/pricing?canceled=1`,
@@ -74,53 +91,57 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ url: checkoutSession.url });
   } catch (err: unknown) {
     const errorMessage = err instanceof Error ? err.message : String(err);
-    console.error('Stripe checkout error:', err);
-    return NextResponse.json(
-      { error: errorMessage },
-      { status: 500 }
-    );
+    console.error("Stripe checkout error:", err);
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }
 
 export async function GET(req: NextRequest) {
   // Rate limiting check
   const clientIP = getClientIP(req);
-  if (checkRateLimit(clientIP, 'stripe-checkout')) {
+  if (checkRateLimit(clientIP, "stripe-checkout")) {
     console.warn(`Rate limited: ${clientIP} for stripe-checkout`);
-    return NextResponse.json(
-      { error: 'rate_limited' },
-      { status: 429 }
-    );
+    return NextResponse.json({ error: "rate_limited" }, { status: 429 });
   }
 
   try {
     const stripeClient = getStripe();
-    console.log('🔍 Stripe checkout GET request received');
+    console.log("🔍 Stripe checkout GET request received");
 
     // Get price IDs from environment
-    const price = process.env.STRIPE_PRICE_STARTER || process.env.STRIPE_PRICE_MONTHLY;
-    if (!price) throw new Error('Missing STRIPE price env');
+    const price =
+      process.env.STRIPE_PRICE_STARTER || process.env.STRIPE_PRICE_MONTHLY;
+    if (!price) throw new Error("Missing STRIPE price env");
 
     // Read params from URL query string
     const url = new URL(req.url);
-    const plan = url.searchParams.get('plan') || 'starter';
-    const token = url.searchParams.get('token');
-    const company = url.searchParams.get('company');
-    const email = url.searchParams.get('email');
-    const utm_source = url.searchParams.get('utm_source');
-    const utm_campaign = url.searchParams.get('utm_campaign');
-    const tenant_handle = url.searchParams.get('tenant_handle');
+    const plan = url.searchParams.get("plan") || "starter";
+    const token = url.searchParams.get("token");
+    const company = url.searchParams.get("company");
+    const email = url.searchParams.get("email");
+    const utm_source = url.searchParams.get("utm_source");
+    const utm_campaign = url.searchParams.get("utm_campaign");
+    const tenant_handle = url.searchParams.get("tenant_handle");
 
-    console.log('🔍 Creating Stripe checkout session from GET...');
-    console.log('🔍 Request data:', { plan, token, company, email, utm_source, utm_campaign, tenant_handle });
+    console.log("🔍 Creating Stripe checkout session from GET...");
+    console.log("🔍 Request data:", {
+      plan,
+      token,
+      company,
+      email,
+      utm_source,
+      utm_campaign,
+      tenant_handle,
+    });
 
     // Build URLs
-    const base = process.env.NEXT_PUBLIC_APP_URL || 'https://demo.sunspiredemo.com';
-    
+    const base =
+      process.env.NEXT_PUBLIC_APP_URL || "https://demo.sunspiredemo.com";
+
     // Create Stripe checkout session
     const checkoutSession = await stripeClient.checkout.sessions.create({
-      payment_method_types: ['card'],
-      mode: 'subscription',
+      payment_method_types: ["card"],
+      mode: "subscription",
       line_items: [
         {
           price: price,
@@ -128,20 +149,20 @@ export async function GET(req: NextRequest) {
         },
       ],
       subscription_data: {
-        metadata: { 
-          tenant_handle: tenant_handle || company || '',
+        metadata: {
+          tenant_handle: tenant_handle || company || "",
           plan,
-          utm_source: utm_source || '',
-          utm_campaign: utm_campaign || '',
+          utm_source: utm_source || "",
+          utm_campaign: utm_campaign || "",
         },
       },
       metadata: {
-        token: token || '',
-        company: company || '',
-        tenant_handle: tenant_handle || company || '',
+        token: token || "",
+        company: company || "",
+        tenant_handle: tenant_handle || company || "",
         plan,
-        utm_source: utm_source || '',
-        utm_campaign: utm_campaign || '',
+        utm_source: utm_source || "",
+        utm_campaign: utm_campaign || "",
       },
       success_url: `${base}/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${base}/pricing?canceled=1`,
@@ -153,10 +174,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ url: checkoutSession.url });
   } catch (err: unknown) {
     const errorMessage = err instanceof Error ? err.message : String(err);
-    console.error('Stripe checkout GET error:', err);
-    return NextResponse.json(
-      { error: errorMessage },
-      { status: 500 }
-    );
+    console.error("Stripe checkout GET error:", err);
+    return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
 }

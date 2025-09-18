@@ -1,6 +1,9 @@
 import { upsertLeadSuppressionByEmail } from "./airtable"; // implement if missing
 
-export async function suppressByEmail(email: string, source: "one-click" | "body") {
+export async function suppressByEmail(
+  email: string,
+  source: "one-click" | "body",
+) {
   await upsertLeadSuppressionByEmail(email, source); // sets Status="Suppression", SuppressedAt=now
 }
 

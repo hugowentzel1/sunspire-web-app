@@ -16,6 +16,9 @@ export async function POST(req: Request) {
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("unsubscribe webhook error", err);
-    return NextResponse.json({ ok: false, error: "bad_request" }, { status: 400 });
+    return NextResponse.json(
+      { ok: false, error: "bad_request" },
+      { status: 400 },
+    );
   }
 }

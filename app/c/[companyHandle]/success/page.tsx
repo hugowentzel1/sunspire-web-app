@@ -1,10 +1,15 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { useSearchParams } from 'next/navigation';
-import { useParams } from 'next/navigation';
-import { motion } from 'framer-motion';
-import { CheckCircleIcon, RocketLaunchIcon, KeyIcon, GlobeAltIcon } from '@heroicons/react/24/outline';
+import { useEffect, useState } from "react";
+import { useSearchParams } from "next/navigation";
+import { useParams } from "next/navigation";
+import { motion } from "framer-motion";
+import {
+  CheckCircleIcon,
+  RocketLaunchIcon,
+  KeyIcon,
+  GlobeAltIcon,
+} from "@heroicons/react/24/outline";
 
 export default function SuccessPage() {
   const searchParams = useSearchParams();
@@ -13,7 +18,7 @@ export default function SuccessPage() {
   const [isLoading, setIsLoading] = useState(true);
 
   const companyHandle = params.companyHandle as string;
-  const sessionId = searchParams.get('session_id');
+  const sessionId = searchParams.get("session_id");
 
   useEffect(() => {
     // In a real app, you'd fetch the tenant data from your API
@@ -21,7 +26,7 @@ export default function SuccessPage() {
     setTimeout(() => {
       setTenantData({
         companyHandle,
-        apiKey: 'demo-api-key-' + Math.random().toString(36).substr(2, 9),
+        apiKey: "demo-api-key-" + Math.random().toString(36).substr(2, 9),
         loginUrl: `${window.location.origin}/c/${companyHandle}`,
         captureUrl: `${window.location.origin}/v1/ingest/lead`,
       });
@@ -34,7 +39,9 @@ export default function SuccessPage() {
       <div className="min-h-screen bg-gradient-to-br from-orange-50 to-orange-100 flex items-center justify-center">
         <div className="text-center">
           <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-          <p className="text-orange-600 font-semibold">Setting up your account...</p>
+          <p className="text-orange-600 font-semibold">
+            Setting up your account...
+          </p>
         </div>
       </div>
     );
@@ -67,7 +74,7 @@ export default function SuccessPage() {
           <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">
             Your Account Details
           </h2>
-          
+
           <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
@@ -77,7 +84,7 @@ export default function SuccessPage() {
                   <p className="text-gray-600 font-mono">{companyHandle}</p>
                 </div>
               </div>
-              
+
               <div className="flex items-center space-x-3">
                 <KeyIcon className="w-6 h-6 text-orange-500" />
                 <div>
@@ -88,13 +95,13 @@ export default function SuccessPage() {
                 </div>
               </div>
             </div>
-            
+
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <RocketLaunchIcon className="w-6 h-6 text-orange-500" />
                 <div>
                   <p className="font-semibold text-gray-900">Login URL</p>
-                  <a 
+                  <a
                     href={tenantData?.loginUrl}
                     className="text-orange-600 hover:text-orange-700 font-mono text-sm break-all"
                     target="_blank"
@@ -104,7 +111,7 @@ export default function SuccessPage() {
                   </a>
                 </div>
               </div>
-              
+
               <div className="flex items-center space-x-3">
                 <RocketLaunchIcon className="w-6 h-6 text-orange-500" />
                 <div>
@@ -131,21 +138,27 @@ export default function SuccessPage() {
                 <span className="text-2xl">1</span>
               </div>
               <p className="font-semibold">Customize Your Brand</p>
-              <p className="text-orange-100 text-sm">Upload your logo and set brand colors</p>
+              <p className="text-orange-100 text-sm">
+                Upload your logo and set brand colors
+              </p>
             </div>
             <div>
               <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
                 <span className="text-2xl">2</span>
               </div>
               <p className="font-semibold">Start Capturing Leads</p>
-              <p className="text-orange-100 text-sm">Use your API key to integrate lead capture</p>
+              <p className="text-orange-100 text-sm">
+                Use your API key to integrate lead capture
+              </p>
             </div>
             <div>
               <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-3">
                 <span className="text-2xl">3</span>
               </div>
               <p className="font-semibold">Scale Your Business</p>
-              <p className="text-orange-100 text-sm">Generate unlimited solar leads</p>
+              <p className="text-orange-100 text-sm">
+                Generate unlimited solar leads
+              </p>
             </div>
           </div>
         </motion.div>

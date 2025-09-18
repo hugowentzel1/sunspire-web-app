@@ -1,11 +1,11 @@
-export type TrackEvent = 
-  | "view" 
+export type TrackEvent =
+  | "view"
   | "view_result"
-  | "cta_click" 
-  | "install_open" 
-  | "run_start" 
-  | "run_complete" 
-  | "limit_hit" 
+  | "cta_click"
+  | "install_open"
+  | "run_start"
+  | "run_complete"
+  | "limit_hit"
   | "checkout_success"
   | "sample_request"
   | "sample_success"
@@ -42,29 +42,45 @@ export function track(event: TrackEvent, payload: Partial<TrackPayload> = {}) {
 
   const fullPayload: TrackPayload = {
     event,
-    brand: payload.brand || new URLSearchParams(window.location.search).get("brand") || undefined,
-    domain: payload.domain || new URLSearchParams(window.location.search).get("domain") || undefined,
+    brand:
+      payload.brand ||
+      new URLSearchParams(window.location.search).get("brand") ||
+      undefined,
+    domain:
+      payload.domain ||
+      new URLSearchParams(window.location.search).get("domain") ||
+      undefined,
     variant: payload.variant,
-    utm_source: payload.utm_source || new URLSearchParams(window.location.search).get("utm_source") || undefined,
-    utm_medium: payload.utm_medium || new URLSearchParams(window.location.search).get("utm_medium") || undefined,
-    utm_campaign: payload.utm_campaign || new URLSearchParams(window.location.search).get("utm_campaign") || undefined,
+    utm_source:
+      payload.utm_source ||
+      new URLSearchParams(window.location.search).get("utm_source") ||
+      undefined,
+    utm_medium:
+      payload.utm_medium ||
+      new URLSearchParams(window.location.search).get("utm_medium") ||
+      undefined,
+    utm_campaign:
+      payload.utm_campaign ||
+      new URLSearchParams(window.location.search).get("utm_campaign") ||
+      undefined,
     deadline: payload.deadline,
     runsUsed: payload.runsUsed,
     daysLeft: payload.daysLeft,
     referrer: payload.referrer || document.referrer,
     userAgent: payload.userAgent || navigator.userAgent,
-    screenSize: payload.screenSize || `${window.screen.width}x${window.screen.height}`,
+    screenSize:
+      payload.screenSize || `${window.screen.width}x${window.screen.height}`,
     placement: payload.placement,
     cta_type: payload.cta_type,
     id: payload.id,
-    ...payload
+    ...payload,
   };
 
   // Non-blocking POST to analytics endpoint
   fetch("/api/demo-event", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(fullPayload)
+    body: JSON.stringify(fullPayload),
   }).catch(() => {
     // Silently fail - don't block user experience
   });

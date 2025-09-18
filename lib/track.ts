@@ -23,18 +23,24 @@ class EventTracker {
   }
 
   private checkCookieConsent(): void {
-    if (typeof window !== 'undefined') {
-      const consent = localStorage.getItem('cookie-consent');
-      this.isEnabled = consent === 'accepted';
+    if (typeof window !== "undefined") {
+      const consent = localStorage.getItem("cookie-consent");
+      this.isEnabled = consent === "accepted";
     }
   }
 
   private captureUTMParams(): void {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== "undefined") {
       const urlParams = new URLSearchParams(window.location.search);
-      const utmKeys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
-      
-      utmKeys.forEach(key => {
+      const utmKeys = [
+        "utm_source",
+        "utm_medium",
+        "utm_campaign",
+        "utm_term",
+        "utm_content",
+      ];
+
+      utmKeys.forEach((key) => {
         const value = urlParams.get(key);
         if (value) {
           this.utmParams[key] = value;
@@ -61,8 +67,8 @@ class EventTracker {
         companyHandle: this.companyContext?.companyHandle,
         companyName: this.companyContext?.companyName,
         companyDomain: this.companyContext?.companyDomain,
-        url: typeof window !== 'undefined' ? window.location.href : '',
-        userAgent: typeof navigator !== 'undefined' ? navigator.userAgent : '',
+        url: typeof window !== "undefined" ? window.location.href : "",
+        userAgent: typeof navigator !== "undefined" ? navigator.userAgent : "",
         timestamp: Date.now(),
       },
       timestamp: Date.now(),
@@ -70,19 +76,19 @@ class EventTracker {
 
     // In production, this would send to your analytics service
     this.sendToAnalytics(trackingEvent);
-    
+
     // Log for development
     console.log(`[TRACKING] ${event}:`, trackingEvent);
   }
 
   private sendToAnalytics(event: TrackingEvent): void {
     // Example: Send to Google Analytics
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', event.event, event.properties);
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      (window as any).gtag("event", event.event, event.properties);
     }
 
     // Example: Send to Mixpanel
-    if (typeof window !== 'undefined' && (window as any).mixpanel) {
+    if (typeof window !== "undefined" && (window as any).mixpanel) {
       (window as any).mixpanel.track(event.event, event.properties);
     }
 
@@ -96,31 +102,35 @@ class EventTracker {
 
   // Convenience methods for common events
   pageView(page: string, properties?: Record<string, any>): void {
-    this.track('page_view', { page, ...properties });
+    this.track("page_view", { page, ...properties });
   }
 
-  ctaClick(placement: string, ctaType: string, properties?: Record<string, any>): void {
-    this.track('cta_click', { placement, ctaType, ...properties });
+  ctaClick(
+    placement: string,
+    ctaType: string,
+    properties?: Record<string, any>,
+  ): void {
+    this.track("cta_click", { placement, ctaType, ...properties });
   }
 
   signupStart(properties?: Record<string, any>): void {
-    this.track('signup_start', properties);
+    this.track("signup_start", properties);
   }
 
   signupComplete(properties?: Record<string, any>): void {
-    this.track('signup_complete', properties);
+    this.track("signup_complete", properties);
   }
 
   sampleRequested(properties?: Record<string, any>): void {
-    this.track('sample_requested', properties);
+    this.track("sample_requested", properties);
   }
 
   demoStarted(properties?: Record<string, any>): void {
-    this.track('demo_started', properties);
+    this.track("demo_started", properties);
   }
 
   reportGenerated(properties?: Record<string, any>): void {
-    this.track('report_generated', properties);
+    this.track("report_generated", properties);
   }
 }
 
@@ -133,11 +143,18 @@ export const track = (event: string, properties?: Record<string, any>) => {
 };
 
 // Export convenience methods
-export const trackPageView = (page: string, properties?: Record<string, any>) => {
+export const trackPageView = (
+  page: string,
+  properties?: Record<string, any>,
+) => {
   tracker.pageView(page, properties);
 };
 
-export const trackCtaClick = (placement: string, ctaType: string, properties?: Record<string, any>) => {
+export const trackCtaClick = (
+  placement: string,
+  ctaType: string,
+  properties?: Record<string, any>,
+) => {
   tracker.ctaClick(placement, ctaType, properties);
 };
 

@@ -3,8 +3,9 @@ export const runtime = "edge";
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { name, email, domain, brand, primary, logo, demoLink, source } = body;
-    
+    const { name, email, domain, brand, primary, logo, demoLink, source } =
+      body;
+
     // TODO: Call Airtable here with the demo lead data
     // For now, just log the data
     console.log("Demo lead captured:", {
@@ -16,9 +17,9 @@ export async function POST(req: Request) {
       logo,
       demoLink,
       source,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     });
-    
+
     return new Response(null, { status: 204 });
   } catch (error) {
     console.error("Error capturing demo lead:", error);

@@ -1,27 +1,30 @@
 // lib/pvwatts.ts
 export type PvwattsParams = {
-  lat: number; lon: number;
-  system_capacity_kw: number;     // DC kW
-  tilt_deg: number;               // 0..60
-  azimuth_deg: number;            // 0=N,90=E,180=S,270=W
-  losses_pct: number;             // total % losses (soiling, mismatch, wiring, shading, etc.)
-  module_type?: 0|1|2;            // 0=Std,1=Prem,2=Thin
-  array_type?: 1|2|3|4|5;         // 2 = Fixed roof mount (BEST default for residential)
-  dc_ac_ratio?: number;           // default 1.2
-  inv_eff?: number;               // default 96
+  lat: number;
+  lon: number;
+  system_capacity_kw: number; // DC kW
+  tilt_deg: number; // 0..60
+  azimuth_deg: number; // 0=N,90=E,180=S,270=W
+  losses_pct: number; // total % losses (soiling, mismatch, wiring, shading, etc.)
+  module_type?: 0 | 1 | 2; // 0=Std,1=Prem,2=Thin
+  array_type?: 1 | 2 | 3 | 4 | 5; // 2 = Fixed roof mount (BEST default for residential)
+  dc_ac_ratio?: number; // default 1.2
+  inv_eff?: number; // default 96
 };
 
 export type PvwattsOut = {
   annual_kwh: number;
   monthly_kwh: number[];
-  solrad_kwh_m2_day: number;      // outputs.solrad_annual (kWh/m²/day)
+  solrad_kwh_m2_day: number; // outputs.solrad_annual (kWh/m²/day)
   inputsUsed: {
-    lat: number; lon: number;
+    lat: number;
+    lon: number;
     system_capacity_kw: number;
-    tilt_deg: number; azimuth_deg: number;
+    tilt_deg: number;
+    azimuth_deg: number;
     losses_pct: number;
-    module_type: 0|1|2;
-    array_type: 1|2|3|4|5;
+    module_type: 0 | 1 | 2;
+    array_type: 1 | 2 | 3 | 4 | 5;
     dc_ac_ratio: number;
     inv_eff: number;
   };
@@ -36,17 +39,23 @@ export async function pvwatts(p: PvwattsParams): Promise<PvwattsOut> {
   if (!key) throw new Error("Missing NREL_API_KEY");
 
   // Sanity + best-practice defaults for residential roofs
-  const lat  = p.lat;
-  const lon  = p.lon;
-  const system_capacity_kw = Math.max(0.5, p.system_capacity_kw);     // avoid zero/negatives
-  const tilt_deg     = clamp(Number.isFinite(p.tilt_deg) ? p.tilt_deg : 22, 0, 60);
-  const azimuth_deg  = ((Number.isFinite(p.azimuth_deg) ? p.azimuth_deg : 180) % 360 + 360) % 360;
-  const losses_pct   = clamp(Number.isFinite(p.losses_pct) ? p.losses_pct : 14, 5, 25);
+  const lat = p.lat;
+  const lon = p.lon;
+  const system_capacity_kw = Math.max(0.5, p.system_capacity_kw); // avoid zero/negatives
+  const tilt_deg = clamp(Number.isFinite(p.tilt_deg) ? p.tilt_deg : 22, 0, 60);
+  const azimuth_deg =
+    (((Number.isFinite(p.azimuth_deg) ? p.azimuth_deg : 180) % 360) + 360) %
+    360;
+  const losses_pct = clamp(
+    Number.isFinite(p.losses_pct) ? p.losses_pct : 14,
+    5,
+    25,
+  );
 
-  const module_type  = (p.module_type ?? 1); // premium by default
-  const array_type   = (p.array_type  ?? 2); // **fixed roof mount** (critical for realism)
-  const dc_ac_ratio  = (p.dc_ac_ratio ?? 1.2);
-  const inv_eff      = (p.inv_eff     ?? 96);
+  const module_type = p.module_type ?? 1; // premium by default
+  const array_type = p.array_type ?? 2; // **fixed roof mount** (critical for realism)
+  const dc_ac_ratio = p.dc_ac_ratio ?? 1.2;
+  const inv_eff = p.inv_eff ?? 96;
 
   const u = new URL("https://developer.nrel.gov/api/pvwatts/v8.json");
   u.searchParams.set("api_key", key);
@@ -76,14 +85,16 @@ export async function pvwatts(p: PvwattsParams): Promise<PvwattsOut> {
     monthly_kwh: out.ac_monthly,
     solrad_kwh_m2_day: out.solrad_annual, // already per-day
     inputsUsed: {
-      lat, lon,
+      lat,
+      lon,
       system_capacity_kw,
-      tilt_deg, azimuth_deg,
+      tilt_deg,
+      azimuth_deg,
       losses_pct,
       module_type,
       array_type,
       dc_ac_ratio,
-      inv_eff
-    }
+      inv_eff,
+    },
   };
 }

@@ -21,7 +21,7 @@ class RateLimiter {
       // Create new window or reset existing one
       this.limits.set(key, {
         count: 1,
-        resetTime: now + this.windowMs
+        resetTime: now + this.windowMs,
       });
       return false;
     }
@@ -69,5 +69,3 @@ export function getRateLimitRemainingTime(ip: string, route: string): number {
 }
 
 export { rateLimiter };
-
-

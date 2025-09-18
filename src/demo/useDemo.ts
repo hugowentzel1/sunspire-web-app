@@ -22,7 +22,13 @@ export type DemoParams = {
 
 export function useDemoParams(): DemoParams {
   const [params, setParams] = useState<DemoParams>({
-    domain: null, city: null, rep: null, runs: 2, blur: true, expireDays: 7, pilot: false,
+    domain: null,
+    city: null,
+    rep: null,
+    runs: 2,
+    blur: true,
+    expireDays: 7,
+    pilot: false,
   });
   useEffect(() => {
     const sp = new URLSearchParams(window.location.search);
@@ -49,7 +55,7 @@ export function useDemoQuota(allowed: number) {
   useEffect(() => {
     const link = typeof window !== "undefined" ? window.location.href : "link";
     const raw = localStorage.getItem(KEY);
-    const obj = raw ? JSON.parse(raw) as Record<string, number> : {};
+    const obj = raw ? (JSON.parse(raw) as Record<string, number>) : {};
     if (!(link in obj)) obj[link] = allowed;
     setRemaining(obj[link]);
     localStorage.setItem(KEY, JSON.stringify(obj));
@@ -58,7 +64,7 @@ export function useDemoQuota(allowed: number) {
   const consume = () => {
     const link = window.location.href;
     const raw = localStorage.getItem(KEY);
-    const obj = raw ? JSON.parse(raw) as Record<string, number> : {};
+    const obj = raw ? (JSON.parse(raw) as Record<string, number>) : {};
     obj[link] = Math.max(0, (obj[link] ?? allowed) - 1);
     localStorage.setItem(KEY, JSON.stringify(obj));
     setRemaining(obj[link]);

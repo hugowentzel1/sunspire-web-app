@@ -1,6 +1,6 @@
 import React from "react";
-import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
-import UnlockPill from '@/src/components/ui/UnlockPill';
+import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
+import UnlockPill from "@/src/components/ui/UnlockPill";
 
 export default function LockedOverlay({
   onUnlock,
@@ -12,7 +12,7 @@ export default function LockedOverlay({
   className?: string;
 }) {
   const b = useBrandTakeover();
-  
+
   return (
     <div
       className={`absolute inset-0 pointer-events-none rounded-2xl z-20 ${className}`}
@@ -22,10 +22,7 @@ export default function LockedOverlay({
       <div className="absolute inset-0 bg-white/55 backdrop-blur-md rounded-2xl" />
       {/* the CTA - consistent height and spacing */}
       <div className="pointer-events-auto absolute left-1/2 bottom-6 transform -translate-x-1/2 z-30">
-        <UnlockPill 
-          label={label}
-          onClick={onUnlock}
-        />
+        <UnlockPill label={label} onClick={onUnlock} />
       </div>
     </div>
   );

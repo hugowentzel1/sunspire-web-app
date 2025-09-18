@@ -40,11 +40,13 @@ DEFAULT_COST_PER_WATT=3.5
 ### 1. Tracking APIs
 
 #### POST `/api/track/view`
+
 Track when someone views your demo.
 
 **Headers:** None required (tenant resolved automatically)
 
 **Body:**
+
 ```json
 {
   "email": "user@example.com",
@@ -58,12 +60,13 @@ Track when someone views your demo.
     "country": "US",
     "placeId": "ChIJ...",
     "lat": 33.4484,
-    "lng": -112.0740
+    "lng": -112.074
   }
 }
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -73,6 +76,7 @@ Track when someone views your demo.
 ```
 
 #### POST `/api/track/cta-click`
+
 Track when someone clicks a CTA button.
 
 **Headers:** None required (tenant resolved automatically)
@@ -84,11 +88,13 @@ Track when someone clicks a CTA button.
 ### 2. Webhook APIs
 
 #### POST `/api/webhooks/sample-request`
+
 Process sample report requests.
 
 **Headers:** None required (tenant resolved automatically)
 
 **Body:**
+
 ```json
 {
   "email": "user@example.com",
@@ -104,12 +110,13 @@ Process sample report requests.
     "country": "US",
     "placeId": "ChIJ...",
     "lat": 33.4484,
-    "lng": -112.0740
+    "lng": -112.074
   }
 }
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -120,11 +127,13 @@ Process sample report requests.
 ```
 
 #### POST `/api/webhooks/unsubscribe`
+
 Process unsubscribe requests.
 
 **Headers:** None required (tenant resolved automatically)
 
 **Body:**
+
 ```json
 {
   "email": "user@example.com"
@@ -132,6 +141,7 @@ Process unsubscribe requests.
 ```
 
 **Response:**
+
 ```json
 {
   "success": true,
@@ -144,14 +154,17 @@ Process unsubscribe requests.
 ### 3. White-Label Lead Ingestion
 
 #### POST `/v1/ingest/lead`
+
 White-label lead capture for external integrations.
 
 **Headers:**
+
 ```
 x-api-key: your_tenant_api_key
 ```
 
 **Body:**
+
 ```json
 {
   "name": "John Doe",
@@ -166,7 +179,7 @@ x-api-key: your_tenant_api_key
     "country": "US",
     "placeId": "ChIJ...",
     "lat": 33.4484,
-    "lng": -112.0740
+    "lng": -112.074
   },
   "utm": {
     "source": "google",
@@ -179,6 +192,7 @@ x-api-key: your_tenant_api_key
 ```
 
 **Response:**
+
 ```json
 {
   "ok": true,
@@ -192,14 +206,17 @@ x-api-key: your_tenant_api_key
 ### 4. Admin APIs
 
 #### POST `/api/admin/create-tenant`
+
 Create new tenant accounts (admin only).
 
 **Headers:**
+
 ```
 x-admin-token: your_admin_token
 ```
 
 **Body:**
+
 ```json
 {
   "companyHandle": "acme",
@@ -211,6 +228,7 @@ x-admin-token: your_admin_token
 ```
 
 **Response:**
+
 ```json
 {
   "tenantId": "rec123456789",
@@ -223,18 +241,21 @@ x-admin-token: your_admin_token
 ### 5. Quote Calculation
 
 #### POST `/api/calc/quote`
+
 Calculate solar quotes (requires JWT authentication).
 
 **Headers:**
+
 ```
 Authorization: Bearer <jwt_token>
 ```
 
 **Body:**
+
 ```json
 {
   "lat": 33.4484,
-  "lng": -112.0740,
+  "lng": -112.074,
   "dc_kw": 5.0,
   "tilt": 20,
   "azimuth": 180,
@@ -246,6 +267,7 @@ Authorization: Bearer <jwt_token>
 ```
 
 **Response:**
+
 ```json
 {
   "ac_annual": 8500,
@@ -266,9 +288,11 @@ Authorization: Bearer <jwt_token>
 ### 6. Health Check
 
 #### GET `/api/health`
+
 Check system health and environment variables.
 
 **Response:**
+
 ```json
 {
   "ok": true,
@@ -305,6 +329,7 @@ The system automatically resolves tenants using these methods (in order):
 ## Airtable Schema
 
 ### Leads Table
+
 - Name, Email, Company, Tenant, Demo URL, Campaign ID
 - Status, Notes, Last Activity
 - Street, City, State, Postal Code, Country
@@ -312,11 +337,13 @@ The system automatically resolves tenants using these methods (in order):
 - Utility Rate ($/kWh)
 
 ### Tenants Table
+
 - Company Handle, Plan, Domain / Login URL
 - Brand Colors, Logo URL, CRM Keys
 - API Key, Capture URL, Users
 
 ### Users Table
+
 - Email, Role, Tenant
 
 ## Development
@@ -351,5 +378,7 @@ npm run build
 ## Support
 
 For questions or issues, check the health endpoint first to verify environment variables are properly configured.
-# Force deployment Mon Sep  8 12:43:43 EDT 2025
+
+# Force deployment Mon Sep 8 12:43:43 EDT 2025
+
 # Address update Fri Sep 12 23:16:07 EDT 2025

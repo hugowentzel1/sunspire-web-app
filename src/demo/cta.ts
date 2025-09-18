@@ -1,16 +1,20 @@
 export type CTAKey = "primary" | "footer" | "inline";
 
-export function getCTA(variant: "A" | "B", key: CTAKey, domain?: string | null) {
+export function getCTA(
+  variant: "A" | "B",
+  key: CTAKey,
+  domain?: string | null,
+) {
   const benefit = domain ? `on ${domain}` : "for your site";
   const A = {
     primary: "Launch Your Solar Tool",
     footer: "Get This Live in 24 Hours",
-    inline: "Activate Lead Generator"
+    inline: "Activate Lead Generator",
   };
   const B = {
     primary: `Add to ${benefit}`,
     footer: "Start Generating Leads Today",
-    inline: "Unlock Full Report"
+    inline: "Unlock Full Report",
   };
   return (variant === "A" ? A : B)[key];
 }

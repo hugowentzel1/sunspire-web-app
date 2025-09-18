@@ -43,7 +43,7 @@
       "rating": 5
     },
     {
-      "id": "2", 
+      "id": "2",
       "name": "Mike Chen",
       "role": "Property Manager",
       "location": "San Diego, CA",
@@ -54,7 +54,7 @@
       "id": "3",
       "name": "Lisa Rodriguez",
       "role": "Business Owner",
-      "location": "Miami, FL", 
+      "location": "Miami, FL",
       "content": "Professional service from start to finish. The ROI calculations were exactly what we needed to justify the investment.",
       "rating": 5
     }
@@ -66,4 +66,3 @@
     "24/7 Support"
   ]
 }
-

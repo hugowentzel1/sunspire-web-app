@@ -5,19 +5,19 @@ import { usePersonalizationCtx } from "@/src/personalization/PersonalizationCont
 export function DemoFooter() {
   const isDemo = useIsDemo();
   const { brand } = usePersonalizationCtx();
-  
+
   if (!isDemo) return null;
-  
+
   const handleDemoLink = (section: string) => {
     // In demo mode, route all internal links to contact form
     const params = new URLSearchParams({
-      source: 'demo',
-      brand: brand || 'Your Company',
-      section
+      source: "demo",
+      brand: brand || "Your Company",
+      section,
     });
     window.location.href = `/?demo=1&${params.toString()}`;
   };
-  
+
   return (
     <footer className="bg-gray-50 border-t border-gray-200 py-8 mt-16">
       <div className="max-w-6xl mx-auto px-4">
@@ -35,14 +35,12 @@ export function DemoFooter() {
               <p>This is a preview, not a live service.</p>
             </div>
           </div>
-          
 
-          
           {/* Demo Actions */}
           <div>
             <h4 className="font-medium text-gray-800 mb-3">Get Started</h4>
             <button
-              onClick={() => handleDemoLink('demo_install')}
+              onClick={() => handleDemoLink("demo_install")}
               className="w-full py-2 px-4 bg-orange-500 text-white rounded-md hover:bg-orange-600 transition-colors text-sm font-medium"
             >
               Install on Your Site
@@ -52,19 +50,22 @@ export function DemoFooter() {
             </p>
           </div>
         </div>
-        
+
         <div className="border-t border-gray-200 mt-8 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-            <p>© 2024 {brand ?? "Your Company"}. Demo preview powered by Your Company.</p>
+            <p>
+              © 2024 {brand ?? "Your Company"}. Demo preview powered by Your
+              Company.
+            </p>
             <div className="flex gap-4 mt-2 md:mt-0">
               <button
-                onClick={() => handleDemoLink('privacy')}
+                onClick={() => handleDemoLink("privacy")}
                 className="hover:text-gray-700 transition-colors"
               >
                 Privacy
               </button>
               <button
-                onClick={() => handleDemoLink('terms')}
+                onClick={() => handleDemoLink("terms")}
                 className="hover:text-gray-700 transition-colors"
               >
                 Terms

@@ -23,8 +23,8 @@ export default function PersonalizedBanner() {
           primary: "demo_banner_copy",
           logo: null,
           demoLink: window.location.href,
-          source: "demo_banner"
-        })
+          source: "demo_banner",
+        }),
       }).catch(console.error);
     } catch {}
   };
@@ -52,17 +52,41 @@ export default function PersonalizedBanner() {
       <span style={{ fontWeight: 600 }}>
         {brand ?? "Your Company"} — Demo Mode
       </span>
-      <span style={{ opacity: 0.7 }}>Pre-branded preview. Not a contract quote.</span>
-      <button onClick={() => (window.location.href = "/?demo=1")}
-        style={{ padding: "6px 10px", borderRadius: 8, border: "1px solid #eee", cursor: "pointer" }}>
+      <span style={{ opacity: 0.7 }}>
+        Pre-branded preview. Not a contract quote.
+      </span>
+      <button
+        onClick={() => (window.location.href = "/?demo=1")}
+        style={{
+          padding: "6px 10px",
+          borderRadius: 8,
+          border: "1px solid #eee",
+          cursor: "pointer",
+        }}
+      >
         Put this on our site
       </button>
-      <button onClick={copy}
-        style={{ padding: "6px 10px", borderRadius: 8, border: "1px solid #eee", cursor: "pointer" }}>
+      <button
+        onClick={copy}
+        style={{
+          padding: "6px 10px",
+          borderRadius: 8,
+          border: "1px solid #eee",
+          cursor: "pointer",
+        }}
+      >
         Copy demo link
       </button>
-      <button onClick={() => setHidden(true)} aria-label="Dismiss banner"
-        style={{ padding: 6, border: "none", background: "transparent", cursor: "pointer" }}>
+      <button
+        onClick={() => setHidden(true)}
+        aria-label="Dismiss banner"
+        style={{
+          padding: 6,
+          border: "none",
+          background: "transparent",
+          cursor: "pointer",
+        }}
+      >
         ✕
       </button>
     </div>

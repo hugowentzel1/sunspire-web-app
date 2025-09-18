@@ -12,7 +12,7 @@ export function brandGradient(company: string) {
     h = (h * 31 + company.charCodeAt(i)) % 360;
   }
   const from = `hsl(${h}, 75%, 92%)`;
-  const to   = `hsl(${(h + 30) % 360}, 85%, 96%)`;
+  const to = `hsl(${(h + 30) % 360}, 85%, 96%)`;
   return { from, to };
 }
 
@@ -27,17 +27,24 @@ export interface CompanyInfo {
   companyDomain: string;
 }
 
-export function parseCompany(host: string, search: URLSearchParams): CompanyInfo {
-  const h = (host || '').toLowerCase();
-  const fromHost = h.endsWith('.out.sunspire.app') ? h.replace('.out.sunspire.app', '') : '';
-  const fromQuery = (search.get('company') || '').toLowerCase().trim();
-  const handle = fromHost || fromQuery || 'your-company';
-  const name = search.get('name') || handle.replace(/-/g, ' ').replace(/\b\w/g, m => m.toUpperCase());
-  
-  return { 
-    companyHandle: handle, 
-    companyName: name, 
-    companyDomain: `${handle}.out.sunspire.app` 
+export function parseCompany(
+  host: string,
+  search: URLSearchParams,
+): CompanyInfo {
+  const h = (host || "").toLowerCase();
+  const fromHost = h.endsWith(".out.sunspire.app")
+    ? h.replace(".out.sunspire.app", "")
+    : "";
+  const fromQuery = (search.get("company") || "").toLowerCase().trim();
+  const handle = fromHost || fromQuery || "your-company";
+  const name =
+    search.get("name") ||
+    handle.replace(/-/g, " ").replace(/\b\w/g, (m) => m.toUpperCase());
+
+  return {
+    companyHandle: handle,
+    companyName: name,
+    companyDomain: `${handle}.out.sunspire.app`,
   };
 }
 
@@ -47,9 +54,9 @@ export function getCompanyFromUrl(url: string): CompanyInfo {
     return parseCompany(urlObj.host, urlObj.searchParams);
   } catch {
     return {
-      companyHandle: 'your-company',
-      companyName: 'Your Company',
-      companyDomain: 'your-company.out.sunspire.app'
+      companyHandle: "your-company",
+      companyName: "Your Company",
+      companyDomain: "your-company.out.sunspire.app",
     };
   }
 }

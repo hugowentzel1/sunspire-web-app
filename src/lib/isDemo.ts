@@ -4,13 +4,13 @@
  * Company parameter alone does NOT imply demo
  */
 
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams } from "next/navigation";
 
 export const isDemoFromSearch = (sp: URLSearchParams): boolean =>
-  sp.get('demo') === '1' || sp.get('demo') === 'true';
+  sp.get("demo") === "1" || sp.get("demo") === "true";
 
 export const isDemoFromURL = (url: URL | string): boolean => {
-  const urlObj = new URL(url.toString(), 'https://dummy');
+  const urlObj = new URL(url.toString(), "https://dummy");
   return isDemoFromSearch(urlObj.searchParams);
 };
 

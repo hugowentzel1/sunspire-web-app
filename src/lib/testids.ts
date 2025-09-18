@@ -4,6 +4,7 @@
  */
 
 export function tid(id: string) {
-  if (process.env.NEXT_PUBLIC_E2E === '1') return { 'data-testid': id } as const;
+  if (process.env.NEXT_PUBLIC_E2E === "1")
+    return { "data-testid": id } as const;
   return {} as const;
 }

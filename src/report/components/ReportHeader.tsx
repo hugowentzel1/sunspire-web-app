@@ -18,19 +18,19 @@ interface ReportHeaderProps {
   };
 }
 
-export default function ReportHeader({ 
-  address, 
-  generatedAt, 
-  dataSourceNote, 
-  countdown 
+export default function ReportHeader({
+  address,
+  generatedAt,
+  dataSourceNote,
+  countdown,
 }: ReportHeaderProps) {
   const b = useBrandTakeover();
 
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }} 
-      animate={{ opacity: 1, y: 0 }} 
-      transition={{ delay: 0.2, duration: 0.8 }} 
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.2, duration: 0.8 }}
       className="text-center space-y-6"
     >
       {/* Urgency Strip - Removed demo banner */}
@@ -51,10 +51,12 @@ export default function ReportHeader({
 
       {/* Logo and Brand */}
       <div className="flex justify-center mb-6">
-        {b.enabled ? <HeroBrand /> : (
-          <motion.div 
+        {b.enabled ? (
+          <HeroBrand />
+        ) : (
+          <motion.div
             whileHover={{ scale: 1.05, rotate: 5 }}
-            transition={{ type: 'spring', stiffness: 300 }}
+            transition={{ type: "spring", stiffness: 300 }}
           >
             <IconBadge>☀️</IconBadge>
           </motion.div>

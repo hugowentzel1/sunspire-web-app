@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
 
 interface FocusTrapProps {
   children: React.ReactNode;
@@ -8,7 +8,11 @@ interface FocusTrapProps {
   onEscape?: () => void;
 }
 
-export default function FocusTrap({ children, isActive = true, onEscape }: FocusTrapProps) {
+export default function FocusTrap({
+  children,
+  isActive = true,
+  onEscape,
+}: FocusTrapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
 
@@ -22,9 +26,9 @@ export default function FocusTrap({ children, isActive = true, onEscape }: Focus
     const container = containerRef.current;
     if (container) {
       const focusableElements = container.querySelectorAll(
-        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
       );
-      
+
       if (focusableElements.length > 0) {
         (focusableElements[0] as HTMLElement).focus();
       }
@@ -32,17 +36,17 @@ export default function FocusTrap({ children, isActive = true, onEscape }: Focus
 
     // Handle escape key
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && onEscape) {
+      if (event.key === "Escape" && onEscape) {
         onEscape();
       }
     };
 
-    document.addEventListener('keydown', handleKeyDown);
+    document.addEventListener("keydown", handleKeyDown);
 
     // Cleanup
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-      
+      document.removeEventListener("keydown", handleKeyDown);
+
       // Restore focus to the previously focused element
       if (previousFocusRef.current) {
         previousFocusRef.current.focus();
@@ -58,15 +62,24 @@ export default function FocusTrap({ children, isActive = true, onEscape }: Focus
     if (!container) return;
 
     const handleTabKey = (event: KeyboardEvent) => {
-      if (event.key !== 'Tab') return;
+      if (event.key !== "Tab") return;
 
       const focusableElements = Array.from(
         container.querySelectorAll(
-          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
-        )
-      ).filter(el => {
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((el) => {
         const element = el as HTMLElement;
-        return element.offsetParent !== null && !(element as HTMLButtonElement | HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement).disabled;
+        return (
+          element.offsetParent !== null &&
+          !(
+            element as
+              | HTMLButtonElement
+              | HTMLInputElement
+              | HTMLSelectElement
+              | HTMLTextAreaElement
+          ).disabled
+        );
       }) as HTMLElement[];
 
       if (focusableElements.length === 0) return;
@@ -89,10 +102,10 @@ export default function FocusTrap({ children, isActive = true, onEscape }: Focus
       }
     };
 
-    container.addEventListener('keydown', handleTabKey);
+    container.addEventListener("keydown", handleTabKey);
 
     return () => {
-      container.removeEventListener('keydown', handleTabKey);
+      container.removeEventListener("keydown", handleTabKey);
     };
   }, [isActive]);
 

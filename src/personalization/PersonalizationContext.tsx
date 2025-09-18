@@ -10,7 +10,11 @@ const Ctx = createContext<Personalization>({
   isPersonalized: false,
 });
 
-export function PersonalizationProvider({ children }: { children: React.ReactNode }) {
+export function PersonalizationProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   const p = usePersonalization();
   return <Ctx.Provider value={p}>{children}</Ctx.Provider>;
 }

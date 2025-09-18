@@ -1,37 +1,37 @@
 /** @type {import('next').nextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  output: 'standalone',
+  output: "standalone",
   // App directory is now stable in Next.js 14
-  
+
   // Security headers
   async headers() {
     return [
       {
-        source: '/(.*)',
+        source: "/(.*)",
         headers: [
           {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN'
+            key: "X-Frame-Options",
+            value: "SAMEORIGIN",
           },
           {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff'
+            key: "X-Content-Type-Options",
+            value: "nosniff",
           },
           {
-            key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin'
+            key: "Referrer-Policy",
+            value: "strict-origin-when-cross-origin",
           },
           {
-            key: 'X-XSS-Protection',
-            value: '1; mode=block'
+            key: "X-XSS-Protection",
+            value: "1; mode=block",
           },
           {
-            key: 'Strict-Transport-Security',
-            value: 'max-age=31536000; includeSubDomains'
+            key: "Strict-Transport-Security",
+            value: "max-age=31536000; includeSubDomains",
           },
           {
-            key: 'Content-Security-Policy',
+            key: "Content-Security-Policy",
             value: [
               "default-src 'self'",
               "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://maps.googleapis.com",
@@ -41,35 +41,35 @@ const nextConfig = {
               "connect-src 'self' https: wss:",
               "frame-ancestors 'self'",
               "base-uri 'self'",
-              "form-action 'self'"
-            ].join('; ')
-          }
-        ]
-      }
+              "form-action 'self'",
+            ].join("; "),
+          },
+        ],
+      },
     ];
   },
-  
+
   // Performance optimizations
   experimental: {
-          optimizePackageImports: ['@heroicons/react'],
+    optimizePackageImports: ["@heroicons/react"],
   },
-  
+
   // Bundle analyzer (optional - remove in production)
   // bundleAnalyzer: process.env.ANALYZE === 'true',
-  
+
   images: {
     unoptimized: true, // TEMP: bypass image optimization to fix Vercel thumbnail
-    domains: ['www.google.com', 'google.com'],
+    domains: ["www.google.com", "google.com"],
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'www.google.com',
-        pathname: '/s2/favicons/**',
+        protocol: "https",
+        hostname: "www.google.com",
+        pathname: "/s2/favicons/**",
       },
       {
-        protocol: 'https',
-        hostname: 'google.com',
-        pathname: '/s2/favicons/**',
+        protocol: "https",
+        hostname: "google.com",
+        pathname: "/s2/favicons/**",
       },
       { protocol: "https", hostname: "res.cloudinary.com" },
       { protocol: "https", hostname: "i.imgur.com" },
@@ -78,6 +78,6 @@ const nextConfig = {
       { protocol: "https", hostname: "cdn.jsdelivr.net" },
     ],
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

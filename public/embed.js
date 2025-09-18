@@ -1,15 +1,15 @@
 // Sunspire White-Label Solar Tool Embed Script
-(function() {
-  'use strict';
-  
+(function () {
+  "use strict";
+
   // Configuration
   const config = {
-    apiUrl: 'https://sunspire-web-app.vercel.app',
+    apiUrl: "https://sunspire-web-app.vercel.app",
     defaultTheme: {
-      primary: '#16A34A',
-      company: 'Solar Company',
-      logo: null
-    }
+      primary: "#16A34A",
+      company: "Solar Company",
+      logo: null,
+    },
   };
 
   // Extract company info from current page
@@ -18,20 +18,20 @@
     const companyMeta = document.querySelector('meta[name="sunspire-company"]');
     const primaryMeta = document.querySelector('meta[name="sunspire-primary"]');
     const logoMeta = document.querySelector('meta[name="sunspire-logo"]');
-    
+
     return {
       company: companyMeta?.content || config.defaultTheme.company,
       primary: primaryMeta?.content || config.defaultTheme.primary,
-      logo: logoMeta?.content || config.defaultTheme.logo
+      logo: logoMeta?.content || config.defaultTheme.logo,
     };
   }
 
   // Create the floating CTA button
   function createFloatingCTA() {
     const company = getCompanyInfo();
-    
-    const cta = document.createElement('div');
-    cta.id = 'sunspire-floating-cta';
+
+    const cta = document.createElement("div");
+    cta.id = "sunspire-floating-cta";
     cta.innerHTML = `
       <style>
         #sunspire-floating-cta {
@@ -84,31 +84,35 @@
         Get Solar Quote
       </button>
     `;
-    
+
     document.body.appendChild(cta);
   }
 
   // Open the solar tool in a modal or new window
   function openSunspireTool() {
     const company = getCompanyInfo();
-    const url = `${config.apiUrl}/?company=${encodeURIComponent(company.company)}&primary=${encodeURIComponent(company.primary)}${company.logo ? `&logo=${encodeURIComponent(company.logo)}` : ''}`;
-    
+    const url = `${config.apiUrl}/?company=${encodeURIComponent(company.company)}&primary=${encodeURIComponent(company.primary)}${company.logo ? `&logo=${encodeURIComponent(company.logo)}` : ""}`;
+
     // Open in new window/tab
-    window.open(url, 'sunspire-solar-tool', 'width=1200,height=800,scrollbars=yes,resizable=yes');
+    window.open(
+      url,
+      "sunspire-solar-tool",
+      "width=1200,height=800,scrollbars=yes,resizable=yes",
+    );
   }
 
   // Make function globally available
   window.openSunspireTool = openSunspireTool;
 
   // Initialize when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', createFloatingCTA);
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", createFloatingCTA);
   } else {
     createFloatingCTA();
   }
 
   // Also add to window load for late-loading sites
-  window.addEventListener('load', createFloatingCTA);
+  window.addEventListener("load", createFloatingCTA);
 
-  console.log('☀️ Sunspire Solar Tool loaded successfully!');
+  console.log("☀️ Sunspire Solar Tool loaded successfully!");
 })();

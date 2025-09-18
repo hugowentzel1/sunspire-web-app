@@ -1,14 +1,17 @@
-import Head from 'next/head';
-import LegalFooter from '@/components/legal/LegalFooter';
+import Head from "next/head";
+import LegalFooter from "@/components/legal/LegalFooter";
 
 export default function SignupPage() {
   return (
     <>
       <Head>
         <title>Sign Up | Sunspire</title>
-        <meta name="description" content="Sign up for Sunspire Solar Intelligence." />
+        <meta
+          name="description"
+          content="Sign up for Sunspire Solar Intelligence."
+        />
       </Head>
-      
+
       <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-gray-100">
         {/* Header */}
         <div className="bg-white shadow-sm">
@@ -29,7 +32,10 @@ export default function SignupPage() {
           <div className="bg-white rounded-2xl p-8 border border-gray-200 shadow-lg">
             <form className="space-y-6">
               <div>
-                <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="company"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Company Name
                 </label>
                 <input
@@ -41,9 +47,12 @@ export default function SignupPage() {
                   placeholder="Enter your company name"
                 />
               </div>
-              
+
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="email"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Email Address
                 </label>
                 <input
@@ -55,9 +64,12 @@ export default function SignupPage() {
                   placeholder="Enter your email address"
                 />
               </div>
-              
+
               <div>
-                <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="phone"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Phone Number
                 </label>
                 <input
@@ -68,9 +80,12 @@ export default function SignupPage() {
                   placeholder="Enter your phone number"
                 />
               </div>
-              
+
               <div>
-                <label htmlFor="plan" className="block text-sm font-medium text-gray-700 mb-2">
+                <label
+                  htmlFor="plan"
+                  className="block text-sm font-medium text-gray-700 mb-2"
+                >
                   Plan Selection
                 </label>
                 <select
@@ -81,11 +96,15 @@ export default function SignupPage() {
                 >
                   <option value="">Select a plan</option>
                   <option value="starter">Starter - $99/month</option>
-                  <option value="professional">Professional - $199/month</option>
-                  <option value="enterprise">Enterprise - Custom pricing</option>
+                  <option value="professional">
+                    Professional - $199/month
+                  </option>
+                  <option value="enterprise">
+                    Enterprise - Custom pricing
+                  </option>
                 </select>
               </div>
-              
+
               <button
                 type="submit"
                 className="w-full bg-[var(--brand-primary)] text-white font-semibold py-4 px-6 rounded-lg hover:opacity-90 transition-opacity"
@@ -93,10 +112,11 @@ export default function SignupPage() {
                 Activate on Your Domain — 24 Hours
               </button>
             </form>
-            
+
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-500">
-                No call required. $99/mo + $399 setup. 14-day refund if it doesn&apos;t lift booked calls.
+                No call required. $99/mo + $399 setup. 14-day refund if it
+                doesn&apos;t lift booked calls.
               </p>
             </div>
           </div>

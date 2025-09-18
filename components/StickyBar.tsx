@@ -1,10 +1,16 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
-import { useIsDemo } from '@/src/lib/isDemo';
+import { useState, useEffect } from "react";
+import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
+import { useIsDemo } from "@/src/lib/isDemo";
 
-export default function StickyBar({ ctaUrl = '/book', onEmail }: { ctaUrl?: string; onEmail?: () => void }) {
+export default function StickyBar({
+  ctaUrl = "/book",
+  onEmail,
+}: {
+  ctaUrl?: string;
+  onEmail?: () => void;
+}) {
   const b = useBrandTakeover();
   const isDemo = useIsDemo();
   const [isVisible, setIsVisible] = useState(false);
@@ -13,18 +19,17 @@ export default function StickyBar({ ctaUrl = '/book', onEmail }: { ctaUrl?: stri
     const handleScroll = () => {
       const scrollY = window.scrollY;
       const windowHeight = window.innerHeight;
-      const documentHeight = document.documentElement.scrollHeight;
-      
-      // Show sticky bar when user has scrolled past 35% of the page
-      if (scrollY > (documentHeight - windowHeight) * 0.35) {
+
+      // Show sticky bar when user has scrolled past 35% of the viewport height
+      if (scrollY > windowHeight * 0.35) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
       }
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Show in paid mode (when brand is enabled and not demo mode)
@@ -33,35 +38,37 @@ export default function StickyBar({ ctaUrl = '/book', onEmail }: { ctaUrl?: stri
   const handleEmailPDF = async () => {
     try {
       // Track the event
-      if (typeof window !== 'undefined' && (window as any).gtag) {
-        (window as any).gtag('event', 'report_email_sent', {
-          event_category: 'engagement',
-          event_label: 'sticky_bar'
+      if (typeof window !== "undefined" && (window as any).gtag) {
+        (window as any).gtag("event", "report_email_sent", {
+          event_category: "engagement",
+          event_label: "sticky_bar",
         });
       }
 
       // Get current report data from URL params
       const urlParams = new URLSearchParams(window.location.search);
-      const address = urlParams.get('address');
-      const company = urlParams.get('company');
-      
+      const address = urlParams.get("address");
+      const company = urlParams.get("company");
+
       // Call the email report API
-      const response = await fetch('/api/email-report', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+      const response = await fetch("/api/email-report", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           address,
           company,
-          source: 'sticky_bar'
-        })
+          source: "sticky_bar",
+        }),
       });
 
       if (response.ok) {
         // Show success message
-        const button = document.querySelector('[data-email-pdf]') as HTMLButtonElement;
+        const button = document.querySelector(
+          "[data-email-pdf]",
+        ) as HTMLButtonElement;
         if (button) {
           const originalText = button.textContent;
-          button.textContent = 'Email sent!';
+          button.textContent = "Email sent!";
           button.disabled = true;
           setTimeout(() => {
             button.textContent = originalText;
@@ -69,36 +76,36 @@ export default function StickyBar({ ctaUrl = '/book', onEmail }: { ctaUrl?: stri
           }, 3000);
         }
       } else {
-        throw new Error('Failed to send email');
+        throw new Error("Failed to send email");
       }
     } catch (error) {
-      console.error('Email PDF error:', error);
-      alert('Unable to send email. Please try again.');
+      console.error("Email PDF error:", error);
+      alert("Unable to send email. Please try again.");
     }
   };
 
   const handleConsultationClick = () => {
     // Track the event
-    if (typeof window !== 'undefined' && (window as any).gtag) {
-      (window as any).gtag('event', 'consult_click', {
-        event_category: 'engagement',
-        event_label: 'sticky_bar'
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      (window as any).gtag("event", "consult_click", {
+        event_category: "engagement",
+        event_label: "sticky_bar",
       });
     }
 
     // Use the provided ctaUrl or default behavior
-    if (ctaUrl && ctaUrl !== '/book') {
+    if (ctaUrl && ctaUrl !== "/book") {
       window.location.href = ctaUrl;
     } else {
       // Default: scroll to top to show the address form
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     }
   };
 
   return (
-    <div 
+    <div
       className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 shadow-lg"
-      style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+      style={{ paddingBottom: "env(safe-area-inset-bottom)" }}
       data-sticky-bar
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
@@ -111,7 +118,7 @@ export default function StickyBar({ ctaUrl = '/book', onEmail }: { ctaUrl?: stri
               Book a consultation or get your report via email
             </p>
           </div>
-          
+
           <div className="flex items-center gap-2">
             <button
               onClick={onEmail || handleEmailPDF}
@@ -123,9 +130,9 @@ export default function StickyBar({ ctaUrl = '/book', onEmail }: { ctaUrl?: stri
             <button
               onClick={handleConsultationClick}
               className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium text-white transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--brand)] focus:ring-offset-2"
-              style={{ 
-                backgroundColor: 'var(--brand)',
-                color: 'var(--on-brand)'
+              style={{
+                backgroundColor: "var(--brand)",
+                color: "var(--on-brand)",
               }}
             >
               📅 Book Consultation
