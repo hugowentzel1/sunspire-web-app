@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import { PlaceResult } from "@/lib/calc";
 import CookieBanner from "@/components/CookieBanner";
@@ -45,9 +45,7 @@ function HomeContent() {
 
   // Demo mode detection - use brand state instead of separate hook
   const isDemo = b.isDemo;
-  const searchParams = new URLSearchParams(
-    typeof window !== "undefined" ? window.location.search : "",
-  );
+  const searchParams = useSearchParams();
 
   // Debug logging for brand state
   useEffect(() => {
@@ -114,9 +112,8 @@ function HomeContent() {
           "🔒 Quota exhausted after consumption, navigating to report page to show lockout",
         );
         // Navigate to report page which will show lockout overlay
-        const currentParams = new URLSearchParams(window.location.search);
-        const company = currentParams.get("company");
-        const demo = currentParams.get("demo");
+        const company = searchParams.get("company");
+        const demo = searchParams.get("demo");
 
         const q = new URLSearchParams({
           address: address || "123 Main St",
@@ -137,9 +134,8 @@ function HomeContent() {
 
     try {
       // Get current URL parameters to preserve company and demo
-      const currentParams = new URLSearchParams(window.location.search);
-      const company = currentParams.get("company");
-      const demo = currentParams.get("demo");
+      const company = searchParams.get("company");
+      const demo = searchParams.get("demo");
 
       if (selectedPlace && selectedPlace.formattedAddress) {
         const q = new URLSearchParams({
@@ -181,11 +177,10 @@ function HomeContent() {
       // Start Stripe checkout with tracking
       try {
         // Collect tracking parameters from URL
-        const urlParams = new URLSearchParams(window.location.search);
-        const token = urlParams.get("token");
-        const company = urlParams.get("company");
-        const utm_source = urlParams.get("utm_source");
-        const utm_campaign = urlParams.get("utm_campaign");
+        const token = searchParams.get("token");
+        const company = searchParams.get("company");
+        const utm_source = searchParams.get("utm_source");
+        const utm_campaign = searchParams.get("utm_campaign");
 
         // Show loading state
         const button = document.querySelector(
