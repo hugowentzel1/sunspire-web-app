@@ -12,12 +12,7 @@ import { CompanyProvider } from "@/components/CompanyContext";
 import CookieConsent from "@/components/CookieConsent";
 import CookieBanner from "@/components/CookieBanner";
 import EnvBanner from "@/components/EnvBanner";
-import dynamic from "next/dynamic";
-
-const DemoBanner = dynamic(() => import("@/src/demo/DemoChrome").then(mod => ({ default: mod.DemoBanner })), {
-  ssr: false,
-  loading: () => null
-});
+import ConditionalDemoBanner from "@/components/ConditionalDemoBanner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -40,7 +35,7 @@ export default function RootLayout({
             <CompanyProvider>
               <BrandCSSInjector />
               <EnvBanner />
-              <DemoBanner />
+              <ConditionalDemoBanner />
               <SharedNavigation />
               {children}
             </CompanyProvider>

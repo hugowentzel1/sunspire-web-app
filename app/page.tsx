@@ -11,7 +11,6 @@ import { useBrandColors } from '@/hooks/useBrandColors';
 import { usePreviewQuota } from '@/src/demo/usePreviewQuota';
 import { useCountdown } from '@/src/demo/useCountdown';
 import { useIsDemo } from '@/src/lib/isDemo';
-import { useSearchParams } from 'next/navigation';
 import React from 'react';
 import { attachCheckoutHandlers } from '@/src/lib/checkout';
 import { tid } from '@/src/lib/testids';
@@ -37,9 +36,14 @@ function HomeContent() {
   
   // Demo mode detection
   const isDemo = useIsDemo();
-  const searchParams = useSearchParams();
   
-  // All hooks must be called at the top level
+  // Debug logging for brand state
+  useEffect(() => {
+    console.log('Main page brand state:', b);
+    console.log('Main page localStorage:', localStorage.getItem('sunspire-brand-takeover'));
+    console.log('Main page isDemo:', isDemo);
+  }, [b, isDemo]);
+  
   // Brand colors from URL
   useBrandColors();
   const { read, consume } = usePreviewQuota(2);
@@ -55,41 +59,6 @@ function HomeContent() {
   useEffect(() => {
     attachCheckoutHandlers();
   }, []);
-
-  // Debug logging for brand state
-  useEffect(() => {
-    console.log('Main page brand state:', b);
-    console.log('Main page localStorage:', localStorage.getItem('sunspire-brand-takeover'));
-    console.log('Main page isDemo:', isDemo);
-  }, [b, isDemo]);
-  
-  // Add debug markers and content shown sentinel - force redeploy
-  useEffect(() => { 
-    console.log('[route] hydrated');
-    (window as any).__CONTENT_SHOWN__ = true; 
-  }, []);
-  
-  // Check if we should redirect to paid version
-  useEffect(() => {
-    if (!isDemo && typeof window !== 'undefined') {
-      const company = searchParams.get('company');
-      if (company) {
-        // Redirect to paid version with all URL parameters
-        const currentUrl = new URL(window.location.href);
-        currentUrl.pathname = '/paid';
-        window.location.href = currentUrl.toString();
-        return;
-      }
-    }
-  }, [isDemo, searchParams]);
-
-  // Early return for paid versions to prevent demo content from rendering
-  if (!isDemo) {
-    const company = searchParams.get('company');
-    if (company) {
-      return <div>Redirecting to paid version...</div>;
-    }
-  }
 
 
 
@@ -232,6 +201,12 @@ function HomeContent() {
     }
   };
 
+  // Add debug markers and content shown sentinel - force redeploy
+  useEffect(() => { 
+    console.log('[route] hydrated');
+    (window as any).__CONTENT_SHOWN__ = true; 
+  }, []);
+
   // Don't block render on brand takeover - show content immediately
   // The brand takeover will update the UI when ready
   // Remove the early return to show full content always
@@ -298,7 +273,7 @@ function HomeContent() {
           
           <div className="space-y-6">
             <div className="relative">
-              <div className="absolute -top-4 -right-2 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
+              <div className="absolute -top-4 -right-4 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
                 <span className="text-white text-lg">✓</span>
               </div>
             </div>
@@ -312,12 +287,11 @@ function HomeContent() {
                   </>
                 ) : (
                   <>
-                    Solar Intelligence Platform
+                    Your Branded Solar Quote Tool
                     <span className="block text-[var(--brand-primary)]">— Ready to Launch</span>
                   </>
                 )}
               </h1>
-              
               <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 {b.enabled 
                   ? `Go live in 24 hours. Convert more leads, book more consultations, and sync every inquiry seamlessly to your CRM — all fully branded for your company.`

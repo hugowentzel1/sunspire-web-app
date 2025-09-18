@@ -55,6 +55,18 @@ function HomeContent() {
   const urlLogo = searchParams.get('logo');
   const displayLogo = b.logo || urlLogo;
 
+  // Function to create URLs with preserved parameters
+  const createUrlWithParams = (path: string) => {
+    const params = new URLSearchParams();
+    if (urlCompany) params.set('company', urlCompany);
+    if (searchParams.get('brandColor')) params.set('brandColor', searchParams.get('brandColor') || '');
+    if (searchParams.get('logo')) params.set('logo', searchParams.get('logo') || '');
+    if (searchParams.get('demo')) params.set('demo', searchParams.get('demo') || '');
+
+    const queryString = params.toString();
+    return queryString ? `${path}?${queryString}` : path;
+  };
+
   // Debug logging for brand state
   useEffect(() => {
     console.log("Main page brand state:", b);
@@ -654,7 +666,7 @@ function HomeContent() {
                   <p className="text-gray-600">
                     Industry-standard data sources.{" "}
                     <a
-                      href="/methodology"
+                      href={createUrlWithParams("/methodology")}
                       className="text-[var(--brand-primary)] hover:underline"
                     >
                       View methodology
@@ -791,16 +803,16 @@ function HomeContent() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 text-center">
                 {/* Company Logo & Name */}
                 <div className="flex flex-col items-center">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                    {displayCompany}
-                  </h3>
                   {displayLogo && (
                     <img
                       src={displayLogo}
                       alt={`${displayCompany} logo`}
-                      className="h-12 w-12 rounded-lg object-contain"
+                      className="h-12 w-12 rounded-lg object-contain mb-4"
                     />
                   )}
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                    {displayCompany}
+                  </h3>
                 </div>
 
                 {/* Legal & Support */}
@@ -810,25 +822,25 @@ function HomeContent() {
                   </h4>
                   <div className="space-y-3">
                     <a
-                      href="/privacy"
+                      href={createUrlWithParams("/privacy")}
                       className="block text-gray-600 hover:opacity-80 transition-colors duration-200"
                     >
                       Privacy Policy
                     </a>
                     <a
-                      href="/terms"
+                      href={createUrlWithParams("/terms")}
                       className="block text-gray-600 hover:opacity-80 transition-colors duration-200"
                     >
                       Terms of Service
                     </a>
                     <a
-                      href="/accessibility"
+                      href={createUrlWithParams("/accessibility")}
                       className="block text-gray-600 hover:opacity-80 transition-colors duration-200"
                     >
                       Accessibility
                     </a>
                     <a
-                      href="/cookies"
+                      href={createUrlWithParams("/cookies")}
                       className="block text-gray-600 hover:opacity-80 transition-colors duration-200"
                     >
                       Cookies
