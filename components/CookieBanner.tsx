@@ -23,7 +23,7 @@ export default function CookieBanner() {
       className="fixed inset-x-0 bottom-0 z-50"
       data-e2e="cookie-banner"
     >
-      <div className="mx-auto max-w-7xl px-4 py-4 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/70 border-t border-black/10 shadow-sm">
+      <div className="w-full px-4 py-4 bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/70 border-t border-black/10 shadow-sm">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-slate-700 text-sm">
             We use cookies to analyze usage and improve your experience.

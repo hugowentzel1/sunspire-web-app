@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 const PAID_URL =
-  "http://localhost:3000/?company=SolarPro%20Energy&brandColor=%23059669&logo=https://logo.clearbit.com/solarpro.com"; // PAID: no demo=1
+  "http://localhost:3001/?company=SolarPro%20Energy&brandColor=%23059669&logo=https://logo.clearbit.com/solarpro.com"; // PAID: no demo=1
 
 test("Hero copy and labeled input", async ({ page }) => {
   await page.goto(PAID_URL, { waitUntil: "networkidle" });

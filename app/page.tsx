@@ -6,7 +6,6 @@ import dynamic from "next/dynamic";
 import { PlaceResult } from "@/lib/calc";
 import CookieBanner from "@/components/CookieBanner";
 import DisclaimerBar from "@/components/DisclaimerBar";
-import FooterPaid from "@/components/FooterPaid";
 import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
 import HeroBrand from "@/src/brand/HeroBrand";
 import { useBrandColors } from "@/hooks/useBrandColors";
@@ -303,13 +302,13 @@ function HomeContent() {
               <span className="text-6xl relative z-10">☀️</span>
             </div>
           ) : (
-            <HeroBrand size="lg" className="mx-auto" />
+            <HeroBrand className="mx-auto" />
           )}
 
           <div className="space-y-6">
             <div className="relative">
-              <div className="absolute -top-4 -right-4 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
-                <span className="text-white text-lg">✓</span>
+              <div className="absolute -top-6 -right-8 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
+                <span className="text-white text-lg ml-0.5">✓</span>
               </div>
             </div>
 
@@ -501,17 +500,40 @@ function HomeContent() {
                 <div className="grid grid-cols-2 gap-6 max-w-2xl">
                   <div className="feature-card p-5 text-center">
                     <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center shadow-lg">
-                      <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                      <svg
+                        className="w-6 h-6 text-gray-900"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                        />
                       </svg>
                     </div>
                     <div className="title">NREL PVWatts® v8</div>
-                    <div className="desc">Industry-standard solar modeling with current utility rates</div>
+                    <div className="desc">
+                      Industry-standard solar modeling with current utility
+                      rates
+                    </div>
                   </div>
                   <div className="feature-card p-5 text-center">
                     <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center shadow-lg">
-                      <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                      <svg
+                        className="w-6 h-6 text-gray-900"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+                        />
                       </svg>
                     </div>
                     <div className="title">End-to-End Encryption</div>
@@ -555,7 +577,6 @@ function HomeContent() {
               </div>
             </div>
           )}
-
 
           {/* How It Works Section - Demo only */}
           {isDemo && (
@@ -754,11 +775,9 @@ function HomeContent() {
 
       {isDemo ? (
         <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-          <LegalFooter
-            hideMarketingLinks={!isDemo}
-            showPoweredBy={isDemo}
-            brand={b.enabled ? b.brand : undefined}
-          />
+          <div className="text-center text-gray-600">
+            <p>Demo Footer - Powered by Sunspire</p>
+          </div>
         </footer>
       ) : (
         <>
@@ -766,70 +785,159 @@ function HomeContent() {
             <div className="max-w-7xl mx-auto px-6 py-16">
               {/* Main Footer Content */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 text-center">
-                {/* Company Information */}
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-4">{b.brand || "Your Company"}</h3>
-                  <p className="text-gray-600 mb-4 max-w-md mx-auto">
-                    Solar Intelligence Platform
-                  </p>
-                  <div className="space-y-3 text-sm text-gray-500">
-                    <p className="flex items-center justify-center">
-                      <svg className="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                      </svg>
-                      <a href="mailto:support@client-company.com" className="hover:opacity-80 transition-colors">support@client-company.com</a>
-                    </p>
-                    <p className="flex items-center justify-center">
-                      <svg className="w-4 h-4 mr-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/>
-                      </svg>
-                      +1 (555) 123-4567
-                    </p>
-                  </div>
+                {/* Company Logo & Name */}
+                <div className="flex flex-col items-center">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                    {b.brand || "Your Company"}
+                  </h3>
+                  {b.logo && (
+                    <img
+                      src={b.logo}
+                      alt={`${b.brand || "Your Company"} logo`}
+                      className="h-12 w-12 rounded-lg object-contain"
+                    />
+                  )}
                 </div>
 
                 {/* Legal & Support */}
                 <div>
-                  <h4 className="font-semibold text-gray-900 mb-4 text-lg">Legal & Support</h4>
+                  <h4 className="font-semibold text-gray-900 mb-4 text-lg">
+                    Legal & Support
+                  </h4>
                   <div className="space-y-3">
-                    <a href="/privacy" className="block text-gray-600 hover:opacity-80 transition-colors duration-200">Privacy Policy</a>
-                    <a href="/terms" className="block text-gray-600 hover:opacity-80 transition-colors duration-200">Terms of Service</a>
-                    <a href="/accessibility" className="block text-gray-600 hover:opacity-80 transition-colors duration-200">Accessibility</a>
-                    <a href="/cookies" className="block text-gray-600 hover:opacity-80 transition-colors duration-200">Cookies</a>
+                    <a
+                      href="/privacy"
+                      className="block text-gray-600 hover:opacity-80 transition-colors duration-200"
+                    >
+                      Privacy Policy
+                    </a>
+                    <a
+                      href="/terms"
+                      className="block text-gray-600 hover:opacity-80 transition-colors duration-200"
+                    >
+                      Terms of Service
+                    </a>
+                    <a
+                      href="/accessibility"
+                      className="block text-gray-600 hover:opacity-80 transition-colors duration-200"
+                    >
+                      Accessibility
+                    </a>
+                    <a
+                      href="/cookies"
+                      className="block text-gray-600 hover:opacity-80 transition-colors duration-200"
+                    >
+                      Cookies
+                    </a>
                   </div>
                 </div>
 
-                {/* Powered By */}
-                <div className="text-center">
-                  <p className="text-gray-600 text-sm">
-                    Powered by <span className="font-medium" style={{ color: b.primary || '#2563eb' }}>Sunspire</span>
-                  </p>
+                {/* Contact Information */}
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-4 text-lg">
+                    Contact
+                  </h4>
+                  <div className="space-y-3 text-sm text-gray-500">
+                    <p className="flex items-center justify-center">
+                      <svg
+                        className="w-4 h-4 mr-2 text-gray-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                        />
+                      </svg>
+                      +1 (555) 123-4567
+                    </p>
+                    <p className="flex items-center justify-center">
+                      <svg
+                        className="w-4 h-4 mr-2 text-gray-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        />
+                      </svg>
+                      <a
+                        href="mailto:support@client-company.com"
+                        className="hover:opacity-80 transition-colors"
+                      >
+                        support@client-company.com
+                      </a>
+                    </p>
+                  </div>
                 </div>
               </div>
 
               {/* Bottom Section */}
               <div className="border-t border-gray-200 pt-10">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-center items-center">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center items-center">
                   {/* NREL Disclaimer */}
                   <div className="flex items-center justify-center text-sm text-gray-500">
-                    <svg className="w-4 h-4 ml-1 mr-2 text-gray-400 flex-shrink-0 align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    <svg
+                      className="w-4 h-4 ml-1 mr-2 text-gray-400 flex-shrink-0 align-middle"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 10V3L4 14h7v7l9-11h-7z"
+                      />
                     </svg>
-                    <span className="leading-tight">Estimates generated using NREL PVWatts® v8</span>
+                    <span className="leading-tight">
+                      Estimates generated using NREL PVWatts® v8
+                    </span>
+                  </div>
+
+                  {/* Powered by Sunspire */}
+                  <div className="flex items-center justify-center text-sm text-gray-500">
+                    <span className="leading-tight">
+                      Powered by{" "}
+                      <span
+                        className="font-medium"
+                        style={{ color: b.primary || "#2563eb" }}
+                      >
+                        Sunspire
+                      </span>
+                    </span>
                   </div>
 
                   {/* Google Disclaimer */}
                   <div className="flex items-center justify-center text-sm text-gray-500">
-                    <svg className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m0 0L9 7"/>
+                    <svg
+                      className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m0 0L9 7"
+                      />
                     </svg>
-                    <span className="leading-tight">Mapping & location data © Google</span>
+                    <span className="leading-tight">
+                      Mapping & location data © Google
+                    </span>
                   </div>
                 </div>
               </div>
             </div>
           </footer>
-
         </>
       )}
 

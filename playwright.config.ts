@@ -1,10 +1,11 @@
 import { defineConfig } from "@playwright/test";
 
 export default defineConfig({
-  timeout: 60_000,
-  expect: { timeout: 10_000 },
-  fullyParallel: true,
-  retries: process.env.CI ? 2 : 0,
+  timeout: 30_000,
+  expect: { timeout: 5_000 },
+  fullyParallel: false,
+  retries: 0,
+  workers: 1,
   reporter: [
     ["list"],
     ["html", { outputFolder: "playwright-report", open: "never" }],
@@ -13,6 +14,6 @@ export default defineConfig({
     trace: "on-first-retry",
     screenshot: "only-on-failure",
     video: "retain-on-failure",
-    baseURL: process.env.LIVE_BASE || "http://localhost:3000",
+    baseURL: "http://localhost:3001",
   },
 });
