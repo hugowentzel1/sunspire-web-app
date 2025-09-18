@@ -5,7 +5,7 @@
   - generic [ref=e2]:
     - generic [ref=e3]:
       - strong [ref=e4]: Exclusive preview built for SolarPro
-      - generic [ref=e5]: Exclusive preview — expires in 6:23:59:31
+      - generic [ref=e5]: Exclusive preview — expires in 6:23:59:30
       - generic [ref=e6]: "Runs left: 2"
     - generic [ref=e7]:
       - button "Launch on your domain" [ref=e8] [cursor=pointer]

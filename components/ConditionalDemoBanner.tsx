@@ -1,7 +1,8 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
+import { isDemoFromSearch } from "@/lib/isDemo";
 
 const DemoBanner = dynamic(() => import("@/src/demo/DemoChrome").then(mod => ({ default: mod.DemoBanner })), {
   ssr: false,
@@ -10,8 +11,15 @@ const DemoBanner = dynamic(() => import("@/src/demo/DemoChrome").then(mod => ({ 
 
 export default function ConditionalDemoBanner() {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   
-  // Pages where demo banner should NOT show
+  // Only show banner in demo mode
+  const isDemo = isDemoFromSearch(searchParams);
+  if (!isDemo) {
+    return null;
+  }
+  
+  // Pages where demo banner should NOT show even in demo mode
   const noBannerPages = [
     '/privacy',
     '/terms', 

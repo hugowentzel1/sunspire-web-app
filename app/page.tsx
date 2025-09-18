@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import dynamic from 'next/dynamic';
 import { PlaceResult } from '@/lib/calc';
 import LegalFooter from '@/components/legal/LegalFooter';
@@ -11,6 +11,7 @@ import { useBrandColors } from '@/hooks/useBrandColors';
 import { usePreviewQuota } from '@/src/demo/usePreviewQuota';
 import { useCountdown } from '@/src/demo/useCountdown';
 import { useIsDemo } from '@/src/lib/isDemo';
+import { isDemoFromSearch } from '@/lib/isDemo';
 import React from 'react';
 import { attachCheckoutHandlers } from '@/src/lib/checkout';
 import { tid } from '@/src/lib/testids';
@@ -30,12 +31,13 @@ function HomeContent() {
   const [showSampleReportModal, setShowSampleReportModal] = useState(false);
   const [sampleReportSubmitted, setSampleReportSubmitted] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
   
   // Brand takeover mode detection
   const b = useBrandTakeover();
   
-  // Demo mode detection
-  const isDemo = useIsDemo();
+  // Demo mode detection - use search params for proper detection
+  const isDemo = isDemoFromSearch(searchParams);
   
   // Debug logging for brand state
   useEffect(() => {
@@ -44,11 +46,25 @@ function HomeContent() {
     console.log('Main page isDemo:', isDemo);
   }, [b, isDemo]);
   
+  // Check if we should redirect to paid version
+  useEffect(() => {
+    if (!isDemo && typeof window !== 'undefined') {
+      const company = searchParams.get('company');
+      if (company) {
+        // Redirect to paid version with all URL parameters
+        const currentUrl = new URL(window.location.href);
+        currentUrl.pathname = '/paid';
+        window.location.href = currentUrl.toString();
+        return;
+      }
+    }
+  }, [isDemo, searchParams]);
+  
   // Brand colors from URL
   useBrandColors();
   const { read, consume } = usePreviewQuota(2);
   const remaining = read();
-  const countdown = useCountdown(b.expireDays);
+  const countdown = useCountdown(7); // Fixed to 7 days like 19610ab
 
   // Ensure client-side rendering
   useEffect(() => {
@@ -207,9 +223,13 @@ function HomeContent() {
     (window as any).__CONTENT_SHOWN__ = true; 
   }, []);
 
-  // Don't block render on brand takeover - show content immediately
-  // The brand takeover will update the UI when ready
-  // Remove the early return to show full content always
+  // Early return for paid versions to prevent demo content from rendering
+  if (!isDemo) {
+    const company = searchParams.get('company');
+    if (company) {
+      return <div>Redirecting to paid version...</div>;
+    }
+  }
 
   const initials = (name: string) => {
     return name
@@ -224,13 +244,6 @@ function HomeContent() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter" data-demo={isDemo}>
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center space-y-6">
-          
-          {/* Live confirmation bar for paid mode */}
-          {!isDemo && (
-            <div className="mx-auto max-w-3xl mt-4 rounded-lg bg-emerald-50 text-emerald-900 text-sm px-4 py-2 border border-emerald-200" {...tid('live-bar')}>
-              ✅ Live for <b>{b.brand || 'Your Company'}</b>. Leads now save to your CRM.
-            </div>
-          )}
           
           {/* Company Branding Section - Demo only */}
           {isDemo && b.enabled && (
@@ -261,8 +274,8 @@ function HomeContent() {
             </div>
           )}
           
-          {/* HERO ICON: render only one (fix double) */}
-          {!b.enabled ? (
+          {/* HERO ICON: Show company logo in paid mode, sun icon in demo */}
+          {isDemo ? (
             <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${b.primary}, ${b.primary}CC)` }}>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
               <span className="text-6xl relative z-10">☀️</span>
@@ -273,29 +286,29 @@ function HomeContent() {
           
           <div className="space-y-6">
             <div className="relative">
-              <div className="absolute -top-4 -right-4 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
+              <div className="absolute -top-4 -right-2 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
                 <span className="text-white text-lg">✓</span>
               </div>
             </div>
 
             <div className="space-y-6">
               <h1 className="text-5xl md:text-7xl font-black text-gray-900 leading-tight">
-                {b.enabled ? (
+                {isDemo ? (
                   <>
                     Your Branded Solar Quote Tool
                     <span className="block text-[var(--brand-primary)]">— Ready to Launch</span>
                   </>
                 ) : (
                   <>
-                    Your Branded Solar Quote Tool
+                    Solar Intelligence Platform
                     <span className="block text-[var(--brand-primary)]">— Ready to Launch</span>
                   </>
                 )}
               </h1>
               <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                {b.enabled 
+                {isDemo 
                   ? `Go live in 24 hours. Convert more leads, book more consultations, and sync every inquiry seamlessly to your CRM — all fully branded for your company.`
-                  : "Go live in 24 hours. Convert more leads, book more consultations, and sync every inquiry seamlessly to your CRM — all fully branded for your company."
+                  : "Enter your address to see solar production, savings, and payback—instantly."
                 }
               </p>
             </div>
@@ -311,8 +324,8 @@ function HomeContent() {
             {/* ))} */}
           </div>
 
-          {/* Address Input Section - Exact match to c548b88 */}
-          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-3xl mx-auto section-spacing">
+          {/* Address Input Section - Exact match to 19610ab */}
+          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-6 md:p-8 max-w-3xl mx-auto section-spacing">
             <div className="space-y-6">
               <div className="text-center space-y-4">
                 <h2 className="text-2xl font-bold text-gray-900">Enter Your Property Address</h2>
@@ -322,16 +335,22 @@ function HomeContent() {
               <div className="space-y-6">
                 {/* Address Input - Show for both demo and regular modes */}
                 <div className="w-full max-w-2xl mx-auto">
+                  <label htmlFor="address-input" className="block text-sm font-medium text-gray-700 mb-2">Enter Your Property Address</label>
                   <AddressAutocomplete 
+                    id="address-input"
                     value={address}
                     onChange={setAddress}
                     onSelect={handleAddressSelect}
+                    {...tid("address-input")}
+                    data-address-input
                     placeholder={b.city ? `Start typing an address in ${b.city}...` : "Start typing your property address..."}
                     className="w-full"
+                    aria-label="Enter Your Property Address"
                   />
-                  <p className="text-sm text-gray-500 mt-2 text-center">
-                    Enter your property address to get started
-                  </p>
+                  <p className="text-sm text-gray-500 mt-2">Used for local rates & irradiance. Private.</p>
+                  {address && address.length > 0 && !address.includes('@') && address.split(' ').length < 2 && (
+                    <p className="text-sm text-amber-600 mt-1">Please enter a complete street address</p>
+                  )}
                 </div>
 
                 {/* Generate Button - Now below the search bar */}
@@ -339,6 +358,7 @@ function HomeContent() {
                   onClick={address.trim() ? handleGenerateEstimate : (b.enabled ? handleLaunchClick : handleGenerateEstimate)}
                   disabled={!address.trim() || isLoading} 
                   data-cta-button
+                  {...tid("cta-primary")}
                   className={`w-full ${
                     !address.trim() || isLoading 
                       ? 'btn-disabled' 
@@ -353,7 +373,7 @@ function HomeContent() {
                   ) : (
                     <div className="flex items-center justify-center space-x-4">
                       <span>
-                        {b.enabled 
+                        {isDemo 
                           ? (address.trim() ? `Generate Solar Report` : `Launch Tool`)
                           : "Generate Solar Intelligence Report"
                         }
@@ -382,48 +402,27 @@ function HomeContent() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto section-spacing">
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
-              <div className="text-4xl font-black text-gray-900 mb-2">NREL v8</div>
-              <div className="text-gray-600 font-semibold">Industry Standard</div>
-            </div>
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
-              <div className="text-4xl font-black text-gray-900 mb-2">SOC 2</div>
-              <div className="text-gray-600 font-semibold">Compliance</div>
-            </div>
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
-              <div className="text-4xl font-black text-gray-900 mb-2">CRM Ready</div>
-              <div className="text-gray-600 font-semibold">HubSpot, Salesforce</div>
-            </div>
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
-              <div className="text-4xl font-black text-gray-900 mb-2">24/7</div>
-              <div className="text-gray-600 font-semibold">Support</div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto section-spacing">
-            <div className="feature-card p-5 text-center">
-              <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center shadow-lg">
-                <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+          {/* Demo badges - only show in demo mode */}
+          {isDemo && (
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto section-spacing">
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
+                <div className="text-4xl font-black text-gray-900 mb-2">NREL v8</div>
+                <div className="text-gray-600 font-semibold">Industry Standard</div>
               </div>
-              <div className="title">NREL PVWatts® v8</div>
-              <div className="desc">Industry-standard solar modeling with current utility rates</div>
-            </div>
-            <div className="feature-card p-5 text-center">
-              <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center shadow-lg">
-                <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
+                <div className="text-4xl font-black text-gray-900 mb-2">SOC 2</div>
+                <div className="text-gray-600 font-semibold">Compliance</div>
               </div>
-              <div className="title">CRM Integration</div>
-              <div className="desc">Direct push to HubSpot, Salesforce, and Airtable</div>
-            </div>
-            <div className="feature-card p-5 text-center">
-              <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center shadow-lg">
-                <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
+                <div className="text-4xl font-black text-gray-900 mb-2">CRM Ready</div>
+                <div className="text-gray-600 font-semibold">HubSpot, Salesforce</div>
               </div>
-              <div className="title">End-to-End Encryption</div>
-              <div className="desc">SOC 2-aligned controls and data protection</div>
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
+                <div className="text-4xl font-black text-gray-900 mb-2">24/7</div>
+                <div className="text-gray-600 font-semibold">Support</div>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Logos Strip */}
           <div className="text-center section-spacing">

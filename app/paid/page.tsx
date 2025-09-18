@@ -90,7 +90,7 @@ function HomeContent() {
 
   const { read, consume } = usePreviewQuota(2);
   const remaining = read();
-  const countdown = useCountdown(b.expireDays);
+  const countdown = useCountdown(7); // Fixed to 7 days like 19610ab
 
   // Ensure client-side rendering
   useEffect(() => {
@@ -272,36 +272,10 @@ function HomeContent() {
         <div className="text-center space-y-6">
           {/* Remove internal/ops copy from paid UI */}
 
-          {/* Company Branding Section - Demo only */}
-          {isDemo && b.enabled && (
-            <div>
-              <div className="bg-white/80 backdrop-blur-sm rounded-3xl py-6 px-8 border border-gray-200/50 shadow-lg mx-auto max-w-2xl">
-                <div className="space-y-4 text-center" {...tid("demo-cta")}>
-                  <h2
-                    className="text-3xl font-bold text-gray-900"
-                    {...tid("company-badge")}
-                  >
-                    Demo for {b.brand || "Your Company"} — Powered by Sunspire
-                  </h2>
-                  <p className="text-lg text-gray-600">
-                    Your Logo. Your URL. Instant Solar Quotes — Live in 24 Hours
-                  </p>
-                  <button
-                    data-cta="primary"
-                    onClick={handleLaunchClick}
-                    data-cta-button
-                    className="inline-flex items-center px-4 py-4 rounded-full text-sm font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer"
-                    style={{ backgroundColor: "var(--brand-primary)" }}
-                  >
-                    <span className="mr-2">⚡</span>
-                    Activate on Your Domain — 24 Hours
-                  </button>
-                  <p className="text-sm text-gray-600 mt-2">
-                    No call required. $99/mo + $399 setup. 14-day refund if it
-                    doesn&apos;t lift booked calls.
-                  </p>
-                </div>
-              </div>
+          {/* Live confirmation bar for paid mode */}
+          {!isDemo && (
+            <div className="mx-auto max-w-3xl mt-4 rounded-lg bg-emerald-50 text-emerald-900 text-sm px-4 py-2 border border-emerald-200" {...tid('live-bar')}>
+              ✅ Live for <b>{b.brand || 'Your Company'}</b>. Leads now save to your CRM.
             </div>
           )}
 
@@ -340,7 +314,6 @@ function HomeContent() {
                   <>Instant Solar Analysis for Your Home</>
                 )}
               </h1>
-              
               <p
                 className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
                 data-hero-subhead
