@@ -23,8 +23,16 @@ export function usePreviewQuota(allowed: number = 2) {
   function read() {
     if (typeof window === "undefined") return allowed;
     const map = JSON.parse(localStorage.getItem(KEY) || "{}");
-    if (!(link in map)) map[link] = allowed;
-    localStorage.setItem(KEY, JSON.stringify(map));
+    
+    // For demo URLs, always reset to allowed runs to ensure fresh demo experience
+    if (link.includes("demo=1")) {
+      map[link] = allowed;
+      localStorage.setItem(KEY, JSON.stringify(map));
+    } else if (!(link in map)) {
+      map[link] = allowed;
+      localStorage.setItem(KEY, JSON.stringify(map));
+    }
+    
     return map[link];
   }
 

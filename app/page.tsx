@@ -11,6 +11,7 @@ import { useBrandColors } from '@/hooks/useBrandColors';
 import { usePreviewQuota } from '@/src/demo/usePreviewQuota';
 import { useCountdown } from '@/src/demo/useCountdown';
 import { useIsDemo } from '@/src/lib/isDemo';
+import { useSearchParams } from 'next/navigation';
 import React from 'react';
 import { attachCheckoutHandlers } from '@/src/lib/checkout';
 import { tid } from '@/src/lib/testids';
@@ -36,12 +37,12 @@ function HomeContent() {
   
   // Demo mode detection
   const isDemo = useIsDemo();
+  const searchParams = useSearchParams();
   
   // Check if we should redirect to paid version
   useEffect(() => {
-    if (!isDemo && b.enabled && typeof window !== 'undefined') {
-      const urlParams = new URLSearchParams(window.location.search);
-      const company = urlParams.get('company');
+    if (!isDemo && typeof window !== 'undefined') {
+      const company = searchParams.get('company');
       if (company) {
         // Redirect to paid version with all URL parameters
         const currentUrl = new URL(window.location.href);
@@ -50,7 +51,15 @@ function HomeContent() {
         return;
       }
     }
-  }, [isDemo, b.enabled]);
+  }, [isDemo, searchParams]);
+
+  // Early return for paid versions to prevent demo content from rendering
+  if (!isDemo) {
+    const company = searchParams.get('company');
+    if (company) {
+      return <div>Redirecting to paid version...</div>;
+    }
+  }
   
   // Debug logging for brand state
   useEffect(() => {
