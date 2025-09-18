@@ -1,0 +1,99 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "Apple logo Apple Solar Intelligence" [ref=e5] [cursor=pointer]:
+        - /url: /
+        - img "Apple logo" [ref=e6] [cursor=pointer]
+        - generic [ref=e7] [cursor=pointer]:
+          - heading "Apple" [level=1] [ref=e8] [cursor=pointer]
+          - paragraph [ref=e9] [cursor=pointer]: Solar Intelligence
+      - navigation
+  - generic [ref=e11]:
+    - main [ref=e12]:
+      - generic [ref=e13]:
+        - img "Apple logo" [ref=e15]
+        - generic [ref=e16]:
+          - generic [ref=e18]: ✓
+          - generic [ref=e19]:
+            - heading "Solar Intelligence Platform — Ready to Launch" [level=1] [ref=e20]:
+              - text: Solar Intelligence Platform
+              - generic [ref=e21]: — Ready to Launch
+            - paragraph [ref=e22]: Enter your address to see solar production, savings, and payback—instantly.
+        - generic [ref=e24]:
+          - generic [ref=e25]:
+            - heading "Enter Your Property Address" [level=2] [ref=e26]
+            - paragraph [ref=e27]: Get a comprehensive solar analysis tailored to your specific location
+          - generic [ref=e28]:
+            - generic [ref=e29]:
+              - generic [ref=e30]: Enter Your Property Address
+              - generic [ref=e31]:
+                - textbox "Enter Your Property Address" [ref=e32]
+                - paragraph [ref=e33]: Powered by Google
+              - paragraph [ref=e34]: Used for local rates & irradiance. Private.
+            - button "Generate Solar Intelligence Report" [disabled] [ref=e35]:
+              - generic [ref=e36]:
+                - generic [ref=e37]: Generate Solar Intelligence Report
+                - img [ref=e38]
+        - generic [ref=e42]: Dozens of installers • CRM-ready • SOC 2-aligned
+    - contentinfo [ref=e43]:
+      - contentinfo [ref=e44]:
+        - generic [ref=e45]:
+          - generic [ref=e46]:
+            - generic [ref=e47]:
+              - heading "Sunspire Solar Intelligence" [level=3] [ref=e48]
+              - paragraph [ref=e49]: Demo for Apple — Powered by Sunspire
+              - generic [ref=e50]:
+                - paragraph [ref=e51]:
+                  - img [ref=e52]
+                  - text: "1700 Northside Drive Suite A7 #5164 Atlanta, GA 30318"
+                - generic [ref=e55]:
+                  - link "GDPR" [ref=e56] [cursor=pointer]:
+                    - /url: /security#gdpr
+                  - link "CCPA" [ref=e57] [cursor=pointer]:
+                    - /url: /security#ccpa
+                  - link "SOC 2" [ref=e58] [cursor=pointer]:
+                    - /url: /security#soc2
+                - paragraph [ref=e59]:
+                  - img [ref=e60]
+                  - link "support@getsunspire.com" [ref=e62] [cursor=pointer]:
+                    - /url: mailto:support@getsunspire.com
+                - paragraph [ref=e63]:
+                  - img [ref=e64]
+                  - link "billing@getsunspire.com" [ref=e66] [cursor=pointer]:
+                    - /url: mailto:billing@getsunspire.com
+                - paragraph [ref=e67]:
+                  - img [ref=e68]
+                  - text: +1 (555) 123-4567
+            - generic [ref=e70]:
+              - heading "Legal & Support" [level=4] [ref=e71]
+              - generic [ref=e72]:
+                - link "Privacy Policy" [ref=e73] [cursor=pointer]:
+                  - /url: /privacy
+                - link "Terms of Service" [ref=e74] [cursor=pointer]:
+                  - /url: /terms
+                - link "Security" [ref=e75] [cursor=pointer]:
+                  - /url: /security
+                - link "DPA" [ref=e76] [cursor=pointer]:
+                  - /url: /dpa
+                - link "Do Not Sell My Data" [ref=e77] [cursor=pointer]:
+                  - /url: /do-not-sell
+          - generic [ref=e79]:
+            - generic [ref=e80]:
+              - img [ref=e81]
+              - generic [ref=e83]: Estimates generated using NREL PVWatts® v8
+            - generic [ref=e84]:
+              - img [ref=e85]
+              - generic [ref=e87]: Mapping & location data © Google
+            - paragraph [ref=e89]:
+              - text: Powered by
+              - generic [ref=e90]: Sunspire
+  - alert [ref=e91]
+  - generic [ref=e93]:
+    - paragraph [ref=e94]: We use cookies to improve your experience.
+    - generic [ref=e95]:
+      - button "Manage" [ref=e96] [cursor=pointer]
+      - button "Accept" [ref=e97] [cursor=pointer]
+```
