@@ -1,0 +1,91 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e7]: ☀️
+        - generic [ref=e8]:
+          - heading "Your Company" [level=1] [ref=e9]
+          - paragraph [ref=e10]: Solar Intelligence
+      - navigation
+  - generic [ref=e12]:
+    - main [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e16]: YC
+        - generic [ref=e17]:
+          - generic [ref=e19]: ✓
+          - generic [ref=e20]:
+            - heading "Instant Solar Analysis for Your Home" [level=1] [ref=e21]
+            - paragraph [ref=e22]: Enter your address to see solar production, savings, and payback—instantly.
+        - generic [ref=e24]:
+          - generic [ref=e25]:
+            - heading "Enter Your Property Address" [level=2] [ref=e26]
+            - paragraph [ref=e27]: Get a comprehensive solar analysis tailored to your specific location
+          - generic [ref=e28]:
+            - generic [ref=e29]:
+              - generic [ref=e30]: Enter Your Property Address
+              - paragraph [ref=e32]: Used for local rates & irradiance. Private.
+            - button "Generate Solar Intelligence Report" [disabled] [ref=e33]:
+              - generic [ref=e34]:
+                - generic [ref=e35]: Generate Solar Intelligence Report
+                - img [ref=e36]
+        - generic [ref=e38]:
+          - generic [ref=e39]:
+            - generic [ref=e40]:
+              - generic [ref=e41]: NREL v8
+              - generic [ref=e42]: Accurate Modeling
+            - generic [ref=e43]:
+              - generic [ref=e44]: Current Rates
+              - generic [ref=e45]: Local Utility Data
+            - generic [ref=e46]:
+              - generic [ref=e47]: Private
+              - generic [ref=e48]: Encrypted
+          - generic [ref=e50]:
+            - generic [ref=e51]:
+              - img [ref=e53]
+              - generic [ref=e55]: NREL PVWatts® v8
+              - generic [ref=e56]: Industry-standard solar modeling with current utility rates
+            - generic [ref=e57]:
+              - img [ref=e59]
+              - generic [ref=e61]: End-to-End Encryption
+              - generic [ref=e62]: Secure data protection
+    - contentinfo [ref=e63]:
+      - generic [ref=e64]:
+        - generic [ref=e65]:
+          - generic [ref=e68]: Your Company
+          - navigation "Legal" [ref=e69]:
+            - list [ref=e70]:
+              - listitem [ref=e71]:
+                - link "Privacy Policy" [ref=e72] [cursor=pointer]:
+                  - /url: /privacy
+              - listitem [ref=e73]:
+                - link "Terms of Service" [ref=e74] [cursor=pointer]:
+                  - /url: /terms
+              - listitem [ref=e75]:
+                - link "Accessibility" [ref=e76] [cursor=pointer]:
+                  - /url: /accessibility
+              - listitem [ref=e77]:
+                - link "Cookies" [ref=e78] [cursor=pointer]:
+                  - /url: /cookies
+          - generic [ref=e79]:
+            - generic [ref=e80]:
+              - generic [ref=e81]: Questions?
+              - list [ref=e82]:
+                - listitem [ref=e83]:
+                  - link "Email Your Company" [ref=e84] [cursor=pointer]:
+                    - /url: mailto:support@client-company.com
+                - listitem [ref=e85]:
+                  - link "+1 (555) 123-4567" [ref=e86] [cursor=pointer]:
+                    - /url: tel:+15551234567
+            - link "Powered by Sunspire" [ref=e88] [cursor=pointer]:
+              - /url: https://getsunspire.com
+              - generic [ref=e90] [cursor=pointer]: Powered by Sunspire
+        - generic [ref=e91]:
+          - paragraph [ref=e92]: Estimates are informational only, based on modeled data (NREL PVWatts® v8 and current utility rates). Actual results vary by site conditions and installation quality. Not a binding quote.
+          - paragraph [ref=e93]:
+            - text: Last updated
+            - generic [ref=e94]: 9/17/2025
+            - text: .
+```
