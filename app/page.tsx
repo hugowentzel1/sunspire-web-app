@@ -297,22 +297,22 @@ function HomeContent() {
           )}
           
           <div className="space-y-6">
+            <div className="relative">
+              <div className="absolute -top-4 -right-2 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
+                <span className="text-white text-lg">✓</span>
+              </div>
+            </div>
+
             <div className="space-y-6">
               <h1 className="text-5xl md:text-7xl font-black text-gray-900 leading-tight">
                 {b.enabled ? (
                   <>
                     Your Branded Solar Quote Tool
-                    <span className="inline-block ml-4 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
-                      <span className="text-white text-lg">✓</span>
-                    </span>
                     <span className="block text-[var(--brand-primary)]">— Ready to Launch</span>
                   </>
                 ) : (
                   <>
                     Solar Intelligence Platform
-                    <span className="inline-block ml-4 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
-                      <span className="text-white text-lg">✓</span>
-                    </span>
                     <span className="block text-[var(--brand-primary)]">— Ready to Launch</span>
                   </>
                 )}
