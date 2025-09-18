@@ -39,6 +39,36 @@ function HomeContent() {
   const isDemo = useIsDemo();
   const searchParams = useSearchParams();
   
+  // All hooks must be called at the top level
+  // Brand colors from URL
+  useBrandColors();
+  const { read, consume } = usePreviewQuota(2);
+  const remaining = read();
+  const countdown = useCountdown(b.expireDays);
+
+  // Ensure client-side rendering
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // Attach checkout handlers to CTAs
+  useEffect(() => {
+    attachCheckoutHandlers();
+  }, []);
+
+  // Debug logging for brand state
+  useEffect(() => {
+    console.log('Main page brand state:', b);
+    console.log('Main page localStorage:', localStorage.getItem('sunspire-brand-takeover'));
+    console.log('Main page isDemo:', isDemo);
+  }, [b, isDemo]);
+  
+  // Add debug markers and content shown sentinel - force redeploy
+  useEffect(() => { 
+    console.log('[route] hydrated');
+    (window as any).__CONTENT_SHOWN__ = true; 
+  }, []);
+  
   // Check if we should redirect to paid version
   useEffect(() => {
     if (!isDemo && typeof window !== 'undefined') {
@@ -60,29 +90,6 @@ function HomeContent() {
       return <div>Redirecting to paid version...</div>;
     }
   }
-  
-  // Debug logging for brand state
-  useEffect(() => {
-    console.log('Main page brand state:', b);
-    console.log('Main page localStorage:', localStorage.getItem('sunspire-brand-takeover'));
-    console.log('Main page isDemo:', isDemo);
-  }, [b, isDemo]);
-  
-  // Brand colors from URL
-  useBrandColors();
-  const { read, consume } = usePreviewQuota(2);
-  const remaining = read();
-  const countdown = useCountdown(b.expireDays);
-
-  // Ensure client-side rendering
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  // Attach checkout handlers to CTAs
-  useEffect(() => {
-    attachCheckoutHandlers();
-  }, []);
 
 
 
@@ -224,12 +231,6 @@ function HomeContent() {
       router.push('/signup');
     }
   };
-
-  // Add debug markers and content shown sentinel - force redeploy
-  useEffect(() => { 
-    console.log('[route] hydrated');
-    (window as any).__CONTENT_SHOWN__ = true; 
-  }, []);
 
   // Don't block render on brand takeover - show content immediately
   // The brand takeover will update the UI when ready
