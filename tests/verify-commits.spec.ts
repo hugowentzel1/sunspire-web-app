@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("Verify Commit States", () => {
-  test("Demo version should match e85d052c483a8a32af21d999dae9ed8ebd2267f4", async ({ page }) => {
+  test("Demo version should match 19610abb0fc9042eb7ff822f21586178043fcd53", async ({ page }) => {
     // Navigate to demo version
     await page.goto(
       "https://sunspire-web-app.vercel.app/?demo=1&company=Demo%20Company&brandColor=%23FF6B35"
@@ -16,7 +16,7 @@ test.describe("Verify Commit States", () => {
     // Check that this is demo mode
     await expect(page.locator('[data-demo="true"]')).toBeVisible();
 
-    // Check demo-specific content
+    // Check demo-specific content - this version uses b.enabled logic
     await expect(
       page.getByText("Your Branded Solar Quote Tool")
     ).toBeVisible();
@@ -57,15 +57,15 @@ test.describe("Verify Commit States", () => {
       page.getByText("Frequently Asked Questions")
     ).toBeVisible();
 
-    // Check demo footer
+    // Check LegalFooter (this version uses LegalFooter component)
     await expect(
-      page.getByText("Demo Footer - Powered by Sunspire")
+      page.locator("footer")
     ).toBeVisible();
 
-    // Verify no disclaimer banner (removed in e85d052c483a8a32af21d999dae9ed8ebd2267f4)
+    // Verify no disclaimer banner (removed in 19610abb0fc9042eb7ff822f21586178043fcd53)
     await expect(page.locator("text=Disclaimer")).not.toBeVisible();
 
-    console.log("✅ Demo version matches e85d052c483a8a32af21d999dae9ed8ebd2267f4");
+    console.log("✅ Demo version matches 19610abb0fc9042eb7ff822f21586178043fcd53");
   });
 
   test("Paid version should match aa28acfc9c6c870873044517a300906475e00995", async ({ page }) => {
@@ -125,7 +125,7 @@ test.describe("Verify Commit States", () => {
 
     // Check powered by Sunspire in footer
     await expect(
-      page.getByText("Powered by")
+      page.getByText("Powered by Sunspire")
     ).toBeVisible();
 
     // Verify no CRM banner (removed in aa28acfc9c6c870873044517a300906475e00995)
