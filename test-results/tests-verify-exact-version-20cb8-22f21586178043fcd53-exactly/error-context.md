@@ -1,0 +1,133 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - img "Apple logo" [ref=e6]
+        - generic [ref=e7]:
+          - heading "Apple" [level=1] [ref=e8]
+          - paragraph [ref=e9]: Solar Intelligence
+      - navigation [ref=e10]:
+        - link "Pricing" [ref=e11] [cursor=pointer]:
+          - /url: /pricing
+        - link "Partners" [ref=e12] [cursor=pointer]:
+          - /url: /partners
+        - link "Support" [ref=e13] [cursor=pointer]:
+          - /url: /support
+        - button "Activate on Your Domain — 24 Hours" [ref=e14] [cursor=pointer]
+    - paragraph [ref=e17]: Private demo for Apple. Not affiliated.
+  - generic [ref=e18]:
+    - main [ref=e19]:
+      - generic [ref=e20]:
+        - generic [ref=e23]:
+          - heading "Demo for Apple — Powered by Sunspire" [level=2] [ref=e24]
+          - paragraph [ref=e25]: Your Logo. Your URL. Instant Solar Quotes — Live in 24 Hours
+          - button "⚡ Activate on Your Domain — 24 Hours" [ref=e26] [cursor=pointer]:
+            - generic [ref=e27] [cursor=pointer]: ⚡
+            - text: Activate on Your Domain — 24 Hours
+          - paragraph [ref=e28]: No call required. $99/mo + $399 setup. 14-day refund if it doesn't lift booked calls.
+        - img "Apple logo" [ref=e30]
+        - generic [ref=e31]:
+          - generic [ref=e33]: ✓
+          - generic [ref=e34]:
+            - heading "Your Branded Solar Quote Tool — Ready to Launch" [level=1] [ref=e35]:
+              - text: Your Branded Solar Quote Tool
+              - generic [ref=e36]: — Ready to Launch
+            - paragraph [ref=e37]: Go live in 24 hours. Convert more leads, book more consultations, and sync every inquiry seamlessly to your CRM — all fully branded for your company.
+        - generic [ref=e39]:
+          - generic [ref=e40]:
+            - heading "Enter Your Property Address" [level=2] [ref=e41]
+            - paragraph [ref=e42]: Get a comprehensive solar analysis tailored to your specific location
+          - generic [ref=e43]:
+            - generic [ref=e44]:
+              - generic [ref=e45]:
+                - textbox "Start typing your property address..." [ref=e46]
+                - paragraph [ref=e47]: Powered by Google
+              - paragraph [ref=e48]: Enter your property address to get started
+            - button "Launch Tool" [disabled] [ref=e49]:
+              - generic [ref=e50]:
+                - generic [ref=e51]: Launch Tool
+                - img [ref=e52]
+            - generic [ref=e54]:
+              - paragraph [ref=e55]: "Preview: 2 runs left."
+              - paragraph [ref=e56]: Expires in 6d 23h 59m 58s
+        - generic [ref=e57]:
+          - generic [ref=e58]:
+            - generic [ref=e59]: NREL v8
+            - generic [ref=e60]: Industry Standard
+          - generic [ref=e61]:
+            - generic [ref=e62]: SOC 2
+            - generic [ref=e63]: Compliance
+          - generic [ref=e64]:
+            - generic [ref=e65]: CRM Ready
+            - generic [ref=e66]: HubSpot, Salesforce
+          - generic [ref=e67]:
+            - generic [ref=e68]: 24/7
+            - generic [ref=e69]: Support
+        - generic [ref=e70]:
+          - generic [ref=e71]:
+            - img [ref=e73]
+            - generic [ref=e75]: NREL PVWatts® v8
+            - generic [ref=e76]: Industry-standard solar modeling with current utility rates
+          - generic [ref=e77]:
+            - img [ref=e79]
+            - generic [ref=e81]: CRM Integration
+            - generic [ref=e82]: HubSpot, Salesforce, Pipedrive, and more
+          - generic [ref=e83]:
+            - img [ref=e85]
+            - generic [ref=e87]: End-to-End Encryption
+            - generic [ref=e88]: Secure data protection
+        - generic [ref=e90]:
+          - heading "Ready to get started?" [level=3] [ref=e91]
+          - paragraph [ref=e92]: Join dozens of solar companies already using our platform
+          - generic [ref=e93]: Dozens of installers • CRM-ready • SOC 2-aligned
+        - generic [ref=e94]:
+          - heading "How It Works" [level=2] [ref=e95]
+          - generic [ref=e96]:
+            - generic [ref=e97]:
+              - generic [ref=e99]: "1"
+              - heading "Add the widget" [level=3] [ref=e100]
+              - paragraph [ref=e101]: One line of code to embed on your website
+            - generic [ref=e102]:
+              - generic [ref=e104]: "2"
+              - heading "Visitors get instant quotes" [level=3] [ref=e105]
+              - paragraph [ref=e106]: AI-powered analysis in seconds
+            - generic [ref=e107]:
+              - generic [ref=e109]: "3"
+              - heading "Your team gets booked calls" [level=3] [ref=e110]
+              - paragraph [ref=e111]: Qualified leads ready to convert
+        - generic [ref=e112]:
+          - heading "Frequently Asked Questions" [level=2] [ref=e113]
+          - generic [ref=e114]:
+            - generic [ref=e115]:
+              - heading "CMS? — Yes, 1-line <script>. Hosted option too." [level=3] [ref=e116]
+              - paragraph [ref=e117]: Works with any website platform. Just add one line of code.
+            - generic [ref=e118]:
+              - heading "Accuracy? — NREL PVWatts v8 • EIA rates • local irradiance" [level=3] [ref=e119]
+              - paragraph [ref=e120]:
+                - text: Industry-standard data sources.
+                - link "View methodology" [ref=e121] [cursor=pointer]:
+                  - /url: /methodology
+                - text: .
+            - generic [ref=e122]:
+              - heading "Security? — Encrypted in transit & at rest" [level=3] [ref=e123]
+              - paragraph [ref=e124]: Bank-level security for all customer data.
+            - generic [ref=e125]:
+              - heading "Cancel? — Yes, 14-day refund if it doesn't lift booked calls" [level=3] [ref=e126]
+              - paragraph [ref=e127]: No long-term contracts. Cancel anytime.
+            - generic [ref=e128]:
+              - heading "Support? — Email support 24/7" [level=3] [ref=e129]
+              - paragraph [ref=e130]: Get help whenever you need it.
+    - contentinfo [ref=e131]:
+      - paragraph [ref=e133]: Demo Footer - Powered by Sunspire
+  - alert [ref=e134]
+  - generic [ref=e137]:
+    - generic [ref=e138]:
+      - heading "We use cookies to improve your experience" [level=3] [ref=e139]
+      - paragraph [ref=e140]: We use cookies and similar technologies to analyze site usage, personalize content, and provide social media features. By continuing to use our site, you consent to our use of cookies.
+    - generic [ref=e141]:
+      - button "Decline" [ref=e142] [cursor=pointer]
+      - button "Accept All" [ref=e143] [cursor=pointer]
+```

@@ -11,11 +11,7 @@ export default function Home() {
     // Check if this is a demo request
     const isDemo = searchParams.get('demo') === '1' || searchParams.get('demo') === 'true';
     
-    if (isDemo) {
-      // Demo version - stay on main page
-      // The demo version is already loaded (from commit 19610abb0fc9042eb7ff822f21586178043fcd53)
-      return;
-    } else {
+    if (!isDemo) {
       // Paid version - redirect to /paid
       const company = searchParams.get('company');
       const brandColor = searchParams.get('brandColor');
