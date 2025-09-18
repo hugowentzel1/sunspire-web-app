@@ -85,11 +85,11 @@ test.describe("Verify Commit States", () => {
 
     // Check paid-specific content
     await expect(
-      page.getByText("Your Branded Solar Quote Tool")
+      page.getByText("Instant Solar Analysis for Your Home")
     ).toBeVisible();
 
     await expect(
-      page.getByText("— Ready to Launch")
+      page.getByText("Enter your address to see solar production, savings, and payback—instantly.")
     ).toBeVisible();
 
     // Check paid credibility section (no demo badges)
@@ -123,9 +123,14 @@ test.describe("Verify Commit States", () => {
       page.locator("text=SolarPro Energy").first()
     ).toBeVisible();
 
+    // Check company logo appears under company name
+    await expect(
+      page.locator("img[alt='SolarPro Energy logo']")
+    ).toBeVisible();
+
     // Check powered by Sunspire in footer
     await expect(
-      page.getByText("Powered by Sunspire")
+      page.getByText("Powered by")
     ).toBeVisible();
 
     // Verify no CRM banner (removed in aa28acfc9c6c870873044517a300906475e00995)
@@ -159,7 +164,7 @@ test.describe("Verify Commit States", () => {
 
     // Should show paid mode
     await expect(page.locator('[data-demo="false"]')).toBeVisible();
-    await expect(page.getByText("Your Branded Solar Quote Tool")).toBeVisible();
+    await expect(page.getByText("Instant Solar Analysis for Your Home")).toBeVisible();
 
     console.log("✅ Brand takeover logic working correctly");
   });

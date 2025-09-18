@@ -34,8 +34,8 @@ function HomeContent() {
   // Brand takeover mode detection
   const b = useBrandTakeover();
   
-  // Demo mode detection
-  const isDemo = useIsDemo();
+  // Demo mode detection - use brand state instead of separate hook
+  const isDemo = b.isDemo;
   
   // Debug logging for brand state
   useEffect(() => {
@@ -278,23 +278,19 @@ function HomeContent() {
 
             <div className="space-y-6">
               <h1 className="text-5xl md:text-7xl font-black text-gray-900 leading-tight">
-                {b.enabled ? (
+                {isDemo ? (
                   <>
                     Your Branded Solar Quote Tool
                     <span className="block text-[var(--brand-primary)]">— Ready to Launch</span>
                   </>
                 ) : (
-                  <>
-                    Your Branded Solar Quote Tool
-                    <span className="block text-[var(--brand-primary)]">— Ready to Launch</span>
-                  </>
+                  <>Instant Solar Analysis for Your Home</>
                 )}
               </h1>
               <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                {b.enabled 
+                {isDemo
                   ? `Go live in 24 hours. Convert more leads, book more consultations, and sync every inquiry seamlessly to your CRM — all fully branded for your company.`                                             
-                  : "Go live in 24 hours. Convert more leads, book more consultations, and sync every inquiry seamlessly to your CRM — all fully branded for your company."                                             
-                }
+                  : "Enter your address to see solar production, savings, and payback—instantly."}                                             
               </p>
             </div>
           </div>
@@ -551,13 +547,75 @@ function HomeContent() {
         </div>
       )}
 
-      <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <LegalFooter 
-          hideMarketingLinks={!isDemo} 
-          showPoweredBy={true} 
-          brand={b.enabled ? b.brand : undefined} 
-        />
-      </footer>
+      {isDemo ? (
+        <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <div className="text-center text-gray-600">
+            <p>Demo Footer - Powered by Sunspire</p>
+          </div>
+        </footer>
+      ) : (
+        <>
+          <footer className="bg-gradient-to-b from-gray-50 via-white to-gray-100 border-t border-gray-200 mt-20">
+            <div className="max-w-7xl mx-auto px-6 py-16">
+              {/* Main Footer Content */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 text-center">
+                {/* Company Logo & Name */}
+                <div className="flex flex-col items-center">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                    {b.brand || "Your Company"}
+                  </h3>
+                  {b.logo && (
+                    <img
+                      src={b.logo}
+                      alt={`${b.brand || "Your Company"} logo`}
+                      className="h-12 w-12 rounded-lg object-contain"
+                    />
+                  )}
+                </div>
+
+                {/* Legal & Support */}
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-4 text-lg">
+                    Legal & Support
+                  </h4>
+                  <div className="space-y-3">
+                    <a
+                      href="/privacy"
+                      className="block text-gray-600 hover:opacity-80 transition-colors duration-200"
+                    >
+                      Privacy Policy
+                    </a>
+                    <a
+                      href="/terms"
+                      className="block text-gray-600 hover:opacity-80 transition-colors duration-200"
+                    >
+                      Terms of Service
+                    </a>
+                    <a
+                      href="/support"
+                      className="block text-gray-600 hover:opacity-80 transition-colors duration-200"
+                    >
+                      Support
+                    </a>
+                  </div>
+                </div>
+
+                {/* Powered by */}
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-4 text-lg">
+                    Powered by
+                  </h4>
+                  <div className="flex items-center justify-center">
+                    <span className="text-gray-600">
+                      Sunspire
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </>
+      )}
       
 
     </div>
