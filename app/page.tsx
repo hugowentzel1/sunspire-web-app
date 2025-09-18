@@ -231,7 +231,7 @@ function HomeContent() {
           )}
           
           {/* Company Branding Section - Demo only */}
-          {isDemo && b.enabled && (
+          {isDemo && (
             <div>
               <div className="bg-white/80 backdrop-blur-sm rounded-3xl py-6 px-8 border border-gray-200/50 shadow-lg mx-auto max-w-2xl">
                 <div className="space-y-4 text-center" {...tid('demo-cta')}>
