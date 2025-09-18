@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import { useIsDemo } from '@/src/lib/isDemo';
 
-export default function StickyBar() {
+export default function StickyBar({ ctaUrl = '/book', onEmail }: { ctaUrl?: string; onEmail?: () => void }) {
   const b = useBrandTakeover();
   const isDemo = useIsDemo();
   const [isVisible, setIsVisible] = useState(false);
@@ -23,11 +23,11 @@ export default function StickyBar() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Only show in paid mode (not demo)
+  // Show in paid mode (when brand is enabled and not demo mode)
   if (!isVisible || isDemo) return null;
 
   const handleEmailPDF = async () => {
@@ -86,9 +86,13 @@ export default function StickyBar() {
       });
     }
 
-    // For now, scroll to top to show the address form
-    // In production, this would link to the installer's consultation booking
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Use the provided ctaUrl or default behavior
+    if (ctaUrl && ctaUrl !== '/book') {
+      window.location.href = ctaUrl;
+    } else {
+      // Default: scroll to top to show the address form
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   return (
@@ -110,7 +114,7 @@ export default function StickyBar() {
           
           <div className="flex items-center gap-2">
             <button
-              onClick={handleEmailPDF}
+              onClick={onEmail || handleEmailPDF}
               data-email-pdf
               className="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium text-gray-700 bg-white border border-gray-300 hover:bg-gray-50 transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--brand)] focus:ring-offset-2"
             >

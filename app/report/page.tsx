@@ -16,6 +16,7 @@ import { SolarEstimate } from '@/lib/estimate';
 import EstimateChart from '@/components/EstimateChart';
 import { formatDateSafe } from '@/lib/format';
 import LegalFooter from '@/components/legal/LegalFooter';
+import PaidFooter from '@/components/PaidFooter';
 import { IconBadge } from '@/components/ui/IconBadge';
 import UnlockButton from '@/components/UnlockButton';
 import { ResultsAttribution } from '@/components/legal/ResultsAttribution';
@@ -539,8 +540,8 @@ function ReportContent() {
         </div>
       </header>
       
-      {/* Disclaimer Footer - White bar like home page - Updated */}
-      {b.enabled && (
+      {/* Disclaimer Footer - Demo only */}
+      {demoMode && (
         <div className="border-t border-gray-100 bg-white">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
             <p className="text-xs text-gray-500 text-center">

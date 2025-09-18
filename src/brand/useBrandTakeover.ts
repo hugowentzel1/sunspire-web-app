@@ -114,7 +114,7 @@ export function useBrandTakeover(): BrandState {
         console.log('useBrandTakeover: Theme color:', themeColor);
         
         const brandState: BrandState = {
-          enabled: isDemo, // Only enable demo mode when explicitly requested
+          enabled: true, // Enable for both demo and paid experiences
           brand: companyName,
           primary: themeColor, // Use hardcoded theme color directly
           logo: allowLogo(sp.get("logo")),
@@ -286,7 +286,7 @@ export function useBrandTakeover(): BrandState {
       console.log('useBrandTakeover: getBrandTheme called with:', companyName);
       
       const brandState: BrandState = {
-        enabled: isDemo, // Only enable demo mode when explicitly requested
+        enabled: true, // Enable for both demo and paid experiences
         brand: companyName,
         primary: themeColor, // Use hardcoded theme color directly
         logo: allowLogo(sp.get("logo")),
