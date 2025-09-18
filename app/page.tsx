@@ -830,12 +830,6 @@ function HomeContent() {
             </div>
           </footer>
 
-          {/* Full-width disclaimer bar at bottom */}
-          <div className="w-screen bg-slate-50 border-t border-black/10 py-4" style={{ marginLeft: "calc(-50vw + 50%)", width: "100vw" }}>
-            <div className="mx-auto max-w-7xl px-6 text-sm text-slate-600 text-center">
-              Estimates are informational only, based on modeled data (NREL PVWatts® v8 and current utility rates). Actual results vary by site conditions and installation quality. Not a binding quote.
-            </div>
-          </div>
         </>
       )}
 
