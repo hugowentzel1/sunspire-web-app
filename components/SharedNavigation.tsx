@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { usePathname, useSearchParams } from "next/navigation";
 import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
 import { useCompany } from "./CompanyContext";
@@ -16,6 +17,18 @@ export default function SharedNavigation() {
   // Get company name from URL parameter as fallback
   const urlCompany = searchParams.get('company');
   const displayCompany = (b.enabled && b.brand) ? b.brand : (urlCompany || "Your Company");
+
+  // Function to create URLs with preserved parameters
+  const createUrlWithParams = (path: string) => {
+    const params = new URLSearchParams();
+    if (urlCompany) params.set('company', urlCompany);
+    if (searchParams.get('demo')) params.set('demo', searchParams.get('demo') || '1');
+    if (searchParams.get('brandColor')) params.set('brandColor', searchParams.get('brandColor') || '');
+    if (searchParams.get('logo')) params.set('logo', searchParams.get('logo') || '');
+    
+    const queryString = params.toString();
+    return queryString ? `${path}?${queryString}` : path;
+  };
 
   // Don't render on pages that have their own custom banners
   if (pathname === "/report" || pathname === "/demo-result") {
@@ -182,7 +195,7 @@ export default function SharedNavigation() {
     <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
-          <div className="flex items-center space-x-4">
+          <Link href={createUrlWithParams('/')} className="flex items-center space-x-4 hover:opacity-80 transition-opacity">
             {b.enabled && logoUrl ? (
               <Image
                 src={logoUrl}
@@ -213,29 +226,29 @@ export default function SharedNavigation() {
                 Solar Intelligence
               </p>
             </div>
-          </div>
+          </Link>
 
           <nav className="hidden md:flex items-center space-x-12">
             {isDemo && (
               <>
-                <a
-                  href="/pricing"
+                <Link
+                  href={createUrlWithParams('/pricing')}
                   className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
                 >
                   Pricing
-                </a>
-                <a
-                  href="/partners"
+                </Link>
+                <Link
+                  href={createUrlWithParams('/partners')}
                   className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
                 >
                   Partners
-                </a>
-                <a
-                  href="/support"
+                </Link>
+                <Link
+                  href={createUrlWithParams('/support')}
                   className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
                 >
                   Support
-                </a>
+                </Link>
                 <button
                   onClick={handleLaunchClick}
                   className="btn-primary ml-12"
