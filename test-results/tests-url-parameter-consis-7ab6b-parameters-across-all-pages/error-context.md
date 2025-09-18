@@ -4,8 +4,8 @@
 - generic [active] [ref=e1]:
   - generic [ref=e2]:
     - generic [ref=e3]:
-      - strong [ref=e4]: Exclusive preview built for Apple
-      - generic [ref=e5]: Exclusive preview — expires in 6:23:59:58
+      - strong [ref=e4]: Exclusive preview built for SolarPro
+      - generic [ref=e5]: Exclusive preview — expires in 6:23:59:31
       - generic [ref=e6]: "Runs left: 2"
     - generic [ref=e7]:
       - button "Launch on your domain" [ref=e8] [cursor=pointer]
@@ -13,11 +13,11 @@
       - button "Dismiss" [ref=e10] [cursor=pointer]: ✕
   - banner [ref=e11]:
     - generic [ref=e13]:
-      - link "Apple logo Apple Solar Intelligence" [ref=e14] [cursor=pointer]:
-        - /url: /
-        - img "Apple logo" [ref=e15] [cursor=pointer]
+      - link "SolarPro logo SolarPro Solar Intelligence" [ref=e14] [cursor=pointer]:
+        - /url: /?company=SolarPro&brandColor=%23FF6B35&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com
+        - img "SolarPro logo" [ref=e15] [cursor=pointer]
         - generic [ref=e16] [cursor=pointer]:
-          - heading "Apple" [level=1] [ref=e17] [cursor=pointer]
+          - heading "SolarPro" [level=1] [ref=e17] [cursor=pointer]
           - paragraph [ref=e18] [cursor=pointer]: Solar Intelligence
       - navigation
   - generic [ref=e20]:
@@ -25,9 +25,9 @@
       - generic [ref=e22]:
         - generic [ref=e23]:
           - text: ✅ Live for
-          - generic [ref=e24]: Apple
+          - generic [ref=e24]: SolarPro
           - text: . Leads now save to your CRM.
-        - img "Apple logo" [ref=e26]
+        - img "SolarPro logo" [ref=e26]
         - generic [ref=e27]:
           - generic [ref=e29]: ✓
           - generic [ref=e30]:

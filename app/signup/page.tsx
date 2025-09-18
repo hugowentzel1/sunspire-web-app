@@ -1,7 +1,11 @@
+'use client';
+
 import Head from 'next/head';
+import { useSearchParams } from 'next/navigation';
 import LegalFooter from '@/components/legal/LegalFooter';
 
 export default function SignupPage() {
+  const searchParams = useSearchParams();
   return (
     <>
       <Head>
@@ -104,7 +108,10 @@ export default function SignupPage() {
       </div>
 
       <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <LegalFooter />
+        <LegalFooter 
+          brand={searchParams.get('company') || undefined} 
+          hideMarketingLinks={!searchParams.get('demo')}
+        />
       </footer>
     </>
   );

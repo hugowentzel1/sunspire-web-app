@@ -1,10 +1,12 @@
 "use client";
 
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+import { useSearchParams } from 'next/navigation';
 import LegalFooter from '@/components/legal/LegalFooter';
 
 export default function CancelPage() {
   const b = useBrandTakeover();
+  const searchParams = useSearchParams();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter">
@@ -12,7 +14,7 @@ export default function CancelPage() {
         {/* Back to Home Button */}
         <div className="mb-8">
           <a
-            href="/"
+            href={`/?${searchParams.toString()}`}
             className="inline-flex items-center text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
           >
             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -41,7 +43,7 @@ export default function CancelPage() {
 
             <div className="space-y-4">
               <a
-                href="/"
+                href={`/?${searchParams.toString()}`}
                 className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-[var(--brand-primary)] hover:opacity-90 transition-opacity"
               >
                 Return Home
@@ -54,7 +56,10 @@ export default function CancelPage() {
           </div>
         </div>
       </main>
-      <LegalFooter brand={b.enabled ? b.brand : undefined} />
+      <LegalFooter 
+        brand={b.enabled ? b.brand : searchParams.get('company') || undefined} 
+        hideMarketingLinks={!searchParams.get('demo')}
+      />
     </div>
   );
 }

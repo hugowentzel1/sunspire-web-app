@@ -1,6 +1,7 @@
 'use client';
 
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+import { useSearchParams } from 'next/navigation';
 import { tid } from '@/src/lib/testids';
 
 export default function LegalFooter({ 
@@ -13,10 +14,24 @@ export default function LegalFooter({
   brand?: string 
 }) {
   const b = useBrandTakeover();
+  const searchParams = useSearchParams();
   
-  // Use passed brand prop or fall back to brand takeover
-  const companyName = brand || (b.enabled && b.brand ? b.brand : 'Sunspire');
+  // Use passed brand prop or fall back to brand takeover, or use URL parameter
+  const urlCompany = searchParams.get('company');
+  const companyName = brand || (b.enabled && b.brand ? b.brand : (urlCompany || 'Sunspire'));
   const brandColor = b.enabled && b.primary ? b.primary : '#d97706';
+
+  // Function to create URLs with preserved parameters
+  const createUrlWithParams = (path: string) => {
+    const params = new URLSearchParams();
+    if (urlCompany) params.set('company', urlCompany);
+    if (searchParams.get('demo')) params.set('demo', searchParams.get('demo') || '1');
+    if (searchParams.get('brandColor')) params.set('brandColor', searchParams.get('brandColor') || '');
+    if (searchParams.get('logo')) params.set('logo', searchParams.get('logo') || '');
+
+    const queryString = params.toString();
+    return queryString ? `${path}?${queryString}` : path;
+  };
 
   return (
     <footer className="bg-gradient-to-b from-gray-50 via-white to-gray-100 border-t border-gray-200 mt-20">
@@ -86,9 +101,9 @@ export default function LegalFooter({
             <div {...tid('footer-marketing-links')}>
               <h4 className="font-semibold text-gray-900 mb-4 text-lg">Quick Links</h4>
               <div className="space-y-3">
-                <a href="/pricing" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Pricing</a>
-                <a href="/partners" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Partners</a>
-                <a href="/support" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Support</a>
+                <a href={createUrlWithParams('/pricing')} className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Pricing</a>
+                <a href={createUrlWithParams('/partners')} className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Partners</a>
+                <a href={createUrlWithParams('/support')} className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Support</a>
               </div>
             </div>
           )}
@@ -97,11 +112,11 @@ export default function LegalFooter({
           <div {...tid('footer-legal-links')}>
             <h4 className="font-semibold text-gray-900 mb-4 text-lg">Legal & Support</h4>
             <div className="space-y-3">
-              <a href="/privacy" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Privacy Policy</a>
-              <a href="/terms" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Terms of Service</a>
-              <a href="/security" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Security</a>
-              <a href="/dpa" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>DPA</a>
-              <a href="/do-not-sell" className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Do Not Sell My Data</a>
+              <a href={createUrlWithParams('/privacy')} className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Privacy Policy</a>
+              <a href={createUrlWithParams('/terms')} className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Terms of Service</a>
+              <a href={createUrlWithParams('/security')} className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Security</a>
+              <a href={createUrlWithParams('/dpa')} className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>DPA</a>
+              <a href={createUrlWithParams('/do-not-sell')} className="block text-gray-600 hover:opacity-80 transition-colors duration-200" style={{ '--tw-hover-opacity': '0.8' } as React.CSSProperties}>Do Not Sell My Data</a>
             </div>
           </div>
         </div>

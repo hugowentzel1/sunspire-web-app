@@ -2,10 +2,12 @@
 
 import { useState } from 'react';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+import { useSearchParams } from 'next/navigation';
 import LegalFooter from '@/components/legal/LegalFooter';
 
 export default function DoNotSellPage() {
   const b = useBrandTakeover();
+  const searchParams = useSearchParams();
   
   const [email, setEmail] = useState('');
   const [submitted, setSubmitted] = useState(false);
@@ -22,7 +24,7 @@ export default function DoNotSellPage() {
         {/* Back to Home Button */}
         <div className="mb-8">
           <a
-            href="/"
+            href={`/?${searchParams.toString()}`}
             className="inline-flex items-center text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
           >
             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -141,7 +143,10 @@ export default function DoNotSellPage() {
         </div>
       </main>
 
-      <LegalFooter brand={b.enabled ? b.brand : undefined} />
+      <LegalFooter 
+        brand={b.enabled ? b.brand : searchParams.get('company') || undefined} 
+        hideMarketingLinks={!searchParams.get('demo')}
+      />
     </div>
   );
 }
