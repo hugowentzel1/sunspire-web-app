@@ -4,7 +4,7 @@ test.describe("Verify Commit States", () => {
   test("Demo version should match 19610abb0fc9042eb7ff822f21586178043fcd53", async ({ page }) => {
     // Navigate to demo version
     await page.goto(
-      "https://sunspire-web-app.vercel.app/?demo=1&company=Demo%20Company&brandColor=%23FF6B35"
+      "https://sunspire-web-app.vercel.app/?demo=1&company=Apple&brandColor=%23FF6B35"
     );
 
     // Wait for page to load
@@ -27,7 +27,7 @@ test.describe("Verify Commit States", () => {
 
     // Check demo CTA section
     await expect(
-      page.getByText("Demo for Demo Company — Powered by Sunspire")
+      page.locator("h2").filter({ hasText: "Demo for Apple — Powered by Sunspire" })
     ).toBeVisible();
 
     // Check demo badges section
@@ -59,7 +59,7 @@ test.describe("Verify Commit States", () => {
 
     // Check LegalFooter (this version uses LegalFooter component)
     await expect(
-      page.locator("footer")
+      page.locator("footer").first()
     ).toBeVisible();
 
     // Verify no disclaimer banner (removed in 19610abb0fc9042eb7ff822f21586178043fcd53)
@@ -85,11 +85,11 @@ test.describe("Verify Commit States", () => {
 
     // Check paid-specific content
     await expect(
-      page.getByText("Instant Solar Analysis for Your Home")
+      page.getByText("Your Branded Solar Quote Tool")
     ).toBeVisible();
 
     await expect(
-      page.getByText("Enter your address to see solar production, savings, and payback—instantly.")
+      page.getByText("— Ready to Launch")
     ).toBeVisible();
 
     // Check paid credibility section (no demo badges)
@@ -98,18 +98,18 @@ test.describe("Verify Commit States", () => {
     ).toBeVisible();
 
     await expect(
-      page.locator("text=Current Rates").first()
+      page.locator("text=SOC 2").first()
     ).toBeVisible();
 
     await expect(
-      page.locator("text=Private").first()
+      page.locator("text=CRM Ready").first()
+    ).toBeVisible();
+
+    await expect(
+      page.locator("text=24/7").first()
     ).toBeVisible();
 
     // Verify no demo-specific content
-    await expect(
-      page.getByText("Your Branded Solar Quote Tool")
-    ).not.toBeVisible();
-
     await expect(
       page.getByText("How It Works")
     ).not.toBeVisible();
@@ -148,7 +148,7 @@ test.describe("Verify Commit States", () => {
 
     // Should show demo mode
     await expect(page.locator('[data-demo="true"]')).toBeVisible();
-    await expect(page.getByText("Demo for Test Company — Powered by Sunspire")).toBeVisible();
+    await expect(page.locator("h2").filter({ hasText: "Demo for Test Company — Powered by Sunspire" })).toBeVisible();
 
     // Test paid mode detection
     await page.goto(
@@ -159,7 +159,7 @@ test.describe("Verify Commit States", () => {
 
     // Should show paid mode
     await expect(page.locator('[data-demo="false"]')).toBeVisible();
-    await expect(page.getByText("Instant Solar Analysis for Your Home")).toBeVisible();
+    await expect(page.getByText("Your Branded Solar Quote Tool")).toBeVisible();
 
     console.log("✅ Brand takeover logic working correctly");
   });

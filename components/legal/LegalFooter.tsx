@@ -23,152 +23,174 @@ export default function LegalFooter({
       <div className="max-w-7xl mx-auto px-6 py-16">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 text-center">
-          {/* Company Information */}
-          <div>
-            <h3 className="text-xl font-bold text-gray-900 mb-4">
-              Sunspire Solar Intelligence
-            </h3>
-            <p className="text-gray-600 mb-4 max-w-md mx-auto">
-              {hideMarketingLinks
-                ? "Solar Intelligence Platform"
-                : `Demo for ${companyName} — Powered by Sunspire`}
-            </p>
-            <div className="space-y-3 text-sm text-gray-500">
-              <p className="flex items-center justify-center">
-                <svg
-                  className="w-4 h-4 mr-2 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-                1700 Northside Drive Suite A7 #5164 Atlanta, GA 30318
-              </p>
+          {/* Company Logo & Name - Only show for paid version */}
+          {hideMarketingLinks && (
+            <div className="flex flex-col items-center">
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                {companyName}
+              </h3>
+              {b.enabled && b.logo && (
+                <img
+                  src={b.logo}
+                  alt={`${companyName} logo`}
+                  className="h-12 w-12 rounded-lg object-contain"
+                />
+              )}
+            </div>
+          )}
 
-              {/* Compliance Badges */}
-              <div className="flex items-center justify-center space-x-4 mt-4">
-                <a
-                  href="/security#gdpr"
-                  className="inline-flex items-center px-3 py-1 text-white text-xs font-medium rounded-full transition-all duration-200 hover:shadow-lg"
-                  style={{
-                    background:
-                      b.enabled && b.primary
-                        ? `linear-gradient(135deg, ${b.primary}, ${b.primary}dd)`
-                        : "linear-gradient(135deg, #d97706, #b45309)",
-                    boxShadow:
-                      b.enabled && b.primary
-                        ? `0 4px 14px ${b.primary}40`
-                        : "0 4px 14px #d9770640",
-                  }}
-                >
-                  GDPR
-                </a>
-                <a
-                  href="/security#ccpa"
-                  className="inline-flex items-center px-3 py-1 text-white text-xs font-medium rounded-full transition-all duration-200 hover:shadow-lg"
-                  style={{
-                    background:
-                      b.enabled && b.primary
-                        ? `linear-gradient(135deg, ${b.primary}, ${b.primary}dd)`
-                        : "linear-gradient(135deg, #d97706, #b45309)",
-                    boxShadow:
-                      b.enabled && b.primary
-                        ? `0 4px 14px ${b.primary}40`
-                        : "0 4px 14px #d9770640",
-                  }}
-                >
-                  CCPA
-                </a>
-                <a
-                  href="/security#soc2"
-                  className="inline-flex items-center px-3 py-1 text-white text-xs font-medium rounded-full transition-all duration-200 hover:shadow-lg"
-                  style={{
-                    background:
-                      b.enabled && b.primary
-                        ? `linear-gradient(135deg, ${b.primary}, ${b.primary}dd)`
-                        : "linear-gradient(135deg, #d97706, #b45309)",
-                    boxShadow:
-                      b.enabled && b.primary
-                        ? `0 4px 14px ${b.primary}40`
-                        : "0 4px 14px #d9770640",
-                  }}
-                >
-                  SOC 2
-                </a>
-              </div>
-
-              <p className="flex items-center justify-center">
-                <svg
-                  className="w-4 h-4 mr-2 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
-                </svg>
-                <a
-                  href="mailto:support@getsunspire.com"
-                  className="hover:opacity-80 transition-colors"
-                >
-                  support@getsunspire.com
-                </a>
-              </p>
-              <p className="flex items-center justify-center">
-                <svg
-                  className="w-4 h-4 mr-2 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
-                </svg>
-                <a
-                  href="mailto:billing@getsunspire.com"
-                  className="hover:opacity-80 transition-colors"
-                >
-                  billing@getsunspire.com
-                </a>
-              </p>
-              <p className="flex items-center justify-center">
-                <svg
-                  className="w-4 h-4 mr-2 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                  />
-                </svg>
-                +1 (555) 123-4567
+          {/* Company Information - Only show for demo version */}
+          {!hideMarketingLinks && (
+            <div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">
+                Sunspire Solar Intelligence
+              </h3>
+              <p className="text-gray-600 mb-4 max-w-md mx-auto">
+                Demo for {companyName} — Powered by Sunspire
               </p>
             </div>
-          </div>
+          )}
+
+          {/* Contact Information - Only show for demo version */}
+          {!hideMarketingLinks && (
+            <div>
+              <div className="space-y-3 text-sm text-gray-500">
+                <p className="flex items-center justify-center">
+                  <svg
+                    className="w-4 h-4 mr-2 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                    />
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+                  </svg>
+                  1700 Northside Drive Suite A7 #5164 Atlanta, GA 30318
+                </p>
+
+                {/* Compliance Badges */}
+                <div className="flex items-center justify-center space-x-4 mt-4">
+                  <a
+                    href="/security#gdpr"
+                    className="inline-flex items-center px-3 py-1 text-white text-xs font-medium rounded-full transition-all duration-200 hover:shadow-lg"
+                    style={{
+                      background:
+                        b.enabled && b.primary
+                          ? `linear-gradient(135deg, ${b.primary}, ${b.primary}dd)`
+                          : "linear-gradient(135deg, #d97706, #b45309)",
+                      boxShadow:
+                        b.enabled && b.primary
+                          ? `0 4px 14px ${b.primary}40`
+                          : "0 4px 14px #d9770640",
+                    }}
+                  >
+                    GDPR
+                  </a>
+                  <a
+                    href="/security#ccpa"
+                    className="inline-flex items-center px-3 py-1 text-white text-xs font-medium rounded-full transition-all duration-200 hover:shadow-lg"
+                    style={{
+                      background:
+                        b.enabled && b.primary
+                          ? `linear-gradient(135deg, ${b.primary}, ${b.primary}dd)`
+                          : "linear-gradient(135deg, #d97706, #b45309)",
+                      boxShadow:
+                        b.enabled && b.primary
+                          ? `0 4px 14px ${b.primary}40`
+                          : "0 4px 14px #d9770640",
+                    }}
+                  >
+                    CCPA
+                  </a>
+                  <a
+                    href="/security#soc2"
+                    className="inline-flex items-center px-3 py-1 text-white text-xs font-medium rounded-full transition-all duration-200 hover:shadow-lg"
+                    style={{
+                      background:
+                        b.enabled && b.primary
+                          ? `linear-gradient(135deg, ${b.primary}, ${b.primary}dd)`
+                          : "linear-gradient(135deg, #d97706, #b45309)",
+                      boxShadow:
+                        b.enabled && b.primary
+                          ? `0 4px 14px ${b.primary}40`
+                          : "0 4px 14px #d9770640",
+                    }}
+                  >
+                    SOC 2
+                  </a>
+                </div>
+
+                <p className="flex items-center justify-center">
+                  <svg
+                    className="w-4 h-4 mr-2 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                  <a
+                    href="mailto:support@getsunspire.com"
+                    className="hover:opacity-80 transition-colors"
+                  >
+                    support@getsunspire.com
+                  </a>
+                </p>
+                <p className="flex items-center justify-center">
+                  <svg
+                    className="w-4 h-4 mr-2 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                  <a
+                    href="mailto:billing@getsunspire.com"
+                    className="hover:opacity-80 transition-colors"
+                  >
+                    billing@getsunspire.com
+                  </a>
+                </p>
+                <p className="flex items-center justify-center">
+                  <svg
+                    className="w-4 h-4 mr-2 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    />
+                  </svg>
+                  +1 (555) 123-4567
+                </p>
+              </div>
+            </div>
+          )}
 
           {/* Quick Links - Only show if not hiding marketing links */}
           {!hideMarketingLinks && (
