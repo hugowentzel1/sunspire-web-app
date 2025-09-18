@@ -1129,8 +1129,6 @@ function ReportContent() {
         </motion.div>
       </main>
 
-      {!demoMode && <DisclaimerBar />}
-
       {demoMode ? (
         <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <LegalFooter
@@ -1140,13 +1138,12 @@ function ReportContent() {
           />
         </footer>
       ) : (
-        <FooterPaid
-          company={{
-            name: b.brand || "Your Company",
-            logoUrl: b.logo,
-            email: "support@client-company.com",
-            phone: "+1 (555) 123-4567",
-          }}
+        <PaidFooter
+          companyName={b.brand || "Your Company"}
+          companyLogo={b.logo}
+          brandColor={b.primary}
+          contactEmail="support@client-company.com"
+          contactPhone="+1 (555) 123-4567"
         />
       )}
 

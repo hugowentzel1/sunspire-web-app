@@ -1,5 +1,5 @@
 .github/workflows/e2e.yml | 157 +-
-CHANGE_SUMMARY.md | 282 +
+CHANGE_SUMMARY.md | 275 +
 COMPLETE-LAUNCH-RUNBOOK.md | 29 +-
 ENV-CHECKLIST.md | 13 +
 LAUNCH-CHECKLIST.md | 11 +
@@ -59,19 +59,19 @@ app/dpa/page.tsx | 156 +-
 app/error.tsx | 22 +-
 app/globals.css | 397 +-
 app/healthz/route.ts | 15 +-
-app/layout.tsx | 38 +-
+app/layout.tsx | 40 +-
 app/not-found.tsx | 10 +-
 app/o/[slug]/page.tsx | 16 +-
 app/o/redirect/route.ts | 5 +-
 app/o/test/route.ts | 7 +-
 app/onboard/domain/page.tsx | 97 +-
 app/opengraph-image.tsx | 58 +-
-app/page.tsx | 727 +-
+app/page.tsx | 756 +-
 app/partners/page.tsx | 262 +-
 app/pricing/page.tsx | 144 +-
 app/privacy/page.tsx | 190 +-
 app/r/[token]/route.ts | 40 +-
-app/report/page.tsx | 1011 +-
+app/report/page.tsx | 1014 +-
 app/robots.ts | 22 +-
 app/security/page.tsx | 394 +-
 app/signup/page.tsx | 52 +-
@@ -81,16 +81,18 @@ app/success/page.tsx | 96 +-
 app/support/page.tsx | 498 +-
 app/terms/page.tsx | 148 +-
 app/v1/ingest/lead/route.ts | 183 +-
-components/AddressAutocomplete.tsx | 134 +-
+components/AddressAutocomplete.tsx | 143 +-
 components/AppErrorBoundary.tsx | 19 +-
 components/BrandCSSInjector.tsx | 20 +-
 components/BrandProvider.tsx | 12 +-
 components/ClientOnly.tsx | 16 +-
 components/CompanyContext.tsx | 16 +-
+components/CookieBanner.tsx | 46 +
 components/CookieConsent.tsx | 104 +-
+components/DisclaimerBar.tsx | 15 +
 components/EnvBanner.tsx | 37 +-
 components/EstimateChart.tsx | 118 +-
-components/FooterPaid.tsx | 132 +
+components/FooterPaid.tsx | 77 +
 components/HeroBrand.tsx | 169 +
 components/LeadModal.tsx | 131 +-
 components/LoadingFallback.tsx | 2 +-
@@ -248,28 +250,32 @@ tests/e2e.sunspire.spec.ts | 143 +-
 tests/final-live-verification.spec.ts | 253 +-
 tests/paid-footer-new.spec.ts | 96 +
 tests/paid-footer.spec.ts | 83 +
-tests/paid-ui.spec.ts | 48 +
-tests/paid-ux.spec.ts | 219 +
+tests/paid-ui.spec.ts | 90 +
+tests/paid-ux.spec.ts | 218 +
 tests/paid.spec.ts | 156 +
 types/global.d.ts | 5 -
 utils/theme.ts | 133 +
 vercel.json | 4 +-
-256 files changed, 33384 insertions(+), 6937 deletions(-)
-commit 415059195607a0a78de52fed0c406ebf77ad1556
-Author: Hugo Wentzel <hugowentzel@gmail.com>
-Date: Wed Sep 17 20:59:28 2025 -0400
+258 files changed, 33464 insertions(+), 6940 deletions(-)
 
-    PAID UX: cleaner hero & address, remove marketing chips/stickies, compact cookie banner, demo CTAs stripped, restored fat footer (paid), report de-marketed
+Changed files:
+
+commit a281aebe5044786539808dbd2d3539422e8205b1
+Author: Hugo Wentzel <hugowentzel@gmail.com>
+Date: Wed Sep 17 21:33:45 2025 -0400
+
+    PAID polish: exact hero copy, balanced 3-up grids, full-width cookie & disclaimer, paid 3-col footer; remove consultation/email/CRM/unlock/marquee; a11y labels
 
 CHANGE_SUMMARY.md
+app/layout.tsx
 app/page.tsx
 app/report/page.tsx
-components/CookieConsent.tsx
+components/AddressAutocomplete.tsx
+components/CookieBanner.tsx
+components/DisclaimerBar.tsx
 components/FooterPaid.tsx
 docs/Sunspire-legal.md
-lib/isDemo.ts
-lib/mode.ts
 playwright-report/index.html
 test-results/.last-run.json
-tests/paid-footer-new.spec.ts
+tests/paid-ui.spec.ts
 tests/paid-ux.spec.ts

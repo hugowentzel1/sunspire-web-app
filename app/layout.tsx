@@ -43,7 +43,6 @@ export default function RootLayout({
 
         {/* Cookie Consent */}
         <CookieConsent />
-        <CookieBanner />
       </body>
     </html>
   );

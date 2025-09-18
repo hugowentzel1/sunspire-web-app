@@ -28,7 +28,7 @@ export default function PaidFooter({
       role="contentinfo"
     >
       <div className="mx-auto max-w-7xl px-6 py-10">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
           {/* Brand & address */}
           <div className="space-y-4">
             <div className="flex items-center gap-3">

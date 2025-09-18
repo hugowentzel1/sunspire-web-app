@@ -474,55 +474,73 @@ function HomeContent() {
           {/* Credibility section - only show homeowner-relevant info in paid mode */}
           {!isDemo && (
             <div className="max-w-5xl mx-auto section-spacing">
-              {/* First row: 3-up grid */}
-              <div
-                data-feature-grid
-                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-              >
+              {/* Top row - 3 cards without icons */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div className="rounded-2xl p-8 shadow-sm bg-white/60 ring-1 ring-black/5 text-center">
-                  <div className="text-4xl font-black text-gray-900 mb-2">
+                  <div className="text-2xl font-bold text-gray-900 mb-2">
                     NREL v8
                   </div>
-                  <div className="text-gray-600 font-semibold">
-                    Accurate Modeling
-                  </div>
+                  <div className="text-sm text-gray-600">Accurate Modeling</div>
                 </div>
                 <div className="rounded-2xl p-8 shadow-sm bg-white/60 ring-1 ring-black/5 text-center">
-                  <div className="text-4xl font-black text-gray-900 mb-2">
+                  <div className="text-2xl font-bold text-gray-900 mb-2">
                     Current Rates
                   </div>
-                  <div className="text-gray-600 font-semibold">
+                  <div className="text-sm text-gray-600">
                     Local Utility Data
                   </div>
                 </div>
                 <div className="rounded-2xl p-8 shadow-sm bg-white/60 ring-1 ring-black/5 text-center">
-                  <div className="text-4xl font-black text-gray-900 mb-2">
+                  <div className="text-2xl font-bold text-gray-900 mb-2">
                     Private
                   </div>
-                  <div className="text-gray-600 font-semibold">Encrypted</div>
+                  <div className="text-sm text-gray-600">Encrypted</div>
                 </div>
               </div>
 
-              {/* Second row: two cards in 3-up grid with invisible placeholder */}
-              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="rounded-2xl p-8 shadow-sm bg-white/60 ring-1 ring-black/5 text-center">
-                  <div className="text-4xl font-black text-gray-900 mb-2">
-                    PVWatts® v8
+              {/* Bottom row - 2 cards with icons, centered */}
+              <div className="flex justify-center">
+                <div className="flex gap-6">
+                  <div className="rounded-2xl p-8 shadow-sm bg-white/60 ring-1 ring-black/5 text-center">
+                    <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                      <svg
+                        className="w-6 h-6 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
+                      </svg>
+                    </div>
+                    <div className="text-lg font-bold text-gray-900 mb-2">
+                      NREL PVWatts® v8
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Industry-standard solar modeling with current utility
+                      rates
+                    </div>
                   </div>
-                  <div className="text-gray-600 font-semibold">
-                    Industry Standard
+                  <div className="rounded-2xl p-8 shadow-sm bg-white/60 ring-1 ring-black/5 text-center">
+                    <div className="w-12 h-12 bg-blue-500 rounded-lg flex items-center justify-center mx-auto mb-4">
+                      <svg
+                        className="w-6 h-6 text-white"
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                      >
+                        <path
+                          fillRule="evenodd"
+                          d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                          clipRule="evenodd"
+                        />
+                      </svg>
+                    </div>
+                    <div className="text-lg font-bold text-gray-900 mb-2">
+                      End-to-End Encryption
+                    </div>
+                    <div className="text-sm text-gray-600">
+                      Secure data protection
+                    </div>
                   </div>
                 </div>
-                <div className="rounded-2xl p-8 shadow-sm bg-white/60 ring-1 ring-black/5 text-center">
-                  <div className="text-4xl font-black text-gray-900 mb-2">
-                    End-to-End
-                  </div>
-                  <div className="text-gray-600 font-semibold">Encryption</div>
-                </div>
-                <div
-                  className="hidden lg:block opacity-0 pointer-events-none"
-                  aria-hidden="true"
-                />
               </div>
             </div>
           )}
@@ -822,8 +840,6 @@ function HomeContent() {
         </div>
       )}
 
-      {!isDemo && <DisclaimerBar />}
-
       {isDemo ? (
         <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <LegalFooter
@@ -833,13 +849,12 @@ function HomeContent() {
           />
         </footer>
       ) : (
-        <FooterPaid
-          company={{
-            name: b.brand || "Your Company",
-            logoUrl: b.logo,
-            email: "support@client-company.com",
-            phone: "+1 (555) 123-4567",
-          }}
+        <PaidFooter
+          companyName={b.brand || "Your Company"}
+          companyLogo={b.logo}
+          brandColor={b.primary}
+          contactEmail="support@client-company.com"
+          contactPhone="+1 (555) 123-4567"
         />
       )}
 

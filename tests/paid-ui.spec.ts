@@ -22,13 +22,24 @@ test("Hero copy and labeled input", async ({ page }) => {
   await expect(page.locator("div.w-full.max-w-2xl.mx-auto")).toBeVisible();
 });
 
-test("Feature grid is 3-up on desktop (top row)", async ({ page }) => {
+test("Feature cards are centered with icons", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto(PAID_URL, { waitUntil: "networkidle" });
-  const grid = page.locator("[data-feature-grid]");
-  await expect(grid).toHaveCount(1);
-  const firstRowCards = grid.locator(".rounded-2xl");
-  await expect(firstRowCards).toHaveCount(3);
+
+  // Check for the specific cards with icons by looking for the cards that contain SVG elements
+  const iconCards = page
+    .locator(".rounded-2xl")
+    .filter({ has: page.locator("svg") });
+  const count = await iconCards.count();
+  expect(count).toBeGreaterThanOrEqual(2);
+
+  // Check that the specific text appears in the icon cards
+  await expect(
+    iconCards.filter({ hasText: "NREL PVWatts® v8" }),
+  ).toBeVisible();
+  await expect(
+    iconCards.filter({ hasText: "End-to-End Encryption" }),
+  ).toBeVisible();
 });
 
 test("Cookie banner spans full width and dismisses", async ({ page }) => {
@@ -58,20 +69,17 @@ test("Cookie banner spans full width and dismisses", async ({ page }) => {
   }
 });
 
-test("Disclaimer spans full width", async ({ page }) => {
+test("No disclaimer bar present", async ({ page }) => {
   await page.goto(PAID_URL, { waitUntil: "networkidle" });
   const bar = page.locator('[data-e2e="disclaimer"]');
-  await expect(bar).toBeVisible();
-  const box = await bar.boundingBox();
-  const vw = await page.evaluate(() => window.innerWidth);
-  expect(Math.abs((box?.width || 0) - vw)).toBeLessThan(2);
+  await expect(bar).toHaveCount(0);
 });
 
 test("Paid footer present with legal & contact and no sales CTAs", async ({
   page,
 }) => {
   await page.goto(PAID_URL, { waitUntil: "networkidle" });
-  const footer = page.locator('[data-e2e="paid-footer"]');
+  const footer = page.locator("[data-footer]");
   await expect(footer).toBeVisible();
   await expect(footer.getByText("Privacy Policy")).toBeVisible();
   await expect(footer.getByText(/Powered by Sunspire/i)).toBeVisible();
