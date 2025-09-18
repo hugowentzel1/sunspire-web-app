@@ -6,6 +6,7 @@ import dynamic from "next/dynamic";
 import { PlaceResult } from "@/lib/calc";
 import LegalFooter from "@/components/legal/LegalFooter";
 import PaidFooter from "@/components/PaidFooter";
+import FooterPaid from "@/components/FooterPaid";
 import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
 import HeroBrand from "@/src/brand/HeroBrand";
 import { useBrandColors } from "@/hooks/useBrandColors";
@@ -337,7 +338,7 @@ function HomeContent() {
           </div>
 
           {/* Address Input Section - Exact match to c548b88 */}
-          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-3xl mx-auto section-spacing">
+          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-6 md:p-8 max-w-3xl mx-auto section-spacing">
             <div className="space-y-6">
               <div className="text-center space-y-4">
                 <h2 className="text-2xl font-bold text-gray-900">
@@ -503,7 +504,7 @@ function HomeContent() {
             </div>
           )}
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto section-spacing">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto section-spacing">
             <div className="feature-card p-5 text-center">
               <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center shadow-lg">
                 <svg
@@ -774,23 +775,24 @@ function HomeContent() {
         </div>
       )}
 
-      <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        {isDemo ? (
+      {isDemo ? (
+        <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <LegalFooter
             hideMarketingLinks={!isDemo}
             showPoweredBy={isDemo}
             brand={b.enabled ? b.brand : undefined}
           />
-        ) : (
-          <PaidFooter
-            companyName={b.brand || "Your Company"}
-            companyLogo={b.logo}
-            brandColor={b.primary}
-            contactEmail="support@client-company.com"
-            contactPhone="+1 (555) 123-4567"
-          />
-        )}
-      </footer>
+        </footer>
+      ) : (
+        <FooterPaid
+          company={b.brand || "Your Company"}
+          logo={b.logo}
+          brandColor={b.primary}
+          supportEmail="support@client-company.com"
+          phone="+1 (555) 123-4567"
+          lastUpdated={new Date().toLocaleDateString()}
+        />
+      )}
 
       <StickyBar />
     </div>

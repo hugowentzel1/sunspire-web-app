@@ -17,6 +17,7 @@ import EstimateChart from "@/components/EstimateChart";
 import { formatDateSafe } from "@/lib/format";
 import LegalFooter from "@/components/legal/LegalFooter";
 import PaidFooter from "@/components/PaidFooter";
+import FooterPaid from "@/components/FooterPaid";
 import { IconBadge } from "@/components/ui/IconBadge";
 import UnlockButton from "@/components/UnlockButton";
 import { ResultsAttribution } from "@/components/legal/ResultsAttribution";
@@ -1124,23 +1125,24 @@ function ReportContent() {
         </motion.div>
       </main>
 
-      <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        {demoMode ? (
+      {demoMode ? (
+        <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <LegalFooter
             hideMarketingLinks={!demoMode}
             showPoweredBy={true}
             brand={b.enabled ? b.brand : undefined}
           />
-        ) : (
-          <PaidFooter
-            companyName={b.brand || "Your Company"}
-            companyLogo={b.logo}
-            brandColor={b.primary}
-            contactEmail="support@client-company.com"
-            contactPhone="+1 (555) 123-4567"
-          />
-        )}
-      </footer>
+        </footer>
+      ) : (
+        <FooterPaid
+          company={b.brand || "Your Company"}
+          logo={b.logo}
+          brandColor={b.primary}
+          supportEmail="support@client-company.com"
+          phone="+1 (555) 123-4567"
+          lastUpdated={new Date().toLocaleDateString()}
+        />
+      )}
 
       {/* LeadModal removed - no popups wanted */}
 
