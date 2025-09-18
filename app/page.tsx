@@ -418,7 +418,7 @@ function HomeContent() {
                   ) : (
                     <div className="flex items-center justify-center space-x-4">
                       <span>
-                        {b.enabled
+                        {isDemoFromParams
                           ? address.trim()
                             ? `Generate Solar Report`
                             : `Launch Tool`

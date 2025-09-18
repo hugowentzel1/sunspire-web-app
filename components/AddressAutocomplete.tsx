@@ -14,6 +14,8 @@ interface AddressAutocompleteProps {
   value?: string;
   onChange?: (value: string) => void;
   "data-testid"?: string;
+  id?: string;
+  "data-address-input"?: boolean;
 }
 
 export default function AddressAutocomplete({
@@ -23,6 +25,8 @@ export default function AddressAutocomplete({
   value = "",
   onChange,
   "data-testid": testId,
+  id,
+  "data-address-input": dataAddressInput,
 }: AddressAutocompleteProps) {
   const [query, setQuery] = useState(value);
   const [predictions, setPredictions] = useState<Prediction[]>([]);
@@ -258,6 +262,8 @@ export default function AddressAutocomplete({
         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         autoComplete="street-address"
         data-testid={testId}
+        id={id}
+        {...(dataAddressInput && { "data-address-input": "" })}
       />
 
       {isLoading && (

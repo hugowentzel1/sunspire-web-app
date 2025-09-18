@@ -903,7 +903,7 @@ function ReportContent() {
           >
             {/* Financial Analysis - Blurred */}
             <div
-              data-testid="locked-panel"
+              data-testid={demoMode ? "locked-panel" : "unlocked-panel"}
               className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50"
             >
               {/* BLUR LAYER - Demo Only */}
@@ -959,7 +959,7 @@ function ReportContent() {
 
             {/* Environmental Impact - Blurred */}
             <div
-              data-testid="locked-panel"
+              data-testid={demoMode ? "locked-panel" : "unlocked-panel"}
               className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50"
             >
               {/* BLUR LAYER - Demo Only */}

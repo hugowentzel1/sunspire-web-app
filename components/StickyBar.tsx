@@ -32,8 +32,8 @@ export default function StickyBar({
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Show in paid mode (when brand is enabled and not demo mode)
-  if (!isVisible || isDemo) return null;
+  // Only show in demo mode, never in paid mode
+  if (!isVisible || !isDemo) return null;
 
   const handleEmailPDF = async () => {
     try {

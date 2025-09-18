@@ -1,0 +1,102 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - img "SolarPro Energy logo" [ref=e6]
+        - generic [ref=e7]:
+          - heading "SolarPro Energy" [level=1] [ref=e8]
+          - paragraph [ref=e9]: Solar Intelligence
+      - navigation
+  - generic [ref=e11]:
+    - main [ref=e12]:
+      - generic [ref=e13]:
+        - img "SolarPro Energy logo" [ref=e15]
+        - generic [ref=e16]:
+          - generic [ref=e18]: ✓
+          - generic [ref=e19]:
+            - heading "Instant Solar Analysis for Your Home" [level=1] [ref=e20]
+            - paragraph [ref=e21]: Enter your address to see projected production, ROI, and payback in seconds.
+        - generic [ref=e23]:
+          - generic [ref=e24]:
+            - heading "Enter Your Property Address" [level=2] [ref=e25]
+            - paragraph [ref=e26]: Get a comprehensive solar analysis tailored to your specific location
+          - generic [ref=e27]:
+            - generic [ref=e28]:
+              - generic [ref=e29]: Enter Your Property Address
+              - generic [ref=e30]:
+                - textbox "Enter Your Property Address" [ref=e31]
+                - paragraph [ref=e32]: Powered by Google
+              - paragraph [ref=e33]: Used for local rates & irradiance. Private.
+            - button "Generate Solar Intelligence Report" [disabled] [ref=e34]:
+              - generic [ref=e35]:
+                - generic [ref=e36]: Generate Solar Intelligence Report
+                - img [ref=e37]
+        - generic [ref=e39]:
+          - generic [ref=e40]:
+            - generic [ref=e41]: NREL v8
+            - generic [ref=e42]: Accurate Modeling
+          - generic [ref=e43]:
+            - generic [ref=e44]: Current Rates
+            - generic [ref=e45]: Local Utility Data
+          - generic [ref=e46]:
+            - generic [ref=e47]: Private
+            - generic [ref=e48]: Encrypted
+        - generic [ref=e49]:
+          - generic [ref=e50]:
+            - img [ref=e52]
+            - generic [ref=e54]: NREL PVWatts® v8
+            - generic [ref=e55]: Industry-standard solar modeling with current utility rates
+          - generic [ref=e56]:
+            - img [ref=e58]
+            - generic [ref=e60]: End-to-End Encryption
+            - generic [ref=e61]: Secure data protection
+    - contentinfo [ref=e62]:
+      - generic [ref=e63]:
+        - generic [ref=e64]:
+          - generic [ref=e65]:
+            - img "SolarPro Energy logo" [ref=e67]
+            - generic [ref=e68]:
+              - generic [ref=e69]: SolarPro Energy
+              - generic [ref=e70]: Solar Intelligence
+          - generic [ref=e71]:
+            - generic [ref=e72]: Legal
+            - list [ref=e73]:
+              - listitem [ref=e74]:
+                - link "Privacy Policy" [ref=e75] [cursor=pointer]:
+                  - /url: /privacy
+              - listitem [ref=e76]:
+                - link "Terms of Service" [ref=e77] [cursor=pointer]:
+                  - /url: /terms
+              - listitem [ref=e78]:
+                - link "Accessibility" [ref=e79] [cursor=pointer]:
+                  - /url: /accessibility
+              - listitem [ref=e80]:
+                - link "Cookies" [ref=e81] [cursor=pointer]:
+                  - /url: /cookies
+          - generic [ref=e82]:
+            - generic [ref=e83]: Questions?
+            - list [ref=e84]:
+              - listitem [ref=e85]:
+                - link "Email SolarPro Energy" [ref=e86] [cursor=pointer]:
+                  - /url: mailto:support@client-company.com
+              - listitem [ref=e87]:
+                - link "+1 (555) 123-4567" [ref=e88] [cursor=pointer]:
+                  - /url: tel:15551234567
+              - listitem [ref=e89]:
+                - generic [ref=e91]:
+                  - text: Powered by
+                  - link "Sunspire" [ref=e92] [cursor=pointer]:
+                    - /url: https://getsunspire.com
+        - generic [ref=e93]:
+          - paragraph [ref=e94]: Estimates are informational only, based on modeled data (NREL PVWatts® v8 and current utility rates). Actual results vary by site conditions and installation quality. Not a binding quote.
+          - paragraph [ref=e95]: Last updated 9/17/2025.
+  - alert [ref=e96]
+  - generic [ref=e98]:
+    - paragraph [ref=e99]: We use cookies to improve your experience.
+    - generic [ref=e100]:
+      - button "Manage" [ref=e101] [cursor=pointer]
+      - button "Accept" [ref=e102] [cursor=pointer]
+```

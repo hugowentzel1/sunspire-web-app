@@ -1,9 +1,9 @@
 import { test, expect } from "@playwright/test";
 
 const PAID_LIVE =
-  "https://sunspire-web-app.vercel.app/?company=SolarPro%20Energy&brandColor=%23059669&logo=https://logo.clearbit.com/solarpro.com";
+  "http://localhost:3002/?company=SolarPro%20Energy&brandColor=%23059669&logo=https://logo.clearbit.com/solarpro.com";
 const PAID_REPORT =
-  "https://sunspire-web-app.vercel.app/report?company=SolarPro%20Energy&brandColor=%23059669&logo=https://logo.clearbit.com/solarpro.com&address=123%20Main%20St&lat=40.7128&lng=-74.0060&placeId=test";
+  "http://localhost:3002/report?company=SolarPro%20Energy&brandColor=%23059669&logo=https://logo.clearbit.com/solarpro.com&address=123%20Main%20St&lat=40.7128&lng=-74.0060&placeId=test";
 
 test("PAID: hero is focused and minimal (no marketing chips/stickies)", async ({
   page,
@@ -24,8 +24,8 @@ test("PAID: hero is focused and minimal (no marketing chips/stickies)", async ({
     page.getByText("Used for local rates & irradiance. Private."),
   ).toBeVisible();
 
-  // Check company logo is displayed in hero
-  await expect(page.locator('img[alt*="SolarPro Energy logo"]')).toBeVisible();
+  // Check company logo is displayed in hero (use first one to avoid strict mode violation)
+  await expect(page.locator('img[alt*="SolarPro Energy logo"]').first()).toBeVisible();
 });
 
 test("PAID: cookie banner compact and non-intrusive", async ({ page }) => {
@@ -199,8 +199,8 @@ test("PAID: accessibility features", async ({ page }) => {
 test("PAID: brand colors and logo display correctly", async ({ page }) => {
   await page.goto(PAID_LIVE, { waitUntil: "networkidle" });
 
-  // Check company logo is displayed
-  const logo = page.locator('img[alt*="SolarPro Energy logo"]');
+  // Check company logo is displayed (use first one to avoid strict mode violation)
+  const logo = page.locator('img[alt*="SolarPro Energy logo"]').first();
   await expect(logo).toBeVisible();
 
   // Check brand color is applied (should be #059669)
