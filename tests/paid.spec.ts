@@ -83,7 +83,8 @@ test("Paid: no internal/ops copy visible", async ({ page }) => {
   await expect(
     page.getByText(/Live for.*Leads now save to your CRM/i),
   ).toHaveCount(0);
-  await expect(page.getByText(/Powered by Sunspire/i)).toHaveCount(0);
+  // "Powered by Sunspire" should be present in footer as small attribution
+  await expect(page.getByText(/Powered by Sunspire/i)).toBeVisible();
 
   // Should not show demo-specific messaging
   await expect(page.getByText(/Your Branded Solar Quote Tool/i)).toHaveCount(0);

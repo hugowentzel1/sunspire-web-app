@@ -24,6 +24,7 @@ export default function PaidFooter({
     <footer
       className="mt-16 border-t border-black/10 bg-gradient-to-t from-slate-50/90 to-transparent backdrop-blur-sm"
       data-footer
+      data-paid-footer
       role="contentinfo"
     >
       <div className="mx-auto max-w-7xl px-6 py-10">
