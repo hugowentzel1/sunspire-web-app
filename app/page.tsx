@@ -224,11 +224,23 @@ function HomeContent() {
   }, []);
 
   // Early return for paid versions to prevent demo content from rendering
-  if (!isDemo) {
+  if (!isDemo && typeof window !== 'undefined') {
     const company = searchParams.get('company');
     if (company) {
       return <div>Redirecting to paid version...</div>;
     }
+  }
+
+  // Show loading state during SSR
+  if (typeof window === 'undefined') {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-8 h-8 border-2 border-gray-300 border-t-blue-600 rounded-full animate-spin mx-auto mb-4"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
   }
 
   const initials = (name: string) => {

@@ -2,136 +2,104 @@
 
 ```yaml
 - generic [active] [ref=e1]:
-  - generic [ref=e2]:
-    - generic [ref=e3]:
-      - strong [ref=e4]: Exclusive preview built for SolarPro
-      - generic [ref=e5]: Exclusive preview — expires in 6:23:59:31
-      - generic [ref=e6]: "Runs left: 2"
-    - generic [ref=e7]:
-      - button "Launch on your domain" [ref=e8] [cursor=pointer]
-      - button "Copy link" [ref=e9] [cursor=pointer]
-      - button "Dismiss" [ref=e10] [cursor=pointer]: ✕
-  - banner [ref=e11]:
-    - generic [ref=e13]:
-      - link "SolarPro logo SolarPro Solar Intelligence" [ref=e14] [cursor=pointer]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "SolarPro logo SolarPro Solar Intelligence" [ref=e5] [cursor=pointer]:
         - /url: /?company=SolarPro&brandColor=%23FF6B35&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com
-        - img "SolarPro logo" [ref=e15] [cursor=pointer]
-        - generic [ref=e16] [cursor=pointer]:
-          - heading "SolarPro" [level=1] [ref=e17] [cursor=pointer]
-          - paragraph [ref=e18] [cursor=pointer]: Solar Intelligence
+        - img "SolarPro logo" [ref=e6] [cursor=pointer]
+        - generic [ref=e7] [cursor=pointer]:
+          - heading "SolarPro" [level=1] [ref=e8] [cursor=pointer]
+          - paragraph [ref=e9] [cursor=pointer]: Solar Intelligence
       - navigation
-  - generic [ref=e20]:
-    - main [ref=e21]:
-      - generic [ref=e22]:
-        - generic [ref=e23]:
+  - generic [ref=e11]:
+    - main [ref=e12]:
+      - generic [ref=e13]:
+        - generic [ref=e14]:
           - text: ✅ Live for
-          - generic [ref=e24]: SolarPro
+          - generic [ref=e15]: SolarPro
           - text: . Leads now save to your CRM.
-        - img "SolarPro logo" [ref=e26]
-        - generic [ref=e27]:
-          - generic [ref=e29]: ✓
-          - generic [ref=e30]:
-            - heading "Your Branded Solar Quote Tool — Ready to Launch" [level=1] [ref=e31]:
-              - text: Your Branded Solar Quote Tool
-              - generic [ref=e32]: — Ready to Launch
-            - paragraph [ref=e33]: Go live in 24 hours. Convert more leads, book more consultations, and sync every inquiry seamlessly to your CRM — all fully branded for your company.
-        - generic [ref=e35]:
-          - generic [ref=e36]:
-            - heading "Enter Your Property Address" [level=2] [ref=e37]
-            - paragraph [ref=e38]: Get a comprehensive solar analysis tailored to your specific location
-          - generic [ref=e39]:
-            - generic [ref=e40]:
-              - generic [ref=e41]:
-                - textbox "Start typing your property address..." [ref=e42]
-                - paragraph [ref=e43]: Powered by Google
-              - paragraph [ref=e44]: Enter your property address to get started
-            - button "Launch Tool" [disabled] [ref=e45]:
-              - generic [ref=e46]:
-                - generic [ref=e47]: Launch Tool
-                - img [ref=e48]
-        - generic [ref=e50]:
-          - generic [ref=e51]:
-            - generic [ref=e52]: NREL v8
-            - generic [ref=e53]: Industry Standard
-          - generic [ref=e54]:
-            - generic [ref=e55]: SOC 2
-            - generic [ref=e56]: Compliance
-          - generic [ref=e57]:
-            - generic [ref=e58]: CRM Ready
-            - generic [ref=e59]: HubSpot, Salesforce
-          - generic [ref=e60]:
-            - generic [ref=e61]: 24/7
-            - generic [ref=e62]: Support
-        - generic [ref=e63]:
-          - generic [ref=e64]:
-            - img [ref=e66]
-            - generic [ref=e68]: NREL PVWatts® v8
-            - generic [ref=e69]: Industry-standard solar modeling with current utility rates
-          - generic [ref=e70]:
-            - img [ref=e72]
-            - generic [ref=e74]: CRM Integration
-            - generic [ref=e75]: Direct push to HubSpot, Salesforce, and Airtable
-          - generic [ref=e76]:
-            - img [ref=e78]
-            - generic [ref=e80]: End-to-End Encryption
-            - generic [ref=e81]: SOC 2-aligned controls and data protection
-        - generic [ref=e84]: Dozens of installers • CRM-ready • SOC 2-aligned
-    - contentinfo [ref=e85]:
-      - contentinfo [ref=e86]:
-        - generic [ref=e87]:
-          - generic [ref=e88]:
-            - generic [ref=e89]:
-              - heading "Sunspire Solar Intelligence" [level=3] [ref=e90]
-              - paragraph [ref=e91]: Solar Intelligence Platform
-              - generic [ref=e92]:
-                - paragraph [ref=e93]:
-                  - img [ref=e94]
-                  - text: "1700 Northside Drive Suite A7 #5164 Atlanta, GA 30318"
-                - generic [ref=e97]:
-                  - link "GDPR" [ref=e98] [cursor=pointer]:
-                    - /url: /security#gdpr
-                  - link "CCPA" [ref=e99] [cursor=pointer]:
-                    - /url: /security#ccpa
-                  - link "SOC 2" [ref=e100] [cursor=pointer]:
-                    - /url: /security#soc2
-                - paragraph [ref=e101]:
-                  - img [ref=e102]
-                  - link "support@getsunspire.com" [ref=e104] [cursor=pointer]:
-                    - /url: mailto:support@getsunspire.com
-                - paragraph [ref=e105]:
-                  - img [ref=e106]
-                  - link "billing@getsunspire.com" [ref=e108] [cursor=pointer]:
-                    - /url: mailto:billing@getsunspire.com
-                - paragraph [ref=e109]:
-                  - img [ref=e110]
-                  - text: +1 (555) 123-4567
-            - generic [ref=e112]:
-              - heading "Legal & Support" [level=4] [ref=e113]
-              - generic [ref=e114]:
-                - link "Privacy Policy" [ref=e115] [cursor=pointer]:
-                  - /url: /privacy?company=SolarPro&brandColor=%23FF6B35&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com
-                - link "Terms of Service" [ref=e116] [cursor=pointer]:
-                  - /url: /terms?company=SolarPro&brandColor=%23FF6B35&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com
-                - link "Security" [ref=e117] [cursor=pointer]:
-                  - /url: /security?company=SolarPro&brandColor=%23FF6B35&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com
-                - link "DPA" [ref=e118] [cursor=pointer]:
-                  - /url: /dpa?company=SolarPro&brandColor=%23FF6B35&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com
-                - link "Do Not Sell My Data" [ref=e119] [cursor=pointer]:
-                  - /url: /do-not-sell?company=SolarPro&brandColor=%23FF6B35&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com
-          - generic [ref=e121]:
-            - generic [ref=e122]:
-              - img [ref=e123]
-              - generic [ref=e125]: Estimates generated using NREL PVWatts® v8
-            - generic [ref=e126]:
-              - img [ref=e127]
-              - generic [ref=e129]: Mapping & location data © Google
-            - paragraph [ref=e131]:
-              - text: Powered by
-              - generic [ref=e132]: Sunspire
-  - alert [ref=e133]
-  - generic [ref=e135]:
-    - paragraph [ref=e136]: We use cookies to improve your experience.
-    - generic [ref=e137]:
-      - button "Manage" [ref=e138] [cursor=pointer]
-      - button "Accept" [ref=e139] [cursor=pointer]
+        - img "SolarPro logo" [ref=e17]
+        - generic [ref=e18]:
+          - generic [ref=e20]: ✓
+          - generic [ref=e21]:
+            - heading "Instant Solar Analysis for Your Home" [level=1] [ref=e22]
+            - paragraph [ref=e23]: Enter your address to see solar production, savings, and payback—instantly.
+        - generic [ref=e25]:
+          - generic [ref=e26]:
+            - heading "Enter Your Property Address" [level=2] [ref=e27]
+            - paragraph [ref=e28]: Get a comprehensive solar analysis tailored to your specific location
+          - generic [ref=e29]:
+            - generic [ref=e30]:
+              - generic [ref=e31]: Enter Your Property Address
+              - generic [ref=e32]:
+                - textbox "Enter Your Property Address" [ref=e33]
+                - paragraph [ref=e34]: Powered by Google
+              - paragraph [ref=e35]: Used for local rates & irradiance. Private.
+            - button "Generate Solar Intelligence Report" [disabled] [ref=e36]:
+              - generic [ref=e37]:
+                - generic [ref=e38]: Generate Solar Intelligence Report
+                - img [ref=e39]
+        - generic [ref=e41]:
+          - generic [ref=e42]:
+            - generic [ref=e43]:
+              - generic [ref=e44]: NREL v8
+              - generic [ref=e45]: Accurate Modeling
+            - generic [ref=e46]:
+              - generic [ref=e47]: Current Rates
+              - generic [ref=e48]: Local Utility Data
+            - generic [ref=e49]:
+              - generic [ref=e50]: Private
+              - generic [ref=e51]: Encrypted
+          - generic [ref=e53]:
+            - generic [ref=e54]:
+              - img [ref=e56]
+              - generic [ref=e58]: NREL PVWatts® v8
+              - generic [ref=e59]: Industry-standard solar modeling with current utility rates
+            - generic [ref=e60]:
+              - img [ref=e62]
+              - generic [ref=e64]: End-to-End Encryption
+              - generic [ref=e65]: Secure data protection
+    - contentinfo [ref=e66]:
+      - generic [ref=e67]:
+        - generic [ref=e68]:
+          - generic [ref=e69]:
+            - img "SolarPro logo" [ref=e70]
+            - heading "SolarPro" [level=3] [ref=e71]
+          - generic [ref=e72]:
+            - heading "Legal & Support" [level=4] [ref=e73]
+            - generic [ref=e74]:
+              - link "Privacy Policy" [ref=e75] [cursor=pointer]:
+                - /url: /privacy?company=SolarPro&brandColor=%23FF6B35&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com
+              - link "Terms of Service" [ref=e76] [cursor=pointer]:
+                - /url: /terms?company=SolarPro&brandColor=%23FF6B35&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com
+              - link "Accessibility" [ref=e77] [cursor=pointer]:
+                - /url: /accessibility?company=SolarPro&brandColor=%23FF6B35&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com
+              - link "Cookies" [ref=e78] [cursor=pointer]:
+                - /url: /cookies?company=SolarPro&brandColor=%23FF6B35&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com
+          - generic [ref=e79]:
+            - heading "Contact" [level=4] [ref=e80]
+            - generic [ref=e81]:
+              - paragraph [ref=e82]:
+                - img [ref=e83]
+                - text: +1 (555) 123-4567
+              - paragraph [ref=e85]:
+                - img [ref=e86]
+                - link "support@client-company.com" [ref=e88] [cursor=pointer]:
+                  - /url: mailto:support@client-company.com
+        - generic [ref=e90]:
+          - generic [ref=e91]:
+            - img [ref=e92]
+            - generic [ref=e94]: Estimates generated using NREL PVWatts® v8
+          - generic [ref=e96]:
+            - text: Powered by
+            - generic [ref=e97]: Sunspire
+          - generic [ref=e98]:
+            - img [ref=e99]
+            - generic [ref=e101]: Mapping & location data © Google
+  - alert [ref=e102]
+  - generic [ref=e104]:
+    - paragraph [ref=e105]: We use cookies to improve your experience.
+    - generic [ref=e106]:
+      - button "Manage" [ref=e107] [cursor=pointer]
+      - button "Accept" [ref=e108] [cursor=pointer]
 ```
