@@ -37,6 +37,21 @@ function HomeContent() {
   // Demo mode detection
   const isDemo = useIsDemo();
   
+  // Check if we should redirect to paid version
+  useEffect(() => {
+    if (!isDemo && b.enabled && typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const company = urlParams.get('company');
+      if (company) {
+        // Redirect to paid version with all URL parameters
+        const currentUrl = new URL(window.location.href);
+        currentUrl.pathname = '/paid';
+        window.location.href = currentUrl.toString();
+        return;
+      }
+    }
+  }, [isDemo, b.enabled]);
+  
   // Debug logging for brand state
   useEffect(() => {
     console.log('Main page brand state:', b);
