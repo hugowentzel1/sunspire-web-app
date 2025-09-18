@@ -24,6 +24,7 @@ import { ResultsAttribution } from "@/components/legal/ResultsAttribution";
 
 import { ensureBlurSupport } from "@/src/lib/ensureBlur";
 import { isDemoFromSearchParams } from "@/src/lib/isDemo";
+import { isDemoFromSearch } from "@/lib/isDemo";
 import { tid } from "@/src/lib/testids";
 
 import { getBrandTheme } from "@/lib/brandTheme";
@@ -425,9 +426,10 @@ function ReportContent() {
   useEffect(() => {
     const sp = new URLSearchParams(searchParams as any);
     const isDemo = isDemoFromSearchParams(sp);
+    const isDemoFromParams = isDemoFromSearch(sp);
     const company = searchParams.get("company");
     const hasBrand = !!company; // Company parameter does NOT imply demo
-    const demoModeValue = isDemo; // Only demo param determines demo mode
+    const demoModeValue = isDemoFromParams; // Only demo param determines demo mode
 
     console.log("🔍 Demo mode detection:", {
       company,
@@ -672,6 +674,7 @@ function ReportContent() {
 
       <main
         data-testid="report-page"
+        data-report-paid={!demoMode}
         className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12"
       >
         {/* Live confirmation bar for paid mode - removed for clean paid experience */}

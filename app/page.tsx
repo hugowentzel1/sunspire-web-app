@@ -15,6 +15,7 @@ import StickyBar from "@/components/StickyBar";
 import { usePreviewQuota } from "@/src/demo/usePreviewQuota";
 import { useCountdown } from "@/src/demo/useCountdown";
 import { useIsDemo } from "@/src/lib/isDemo";
+import { isDemoFromSearch } from "@/lib/isDemo";
 import React from "react";
 import { attachCheckoutHandlers } from "@/src/lib/checkout";
 import { tid } from "@/src/lib/testids";
@@ -45,6 +46,10 @@ function HomeContent() {
 
   // Demo mode detection
   const isDemo = useIsDemo();
+  const searchParams = new URLSearchParams(
+    typeof window !== "undefined" ? window.location.search : "",
+  );
+  const isDemoFromParams = isDemoFromSearch(searchParams);
 
   // Debug logging for brand state
   useEffect(() => {
@@ -247,7 +252,10 @@ function HomeContent() {
       className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter"
       data-demo={isDemo}
     >
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main
+        className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
+        data-paid-hero={!isDemoFromParams}
+      >
         <div className="text-center space-y-6">
           {/* Remove internal/ops copy from paid UI */}
 
@@ -353,11 +361,19 @@ function HomeContent() {
               <div className="space-y-6">
                 {/* Address Input - Show for both demo and regular modes */}
                 <div className="w-full max-w-2xl mx-auto">
+                  <label
+                    htmlFor="address-input"
+                    className="block text-sm font-medium text-gray-700 mb-2"
+                  >
+                    Enter Your Property Address
+                  </label>
                   <AddressAutocomplete
+                    id="address-input"
                     value={address}
                     onChange={setAddress}
                     onSelect={handleAddressSelect}
                     {...tid("address-input")}
+                    data-address-input
                     placeholder={
                       b.city
                         ? `Start typing an address in ${b.city}...`
@@ -365,9 +381,17 @@ function HomeContent() {
                     }
                     className="w-full"
                   />
-                  <p className="text-sm text-gray-500 mt-2 text-center">
-                    Enter your property address to get started
+                  <p className="text-sm text-gray-500 mt-2">
+                    Used for local rates & irradiance. Private.
                   </p>
+                  {address &&
+                    address.length > 0 &&
+                    !address.includes("@") &&
+                    address.split(" ").length < 2 && (
+                      <p className="text-sm text-amber-600 mt-1">
+                        Please enter a complete street address
+                      </p>
+                    )}
                 </div>
 
                 {/* Generate Button - Now below the search bar */}
@@ -505,7 +529,7 @@ function HomeContent() {
           )}
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto section-spacing">
-            <div className="feature-card p-5 text-center">
+            <div className="feature-card p-6 text-center">
               <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center shadow-lg">
                 <svg
                   className="w-6 h-6 text-gray-900"
@@ -526,8 +550,8 @@ function HomeContent() {
                 Industry-standard solar modeling with current utility rates
               </div>
             </div>
-            {isDemo && (
-              <div className="feature-card p-5 text-center">
+            {isDemoFromParams && (
+              <div className="feature-card p-6 text-center">
                 <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center shadow-lg">
                   <svg
                     className="w-6 h-6 text-gray-900"
@@ -549,7 +573,7 @@ function HomeContent() {
                 </div>
               </div>
             )}
-            <div className="feature-card p-5 text-center">
+            <div className="feature-card p-6 text-center">
               <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center shadow-lg">
                 <svg
                   className="w-6 h-6 text-gray-900"
@@ -570,15 +594,17 @@ function HomeContent() {
             </div>
           </div>
 
-          {/* Customer Benefits - Always show */}
-          <div className="text-center section-spacing">
-            <div className="inline-flex items-center px-6 py-3 bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200/50">
-              <span className="text-gray-600 font-medium">
-                Accurate Modeling (NREL PVWatts® v8) • Uses Local Utility Rates
-                • End-to-End Encryption
-              </span>
+          {/* Customer Benefits - Only show in demo mode */}
+          {isDemoFromParams && (
+            <div className="text-center section-spacing">
+              <div className="inline-flex items-center px-6 py-3 bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200/50">
+                <span className="text-gray-600 font-medium">
+                  Accurate Modeling (NREL PVWatts® v8) • Uses Local Utility
+                  Rates • End-to-End Encryption
+                </span>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* How It Works Section - Demo only */}
           {isDemo && (
@@ -775,11 +801,11 @@ function HomeContent() {
         </div>
       )}
 
-      {isDemo ? (
+      {isDemoFromParams ? (
         <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <LegalFooter
-            hideMarketingLinks={!isDemo}
-            showPoweredBy={isDemo}
+            hideMarketingLinks={!isDemoFromParams}
+            showPoweredBy={isDemoFromParams}
             brand={b.enabled ? b.brand : undefined}
           />
         </footer>

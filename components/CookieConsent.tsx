@@ -2,17 +2,21 @@
 
 import { useState, useEffect } from "react";
 import { isEmbed } from "@/lib/flags";
+import { isDemoFromSearch } from "@/lib/isDemo";
 
 export default function CookieConsent() {
   const [showBanner, setShowBanner] = useState(false);
   const [isAccepted, setIsAccepted] = useState(false);
   const [isEmbedMode, setIsEmbedMode] = useState(false);
+  const [isDemoMode, setIsDemoMode] = useState(false);
 
   useEffect(() => {
     // Check if we're in embed mode
     const urlParams = new URLSearchParams(window.location.search);
     const embedMode = isEmbed(urlParams);
+    const demoMode = isDemoFromSearch(urlParams);
     setIsEmbedMode(embedMode);
+    setIsDemoMode(demoMode);
 
     // Check if user has already made a choice
     const cookieChoice = localStorage.getItem("cookie-consent");
@@ -73,10 +77,45 @@ export default function CookieConsent() {
     return null;
   }
 
+  // For paid mode, show compact bottom-left toast
+  if (!isDemoMode) {
+    return (
+      <div
+        className="fixed bottom-4 left-4 z-50 bg-white/95 backdrop-blur-sm border border-gray-200 rounded-lg shadow-lg max-w-sm"
+        data-cookie-banner
+      >
+        <div className="p-4">
+          <p className="text-sm text-gray-700 mb-3">
+            We use cookies to improve your experience.
+          </p>
+          <div className="flex items-center gap-2">
+            <button
+              onClick={handleDecline}
+              className="px-3 py-1.5 text-xs font-medium text-gray-600 bg-gray-100 hover:bg-gray-200 rounded transition-colors"
+            >
+              Manage
+            </button>
+            <button
+              onClick={handleAccept}
+              className="px-3 py-1.5 text-xs font-medium text-white rounded transition-colors"
+              style={{
+                backgroundColor: "var(--brand-primary)",
+              }}
+            >
+              Accept
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // For demo mode, show full banner
   return (
     <div
       className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 shadow-lg"
       style={{ maxHeight: "56px" }}
+      data-cookie-banner
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">

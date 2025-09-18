@@ -100,16 +100,16 @@ and
 **IN WITNESS WHEREOF**, the parties have executed this Agreement as of the Effective Date.
 
 **SUNSPIRE TECHNOLOGIES, INC.**
-By: ************\_************
-Name: **********\_\_\_**********
-Title: **********\_\_**********
-Date: **********\_\_\_**********
+By: ****\*\*\*\*****\_****\*\*\*\*****
+Name: ****\*\*****\_\_\_****\*\*****
+Title: ****\*\*****\_\_****\*\*****
+Date: ****\*\*****\_\_\_****\*\*****
 
 **[CLIENT COMPANY NAME]**
-By: ************\_************
-Name: **********\_\_\_**********
-Title: **********\_\_**********
-Date: **********\_\_\_**********
+By: ****\*\*\*\*****\_****\*\*\*\*****
+Name: ****\*\*****\_\_\_****\*\*****
+Title: ****\*\*****\_\_****\*\*****
+Date: ****\*\*****\_\_\_****\*\*****
 
 ---
 
@@ -119,11 +119,11 @@ Date: **********\_\_\_**********
 
 **Client Information:**
 
-- Company Name: ************\_************
-- Contact Person: ************\_************
-- Email: ************\_************
-- Phone: ************\_************
-- Address: ************\_************
+- Company Name: ****\*\*\*\*****\_****\*\*\*\*****
+- Contact Person: ****\*\*\*\*****\_****\*\*\*\*****
+- Email: ****\*\*\*\*****\_****\*\*\*\*****
+- Phone: ****\*\*\*\*****\_****\*\*\*\*****
+- Address: ****\*\*\*\*****\_****\*\*\*\*****
 
 **Service Selection:**
 
@@ -151,19 +151,19 @@ Date: **********\_\_\_**********
 
 **Billing Information:**
 
-- Billing Address: ************\_************
-- Tax ID: ************\_************
+- Billing Address: ****\*\*\*\*****\_****\*\*\*\*****
+- Tax ID: ****\*\*\*\*****\_****\*\*\*\*****
 
 **Additional Requirements:**
 
-- Custom features: ************\_************
-- Special integrations: ************\_************
-- Compliance requirements: ************\_************
+- Custom features: ****\*\*\*\*****\_****\*\*\*\*****
+- Special integrations: ****\*\*\*\*****\_****\*\*\*\*****
+- Compliance requirements: ****\*\*\*\*****\_****\*\*\*\*****
 
 **Timeline:**
 
 - Setup completion: [X] business days
-- Go-live date: ************\_************
+- Go-live date: ****\*\*\*\*****\_****\*\*\*\*****
 
 **Terms:**
 
@@ -172,10 +172,10 @@ Date: **********\_\_\_**********
 - Setup begins upon payment receipt
 
 **Authorized Signature:**
-By: ************\_************
-Name: **********\_\_\_**********
-Title: **********\_\_**********
-Date: **********\_\_\_**********
+By: ****\*\*\*\*****\_****\*\*\*\*****
+Name: ****\*\*****\_\_\_****\*\*****
+Title: ****\*\*****\_\_****\*\*****
+Date: ****\*\*****\_\_\_****\*\*****
 
 ---
 
@@ -386,7 +386,7 @@ This Data Processing Addendum ("DPA") forms part of the White-Label License Agre
 - Accounts for system losses and degradation
 - Public domain data from National Renewable Energy Laboratory
 
-1.2 **Google Maps Platform**: Location and address services
+  1.2 **Google Maps Platform**: Location and address services
 
 - Address autocomplete and validation
 - Geographic coordinates and mapping
@@ -408,7 +408,7 @@ This Data Processing Addendum ("DPA") forms part of the White-Label License Agre
 - System losses: 14% (wiring, shading, soiling)
 - Degradation: 0.5% per year
 
-3.2 **Financial Parameters**:
+  3.2 **Financial Parameters**:
 
 - Federal Tax Credit: 30% (current law)
 - Cost per watt: $3.00 (market average)
