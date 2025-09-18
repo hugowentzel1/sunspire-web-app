@@ -302,22 +302,21 @@ function HomeContent() {
                 {b.enabled ? (
                   <>
                     Your Branded Solar Quote Tool
+                    <span className="inline-block ml-4 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
+                      <span className="text-white text-lg">✓</span>
+                    </span>
                     <span className="block text-[var(--brand-primary)]">— Ready to Launch</span>
                   </>
                 ) : (
                   <>
                     Solar Intelligence Platform
+                    <span className="inline-block ml-4 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
+                      <span className="text-white text-lg">✓</span>
+                    </span>
                     <span className="block text-[var(--brand-primary)]">— Ready to Launch</span>
                   </>
                 )}
               </h1>
-              
-              {/* Green check mark with proper spacing */}
-              <div className="flex items-center justify-center mt-4">
-                <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
-                  <span className="text-white text-lg">✓</span>
-                </div>
-              </div>
               
               <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 {b.enabled 
