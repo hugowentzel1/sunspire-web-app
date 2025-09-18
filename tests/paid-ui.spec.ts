@@ -28,7 +28,7 @@ test("Feature cards are centered with icons", async ({ page }) => {
 
   // Check for the specific cards with icons by looking for the cards that contain SVG elements
   const iconCards = page
-    .locator(".rounded-2xl")
+    .locator(".feature-card")
     .filter({ has: page.locator("svg") });
   const count = await iconCards.count();
   expect(count).toBeGreaterThanOrEqual(2);
@@ -79,7 +79,7 @@ test("Paid footer present with legal & contact and no sales CTAs", async ({
   page,
 }) => {
   await page.goto(PAID_URL, { waitUntil: "networkidle" });
-  const footer = page.locator("[data-footer]");
+  const footer = page.locator("footer");
   await expect(footer).toBeVisible();
   await expect(footer.getByText("Privacy Policy")).toBeVisible();
   await expect(footer.getByText(/Powered by Sunspire/i)).toBeVisible();
