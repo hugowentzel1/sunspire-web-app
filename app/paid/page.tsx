@@ -50,6 +50,10 @@ function HomeContent() {
   // Get company name from URL parameter as fallback for footer
   const urlCompany = searchParams.get('company');
   const displayCompany = (b.enabled && b.brand) ? b.brand : (urlCompany || "Your Company");
+  
+  // Get logo from URL parameter as fallback for SSR
+  const urlLogo = searchParams.get('logo');
+  const displayLogo = b.logo || urlLogo;
 
   // Debug logging for brand state
   useEffect(() => {
@@ -789,9 +793,9 @@ function HomeContent() {
                   <h3 className="text-lg font-semibold text-gray-900 mb-4">
                     {displayCompany}
                   </h3>
-                  {b.logo && (
+                  {displayLogo && (
                     <img
-                      src={b.logo}
+                      src={displayLogo}
                       alt={`${displayCompany} logo`}
                       className="h-12 w-12 rounded-lg object-contain"
                     />
