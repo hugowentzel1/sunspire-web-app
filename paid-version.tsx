@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
 import { PlaceResult } from "@/lib/calc";
 import CookieBanner from "@/components/CookieBanner";
@@ -39,15 +39,13 @@ function HomeContent() {
   const [showSampleReportModal, setShowSampleReportModal] = useState(false);
   const [sampleReportSubmitted, setSampleReportSubmitted] = useState(false);
   const router = useRouter();
+  const searchParams = useSearchParams();
 
   // Brand takeover mode detection
   const b = useBrandTakeover();
 
   // Demo mode detection - use brand state instead of separate hook
-  const isDemo = b.isDemo;
-  const searchParams = new URLSearchParams(
-    typeof window !== "undefined" ? window.location.search : "",
-  );
+  const isDemo = searchParams.get('demo') === '1' || searchParams.get('demo') === 'true';
 
   // Debug logging for brand state
   useEffect(() => {

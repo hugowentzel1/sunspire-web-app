@@ -84,7 +84,7 @@ export default function SuccessPage() {
           <div className="text-red-600 text-6xl mb-4">⚠️</div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Error Loading Details</h1>
           <p className="text-gray-600 mb-4">Error: {error}</p>
-          <Link href={b.isDemo ? `/?${searchParams.toString()}` : `/paid?${searchParams.toString()}`} className="text-blue-600 hover:underline">
+          <Link href={searchParams.get('demo') ? `/?${searchParams.toString()}` : `/paid?${searchParams.toString()}`} className="text-blue-600 hover:underline">
             Return to Home
           </Link>
         </div>
@@ -99,7 +99,7 @@ export default function SuccessPage() {
           <div className="text-yellow-600 text-6xl mb-4">❓</div>
           <h1 className="text-2xl font-bold text-gray-900 mb-2">Session Not Found</h1>
           <p className="text-gray-600 mb-4">Unable to find your subscription details</p>
-          <Link href={b.isDemo ? `/?${searchParams.toString()}` : `/paid?${searchParams.toString()}`} className="text-blue-600 hover:underline">
+          <Link href={searchParams.get('demo') ? `/?${searchParams.toString()}` : `/paid?${searchParams.toString()}`} className="text-blue-600 hover:underline">
             Return to Home
           </Link>
         </div>
@@ -170,7 +170,7 @@ export default function SuccessPage() {
           </button>
           
           <Link
-            href={b.isDemo ? `/?${searchParams.toString()}` : `/paid?${searchParams.toString()}`}
+            href={searchParams.get('demo') ? `/?${searchParams.toString()}` : `/paid?${searchParams.toString()}`}
             className="block w-full text-center text-gray-600 hover:text-gray-800 transition-colors"
           >
             Return to Home

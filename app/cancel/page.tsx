@@ -14,7 +14,7 @@ export default function CancelPage() {
         {/* Back to Home Button */}
         <div className="mb-8">
           <a
-            href={b.isDemo ? `/?${searchParams.toString()}` : `/paid?${searchParams.toString()}`}
+            href={searchParams.get('demo') ? `/?${searchParams.toString()}` : `/paid?${searchParams.toString()}`}
             className="inline-flex items-center text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
           >
             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -43,7 +43,7 @@ export default function CancelPage() {
 
             <div className="space-y-4">
               <a
-                href={b.isDemo ? `/?${searchParams.toString()}` : `/paid?${searchParams.toString()}`}
+                href={searchParams.get('demo') ? `/?${searchParams.toString()}` : `/paid?${searchParams.toString()}`}
                 className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-[var(--brand-primary)] hover:opacity-90 transition-opacity"
               >
                 Return Home

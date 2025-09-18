@@ -45,7 +45,7 @@ export default function PartnersPage() {
         {/* Back to Home Button */}
         <div className="mb-8">
           <a 
-            href={b.isDemo ? `/?${searchParams.toString()}` : `/paid?${searchParams.toString()}`} 
+            href={searchParams.get('demo') ? `/?${searchParams.toString()}` : `/paid?${searchParams.toString()}`} 
             className="inline-flex items-center text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
           >
             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -56,7 +56,7 @@ export default function PartnersPage() {
         </div>
 
         {/* Demo Banner */}
-        {b.isDemo && b.enabled && (
+        {searchParams.get('demo') && b.enabled && (
           <div className="mb-8">
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl py-6 px-8 border border-gray-200/50 shadow-lg mx-auto max-w-2xl">
               <div className="space-y-4 text-center">
@@ -333,7 +333,7 @@ export default function PartnersPage() {
       </main>
 
       <LegalFooter 
-        hideMarketingLinks={b.isDemo} 
+        hideMarketingLinks={!!searchParams.get('demo')} 
         showPoweredBy={true} 
         brand={b.enabled ? b.brand : undefined} 
       />

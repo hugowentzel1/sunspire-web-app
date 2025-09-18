@@ -22,7 +22,7 @@ export default function LegalFooter({
   const brandColor = b.enabled && b.primary ? b.primary : '#d97706';
   
   // Check if this is demo mode
-  const isDemo = b.isDemo;
+  const isDemo = searchParams.get('demo') === '1' || searchParams.get('demo') === 'true';
 
   // Function to create URLs with preserved parameters
   const createUrlWithParams = (path: string) => {
