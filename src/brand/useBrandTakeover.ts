@@ -45,6 +45,7 @@ export type BrandState = {
   runs: number; // always 2
   blur: boolean; // always true
   pilot: boolean;
+  isDemo: boolean; // true for demo mode, false for paid mode
 };
 
 const STORAGE_KEY = "sunspire-brand-takeover";
@@ -64,6 +65,7 @@ export function useBrandTakeover(): BrandState {
     runs: 2,
     blur: true,
     pilot: false,
+    isDemo: false,
   });
 
   useEffect(() => {
@@ -171,6 +173,7 @@ export function useBrandTakeover(): BrandState {
           runs: 2,
           blur: true,
           pilot: false,
+          isDemo: isDemo, // Set demo mode flag
         };
 
         console.log("useBrandTakeover: Created brand state:", brandState);
@@ -222,6 +225,7 @@ export function useBrandTakeover(): BrandState {
                 runs: 2,
                 blur: true,
                 pilot: false,
+                isDemo: false,
               });
             }
           } catch (e) {
@@ -240,6 +244,7 @@ export function useBrandTakeover(): BrandState {
               runs: 2,
               blur: true,
               pilot: false,
+              isDemo: false,
             });
           }
         } else {
@@ -258,6 +263,7 @@ export function useBrandTakeover(): BrandState {
             runs: 2,
             blur: true,
             pilot: false,
+            isDemo: false,
           });
         }
       }
@@ -390,6 +396,7 @@ export function useBrandTakeover(): BrandState {
         runs: 2,
         blur: true,
         pilot: sp.get("pilot") === "1",
+        isDemo: isDemo, // Set demo mode flag
       };
 
       console.log("useBrandTakeover: Created brand state:", brandState);
@@ -465,6 +472,7 @@ export function useBrandTakeover(): BrandState {
         runs: 2,
         blur: true,
         pilot: false,
+        isDemo: false,
       });
     }
 

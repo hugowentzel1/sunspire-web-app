@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getStripe } from "@/src/lib/stripe";
 import { headers } from "next/headers";
 import { ENV } from "@/src/config/env";
+import Stripe from "stripe";
 import {
   upsertTenantByHandle,
   createOrLinkUserOwner,

@@ -23,12 +23,6 @@ export default function SuccessPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (sessionId) {
-      fetchSessionDetails();
-    }
-  }, [sessionId]);
-
   const fetchSessionDetails = useCallback(async () => {
     try {
       const response = await fetch(
@@ -45,6 +39,12 @@ export default function SuccessPage() {
       setLoading(false);
     }
   }, [sessionId]);
+
+  useEffect(() => {
+    if (sessionId) {
+      fetchSessionDetails();
+    }
+  }, [sessionId, fetchSessionDetails]);
 
   const handleManageBilling = async () => {
     try {

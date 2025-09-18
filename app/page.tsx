@@ -43,8 +43,8 @@ function HomeContent() {
   // Brand takeover mode detection
   const b = useBrandTakeover();
 
-  // Demo mode detection
-  const isDemo = useIsDemo();
+  // Demo mode detection - use brand state instead of separate hook
+  const isDemo = b.isDemo;
   const searchParams = new URLSearchParams(
     typeof window !== "undefined" ? window.location.search : "",
   );
@@ -302,7 +302,7 @@ function HomeContent() {
               <span className="text-6xl relative z-10">☀️</span>
             </div>
           ) : (
-            <HeroBrand className="mx-auto" />
+            <HeroBrand />
           )}
 
           <div className="space-y-6">

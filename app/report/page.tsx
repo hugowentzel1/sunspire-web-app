@@ -425,11 +425,11 @@ function ReportContent() {
 
   useEffect(() => {
     const sp = new URLSearchParams(searchParams as any);
-    const isDemo = isDemoFromSearchParams(sp);
+    const isDemo = b.isDemo; // Use brand state instead of separate detection
     const isDemoFromParams = isDemoFromSearch(sp);
     const company = searchParams.get("company");
     const hasBrand = !!company; // Company parameter does NOT imply demo
-    const demoModeValue = isDemoFromParams; // Only demo param determines demo mode
+    const demoModeValue = isDemo; // Use brand state demo mode
 
     console.log("🔍 Demo mode detection:", {
       company,
@@ -522,7 +522,7 @@ function ReportContent() {
         "🔒 Demo quota - checkout clicked, quota already consumed on report view",
       );
     };
-  }, [searchParams, pickDemoAddress]);
+  }, [searchParams, pickDemoAddress, b.isDemo]);
 
   if (tenantLoading || isLoading) {
     return (
