@@ -14,140 +14,215 @@
   - generic [ref=e11]:
     - main [ref=e12]:
       - link "Back to Home" [ref=e14] [cursor=pointer]:
-        - /url: /
+        - /url: /?
         - img [ref=e15] [cursor=pointer]
         - text: Back to Home
       - generic [ref=e17]:
-        - heading "Privacy Policy" [level=1] [ref=e18]
+        - heading "Security & Compliance" [level=1] [ref=e18]
         - generic [ref=e19]:
-          - generic [ref=e20]:
-            - heading "Information We Collect" [level=2] [ref=e21]
-            - paragraph [ref=e22]: Sunspire (“we,” “our,” or “us”) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our solar intelligence platform.
-            - paragraph [ref=e23]: "We collect information you provide directly to us, such as when you create an account, submit a solar analysis request, or contact our support team. This may include:"
-            - list [ref=e24]:
-              - listitem [ref=e25]: Name and contact information
-              - listitem [ref=e26]: Property address and details
-              - listitem [ref=e27]: Company information
-              - listitem [ref=e28]: Payment information
-          - generic [ref=e29]:
-            - heading "How We Use Your Information" [level=2] [ref=e30]
-            - paragraph [ref=e31]: "We use the information we collect to:"
-            - list [ref=e32]:
-              - listitem [ref=e33]: Provide and maintain our services
-              - listitem [ref=e34]: Process transactions and send related information
-              - listitem [ref=e35]: Send technical notices and support messages
-              - listitem [ref=e36]: Respond to your comments and questions
-              - listitem [ref=e37]: Improve our services and develop new features
+          - paragraph [ref=e20]: Your data security and privacy are our top priorities. Learn about our comprehensive security measures and compliance standards.
+          - generic [ref=e21]:
+            - heading "Data Encryption" [level=2] [ref=e22]
+            - generic [ref=e23]:
+              - paragraph [ref=e24]: "We employ industry-standard encryption to protect your data both in transit and at rest:"
+              - list [ref=e25]:
+                - listitem [ref=e26]:
+                  - generic [ref=e27]: •
+                  - generic [ref=e28]:
+                    - strong [ref=e29]: "In Transit:"
+                    - text: TLS 1.2+ encryption for all data transmission
+                - listitem [ref=e30]:
+                  - generic [ref=e31]: •
+                  - generic [ref=e32]:
+                    - strong [ref=e33]: "At Rest:"
+                    - text: AES-256 encryption for all stored data
+                - listitem [ref=e34]:
+                  - generic [ref=e35]: •
+                  - generic [ref=e36]:
+                    - strong [ref=e37]: "Key Management:"
+                    - text: Secure key rotation and hardware security modules
           - generic [ref=e38]:
-            - heading "Information Sharing" [level=2] [ref=e39]
-            - paragraph [ref=e40]: We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as described in this policy or as required by law.
-          - generic [ref=e41]:
-            - heading "Data Security" [level=2] [ref=e42]
-            - paragraph [ref=e43]: We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.
-          - generic [ref=e44]:
-            - heading "Your Rights" [level=2] [ref=e45]
-            - paragraph [ref=e46]: You have the right to access, correct, or delete your personal information. You may also opt out of certain communications from us.
-          - generic [ref=e47]:
-            - 'heading "Marketing emails: legal bases & your rights" [level=2] [ref=e48]'
-            - paragraph [ref=e49]:
-              - strong [ref=e50]: "US (CAN-SPAM):"
-              - text: We identify Sunspire Software, include our postal address, and provide an unsubscribe that works.
-            - paragraph [ref=e51]:
-              - strong [ref=e52]: "Canada (CASL):"
-              - text: Our emails include our identity, mailing address, and a functional unsubscribe. We honor unsubscribes within 10 business days (typically immediately).
-            - paragraph [ref=e53]:
-              - strong [ref=e54]: "EU/UK (GDPR & ePrivacy):"
-              - text: For B2B outreach we rely on
-              - emphasis [ref=e55]: Legitimate interests
-              - text: to contact relevant business recipients. You can object to marketing at any time via the unsubscribe link or by emailing
-              - link "support@getsunspire.com" [ref=e56] [cursor=pointer]:
-                - /url: mailto:support@getsunspire.com
-              - text: .
-            - paragraph [ref=e57]:
-              - strong [ref=e58]: "Your EU/UK rights:"
-              - text: access, rectification, erasure, restriction, portability, and
-              - emphasis [ref=e59]: objection to direct marketing
-              - text: . To exercise these rights, email
-              - link "support@getsunspire.com" [ref=e60] [cursor=pointer]:
-                - /url: mailto:support@getsunspire.com
-              - text: . You may also contact your local data protection authority.
-            - paragraph [ref=e61]: We maintain a suppression list to ensure we do not email you again after you unsubscribe.
-          - generic [ref=e62]:
-            - heading "Contact Us" [level=2] [ref=e63]
-            - paragraph [ref=e64]: "If you have questions about this Privacy Policy, please contact us at:"
-            - paragraph [ref=e66]:
-              - strong [ref=e67]: "Support:"
-              - link "support@getsunspire.com" [ref=e68] [cursor=pointer]:
-                - /url: mailto:support@getsunspire.com
-              - strong [ref=e69]: "Billing:"
-              - link "billing@getsunspire.com" [ref=e70] [cursor=pointer]:
-                - /url: mailto:billing@getsunspire.com
-              - strong [ref=e71]: "Address:"
-              - text: "1700 Northside Drive Suite A7 #5164 Atlanta, GA 30318"
-    - contentinfo [ref=e72]:
-      - generic [ref=e73]:
-        - generic [ref=e74]:
-          - generic [ref=e75]:
-            - heading "Sunspire Solar Intelligence" [level=3] [ref=e76]
-            - paragraph [ref=e77]: Demo for Apple — Powered by Sunspire
-            - generic [ref=e78]:
-              - paragraph [ref=e79]:
-                - img [ref=e80]
+            - heading "SOC 2 Compliance" [level=2] [ref=e39]
+            - generic [ref=e40]:
+              - paragraph [ref=e41]: "Sunspire maintains SOC 2 Type II compliance, demonstrating our commitment to:"
+              - list [ref=e42]:
+                - listitem [ref=e43]:
+                  - generic [ref=e44]: •
+                  - generic [ref=e45]:
+                    - strong [ref=e46]: "Security:"
+                    - text: Protection against unauthorized access
+                - listitem [ref=e47]:
+                  - generic [ref=e48]: •
+                  - generic [ref=e49]:
+                    - strong [ref=e50]: "Availability:"
+                    - text: System reliability and uptime
+                - listitem [ref=e51]:
+                  - generic [ref=e52]: •
+                  - generic [ref=e53]:
+                    - strong [ref=e54]: "Confidentiality:"
+                    - text: Protection of sensitive information
+                - listitem [ref=e55]:
+                  - generic [ref=e56]: •
+                  - generic [ref=e57]:
+                    - strong [ref=e58]: "Privacy:"
+                    - text: Personal information protection
+              - paragraph [ref=e59]: SOC 2 reports are available to enterprise customers upon request.
+          - generic [ref=e60]:
+            - heading "GDPR Compliance" [level=2] [ref=e61]
+            - generic [ref=e62]:
+              - paragraph [ref=e63]: "We adhere to the General Data Protection Regulation (GDPR) requirements:"
+              - list [ref=e64]:
+                - listitem [ref=e65]:
+                  - generic [ref=e66]: •
+                  - generic [ref=e67]:
+                    - strong [ref=e68]: "Lawful Basis:"
+                    - text: Clear legal basis for all data processing
+                - listitem [ref=e69]:
+                  - generic [ref=e70]: •
+                  - generic [ref=e71]:
+                    - strong [ref=e72]: "Data Minimization:"
+                    - text: Only collect necessary data
+                - listitem [ref=e73]:
+                  - generic [ref=e74]: •
+                  - generic [ref=e75]:
+                    - strong [ref=e76]: "Right to Access:"
+                    - text: Users can request their data
+                - listitem [ref=e77]:
+                  - generic [ref=e78]: •
+                  - generic [ref=e79]:
+                    - strong [ref=e80]: "Right to Deletion:"
+                    - text: Users can request data deletion
+                - listitem [ref=e81]:
+                  - generic [ref=e82]: •
+                  - generic [ref=e83]:
+                    - strong [ref=e84]: "Data Portability:"
+                    - text: Users can export their data
+          - generic [ref=e85]:
+            - heading "CCPA Compliance" [level=2] [ref=e86]
+            - generic [ref=e87]:
+              - paragraph [ref=e88]: "We comply with the California Consumer Privacy Act (CCPA) by providing:"
+              - list [ref=e89]:
+                - listitem [ref=e90]:
+                  - generic [ref=e91]: •
+                  - generic [ref=e92]:
+                    - strong [ref=e93]: "Right to Know:"
+                    - text: What personal information we collect
+                - listitem [ref=e94]:
+                  - generic [ref=e95]: •
+                  - generic [ref=e96]:
+                    - strong [ref=e97]: "Right to Delete:"
+                    - text: Request deletion of personal information
+                - listitem [ref=e98]:
+                  - generic [ref=e99]: •
+                  - generic [ref=e100]:
+                    - strong [ref=e101]: "Right to Opt-Out:"
+                    - text: Opt out of sale of personal information
+                - listitem [ref=e102]:
+                  - generic [ref=e103]: •
+                  - generic [ref=e104]:
+                    - strong [ref=e105]: "Non-Discrimination:"
+                    - text: No penalty for exercising rights
+              - paragraph [ref=e106]:
+                - text: To exercise your CCPA rights or opt out of data sales, visit our
+                - link "Do Not Sell My Data" [ref=e107] [cursor=pointer]:
+                  - /url: /do-not-sell
+                - text: page.
+          - generic [ref=e108]:
+            - heading "Data Breach Procedures" [level=2] [ref=e109]
+            - generic [ref=e110]:
+              - paragraph [ref=e111]: "In the unlikely event of a data breach, we follow strict procedures:"
+              - list [ref=e112]:
+                - listitem [ref=e113]:
+                  - generic [ref=e114]: •
+                  - generic [ref=e115]:
+                    - strong [ref=e116]: "Immediate Containment:"
+                    - text: Isolate and contain the breach within 1 hour
+                - listitem [ref=e117]:
+                  - generic [ref=e118]: •
+                  - generic [ref=e119]:
+                    - strong [ref=e120]: "Assessment:"
+                    - text: Evaluate impact and affected data within 24 hours
+                - listitem [ref=e121]:
+                  - generic [ref=e122]: •
+                  - generic [ref=e123]:
+                    - strong [ref=e124]: "Notification:"
+                    - text: Notify authorities within 72 hours where required
+                - listitem [ref=e125]:
+                  - generic [ref=e126]: •
+                  - generic [ref=e127]:
+                    - strong [ref=e128]: "User Communication:"
+                    - text: Inform affected users without undue delay
+                - listitem [ref=e129]:
+                  - generic [ref=e130]: •
+                  - generic [ref=e131]:
+                    - strong [ref=e132]: "Remediation:"
+                    - text: Implement fixes and improve security measures
+          - generic [ref=e133]:
+            - heading "Data Protection Officer" [level=2] [ref=e134]
+            - generic [ref=e135]:
+              - paragraph [ref=e136]: "For any security, privacy, or compliance questions, contact our Data Protection Officer:"
+              - generic [ref=e137]:
+                - paragraph [ref=e138]: Data Protection Officer
+                - paragraph [ref=e139]:
+                  - text: "Email:"
+                  - link "security@sunspire.app" [ref=e140] [cursor=pointer]:
+                    - /url: mailto:security@sunspire.app
+                - paragraph [ref=e141]: "Response time: Within 48 hours"
+    - contentinfo [ref=e142]:
+      - generic [ref=e143]:
+        - generic [ref=e144]:
+          - generic [ref=e145]:
+            - heading "Sunspire Solar Intelligence" [level=3] [ref=e146]
+            - paragraph [ref=e147]: Solar Intelligence Platform
+            - generic [ref=e148]:
+              - paragraph [ref=e149]:
+                - img [ref=e150]
                 - text: "1700 Northside Drive Suite A7 #5164 Atlanta, GA 30318"
-              - generic [ref=e83]:
-                - link "GDPR" [ref=e84] [cursor=pointer]:
+              - generic [ref=e153]:
+                - link "GDPR" [ref=e154] [cursor=pointer]:
                   - /url: /security#gdpr
-                - link "CCPA" [ref=e85] [cursor=pointer]:
+                - link "CCPA" [ref=e155] [cursor=pointer]:
                   - /url: /security#ccpa
-                - link "SOC 2" [ref=e86] [cursor=pointer]:
+                - link "SOC 2" [ref=e156] [cursor=pointer]:
                   - /url: /security#soc2
-              - paragraph [ref=e87]:
-                - img [ref=e88]
-                - link "support@getsunspire.com" [ref=e90] [cursor=pointer]:
+              - paragraph [ref=e157]:
+                - img [ref=e158]
+                - link "support@getsunspire.com" [ref=e160] [cursor=pointer]:
                   - /url: mailto:support@getsunspire.com
-              - paragraph [ref=e91]:
-                - img [ref=e92]
-                - link "billing@getsunspire.com" [ref=e94] [cursor=pointer]:
+              - paragraph [ref=e161]:
+                - img [ref=e162]
+                - link "billing@getsunspire.com" [ref=e164] [cursor=pointer]:
                   - /url: mailto:billing@getsunspire.com
-              - paragraph [ref=e95]:
-                - img [ref=e96]
+              - paragraph [ref=e165]:
+                - img [ref=e166]
                 - text: +1 (555) 123-4567
-          - generic [ref=e98]:
-            - heading "Quick Links" [level=4] [ref=e99]
-            - generic [ref=e100]:
-              - link "Pricing" [ref=e101] [cursor=pointer]:
-                - /url: /pricing
-              - link "Partners" [ref=e102] [cursor=pointer]:
-                - /url: /partners
-              - link "Support" [ref=e103] [cursor=pointer]:
-                - /url: /support
-          - generic [ref=e104]:
-            - heading "Legal & Support" [level=4] [ref=e105]
-            - generic [ref=e106]:
-              - link "Privacy Policy" [ref=e107] [cursor=pointer]:
+          - generic [ref=e168]:
+            - heading "Legal & Support" [level=4] [ref=e169]
+            - generic [ref=e170]:
+              - link "Privacy Policy" [ref=e171] [cursor=pointer]:
                 - /url: /privacy
-              - link "Terms of Service" [ref=e108] [cursor=pointer]:
+              - link "Terms of Service" [ref=e172] [cursor=pointer]:
                 - /url: /terms
-              - link "Security" [ref=e109] [cursor=pointer]:
+              - link "Security" [ref=e173] [cursor=pointer]:
                 - /url: /security
-              - link "DPA" [ref=e110] [cursor=pointer]:
+              - link "DPA" [ref=e174] [cursor=pointer]:
                 - /url: /dpa
-              - link "Do Not Sell My Data" [ref=e111] [cursor=pointer]:
+              - link "Do Not Sell My Data" [ref=e175] [cursor=pointer]:
                 - /url: /do-not-sell
-        - generic [ref=e113]:
-          - generic [ref=e114]:
-            - img [ref=e115]
-            - generic [ref=e117]: Estimates generated using NREL PVWatts® v8
-          - generic [ref=e118]:
-            - img [ref=e119]
-            - generic [ref=e121]: Mapping & location data © Google
-          - paragraph [ref=e123]:
+        - generic [ref=e177]:
+          - generic [ref=e178]:
+            - img [ref=e179]
+            - generic [ref=e181]: Estimates generated using NREL PVWatts® v8
+          - generic [ref=e182]:
+            - img [ref=e183]
+            - generic [ref=e185]: Mapping & location data © Google
+          - paragraph [ref=e187]:
             - text: Powered by
-            - generic [ref=e124]: Sunspire
-  - alert [ref=e125]
-  - generic [ref=e127]:
-    - paragraph [ref=e128]: We use cookies to improve your experience.
-    - generic [ref=e129]:
-      - button "Manage" [ref=e130] [cursor=pointer]
-      - button "Accept" [ref=e131] [cursor=pointer]
+            - generic [ref=e188]: Sunspire
+  - alert [ref=e189]
+  - generic [ref=e191]:
+    - paragraph [ref=e192]: We use cookies to improve your experience.
+    - generic [ref=e193]:
+      - button "Manage" [ref=e194] [cursor=pointer]
+      - button "Accept" [ref=e195] [cursor=pointer]
 ```

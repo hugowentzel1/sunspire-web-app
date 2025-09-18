@@ -4,11 +4,11 @@
 - generic [active] [ref=e1]:
   - banner [ref=e2]:
     - generic [ref=e4]:
-      - link "Apple logo Apple Solar Intelligence" [ref=e5] [cursor=pointer]:
-        - /url: /?company=Apple&demo=1%2Fpricing
-        - img "Apple logo" [ref=e6] [cursor=pointer]
+      - link "SolarPro logo SolarPro Solar Intelligence" [ref=e5] [cursor=pointer]:
+        - /url: /?company=SolarPro&brandColor=%23FF6B35&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com%2Fpricing
+        - img "SolarPro logo" [ref=e6] [cursor=pointer]
         - generic [ref=e7] [cursor=pointer]:
-          - heading "Apple" [level=1] [ref=e8] [cursor=pointer]
+          - heading "SolarPro" [level=1] [ref=e8] [cursor=pointer]
           - paragraph [ref=e9] [cursor=pointer]: Solar Intelligence
       - navigation
   - generic [ref=e11]:
@@ -16,9 +16,9 @@
       - generic [ref=e13]:
         - generic [ref=e14]:
           - text: ✅ Live for
-          - generic [ref=e15]: Apple
+          - generic [ref=e15]: SolarPro
           - text: . Leads now save to your CRM.
-        - img "Apple logo" [ref=e17]
+        - img "SolarPro logo" [ref=e17]
         - generic [ref=e18]:
           - generic [ref=e20]: ✓
           - generic [ref=e21]:
@@ -59,42 +59,44 @@
     - contentinfo [ref=e64]:
       - generic [ref=e65]:
         - generic [ref=e66]:
-          - heading "Apple" [level=3] [ref=e68]
-          - generic [ref=e69]:
-            - heading "Legal & Support" [level=4] [ref=e70]
-            - generic [ref=e71]:
-              - link "Privacy Policy" [ref=e72] [cursor=pointer]:
-                - /url: /privacy?company=Apple&demo=1%2Fpricing
-              - link "Terms of Service" [ref=e73] [cursor=pointer]:
-                - /url: /terms?company=Apple&demo=1%2Fpricing
-              - link "Accessibility" [ref=e74] [cursor=pointer]:
-                - /url: /accessibility?company=Apple&demo=1%2Fpricing
-              - link "Cookies" [ref=e75] [cursor=pointer]:
-                - /url: /cookies?company=Apple&demo=1%2Fpricing
-          - generic [ref=e76]:
-            - heading "Contact" [level=4] [ref=e77]
-            - generic [ref=e78]:
-              - paragraph [ref=e79]:
-                - img [ref=e80]
+          - generic [ref=e67]:
+            - img "SolarPro logo" [ref=e68]
+            - heading "SolarPro" [level=3] [ref=e69]
+          - generic [ref=e70]:
+            - heading "Legal & Support" [level=4] [ref=e71]
+            - generic [ref=e72]:
+              - link "Privacy Policy" [ref=e73] [cursor=pointer]:
+                - /url: /privacy?company=SolarPro&brandColor=%23FF6B35&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com%2Fpricing
+              - link "Terms of Service" [ref=e74] [cursor=pointer]:
+                - /url: /terms?company=SolarPro&brandColor=%23FF6B35&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com%2Fpricing
+              - link "Accessibility" [ref=e75] [cursor=pointer]:
+                - /url: /accessibility?company=SolarPro&brandColor=%23FF6B35&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com%2Fpricing
+              - link "Cookies" [ref=e76] [cursor=pointer]:
+                - /url: /cookies?company=SolarPro&brandColor=%23FF6B35&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com%2Fpricing
+          - generic [ref=e77]:
+            - heading "Contact" [level=4] [ref=e78]
+            - generic [ref=e79]:
+              - paragraph [ref=e80]:
+                - img [ref=e81]
                 - text: +1 (555) 123-4567
-              - paragraph [ref=e82]:
-                - img [ref=e83]
-                - link "support@client-company.com" [ref=e85] [cursor=pointer]:
+              - paragraph [ref=e83]:
+                - img [ref=e84]
+                - link "support@client-company.com" [ref=e86] [cursor=pointer]:
                   - /url: mailto:support@client-company.com
-        - generic [ref=e87]:
-          - generic [ref=e88]:
-            - img [ref=e89]
-            - generic [ref=e91]: Estimates generated using NREL PVWatts® v8
-          - generic [ref=e93]:
+        - generic [ref=e88]:
+          - generic [ref=e89]:
+            - img [ref=e90]
+            - generic [ref=e92]: Estimates generated using NREL PVWatts® v8
+          - generic [ref=e94]:
             - text: Powered by
-            - generic [ref=e94]: Sunspire
-          - generic [ref=e95]:
-            - img [ref=e96]
-            - generic [ref=e98]: Mapping & location data © Google
-  - alert [ref=e99]
-  - generic [ref=e101]:
-    - paragraph [ref=e102]: We use cookies to improve your experience.
-    - generic [ref=e103]:
-      - button "Manage" [ref=e104] [cursor=pointer]
-      - button "Accept" [ref=e105] [cursor=pointer]
+            - generic [ref=e95]: Sunspire
+          - generic [ref=e96]:
+            - img [ref=e97]
+            - generic [ref=e99]: Mapping & location data © Google
+  - alert [ref=e100]
+  - generic [ref=e102]:
+    - paragraph [ref=e103]: We use cookies to improve your experience.
+    - generic [ref=e104]:
+      - button "Manage" [ref=e105] [cursor=pointer]
+      - button "Accept" [ref=e106] [cursor=pointer]
 ```

@@ -5,7 +5,7 @@
   - generic [ref=e2]:
     - generic [ref=e3]:
       - strong [ref=e4]: Exclusive preview built for SolarPro
-      - generic [ref=e5]: Exclusive preview — expires in 6:23:59:30
+      - generic [ref=e5]: Exclusive preview — expires in 6:23:59:31
       - generic [ref=e6]: "Runs left: 2"
     - generic [ref=e7]:
       - button "Launch on your domain" [ref=e8] [cursor=pointer]
@@ -109,15 +109,15 @@
               - heading "Legal & Support" [level=4] [ref=e113]
               - generic [ref=e114]:
                 - link "Privacy Policy" [ref=e115] [cursor=pointer]:
-                  - /url: /privacy
+                  - /url: /privacy?company=SolarPro&brandColor=%23FF6B35&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com
                 - link "Terms of Service" [ref=e116] [cursor=pointer]:
-                  - /url: /terms
+                  - /url: /terms?company=SolarPro&brandColor=%23FF6B35&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com
                 - link "Security" [ref=e117] [cursor=pointer]:
-                  - /url: /security
+                  - /url: /security?company=SolarPro&brandColor=%23FF6B35&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com
                 - link "DPA" [ref=e118] [cursor=pointer]:
-                  - /url: /dpa
+                  - /url: /dpa?company=SolarPro&brandColor=%23FF6B35&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com
                 - link "Do Not Sell My Data" [ref=e119] [cursor=pointer]:
-                  - /url: /do-not-sell
+                  - /url: /do-not-sell?company=SolarPro&brandColor=%23FF6B35&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com
           - generic [ref=e121]:
             - generic [ref=e122]:
               - img [ref=e123]
