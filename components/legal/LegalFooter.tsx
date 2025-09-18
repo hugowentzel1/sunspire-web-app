@@ -2,6 +2,7 @@
 
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import { tid } from '@/src/lib/testids';
+import { useSearchParams } from 'next/navigation';
 
 export default function LegalFooter({ 
   hideMarketingLinks = false, 
@@ -13,9 +14,11 @@ export default function LegalFooter({
   brand?: string 
 }) {
   const b = useBrandTakeover();
+  const searchParams = useSearchParams();
   
-  // Use passed brand prop or fall back to brand takeover
-  const companyName = brand || (b.enabled && b.brand ? b.brand : 'Sunspire');
+  // Use passed brand prop or fall back to brand takeover, or use URL parameter
+  const urlCompany = searchParams.get('company');
+  const companyName = brand || (b.enabled && b.brand ? b.brand : (urlCompany || 'Sunspire'));
   const brandColor = b.enabled && b.primary ? b.primary : '#d97706';
 
   return (

@@ -1,16 +1,21 @@
 "use client";
 
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
 import { useCompany } from "./CompanyContext";
 import { useIsDemo } from "@/src/lib/isDemo";
 
 export default function SharedNavigation() {
   const pathname = usePathname();
+  const searchParams = useSearchParams();
   const b = useBrandTakeover();
   const { company } = useCompany();
   const isDemo = useIsDemo();
+  
+  // Get company name from URL parameter as fallback
+  const urlCompany = searchParams.get('company');
+  const displayCompany = (b.enabled && b.brand) ? b.brand : (urlCompany || "Your Company");
 
   // Don't render on pages that have their own custom banners
   if (pathname === "/report" || pathname === "/demo-result") {
@@ -202,7 +207,7 @@ export default function SharedNavigation() {
             )}
             <div>
               <h1 className="text-2xl font-black text-[var(--brand-primary)]">
-                {b.enabled ? b.brand : "Your Company"}
+                {displayCompany}
               </h1>
               <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
                 Solar Intelligence
@@ -248,7 +253,7 @@ export default function SharedNavigation() {
         {isDemo && (
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
             <p className="text-xs text-gray-500 text-center">
-              Private demo for {b.brand || "Your Company"}. Not affiliated.
+              Private demo for {displayCompany}. Not affiliated.
             </p>
           </div>
         )}
