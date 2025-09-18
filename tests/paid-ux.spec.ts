@@ -25,7 +25,9 @@ test("PAID: hero is focused and minimal (no marketing chips/stickies)", async ({
   ).toBeVisible();
 
   // Check company logo is displayed in hero (use first one to avoid strict mode violation)
-  await expect(page.locator('img[alt*="SolarPro Energy logo"]').first()).toBeVisible();
+  await expect(
+    page.locator('img[alt*="SolarPro Energy logo"]').first(),
+  ).toBeVisible();
 });
 
 test("PAID: cookie banner compact and non-intrusive", async ({ page }) => {

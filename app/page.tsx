@@ -6,6 +6,8 @@ import dynamic from "next/dynamic";
 import { PlaceResult } from "@/lib/calc";
 import LegalFooter from "@/components/legal/LegalFooter";
 import PaidFooter from "@/components/PaidFooter";
+import CookieBanner from "@/components/CookieBanner";
+import DisclaimerBar from "@/components/DisclaimerBar";
 import FooterPaid from "@/components/FooterPaid";
 import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
 import HeroBrand from "@/src/brand/HeroBrand";
@@ -49,7 +51,6 @@ function HomeContent() {
   const searchParams = new URLSearchParams(
     typeof window !== "undefined" ? window.location.search : "",
   );
-  const isDemoFromParams = isDemoFromSearch(searchParams);
 
   // Debug logging for brand state
   useEffect(() => {
@@ -254,7 +255,7 @@ function HomeContent() {
     >
       <main
         className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
-        data-paid-hero={!isDemoFromParams}
+        data-paid-hero={!isDemo}
       >
         <div className="text-center space-y-6">
           {/* Remove internal/ops copy from paid UI */}
@@ -327,10 +328,13 @@ function HomeContent() {
                   <>Instant Solar Analysis for Your Home</>
                 )}
               </h1>
-              <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              <p
+                className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+                data-hero-subhead
+              >
                 {isDemo
                   ? `Go live in 24 hours. Convert more leads, book more consultations, and sync every inquiry seamlessly to your CRM — all fully branded for your company.`
-                  : "Enter your address to see projected production, ROI, and payback in seconds."}
+                  : "Enter your address to see solar production, savings, and payback—instantly."}
               </p>
             </div>
           </div>
@@ -380,6 +384,7 @@ function HomeContent() {
                         : "Start typing your property address..."
                     }
                     className="w-full"
+                    aria-label="Enter Your Property Address"
                   />
                   <p className="text-sm text-gray-500 mt-2">
                     Used for local rates & irradiance. Private.
@@ -418,7 +423,7 @@ function HomeContent() {
                   ) : (
                     <div className="flex items-center justify-center space-x-4">
                       <span>
-                        {isDemoFromParams
+                        {isDemo
                           ? address.trim()
                             ? `Generate Solar Report`
                             : `Launch Tool`
@@ -468,28 +473,56 @@ function HomeContent() {
 
           {/* Credibility section - only show homeowner-relevant info in paid mode */}
           {!isDemo && (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto section-spacing">
-              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
-                <div className="text-4xl font-black text-gray-900 mb-2">
-                  NREL v8
+            <div className="max-w-5xl mx-auto section-spacing">
+              {/* First row: 3-up grid */}
+              <div
+                data-feature-grid
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+              >
+                <div className="rounded-2xl p-8 shadow-sm bg-white/60 ring-1 ring-black/5 text-center">
+                  <div className="text-4xl font-black text-gray-900 mb-2">
+                    NREL v8
+                  </div>
+                  <div className="text-gray-600 font-semibold">
+                    Accurate Modeling
+                  </div>
                 </div>
-                <div className="text-gray-600 font-semibold">
-                  Accurate Modeling
+                <div className="rounded-2xl p-8 shadow-sm bg-white/60 ring-1 ring-black/5 text-center">
+                  <div className="text-4xl font-black text-gray-900 mb-2">
+                    Current Rates
+                  </div>
+                  <div className="text-gray-600 font-semibold">
+                    Local Utility Data
+                  </div>
+                </div>
+                <div className="rounded-2xl p-8 shadow-sm bg-white/60 ring-1 ring-black/5 text-center">
+                  <div className="text-4xl font-black text-gray-900 mb-2">
+                    Private
+                  </div>
+                  <div className="text-gray-600 font-semibold">Encrypted</div>
                 </div>
               </div>
-              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
-                <div className="text-4xl font-black text-gray-900 mb-2">
-                  Current Rates
+
+              {/* Second row: two cards in 3-up grid with invisible placeholder */}
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="rounded-2xl p-8 shadow-sm bg-white/60 ring-1 ring-black/5 text-center">
+                  <div className="text-4xl font-black text-gray-900 mb-2">
+                    PVWatts® v8
+                  </div>
+                  <div className="text-gray-600 font-semibold">
+                    Industry Standard
+                  </div>
                 </div>
-                <div className="text-gray-600 font-semibold">
-                  Local Utility Data
+                <div className="rounded-2xl p-8 shadow-sm bg-white/60 ring-1 ring-black/5 text-center">
+                  <div className="text-4xl font-black text-gray-900 mb-2">
+                    End-to-End
+                  </div>
+                  <div className="text-gray-600 font-semibold">Encryption</div>
                 </div>
-              </div>
-              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
-                <div className="text-4xl font-black text-gray-900 mb-2">
-                  Private
-                </div>
-                <div className="text-gray-600 font-semibold">Encrypted</div>
+                <div
+                  className="hidden lg:block opacity-0 pointer-events-none"
+                  aria-hidden="true"
+                />
               </div>
             </div>
           )}
@@ -550,7 +583,7 @@ function HomeContent() {
                 Industry-standard solar modeling with current utility rates
               </div>
             </div>
-            {isDemoFromParams && (
+            {isDemo && (
               <div className="feature-card p-6 text-center">
                 <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center shadow-lg">
                   <svg
@@ -593,18 +626,6 @@ function HomeContent() {
               <div className="desc">Secure data protection</div>
             </div>
           </div>
-
-          {/* Customer Benefits - Only show in demo mode */}
-          {isDemoFromParams && (
-            <div className="text-center section-spacing">
-              <div className="inline-flex items-center px-6 py-3 bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200/50">
-                <span className="text-gray-600 font-medium">
-                  Accurate Modeling (NREL PVWatts® v8) • Uses Local Utility
-                  Rates • End-to-End Encryption
-                </span>
-              </div>
-            </div>
-          )}
 
           {/* How It Works Section - Demo only */}
           {isDemo && (
@@ -801,26 +822,28 @@ function HomeContent() {
         </div>
       )}
 
-      {isDemoFromParams ? (
+      {!isDemo && <DisclaimerBar />}
+
+      {isDemo ? (
         <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
           <LegalFooter
-            hideMarketingLinks={!isDemoFromParams}
-            showPoweredBy={isDemoFromParams}
+            hideMarketingLinks={!isDemo}
+            showPoweredBy={isDemo}
             brand={b.enabled ? b.brand : undefined}
           />
         </footer>
       ) : (
         <FooterPaid
-          company={b.brand || "Your Company"}
-          logo={b.logo}
-          brandColor={b.primary}
-          supportEmail="support@client-company.com"
-          phone="+1 (555) 123-4567"
-          lastUpdated={new Date().toLocaleDateString()}
+          company={{
+            name: b.brand || "Your Company",
+            logoUrl: b.logo,
+            email: "support@client-company.com",
+            phone: "+1 (555) 123-4567",
+          }}
         />
       )}
 
-      <StickyBar />
+      {isDemo && <StickyBar />}
     </div>
   );
 }

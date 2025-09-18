@@ -16,6 +16,7 @@ interface AddressAutocompleteProps {
   "data-testid"?: string;
   id?: string;
   "data-address-input"?: boolean;
+  "aria-label"?: string;
 }
 
 export default function AddressAutocomplete({
@@ -27,6 +28,7 @@ export default function AddressAutocomplete({
   "data-testid": testId,
   id,
   "data-address-input": dataAddressInput,
+  "aria-label": ariaLabel,
 }: AddressAutocompleteProps) {
   const [query, setQuery] = useState(value);
   const [predictions, setPredictions] = useState<Prediction[]>([]);
@@ -263,6 +265,7 @@ export default function AddressAutocomplete({
         autoComplete="street-address"
         data-testid={testId}
         id={id}
+        aria-label={ariaLabel}
         {...(dataAddressInput && { "data-address-input": "" })}
       />
 

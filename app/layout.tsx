@@ -10,6 +10,7 @@ import BootProbe from "./BootProbe";
 import SharedNavigation from "@/components/SharedNavigation";
 import { CompanyProvider } from "@/components/CompanyContext";
 import CookieConsent from "@/components/CookieConsent";
+import CookieBanner from "@/components/CookieBanner";
 import EnvBanner from "@/components/EnvBanner";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -42,6 +43,7 @@ export default function RootLayout({
 
         {/* Cookie Consent */}
         <CookieConsent />
+        <CookieBanner />
       </body>
     </html>
   );
