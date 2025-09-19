@@ -47,6 +47,10 @@ function HomeContent() {
   // Demo mode detection - use brand state instead of separate hook
   const isDemo = b.isDemo;
 
+  // Get brand color directly from URL for server-side rendering
+  const urlBrandColor = searchParams.get('brandColor') || searchParams.get('primary');
+  const brandColor = urlBrandColor ? `#${urlBrandColor.replace('#', '')}` : (b.primary || '#d97706');
+
   // Debug logging for brand state
   useEffect(() => {
     console.log("Paid page brand state:", b);
@@ -827,19 +831,19 @@ function HomeContent() {
                 <span className="leading-tight">Estimates generated using NREL PVWatts® v8</span>
               </div>
 
+              {/* Powered By - CENTERED */}
+              <div className="text-center">
+                <p className="text-gray-600 text-sm">
+                  Powered by <span className="font-medium" style={{ color: brandColor }}>Sunspire</span>
+                </p>
+              </div>
+
               {/* Google Disclaimer */}
               <div className="flex items-center justify-center text-sm text-gray-500">
                 <svg className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m0 0L9 7"/>
                 </svg>
                 <span className="leading-tight">Mapping & location data © Google</span>
-              </div>
-
-              {/* Powered By */}
-              <div className="text-center">
-                <p className="text-gray-600 text-sm">
-                  Powered by <span className="font-medium" style={{ color: b.primary || '#d97706' }}>Sunspire</span>
-                </p>
               </div>
             </div>
           </div>
