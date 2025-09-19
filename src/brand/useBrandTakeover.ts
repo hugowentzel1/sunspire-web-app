@@ -73,23 +73,12 @@ export function useBrandTakeover(): BrandState {
         // URL has brand parameters - use them and save to localStorage
         const companyName = clean(sp.get("company") || sp.get("brand")) || "Your Company";
         const customColor = sp.get("primary") || sp.get("brandColor");
-        // Hardcode brand colors to fix the live site
+        const logoUrl = sp.get("logo");
+        
+        // Use custom color from URL if provided, otherwise use brand theme
         let themeColor;
-        const brandLower = companyName.toLowerCase();
-        if (brandLower === 'tesla') {
-          themeColor = '#CC0000'; // Tesla red
-        } else if (brandLower === 'apple') {
-          themeColor = '#0071E3'; // Apple blue
-        } else if (brandLower === 'netflix') {
-          themeColor = '#E50914'; // Netflix red
-        } else if (brandLower === 'google') {
-          themeColor = '#4285F4'; // Google blue
-        } else if (brandLower === 'microsoft') {
-          themeColor = '#00A4EF'; // Microsoft blue
-        } else if (brandLower === 'amazon') {
-          themeColor = '#FF9900'; // Amazon orange
-        } else if (brandLower === 'meta' || brandLower === 'facebook') {
-          themeColor = '#1877F2'; // Meta blue
+        if (customColor) {
+          themeColor = hex(customColor);
         } else {
           try {
             themeColor = getBrandTheme(companyName);

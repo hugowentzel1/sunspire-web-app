@@ -18,8 +18,10 @@ export default function LegalFooter({
   
   // Use passed brand prop or fall back to brand takeover, or use URL parameter
   const urlCompany = searchParams.get('company');
+  const urlLogo = searchParams.get('logo');
   const companyName = brand || (b.enabled && b.brand ? b.brand : (urlCompany || 'Sunspire'));
   const brandColor = b.enabled && b.primary ? b.primary : '#d97706';
+  const logoUrl = b.logo || urlLogo;
   
   // Check if this is demo mode
   const isDemo = searchParams.get('demo') === '1' || searchParams.get('demo') === 'true';
@@ -46,9 +48,9 @@ export default function LegalFooter({
             <h3 className="text-lg font-semibold text-gray-900 mb-4">
               {isDemo ? 'Sunspire Solar Intelligence' : (companyName || 'Your Company')}
             </h3>
-            {!isDemo && b.logo && (
+            {!isDemo && logoUrl && (
               <img
-                src={b.logo}
+                src={logoUrl}
                 alt={`${companyName || 'Your Company'} logo`}
                 className="h-12 w-12 rounded-lg object-contain"
               />
