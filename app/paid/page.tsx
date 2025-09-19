@@ -255,13 +255,6 @@ function HomeContent() {
         <div className="text-center space-y-6">
           {/* Remove internal/ops copy from paid UI */}
 
-          {/* Live confirmation bar for paid mode */}
-          {!isDemo && (
-            <div className="mx-auto max-w-3xl mt-4 rounded-lg bg-emerald-50 text-emerald-900 text-sm px-4 py-2 border border-emerald-200" {...tid("live-bar")}>
-              ✅ Live for <b>{b.brand || "Your Company"}</b>. Leads now save to your CRM.
-            </div>
-          )}
-
           {/* HERO ICON: Show company logo in paid mode, sun icon in demo */}
           {isDemo ? (
             <div
