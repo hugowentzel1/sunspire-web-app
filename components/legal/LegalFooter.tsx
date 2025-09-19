@@ -46,6 +46,16 @@ export default function LegalFooter({
             <h3 className="text-xl font-bold text-gray-900 mb-4">
               {isDemo ? 'Sunspire Solar Intelligence' : companyName}
             </h3>
+            {/* Company Logo for paid version */}
+            {!isDemo && b.logo && (
+              <div className="flex justify-center mb-4">
+                <img 
+                  src={b.logo} 
+                  alt={`${companyName} logo`}
+                  className="h-12 w-auto object-contain"
+                />
+              </div>
+            )}
             <p className="text-gray-600 mb-4 max-w-md mx-auto">
               {isDemo ? `Demo for ${companyName} — Powered by Sunspire` : 'Solar Intelligence Platform'}
             </p>

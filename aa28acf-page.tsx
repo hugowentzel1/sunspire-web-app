@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 import { PlaceResult } from "@/lib/calc";
 import CookieBanner from "@/components/CookieBanner";
@@ -39,22 +39,24 @@ function HomeContent() {
   const [showSampleReportModal, setShowSampleReportModal] = useState(false);
   const [sampleReportSubmitted, setSampleReportSubmitted] = useState(false);
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   // Brand takeover mode detection
   const b = useBrandTakeover();
 
   // Demo mode detection - use brand state instead of separate hook
   const isDemo = b.isDemo;
+  const searchParams = new URLSearchParams(
+    typeof window !== "undefined" ? window.location.search : "",
+  );
 
   // Debug logging for brand state
   useEffect(() => {
-    console.log("Paid page brand state:", b);
+    console.log("Main page brand state:", b);
     console.log(
-      "Paid page localStorage:",
+      "Main page localStorage:",
       localStorage.getItem("sunspire-brand-takeover"),
     );
-    console.log("Paid page isDemo:", isDemo);
+    console.log("Main page isDemo:", isDemo);
   }, [b, isDemo]);
 
   // Brand colors from URL
@@ -62,15 +64,15 @@ function HomeContent() {
 
   // Apply brand palette for paid experience
   useEffect(() => {
-    if (b.enabled && !isDemo) {
+    if (b.primary && !isDemo) {
       const palette = paletteFrom(b.primary);
       applyBrandPalette(palette);
     }
-  }, [b.enabled, b.primary, isDemo]);
+  }, [b.primary, isDemo]);
 
   const { read, consume } = usePreviewQuota(2);
   const remaining = read();
-  const countdown = useCountdown(7);
+  const countdown = useCountdown(b.expireDays);
 
   // Ensure client-side rendering
   useEffect(() => {
@@ -82,25 +84,11 @@ function HomeContent() {
     attachCheckoutHandlers();
   }, []);
 
-  // Function to create URLs with preserved parameters
-  const createUrlWithParams = (path: string) => {
-    const params = new URLSearchParams();
-    if (searchParams.get("company")) params.set("company", searchParams.get("company") || "");
-    if (searchParams.get("brandColor")) params.set("brandColor", searchParams.get("brandColor") || "");
-    if (searchParams.get("logo")) params.set("logo", searchParams.get("logo") || "");
-    if (searchParams.get("demo")) params.set("demo", searchParams.get("demo") || "");
-
-    const queryString = params.toString();
-    return queryString ? `${path}?${queryString}` : path;
-  };
-
   const handleAddressSelect = (result: any) => {
     setAddress(result.formattedAddress);
     setSelectedPlace(result);
 
     if (b.enabled && isClient) {
-      // Track address selection for paid experience
-      console.log("Address selected for paid experience:", result);
     }
   };
 
@@ -113,17 +101,23 @@ function HomeContent() {
     // Check and consume quota
     if (b.enabled) {
       const currentQuota = read();
-      console.log("🔒 Paid page quota check - currentQuota:", currentQuota);
+      console.log("🔒 Homepage quota check - currentQuota:", currentQuota);
 
       // Consume demo quota first
       consume();
       const newQuota = read();
-      console.log("🔒 Paid page quota consumed, remaining:", newQuota);
+      console.log("🔒 Homepage quota consumed, remaining:", newQuota);
 
       // If quota is now negative, navigate to lockout page
       if (newQuota < 0) {
-        console.log("🔒 Quota exhausted after consumption, navigating to report page to show lockout");
+        console.log(
+          "🔒 Quota exhausted after consumption, navigating to report page to show lockout",
+        );
         // Navigate to report page which will show lockout overlay
+        const currentParams = new URLSearchParams(window.location.search);
+        const company = currentParams.get("company");
+        const demo = currentParams.get("demo");
+
         const q = new URLSearchParams({
           address: address || "123 Main St",
           lat: "40.7128",
@@ -131,10 +125,8 @@ function HomeContent() {
           placeId: "demo",
         });
 
-        // Add all URL parameters
-        if (searchParams.get("company")) q.set("company", searchParams.get("company") || "");
-        if (searchParams.get("brandColor")) q.set("brandColor", searchParams.get("brandColor") || "");
-        if (searchParams.get("logo")) q.set("logo", searchParams.get("logo") || "");
+        if (company) q.set("company", company);
+        if (demo) q.set("demo", demo);
 
         router.push(`/report?${q.toString()}`);
         return;
@@ -144,6 +136,11 @@ function HomeContent() {
     setIsLoading(true);
 
     try {
+      // Get current URL parameters to preserve company and demo
+      const currentParams = new URLSearchParams(window.location.search);
+      const company = currentParams.get("company");
+      const demo = currentParams.get("demo");
+
       if (selectedPlace && selectedPlace.formattedAddress) {
         const q = new URLSearchParams({
           address: selectedPlace.formattedAddress,
@@ -152,10 +149,9 @@ function HomeContent() {
           placeId: selectedPlace.placeId,
         });
 
-        // Add all URL parameters
-        if (searchParams.get("company")) q.set("company", searchParams.get("company") || "");
-        if (searchParams.get("brandColor")) q.set("brandColor", searchParams.get("brandColor") || "");
-        if (searchParams.get("logo")) q.set("logo", searchParams.get("logo") || "");
+        // Add company and demo parameters if they exist
+        if (company) q.set("company", company);
+        if (demo) q.set("demo", demo);
 
         console.log("Navigating to report with selected place:", q.toString());
         router.push(`/report?${q.toString()}`);
@@ -167,10 +163,9 @@ function HomeContent() {
           placeId: "demo",
         });
 
-        // Add all URL parameters
-        if (searchParams.get("company")) q.set("company", searchParams.get("company") || "");
-        if (searchParams.get("brandColor")) q.set("brandColor", searchParams.get("brandColor") || "");
-        if (searchParams.get("logo")) q.set("logo", searchParams.get("logo") || "");
+        // Add company and demo parameters if they exist
+        if (company) q.set("company", company);
+        if (demo) q.set("demo", demo);
 
         console.log("Navigating to report with manual address:", q.toString());
         router.push(`/report?${q.toString()}`);
@@ -186,13 +181,16 @@ function HomeContent() {
       // Start Stripe checkout with tracking
       try {
         // Collect tracking parameters from URL
-        const token = searchParams.get("token");
-        const company = searchParams.get("company");
-        const utm_source = searchParams.get("utm_source");
-        const utm_campaign = searchParams.get("utm_campaign");
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get("token");
+        const company = urlParams.get("company");
+        const utm_source = urlParams.get("utm_source");
+        const utm_campaign = urlParams.get("utm_campaign");
 
         // Show loading state
-        const button = document.querySelector("[data-cta-button]") as HTMLButtonElement;
+        const button = document.querySelector(
+          "[data-cta-button]",
+        ) as HTMLButtonElement;
         if (button) {
           const originalText = button.textContent;
           button.textContent = "Loading...";
@@ -234,6 +232,10 @@ function HomeContent() {
     (window as any).__CONTENT_SHOWN__ = true;
   }, []);
 
+  // Don't block render on brand takeover - show content immediately
+  // The brand takeover will update the UI when ready
+  // Remove the early return to show full content always
+
   const initials = (name: string) => {
     return name
       .split(" ")
@@ -255,10 +257,36 @@ function HomeContent() {
         <div className="text-center space-y-6">
           {/* Remove internal/ops copy from paid UI */}
 
-          {/* Live confirmation bar for paid mode */}
-          {!isDemo && (
-            <div className="mx-auto max-w-3xl mt-4 rounded-lg bg-emerald-50 text-emerald-900 text-sm px-4 py-2 border border-emerald-200" {...tid("live-bar")}>
-              ✅ Live for <b>{b.brand || "Your Company"}</b>. Leads now save to your CRM.
+          {/* Company Branding Section - Demo only */}
+          {isDemo && b.enabled && (
+            <div>
+              <div className="bg-white/80 backdrop-blur-sm rounded-3xl py-6 px-8 border border-gray-200/50 shadow-lg mx-auto max-w-2xl">
+                <div className="space-y-4 text-center" {...tid("demo-cta")}>
+                  <h2
+                    className="text-3xl font-bold text-gray-900"
+                    {...tid("company-badge")}
+                  >
+                    Demo for {b.brand || "Your Company"} — Powered by Sunspire
+                  </h2>
+                  <p className="text-lg text-gray-600">
+                    Your Logo. Your URL. Instant Solar Quotes — Live in 24 Hours
+                  </p>
+                  <button
+                    data-cta="primary"
+                    onClick={handleLaunchClick}
+                    data-cta-button
+                    className="inline-flex items-center px-4 py-4 rounded-full text-sm font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer"
+                    style={{ backgroundColor: "var(--brand-primary)" }}
+                  >
+                    <span className="mr-2">⚡</span>
+                    Activate on Your Domain — 24 Hours
+                  </button>
+                  <p className="text-sm text-gray-600 mt-2">
+                    No call required. $99/mo + $399 setup. 14-day refund if it
+                    doesn&apos;t lift booked calls.
+                  </p>
+                </div>
+              </div>
             </div>
           )}
 
@@ -279,7 +307,7 @@ function HomeContent() {
 
           <div className="space-y-6">
             <div className="relative">
-              <div className="absolute -top-6 -right-4 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
+              <div className="absolute -top-6 -right-8 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
                 <span className="text-white text-lg ml-0.5">✓</span>
               </div>
             </div>
@@ -318,7 +346,7 @@ function HomeContent() {
             {/* ))} */}
           </div>
 
-          {/* Address Input Section - Exact match to aa28acf */}
+          {/* Address Input Section - Exact match to c548b88 */}
           <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-6 md:p-8 max-w-3xl mx-auto section-spacing">
             <div className="space-y-6">
               <div className="text-center space-y-4">
@@ -640,7 +668,8 @@ function HomeContent() {
                 </div>
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    Cancel? — Yes, 14-day refund if it doesn&apos;t lift booked calls
+                    Cancel? — Yes, 14-day refund if it doesn&apos;t lift booked
+                    calls
                   </h3>
                   <p className="text-gray-600">
                     No long-term contracts. Cancel anytime.
@@ -744,39 +773,175 @@ function HomeContent() {
         </div>
       )}
 
-      <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div className="text-center space-y-6">
-          {/* Company Logo and Name */}
-          {b.enabled && b.brand && (
-            <div className="flex flex-col items-center space-y-4">
-              {b.logo && (
-                <img
-                  src={b.logo}
-                  alt={`${b.brand} logo`}
-                  className="h-12 w-auto"
-                  onError={(e) => {
-                    e.currentTarget.style.display = "none";
-                  }}
-                />
-              )}
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">
-                {b.brand}
-              </h3>
-            </div>
-          )}
-          
-          {/* Powered by Sunspire */}
-          <div className="text-sm text-gray-500">
-            Powered by{" "}
-            <a
-              href="https://sunspire.ai"
-              className="text-[var(--brand-primary)] hover:underline"
-            >
-              Sunspire
-            </a>
+      {isDemo ? (
+        <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+          <div className="text-center text-gray-600">
+            <p>Demo Footer - Powered by Sunspire</p>
           </div>
-        </div>
-      </footer>
+        </footer>
+      ) : (
+        <>
+          <footer className="bg-gradient-to-b from-gray-50 via-white to-gray-100 border-t border-gray-200 mt-20">
+            <div className="max-w-7xl mx-auto px-6 py-16">
+              {/* Main Footer Content */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8 text-center">
+                {/* Company Logo & Name */}
+                <div className="flex flex-col items-center">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                    {b.brand || "Your Company"}
+                  </h3>
+                  {b.logo && (
+                    <img
+                      src={b.logo}
+                      alt={`${b.brand || "Your Company"} logo`}
+                      className="h-12 w-12 rounded-lg object-contain"
+                    />
+                  )}
+                </div>
+
+                {/* Legal & Support */}
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-4 text-lg">
+                    Legal & Support
+                  </h4>
+                  <div className="space-y-3">
+                    <a
+                      href="/privacy"
+                      className="block text-gray-600 hover:opacity-80 transition-colors duration-200"
+                    >
+                      Privacy Policy
+                    </a>
+                    <a
+                      href="/terms"
+                      className="block text-gray-600 hover:opacity-80 transition-colors duration-200"
+                    >
+                      Terms of Service
+                    </a>
+                    <a
+                      href="/accessibility"
+                      className="block text-gray-600 hover:opacity-80 transition-colors duration-200"
+                    >
+                      Accessibility
+                    </a>
+                    <a
+                      href="/cookies"
+                      className="block text-gray-600 hover:opacity-80 transition-colors duration-200"
+                    >
+                      Cookies
+                    </a>
+                  </div>
+                </div>
+
+                {/* Contact Information */}
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-4 text-lg">
+                    Contact
+                  </h4>
+                  <div className="space-y-3 text-sm text-gray-500">
+                    <p className="flex items-center justify-center">
+                      <svg
+                        className="w-4 h-4 mr-2 text-gray-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                        />
+                      </svg>
+                      +1 (555) 123-4567
+                    </p>
+                    <p className="flex items-center justify-center">
+                      <svg
+                        className="w-4 h-4 mr-2 text-gray-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        />
+                      </svg>
+                      <a
+                        href="mailto:support@client-company.com"
+                        className="hover:opacity-80 transition-colors"
+                      >
+                        support@client-company.com
+                      </a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Bottom Section */}
+              <div className="border-t border-gray-200 pt-10">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center items-center">
+                  {/* NREL Disclaimer */}
+                  <div className="flex items-center justify-center text-sm text-gray-500">
+                    <svg
+                      className="w-4 h-4 ml-1 mr-2 text-gray-400 flex-shrink-0 align-middle"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 10V3L4 14h7v7l9-11h-7z"
+                      />
+                    </svg>
+                    <span className="leading-tight">
+                      Estimates generated using NREL PVWatts® v8
+                    </span>
+                  </div>
+
+                  {/* Powered by Sunspire */}
+                  <div className="flex items-center justify-center text-sm text-gray-500">
+                    <span className="leading-tight">
+                      Powered by{" "}
+                      <span
+                        className="font-medium"
+                        style={{ color: b.primary || "#2563eb" }}
+                      >
+                        Sunspire
+                      </span>
+                    </span>
+                  </div>
+
+                  {/* Google Disclaimer */}
+                  <div className="flex items-center justify-center text-sm text-gray-500">
+                    <svg
+                      className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m0 0L9 7"
+                      />
+                    </svg>
+                    <span className="leading-tight">
+                      Mapping & location data © Google
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </footer>
+        </>
+      )}
+
+      {isDemo && <StickyBar />}
     </div>
   );
 }

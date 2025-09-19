@@ -9,11 +9,11 @@ test.describe('Demo Version Visual Verification', () => {
     await page.waitForLoadState('networkidle');
     
     // Check if the page shows demo content
-    await expect(page.locator('text=Demo for Apple — Powered by Sunspire')).toBeVisible();
+    await expect(page.locator('h2:has-text("Demo for Apple — Powered by Sunspire")')).toBeVisible();
     
     // Check if the hero section shows the Apple logo (HeroBrand component)
     // The hero section should contain the company logo, not the sun icon
-    const heroSection = page.locator('[data-paid-hero]').first();
+    const heroSection = page.locator('main').first();
     await expect(heroSection).toBeVisible();
     
     // Check if there's a logo image in the hero section
@@ -58,11 +58,11 @@ test.describe('Demo Version Visual Verification', () => {
     await page.waitForLoadState('networkidle');
     
     // Check that footer shows marketing links (not hidden for demo)
-    await expect(page.locator('footer a:has-text("Pricing")')).toBeVisible();
-    await expect(page.locator('footer a:has-text("Partners")')).toBeVisible();
-    await expect(page.locator('footer a:has-text("Support")')).toBeVisible();
+    await expect(page.locator('[data-testid="footer-marketing-links"] a:has-text("Pricing")')).toBeVisible();
+    await expect(page.locator('[data-testid="footer-marketing-links"] a:has-text("Partners")')).toBeVisible();
+    await expect(page.locator('[data-testid="footer-marketing-links"] a:has-text("Support")')).toBeVisible();
     
     // Check that footer shows "Powered by Sunspire"
-    await expect(page.locator('text=Powered by Sunspire')).toBeVisible();
+    await expect(page.locator('footer p:has-text("Powered by Sunspire"):not(:has-text("Demo for Apple"))')).toBeVisible();
   });
 });
