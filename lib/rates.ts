@@ -1,3 +1,7 @@
+import { cache } from './cache';
+import { retryEIA } from './retry';
+import { createHash } from 'crypto';
+
 export type RateResult = {
   rate: number;
   source: "eia" | "state_fallback" | "generic";
@@ -59,32 +63,59 @@ const STATE_FALLBACK: Record<string, number> = {
   WY: 0.12,
 };
 
+function getEIACacheKey(state: string): string {
+  const hash = createHash('sha1');
+  hash.update(state);
+  return `eia:${hash.digest('hex')}`;
+}
+
 export async function getRate(state?: string): Promise<RateResult> {
+  if (!state) return { rate: 0.18, source: "generic" };
+
+  // Check cache first
+  const cacheKey = getEIACacheKey(state);
+  const cached = cache.get(cacheKey);
+  if (cached) {
+    return cached;
+  }
+
   const key = process.env.EIA_API_KEY;
-  if (key && state) {
+  if (key) {
     try {
-      const u = new URL(
-        "https://api.eia.gov/v2/electricity/retail-sales/data/",
-      );
-      // Annual average residential price by state, latest period
-      u.searchParams.set("api_key", key);
-      u.searchParams.set("frequency", "annual");
-      u.searchParams.set("data", "price");
-      u.searchParams.set("facets[stateid][]", state); // e.g., "CA"
-      u.searchParams.set("facets[sectorid][]", "RES"); // residential
-      u.searchParams.set("sort", "period:desc");
-      u.searchParams.set("length", "1");
-      const res = await fetch(u.toString(), { cache: "no-store" });
-      const json = await res.json();
-      const price = json?.response?.data?.[0]?.price;
-      if (typeof price === "number" && price > 0.01 && price < 1) {
-        return { rate: price, source: "eia", state };
-      }
+      const result = await retryEIA(async () => {
+        const u = new URL(
+          "https://api.eia.gov/v2/electricity/retail-sales/data/",
+        );
+        // Annual average residential price by state, latest period
+        u.searchParams.set("api_key", key);
+        u.searchParams.set("frequency", "annual");
+        u.searchParams.set("data", "price");
+        u.searchParams.set("facets[stateid][]", state); // e.g., "CA"
+        u.searchParams.set("facets[sectorid][]", "RES"); // residential
+        u.searchParams.set("sort", "period:desc");
+        u.searchParams.set("length", "1");
+        const res = await fetch(u.toString(), { cache: "no-store" });
+        const json = await res.json();
+        const price = json?.response?.data?.[0]?.price;
+        if (typeof price === "number" && price > 0.01 && price < 1) {
+          return { rate: price, source: "eia" as const, state };
+        }
+        throw new Error('Invalid price data');
+      });
+      
+      // Cache the result for 24 hours
+      cache.set(cacheKey, result, 24 * 60 * 60 * 1000);
+      return result;
     } catch (e) {
       /* fall through */
     }
   }
-  if (state && STATE_FALLBACK[state])
-    return { rate: STATE_FALLBACK[state], source: "state_fallback", state };
-  return { rate: 0.18, source: "generic" };
+  
+  const fallbackResult = STATE_FALLBACK[state]
+    ? { rate: STATE_FALLBACK[state], source: "state_fallback" as const, state }
+    : { rate: 0.18, source: "generic" as const };
+  
+  // Cache fallback result too
+  cache.set(cacheKey, fallbackResult, 24 * 60 * 60 * 1000);
+  return fallbackResult;
 }

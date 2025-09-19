@@ -31,6 +31,27 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // Webhook idempotency check
+    const eventId = JSON.parse(body).id;
+    const seenKey = `stripe:${eventId}`;
+
+    // In a real implementation, you would use KV storage here
+    // For now, we'll use a simple in-memory check (not production-ready)
+    if ((globalThis as any).seenEvents?.has(seenKey)) {
+      console.log(`Event ${eventId} already processed, skipping`);
+      return NextResponse.json({ ok: true });
+    }
+
+    // Mark event as seen (in production, use KV with TTL)
+    if (!(globalThis as any).seenEvents) (globalThis as any).seenEvents = new Set();
+    (globalThis as any).seenEvents.add(seenKey);
+
+    // Clean up old events (keep last 1000)
+    if ((globalThis as any).seenEvents.size > 1000) {
+      const eventsArray = Array.from((globalThis as any).seenEvents);
+      (globalThis as any).seenEvents = new Set(eventsArray.slice(-500));
+    }
+
     let event: Stripe.Event;
 
     try {

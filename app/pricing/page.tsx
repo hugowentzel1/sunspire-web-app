@@ -84,7 +84,7 @@ export default function PricingPage() {
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl py-6 px-8 border border-gray-200/50 shadow-lg mx-auto max-w-2xl">
               <div className="space-y-4 text-center">
                 <h2 className="text-3xl font-bold text-gray-900">
-                  Demo for {b.brand || 'Your Company'} — Powered by Sunspire
+                  Demo for {b.brand || 'Your Company'} — Powered by <span style={{ color: b.primary }}>Sunspire</span>
                 </h2>
                 <p className="text-lg text-gray-600">
                   Your Logo. Your URL. Instant Solar Quotes — Live in 24 Hours

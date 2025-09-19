@@ -1,66 +1,45 @@
-import { NextResponse } from "next/server";
-import {
-  getTenantByHandle,
-  updateTenantDomain,
-  setTenantDomainStatus,
-  TENANT_FIELDS,
-} from "@/src/lib/airtable";
-import { ENV } from "@/src/config/env";
+import { NextRequest, NextResponse } from 'next/server';
 
-const PID = ENV.VERCEL_PROJECT_ID!;
-
-export async function GET(req: Request) {
+export async function GET(request: NextRequest) {
   try {
-    const url = new URL(req.url);
-    const tenantHandle = url.searchParams.get("tenant");
-
-    if (!tenantHandle) {
-      return NextResponse.json(
-        { ok: false, error: "tenant parameter is required" },
-        { status: 400 },
-      );
+    const { searchParams } = new URL(request.url);
+    const domain = searchParams.get('domain');
+    
+    if (!domain) {
+      return NextResponse.json({ error: 'Domain is required' }, { status: 400 });
     }
 
-    if (!ENV.VERCEL_TOKEN || !ENV.VERCEL_PROJECT_ID) {
-      return NextResponse.json(
-        { ok: false, error: "Vercel configuration missing" },
-        { status: 500 },
-      );
+    const vercelToken = process.env.VERCEL_TOKEN;
+    const projectId = process.env.VERCEL_PROJECT_ID;
+    
+    if (!vercelToken || !projectId) {
+      return NextResponse.json({ error: 'Vercel configuration missing' }, { status: 500 });
     }
 
-    const tenant = await getTenantByHandle(tenantHandle);
-    if (!tenant?.[TENANT_FIELDS.REQUESTED_DOMAIN]) {
-      return NextResponse.json(
-        { ok: false, error: "no_requested_domain" },
-        { status: 400 },
-      );
+    // Check domain status in Vercel
+    const vercelResponse = await fetch(`https://api.vercel.com/v10/projects/${projectId}/domains/${domain}`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${vercelToken}`,
+      }
+    });
+
+    if (!vercelResponse.ok) {
+      return NextResponse.json({ 
+        status: 'not_found',
+        domain 
+      });
     }
 
-    const name = tenant[TENANT_FIELDS.REQUESTED_DOMAIN]!;
-    const r = await fetch(
-      `https://api.vercel.com/v9/projects/${PID}/domains/${encodeURIComponent(name)}`,
-      {
-        headers: { Authorization: `Bearer ${ENV.VERCEL_TOKEN}` },
-      },
-    );
-
-    const j = await r.json();
-    const verified = !!j.verified;
-
-    if (verified) {
-      await updateTenantDomain(tenantHandle, `https://${name}`);
-      await setTenantDomainStatus(tenantHandle, "live");
-    }
-
-    return NextResponse.json({ verified, raw: j });
+    const result = await vercelResponse.json();
+    
+    return NextResponse.json({ 
+      status: result.status || 'active',
+      domain: result.name,
+      verified: result.verified || false
+    });
   } catch (error) {
-    console.error("Error checking domain status:", error);
-    return NextResponse.json(
-      {
-        ok: false,
-        error: error instanceof Error ? error.message : "Unknown error",
-      },
-      { status: 500 },
-    );
+    console.error('Domain status check error:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

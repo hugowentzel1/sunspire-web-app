@@ -136,6 +136,67 @@ function ReportContent() {
     }
   };
 
+  // PDF download handler for paid mode
+  const handleDownloadPDF = async () => {
+    if (demoMode) return; // Disable in demo mode
+    
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const address = urlParams.get('address');
+      const lat = urlParams.get('lat');
+      const lng = urlParams.get('lng');
+      const placeId = urlParams.get('placeId');
+      
+      const response = await fetch('/api/generate-pdf', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          address,
+          lat: parseFloat(lat || '0'),
+          lng: parseFloat(lng || '0'),
+          placeId,
+          estimate
+        })
+      });
+      
+      if (!response.ok) throw new Error('PDF generation failed');
+      
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `solar-quote-${address?.replace(/[^a-zA-Z0-9]/g, '-') || 'report'}.pdf`;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      window.URL.revokeObjectURL(url);
+    } catch (error) {
+      console.error('PDF download error:', error);
+      alert('Unable to download PDF. Please try again.');
+    }
+  };
+
+  // Share link handler for paid mode
+  const handleCopyShareLink = async () => {
+    if (demoMode) return; // Disable in demo mode
+    
+    try {
+      const urlParams = new URLSearchParams(window.location.search);
+      const address = urlParams.get('address');
+      const lat = urlParams.get('lat');
+      const lng = urlParams.get('lng');
+      const placeId = urlParams.get('placeId');
+      
+      const shareUrl = `${window.location.origin}/report?address=${encodeURIComponent(address || '')}&lat=${lat}&lng=${lng}&placeId=${placeId}`;
+      
+      await navigator.clipboard.writeText(shareUrl);
+      alert('Share link copied to clipboard!');
+    } catch (error) {
+      console.error('Share link error:', error);
+      alert('Unable to copy share link. Please try again.');
+    }
+  };
+
   // Lead submit handler for paid mode
   const handleLeadSubmit = async (leadData: any) => {
     try {
@@ -685,7 +746,9 @@ function ReportContent() {
               {/* CONTENT LAYER */}
               <div className="content-layer p-8 text-center">
                 <div className="mb-4 flex justify-center"><IconBadge>💰</IconBadge></div>
-                <div className="text-3xl font-black text-gray-900 mb-2">${estimate.netCostAfterITC.toLocaleString()}</div>
+                <div className="text-3xl font-black text-gray-900 mb-2">
+                  {demoMode ? '— — —' : `$${estimate.netCostAfterITC.toLocaleString()}`}
+                </div>
                 <div className="text-gray-600 font-semibold">Net Cost (After ITC)</div>
               </div>
 
@@ -707,7 +770,9 @@ function ReportContent() {
               {/* CONTENT LAYER */}
               <div className="content-layer p-8 text-center">
                 <div className="mb-4 flex justify-center"><IconBadge>📈</IconBadge></div>
-                <div className="text-3xl font-black text-gray-900 mb-2">${estimate.year1Savings.toLocaleString()}</div>
+                <div className="text-3xl font-black text-gray-900 mb-2">
+                  {demoMode ? '— — —' : `$${estimate.year1Savings.toLocaleString()}`}
+                </div>
                 <div className="text-gray-600 font-semibold">Year 1 Savings</div>
               </div>
 
@@ -739,9 +804,9 @@ function ReportContent() {
               <div className="content-layer p-8">
                 <h2 className="text-2xl font-bold text-gray-900 mb-6">Financial Analysis</h2>
                 <div className="space-y-6">
-                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Payback Period</span><span className="font-bold text-gray-900">{estimate.paybackYear} years</span></div>
-                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">25-Year NPV</span><span className="font-bold text-gray-900">${estimate.npv25Year.toLocaleString()}</span></div>
-                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">ROI</span><span className="font-bold text-gray-900">{Math.round(((estimate.npv25Year + estimate.netCostAfterITC) / estimate.netCostAfterITC) * 100)}%</span></div>
+                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Payback Period</span><span className="font-bold text-gray-900">{demoMode ? '— — —' : `${estimate.paybackYear} years`}</span></div>
+                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">25-Year NPV</span><span className="font-bold text-gray-900">{demoMode ? '— — —' : `$${estimate.npv25Year.toLocaleString()}`}</span></div>
+                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">ROI</span><span className="font-bold text-gray-900">{demoMode ? '— — —' : `${Math.round(((estimate.npv25Year + estimate.netCostAfterITC) / estimate.netCostAfterITC) * 100)}%`}</span></div>
                   <div className="flex justify-between items-center py-4"><span className="text-gray-600">Electricity Rate</span><span className="font-bold text-gray-900">${estimate.utilityRate}/kWh ({estimate.utilityRateSource})</span></div>
                 </div>
               </div>
@@ -878,6 +943,38 @@ function ReportContent() {
               </p>
             </div>
           </motion.div>
+
+          {/* Paid-only CTA section */}
+          {!demoMode && (
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ delay: 1.0, duration: 0.8 }} 
+              className="rounded-3xl py-8 px-8 text-center bg-white border border-gray-200 mt-4"
+            >
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">Download & Share Your Report</h2>
+              <p className="text-xl text-gray-600 mb-10">Get a professional PDF report and share with your team</p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <motion.button 
+                  onClick={handleDownloadPDF}
+                  className="px-8 py-4 text-white rounded-2xl font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" 
+                  style={{ backgroundColor: b.primary }}
+                  whileHover={{ scale: 1.05 }} 
+                  whileTap={{ scale: 0.95 }}
+                >
+                  📄 Download PDF Report
+                </motion.button>
+                <motion.button 
+                  onClick={handleCopyShareLink}
+                  className="px-8 py-4 text-gray-700 rounded-2xl font-bold text-lg border-2 border-gray-300 hover:bg-gray-50 transition-all duration-300 transform hover:-translate-y-1" 
+                  whileHover={{ scale: 1.05 }} 
+                  whileTap={{ scale: 0.95 }}
+                >
+                  🔗 Copy Share Link
+                </motion.button>
+              </div>
+            </motion.div>
+          )}
         </motion.div>
       </main>
 

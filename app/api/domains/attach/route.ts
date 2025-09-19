@@ -1,68 +1,48 @@
-import { NextResponse } from "next/server";
-import {
-  getTenantByHandle,
-  setTenantDomainStatus,
-  TENANT_FIELDS,
-} from "@/src/lib/airtable";
-import { ENV } from "@/src/config/env";
+import { NextRequest, NextResponse } from 'next/server';
 
-const AUTH = {
-  Authorization: `Bearer ${ENV.VERCEL_TOKEN}`,
-  "Content-Type": "application/json",
-};
-const PID = ENV.VERCEL_PROJECT_ID!;
-
-export async function POST(req: Request) {
+export async function POST(request: NextRequest) {
   try {
-    const { tenantHandle } = await req.json();
-
-    if (!tenantHandle) {
-      return NextResponse.json(
-        { ok: false, error: "tenantHandle is required" },
-        { status: 400 },
-      );
+    const { domain, tenantSlug } = await request.json();
+    
+    if (!domain || !tenantSlug) {
+      return NextResponse.json({ error: 'Domain and tenantSlug are required' }, { status: 400 });
     }
 
-    if (!ENV.VERCEL_TOKEN || !ENV.VERCEL_PROJECT_ID) {
-      return NextResponse.json(
-        { ok: false, error: "Vercel configuration missing" },
-        { status: 500 },
-      );
+    const vercelToken = process.env.VERCEL_TOKEN;
+    const projectId = process.env.VERCEL_PROJECT_ID;
+    
+    if (!vercelToken || !projectId) {
+      return NextResponse.json({ error: 'Vercel configuration missing' }, { status: 500 });
     }
 
-    const tenant = await getTenantByHandle(tenantHandle);
-    if (!tenant?.[TENANT_FIELDS.REQUESTED_DOMAIN]) {
-      return NextResponse.json(
-        { ok: false, error: "no_requested_domain" },
-        { status: 400 },
-      );
-    }
-
-    const name = tenant[TENANT_FIELDS.REQUESTED_DOMAIN]!;
-    const r = await fetch(
-      `https://api.vercel.com/v10/projects/${PID}/domains`,
-      {
-        method: "POST",
-        headers: AUTH,
-        body: JSON.stringify({ name }),
+    // Add domain to Vercel project
+    const vercelResponse = await fetch(`https://api.vercel.com/v10/projects/${projectId}/domains`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${vercelToken}`,
+        'Content-Type': 'application/json',
       },
-    );
+      body: JSON.stringify({
+        name: domain,
+        redirect: `https://${tenantSlug}.out.sunspire.app`
+      })
+    });
 
-    if (!r.ok) {
-      await setTenantDomainStatus(tenantHandle, "waiting-dns");
-      return NextResponse.json({ ok: false }, { status: r.status });
+    if (!vercelResponse.ok) {
+      const error = await vercelResponse.text();
+      console.error('Vercel domain attachment failed:', error);
+      return NextResponse.json({ error: 'Failed to attach domain' }, { status: 500 });
     }
 
-    await setTenantDomainStatus(tenantHandle, "attached");
-    return NextResponse.json({ ok: true });
+    const result = await vercelResponse.json();
+    
+    return NextResponse.json({ 
+      success: true, 
+      domain: result.name,
+      tenantSlug 
+    });
   } catch (error) {
-    console.error("Error attaching domain:", error);
-    return NextResponse.json(
-      {
-        ok: false,
-        error: error instanceof Error ? error.message : "Unknown error",
-      },
-      { status: 500 },
-    );
+    console.error('Domain attachment error:', error);
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

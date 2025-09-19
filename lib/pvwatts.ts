@@ -1,4 +1,8 @@
 // lib/pvwatts.ts
+import { cache } from './cache';
+import { retryPVWatts } from './retry';
+import { createHash } from 'crypto';
+
 export type PvwattsParams = {
   lat: number;
   lon: number;
@@ -34,7 +38,27 @@ function clamp(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, n));
 }
 
+function getPVWattsCacheKey(params: PvwattsParams): string {
+  const hash = createHash('sha1');
+  hash.update(JSON.stringify({
+    lat: params.lat,
+    lng: params.lon,
+    tilt: params.tilt_deg,
+    azimuth: params.azimuth_deg,
+    dc_kw: params.system_capacity_kw,
+    losses: params.losses_pct
+  }));
+  return `pvwatts:${hash.digest('hex')}`;
+}
+
 export async function pvwatts(p: PvwattsParams): Promise<PvwattsOut> {
+  // Check cache first
+  const cacheKey = getPVWattsCacheKey(p);
+  const cached = cache.get(cacheKey);
+  if (cached) {
+    return cached;
+  }
+
   const key = process.env.NREL_API_KEY;
   if (!key) throw new Error("Missing NREL_API_KEY");
 
@@ -71,18 +95,20 @@ export async function pvwatts(p: PvwattsParams): Promise<PvwattsOut> {
   u.searchParams.set("inv_eff", String(inv_eff));
   u.searchParams.set("timeframe", "monthly");
 
-  const res = await fetch(u.toString(), { cache: "no-store" });
-  const json = await res.json();
+  // Wrap API call with retry
+  const result = await retryPVWatts(async () => {
+    const res = await fetch(u.toString(), { cache: "no-store" });
+    const json = await res.json();
 
-  const out = json?.outputs;
-  if (!out?.ac_annual || !Array.isArray(out?.ac_monthly)) {
-    const msg = json?.errors?.[0] || json?.error || "PVWatts error";
-    throw new Error(String(msg));
-  }
+    const out = json?.outputs;
+    if (!out?.ac_annual || !Array.isArray(out?.ac_monthly)) {
+      const msg = json?.errors?.[0] || json?.error || "PVWatts error";
+      throw new Error(String(msg));
+    }
 
-  return {
-    annual_kwh: out.ac_annual,
-    monthly_kwh: out.ac_monthly,
+    return {
+      annual_kwh: out.ac_annual,
+      monthly_kwh: out.ac_monthly,
     solrad_kwh_m2_day: out.solrad_annual, // already per-day
     inputsUsed: {
       lat,
@@ -97,4 +123,10 @@ export async function pvwatts(p: PvwattsParams): Promise<PvwattsOut> {
       inv_eff,
     },
   };
+  });
+
+  // Cache the result for 24 hours
+  cache.set(cacheKey, result, 24 * 60 * 60 * 1000);
+  
+  return result;
 }

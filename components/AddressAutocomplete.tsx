@@ -40,6 +40,7 @@ export default function AddressAutocomplete({
   const tokenRef = useRef<google.maps.places.AutocompleteSessionToken | null>(
     null,
   );
+  const debounceTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Load Google Places API script
   useEffect(() => {
@@ -107,7 +108,7 @@ export default function AddressAutocomplete({
     return () => clearTimeout(timeoutId);
   }, []);
 
-  // Debounced search
+  // Debounced search with 250ms debounce
   useEffect(() => {
     console.log(
       "🔍 AddressAutocomplete useEffect triggered, query:",
@@ -115,7 +116,13 @@ export default function AddressAutocomplete({
       "length:",
       query.length,
     );
-    const timeoutId = setTimeout(() => {
+    
+    // Clear existing timeout
+    if (debounceTimeoutRef.current) {
+      clearTimeout(debounceTimeoutRef.current);
+    }
+    
+    debounceTimeoutRef.current = setTimeout(() => {
       if (query.length >= 3) {
         console.log("🔍 Query length >= 3, calling searchAddresses");
         searchAddresses(query);
@@ -124,9 +131,13 @@ export default function AddressAutocomplete({
         setPredictions([]);
         setShowDropdown(false);
       }
-    }, 300);
+    }, 250); // 250ms debounce
 
-    return () => clearTimeout(timeoutId);
+    return () => {
+      if (debounceTimeoutRef.current) {
+        clearTimeout(debounceTimeoutRef.current);
+      }
+    };
   }, [query]);
 
   const searchAddresses = async (searchQuery: string) => {
@@ -198,13 +209,61 @@ export default function AddressAutocomplete({
     setShowDropdown(true);
   };
 
-  const handleSelect = (prediction: Prediction) => {
+  const handleInputFocus = () => {
+    // Create new session token on focus
+    if ((window as any).google?.maps?.places) {
+      tokenRef.current = new (window as any).google.maps.places.AutocompleteSessionToken();
+    }
+  };
+
+  const handleSelect = async (prediction: Prediction) => {
     setQuery(prediction.description);
     onChange?.(prediction.description);
-    // Don't call onSelect automatically - let user click Generate button
     setShowDropdown(false);
     setPredictions([]);
     setSelectedIndex(-1);
+
+    // Use Place Details for more accurate data
+    try {
+      if ((window as any).google?.maps?.places) {
+        const service = new (window as any).google.maps.places.PlacesService(
+          document.createElement('div')
+        );
+        
+        const request = {
+          placeId: prediction.place_id,
+          fields: ['formatted_address', 'geometry', 'place_id'],
+          sessionToken: tokenRef.current
+        };
+
+        service.getDetails(request, (place: any, status: any) => {
+          if (status === (window as any).google.maps.places.PlacesServiceStatus.OK && place) {
+            const placeResult = {
+              formatted_address: place.formatted_address,
+              place_id: place.place_id,
+              geometry: {
+                location: {
+                  lat: place.geometry.location.lat(),
+                  lng: place.geometry.location.lng()
+                }
+              }
+            };
+            onSelect(placeResult.formatted_address, placeResult.place_id);
+          } else {
+            // Fallback to basic selection if Place Details fails
+            onSelect(prediction.description, prediction.place_id);
+            window.alert('Unable to get detailed address information. Please try again.');
+          }
+        });
+      } else {
+        // Fallback if Places API not available
+        onSelect(prediction.description, prediction.place_id);
+      }
+    } catch (error) {
+      console.error('Place Details error:', error);
+      onSelect(prediction.description, prediction.place_id);
+      window.alert('Unable to get detailed address information. Please try again.');
+    }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -259,7 +318,10 @@ export default function AddressAutocomplete({
         value={query}
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
-        onFocus={() => setShowDropdown(true)}
+        onFocus={() => {
+          setShowDropdown(true);
+          handleInputFocus();
+        }}
         placeholder={placeholder}
         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
         autoComplete="street-address"
