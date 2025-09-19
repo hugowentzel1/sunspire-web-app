@@ -80,18 +80,22 @@ function HomeContent() {
     (window as any).__CONTENT_SHOWN__ = true; 
   }, []);
 
-  // Check if we should redirect to paid version
+  // Check if we should redirect to paid version - add delay to allow brand state to load
   useEffect(() => {
-    if (!isDemo && typeof window !== 'undefined') {
-      const company = searchParams.get('company');
-      if (company) {
-        // Redirect to paid version with all URL parameters
-        const currentUrl = new URL(window.location.href);
-        currentUrl.pathname = '/paid';
-        window.location.href = currentUrl.toString();
-        return;
+    const timer = setTimeout(() => {
+      if (!isDemo && typeof window !== 'undefined') {
+        const company = searchParams.get('company');
+        if (company) {
+          // Redirect to paid version with all URL parameters
+          const currentUrl = new URL(window.location.href);
+          currentUrl.pathname = '/paid';
+          window.location.href = currentUrl.toString();
+          return;
+        }
       }
-    }
+    }, 100); // Small delay to allow brand state to update
+
+    return () => clearTimeout(timer);
   }, [isDemo, searchParams]);
 
   // Early return for paid versions to prevent demo content from rendering
