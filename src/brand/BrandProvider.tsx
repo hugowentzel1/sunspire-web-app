@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import { useBrandTakeover } from "./useBrandTakeover";
+import { useSearchParams } from "next/navigation";
 
 export default function BrandProvider({
   children,
@@ -8,6 +9,7 @@ export default function BrandProvider({
   children: React.ReactNode;
 }) {
   const b = useBrandTakeover();
+  const searchParams = useSearchParams();
 
   // CSS var theme
   useEffect(() => {
@@ -20,6 +22,16 @@ export default function BrandProvider({
       b.brand,
     );
     if (!b.enabled) return;
+
+    // Check if URL has brandColor parameter - if so, use that instead of forced colors
+    const urlBrandColor = searchParams.get('brandColor');
+    if (urlBrandColor) {
+      const cleanColor = urlBrandColor.startsWith('#') ? urlBrandColor : `#${urlBrandColor}`;
+      document.documentElement.style.setProperty("--brand-primary", cleanColor);
+      document.documentElement.style.setProperty("--brand", cleanColor);
+      console.log("BrandProvider: Using URL brand color:", cleanColor);
+      return;
+    }
 
     // Force correct brand colors based on company name
     let forcedColor = b.primary;
@@ -52,7 +64,7 @@ export default function BrandProvider({
     document.documentElement.style.setProperty("--brand-primary", forcedColor);
     document.documentElement.style.setProperty("--brand", forcedColor);
     console.log("BrandProvider: CSS variables set to", forcedColor);
-  }, [b.enabled, b.primary, b.brand]);
+  }, [b.enabled, b.primary, b.brand, searchParams]);
 
   // Favicon override
   useEffect(() => {
