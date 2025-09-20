@@ -4,17 +4,17 @@
 - generic [active] [ref=e1]:
   - banner [ref=e2]:
     - generic [ref=e4]:
-      - link "SolarPro Energy logo SolarPro Energy Solar Intelligence" [ref=e5] [cursor=pointer]:
-        - /url: /?company=SolarPro+Energy&brandColor=%23059669&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com
-        - img "SolarPro Energy logo" [ref=e6] [cursor=pointer]
+      - link "Apple logo Apple Solar Intelligence" [ref=e5] [cursor=pointer]:
+        - /url: /?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com
+        - img "Apple logo" [ref=e6] [cursor=pointer]
         - generic [ref=e7] [cursor=pointer]:
-          - heading "SolarPro Energy" [level=1] [ref=e8] [cursor=pointer]
+          - heading "Apple" [level=1] [ref=e8] [cursor=pointer]
           - paragraph [ref=e9] [cursor=pointer]: Solar Intelligence
       - navigation
   - generic [ref=e11]:
     - main [ref=e12]:
       - generic [ref=e13]:
-        - img "SolarPro Energy logo" [ref=e15]
+        - img "Apple logo" [ref=e15]
         - generic [ref=e16]:
           - generic [ref=e18]: ✓
           - generic [ref=e19]:
@@ -59,21 +59,21 @@
       - generic [ref=e65]:
         - generic [ref=e66]:
           - generic [ref=e67]:
-            - heading "SolarPro Energy" [level=3] [ref=e68]
-            - img "SolarPro Energy logo" [ref=e69]
+            - heading "Apple" [level=3] [ref=e68]
+            - img "Apple logo" [ref=e69]
           - generic [ref=e70]:
             - heading "Legal & Support" [level=4] [ref=e71]
             - generic [ref=e72]:
               - link "Privacy Policy" [ref=e73] [cursor=pointer]:
-                - /url: /privacy?company=SolarPro+Energy&brandColor=%23059669&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com
+                - /url: /privacy?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com
               - link "Terms of Service" [ref=e74] [cursor=pointer]:
-                - /url: /terms?company=SolarPro+Energy&brandColor=%23059669&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com
+                - /url: /terms?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com
               - link "Security" [ref=e75] [cursor=pointer]:
-                - /url: /security?company=SolarPro+Energy&brandColor=%23059669&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com
+                - /url: /security?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com
               - link "DPA" [ref=e76] [cursor=pointer]:
-                - /url: /dpa?company=SolarPro+Energy&brandColor=%23059669&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com
+                - /url: /dpa?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com
               - link "Do Not Sell My Data" [ref=e77] [cursor=pointer]:
-                - /url: /do-not-sell?company=SolarPro+Energy&brandColor=%23059669&logo=https%3A%2F%2Flogo.clearbit.com%2Fsolarpro.com
+                - /url: /do-not-sell?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com
           - generic [ref=e78]:
             - heading "Contact" [level=4] [ref=e79]
             - generic [ref=e80]:
@@ -83,7 +83,6 @@
                   - /url: mailto:support@getsunspire.com
               - paragraph [ref=e85]:
                 - img [ref=e86]
-                - text: +1 (555) 123-4567
         - generic [ref=e89]:
           - generic [ref=e90]:
             - img [ref=e91]

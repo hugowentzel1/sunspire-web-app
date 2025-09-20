@@ -115,6 +115,7 @@ export default function TermsPage() {
               </p>
               <div className="bg-gray-50 p-4 rounded-lg">
                 <p className="text-gray-700">
+                  <strong>Phone:</strong> <a href="tel:+14047702672" className="hover:underline">+1 (404) 770-2672</a><br />
                   <strong>Support:</strong> <a href="mailto:support@getsunspire.com" className="hover:underline">support@getsunspire.com</a><br />
                   <strong>Billing:</strong> <a href="mailto:billing@getsunspire.com" className="hover:underline">billing@getsunspire.com</a><br />
                   <strong>Address:</strong> 1700 Northside Drive Suite A7 #5164 Atlanta, GA 30318<br />

@@ -5,7 +5,7 @@
   - generic [ref=e2]:
     - generic [ref=e3]:
       - strong [ref=e4]: Exclusive preview built for Apple
-      - generic [ref=e5]: Exclusive preview — expires in 6:23:59:31
+      - generic [ref=e5]: Exclusive preview — expires in 6:23:59:53
       - generic [ref=e6]: "Runs left: 2"
     - generic [ref=e7]:
       - button "Launch on Apple" [ref=e8] [cursor=pointer]
@@ -64,7 +64,7 @@
                 - img [ref=e62]
             - generic [ref=e64]:
               - paragraph [ref=e65]: "Preview: 2 runs left."
-              - paragraph [ref=e66]: Expires in 6d 23h 59m 30s
+              - paragraph [ref=e66]: Expires in 6d 23h 59m 53s
         - generic [ref=e67]:
           - generic [ref=e68]:
             - generic [ref=e69]: NREL v8
