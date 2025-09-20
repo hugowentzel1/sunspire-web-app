@@ -20,80 +20,89 @@
           - generic [ref=e19]:
             - heading "Instant Solar Analysis for Your Home" [level=1] [ref=e20]
             - paragraph [ref=e21]: Enter your address to see solar production, savings, and payback—instantly.
-        - generic [ref=e23]:
-          - generic [ref=e24]:
-            - heading "Enter Your Property Address" [level=2] [ref=e25]
-            - paragraph [ref=e26]: Get a comprehensive solar analysis tailored to your specific location
-          - generic [ref=e27]:
-            - generic [ref=e28]:
-              - generic [ref=e29]: Enter Your Property Address
-              - generic [ref=e30]:
-                - textbox "Enter Your Property Address" [ref=e31]
-                - paragraph [ref=e32]: Powered by Google
-              - paragraph [ref=e33]: Used for local rates & irradiance. Private.
-            - button "Generate Solar Intelligence Report" [disabled] [ref=e34]:
-              - generic [ref=e35]:
-                - generic [ref=e36]: Generate Solar Intelligence Report
-                - img [ref=e37]
-        - generic [ref=e39]:
-          - generic [ref=e40]:
-            - generic [ref=e41]:
-              - generic [ref=e42]: NREL v8
-              - generic [ref=e43]: Accurate Modeling
-            - generic [ref=e44]:
-              - generic [ref=e45]: Current Rates
-              - generic [ref=e46]: Local Utility Data
-            - generic [ref=e47]:
-              - generic [ref=e48]: Private
-              - generic [ref=e49]: Encrypted
-          - generic [ref=e51]:
-            - generic [ref=e52]:
-              - img [ref=e54]
-              - generic [ref=e56]: NREL PVWatts® v8
-              - generic [ref=e57]: Industry-standard solar modeling with current utility rates
-            - generic [ref=e58]:
-              - img [ref=e60]
-              - generic [ref=e62]: End-to-End Encryption
-              - generic [ref=e63]: Secure data protection
-    - contentinfo [ref=e64]:
-      - generic [ref=e65]:
-        - generic [ref=e66]:
-          - generic [ref=e67]:
-            - heading "Apple" [level=3] [ref=e68]
-            - img "Apple logo" [ref=e69]
-          - generic [ref=e70]:
-            - heading "Legal & Support" [level=4] [ref=e71]
-            - generic [ref=e72]:
-              - link "Privacy Policy" [ref=e73] [cursor=pointer]:
+        - generic [ref=e22]:
+          - text: ✅ Live for
+          - generic [ref=e23]: Apple
+          - text: . Leads now save to your CRM.
+        - generic [ref=e25]:
+          - generic [ref=e26]:
+            - heading "Enter Your Property Address" [level=2] [ref=e27]
+            - paragraph [ref=e28]: Get a comprehensive solar analysis tailored to your specific location
+          - generic [ref=e29]:
+            - generic [ref=e30]:
+              - generic [ref=e31]: Enter Your Property Address
+              - generic [ref=e32]:
+                - textbox "Enter Your Property Address" [ref=e33]
+                - paragraph [ref=e34]: Powered by Google
+              - paragraph [ref=e35]: Used for local rates & irradiance. Private.
+            - button "Generate Solar Intelligence Report" [disabled] [ref=e36]:
+              - generic [ref=e37]:
+                - generic [ref=e38]: Generate Solar Intelligence Report
+                - img [ref=e39]
+        - generic [ref=e41]:
+          - generic [ref=e42]:
+            - generic [ref=e43]:
+              - generic [ref=e44]: NREL v8
+              - generic [ref=e45]: Accurate Modeling
+            - generic [ref=e46]:
+              - generic [ref=e47]: Current Rates
+              - generic [ref=e48]: Local Utility Data
+            - generic [ref=e49]:
+              - generic [ref=e50]: Private
+              - generic [ref=e51]: Encrypted
+          - generic [ref=e53]:
+            - generic [ref=e54]:
+              - img [ref=e56]
+              - generic [ref=e58]: NREL PVWatts® v8
+              - generic [ref=e59]: Industry-standard solar modeling with current utility rates
+            - generic [ref=e60]:
+              - img [ref=e62]
+              - generic [ref=e64]: End-to-End Encryption
+              - generic [ref=e65]: Secure data protection
+    - contentinfo [ref=e66]:
+      - generic [ref=e67]:
+        - generic [ref=e68]:
+          - generic [ref=e69]:
+            - heading "Apple" [level=3] [ref=e70]
+            - img "Apple logo" [ref=e71]
+          - generic [ref=e72]:
+            - heading "Legal & Support" [level=4] [ref=e73]
+            - generic [ref=e74]:
+              - link "Privacy Policy" [ref=e75] [cursor=pointer]:
                 - /url: /privacy?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com
-              - link "Terms of Service" [ref=e74] [cursor=pointer]:
+              - link "Terms of Service" [ref=e76] [cursor=pointer]:
                 - /url: /terms?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com
-              - link "Security" [ref=e75] [cursor=pointer]:
+              - link "Security" [ref=e77] [cursor=pointer]:
                 - /url: /security?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com
-              - link "DPA" [ref=e76] [cursor=pointer]:
+              - link "DPA" [ref=e78] [cursor=pointer]:
                 - /url: /dpa?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com
-              - link "Do Not Sell My Data" [ref=e77] [cursor=pointer]:
+              - link "Do Not Sell My Data" [ref=e79] [cursor=pointer]:
                 - /url: /do-not-sell?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com
-          - generic [ref=e78]:
-            - heading "Contact" [level=4] [ref=e79]
-            - paragraph [ref=e81]:
-              - img [ref=e82]
-              - link "support@getsunspire.com" [ref=e84] [cursor=pointer]:
-                - /url: mailto:support@getsunspire.com
-        - generic [ref=e86]:
-          - generic [ref=e87]:
-            - img [ref=e88]
-            - generic [ref=e90]: Estimates generated using NREL PVWatts® v8
-          - paragraph [ref=e92]:
+          - generic [ref=e80]:
+            - heading "Contact" [level=4] [ref=e81]
+            - generic [ref=e82]:
+              - paragraph [ref=e83]:
+                - img [ref=e84]
+                - link "support@getsunspire.com" [ref=e86] [cursor=pointer]:
+                  - /url: mailto:support@getsunspire.com
+              - paragraph [ref=e87]:
+                - img [ref=e88]
+                - link "+1 (404) 770-2672" [ref=e90] [cursor=pointer]:
+                  - /url: tel:+14047702672
+        - generic [ref=e92]:
+          - generic [ref=e93]:
+            - img [ref=e94]
+            - generic [ref=e96]: Estimates generated using NREL PVWatts® v8
+          - paragraph [ref=e98]:
             - text: Powered by
-            - generic [ref=e93]: Sunspire
-          - generic [ref=e94]:
-            - img [ref=e95]
-            - generic [ref=e97]: Mapping & location data © Google
-  - alert [ref=e98]
-  - generic [ref=e100]:
-    - paragraph [ref=e101]: We use cookies to improve your experience.
-    - generic [ref=e102]:
-      - button "Manage" [ref=e103] [cursor=pointer]
-      - button "Accept" [ref=e104] [cursor=pointer]
+            - generic [ref=e99]: Sunspire
+          - generic [ref=e100]:
+            - img [ref=e101]
+            - generic [ref=e103]: Mapping & location data © Google
+  - alert [ref=e104]
+  - generic [ref=e106]:
+    - paragraph [ref=e107]: We use cookies to improve your experience.
+    - generic [ref=e108]:
+      - button "Manage" [ref=e109] [cursor=pointer]
+      - button "Accept" [ref=e110] [cursor=pointer]
 ```

@@ -924,19 +924,6 @@ function ReportContent() {
           
           {/* Disclaimer */}
 
-          {/* NREL Attribution - Show for both demo and paid */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ delay: 1.0, duration: 0.8 }} 
-            className="max-w-4xl mx-auto text-center"
-          >
-            <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-              <p className="text-sm text-gray-600 leading-relaxed">
-                Estimates generated using NREL PVWatts® v8 and current utility rates.
-              </p>
-            </div>
-          </motion.div>
 
           {/* Paid-only CTA section */}
           {!demoMode && (

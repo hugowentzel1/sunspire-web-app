@@ -162,7 +162,7 @@
                     - /url: mailto:support@getsunspire.com
                 - paragraph [ref=e166]:
                   - img [ref=e167]
-                  - text: +1 (555) 123-4567
+                  - text: +1 (404) 770-2672
           - generic [ref=e170]:
             - generic [ref=e171]:
               - img [ref=e172]
