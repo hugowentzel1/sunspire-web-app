@@ -864,15 +864,15 @@ function ReportContent() {
                   <h3 className="text-lg font-semibold text-gray-800 mb-4">Data Sources</h3>
                   <div className="space-y-3 text-sm text-gray-600">
                     <div className="flex items-center">
-                      <span className="w-2 h-2 bg-blue-500 rounded-full mr-3"></span>
+                      <span className="w-2 h-2 rounded-full mr-3" style={{ backgroundColor: b.primary }}></span>
                       <span>Solar irradiance data from industry-standard models</span>
                     </div>
                     <div className="flex items-center">
-                      <span className="w-2 h-2 bg-green-500 rounded-full mr-3"></span>
+                      <span className="w-2 h-2 rounded-full mr-3" style={{ backgroundColor: b.primary }}></span>
                       <span>Utility rates from local utility databases</span>
                     </div>
                     <div className="flex items-center">
-                      <span className="w-2 h-2 bg-orange-500 rounded-full mr-3"></span>
+                      <span className="w-2 h-2 rounded-full mr-3" style={{ backgroundColor: b.primary }}></span>
                       <span>Financial calculations based on current federal and state incentives</span>
                     </div>
                   </div>
@@ -923,10 +923,12 @@ function ReportContent() {
           )}
           
           {/* Disclaimer */}
+
+          {/* NREL Attribution - Show for both demo and paid */}
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 
             animate={{ opacity: 1, y: 0 }} 
-            transition={{ delay: 1.4, duration: 0.8 }} 
+            transition={{ delay: 1.0, duration: 0.8 }} 
             className="max-w-4xl mx-auto text-center"
           >
             <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
