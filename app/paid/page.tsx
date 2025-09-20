@@ -305,12 +305,6 @@ function HomeContent() {
             </div>
           </div>
 
-          {/* Live Banner for Paid Mode */}
-          {!isDemo && (
-            <div className="mx-auto max-w-3xl mt-4 rounded-lg bg-emerald-50 text-emerald-900 text-sm px-4 py-2 border border-emerald-200 mb-8">
-              ✅ Live for <b>{b.brand || 'Your Company'}</b>. Leads now save to your CRM.
-            </div>
-          )}
 
           <div className="flex flex-wrap justify-center gap-8 text-sm section-spacing">
             {/* Tenant trust badges are removed as per edit hint */}
