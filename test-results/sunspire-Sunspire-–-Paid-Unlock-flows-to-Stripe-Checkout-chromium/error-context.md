@@ -76,27 +76,24 @@
                 - /url: /do-not-sell?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com
           - generic [ref=e78]:
             - heading "Contact" [level=4] [ref=e79]
-            - generic [ref=e80]:
-              - paragraph [ref=e81]:
-                - img [ref=e82]
-                - link "support@getsunspire.com" [ref=e84] [cursor=pointer]:
-                  - /url: mailto:support@getsunspire.com
-              - paragraph [ref=e85]:
-                - img [ref=e86]
-        - generic [ref=e89]:
-          - generic [ref=e90]:
-            - img [ref=e91]
-            - generic [ref=e93]: Estimates generated using NREL PVWatts® v8
-          - paragraph [ref=e95]:
+            - paragraph [ref=e81]:
+              - img [ref=e82]
+              - link "support@getsunspire.com" [ref=e84] [cursor=pointer]:
+                - /url: mailto:support@getsunspire.com
+        - generic [ref=e86]:
+          - generic [ref=e87]:
+            - img [ref=e88]
+            - generic [ref=e90]: Estimates generated using NREL PVWatts® v8
+          - paragraph [ref=e92]:
             - text: Powered by
-            - generic [ref=e96]: Sunspire
-          - generic [ref=e97]:
-            - img [ref=e98]
-            - generic [ref=e100]: Mapping & location data © Google
-  - alert [ref=e101]
-  - generic [ref=e103]:
-    - paragraph [ref=e104]: We use cookies to improve your experience.
-    - generic [ref=e105]:
-      - button "Manage" [ref=e106] [cursor=pointer]
-      - button "Accept" [ref=e107] [cursor=pointer]
+            - generic [ref=e93]: Sunspire
+          - generic [ref=e94]:
+            - img [ref=e95]
+            - generic [ref=e97]: Mapping & location data © Google
+  - alert [ref=e98]
+  - generic [ref=e100]:
+    - paragraph [ref=e101]: We use cookies to improve your experience.
+    - generic [ref=e102]:
+      - button "Manage" [ref=e103] [cursor=pointer]
+      - button "Accept" [ref=e104] [cursor=pointer]
 ```

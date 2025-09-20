@@ -5,7 +5,7 @@
   - generic [ref=e2]:
     - generic [ref=e3]:
       - strong [ref=e4]: Exclusive preview built for Apple
-      - generic [ref=e5]: Exclusive preview — expires in 6:23:59:37
+      - generic [ref=e5]: Exclusive preview — expires in 6:23:59:38
       - generic [ref=e6]: "Runs left: 2"
     - generic [ref=e7]:
       - button "Launch on Apple" [ref=e8] [cursor=pointer]

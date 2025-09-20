@@ -256,7 +256,7 @@ export default function PartnersPage() {
                   onChange={handleChange}
                   className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:border-transparent"
                   style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
-                  placeholder="(555) 123-4567"
+                  placeholder="+1 (404) 770-2672"
                 />
               </div>
 

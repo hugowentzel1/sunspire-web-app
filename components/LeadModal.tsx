@@ -160,7 +160,7 @@ export function LeadModal({
                       {...register("phone")}
                       type="tel"
                       id="phone"
-                      placeholder="(555) 123-4567"
+                      placeholder="+1 (404) 770-2672"
                       className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                     />
                   </div>

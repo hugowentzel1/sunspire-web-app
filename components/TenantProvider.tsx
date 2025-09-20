@@ -89,7 +89,7 @@ const defaultTenant: TenantConfig = {
   },
   contact: {
     email: "hello@sunspire.com",
-    phone: "+1 (555) 123-4567",
+    phone: "+1 (404) 770-2672",
     address: "123 Solar Street, Sunny City, SC 12345",
   },
   social: {
