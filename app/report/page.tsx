@@ -554,29 +554,23 @@ function ReportContent() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center space-x-4">
-              {demoMode ? (
-                (b.logo || getDefaultLogo(b.brand)) ? (
-                  <Image 
-                    src={b.logo || getDefaultLogo(b.brand) || ''} 
-                    alt={`${b.brand} logo`} 
-                    width={48} 
-                    height={48} 
-                    className="rounded-lg"
-                    style={{ 
-                      objectFit: "contain",
-                      width: "48px",
-                      height: "48px",
-                      minWidth: "48px",
-                      minHeight: "48px",
-                      maxWidth: "48px",
-                      maxHeight: "48px"
-                    }}
-                  />
-                ) : (
-                  <div className="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center">
-                    <span className="text-white text-lg font-bold">☀️</span>
-                  </div>
-                )
+              {(b.logo || getDefaultLogo(b.brand)) ? (
+                <Image 
+                  src={b.logo || getDefaultLogo(b.brand) || ''} 
+                  alt={`${b.brand} logo`} 
+                  width={48} 
+                  height={48} 
+                  className="rounded-lg"
+                  style={{ 
+                    objectFit: "contain",
+                    width: "48px",
+                    height: "48px",
+                    minWidth: "48px",
+                    minHeight: "48px",
+                    maxWidth: "48px",
+                    maxHeight: "48px"
+                  }}
+                />
               ) : (
                 <div className="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center">
                   <span className="text-white text-lg font-bold">☀️</span>
@@ -584,7 +578,7 @@ function ReportContent() {
               )}
               <div>
                 <h1 className="text-2xl font-black text-[var(--brand-primary)]">
-                  {demoMode ? capitalizeCompanyName(b.brand) : 'Your Company'}
+                  {capitalizeCompanyName(b.brand)}
                 </h1>
                 <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
                   Solar Intelligence
@@ -673,7 +667,7 @@ function ReportContent() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="space-y-8">
           <div className="text-center space-y-6">
             <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="w-24 h-24 mx-auto">
-              {demoMode && (b.logo || getDefaultLogo(b.brand)) ? (
+              {(b.logo || getDefaultLogo(b.brand)) ? (
                 <Image 
                   src={b.logo || getDefaultLogo(b.brand) || ''} 
                   alt={`${b.brand} logo`} 
