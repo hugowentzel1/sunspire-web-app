@@ -336,8 +336,8 @@ function HomeContent() {
               </h1>
               <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 {b.enabled 
-                  ? `Have your own branded solar quote tool live in just 24 hours — no coding, no hassle. Instantly capture more leads, flood your calendar with qualified consultations, and close more installs — all fully branded as your company.`
-                  : "Have your own branded solar quote tool live in just 24 hours — no coding, no hassle. Instantly capture more leads, flood your calendar with qualified consultations, and close more installs — all fully branded as your company."
+                  ? `Launch your branded solar quote tool in 24 hours — no coding, no hassle. Capture more leads, book more consultations, and close more installs under your company's name.`
+                  : "Launch your branded solar quote tool in 24 hours — no coding, no hassle. Capture more leads, book more consultations, and close more installs under your company's name."
                 }
               </p>
             </div>
