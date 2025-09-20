@@ -1,12 +1,24 @@
 'use client';
 
 import { useSearchParams } from 'next/navigation';
-import { useBrandTakeover } from '@/components/TenantProvider';
-import { createUrlWithParams } from '@/lib/utils';
+import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 
 export default function MethodologyPage() {
   const searchParams = useSearchParams();
   const b = useBrandTakeover();
+
+  // Function to create URLs with preserved parameters
+  const createUrlWithParams = (path: string) => {
+    const params = new URLSearchParams();
+    if (searchParams.get("company")) params.set("company", searchParams.get("company") || "");
+    if (searchParams.get("brandColor")) params.set("brandColor", searchParams.get("brandColor") || "");
+    if (searchParams.get("logo")) params.set("logo", searchParams.get("logo") || "");
+    if (searchParams.get("primary")) params.set("primary", searchParams.get("primary") || "");
+    if (searchParams.get("demo")) params.set("demo", searchParams.get("demo") || "");
+    
+    const queryString = params.toString();
+    return queryString ? `${path}?${queryString}` : path;
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-gray-100 font-inter">
@@ -31,7 +43,7 @@ export default function MethodologyPage() {
               <div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3">Solar Production (NREL PVWatts v8)</h3>
                 <p className="text-gray-600 mb-4">
-                  We use the National Renewable Energy Laboratory's PVWatts v8 calculator, the industry standard for solar production estimates. This tool accounts for:
+                  We use the National Renewable Energy Laboratory&apos;s PVWatts v8 calculator, the industry standard for solar production estimates. This tool accounts for:
                 </p>
                 <ul className="list-disc list-inside text-gray-600 space-y-2">
                   <li>Local weather patterns and historical irradiance data</li>
