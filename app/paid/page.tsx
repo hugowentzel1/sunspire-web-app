@@ -249,9 +249,11 @@ function HomeContent() {
 
   return (
     <div
-      className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter"
+      className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-gray-100 font-inter"
       data-demo={isDemo}
     >
+      {/* Set CSS variable for consistent brand colors */}
+      <style>{`:root{--brand-primary:${b.primary};}`}</style>
       <main
         className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
         data-paid-hero={!isDemo}
@@ -276,7 +278,7 @@ function HomeContent() {
 
           <div className="space-y-6">
             <div className="relative">
-              <div className="absolute -top-6 -right-4 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
+              <div className="absolute -top-6 -right-4 w-12 h-12 rounded-full flex items-center justify-center shadow-lg" style={{ backgroundColor: b.primary }}>
                 <span className="text-white text-lg ml-0.5">✓</span>
               </div>
             </div>
