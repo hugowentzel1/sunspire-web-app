@@ -21,7 +21,7 @@ export default function BrandProvider({
       "brand=",
       b.brand,
     );
-    if (!b.enabled) return;
+    // Always check for URL parameters, even if brand takeover is not enabled
 
     // Check if URL has brandColor parameter - if so, use that instead of forced colors
     const urlBrandColor = searchParams.get('brandColor');
@@ -35,9 +35,21 @@ export default function BrandProvider({
       console.log("BrandProvider: Using URL brand color:", cleanColor);
       return;
     }
+    
+    // Also check for primary parameter
+    const urlPrimary = searchParams.get('primary');
+    if (urlPrimary) {
+      const cleanColor = urlPrimary.startsWith('#') ? urlPrimary : `#${urlPrimary}`;
+      document.documentElement.style.setProperty("--brand-primary", cleanColor);
+      document.documentElement.style.setProperty("--brand", cleanColor);
+      console.log("BrandProvider: Using URL primary color:", cleanColor);
+      return;
+    }
 
-    // Force correct brand colors based on company name
-    let forcedColor = b.primary;
+    // Only apply forced colors if no URL parameters are present
+    if (!urlBrandColor && !urlPrimary) {
+      // Force correct brand colors based on company name
+      let forcedColor = b.primary;
     if (b.brand.toLowerCase() === "tesla") {
       forcedColor = "#CC0000";
       console.log("BrandProvider: Forcing Tesla red:", forcedColor);
@@ -65,9 +77,10 @@ export default function BrandProvider({
       console.log("BrandProvider: Forcing Meta blue:", forcedColor);
     }
 
-    document.documentElement.style.setProperty("--brand-primary", forcedColor);
-    document.documentElement.style.setProperty("--brand", forcedColor);
-    console.log("BrandProvider: CSS variables set to", forcedColor);
+      document.documentElement.style.setProperty("--brand-primary", forcedColor);
+      document.documentElement.style.setProperty("--brand", forcedColor);
+      console.log("BrandProvider: CSS variables set to", forcedColor);
+    }
   }, [b.enabled, b.primary, b.brand, searchParams]);
 
   // Favicon override
