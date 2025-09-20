@@ -528,7 +528,7 @@ function ReportContent() {
               const queryString = params.toString();
               const url = queryString ? `/?${queryString}` : '/';
               router.push(url);
-            }} className="mt-4 px-6 py-3 bg-gradient-to-r from-orange-500 to-red-500 text-white rounded-2xl font-semibold hover:shadow-lg transition-all duration-200">Back to Home</button>
+            }} className="mt-4 px-6 py-3 text-white rounded-2xl font-semibold hover:shadow-lg transition-all duration-200" style={{ backgroundColor: b.primary }}>Back to Home</button>
           </div>
         </div>
       </div>
@@ -663,7 +663,7 @@ function ReportContent() {
         {/* Theme probe for testing */}
         <div data-testid="theme-probe" style={{ color: 'var(--brand)' }} className="hidden" />
         {/* Brand theme CSS variable */}
-        <style>{`:root{--brand:${getBrandTheme(searchParams.get('company') || undefined)};}`}</style>
+        <style>{`:root{--brand:${getBrandTheme(searchParams.get('company') || undefined)};--brand-primary:${b.primary};}`}</style>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="space-y-8">
           <div className="text-center space-y-6">
             <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="w-24 h-24 mx-auto">
@@ -958,7 +958,8 @@ function ReportContent() {
                 </motion.button>
                 <motion.button 
                   onClick={handleCopyShareLink}
-                  className="px-8 py-4 text-gray-700 rounded-2xl font-bold text-lg border-2 border-gray-300 hover:bg-gray-50 transition-all duration-300 transform hover:-translate-y-1" 
+                  className="px-8 py-4 text-white rounded-2xl font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" 
+                  style={{ backgroundColor: b.primary }}
                   whileHover={{ scale: 1.05 }} 
                   whileTap={{ scale: 0.95 }}
                 >
