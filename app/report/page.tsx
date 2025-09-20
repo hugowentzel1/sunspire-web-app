@@ -497,9 +497,9 @@ function ReportContent() {
 
   if (tenantLoading || isLoading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-gray-100 font-inter flex items-center justify-center">
         <div className="text-center space-y-6">
-          <div className="w-16 h-16 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+          <div className="w-16 h-16 border-4 rounded-full animate-spin mx-auto" style={{ borderColor: `${b.primary} transparent ${b.primary} transparent` }}></div>
           <p className="text-xl font-semibold text-gray-900">Generating your solar intelligence report...</p>
         </div>
       </div>
@@ -508,7 +508,7 @@ function ReportContent() {
 
   if (error && !estimate) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter flex items-center justify-center">
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-gray-100 font-inter flex items-center justify-center">
         <div className="text-center space-y-6">
           <div className="m-4 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700 max-w-md">
             <div className="font-semibold mb-2">Error Loading Report</div>
@@ -548,7 +548,7 @@ function ReportContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter" data-demo={demoMode}>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-gray-100 font-inter" data-demo={demoMode}>
       {/* Custom banner for report page */}
       <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -639,7 +639,7 @@ function ReportContent() {
 
         {/* Success toast for paid mode */}
         {showSuccessToast && (
-          <div className="fixed top-4 right-4 z-50 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg" {...tid('lead-success-toast')}>
+          <div className="fixed top-4 right-4 z-50 text-white px-6 py-3 rounded-lg shadow-lg" style={{ backgroundColor: b.primary }} {...tid('lead-success-toast')}>
             Saved! We&apos;ve received your inquiry.
           </div>
         )}
