@@ -1,0 +1,101 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "☀️ testco Solar Intelligence" [ref=e5] [cursor=pointer]:
+        - /url: /?company=testco&demo=0
+        - generic [ref=e7] [cursor=pointer]: ☀️
+        - generic [ref=e8] [cursor=pointer]:
+          - heading "testco" [level=1] [ref=e9] [cursor=pointer]
+          - paragraph [ref=e10] [cursor=pointer]: Solar Intelligence
+      - navigation
+  - generic [ref=e12]:
+    - main [ref=e13]:
+      - generic [ref=e14]:
+        - generic [ref=e16]: T
+        - generic [ref=e17]:
+          - generic [ref=e19]: ✓
+          - generic [ref=e20]:
+            - heading "Instant Solar Analysis for Your Home" [level=1] [ref=e21]
+            - paragraph [ref=e22]: Enter your address to see solar production, savings, and payback—instantly.
+        - generic [ref=e24]:
+          - generic [ref=e25]:
+            - heading "Enter Your Property Address" [level=2] [ref=e26]
+            - paragraph [ref=e27]: Get a comprehensive solar analysis tailored to your specific location
+          - generic [ref=e28]:
+            - generic [ref=e29]:
+              - generic [ref=e30]: Enter Your Property Address
+              - generic [ref=e31]:
+                - textbox "Enter Your Property Address" [ref=e32]
+                - paragraph [ref=e33]: Powered by Google
+              - paragraph [ref=e34]: Used for local rates & irradiance. Private.
+            - button "Generate Solar Intelligence Report" [disabled] [ref=e35]:
+              - generic [ref=e36]:
+                - generic [ref=e37]: Generate Solar Intelligence Report
+                - img [ref=e38]
+        - generic [ref=e40]:
+          - generic [ref=e41]:
+            - generic [ref=e42]:
+              - generic [ref=e43]: NREL v8
+              - generic [ref=e44]: Accurate Modeling
+            - generic [ref=e45]:
+              - generic [ref=e46]: Current Rates
+              - generic [ref=e47]: Local Utility Data
+            - generic [ref=e48]:
+              - generic [ref=e49]: Private
+              - generic [ref=e50]: Encrypted
+          - generic [ref=e52]:
+            - generic [ref=e53]:
+              - img [ref=e55]
+              - generic [ref=e57]: NREL PVWatts® v8
+              - generic [ref=e58]: Industry-standard solar modeling with current utility rates
+            - generic [ref=e59]:
+              - img [ref=e61]
+              - generic [ref=e63]: End-to-End Encryption
+              - generic [ref=e64]: Secure data protection
+    - contentinfo [ref=e65]:
+      - generic [ref=e66]:
+        - generic [ref=e67]:
+          - heading "testco" [level=3] [ref=e69]
+          - generic [ref=e70]:
+            - heading "Legal & Support" [level=4] [ref=e71]
+            - generic [ref=e72]:
+              - link "Privacy Policy" [ref=e73] [cursor=pointer]:
+                - /url: /privacy?company=testco&demo=0
+              - link "Terms of Service" [ref=e74] [cursor=pointer]:
+                - /url: /terms?company=testco&demo=0
+              - link "Security" [ref=e75] [cursor=pointer]:
+                - /url: /security?company=testco&demo=0
+              - link "DPA" [ref=e76] [cursor=pointer]:
+                - /url: /dpa?company=testco&demo=0
+              - link "Do Not Sell My Data" [ref=e77] [cursor=pointer]:
+                - /url: /do-not-sell?company=testco&demo=0
+          - generic [ref=e78]:
+            - heading "Contact" [level=4] [ref=e79]
+            - generic [ref=e80]:
+              - paragraph [ref=e81]:
+                - img [ref=e82]
+                - link "support@getsunspire.com" [ref=e84] [cursor=pointer]:
+                  - /url: mailto:support@getsunspire.com
+              - paragraph [ref=e85]:
+                - img [ref=e86]
+                - text: +1 (555) 123-4567
+        - generic [ref=e89]:
+          - generic [ref=e90]:
+            - img [ref=e91]
+            - generic [ref=e93]: Estimates generated using NREL PVWatts® v8
+          - paragraph [ref=e95]:
+            - text: Powered by
+            - generic [ref=e96]: Sunspire
+          - generic [ref=e97]:
+            - img [ref=e98]
+            - generic [ref=e100]: Mapping & location data © Google
+  - alert [ref=e101]
+  - generic [ref=e103]:
+    - paragraph [ref=e104]: We use cookies to improve your experience.
+    - generic [ref=e105]:
+      - button "Manage" [ref=e106] [cursor=pointer]
+      - button "Accept" [ref=e107] [cursor=pointer]
+```

@@ -1,0 +1,132 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "Apple logo Apple Solar Intelligence" [ref=e5] [cursor=pointer]:
+        - /url: /?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com
+        - img "Apple logo" [ref=e6] [cursor=pointer]
+        - generic [ref=e7] [cursor=pointer]:
+          - heading "Apple" [level=1] [ref=e8] [cursor=pointer]
+          - paragraph [ref=e9] [cursor=pointer]: Solar Intelligence
+      - navigation
+  - generic [ref=e11]:
+    - main [ref=e12]:
+      - link "Back to Home" [ref=e14] [cursor=pointer]:
+        - /url: /paid?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com
+        - img [ref=e15] [cursor=pointer]
+        - text: Back to Home
+      - generic [ref=e17]:
+        - heading "Privacy Policy" [level=1] [ref=e18]
+        - generic [ref=e19]:
+          - generic [ref=e20]:
+            - heading "Information We Collect" [level=2] [ref=e21]
+            - paragraph [ref=e22]: Sunspire (“we,” “our,” or “us”) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our solar intelligence platform.
+            - paragraph [ref=e23]: "We collect information you provide directly to us, such as when you create an account, submit a solar analysis request, or contact our support team. This may include:"
+            - list [ref=e24]:
+              - listitem [ref=e25]: Name and contact information
+              - listitem [ref=e26]: Property address and details
+              - listitem [ref=e27]: Company information
+              - listitem [ref=e28]: Payment information
+          - generic [ref=e29]:
+            - heading "How We Use Your Information" [level=2] [ref=e30]
+            - paragraph [ref=e31]: "We use the information we collect to:"
+            - list [ref=e32]:
+              - listitem [ref=e33]: Provide and maintain our services
+              - listitem [ref=e34]: Process transactions and send related information
+              - listitem [ref=e35]: Send technical notices and support messages
+              - listitem [ref=e36]: Respond to your comments and questions
+              - listitem [ref=e37]: Improve our services and develop new features
+          - generic [ref=e38]:
+            - heading "Information Sharing" [level=2] [ref=e39]
+            - paragraph [ref=e40]: We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except as described in this policy or as required by law.
+          - generic [ref=e41]:
+            - heading "Data Security" [level=2] [ref=e42]
+            - paragraph [ref=e43]: We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.
+          - generic [ref=e44]:
+            - heading "Your Rights" [level=2] [ref=e45]
+            - paragraph [ref=e46]: You have the right to access, correct, or delete your personal information. You may also opt out of certain communications from us.
+          - generic [ref=e47]:
+            - 'heading "Marketing emails: legal bases & your rights" [level=2] [ref=e48]'
+            - paragraph [ref=e49]:
+              - strong [ref=e50]: "US (CAN-SPAM):"
+              - text: We identify Sunspire Software, include our postal address, and provide an unsubscribe that works.
+            - paragraph [ref=e51]:
+              - strong [ref=e52]: "Canada (CASL):"
+              - text: Our emails include our identity, mailing address, and a functional unsubscribe. We honor unsubscribes within 10 business days (typically immediately).
+            - paragraph [ref=e53]:
+              - strong [ref=e54]: "EU/UK (GDPR & ePrivacy):"
+              - text: For B2B outreach we rely on
+              - emphasis [ref=e55]: Legitimate interests
+              - text: to contact relevant business recipients. You can object to marketing at any time via the unsubscribe link or by emailing
+              - link "support@getsunspire.com" [ref=e56] [cursor=pointer]:
+                - /url: mailto:support@getsunspire.com
+              - text: .
+            - paragraph [ref=e57]:
+              - strong [ref=e58]: "Your EU/UK rights:"
+              - text: access, rectification, erasure, restriction, portability, and
+              - emphasis [ref=e59]: objection to direct marketing
+              - text: . To exercise these rights, email
+              - link "support@getsunspire.com" [ref=e60] [cursor=pointer]:
+                - /url: mailto:support@getsunspire.com
+              - text: . You may also contact your local data protection authority.
+            - paragraph [ref=e61]: We maintain a suppression list to ensure we do not email you again after you unsubscribe.
+          - generic [ref=e62]:
+            - heading "Contact Us" [level=2] [ref=e63]
+            - paragraph [ref=e64]: "If you have questions about this Privacy Policy, please contact us at:"
+            - paragraph [ref=e66]:
+              - strong [ref=e67]: "Support:"
+              - link "support@getsunspire.com" [ref=e68] [cursor=pointer]:
+                - /url: mailto:support@getsunspire.com
+              - strong [ref=e69]: "Billing:"
+              - link "billing@getsunspire.com" [ref=e70] [cursor=pointer]:
+                - /url: mailto:billing@getsunspire.com
+              - strong [ref=e71]: "Address:"
+              - text: "1700 Northside Drive Suite A7 #5164 Atlanta, GA 30318"
+    - contentinfo [ref=e72]:
+      - generic [ref=e73]:
+        - generic [ref=e74]:
+          - generic [ref=e75]:
+            - heading "Apple" [level=3] [ref=e76]
+            - img "Apple logo" [ref=e77]
+          - generic [ref=e78]:
+            - heading "Legal & Support" [level=4] [ref=e79]
+            - generic [ref=e80]:
+              - link "Privacy Policy" [ref=e81] [cursor=pointer]:
+                - /url: /privacy?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com
+              - link "Terms of Service" [ref=e82] [cursor=pointer]:
+                - /url: /terms?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com
+              - link "Security" [ref=e83] [cursor=pointer]:
+                - /url: /security?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com
+              - link "DPA" [ref=e84] [cursor=pointer]:
+                - /url: /dpa?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com
+              - link "Do Not Sell My Data" [ref=e85] [cursor=pointer]:
+                - /url: /do-not-sell?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com
+          - generic [ref=e86]:
+            - heading "Contact" [level=4] [ref=e87]
+            - generic [ref=e88]:
+              - paragraph [ref=e89]:
+                - img [ref=e90]
+                - link "support@getsunspire.com" [ref=e92] [cursor=pointer]:
+                  - /url: mailto:support@getsunspire.com
+              - paragraph [ref=e93]:
+                - img [ref=e94]
+                - text: +1 (555) 123-4567
+        - generic [ref=e97]:
+          - generic [ref=e98]:
+            - img [ref=e99]
+            - generic [ref=e101]: Estimates generated using NREL PVWatts® v8
+          - paragraph [ref=e103]:
+            - text: Powered by
+            - generic [ref=e104]: Sunspire
+          - generic [ref=e105]:
+            - img [ref=e106]
+            - generic [ref=e108]: Mapping & location data © Google
+  - alert [ref=e109]
+  - generic [ref=e111]:
+    - paragraph [ref=e112]: We use cookies to improve your experience.
+    - generic [ref=e113]:
+      - button "Manage" [ref=e114] [cursor=pointer]
+      - button "Accept" [ref=e115] [cursor=pointer]
+```

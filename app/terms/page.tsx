@@ -118,7 +118,6 @@ export default function TermsPage() {
                   <strong>Support:</strong> <a href="mailto:support@getsunspire.com" className="hover:underline">support@getsunspire.com</a><br />
                   <strong>Billing:</strong> <a href="mailto:billing@getsunspire.com" className="hover:underline">billing@getsunspire.com</a><br />
                   <strong>Address:</strong> 1700 Northside Drive Suite A7 #5164 Atlanta, GA 30318<br />
-                  <strong>Phone:</strong> (555) 123-4567
                 </p>
               </div>
             </section>

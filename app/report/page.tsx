@@ -885,7 +885,6 @@ function ReportContent() {
                   
                   <div className="mt-6 pt-4 border-t border-gray-200">
                     <p className="text-xs text-gray-500 text-center">
-                      Estimates are informational only. Actual results vary by site conditions and installation quality. Not a binding quote.
                     </p>
                     <p className="text-xs text-gray-500 text-center mt-2">
                       Last updated {new Date().toLocaleDateString()}
@@ -938,8 +937,7 @@ function ReportContent() {
           >
             <div className="bg-gray-50 rounded-lg p-6 border border-gray-200">
               <p className="text-sm text-gray-600 leading-relaxed">
-                Estimates are informational only, based on modeled data (NREL PVWatts® v8 and current utility rates).<br/>
-                Actual results vary by site conditions and installation quality. Not a binding quote.
+                Estimates generated using NREL PVWatts® v8 and current utility rates.
               </p>
             </div>
           </motion.div>

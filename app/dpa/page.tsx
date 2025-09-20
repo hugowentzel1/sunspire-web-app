@@ -151,7 +151,6 @@ export default function DPAPage() {
                 <p className="text-gray-700">
                   <strong>Data Protection Officer:</strong> <a href="mailto:support@getsunspire.com" className="hover:underline">support@getsunspire.com</a><br />
                   <strong>Address:</strong> 1700 Northside Drive Suite A7 #5164 Atlanta, GA 30318<br />
-                  <strong>Phone:</strong> (555) 123-4567
                 </p>
               </div>
             </section>

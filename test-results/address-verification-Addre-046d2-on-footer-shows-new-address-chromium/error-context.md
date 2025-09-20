@@ -1,0 +1,101 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "qa-acme logo qa-acme Solar Intelligence" [ref=e5] [cursor=pointer]:
+        - /url: /?company=qa-acme
+        - img "qa-acme logo" [ref=e6] [cursor=pointer]
+        - generic [ref=e7] [cursor=pointer]:
+          - heading "qa-acme" [level=1] [ref=e8] [cursor=pointer]
+          - paragraph [ref=e9] [cursor=pointer]: Solar Intelligence
+      - navigation
+  - generic [ref=e11]:
+    - main [ref=e12]:
+      - generic [ref=e13]:
+        - generic [ref=e15]: Q
+        - generic [ref=e16]:
+          - generic [ref=e18]: ✓
+          - generic [ref=e19]:
+            - heading "Instant Solar Analysis for Your Home" [level=1] [ref=e20]
+            - paragraph [ref=e21]: Enter your address to see solar production, savings, and payback—instantly.
+        - generic [ref=e23]:
+          - generic [ref=e24]:
+            - heading "Enter Your Property Address" [level=2] [ref=e25]
+            - paragraph [ref=e26]: Get a comprehensive solar analysis tailored to your specific location
+          - generic [ref=e27]:
+            - generic [ref=e28]:
+              - generic [ref=e29]: Enter Your Property Address
+              - generic [ref=e30]:
+                - textbox "Enter Your Property Address" [ref=e31]
+                - paragraph [ref=e32]: Powered by Google
+              - paragraph [ref=e33]: Used for local rates & irradiance. Private.
+            - button "Generate Solar Intelligence Report" [disabled] [ref=e34]:
+              - generic [ref=e35]:
+                - generic [ref=e36]: Generate Solar Intelligence Report
+                - img [ref=e37]
+        - generic [ref=e39]:
+          - generic [ref=e40]:
+            - generic [ref=e41]:
+              - generic [ref=e42]: NREL v8
+              - generic [ref=e43]: Accurate Modeling
+            - generic [ref=e44]:
+              - generic [ref=e45]: Current Rates
+              - generic [ref=e46]: Local Utility Data
+            - generic [ref=e47]:
+              - generic [ref=e48]: Private
+              - generic [ref=e49]: Encrypted
+          - generic [ref=e51]:
+            - generic [ref=e52]:
+              - img [ref=e54]
+              - generic [ref=e56]: NREL PVWatts® v8
+              - generic [ref=e57]: Industry-standard solar modeling with current utility rates
+            - generic [ref=e58]:
+              - img [ref=e60]
+              - generic [ref=e62]: End-to-End Encryption
+              - generic [ref=e63]: Secure data protection
+    - contentinfo [ref=e64]:
+      - generic [ref=e65]:
+        - generic [ref=e66]:
+          - heading "qa-acme" [level=3] [ref=e68]
+          - generic [ref=e69]:
+            - heading "Legal & Support" [level=4] [ref=e70]
+            - generic [ref=e71]:
+              - link "Privacy Policy" [ref=e72] [cursor=pointer]:
+                - /url: /privacy?company=qa-acme
+              - link "Terms of Service" [ref=e73] [cursor=pointer]:
+                - /url: /terms?company=qa-acme
+              - link "Security" [ref=e74] [cursor=pointer]:
+                - /url: /security?company=qa-acme
+              - link "DPA" [ref=e75] [cursor=pointer]:
+                - /url: /dpa?company=qa-acme
+              - link "Do Not Sell My Data" [ref=e76] [cursor=pointer]:
+                - /url: /do-not-sell?company=qa-acme
+          - generic [ref=e77]:
+            - heading "Contact" [level=4] [ref=e78]
+            - generic [ref=e79]:
+              - paragraph [ref=e80]:
+                - img [ref=e81]
+                - link "support@getsunspire.com" [ref=e83] [cursor=pointer]:
+                  - /url: mailto:support@getsunspire.com
+              - paragraph [ref=e84]:
+                - img [ref=e85]
+                - text: +1 (555) 123-4567
+        - generic [ref=e88]:
+          - generic [ref=e89]:
+            - img [ref=e90]
+            - generic [ref=e92]: Estimates generated using NREL PVWatts® v8
+          - paragraph [ref=e94]:
+            - text: Powered by
+            - generic [ref=e95]: Sunspire
+          - generic [ref=e96]:
+            - img [ref=e97]
+            - generic [ref=e99]: Mapping & location data © Google
+  - alert [ref=e100]
+  - generic [ref=e102]:
+    - paragraph [ref=e103]: We use cookies to improve your experience.
+    - generic [ref=e104]:
+      - button "Manage" [ref=e105] [cursor=pointer]
+      - button "Accept" [ref=e106] [cursor=pointer]
+```
