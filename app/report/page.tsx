@@ -29,6 +29,7 @@ import { getBrandTheme } from '@/lib/brandTheme';
 // import InstallSheet from '@/src/demo/InstallSheet';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import HeroBrand from '@/src/brand/HeroBrand';
+import { useBrandColors } from '@/hooks/useBrandColors';
 // StickyCTA import removed - no popups wanted
 // import { DemoBanner } from '@/src/demo/DemoChrome';
 import LockOverlay from '@/src/demo/LockOverlay';
@@ -58,6 +59,9 @@ function ReportContent() {
   
   // Brand takeover mode detection
   const b = useBrandTakeover();
+  
+  // Apply brand colors from URL parameters
+  useBrandColors();
   
   // Demo quota management
   const { read, consume } = usePreviewQuota(2);
@@ -548,14 +552,10 @@ function ReportContent() {
   }
 
   return (
-    <>
-      {/* Set CSS variable for consistent brand colors */}
-      <style dangerouslySetInnerHTML={{__html: `:root{--brand-primary:${b.primary} !important;}`}} />
-      <div 
-        className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-gray-100 font-inter" 
-        data-demo={demoMode}
-        style={{'--brand-primary': b.primary} as React.CSSProperties}
-      >
+    <div 
+      className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-gray-100 font-inter" 
+      data-demo={demoMode}
+    >
       {/* Custom banner for report page */}
       <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -975,7 +975,6 @@ function ReportContent() {
       
       {/* StickyCTA removed - no popups wanted */}
     </div>
-    </>
   );
 }
 

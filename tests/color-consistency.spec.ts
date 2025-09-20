@@ -7,6 +7,12 @@ test.describe('Color Consistency Tests', () => {
   test('Paid version uses consistent red brand color throughout', async ({ page }) => {
     await page.goto(PAID_URL, { waitUntil: 'networkidle' });
     
+    // Wait for the CSS variable to be set
+    await page.waitForFunction(() => {
+      const brandColor = getComputedStyle(document.documentElement).getPropertyValue('--brand-primary').trim();
+      return brandColor === '#FF0000';
+    }, { timeout: 10000 });
+    
     // Check that the CSS variable is set correctly
     const brandColor = await page.evaluate(() => {
       return getComputedStyle(document.documentElement).getPropertyValue('--brand-primary').trim();
@@ -59,6 +65,12 @@ test.describe('Color Consistency Tests', () => {
   test('Report page maintains brand consistency', async ({ page }) => {
     // Navigate to report page with brand parameters
     await page.goto('https://sunspire-web-app.vercel.app/report?address=1+Apple+Park+Way&lat=40.7128&lng=-74.0060&placeId=demo&company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com', { waitUntil: 'networkidle' });
+    
+    // Wait for the CSS variable to be set
+    await page.waitForFunction(() => {
+      const brandColor = getComputedStyle(document.documentElement).getPropertyValue('--brand-primary').trim();
+      return brandColor === '#FF0000';
+    }, { timeout: 10000 });
     
     // Check that CSS variable is set
     const brandColor = await page.evaluate(() => {

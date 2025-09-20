@@ -44,6 +44,9 @@ function HomeContent() {
   // Brand takeover mode detection
   const b = useBrandTakeover();
 
+  // Apply brand colors from URL parameters
+  useBrandColors();
+
   // Demo mode detection - use brand state instead of separate hook
   const isDemo = b.isDemo;
 
@@ -248,14 +251,10 @@ function HomeContent() {
   };
 
   return (
-    <>
-      {/* Set CSS variable for consistent brand colors */}
-      <style dangerouslySetInnerHTML={{__html: `:root{--brand-primary:${b.primary} !important;}`}} />
-      <div
-        className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-gray-100 font-inter"
-        data-demo={isDemo}
-        style={{'--brand-primary': b.primary} as React.CSSProperties}
-      >
+    <div
+      className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-gray-100 font-inter"
+      data-demo={isDemo}
+    >
       <main
         className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
         data-paid-hero={!isDemo}
@@ -856,7 +855,6 @@ function HomeContent() {
         </div>
       </footer>
     </div>
-    </>
   );
 }
 

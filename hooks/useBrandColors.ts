@@ -9,12 +9,14 @@ export function useBrandColors() {
     // Only apply brand colors if there are URL parameters
     // Don't override brand takeover colors
     const primary = sp?.get("primary"); // pass ?primary=%23FF6A00 if you want
+    const brandColor = sp?.get("brandColor"); // pass ?brandColor=%23FF6A00 if you want
+    const colorParam = primary || brandColor;
     const a =
-      primary && /^%23?[0-9a-fA-F]{6}$/.test(primary)
-        ? decodeURIComponent(primary)
+      colorParam && /^%23?[0-9a-fA-F]{6}$/.test(colorParam)
+        ? decodeURIComponent(colorParam)
         : null;
 
-    // Only set colors if there's a primary parameter in the URL
+    // Only set colors if there's a primary or brandColor parameter in the URL
     if (a) {
       const fallbackB = "#FF3D81";
       const b = a ? a : fallbackB;
