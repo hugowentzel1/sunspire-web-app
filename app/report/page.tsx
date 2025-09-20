@@ -63,6 +63,14 @@ function ReportContent() {
   // Apply brand colors from URL parameters
   useBrandColors();
   
+  // Set CSS variable directly for consistency
+  useEffect(() => {
+    if (b.primary) {
+      document.documentElement.style.setProperty('--brand-primary', b.primary);
+      document.documentElement.style.setProperty('--brand', b.primary);
+    }
+  }, [b.primary]);
+  
   // Demo quota management
   const { read, consume } = usePreviewQuota(2);
   const [remaining, setRemaining] = useState(2);

@@ -53,6 +53,14 @@ function HomeContent() {
   // Get brand color directly from URL for server-side rendering
   const urlBrandColor = searchParams.get('brandColor') || searchParams.get('primary');
   const brandColor = urlBrandColor ? `#${urlBrandColor.replace('#', '')}` : (b.primary || '#d97706');
+  
+  // Set CSS variable directly for consistency
+  useEffect(() => {
+    if (brandColor) {
+      document.documentElement.style.setProperty('--brand-primary', brandColor);
+      document.documentElement.style.setProperty('--brand', brandColor);
+    }
+  }, [brandColor]);
 
   // Debug logging for brand state
   useEffect(() => {
