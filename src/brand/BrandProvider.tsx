@@ -42,8 +42,9 @@ export default function BrandProvider({
       forcedColor = "#CC0000";
       console.log("BrandProvider: Forcing Tesla red:", forcedColor);
     } else if (b.brand.toLowerCase() === "apple") {
-      forcedColor = "#0071E3";
-      console.log("BrandProvider: Forcing Apple blue:", forcedColor);
+      // Don't force Apple blue - respect URL parameters
+      forcedColor = b.primary;
+      console.log("BrandProvider: Using Apple primary color:", forcedColor);
     } else if (b.brand.toLowerCase() === "netflix") {
       forcedColor = "#E50914";
       console.log("BrandProvider: Forcing Netflix red:", forcedColor);

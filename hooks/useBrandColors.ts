@@ -6,15 +6,22 @@ export function useBrandColors() {
   const sp = useSearchParams();
 
   useEffect(() => {
+    console.log("useBrandColors: Running with searchParams:", sp?.toString());
+    
     // Only apply brand colors if there are URL parameters
     // Don't override brand takeover colors
     const primary = sp?.get("primary"); // pass ?primary=%23FF6A00 if you want
     const brandColor = sp?.get("brandColor"); // pass ?brandColor=%23FF6A00 if you want
     const colorParam = primary || brandColor;
+    
+    console.log("useBrandColors: primary:", primary, "brandColor:", brandColor, "colorParam:", colorParam);
+    
     const a =
       colorParam && /^%23?[0-9a-fA-F]{6}$/.test(colorParam)
         ? decodeURIComponent(colorParam)
         : null;
+
+    console.log("useBrandColors: decoded color:", a);
 
     // Only set colors if there's a primary or brandColor parameter in the URL
     if (a) {
