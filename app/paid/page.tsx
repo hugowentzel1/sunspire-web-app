@@ -299,7 +299,7 @@ function HomeContent() {
                 data-hero-subhead
               >
                 {isDemo
-                  ? `Go live in 24 hours. Convert more leads, book more consultations, and sync every inquiry seamlessly to your CRM — all fully branded for your company.`
+                  ? `Have your own branded solar quote tool live in just 24 hours — no coding, no hassle. Instantly capture more leads, flood your calendar with qualified consultations, and close more installs — all fully branded as your company.`
                   : "Enter your address to see solar production, savings, and payback—instantly."}
               </p>
             </div>
