@@ -228,7 +228,7 @@ function HomeContent() {
       }
     } else {
       // Route to signup page for non-branded experience
-      router.push("/signup");
+      router.push(createUrlWithParams("/signup"));
     }
   };
 
@@ -248,12 +248,14 @@ function HomeContent() {
   };
 
   return (
-    <div
-      className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-gray-100 font-inter"
-      data-demo={isDemo}
-    >
+    <>
       {/* Set CSS variable for consistent brand colors */}
-      <style>{`:root{--brand-primary:${b.primary};}`}</style>
+      <style dangerouslySetInnerHTML={{__html: `:root{--brand-primary:${b.primary} !important;}`}} />
+      <div
+        className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-gray-100 font-inter"
+        data-demo={isDemo}
+        style={{'--brand-primary': b.primary} as React.CSSProperties}
+      >
       <main
         className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
         data-paid-hero={!isDemo}
@@ -429,7 +431,7 @@ function HomeContent() {
                         </p>
                       </>
                     ) : (
-                      <div className="text-red-600 font-semibold">
+                      <div className="font-semibold" style={{ color: b.primary }}>
                         <p>🚫 Demo limit reached</p>
                         <p>Contact us to get full access</p>
                       </div>
@@ -622,7 +624,7 @@ function HomeContent() {
                   <p className="text-gray-600">
                     Industry-standard data sources.{" "}
                     <a
-                      href="/methodology"
+                      href={createUrlWithParams("/methodology")}
                       className="text-[var(--brand-primary)] hover:underline"
                     >
                       View methodology
@@ -716,9 +718,10 @@ function HomeContent() {
               </div>
             ) : (
               <div className="text-center space-y-6">
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                <div className="w-16 h-16 rounded-full flex items-center justify-center mx-auto" style={{ backgroundColor: `${b.primary}20` }}>
                   <svg
-                    className="w-8 h-8 text-green-600"
+                    className="w-8 h-8"
+                    style={{ color: b.primary }}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -853,6 +856,7 @@ function HomeContent() {
         </div>
       </footer>
     </div>
+    </>
   );
 }
 

@@ -510,7 +510,7 @@ function ReportContent() {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-gray-100 font-inter flex items-center justify-center">
         <div className="text-center space-y-6">
-          <div className="m-4 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700 max-w-md">
+          <div className="m-4 rounded-xl border p-4 text-sm max-w-md" style={{ borderColor: `${b.primary}40`, backgroundColor: `${b.primary}10`, color: b.primary }}>
             <div className="font-semibold mb-2">Error Loading Report</div>
             <div>{error}</div>
             <button onClick={() => {
@@ -548,7 +548,14 @@ function ReportContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-gray-100 font-inter" data-demo={demoMode}>
+    <>
+      {/* Set CSS variable for consistent brand colors */}
+      <style dangerouslySetInnerHTML={{__html: `:root{--brand-primary:${b.primary} !important;}`}} />
+      <div 
+        className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-gray-100 font-inter" 
+        data-demo={demoMode}
+        style={{'--brand-primary': b.primary} as React.CSSProperties}
+      >
       {/* Custom banner for report page */}
       <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -968,6 +975,7 @@ function ReportContent() {
       
       {/* StickyCTA removed - no popups wanted */}
     </div>
+    </>
   );
 }
 

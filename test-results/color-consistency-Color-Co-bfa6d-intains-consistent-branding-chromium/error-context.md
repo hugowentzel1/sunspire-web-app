@@ -5,7 +5,7 @@
   - generic [ref=e2]:
     - generic [ref=e3]:
       - strong [ref=e4]: Exclusive preview built for Apple
-      - generic [ref=e5]: Exclusive preview — expires in 6:23:59:54
+      - generic [ref=e5]: Exclusive preview — expires in 6:23:59:59
       - generic [ref=e6]: "Runs left: 2"
     - generic [ref=e7]:
       - button "Launch on Apple" [ref=e8] [cursor=pointer]
@@ -47,7 +47,7 @@
             - heading "Your Branded Solar Quote Tool — Ready to Launch" [level=1] [ref=e45]:
               - text: Your Branded Solar Quote Tool
               - generic [ref=e46]: — Ready to Launch
-            - paragraph [ref=e47]: Go live in 24 hours. Convert more leads, book more consultations, and sync every inquiry seamlessly to your CRM — all fully branded for your company.
+            - paragraph [ref=e47]: Launch your branded solar quote tool in 24 hours — no coding, no hassle. Capture more leads, book more consultations, and close more installs under your company's name.
         - generic [ref=e49]:
           - generic [ref=e50]:
             - heading "Enter Your Property Address" [level=2] [ref=e51]
@@ -64,7 +64,7 @@
                 - img [ref=e62]
             - generic [ref=e64]:
               - paragraph [ref=e65]: "Preview: 2 runs left."
-              - paragraph [ref=e66]: Expires in 6d 23h 59m 53s
+              - paragraph [ref=e66]: Expires in 7d 0h 0m 0s
         - generic [ref=e67]:
           - generic [ref=e68]:
             - generic [ref=e69]: NREL v8
