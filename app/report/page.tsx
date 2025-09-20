@@ -602,9 +602,6 @@ function ReportContent() {
             </div>
             
             <nav className="hidden md:flex items-center space-x-12">
-              <a href={`/pricing?${searchParams.toString()}`} className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Pricing</a>
-              <a href={`/partners?${searchParams.toString()}`} className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Partners</a>
-              <a href={`/support?${searchParams.toString()}`} className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Support</a>
               <motion.button 
                 onClick={() => {
                   const company = searchParams.get('company');
@@ -633,16 +630,6 @@ function ReportContent() {
         </div>
       </header>
       
-      {/* Disclaimer Footer - White bar like home page - Updated */}
-      {b.enabled && (
-        <div className="border-t border-gray-100 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
-            <p className="text-xs text-gray-500 text-center">
-              Private demo for {capitalizeCompanyName(b.brand)}. Not affiliated.
-            </p>
-          </div>
-        </div>
-      )}
 
       <main data-testid="report-page" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
