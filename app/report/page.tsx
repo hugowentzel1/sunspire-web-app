@@ -942,7 +942,7 @@ function ReportContent() {
                 <motion.button 
                   data-cta="primary"
                   onClick={handleCheckout}
-                  className="px-12 py-6 text-white rounded-2xl font-bold text-xl border-2 border-white/20 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 w-full max-w-md" 
+                  className="px-10 py-4 text-white rounded-2xl font-bold text-lg border-2 border-white/20 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 w-full max-w-lg" 
                   style={{ backgroundColor: 'var(--brand-primary)' }}
                   whileHover={{ scale: 1.05 }} 
                   whileTap={{ scale: 0.95 }}
