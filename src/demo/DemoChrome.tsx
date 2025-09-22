@@ -88,7 +88,6 @@ export function DemoBanner() {
       <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
         <button
           className="btn"
-          style={{ background: "#10B981", color: "white" }}
           onClick={open}
         >
           Launch on {b.domain || "your domain"}
@@ -139,7 +138,6 @@ export function StickyBuyBar() {
     >
       <button
         className="btn"
-        style={{ background: "#10B981", color: "white" }}
         onClick={open}
       >
         {getCTA(variant, "primary", b.domain)}
