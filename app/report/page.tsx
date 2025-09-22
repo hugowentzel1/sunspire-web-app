@@ -22,7 +22,6 @@ import { ResultsAttribution } from '@/components/legal/ResultsAttribution';
 import LogoWall from '@/components/trust/LogoWall';
 import Testimonial from '@/components/trust/Testimonial';
 import MetricsBar from '@/components/trust/MetricsBar';
-import AboutBlock from '@/components/trust/AboutBlock';
 import TrustFooterLine from '@/components/trust/TrustFooterLine';
 import { getTrustData } from '@/lib/trust';
 
@@ -1005,13 +1004,6 @@ function ReportContent() {
         </motion.div>
       </main>
 
-      {/* Trust Signals - About Block */}
-      {trustData && (
-        <AboutBlock 
-          heading={trustData.about.heading}
-          body={trustData.about.body}
-        />
-      )}
 
       <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <LegalFooter 
