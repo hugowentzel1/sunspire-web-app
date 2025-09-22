@@ -19,6 +19,12 @@ import LegalFooter from '@/components/legal/LegalFooter';
 import { IconBadge } from '@/components/ui/IconBadge';
 import UnlockButton from '@/components/UnlockButton';
 import { ResultsAttribution } from '@/components/legal/ResultsAttribution';
+import LogoWall from '@/components/trust/LogoWall';
+import Testimonial from '@/components/trust/Testimonial';
+import MetricsBar from '@/components/trust/MetricsBar';
+import AboutBlock from '@/components/trust/AboutBlock';
+import TrustFooterLine from '@/components/trust/TrustFooterLine';
+import { getTrustData } from '@/lib/trust';
 
 import { ensureBlurSupport } from '@/src/lib/ensureBlur';
 import { isDemoFromSearchParams } from '@/src/lib/isDemo';
@@ -56,6 +62,7 @@ function ReportContent() {
   const [error, setError] = useState<string | null>(null);
   // showLeadModal state removed - no popups wanted
   const [demoMode, setDemoMode] = useState(false);
+  const [trustData, setTrustData] = useState<any>(null);
   
   // Brand takeover mode detection
   const b = useBrandTakeover();
@@ -70,6 +77,11 @@ function ReportContent() {
       document.documentElement.style.setProperty('--brand', b.primary);
     }
   }, [b.primary]);
+
+  // Load trust data
+  useEffect(() => {
+    getTrustData().then(setTrustData);
+  }, []);
   
   // Demo quota management
   const { read, consume } = usePreviewQuota(2);
@@ -601,7 +613,25 @@ function ReportContent() {
               </div>
             </div>
             
-            <nav className="hidden md:flex items-center space-x-12">
+            <nav className="hidden md:flex items-center space-x-8">
+              <a
+                href={`/privacy?${searchParams.toString()}`}
+                className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
+              >
+                Privacy
+              </a>
+              <a
+                href={`/terms?${searchParams.toString()}`}
+                className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
+              >
+                Terms
+              </a>
+              <a
+                href={`/security?${searchParams.toString()}`}
+                className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
+              >
+                Security
+              </a>
               <motion.button 
                 onClick={() => {
                   const company = searchParams.get('company');
@@ -630,6 +660,8 @@ function ReportContent() {
         </div>
       </header>
       
+      {/* Trust Signals - Logo Wall */}
+      {trustData && <LogoWall logos={trustData.logos} className="py-8" />}
 
       <main data-testid="report-page" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
@@ -885,6 +917,21 @@ function ReportContent() {
             </div>
           </motion.div>
 
+          {/* Trust Signals - Testimonial and Metrics */}
+          {trustData && (
+            <>
+              <Testimonial 
+                quote={trustData.testimonial.quote}
+                name={trustData.testimonial.name}
+                title={trustData.testimonial.title}
+                company={trustData.testimonial.company}
+                metric={trustData.testimonial.metric}
+                avatarSrc={trustData.testimonial.avatarSrc}
+              />
+              <MetricsBar items={trustData.metrics} />
+            </>
+          )}
+
           {/* Demo-only CTA section */}
           {demoMode && (
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="rounded-3xl py-8 px-8 text-center text-white mt-4" style={{ backgroundColor: 'var(--brand)' }}>
@@ -956,12 +1003,27 @@ function ReportContent() {
         </motion.div>
       </main>
 
+      {/* Trust Signals - About Block */}
+      {trustData && (
+        <AboutBlock 
+          heading={trustData.about.heading}
+          body={trustData.about.body}
+        />
+      )}
+
       <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <LegalFooter 
           hideMarketingLinks={!demoMode} 
           showPoweredBy={true} 
           brand={b.enabled ? b.brand : undefined}
         />
+        {trustData && (
+          <TrustFooterLine 
+            email={trustData.footer.email}
+            address={trustData.footer.address}
+            guarantee={trustData.footer.guarantee}
+          />
+        )}
       </footer>
 
       {/* LeadModal removed - no popups wanted */}

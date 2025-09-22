@@ -8,6 +8,12 @@ import LegalFooter from '@/components/legal/LegalFooter';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import HeroBrand from '@/src/brand/HeroBrand';
 import { useBrandColors } from '@/hooks/useBrandColors';
+import LogoWall from '@/components/trust/LogoWall';
+import Testimonial from '@/components/trust/Testimonial';
+import MetricsBar from '@/components/trust/MetricsBar';
+import AboutBlock from '@/components/trust/AboutBlock';
+import TrustFooterLine from '@/components/trust/TrustFooterLine';
+import { getTrustData } from '@/lib/trust';
 import { usePreviewQuota } from '@/src/demo/usePreviewQuota';
 import { useCountdown } from '@/src/demo/useCountdown';
 import { useIsDemo } from '@/src/lib/isDemo';
@@ -29,6 +35,7 @@ function HomeContent() {
   const [isClient, setIsClient] = useState(false);
   const [showSampleReportModal, setShowSampleReportModal] = useState(false);
   const [sampleReportSubmitted, setSampleReportSubmitted] = useState(false);
+  const [trustData, setTrustData] = useState<any>(null);
   const router = useRouter();
   const searchParams = useSearchParams(); // Use useSearchParams for client-side access
 
@@ -67,6 +74,11 @@ function HomeContent() {
   // Ensure client-side rendering
   useEffect(() => {
     setIsClient(true);
+  }, []);
+
+  // Load trust data
+  useEffect(() => {
+    getTrustData().then(setTrustData);
   }, []);
 
   // Attach checkout handlers to CTAs
@@ -424,6 +436,9 @@ function HomeContent() {
             </div>
           </div>
 
+          {/* Trust Signals - Logo Wall */}
+          {trustData && <LogoWall logos={trustData.logos} />}
+
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto section-spacing">
             <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
               <div className="text-4xl font-black text-gray-900 mb-2">NREL v8</div>
@@ -467,12 +482,20 @@ function HomeContent() {
             </div>
           </div>
 
-          {/* Logos Strip */}
-          <div className="text-center section-spacing">
-            <div className="inline-flex items-center px-6 py-3 bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200/50">
-              <span className="text-gray-600 font-medium">Dozens of installers • CRM-ready • SOC 2-aligned</span>
-            </div>
-          </div>
+          {/* Trust Signals - Testimonial and Metrics */}
+          {trustData && (
+            <>
+              <Testimonial 
+                quote={trustData.testimonial.quote}
+                name={trustData.testimonial.name}
+                title={trustData.testimonial.title}
+                company={trustData.testimonial.company}
+                metric={trustData.testimonial.metric}
+                avatarSrc={trustData.testimonial.avatarSrc}
+              />
+              <MetricsBar items={trustData.metrics} />
+            </>
+          )}
 
           {/* How It Works Section - Demo only */}
           {isDemo && (
@@ -531,6 +554,14 @@ function HomeContent() {
                 </div>
               </div>
             </div>
+          )}
+
+          {/* Trust Signals - About Block */}
+          {trustData && (
+            <AboutBlock 
+              heading={trustData.about.heading}
+              body={trustData.about.body}
+            />
           )}
         </div>
       </main>
@@ -603,6 +634,13 @@ function HomeContent() {
           showPoweredBy={true} 
           brand={b.enabled ? b.brand : undefined} 
         />
+        {trustData && (
+          <TrustFooterLine 
+            email={trustData.footer.email}
+            address={trustData.footer.address}
+            guarantee={trustData.footer.guarantee}
+          />
+        )}
       </footer>
       
 
