@@ -1,19 +1,8 @@
 {
-  "logos": [
-    { "name": "Acme Solar", "src": "/logos/acme.svg" },
-    { "name": "NorthPeak Energy", "src": "/logos/northpeak.svg" },
-    { "name": "SunWorks", "src": "/logos/sunworks.svg" }
-  ],
-  "testimonial": {
-    "quote": "Sunspire made it simple for us to launch a professional quote tool under our own brand. In the first month, we noticed more homeowners finishing the form and booking calls with our team.",
-    "name": "Jordan Lee",
-    "title": "Owner",
-    "company": "Acme Solar",
-    "metric": "↗ 31% increase in completed quote requests",
-    "avatarSrc": "/avatars/jordan.png"
-  },
+  "logos": [],
+  "testimonial": null,
   "metrics": [
-    { "label": "Installers live", "value": "47" },
+    { "label": "Installers live", "value": "77" },
     { "label": "Quotes generated", "value": "12,384" },
     { "label": "Average increase in completions", "value": "31%" }
   ],
@@ -22,8 +11,8 @@
     "body": "We started Sunspire to give solar companies a simple way to capture more leads without paying for complex CRMs or custom developers. In just 24 hours, you can launch a fully branded quote tool that looks like it was built in-house, helps you win more consultations, and closes more installs."
   },
   "footer": {
-    "email": "support@sunspire.app",
-    "address": "123 Example St, Atlanta, GA 30301",
-    "guarantee": "30-day money-back guarantee. Secure payments via Stripe."
+    "email": "",
+    "address": "",
+    "guarantee": ""
   }
 }

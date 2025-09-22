@@ -485,14 +485,16 @@ function HomeContent() {
           {/* Trust Signals - Testimonial and Metrics */}
           {trustData && (
             <>
-              <Testimonial 
-                quote={trustData.testimonial.quote}
-                name={trustData.testimonial.name}
-                title={trustData.testimonial.title}
-                company={trustData.testimonial.company}
-                metric={trustData.testimonial.metric}
-                avatarSrc={trustData.testimonial.avatarSrc}
-              />
+              {trustData.testimonial && (
+                <Testimonial 
+                  quote={trustData.testimonial.quote}
+                  name={trustData.testimonial.name}
+                  title={trustData.testimonial.title}
+                  company={trustData.testimonial.company}
+                  metric={trustData.testimonial.metric}
+                  avatarSrc={trustData.testimonial.avatarSrc}
+                />
+              )}
               <MetricsBar items={trustData.metrics} />
             </>
           )}

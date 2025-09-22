@@ -19,6 +19,11 @@ export default function Testimonial({
   avatarSrc,
   className = "" 
 }: TestimonialProps) {
+  // Don't render if no testimonial data
+  if (!quote || !name || !title || !company) {
+    return null;
+  }
+
   return (
     <div className={`py-16 bg-gray-50 ${className}`} data-testid="hero-testimonial">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">

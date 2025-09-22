@@ -12,6 +12,11 @@ interface LogoWallProps {
 }
 
 export default function LogoWall({ logos, className = "" }: LogoWallProps) {
+  // Don't render if no logos
+  if (!logos || logos.length === 0) {
+    return null;
+  }
+
   return (
     <div className={`py-12 bg-white ${className}`} data-testid="logo-wall">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
