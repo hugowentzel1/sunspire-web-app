@@ -938,21 +938,11 @@ function ReportContent() {
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="rounded-3xl py-8 px-8 text-center text-white mt-4" style={{ backgroundColor: 'var(--brand)' }}>
               <h2 className="text-3xl font-bold mb-6">Ready to Launch Your Branded Tool?</h2>
               <p className="text-xl mb-10 opacity-90">Get complete financial projections, detailed assumptions, and unblurred savings charts</p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <div className="flex justify-center items-center">
                 <motion.button 
                   data-cta="primary"
                   onClick={handleCheckout}
-                  className="px-8 py-4 text-white rounded-2xl font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" 
-                  style={{ backgroundColor: 'var(--brand-primary)' }}
-                  whileHover={{ scale: 1.05 }} 
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Unlock Full Report - $99/mo + $399
-                </motion.button>
-                <motion.button 
-                  data-cta="primary"
-                  onClick={handleCheckout}
-                  className="px-8 py-4 text-white rounded-2xl font-bold text-lg border-2 border-white/20 hover:opacity-90 transition-all duration-300 transform hover:-translate-y-1" 
+                  className="px-12 py-6 text-white rounded-2xl font-bold text-xl hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 w-full max-w-md" 
                   style={{ backgroundColor: 'var(--brand-primary)' }}
                   whileHover={{ scale: 1.05 }} 
                   whileTap={{ scale: 0.95 }}
