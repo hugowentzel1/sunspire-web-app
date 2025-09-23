@@ -682,7 +682,7 @@ function ReportContent() {
           >
             <div className="text-center">
               <p className="text-xl text-gray-700 leading-relaxed">
-                Ready to Launch Your Branded Tool?
+                Your branded solar tool is ready to launch.
               </p>
             </div>
           </motion.div>
@@ -776,11 +776,18 @@ function ReportContent() {
 
               {/* UNLOCK BUTTON - Demo Only */}
               {demoMode && (
-                <UnlockButton
-                  label="Unlock Full Report"
-                  onClick={handleCheckout}
-                  className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
-                />
+                <div className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2 w-full px-4">
+                  <button
+                    onClick={handleCheckout}
+                    className="w-full btn-primary text-sm py-3 hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+                    data-testid="unlock-report-cta"
+                  >
+                    Unlock Full Report
+                  </button>
+                  <p className="text-xs text-gray-500 text-center mt-2">
+                    Upgrade to unlock the full branded report for your customers.
+                  </p>
+                </div>
               )}
             </div>
 
@@ -800,11 +807,18 @@ function ReportContent() {
 
               {/* UNLOCK BUTTON - Demo Only */}
               {demoMode && (
-                <UnlockButton
-                  label="Unlock Full Report"
-                  onClick={handleCheckout}
-                  className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
-                />
+                <div className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2 w-full px-4">
+                  <button
+                    onClick={handleCheckout}
+                    className="w-full btn-primary text-sm py-3 hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+                    data-testid="unlock-report-cta"
+                  >
+                    Unlock Full Report
+                  </button>
+                  <p className="text-xs text-gray-500 text-center mt-2">
+                    Upgrade to unlock the full branded report for your customers.
+                  </p>
+                </div>
               )}
             </div>
           </motion.div>
@@ -835,11 +849,18 @@ function ReportContent() {
 
               {/* UNLOCK BUTTON - Demo Only */}
               {demoMode && (
-                <UnlockButton
-                  label="Unlock Full Report"
-                  onClick={handleCheckout}
-                  className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
-                />
+                <div className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2 w-full px-4">
+                  <button
+                    onClick={handleCheckout}
+                    className="w-full btn-primary text-sm py-3 hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+                    data-testid="unlock-report-cta"
+                  >
+                    Unlock Full Report
+                  </button>
+                  <p className="text-xs text-gray-500 text-center mt-2">
+                    Upgrade to unlock the full branded report for your customers.
+                  </p>
+                </div>
               )}
             </div>
 
@@ -861,11 +882,18 @@ function ReportContent() {
 
               {/* UNLOCK BUTTON - Demo Only */}
               {demoMode && (
-                <UnlockButton
-                  label="Unlock Full Report"
-                  onClick={handleCheckout}
-                  className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2"
-                />
+                <div className="absolute z-20 bottom-4 left-1/2 -translate-x-1/2 w-full px-4">
+                  <button
+                    onClick={handleCheckout}
+                    className="w-full btn-primary text-sm py-3 hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+                    data-testid="unlock-report-cta"
+                  >
+                    Unlock Full Report
+                  </button>
+                  <p className="text-xs text-gray-500 text-center mt-2">
+                    Upgrade to unlock the full branded report for your customers.
+                  </p>
+                </div>
               )}
             </div>
 
@@ -934,6 +962,33 @@ function ReportContent() {
             </>
           )}
 
+          {/* Social Proof Testimonial Row - Above Footer */}
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} 
+            animate={{ opacity: 1, y: 0 }} 
+            transition={{ delay: 1.2, duration: 0.8 }} 
+            className="max-w-4xl mx-auto py-8"
+          >
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
+              <div className="text-center space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="text-center">
+                    <p className="text-sm text-gray-600 italic mb-2">
+                      &ldquo;Cut quoting time from 15 minutes to 1.&rdquo;
+                    </p>
+                    <p className="text-xs text-gray-500">— Ops Manager, Texas</p>
+                  </div>
+                  <div className="text-center">
+                    <p className="text-sm text-gray-600 italic mb-2">
+                      &ldquo;Booked 4 more installs in our first month.&rdquo;
+                    </p>
+                    <p className="text-xs text-gray-500">— Owner, Arizona</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
           {/* Demo-only CTA section */}
           {demoMode && (
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="rounded-3xl py-8 px-8 text-center text-white mt-4" style={{ backgroundColor: 'var(--brand)' }}>
@@ -943,12 +998,12 @@ function ReportContent() {
                 <motion.button 
                   data-cta="primary"
                   onClick={handleCheckout}
-                  className="px-14 py-6 text-white rounded-2xl font-bold text-2xl border-2 border-white/20 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" 
+                  className="px-14 py-6 text-white rounded-2xl font-bold text-2xl border-2 border-white/20 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105" 
                   style={{ backgroundColor: 'var(--brand-primary)' }}
                   whileHover={{ scale: 1.05 }} 
                   whileTap={{ scale: 0.95 }}
                 >
-                  Activate on Your Domain - $99/mo + $399
+                  Activate on Your Domain — $99/mo + $399
                 </motion.button>
               </div>
               <div className="mt-8 pt-4 border-t border-white/20">
@@ -1002,13 +1057,6 @@ function ReportContent() {
           showPoweredBy={true} 
           brand={b.enabled ? b.brand : undefined}
         />
-        {trustData && (
-          <TrustFooterLine 
-            email={trustData.footer.email}
-            address={trustData.footer.address}
-            guarantee={trustData.footer.guarantee}
-          />
-        )}
       </footer>
 
       {/* Sticky Sidebar for Demo Mode */}

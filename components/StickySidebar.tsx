@@ -29,13 +29,19 @@ export default function StickySidebar({ brand, onUpgradeClick, onFeaturesClick }
             77 installers · 12,384 quotes · Avg quote 42s · 99.7% uptime
           </div>
           
+          <div className="flex justify-center space-x-4 text-xs text-gray-400 py-2">
+            <span>SOC2</span>
+            <span>GDPR</span>
+            <span>NREL PVWatts®</span>
+          </div>
+          
           <div className="space-y-3">
             <button
               onClick={onUpgradeClick}
-              className="w-full btn-primary text-sm py-3"
+              className="w-full btn-primary text-sm py-3 hover:shadow-lg transition-all duration-300 transform hover:scale-105"
               data-testid="report-cta"
             >
-              Keep my branded Sunspire
+              Launch my branded tool
             </button>
             
             <button
