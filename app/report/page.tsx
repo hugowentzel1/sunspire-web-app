@@ -715,8 +715,8 @@ function ReportContent() {
               )}
             </motion.div>
             <div className="space-y-4">
-              <h1 className="text-4xl md:text-5xl font-black text-gray-900">New Analysis</h1>
-              <p className="text-xl text-gray-600 max-w-2xl mx-auto">Comprehensive analysis for your property at {estimate.address}</p>
+              <h1 className="text-2xl md:text-3xl font-bold text-gray-900">New Analysis</h1>
+              <p className="text-base md:text-lg text-slate-700 max-w-2xl mx-auto">Comprehensive analysis for your property at {estimate.address}</p>
 
               <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
                 <span>Data Source: {estimate.utilityRateSource}</span>
@@ -838,7 +838,7 @@ function ReportContent() {
               
               {/* CONTENT LAYER */}
               <div className="content-layer p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Financial Analysis</h2>
+                <h2 className="text-lg md:text-xl font-semibold text-gray-900 mb-6">Financial Analysis</h2>
                 <div className="space-y-6">
                   <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Payback Period</span><span className="font-bold text-gray-900">{demoMode ? '— — —' : `${estimate.paybackYear} years`}</span></div>
                   <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">25-Year NPV</span><span className="font-bold text-gray-900">{demoMode ? '— — —' : `$${estimate.npv25Year.toLocaleString()}`}</span></div>
@@ -871,7 +871,7 @@ function ReportContent() {
               
               {/* CONTENT LAYER */}
               <div className="content-layer p-8">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Environmental Impact</h2>
+                <h2 className="text-lg md:text-xl font-semibold text-gray-900 mb-6">Environmental Impact</h2>
                 <div className="space-y-6">
                   <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">CO₂ Offset/Year</span><span className="font-bold text-gray-900">{estimate.co2OffsetPerYear.toLocaleString()} lbs</span></div>
                   <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Solar Irradiance</span><span className="text-gray-900">{estimate.solarIrradiance} kWh/m²/day</span></div>
@@ -900,7 +900,7 @@ function ReportContent() {
             {/* Consolidated Information Box */}
             <div className="relative rounded-2xl p-8 bg-white border border-gray-200/50">
               <div className="relative z-10">
-                <h2 className="text-2xl font-bold text-gray-900 mb-6">Calculation Details & Data Sources</h2>
+                <h2 className="text-lg md:text-xl font-semibold text-gray-900 mb-6">Calculation Details & Data Sources</h2>
                 
                 {/* Calculation Assumptions */}
                 <div className="mb-8">

@@ -55,10 +55,10 @@ export default function PricingPage() {
             transition={{ duration: 0.6 }}
             className="space-y-4"
           >
-            <h1 className="text-4xl md:text-5xl font-black text-gray-900">
+            <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900">
               White-Label Sunspire
             </h1>
-            <p className="text-xl text-gray-600">
+            <p className="text-base md:text-lg text-slate-700">
               Your branded solar quote tool — ready to launch
             </p>
           </motion.div>
