@@ -709,6 +709,13 @@ function HomeContent() {
           showPoweredBy={true} 
           brand={b.enabled ? b.brand : undefined} 
         />
+        {trustData && (
+          <TrustFooterLine 
+            email={trustData.footer.email}
+            address={trustData.footer.address}
+            guarantee={trustData.footer.guarantee}
+          />
+        )}
       </footer>
       
 
