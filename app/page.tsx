@@ -334,21 +334,10 @@ function HomeContent() {
 
             <div className="space-y-6">
               <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900 leading-tight">
-                {b.enabled ? (
-                  <>
-                    Your solar quote tool — already branded for {b.brand}.
-                  </>
-                ) : (
-                  <>
-                    Your solar quote tool — already branded for {b.brand}.
-                  </>
-                )}
+                Your solar quote tool — already branded for {b.brand}.
               </h1>
-              <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed mt-3 md:mt-4">
-                {b.enabled 
-                  ? `Launch your branded solar quote tool in 24 hours — no coding, no hassle. Capture more leads, book more consultations, and close more installs under your company's name.`                            
-                  : "Launch your branded solar quote tool in 24 hours — no coding, no hassle. Capture more leads, book more consultations, and close more installs under your company's name."                            
-                }
+              <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed mt-4">
+                This is what your customers will see when they request a quote.
               </p>
               <p className="text-sm text-slate-500 mt-2">
                 $99/mo + $399 setup
@@ -440,8 +429,8 @@ function HomeContent() {
             </div>
           </div>
 
-          {/* Social Proof Section */}
-          <div className="max-w-4xl mx-auto py-12 md:py-16">
+          {/* Social Proof - Directly below address card at friction point */}
+          <div className="max-w-4xl mx-auto py-8">
             <div className="text-center space-y-6">
               <div className="space-y-4">
                 <p className="text-sm text-slate-500 italic">
@@ -451,6 +440,9 @@ function HomeContent() {
                   &ldquo;Branded quotes booked 4 extra consults in month one.&rdquo; — Owner, Arizona
                 </p>
               </div>
+              <p className="text-xs text-slate-400">
+                77 installers · 12,384 quotes · Avg quote 42s · 99.7% uptime
+              </p>
               <div className="flex justify-center">
                 <button 
                   onClick={handleLaunchClick}
@@ -462,51 +454,37 @@ function HomeContent() {
             </div>
           </div>
 
+
           {/* Trust Signals - Logo Wall */}
           {trustData && <LogoWall logos={trustData.logos} />}
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto section-spacing">
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
-              <div className="text-4xl font-black text-gray-900 mb-2">NREL v8</div>
-              <div className="text-gray-600 font-semibold">Industry Standard</div>
+          {/* Trust Row - Single row of 4 badges */}
+          <div className="max-w-5xl mx-auto py-8">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
+                <div className="text-2xl font-black text-gray-900 mb-2">NREL v8</div>
+                <div className="text-sm text-gray-600 font-semibold">Industry Standard</div>
+              </div>
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
+                <div className="text-2xl font-black text-gray-900 mb-2">SOC 2</div>
+                <div className="text-sm text-gray-600 font-semibold">Compliance</div>
+              </div>
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
+                <div className="text-2xl font-black text-gray-900 mb-2">CRM Ready</div>
+                <div className="text-sm text-gray-600 font-semibold">HubSpot, Salesforce</div>
+              </div>
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
+                <div className="text-2xl font-black text-gray-900 mb-2">24/7</div>
+                <div className="text-sm text-gray-600 font-semibold">Support</div>
+              </div>
             </div>
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
-              <div className="text-4xl font-black text-gray-900 mb-2">SOC 2</div>
-              <div className="text-gray-600 font-semibold">Compliance</div>
-            </div>
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
-              <div className="text-4xl font-black text-gray-900 mb-2">CRM Ready</div>
-              <div className="text-gray-600 font-semibold">HubSpot, Salesforce</div>
-            </div>
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
-              <div className="text-4xl font-black text-gray-900 mb-2">24/7</div>
-              <div className="text-gray-600 font-semibold">Support</div>
+            <div className="text-center mt-4">
+              <a href="/methodology" className="text-sm text-[var(--brand-primary)] hover:underline">
+                View methodology
+              </a>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto section-spacing">
-            <div className="feature-card p-5 text-center">
-              <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center shadow-lg">
-                <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
-              </div>
-              <div className="title">NREL PVWatts® v8</div>
-              <div className="desc">Industry-standard solar modeling with current utility rates</div>
-            </div>
-            <div className="feature-card p-5 text-center">
-              <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center shadow-lg">
-                <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-              </div>
-              <div className="title">CRM Integration</div>
-              <div className="desc">Direct push to HubSpot, Salesforce, and Airtable</div>
-            </div>
-            <div className="feature-card p-5 text-center">
-              <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center shadow-lg">
-                <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
-              </div>
-              <div className="title">End-to-End Encryption</div>
-              <div className="desc">SOC 2-aligned controls and data protection</div>
-            </div>
-          </div>
 
           {/* White-Label Section */}
           <div id="whitelabel" className="max-w-4xl mx-auto py-12 md:py-16">

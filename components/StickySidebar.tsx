@@ -41,7 +41,7 @@ export default function StickySidebar({ brand, onUpgradeClick, onFeaturesClick }
               className="w-full btn-primary text-sm py-3 hover:shadow-lg transition-all duration-300 transform hover:scale-105"
               data-testid="report-cta"
             >
-              Launch my branded tool
+              Keep my branded Sunspire
             </button>
             
             <button
