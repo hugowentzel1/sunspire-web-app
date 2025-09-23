@@ -114,7 +114,7 @@ export default function PricingPage() {
               </div>
 
               <p className="text-xs text-gray-500 text-center">
-                14-day refund if it doesn't lift booked calls
+                14-day refund if it doesn&apos;t lift booked calls
               </p>
             </div>
           </motion.div>

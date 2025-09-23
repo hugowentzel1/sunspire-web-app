@@ -442,10 +442,10 @@ function HomeContent() {
             <div className="text-center space-y-6">
               <div className="space-y-4">
                 <p className="text-sm text-gray-500 italic">
-                  "Cut quoting time from 15 minutes to 1." — Ops Manager, Texas
+                  &ldquo;Cut quoting time from 15 minutes to 1.&rdquo; — Ops Manager, Texas
                 </p>
                 <p className="text-sm text-gray-500 italic">
-                  "Branded quotes booked 4 extra consults in month one." — Owner, Arizona
+                  &ldquo;Branded quotes booked 4 extra consults in month one.&rdquo; — Owner, Arizona
                 </p>
               </div>
               <p className="text-xs text-gray-400">
