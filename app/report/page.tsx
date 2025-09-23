@@ -23,6 +23,7 @@ import LogoWall from '@/components/trust/LogoWall';
 import Testimonial from '@/components/trust/Testimonial';
 import MetricsBar from '@/components/trust/MetricsBar';
 import TrustFooterLine from '@/components/trust/TrustFooterLine';
+import StickySidebar from '@/components/StickySidebar';
 import { getTrustData } from '@/lib/trust';
 
 import { ensureBlurSupport } from '@/src/lib/ensureBlur';
@@ -1009,6 +1010,17 @@ function ReportContent() {
           />
         )}
       </footer>
+
+      {/* Sticky Sidebar for Demo Mode */}
+      {demoMode && (
+        <StickySidebar
+          brand={b.brand}
+          onUpgradeClick={handleCheckout}
+          onFeaturesClick={() => {
+            window.location.href = '/#whitelabel';
+          }}
+        />
+      )}
 
       {/* LeadModal removed - no popups wanted */}
       

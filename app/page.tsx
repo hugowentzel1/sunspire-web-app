@@ -336,21 +336,22 @@ function HomeContent() {
               <h1 className="text-5xl md:text-7xl font-black text-gray-900 leading-tight">
                 {b.enabled ? (
                   <>
-                    Your Branded Solar Quote Tool
-                    <span className="block text-[var(--brand-primary)]">— Ready to Launch</span>
+                    Your solar quote tool — already branded for {b.brand}.
                   </>
                 ) : (
                   <>
-                    Your Branded Solar Quote Tool
-                    <span className="block text-[var(--brand-primary)]">— Ready to Launch</span>
+                    Your solar quote tool — already branded for {b.brand}.
                   </>
                 )}
               </h1>
               <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                {b.enabled 
-                  ? `Launch your branded solar quote tool in 24 hours — no coding, no hassle. Capture more leads, book more consultations, and close more installs under your company's name.`
-                  : "Launch your branded solar quote tool in 24 hours — no coding, no hassle. Capture more leads, book more consultations, and close more installs under your company's name."
-                }
+                This is what your customers will see when they request a quote.
+              </p>
+              <p className="text-lg text-gray-500 font-medium">
+                $99/mo + $399 setup
+              </p>
+              <p className="text-sm text-gray-500">
+                77 installers · 12,384 quotes run · Avg quote 42s · 99.7% uptime
               </p>
             </div>
           </div>
@@ -408,7 +409,7 @@ function HomeContent() {
                     <div className="flex items-center justify-center space-x-4">
                       <span>
                         {b.enabled 
-                          ? (address.trim() ? `Generate Solar Report` : `Launch Tool`)
+                          ? (address.trim() ? `Generate Solar Report` : `Keep this branded demo`)
                           : "Generate Solar Intelligence Report"
                         }
                       </span>
@@ -432,6 +433,31 @@ function HomeContent() {
                     )}
                   </div>
                 )}
+              </div>
+            </div>
+          </div>
+
+          {/* Social Proof Section */}
+          <div className="max-w-4xl mx-auto section-spacing">
+            <div className="text-center space-y-6">
+              <div className="space-y-4">
+                <p className="text-sm text-gray-500 italic">
+                  "Cut quoting time from 15 minutes to 1." — Ops Manager, Texas
+                </p>
+                <p className="text-sm text-gray-500 italic">
+                  "Branded quotes booked 4 extra consults in month one." — Owner, Arizona
+                </p>
+              </div>
+              <p className="text-xs text-gray-400">
+                77 installers · 12,384 quotes · Avg quote 42s · 99.7% uptime
+              </p>
+              <div className="flex justify-center">
+                <button 
+                  onClick={handleLaunchClick}
+                  className="text-sm text-[var(--brand-primary)] hover:underline font-medium"
+                >
+                  Keep my branded Sunspire →
+                </button>
               </div>
             </div>
           </div>
@@ -482,6 +508,48 @@ function HomeContent() {
             </div>
           </div>
 
+          {/* White-Label Section */}
+          <div id="whitelabel" className="max-w-4xl mx-auto section-spacing">
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50">
+              <div className="text-center space-y-6">
+                <h2 className="text-3xl font-bold text-gray-900">Make it permanent.</h2>
+                <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+                  This demo is already branded for {b.brand}. Upgrade now to keep it live and start generating unlimited quotes on your domain.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto text-left">
+                  <div className="flex items-center space-x-3">
+                    <span className="w-2 h-2 bg-[var(--brand-primary)] rounded-full"></span>
+                    <span className="text-sm text-gray-600">Branded PDFs & emails</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <span className="w-2 h-2 bg-[var(--brand-primary)] rounded-full"></span>
+                    <span className="text-sm text-gray-600">Your domain (CNAME)</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <span className="w-2 h-2 bg-[var(--brand-primary)] rounded-full"></span>
+                    <span className="text-sm text-gray-600">CRM integrations (HubSpot, Salesforce)</span>
+                  </div>
+                  <div className="flex items-center space-x-3">
+                    <span className="w-2 h-2 bg-[var(--brand-primary)] rounded-full"></span>
+                    <span className="text-sm text-gray-600">Setup &lt;24 hours</span>
+                  </div>
+                  <div className="flex items-center space-x-3 md:col-span-2 justify-center">
+                    <span className="w-2 h-2 bg-[var(--brand-primary)] rounded-full"></span>
+                    <span className="text-sm text-gray-600">SLA & support</span>
+                  </div>
+                </div>
+                <div className="pt-4">
+                  <button 
+                    onClick={handleLaunchClick}
+                    className="btn-primary text-lg px-8 py-4"
+                  >
+                    Keep my branded Sunspire
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Trust Signals - Testimonial and Metrics */}
           {trustData && (
             <>
@@ -499,35 +567,34 @@ function HomeContent() {
             </>
           )}
 
-          {/* How It Works Section - Demo only */}
-          {isDemo && (
-            <div className="max-w-5xl mx-auto section-spacing" {...tid('howitworks-section')}>
-              <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">How It Works</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="text-center space-y-4">
-                  <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center text-gray-900 font-bold text-lg shadow-lg">
-                    <span>1</span>
+          {/* How It Works Section - Compressed */}
+          <div className="max-w-4xl mx-auto section-spacing">
+            <div className="text-center space-y-8">
+              <h2 className="text-2xl font-bold text-gray-900">How it works</h2>
+              <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8">
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 bg-[var(--brand-primary)] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                    1
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">Add the widget</h3>
-                  <p className="text-gray-600">One line of code to embed on your website</p>
+                  <span className="text-gray-700">Customer requests quote</span>
                 </div>
-                <div className="text-center space-y-4">
-                  <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center text-gray-900 font-bold text-lg shadow-lg">
-                    <span>2</span>
+                <div className="hidden md:block text-gray-400">→</div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 bg-[var(--brand-primary)] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                    2
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">Visitors get instant quotes</h3>
-                  <p className="text-gray-600">AI-powered analysis in seconds</p>
+                  <span className="text-gray-700">Instant branded report</span>
                 </div>
-                <div className="text-center space-y-4">
-                  <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center text-gray-900 font-bold text-lg shadow-lg">
-                    <span>3</span>
+                <div className="hidden md:block text-gray-400">→</div>
+                <div className="flex items-center space-x-3">
+                  <div className="w-8 h-8 bg-[var(--brand-primary)] rounded-full flex items-center justify-center text-white font-bold text-sm">
+                    3
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900">Your team gets booked calls</h3>
-                  <p className="text-gray-600">Qualified leads ready to convert</p>
+                  <span className="text-gray-700">Consultation booked</span>
                 </div>
               </div>
             </div>
-          )}
+          </div>
 
           {/* FAQ Section - Demo only */}
           {isDemo && (
@@ -631,6 +698,21 @@ function HomeContent() {
       )}
 
       <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div className="text-center space-y-4">
+          <div className="flex justify-center space-x-6 text-xs text-gray-400">
+            <span>SOC2</span>
+            <span>NREL PVWatts®</span>
+            <span>CRM-ready</span>
+          </div>
+          <div className="flex justify-center space-x-6 text-xs text-gray-500">
+            <a href="/privacy" className="hover:text-gray-700">Privacy</a>
+            <a href="/terms" className="hover:text-gray-700">Terms</a>
+            <a href="/status" className="hover:text-gray-700">Status</a>
+          </div>
+          <p className="text-xs text-gray-400">
+            GDPR/CCPA compliant
+          </p>
+        </div>
         <LegalFooter 
           hideMarketingLinks={!isDemo} 
           showPoweredBy={true} 

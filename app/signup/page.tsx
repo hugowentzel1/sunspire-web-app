@@ -19,10 +19,10 @@ export default function SignupPage() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div className="text-center">
               <h1 className="text-4xl font-bold text-gray-900 mb-4">
-                Get Started with Sunspire
+                Start your {searchParams.get('company') || 'Company'}-branded Sunspire
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-                Activate your white-label solar intelligence tool in 24 hours
+                Make your demo permanent — no calls required
               </p>
             </div>
           </div>
@@ -75,19 +75,12 @@ export default function SignupPage() {
               
               <div>
                 <label htmlFor="plan" className="block text-sm font-medium text-gray-700 mb-2">
-                  Plan Selection
+                  Plan
                 </label>
-                <select
-                  id="plan"
-                  name="plan"
-                  required
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[var(--brand-primary)] focus:border-transparent"
-                >
-                  <option value="">Select a plan</option>
-                  <option value="starter">Starter - $99/month</option>
-                  <option value="professional">Professional - $199/month</option>
-                  <option value="enterprise">Enterprise - Custom pricing</option>
-                </select>
+                <div className="w-full px-4 py-3 border border-gray-300 rounded-lg bg-gray-50 text-gray-700">
+                  White-Label Sunspire - $99/mo + $399 setup
+                </div>
+                <input type="hidden" name="plan" value="starter" />
               </div>
               
               <button
@@ -100,7 +93,7 @@ export default function SignupPage() {
             
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-500">
-                No call required. $99/mo + $399 setup. 14-day refund if it doesn&apos;t lift booked calls.
+                $99/mo + $399 setup. 14-day refund if it doesn&apos;t lift booked calls.
               </p>
             </div>
           </div>
