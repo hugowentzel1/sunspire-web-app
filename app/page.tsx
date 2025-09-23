@@ -328,7 +328,7 @@ function HomeContent() {
           <div className="space-y-6">
             <div className="relative">
               <div className="absolute -top-4 -right-4 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
-                <span className="text-white text-lg ml-0.5">✓</span>
+                <span className="text-white text-lg">✓</span>
               </div>
             </div>
 
