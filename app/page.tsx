@@ -698,33 +698,11 @@ function HomeContent() {
       )}
 
       <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div className="text-center space-y-4">
-          <div className="flex justify-center space-x-6 text-xs text-gray-400">
-            <span>SOC2</span>
-            <span>NREL PVWatts®</span>
-            <span>CRM-ready</span>
-          </div>
-          <div className="flex justify-center space-x-6 text-xs text-gray-500">
-            <a href="/privacy" className="hover:text-gray-700">Privacy</a>
-            <a href="/terms" className="hover:text-gray-700">Terms</a>
-            <a href="/status" className="hover:text-gray-700">Status</a>
-          </div>
-          <p className="text-xs text-gray-400">
-            GDPR/CCPA compliant
-          </p>
-        </div>
         <LegalFooter 
           hideMarketingLinks={!isDemo} 
           showPoweredBy={true} 
           brand={b.enabled ? b.brand : undefined} 
         />
-        {trustData && (
-          <TrustFooterLine 
-            email={trustData.footer.email}
-            address={trustData.footer.address}
-            guarantee={trustData.footer.guarantee}
-          />
-        )}
       </footer>
       
 
