@@ -328,7 +328,7 @@ function HomeContent() {
           <div className="space-y-6">
             <div className="relative">
               <div className="absolute -top-4 -right-4 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
-                <span className="text-white text-lg">✓</span>
+                <span className="text-white text-lg ml-0.5">✓</span>
               </div>
             </div>
 
@@ -344,8 +344,11 @@ function HomeContent() {
                   </>
                 )}
               </h1>
-              <p className="text-base md:text-lg text-slate-700 max-w-3xl mx-auto leading-relaxed mt-3 md:mt-4">
-                This is what your customers will see when they request a quote.
+              <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed mt-3 md:mt-4">
+                {b.enabled 
+                  ? `Launch your branded solar quote tool in 24 hours — no coding, no hassle. Capture more leads, book more consultations, and close more installs under your company's name.`                            
+                  : "Launch your branded solar quote tool in 24 hours — no coding, no hassle. Capture more leads, book more consultations, and close more installs under your company's name."                            
+                }
               </p>
               <p className="text-sm text-slate-500 mt-2">
                 $99/mo + $399 setup
@@ -507,35 +510,35 @@ function HomeContent() {
 
           {/* White-Label Section */}
           <div id="whitelabel" className="max-w-4xl mx-auto py-12 md:py-16">
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-5 md:p-6 border border-gray-200/50 shadow-lg">
-              <div className="text-center space-y-6">
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg">
+              <div className="text-center space-y-8">
                 <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Make it permanent.</h2>
                 <p className="text-base md:text-lg text-slate-700 max-w-2xl mx-auto">
                   This demo is already branded for {b.brand}. Upgrade now to keep it live and start generating unlimited quotes on your domain.
                 </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-2xl mx-auto text-left">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto text-left">
                   <div className="flex items-center space-x-3">
-                    <span className="w-2 h-2 bg-[var(--brand-primary)] rounded-full"></span>
+                    <span className="w-2 h-2 bg-[var(--brand-primary)] rounded-full flex-shrink-0"></span>
                     <span className="text-sm text-slate-700">Branded PDFs & emails</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <span className="w-2 h-2 bg-[var(--brand-primary)] rounded-full"></span>
+                    <span className="w-2 h-2 bg-[var(--brand-primary)] rounded-full flex-shrink-0"></span>
                     <span className="text-sm text-slate-700">Your domain (CNAME)</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <span className="w-2 h-2 bg-[var(--brand-primary)] rounded-full"></span>
+                    <span className="w-2 h-2 bg-[var(--brand-primary)] rounded-full flex-shrink-0"></span>
                     <span className="text-sm text-slate-700">CRM integrations (HubSpot, Salesforce)</span>
                   </div>
                   <div className="flex items-center space-x-3">
-                    <span className="w-2 h-2 bg-[var(--brand-primary)] rounded-full"></span>
+                    <span className="w-2 h-2 bg-[var(--brand-primary)] rounded-full flex-shrink-0"></span>
                     <span className="text-sm text-slate-700">Setup &lt;24 hours</span>
                   </div>
                   <div className="flex items-center space-x-3 md:col-span-2 justify-center">
-                    <span className="w-2 h-2 bg-[var(--brand-primary)] rounded-full"></span>
+                    <span className="w-2 h-2 bg-[var(--brand-primary)] rounded-full flex-shrink-0"></span>
                     <span className="text-sm text-slate-700">SLA & support</span>
                   </div>
                 </div>
-                <div className="pt-4">
+                <div className="pt-6">
                   <button 
                     onClick={handleLaunchClick}
                     className="btn-primary text-lg px-8 py-4"

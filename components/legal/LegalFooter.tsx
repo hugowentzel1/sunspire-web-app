@@ -124,7 +124,7 @@ export default function LegalFooter({
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center items-center">
             {/* NREL Disclaimer */}
             <div className="flex items-center justify-center text-sm text-gray-500">
-              <svg className="w-4 h-4 ml-1 mr-2 text-gray-400 flex-shrink-0 align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0 align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z"/>
               </svg>
               <span className="leading-tight">Estimates generated using NREL PVWatts® v8</span>
