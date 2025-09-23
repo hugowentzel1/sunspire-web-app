@@ -325,24 +325,24 @@ function HomeContent() {
             <HeroBrand />
           )}
           
-          <div className="space-y-6">
+          <div className="space-y-16">
             <div className="relative">
               <div className="absolute -top-4 -right-4 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
                 <span className="text-white text-lg">✓</span>
               </div>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-8">
               <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900 leading-tight">
                 Your solar quote tool — already branded for {b.brand}.
               </h1>
-              <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed mt-4">
+              <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
                 This is what your customers will see when they request a quote.
               </p>
-              <p className="text-sm text-slate-500 mt-2">
+              <p className="text-sm text-slate-500">
                 $99/mo + $399 setup
               </p>
-              <p className="text-sm text-slate-500 mt-2">
+              <p className="text-sm text-slate-500">
                 77 installers · 12,384 quotes run · Avg quote 42s · 99.7% uptime
               </p>
             </div>
@@ -359,7 +359,7 @@ function HomeContent() {
           </div>
 
           {/* Address Input Section - Exact match to c548b88 */}
-          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-3xl mx-auto section-spacing">
+          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-3xl mx-auto py-16">
             <div className="space-y-6">
               <div className="text-center space-y-4">
                 <h2 className="text-2xl font-bold text-gray-900">Enter Your Property Address</h2>
@@ -382,33 +382,33 @@ function HomeContent() {
                 </div>
 
                 {/* Generate Button - Now below the search bar */}
-                <button 
-                  onClick={address.trim() ? handleGenerateEstimate : (b.enabled ? handleLaunchClick : handleGenerateEstimate)}
-                  disabled={!address.trim() || isLoading} 
-                  data-cta-button
-                  className={`w-full ${
-                    !address.trim() || isLoading 
-                      ? 'btn-disabled' 
-                      : 'btn-cta'
-                  }`} 
-                >
-                  {isLoading ? (
-                    <div className="flex items-center justify-center space-x-4">
-                      <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                      <span>Analyzing Your Property...</span>
-                    </div>
-                  ) : (
-                    <div className="flex items-center justify-center space-x-4">
-                      <span>
-                        {b.enabled 
-                          ? (address.trim() ? `Generate Solar Report` : `Keep this branded demo`)
-                          : "Generate Solar Intelligence Report"
-                        }
-                      </span>
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-                    </div>
-                  )}
-                </button>
+                  <button 
+                    onClick={address.trim() ? handleGenerateEstimate : (b.enabled ? handleLaunchClick : handleGenerateEstimate)}
+                    disabled={!address.trim() || isLoading} 
+                    data-cta-button
+                    className={`w-full px-8 py-4 rounded-lg font-semibold text-white transition-all duration-200 ${
+                      !address.trim() || isLoading 
+                        ? 'bg-gray-400 cursor-not-allowed' 
+                        : 'bg-blue-600 hover:bg-blue-700 hover:shadow-lg transform hover:scale-105'
+                    }`} 
+                  >
+                    {isLoading ? (
+                      <div className="flex items-center justify-center space-x-4">
+                        <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                        <span>Analyzing Your Property...</span>
+                      </div>
+                    ) : (
+                      <div className="flex items-center justify-center space-x-4">
+                        <span>
+                          {b.enabled 
+                            ? (address.trim() ? `Generate Solar Report` : `Keep this branded demo`)
+                            : "Generate Solar Intelligence Report"
+                          }
+                        </span>
+                        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                      </div>
+                    )}
+                  </button>
                 
                 {isDemo && (
                   <div className="text-sm text-gray-500 text-center space-y-2">
@@ -430,9 +430,9 @@ function HomeContent() {
           </div>
 
           {/* Social Proof - Directly below address card at friction point */}
-          <div className="max-w-4xl mx-auto py-8">
-            <div className="text-center space-y-6">
-              <div className="space-y-4">
+          <div className="max-w-4xl mx-auto py-16">
+            <div className="text-center space-y-8">
+              <div className="space-y-6">
                 <p className="text-sm text-slate-500 italic">
                   &ldquo;Cut quoting time from 15 minutes to 1.&rdquo; — Ops Manager, Texas
                 </p>
@@ -440,15 +440,12 @@ function HomeContent() {
                   &ldquo;Branded quotes booked 4 extra consults in month one.&rdquo; — Owner, Arizona
                 </p>
               </div>
-              <p className="text-xs text-slate-400">
-                77 installers · 12,384 quotes · Avg quote 42s · 99.7% uptime
-              </p>
               <div className="flex justify-center">
                 <button 
                   onClick={handleLaunchClick}
                   className="text-sm text-[var(--brand-primary)] hover:underline font-medium"
                 >
-                  Keep this branded demo →
+                  Keep my branded Sunspire →
                 </button>
               </div>
             </div>
@@ -459,7 +456,7 @@ function HomeContent() {
           {trustData && <LogoWall logos={trustData.logos} />}
 
           {/* Trust Row - Single row of 4 badges */}
-          <div className="max-w-5xl mx-auto py-8">
+          <div className="max-w-5xl mx-auto py-16">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
               <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300">
                 <div className="text-2xl font-black text-gray-900 mb-2">NREL v8</div>
@@ -487,7 +484,7 @@ function HomeContent() {
 
 
           {/* White-Label Section */}
-          <div id="whitelabel" className="max-w-4xl mx-auto py-12 md:py-16">
+          <div id="whitelabel" className="max-w-4xl mx-auto py-16">
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg">
               <div className="text-center space-y-8">
                 <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Make it permanent.</h2>
@@ -519,9 +516,9 @@ function HomeContent() {
                 <div className="pt-6">
                   <button 
                     onClick={handleLaunchClick}
-                    className="btn-primary text-lg px-8 py-4"
+                    className="bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg px-8 py-4 rounded-lg transition-all duration-200 hover:shadow-lg transform hover:scale-105"
                   >
-                    Keep this branded demo
+                    Keep my branded Sunspire
                   </button>
                 </div>
               </div>
@@ -546,7 +543,7 @@ function HomeContent() {
           )}
 
           {/* How It Works Section - Compressed */}
-          <div className="max-w-4xl mx-auto py-12 md:py-16">
+          <div className="max-w-4xl mx-auto py-16">
             <div className="text-center space-y-8">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900">How it works</h2>
               <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8">
@@ -576,32 +573,44 @@ function HomeContent() {
 
           {/* FAQ Section - Demo only */}
           {isDemo && (
-            <div className="max-w-4xl mx-auto section-spacing" {...tid('pricing-section')}>
+            <div className="max-w-4xl mx-auto py-16" {...tid('pricing-section')}>
               <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Frequently Asked Questions</h2>
-              <div className="space-y-6">
+              <div className="space-y-4">
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">CMS? — Yes, 1-line &lt;script&gt;. Hosted option too.</h3>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">CMS? — Yes, 1-line &lt;script&gt;. Hosted option too.</h3>
                   <p className="text-gray-600">Works with any website platform. Just add one line of code.</p>
                 </div>
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Accuracy? — NREL PVWatts v8 • EIA rates • local irradiance</h3>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">Accuracy? — NREL PVWatts v8 • EIA rates • local irradiance</h3>
                   <p className="text-gray-600">Industry-standard data sources. <a href="/methodology" className="text-[var(--brand-primary)] hover:underline">View methodology</a>.</p>
                 </div>
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Security? — Encrypted in transit & at rest</h3>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">Security? — Encrypted in transit & at rest</h3>
                   <p className="text-gray-600">Bank-level security for all customer data.</p>
                 </div>
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Cancel? — Yes, 14-day refund if it doesn&apos;t lift booked calls</h3>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">Cancel? — Yes, 14-day refund if it doesn&apos;t lift booked calls</h3>
                   <p className="text-gray-600">No long-term contracts. Cancel anytime.</p>
                 </div>
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Support? — Email support 24/7</h3>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">Support? — Email support 24/7</h3>
                   <p className="text-gray-600">Get help whenever you need it.</p>
                 </div>
               </div>
             </div>
           )}
+
+          {/* Why We Built Sunspire */}
+          <div className="max-w-4xl mx-auto py-16">
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg">
+              <div className="text-center space-y-6">
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Why We Built Sunspire</h2>
+                <p className="text-base md:text-lg text-slate-700 max-w-3xl mx-auto">
+                  We built Sunspire to help installers close more deals with instant, branded solar quotes. No calls, no hassle — just results.
+                </p>
+              </div>
+            </div>
+          </div>
 
           {/* Trust Signals - About Block */}
           {trustData && (
@@ -676,7 +685,7 @@ function HomeContent() {
       )}
 
       {/* Micro-trust strip above footer */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="text-center">
           <p className="text-xs text-slate-400">
             SOC2 · NREL PVWatts® · CRM-ready · GDPR/CCPA compliant
@@ -684,7 +693,7 @@ function HomeContent() {
         </div>
       </div>
 
-      <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <LegalFooter 
           hideMarketingLinks={!isDemo} 
           showPoweredBy={true} 

@@ -74,9 +74,6 @@ export default function PricingPage() {
                 <div className="text-3xl font-bold text-gray-900 mb-2">
                   $99/mo + $399 setup
                 </div>
-                <p className="text-sm text-gray-500">
-                  Start setup — $399 today
-                </p>
               </div>
 
               <div className="space-y-4 text-left">
@@ -105,7 +102,7 @@ export default function PricingPage() {
               <div className="pt-4">
                 <motion.button
                   onClick={handleUpgrade}
-                  className="w-full btn-primary text-lg py-4"
+                  className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold text-lg py-4 rounded-lg transition-all duration-200 hover:shadow-lg transform hover:scale-105"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
