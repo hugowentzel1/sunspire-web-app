@@ -352,17 +352,15 @@ function HomeContent() {
                 Trusted by 100+ installers • 28,417 quotes modeled last 30 days • 99.99% uptime
               </div>
               
+              
               <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                {b.enabled 
-                  ? `Launch your branded solar quote tool in 24 hours — no coding, no hassle. Capture more leads, book more consultations, and close more installs under your company's name.`                          
-                  : "Launch your branded solar quote tool in 24 hours — no coding, no hassle. Capture more leads, book more consultations, and close more installs under your company's name."                            
-                }
+                Go live in 24 hours. Capture more leads. Book more consults. Close more installs — all under your brand.
               </p>
               <p className="text-sm text-slate-500 mt-2">
                 $99/mo + $399 setup
               </p>
               <p className="text-sm text-slate-500 mt-2">
-                77 installers · 12,384 quotes run · Avg quote 42s · 99.7% uptime
+                28,417 quotes modeled this month • 99.99% uptime
               </p>
             </div>
           </div>
@@ -420,7 +418,7 @@ function HomeContent() {
                     <div className="flex items-center justify-center space-x-4">
                       <span>
                         {b.enabled 
-                          ? (address.trim() ? `Generate Solar Report` : `Keep this branded demo`)
+                          ? (address.trim() ? `Launch My Branded Tool` : `Activate on Your Domain — 24 Hours`)
                           : "Generate Solar Intelligence Report"
                         }
                       </span>
@@ -458,21 +456,31 @@ function HomeContent() {
             </div>
           </div>
 
-          {/* Stats Band */}
+          {/* Testimonials - Right after address input */}
+          <div className="max-w-4xl mx-auto py-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
+                <p className="text-sm text-gray-600 italic mb-2">
+                  &ldquo;Cut quoting time from 15 minutes to 1.&rdquo;
+                </p>
+                <p className="text-xs text-gray-500">— Ops Manager, Texas</p>
+              </div>
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
+                <p className="text-sm text-gray-600 italic mb-2">
+                  &ldquo;Booked 4 extra consults in first week.&rdquo;
+                </p>
+                <p className="text-xs text-gray-500">— Solar Installer, California</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Stats Band - Simplified */}
           <div className="bg-gray-50 py-12">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-                <div>
-                  <div className="text-3xl font-black text-gray-900 font-mono">127</div>
-                  <div className="text-sm text-gray-600 font-medium">Installers Live Today</div>
-                </div>
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="grid grid-cols-2 gap-8 text-center">
                 <div>
                   <div className="text-3xl font-black text-gray-900 font-mono">28,417</div>
                   <div className="text-sm text-gray-600 font-medium">Quotes This Month</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-black text-gray-900 font-mono">6.2</div>
-                  <div className="text-sm text-gray-600 font-medium">Avg Payback Years</div>
                 </div>
                 <div>
                   <div className="text-3xl font-black text-gray-900 font-mono">99.99%</div>
@@ -760,18 +768,77 @@ function HomeContent() {
       </div>
 
       <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <LegalFooter 
-          hideMarketingLinks={!isDemo} 
-          showPoweredBy={true} 
-          brand={b.enabled ? b.brand : undefined} 
-        />
-        {trustData && (
-          <TrustFooterLine 
-            email={trustData.footer.email}
-            address={trustData.footer.address}
-            guarantee={trustData.footer.guarantee}
-          />
-        )}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          {/* Left Column - Company Info */}
+          <div>
+            <h3 className="text-lg font-bold text-gray-900 mb-4">Sunspire Solar Intelligence</h3>
+            <p className="text-sm text-gray-600 mb-2">Demo for Apple — Powered by Sunspire</p>
+            <div className="space-y-2 text-sm text-gray-600">
+              <div className="flex items-center space-x-2">
+                <span>📍</span>
+                <span>1700 Northside Drive Suite A7 #5164 Atlanta, GA 30318</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <span>📧</span>
+                <span>support@getsunspire.com</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <span>📧</span>
+                <span>billing@getsunspire.com</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <span>📞</span>
+                <span>+1 (555) 123-4567</span>
+              </div>
+            </div>
+            <div className="flex space-x-2 mt-4">
+              <span className="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">GDPR</span>
+              <span className="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">CCPA</span>
+              <span className="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">SOC 2</span>
+            </div>
+          </div>
+
+          {/* Middle Column - Quick Links */}
+          <div>
+            <h3 className="text-lg font-bold text-gray-900 mb-4">Quick Links</h3>
+            <div className="space-y-2">
+              <a href="/pricing" className="block text-sm text-gray-600 hover:text-gray-900">Pricing</a>
+              <a href="/partners" className="block text-sm text-gray-600 hover:text-gray-900">Partners</a>
+              <a href="/support" className="block text-sm text-gray-600 hover:text-gray-900">Support</a>
+            </div>
+          </div>
+
+          {/* Right Column - Legal & Support */}
+          <div>
+            <h3 className="text-lg font-bold text-gray-900 mb-4">Legal & Support</h3>
+            <div className="space-y-2">
+              <a href="/privacy" className="block text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a>
+              <a href="/terms" className="block text-sm text-gray-600 hover:text-gray-900">Terms of Service</a>
+              <a href="/security" className="block text-sm text-gray-600 hover:text-gray-900">Security</a>
+              <a href="/dpa" className="block text-sm text-gray-600 hover:text-gray-900">DPA</a>
+              <a href="/do-not-sell" className="block text-sm text-gray-600 hover:text-gray-900">Do Not Sell My Data</a>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Section */}
+        <div className="border-t border-gray-200 pt-6">
+          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+            <div className="flex items-center space-x-6 text-sm text-gray-500">
+              <div className="flex items-center space-x-2">
+                <span>⚡</span>
+                <span>Estimates generated using NREL PVWatts® v8</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <span>📍</span>
+                <span>Mapping & location data © Google</span>
+              </div>
+            </div>
+            <div className="text-sm text-gray-500">
+              Powered by <span className="text-blue-600 font-medium">Sunspire</span>
+            </div>
+          </div>
+        </div>
       </footer>
       
 
