@@ -334,21 +334,10 @@ function HomeContent() {
 
             <div className="space-y-6">
               <h1 className="text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900 leading-tight">
-                {b.enabled ? (
-                  <>
-                    Your solar quote tool — already branded for {b.brand}.
-                  </>
-                ) : (
-                  <>
-                    Your solar quote tool — already branded for {b.brand}.
-                  </>
-                )}
+                Your solar quote tool — already branded for {b.brand}.
               </h1>
-              <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed mt-3 md:mt-4">
-                {b.enabled 
-                  ? `Launch your branded solar quote tool in 24 hours — no coding, no hassle. Capture more leads, book more consultations, and close more installs under your company's name.`                            
-                  : "Launch your branded solar quote tool in 24 hours — no coding, no hassle. Capture more leads, book more consultations, and close more installs under your company's name."                            
-                }
+              <p className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed">
+                This is what your customers will see when they request a quote.
               </p>
               <p className="text-sm text-slate-500 mt-2">
                 $99/mo + $399 setup
