@@ -784,9 +784,6 @@ function ReportContent() {
                   >
                     Unlock Full Report
                   </button>
-                  <p className="text-xs text-gray-500 text-center mt-2">
-                    Upgrade to unlock the full branded report for your customers.
-                  </p>
                 </div>
               )}
             </div>
@@ -815,9 +812,6 @@ function ReportContent() {
                   >
                     Unlock Full Report
                   </button>
-                  <p className="text-xs text-gray-500 text-center mt-2">
-                    Upgrade to unlock the full branded report for your customers.
-                  </p>
                 </div>
               )}
             </div>
@@ -857,9 +851,6 @@ function ReportContent() {
                   >
                     Unlock Full Report
                   </button>
-                  <p className="text-xs text-gray-500 text-center mt-2">
-                    Upgrade to unlock the full branded report for your customers.
-                  </p>
                 </div>
               )}
             </div>
@@ -890,9 +881,6 @@ function ReportContent() {
                   >
                     Unlock Full Report
                   </button>
-                  <p className="text-xs text-gray-500 text-center mt-2">
-                    Upgrade to unlock the full branded report for your customers.
-                  </p>
                 </div>
               )}
             </div>
@@ -958,36 +946,9 @@ function ReportContent() {
                   avatarSrc={trustData.testimonial.avatarSrc}
                 />
               )}
-              <MetricsBar items={trustData.metrics} />
             </>
           )}
 
-          {/* Social Proof Testimonial Row - Above Footer */}
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ delay: 1.2, duration: 0.8 }} 
-            className="max-w-4xl mx-auto py-8"
-          >
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
-              <div className="text-center space-y-4">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="text-center">
-                    <p className="text-sm text-gray-600 italic mb-2">
-                      &ldquo;Cut quoting time from 15 minutes to 1.&rdquo;
-                    </p>
-                    <p className="text-xs text-gray-500">— Ops Manager, Texas</p>
-                  </div>
-                  <div className="text-center">
-                    <p className="text-sm text-gray-600 italic mb-2">
-                      &ldquo;Booked 4 more installs in our first month.&rdquo;
-                    </p>
-                    <p className="text-xs text-gray-500">— Owner, Arizona</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </motion.div>
 
           {/* Demo-only CTA section */}
           {demoMode && (
