@@ -435,7 +435,7 @@ function HomeContent() {
                     Fully branded to your company in 24 hours.
                   </p>
                   <p className="text-sm text-gray-500 italic">
-                    "Helped one installer book 37% more consults in 90 days."
+                    &ldquo;Helped one installer book 37% more consults in 90 days.&rdquo;
                   </p>
                 </div>
                 
