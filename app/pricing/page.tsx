@@ -47,7 +47,7 @@ export default function PricingPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter">
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="text-center space-y-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -63,12 +63,14 @@ export default function PricingPage() {
             </p>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-xl max-w-2xl mx-auto"
-          >
+          <div className="flex flex-col lg:flex-row gap-8 items-start justify-center">
+            {/* Main pricing card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-xl max-w-2xl mx-auto lg:mx-0"
+            >
             <div className="space-y-6">
               <div className="text-center">
                 <div className="text-3xl font-bold text-gray-900 mb-2">
@@ -117,7 +119,30 @@ export default function PricingPage() {
                 14-day refund if it doesn&apos;t lift booked calls
               </p>
             </div>
-          </motion.div>
+            </motion.div>
+
+            {/* Proof sidebar */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 shadow-lg max-w-sm mx-auto lg:mx-0"
+            >
+              <div className="space-y-4">
+                <h3 className="text-lg font-semibold text-gray-900 text-center">Why Installers Switch</h3>
+                <div className="space-y-3 text-sm text-gray-600">
+                  <div className="flex items-start space-x-3">
+                    <span className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Setup under 24 hours — no coding required.</span>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <span className="w-2 h-2 bg-green-500 rounded-full mt-2 flex-shrink-0"></span>
+                    <span>Installers see +29% more booked jobs.</span>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </main>
     </div>

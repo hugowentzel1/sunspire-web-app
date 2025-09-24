@@ -29,6 +29,22 @@ export default function StickySidebar({ brand, onUpgradeClick, onFeaturesClick }
             77 installers · 12,384 quotes · Avg quote 42s · 99.7% uptime
           </div>
           
+          {/* Proof bullets */}
+          <div className="space-y-2 text-xs text-gray-600">
+            <div className="flex items-center space-x-2">
+              <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+              <span>More leads</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+              <span>Faster quotes</span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <span className="w-1.5 h-1.5 bg-green-500 rounded-full"></span>
+              <span>Branded instantly</span>
+            </div>
+          </div>
+          
           <div className="flex justify-center space-x-4 text-xs text-gray-400 py-2">
             <span>SOC2</span>
             <span>GDPR</span>
