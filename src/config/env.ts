@@ -33,4 +33,19 @@ const envSchema = z.object({
   VERCEL_PROJECT_ID: z.string().optional(),
 });
 
-export const ENV = envSchema.parse(process.env);
+// Lazy environment validation - only parse when accessed
+let _env: z.infer<typeof envSchema> | null = null;
+
+export function getEnv() {
+  if (!_env) {
+    _env = envSchema.parse(process.env);
+  }
+  return _env;
+}
+
+// For backward compatibility, export ENV as a getter
+export const ENV = new Proxy({} as z.infer<typeof envSchema>, {
+  get(target, prop) {
+    return getEnv()[prop as keyof typeof getEnv];
+  }
+});
