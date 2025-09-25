@@ -356,8 +356,6 @@ export default function AddressAutocomplete({
         </div>
       )}
 
-      {/* Google attribution */}
-      <p className="mt-1 text-[11px] opacity-70">Powered by Google</p>
     </div>
   );
 }

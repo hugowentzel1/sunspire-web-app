@@ -11,7 +11,7 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main footer content in rounded card */}
         <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200/50">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-16">
             {/* Column 1: Company Info */}
             <div className="space-y-4">
               <h3 className="text-lg font-bold text-gray-900">Sunspire Solar Intelligence</h3>
@@ -75,7 +75,7 @@ export default function Footer() {
           {/* Hairline divider */}
           <div className="border-t border-gray-200 mt-8 pt-6">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-12 text-sm text-gray-500">
+              <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-16 text-sm text-gray-500">
                 <div className="flex items-center space-x-2">
                   <span>⚡</span>
                   <span>Estimates generated using NREL PVWatts® v8</span>
