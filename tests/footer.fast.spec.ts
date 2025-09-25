@@ -1,13 +1,30 @@
 import { test, expect } from '@playwright/test';
 
 test('footer is ≥120px and visually ok', async ({ page }) => {
-  await page.goto('http://localhost:3000/?company=Apple&demo=1', { waitUntil: 'domcontentloaded' });
-  const footer = page.locator('[data-testid="footer"]');
-  const h = await footer.evaluate(el => Math.round(el.getBoundingClientRect().height));
-  expect(h).toBeGreaterThanOrEqual(120);
-  await expect(footer).toHaveScreenshot('footer-after.png', {
-    animations: 'disabled',
-    maxDiffPixelRatio: 0.01,
-    scale: 'css'
-  });
+  await page.goto('http://localhost:3000/?company=Apple&demo=1', { waitUntil: 'networkidle' });
+  
+  // Wait a bit for the page to fully render
+  await page.waitForTimeout(3000);
+  
+  // Take a full page screenshot to see what's loading
+  await page.screenshot({ path: 'debug-page.png', fullPage: true });
+  
+  // Check if footer exists
+  const footerExists = await page.locator('[data-testid="footer"]').count() > 0;
+  console.log('Footer exists:', footerExists);
+  
+  if (footerExists) {
+    const footer = page.locator('[data-testid="footer"]');
+    const h = await footer.evaluate(el => Math.round(el.getBoundingClientRect().height));
+    console.log('Footer height:', h);
+    expect(h).toBeGreaterThanOrEqual(120);
+    await expect(footer).toHaveScreenshot('footer-after.png', {
+      animations: 'disabled',
+      maxDiffPixelRatio: 0.01,
+      scale: 'css'
+    });
+  } else {
+    // If footer doesn't exist, fail the test with a helpful message
+    throw new Error('Footer element with data-testid="footer" not found on page');
+  }
 });

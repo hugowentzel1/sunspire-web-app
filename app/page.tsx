@@ -470,15 +470,15 @@ function HomeContent() {
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid grid-cols-3 gap-12 text-center">
                 <div className="group">
-                  <div className="text-4xl font-black text-gray-900 font-mono group-hover:text-blue-600 transition-colors duration-300">28,417</div>
+                  <div className="text-4xl font-black text-gray-900 font-mono group-hover:text-[var(--brand-primary)] transition-colors duration-300">28,417</div>
                   <div className="text-sm text-gray-600 font-medium mt-2">quotes modeled this month</div>
                 </div>
                 <div className="group">
-                  <div className="text-4xl font-black text-gray-900 font-mono group-hover:text-blue-600 transition-colors duration-300">31%</div>
+                  <div className="text-4xl font-black text-gray-900 font-mono group-hover:text-[var(--brand-primary)] transition-colors duration-300">31%</div>
                   <div className="text-sm text-gray-600 font-medium mt-2">average increase in completions</div>
                 </div>
                 <div className="group">
-                  <div className="text-4xl font-black text-gray-900 font-mono group-hover:text-blue-600 transition-colors duration-300">113+</div>
+                  <div className="text-4xl font-black text-gray-900 font-mono group-hover:text-[var(--brand-primary)] transition-colors duration-300">113+</div>
                   <div className="text-sm text-gray-600 font-medium mt-2">installers live today</div>
                 </div>
               </div>
@@ -491,22 +491,22 @@ function HomeContent() {
 
           {/* Features - Single row of 3 cards with company color gradient shading */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto section-spacing">
-            <div className="relative bg-gradient-to-br from-white via-white to-[var(--brand-primary)]/10 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-2xl hover:scale-105 transition-all duration-500 flex flex-col items-center justify-center group">
-              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/30 to-[var(--brand-primary)]/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative bg-gradient-to-br from-white via-white to-[var(--brand-primary)]/15 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-2xl hover:scale-105 transition-all duration-500 flex flex-col items-center justify-center group">
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/40 to-[var(--brand-primary)]/25 rounded-3xl opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10">
                 <div className="text-2xl font-black text-gray-900 mb-3 group-hover:text-[var(--brand-primary)] transition-colors duration-300">NREL PVWatts® v8</div>
                 <div className="text-gray-600 font-semibold leading-relaxed">Industry-standard solar modeling with current utility rates</div>
               </div>
             </div>
-            <div className="relative bg-gradient-to-br from-white via-white to-[var(--brand-primary)]/10 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-2xl hover:scale-105 transition-all duration-500 flex flex-col items-center justify-center group">
-              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/30 to-[var(--brand-primary)]/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative bg-gradient-to-br from-white via-white to-[var(--brand-primary)]/15 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-2xl hover:scale-105 transition-all duration-500 flex flex-col items-center justify-center group">
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/40 to-[var(--brand-primary)]/25 rounded-3xl opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10">
                 <div className="text-2xl font-black text-gray-900 mb-3 group-hover:text-[var(--brand-primary)] transition-colors duration-300">CRM Integration</div>
                 <div className="text-gray-600 font-semibold leading-relaxed">Direct push to HubSpot, Salesforce, and Airtable</div>
               </div>
             </div>
-            <div className="relative bg-gradient-to-br from-white via-white to-[var(--brand-primary)]/10 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-2xl hover:scale-105 transition-all duration-500 flex flex-col items-center justify-center group">
-              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/30 to-[var(--brand-primary)]/20 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div className="relative bg-gradient-to-br from-white via-white to-[var(--brand-primary)]/15 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-2xl hover:scale-105 transition-all duration-500 flex flex-col items-center justify-center group">
+              <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/40 to-[var(--brand-primary)]/25 rounded-3xl opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10">
                 <div className="text-2xl font-black text-gray-900 mb-3 group-hover:text-[var(--brand-primary)] transition-colors duration-300">End-to-End Encryption</div>
                 <div className="text-gray-600 font-semibold leading-relaxed">SOC 2-aligned controls and data protection</div>
@@ -554,7 +554,6 @@ function HomeContent() {
                   avatarSrc={trustData.testimonial.avatarSrc}
                 />
               )}
-              <MetricsBar items={trustData.metrics} />
             </>
           )}
 
@@ -598,7 +597,7 @@ function HomeContent() {
                 </div>
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Accuracy? — NREL PVWatts v8 • EIA rates • local irradiance</h3>
-                  <p className="text-gray-600">Industry-standard data sources. <a href="/methodology" className="text-[var(--brand-primary)] hover:underline">View methodology</a>.</p>
+                  <p className="text-gray-600">Industry-standard data sources. <a href="/methodology" className="text-[var(--brand-primary)] hover:text-[var(--brand-primary)]/80 hover:underline font-medium transition-colors duration-200">View methodology</a>.</p>
                 </div>
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Security? — Encrypted in transit & at rest</h3>
