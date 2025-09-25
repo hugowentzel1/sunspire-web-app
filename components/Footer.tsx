@@ -60,7 +60,7 @@ export default function Footer() {
             </div>
 
             {/* Column 3: Legal & Support */}
-            <div>
+            <div className="text-right">
               <h3 className="text-lg font-bold text-gray-900 mb-4">Legal & Support</h3>
               <div className="space-y-2">
                 <a href="/privacy" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200">Privacy Policy</a>
