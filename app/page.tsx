@@ -464,20 +464,20 @@ function HomeContent() {
           </div>
 
           {/* KPI Band - Single band only */}
-          <div className="py-16" style={{ backgroundColor: 'var(--brand-primary)' }}>
+          <div className="py-16 bg-gradient-to-br from-white via-white to-[var(--brand-primary)]/15">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid grid-cols-3 gap-12 text-center">
                 <div className="group">
-                  <div className="text-4xl font-black text-white font-mono group-hover:text-gray-200 transition-colors duration-300">28,417</div>
-                  <div className="text-sm text-white/90 font-medium mt-2">quotes modeled this month</div>
+                  <div className="text-4xl font-black text-gray-900 font-mono group-hover:text-[var(--brand-primary)] transition-colors duration-300">28,417</div>
+                  <div className="text-sm text-gray-600 font-medium mt-2">quotes modeled this month</div>
                 </div>
                 <div className="group">
-                  <div className="text-4xl font-black text-white font-mono group-hover:text-gray-200 transition-colors duration-300">31%</div>
-                  <div className="text-sm text-white/90 font-medium mt-2">average increase in completions</div>
+                  <div className="text-4xl font-black text-gray-900 font-mono group-hover:text-[var(--brand-primary)] transition-colors duration-300">31%</div>
+                  <div className="text-sm text-gray-600 font-medium mt-2">average increase in completions</div>
                 </div>
                 <div className="group">
-                  <div className="text-4xl font-black text-white font-mono group-hover:text-gray-200 transition-colors duration-300">113+</div>
-                  <div className="text-sm text-white/90 font-medium mt-2">installers live today</div>
+                  <div className="text-4xl font-black text-gray-900 font-mono group-hover:text-[var(--brand-primary)] transition-colors duration-300">113+</div>
+                  <div className="text-sm text-gray-600 font-medium mt-2">installers live today</div>
                 </div>
               </div>
             </div>
