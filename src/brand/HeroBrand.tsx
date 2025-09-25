@@ -13,7 +13,12 @@ function initials(name: string) {
   );
 }
 
-export default function HeroBrand() {
+interface HeroBrandProps {
+  size?: "sm" | "md" | "lg";
+  className?: string;
+}
+
+export default function HeroBrand({ size = "md", className = "" }: HeroBrandProps = {}) {
   const b = useBrandTakeover();
   // Show in both demo and paid modes when brand is enabled
   // Also show if we have company branding even if not explicitly enabled
@@ -125,9 +130,24 @@ export default function HeroBrand() {
 
   const logoUrl = b.logo || getDefaultLogo(b.brand);
 
+  const sizeClasses = {
+    sm: "w-16 h-16", // 64px
+    md: "w-20 h-20", // 80px
+    lg: "w-24 h-24", // 96px
+  };
+
+  const sizeValues = {
+    sm: 48,
+    md: 64,
+    lg: 72,
+  };
+
+  const currentSize = sizeValues[size];
+  const currentSizeClass = sizeClasses[size];
+
   return (
     <div
-      className="section-spacing"
+      className={`section-spacing ${className}`}
       style={{ display: "grid", placeItems: "center" }}
       data-hero-logo
     >
@@ -135,31 +155,30 @@ export default function HeroBrand() {
         <Image
           src={logoUrl}
           alt={`${b.brand} logo`}
-          width={48}
-          height={48}
+          width={currentSize}
+          height={currentSize}
           style={{
             objectFit: "contain",
             borderRadius: 8,
-            width: "48px",
-            height: "48px",
-            minWidth: "48px",
-            minHeight: "48px",
-            maxWidth: "48px",
-            maxHeight: "48px",
+            width: `${currentSize}px`,
+            height: `${currentSize}px`,
+            minWidth: `${currentSize}px`,
+            minHeight: `${currentSize}px`,
+            maxWidth: `${currentSize}px`,
+            maxHeight: `${currentSize}px`,
           }}
         />
       ) : (
         <div
+          className={currentSizeClass}
           style={{
-            width: 48,
-            height: 48,
             borderRadius: 8,
             display: "grid",
             placeItems: "center",
             background: b.primary,
             color: "#0D0D0D",
             fontWeight: 800,
-            fontSize: 16,
+            fontSize: size === "sm" ? 14 : size === "md" ? 16 : 18,
           }}
         >
           {initials(b.brand)}
