@@ -50,7 +50,7 @@ export default function Footer() {
             </div>
 
             {/* Column 2: Quick Links */}
-            <div>
+            <div className="text-center">
               <h3 className="text-lg font-bold text-gray-900 mb-4">Quick Links</h3>
               <div className="space-y-2">
                 <a href="/pricing" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200">Pricing</a>
