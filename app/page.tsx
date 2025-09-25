@@ -467,13 +467,13 @@ function HomeContent() {
           <div 
             className="py-16 relative"
             style={{ 
-              background: 'linear-gradient(135deg, white, white, rgba(0, 113, 227, 0.25))',
+              background: `linear-gradient(135deg, white, white, ${b.primary}25)`,
             }}
           >
             <div 
               className="absolute inset-0 opacity-100"
               style={{
-                background: 'linear-gradient(135deg, transparent, rgba(255,255,255,0.6), rgba(0, 113, 227, 0.4))',
+                background: `linear-gradient(135deg, transparent, rgba(255,255,255,0.6), ${b.primary}40)`,
               }}
             ></div>
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
