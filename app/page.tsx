@@ -464,8 +464,9 @@ function HomeContent() {
           </div>
 
           {/* KPI Band - Single band only */}
-          <div className="py-16 bg-gradient-to-br from-white via-white to-[var(--brand-primary)]/15">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="py-16 bg-gradient-to-br from-white via-white to-[var(--brand-primary)]/25 relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/40 to-[var(--brand-primary)]/25 opacity-100"></div>
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
               <div className="grid grid-cols-3 gap-12 text-center">
                 <div className="group">
                   <div className="text-4xl font-black text-gray-900 font-mono group-hover:text-[var(--brand-primary)] transition-colors duration-300">28,417</div>
