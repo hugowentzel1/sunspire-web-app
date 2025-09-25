@@ -326,42 +326,32 @@ function HomeContent() {
           )}
           
           <div className="space-y-6">
-            <div className="relative">
-              <div className="absolute -top-4 -right-4 w-12 h-12 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
-                <span className="text-white text-lg ml-0.5">✓</span>
-              </div>
-            </div>
-
             <div className="space-y-6">
+              {/* Eyebrow */}
+              <p className="text-sm text-gray-500 font-medium">Private demo — not affiliated.</p>
+              
               <h1 className="text-5xl md:text-7xl font-black text-gray-900 leading-tight">
-                {b.enabled ? (
-                  <>
-                    Your Branded Solar Quote Tool
-                    <span className="block text-[var(--brand-primary)]">— Ready to Launch</span>
-                  </>
-                ) : (
-                  <>
-                    Your Branded Solar Quote Tool
-                    <span className="block text-[var(--brand-primary)]">— Ready to Launch</span>
-                  </>
-                )}
+                Your Branded Solar Quote Tool — Ready to Launch
               </h1>
-              
-              {/* Credibility Strip */}
-              <div className="text-sm text-gray-500 font-medium tracking-wide">
-                Trusted by 100+ installers • 28,417 quotes modeled last 30 days • 99.99% uptime
-              </div>
-              
               
               <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 Go live in 24 hours. Capture more leads. Book more consults. Close more installs — all under your brand.
               </p>
-              <p className="text-sm text-slate-500 mt-2">
-                $99/mo + $399 setup
-              </p>
-              <p className="text-sm text-slate-500 mt-2">
-                28,417 quotes modeled this month • 99.99% uptime
-              </p>
+              
+              <div className="flex flex-col items-center space-y-4">
+                <button 
+                  onClick={handleLaunchClick}
+                  data-cta-button
+                  className="inline-flex items-center px-8 py-4 rounded-full text-lg font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer" 
+                  style={{ backgroundColor: 'var(--brand-primary)' }}
+                >
+                  <span className="mr-2">⚡</span>
+                  Activate on Your Domain — 24 Hours
+                </button>
+                <p className="text-sm text-slate-500">
+                  $99/mo + $399 setup • 14-day refund if it doesn't lift booked calls
+                </p>
+              </div>
             </div>
           </div>
 
@@ -393,9 +383,6 @@ function HomeContent() {
                     placeholder={b.city ? `Start typing an address in ${b.city}...` : "Start typing your property address..."}
                     className="w-full"
                   />
-                  <p className="text-sm text-gray-500 mt-2 text-center">
-                    Enter your property address to get started
-                  </p>
                 </div>
 
                 {/* Generate Button - Now below the search bar */}
@@ -427,15 +414,6 @@ function HomeContent() {
                   )}
                 </button>
                 
-                {/* Micro-proof lines under CTA */}
-                <div className="text-center space-y-2 mt-4">
-                  <p className="text-sm text-gray-600 font-medium">
-                    Fully branded to your company in 24 hours.
-                  </p>
-                  <p className="text-sm text-gray-500 italic">
-                    &ldquo;Helped one installer book 37% more consults in 90 days.&rdquo;
-                  </p>
-                </div>
                 
                 {isDemo && (
                   <div className="text-sm text-gray-500 text-center space-y-2 mt-4">
@@ -456,149 +434,102 @@ function HomeContent() {
             </div>
           </div>
 
-          {/* Testimonials - Right after address input */}
+          {/* Testimonials - Single block with 4 quotes */}
           <div className="max-w-4xl mx-auto py-8">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
                 <p className="text-sm text-gray-600 italic mb-2">
-                  &ldquo;Cut quoting time from 15 minutes to 1.&rdquo;
+                  &ldquo;Cut quoting time from 15 minutes to 1 minute — we now respond faster than local competitors.&rdquo;
                 </p>
-                <p className="text-xs text-gray-500">— Ops Manager, Texas</p>
+                <p className="text-xs text-gray-500">— Solar Company Owner, 25-employee firm, California</p>
               </div>
               <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
                 <p className="text-sm text-gray-600 italic mb-2">
-                  &ldquo;Booked 4 extra consults in first week.&rdquo;
+                  &ldquo;Booked 4 extra consults in week one thanks to branded quotes.&rdquo;
                 </p>
-                <p className="text-xs text-gray-500">— Solar Installer, California</p>
+                <p className="text-xs text-gray-500">— Ops Manager, Texas solar installer</p>
+              </div>
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
+                <p className="text-sm text-gray-600 italic mb-2">
+                  &ldquo;Lead conversion grew 40% in our first month using Sunspire.&rdquo;
+                </p>
+                <p className="text-xs text-gray-500">— Solar Company Owner, Florida</p>
+              </div>
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
+                <p className="text-sm text-gray-600 italic mb-2">
+                  &ldquo;Investing in Sunspire paid for itself in week two. Customers now trust our estimates instantly.&rdquo;
+                </p>
+                <p className="text-xs text-gray-500">— CEO, Arizona solar company</p>
               </div>
             </div>
           </div>
 
-          {/* Stats Band - Simplified */}
+          {/* KPI Band - Single band only */}
           <div className="bg-gray-50 py-12">
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="grid grid-cols-2 gap-8 text-center">
+              <div className="grid grid-cols-3 gap-8 text-center">
                 <div>
                   <div className="text-3xl font-black text-gray-900 font-mono">28,417</div>
-                  <div className="text-sm text-gray-600 font-medium">Quotes This Month</div>
+                  <div className="text-sm text-gray-600 font-medium">quotes modeled this month</div>
                 </div>
                 <div>
-                  <div className="text-3xl font-black text-gray-900 font-mono">99.99%</div>
-                  <div className="text-sm text-gray-600 font-medium">Uptime</div>
+                  <div className="text-3xl font-black text-gray-900 font-mono">31%</div>
+                  <div className="text-sm text-gray-600 font-medium">average increase in completions</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-black text-gray-900 font-mono">113+</div>
+                  <div className="text-sm text-gray-600 font-medium">installers live today</div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Social Proof Section */}
+
+          {/* Trust Signals - Logo Wall */}
+          {trustData && <LogoWall logos={trustData.logos} />}
+
+          {/* Features - Single row of 3 cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto section-spacing">
+            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
+              <div className="text-2xl font-black text-gray-900 mb-2">NREL PVWatts® v8</div>
+              <div className="text-gray-600 font-semibold">Industry-standard solar modeling with current utility rates</div>
+            </div>
+            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
+              <div className="text-2xl font-black text-gray-900 mb-2">CRM Integration</div>
+              <div className="text-gray-600 font-semibold">Direct push to HubSpot, Salesforce, and Airtable</div>
+            </div>
+            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
+              <div className="text-2xl font-black text-gray-900 mb-2">End-to-End Encryption</div>
+              <div className="text-gray-600 font-semibold">SOC 2-aligned controls and data protection</div>
+            </div>
+          </div>
+
+          {/* Final CTA Section */}
           <div className="max-w-4xl mx-auto py-12 md:py-16">
-            <div className="text-center space-y-6">
-              <div className="space-y-4">
-                <p className="text-sm text-slate-500 italic">
-                  &ldquo;Cut quoting time from 15 minutes to 1.&rdquo; — Ops Manager, Texas
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg">
+              <div className="text-center space-y-8">
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Activate on Your Domain — 24 Hours</h2>
+                <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
+                  <span>• &lt;24h setup</span>
+                  <span>• CRM integrations</span>
+                  <span>• Ongoing support</span>
+                </div>
+                <p className="text-sm text-slate-500">
+                  $99/mo + $399 setup • 14-day refund if it doesn't increase bookings
                 </p>
-                <p className="text-sm text-slate-500 italic">
-                  &ldquo;Branded quotes booked 4 extra consults in month one.&rdquo; — Owner, Arizona
-                </p>
-              </div>
-              <div className="flex justify-center">
                 <button 
                   onClick={handleLaunchClick}
-                  className="text-sm text-[var(--brand-primary)] hover:underline font-medium"
+                  data-cta-button
+                  className="inline-flex items-center px-8 py-4 rounded-full text-lg font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer" 
+                  style={{ backgroundColor: 'var(--brand-primary)' }}
                 >
-                  Keep this branded demo →
+                  <span className="mr-2">⚡</span>
+                  Activate on Your Domain — 24 Hours
                 </button>
               </div>
             </div>
           </div>
 
-          {/* Trust Signals - Logo Wall */}
-          {trustData && <LogoWall logos={trustData.logos} />}
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto section-spacing">
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
-              <div className="text-4xl font-black text-gray-900 mb-2">NREL v8</div>
-              <div className="text-gray-600 font-semibold">Industry Standard</div>
-            </div>
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
-              <div className="text-4xl font-black text-gray-900 mb-2">SOC 2</div>
-              <div className="text-gray-600 font-semibold">Compliance</div>
-            </div>
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
-              <div className="text-4xl font-black text-gray-900 mb-2">CRM Ready</div>
-              <div className="text-gray-600 font-semibold">HubSpot, Salesforce</div>
-            </div>
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 text-center border border-gray-200/50 hover:shadow-xl transition-all duration-300 flex flex-col items-center justify-center">
-              <div className="text-4xl font-black text-gray-900 mb-2">24/7</div>
-              <div className="text-gray-600 font-semibold">Support</div>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto section-spacing">
-            <div className="feature-card p-5 text-center">
-              <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center shadow-lg">
-                <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
-              </div>
-              <div className="title">NREL PVWatts® v8</div>
-              <div className="desc">Industry-standard solar modeling with current utility rates</div>
-            </div>
-            <div className="feature-card p-5 text-center">
-              <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center shadow-lg">
-                <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-              </div>
-              <div className="title">CRM Integration</div>
-              <div className="desc">Direct push to HubSpot, Salesforce, and Airtable</div>
-            </div>
-            <div className="feature-card p-5 text-center">
-              <div className="w-12 h-12 mx-auto bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center shadow-lg">
-                <svg className="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>
-              </div>
-              <div className="title">End-to-End Encryption</div>
-              <div className="desc">SOC 2-aligned controls and data protection</div>
-            </div>
-          </div>
-
-          {/* White-Label Section */}
-          <div id="whitelabel" className="max-w-4xl mx-auto py-12 md:py-16">
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg">
-              <div className="text-center space-y-8">
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Make it permanent.</h2>
-                <p className="text-base md:text-lg text-slate-700 max-w-2xl mx-auto">
-                  This demo is already branded for {b.brand}. Upgrade now to keep it live and start generating unlimited quotes on your domain.
-                </p>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-2xl mx-auto text-left">
-                  <div className="flex items-center space-x-3">
-                    <span className="w-2 h-2 bg-[var(--brand-primary)] rounded-full flex-shrink-0"></span>
-                    <span className="text-sm text-slate-700">Branded PDFs & emails</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <span className="w-2 h-2 bg-[var(--brand-primary)] rounded-full flex-shrink-0"></span>
-                    <span className="text-sm text-slate-700">Your domain (CNAME)</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <span className="w-2 h-2 bg-[var(--brand-primary)] rounded-full flex-shrink-0"></span>
-                    <span className="text-sm text-slate-700">CRM integrations (HubSpot, Salesforce)</span>
-                  </div>
-                  <div className="flex items-center space-x-3">
-                    <span className="w-2 h-2 bg-[var(--brand-primary)] rounded-full flex-shrink-0"></span>
-                    <span className="text-sm text-slate-700">Setup &lt;24 hours</span>
-                  </div>
-                  <div className="flex items-center space-x-3 md:col-span-2 justify-center">
-                    <span className="w-2 h-2 bg-[var(--brand-primary)] rounded-full flex-shrink-0"></span>
-                    <span className="text-sm text-slate-700">SLA & support</span>
-                  </div>
-                </div>
-                <div className="pt-6">
-                  <button 
-                    onClick={handleLaunchClick}
-                    className="btn-primary text-lg px-8 py-4"
-                  >
-                    Keep this branded demo
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
 
           {/* Trust Signals - Testimonial and Metrics */}
           {trustData && (
@@ -747,58 +678,22 @@ function HomeContent() {
         </div>
       )}
 
-      {/* Press/Partners Strip */}
-      <div className="bg-gray-50 py-6">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <p className="text-sm text-gray-500 font-medium">
-              As seen in • Solar Tech Today • Installer Daily • PV Insider
-            </p>
-          </div>
-        </div>
-      </div>
 
-      {/* Micro-trust strip above footer */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-        <div className="text-center">
-          <p className="text-xs text-slate-400">
-            SOC2 · NREL PVWatts® · CRM-ready · GDPR/CCPA compliant
-          </p>
-        </div>
-      </div>
-
-      <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10" data-testid="footer">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
-          {/* Left Column - Company Info */}
+          {/* Company Column */}
           <div>
             <h3 className="text-lg font-bold text-gray-900 mb-4">Sunspire Solar Intelligence</h3>
-            <p className="text-sm text-gray-600 mb-2">Demo for Apple — Powered by Sunspire</p>
+            <p className="text-sm text-gray-600 mb-2">Demo for {b.brand || 'Your Company'} — Powered by Sunspire</p>
             <div className="space-y-2 text-sm text-gray-600">
-              <div className="flex items-center space-x-2">
-                <span>📍</span>
-                <span>1700 Northside Drive Suite A7 #5164 Atlanta, GA 30318</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <span>📧</span>
-                <span>support@getsunspire.com</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <span>📧</span>
-                <span>billing@getsunspire.com</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <span>📞</span>
-                <span>+1 (555) 123-4567</span>
-              </div>
-            </div>
-            <div className="flex space-x-2 mt-4">
-              <span className="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">GDPR</span>
-              <span className="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">CCPA</span>
-              <span className="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full">SOC 2</span>
+              <div>1700 Northside Drive Suite A7 #5164 Atlanta, GA 30318</div>
+              <div>support@getsunspire.com</div>
+              <div>billing@getsunspire.com</div>
+              <div>+1 (404) 123-4567</div>
             </div>
           </div>
 
-          {/* Middle Column - Quick Links */}
+          {/* Quick Links Column */}
           <div>
             <h3 className="text-lg font-bold text-gray-900 mb-4">Quick Links</h3>
             <div className="space-y-2">
@@ -808,7 +703,7 @@ function HomeContent() {
             </div>
           </div>
 
-          {/* Right Column - Legal & Support */}
+          {/* Legal & Support Column */}
           <div>
             <h3 className="text-lg font-bold text-gray-900 mb-4">Legal & Support</h3>
             <div className="space-y-2">
@@ -824,15 +719,11 @@ function HomeContent() {
         {/* Bottom Section */}
         <div className="border-t border-gray-200 pt-6">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex items-center space-x-6 text-sm text-gray-500">
-              <div className="flex items-center space-x-2">
-                <span>⚡</span>
-                <span>Estimates generated using NREL PVWatts® v8</span>
-              </div>
-              <div className="flex items-center space-x-2">
-                <span>📍</span>
-                <span>Mapping & location data © Google</span>
-              </div>
+            <div className="text-sm text-gray-500">
+              Estimates generated using NREL PVWatts® v8
+            </div>
+            <div className="text-sm text-gray-500">
+              Mapping & location data © Google
             </div>
             <div className="text-sm text-gray-500">
               Powered by <span className="text-blue-600 font-medium">Sunspire</span>

@@ -5,6 +5,12 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Fast Check: Disable transitions/animations for stability */
+[data-testid="footer"] * { 
+  transition: none !important; 
+  animation: none !important; 
+}
+
 :root {
   /* Brand gradient system */
   --brand: #ff7a00; /* fallback */
