@@ -55,33 +55,52 @@ test('Current visual requirements check', async ({ page }) => {
     throw new Error('Footer element with data-testid="footer" not found on page');
   }
   
-  // Check Quick Links is centered horizontally
-  const quickLinksColumn = footer.locator('.grid.min-w-0.grid-cols-1.gap-10.md\\:grid-cols-3 > div').nth(1);
-  const quickLinksClass = await quickLinksColumn.getAttribute('class');
-  console.log('Quick Links column classes:', quickLinksClass);
-  
-  const quickLinksCentered = quickLinksClass?.includes('text-center');
-  console.log('✅ Quick Links is centered horizontally:', quickLinksCentered);
-  expect(quickLinksCentered).toBe(true);
+        // Check Quick Links column is fully centered
+        const quickLinksColumn = footer.locator('.grid.grid-cols-1.md\\:grid-cols-3 > div').nth(1);
+        const quickLinksClass = await quickLinksColumn.getAttribute('class');
+        console.log('Quick Links column classes:', quickLinksClass);
+
+        const isFullyCentered = quickLinksClass?.includes('flex flex-col items-center text-center');
+        console.log('✅ Quick Links is fully centered horizontally in footer block:', isFullyCentered);
+        expect(isFullyCentered).toBe(true);
   
   // Check if "Powered by Sunspire" is centered in the bottom row
-  const poweredByContainer = footer.locator('.min-w-0.break-words.text-center').filter({ hasText: 'Powered by Sunspire' });
+  const poweredByContainer = footer.locator('.flex-1.flex.justify-center').filter({ hasText: 'Powered by Sunspire' });
   const poweredByExists = await poweredByContainer.count() > 0;
   console.log('Powered by Sunspire container exists:', poweredByExists);
-  
+
   if (poweredByExists) {
     const poweredByClass = await poweredByContainer.getAttribute('class');
     console.log('Powered by Sunspire container classes:', poweredByClass);
-    
-    const isCentered = poweredByClass?.includes('text-center');
+
+    const isCentered = poweredByClass?.includes('justify-center');
     console.log('✅ Powered by Sunspire is centered horizontally:', isCentered);
     expect(isCentered).toBe(true);
   } else {
     throw new Error('Powered by Sunspire container not found in footer bottom row');
   }
+
+  // Check if Sunspire text has company color
+  const sunspireText = footer.locator('span.font-medium').filter({ hasText: 'Sunspire' });
+  const sunspireTextExists = await sunspireText.count() > 0;
+  console.log('Sunspire text exists:', sunspireTextExists);
+
+  if (sunspireTextExists) {
+    const sunspireColor = await sunspireText.evaluate(el => {
+      const computedStyle = window.getComputedStyle(el);
+      return computedStyle.color;
+    });
+    console.log('Sunspire text color:', sunspireColor);
+    
+    const hasCompanyColor = sunspireColor.includes('rgb(0, 113, 227)') || sunspireColor.includes('#0071E3');
+    console.log('✅ Sunspire text has company color:', hasCompanyColor);
+    expect(hasCompanyColor).toBe(true);
+  } else {
+    throw new Error('Sunspire text not found in footer');
+  }
   
   // 3. CHECK FOOTER CONTENT LENGTH BALANCE
-  const leftContent = await footer.locator('text=Solar estimates generated using NREL PVWatts® v8').textContent();
+  const leftContent = await footer.locator('text=Estimates generated using NREL PVWatts® v8').textContent();
   const rightContent = await footer.locator('text=Mapping & location data © Google').textContent();
   
   console.log('Left content length:', leftContent?.length);
@@ -93,7 +112,12 @@ test('Current visual requirements check', async ({ page }) => {
   
   console.log('🎉 ALL CURRENT REQUIREMENTS VERIFIED!');
   console.log('   - KPI band has white to company color gradient');
-  console.log('   - Quick Links is centered horizontally in footer');
+  console.log('   - Quick Links is fully centered horizontally in footer block');
   console.log('   - Powered by Sunspire is centered horizontally in footer');
-  console.log('   - Footer content is balanced for proper centering');
+  console.log('   - Sunspire text has company color (not a link)');
+  console.log('   - Footer has proper left, center, right alignment');
+  
+  // Keep browser open for 30 seconds to view the beautiful footer
+  console.log('🕐 Keeping browser open for 30 seconds to view the beautiful footer...');
+  await page.waitForTimeout(30000);
 });
