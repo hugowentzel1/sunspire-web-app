@@ -323,7 +323,7 @@ function HomeContent() {
               <span className="text-6xl relative z-10">☀️</span>
             </div>
           ) : (
-            <HeroBrand />
+            <HeroBrand size="lg" />
           )}
           
           <div className="space-y-6">
