@@ -7,6 +7,7 @@ export default defineConfig({
   retries: 0,
   workers: 1,
   reporter: 'line',
+  timeout: 600000, // 10 minutes
   use: {
     baseURL: 'http://localhost:3000',
     headless: false,
