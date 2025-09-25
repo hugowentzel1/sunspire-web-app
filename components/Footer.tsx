@@ -1,98 +1,107 @@
-'use client';
+// components/Footer.tsx
+import Link from "next/link";
 
-import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+function Badge({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="inline-flex items-center rounded-full bg-slate-100 text-slate-700 ring-1 ring-slate-200 px-3 py-1 text-xs font-medium leading-none">
+      {children}
+    </span>
+  );
+}
 
 export default function Footer() {
-  const b = useBrandTakeover();
-  const brand = b.brand || 'Apple';
-
   return (
-    <footer className="bg-gray-50 py-12" data-testid="footer">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main footer content in rounded card */}
-        <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200/50">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-20">
-            {/* Column 1: Company Info */}
-            <div className="space-y-4">
-              <h3 className="text-lg font-bold text-gray-900">Sunspire Solar Intelligence</h3>
-              <p className="text-sm text-gray-600">Demo for {brand} — Powered by Sunspire</p>
-              
-              {/* Address with emoji */}
-              <div className="flex items-start space-x-2">
-                <span className="text-gray-500 mt-0.5">📍</span>
-                <span className="text-sm text-gray-600">1700 Northside Drive Suite A7 #5164 Atlanta, GA 30318</span>
-              </div>
-              
-              {/* Compliance chips */}
-              <div className="flex flex-wrap gap-2">
-                <span className="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full font-medium">GDPR</span>
-                <span className="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full font-medium">CCPA</span>
-                <span className="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full font-medium">SOC 2</span>
-              </div>
-              
-              {/* Email addresses with emoji */}
-              <div className="space-y-1">
-                <div className="flex items-center space-x-2">
-                  <span className="text-gray-500">✉️</span>
-                  <span className="text-sm text-gray-600">support@getsunspire.com</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <span className="text-gray-500">✉️</span>
-                  <span className="text-sm text-gray-600">billing@getsunspire.com</span>
+    <footer className="border-t bg-slate-50 text-slate-800" data-testid="footer">
+      <div className="mx-auto max-w-6xl px-6 py-12">
+        {/* Top: 3-column grid */}
+        <div className="grid min-w-0 grid-cols-1 gap-10 md:grid-cols-3 md:gap-14">
+          {/* Left column */}
+          <div className="min-w-0 break-words">
+            <h3 className="text-2xl font-semibold tracking-tight">Sunspire Solar Intelligence</h3>
+            <p className="mt-2 text-sm text-slate-600">Demo for Apple — Powered by Sunspire</p>
+
+            <div className="mt-4 space-y-3 text-sm leading-relaxed">
+              <div className="flex items-start gap-3">
+                <span className="mt-0.5">📍</span>
+                <div className="min-w-0">
+                  1700 Northside Drive Suite A7 #5164<br />Atlanta, GA 30318
                 </div>
               </div>
-              
-              {/* Phone with emoji */}
-              <div className="flex items-center space-x-2">
-                <span className="text-gray-500">☎️</span>
-                <span className="text-sm text-gray-600">+1 (404) 123-4567</span>
-              </div>
-            </div>
 
-            {/* Column 2: Quick Links */}
-            <div className="text-center">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">Quick Links</h3>
-              <div className="space-y-2">
-                <a href="/pricing" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200">Pricing</a>
-                <a href="/partners" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200">Partners</a>
-                <a href="/support" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200">Support</a>
+              {/* Compliance badges (wrap safely) */}
+              <div className="flex flex-wrap gap-2 pt-1">
+                <Badge>GDPR</Badge>
+                <Badge>CCPA</Badge>
+                <Badge>SOC 2</Badge>
               </div>
-            </div>
 
-            {/* Column 3: Legal & Support */}
-            <div className="text-right">
-              <h3 className="text-lg font-bold text-gray-900 mb-4">Legal & Support</h3>
-              <div className="space-y-2">
-                <a href="/privacy" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200">Privacy Policy</a>
-                <a href="/terms" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200">Terms of Service</a>
-                <a href="/security" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200">Security</a>
-                <a href="/dpa" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200">DPA</a>
-                <a href="/do-not-sell" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200">Do Not Sell My Data</a>
-              </div>
+              {/* Contacts */}
+              <ul className="mt-2 space-y-2">
+                <li className="flex items-start gap-3">
+                  <span className="mt-0.5">✉️</span>
+                  <a href="mailto:support@getsunspire.com" className="underline-offset-2 hover:underline">
+                    support@getsunspire.com
+                  </a>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="mt-0.5">✉️</span>
+                  <a href="mailto:billing@getsunspire.com" className="underline-offset-2 hover:underline">
+                    billing@getsunspire.com
+                  </a>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="mt-0.5">☎️</span>
+                  <a href="tel:+14041234567" className="underline-offset-2 hover:underline">
+                    +1 (404) 123-4567
+                  </a>
+                </li>
+              </ul>
             </div>
           </div>
 
-          {/* Hairline divider */}
-          <div className="border-t border-gray-200 mt-8 pt-6">
-            <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <div className="flex items-center space-x-3 text-sm text-gray-500 text-center md:text-left">
-                <span>⚡</span>
-                <div>
-                  <div>Solar estimates generated</div>
-                  <div>using NREL PVWatts® v8</div>
-                </div>
-              </div>
-              <div className="text-sm text-gray-500 text-center flex-1 flex justify-center items-center">
-                <span>Powered by <a href="#" className="text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200">Sunspire</a></span>
-              </div>
-              <div className="flex items-center space-x-3 text-sm text-gray-500 text-center md:text-right">
-                <span>🗺️</span>
-                <div>
-                  <div>Mapping & location data</div>
-                  <div>© Google</div>
-                </div>
-              </div>
-            </div>
+          {/* Middle column */}
+          <div className="min-w-0 break-words text-center">
+            <h4 className="text-xl font-semibold">Quick Links</h4>
+            <ul className="mt-4 space-y-3 text-sm">
+              <li><Link href="/pricing" className="hover:underline underline-offset-2">Pricing</Link></li>
+              <li><Link href="/partners" className="hover:underline underline-offset-2">Partners</Link></li>
+              <li><Link href="/support" className="hover:underline underline-offset-2">Support</Link></li>
+            </ul>
+          </div>
+
+          {/* Right column */}
+          <div className="min-w-0 break-words">
+            <h4 className="text-xl font-semibold">Legal &amp; Support</h4>
+            <ul className="mt-4 space-y-3 text-sm">
+              <li><Link href="/privacy" className="hover:underline underline-offset-2">Privacy Policy</Link></li>
+              <li><Link href="/terms" className="hover:underline underline-offset-2">Terms of Service</Link></li>
+              <li><Link href="/security" className="hover:underline underline-offset-2">Security</Link></li>
+              <li><Link href="/dpa" className="hover:underline underline-offset-2">DPA</Link></li>
+              <li><Link href="/do-not-sell" className="hover:underline underline-offset-2">Do Not Sell My Data</Link></li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Divider */}
+        <hr className="my-10 border-slate-200" />
+
+        {/* Bottom bar: left / middle / right, wraps cleanly on mobile */}
+        <div className="flex flex-col gap-4 text-sm text-slate-600 md:flex-row md:items-center md:justify-between">
+          <div className="min-w-0 break-words flex items-center gap-2">
+            <span>⚡</span>
+            <span>Solar estimates generated using NREL PVWatts® v8</span>
+          </div>
+
+          <div className="min-w-0 break-words text-center">
+            Powered by{" "}
+            <Link href="/" className="font-medium text-slate-800 underline-offset-2 hover:underline">
+              Sunspire
+            </Link>
+          </div>
+
+          <div className="min-w-0 break-words flex items-center gap-2 justify-start md:justify-end">
+            <span>🗺️</span>
+            <span>Mapping &amp; location data © Google</span>
           </div>
         </div>
       </div>

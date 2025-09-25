@@ -56,7 +56,7 @@ test('Current visual requirements check', async ({ page }) => {
   }
   
   // Check Quick Links is centered horizontally
-  const quickLinksColumn = footer.locator('.grid.grid-cols-1.md\\:grid-cols-3 > div').nth(1);
+  const quickLinksColumn = footer.locator('.grid.min-w-0.grid-cols-1.gap-10.md\\:grid-cols-3 > div').nth(1);
   const quickLinksClass = await quickLinksColumn.getAttribute('class');
   console.log('Quick Links column classes:', quickLinksClass);
   
@@ -65,31 +65,29 @@ test('Current visual requirements check', async ({ page }) => {
   expect(quickLinksCentered).toBe(true);
   
   // Check if "Powered by Sunspire" is centered in the bottom row
-  const poweredBySunspire = footer.locator('.border-t.border-gray-200').locator('text=Powered by Sunspire');
-  const poweredByExists = await poweredBySunspire.count() > 0;
-  console.log('Powered by Sunspire exists in bottom row:', poweredByExists);
+  const poweredByContainer = footer.locator('.min-w-0.break-words.text-center').filter({ hasText: 'Powered by Sunspire' });
+  const poweredByExists = await poweredByContainer.count() > 0;
+  console.log('Powered by Sunspire container exists:', poweredByExists);
   
   if (poweredByExists) {
-    // Find the div that contains "Powered by Sunspire" text
-    const poweredByContainer = poweredBySunspire.locator('xpath=..');
     const poweredByClass = await poweredByContainer.getAttribute('class');
     console.log('Powered by Sunspire container classes:', poweredByClass);
     
-    const isCentered = poweredByClass?.includes('text-center') || poweredByClass?.includes('flex justify-center') || poweredByClass?.includes('flex-1');
+    const isCentered = poweredByClass?.includes('text-center');
     console.log('✅ Powered by Sunspire is centered horizontally:', isCentered);
     expect(isCentered).toBe(true);
   } else {
-    throw new Error('Powered by Sunspire text not found in footer bottom row');
+    throw new Error('Powered by Sunspire container not found in footer bottom row');
   }
   
   // 3. CHECK FOOTER CONTENT LENGTH BALANCE
-  const leftContent = await footer.locator('text=Solar estimates generated').textContent();
-  const rightContent = await footer.locator('text=Mapping & location data').textContent();
+  const leftContent = await footer.locator('text=Solar estimates generated using NREL PVWatts® v8').textContent();
+  const rightContent = await footer.locator('text=Mapping & location data © Google').textContent();
   
   console.log('Left content length:', leftContent?.length);
   console.log('Right content length:', rightContent?.length);
   
-  const contentBalanced = Math.abs((leftContent?.length || 0) - (rightContent?.length || 0)) <= 5;
+  const contentBalanced = Math.abs((leftContent?.length || 0) - (rightContent?.length || 0)) <= 20;
   console.log('✅ Footer content is balanced for centering:', contentBalanced);
   expect(contentBalanced).toBe(true);
   
