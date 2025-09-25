@@ -82,8 +82,8 @@ export default function Footer() {
                   <div>using NREL PVWatts® v8</div>
                 </div>
               </div>
-              <div className="text-sm text-gray-500 text-center flex-1 flex justify-center">
-                Powered by <a href="#" className="text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200">Sunspire</a>
+              <div className="text-sm text-gray-500 text-center flex-1 flex justify-center items-center">
+                <span>Powered by <a href="#" className="text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200">Sunspire</a></span>
               </div>
               <div className="flex items-center space-x-2 text-sm text-gray-500 text-center md:text-right">
                 <span>🗺️</span>

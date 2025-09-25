@@ -83,8 +83,8 @@ test('Current visual requirements check', async ({ page }) => {
   }
   
   // 3. CHECK FOOTER CONTENT LENGTH BALANCE
-  const leftContent = await footer.locator('text=Solar estimates generated using NREL PVWatts® v8').textContent();
-  const rightContent = await footer.locator('text=Mapping & location data © Google').textContent();
+  const leftContent = await footer.locator('text=Solar estimates generated').textContent();
+  const rightContent = await footer.locator('text=Mapping & location data').textContent();
   
   console.log('Left content length:', leftContent?.length);
   console.log('Right content length:', rightContent?.length);
