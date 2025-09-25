@@ -85,7 +85,7 @@ export default function Footer() {
                   <span>Mapping & location data © Google</span>
                 </div>
               </div>
-              <div className="text-sm text-gray-500">
+              <div className="text-sm text-gray-500 text-right">
                 Powered by <a href="#" className="text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200">Sunspire</a>
               </div>
             </div>
