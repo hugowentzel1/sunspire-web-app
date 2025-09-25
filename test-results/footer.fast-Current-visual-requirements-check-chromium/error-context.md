@@ -192,20 +192,24 @@
         - generic [ref=e198]:
           - generic [ref=e199]:
             - generic [ref=e200]: ⚡
-            - generic [ref=e201]: Solar estimates generated using NREL PVWatts® v8
-          - generic [ref=e202]:
-            - text: Powered by
-            - link "Sunspire" [ref=e203] [cursor=pointer]:
-              - /url: "#"
+            - generic [ref=e201]:
+              - generic [ref=e202]: Solar estimates generated
+              - generic [ref=e203]: using NREL PVWatts® v8
           - generic [ref=e204]:
-            - generic [ref=e205]: 🗺️
-            - generic [ref=e206]: Mapping & location data © Google
-  - alert [ref=e207]
-  - generic [ref=e210]:
-    - generic [ref=e211]:
-      - heading "We use cookies to improve your experience" [level=3] [ref=e212]
-      - paragraph [ref=e213]: We use cookies and similar technologies to analyze site usage, personalize content, and provide social media features. By continuing to use our site, you consent to our use of cookies.
-    - generic [ref=e214]:
-      - button "Decline" [ref=e215] [cursor=pointer]
-      - button "Accept All" [ref=e216] [cursor=pointer]
+            - text: Powered by
+            - link "Sunspire" [ref=e205] [cursor=pointer]:
+              - /url: "#"
+          - generic [ref=e206]:
+            - generic [ref=e207]: 🗺️
+            - generic [ref=e208]:
+              - generic [ref=e209]: Mapping & location data
+              - generic [ref=e210]: © Google
+  - alert [ref=e211]
+  - generic [ref=e214]:
+    - generic [ref=e215]:
+      - heading "We use cookies to improve your experience" [level=3] [ref=e216]
+      - paragraph [ref=e217]: We use cookies and similar technologies to analyze site usage, personalize content, and provide social media features. By continuing to use our site, you consent to our use of cookies.
+    - generic [ref=e218]:
+      - button "Decline" [ref=e219] [cursor=pointer]
+      - button "Accept All" [ref=e220] [cursor=pointer]
 ```
