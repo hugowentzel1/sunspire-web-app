@@ -75,18 +75,16 @@ export default function Footer() {
           {/* Hairline divider */}
           <div className="border-t border-gray-200 mt-8 pt-6">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-16 text-sm text-gray-500">
-                <div className="flex items-center space-x-2">
-                  <span>⚡</span>
-                  <span>Estimates generated using NREL PVWatts® v8</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <span>🗺️</span>
-                  <span>Mapping & location data © Google</span>
-                </div>
+              <div className="flex items-center space-x-2 text-sm text-gray-500">
+                <span>⚡</span>
+                <span>Estimates generated using NREL PVWatts® v8</span>
               </div>
-              <div className="text-sm text-gray-500 text-right">
+              <div className="text-sm text-gray-500 text-center">
                 Powered by <a href="#" className="text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200">Sunspire</a>
+              </div>
+              <div className="flex items-center space-x-2 text-sm text-gray-500 text-right">
+                <span>🗺️</span>
+                <span>Mapping & location data © Google</span>
               </div>
             </div>
           </div>
