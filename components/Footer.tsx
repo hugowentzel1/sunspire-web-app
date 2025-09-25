@@ -49,8 +49,8 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Column 2: Quick Links */}
-            <div className="text-center">
+            {/* Column 2: Quick Links - Centered in footer box */}
+            <div className="flex flex-col items-center justify-center text-center">
               <h3 className="text-lg font-bold text-gray-900 mb-4">Quick Links</h3>
               <div className="space-y-2">
                 <a href="/pricing" className="block text-sm text-gray-600 hover:text-gray-900 transition-colors duration-200">Pricing</a>
@@ -79,8 +79,10 @@ export default function Footer() {
                 <span>⚡</span>
                 <span>Estimates generated using NREL PVWatts® v8</span>
               </div>
-              <div className="text-sm text-gray-500 text-center">
-                Powered by <a href="#" className="text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200">Sunspire</a>
+              <div className="flex-1 flex justify-center">
+                <div className="text-sm text-gray-500 text-center">
+                  Powered by <a href="#" className="text-blue-600 hover:text-blue-800 font-medium transition-colors duration-200">Sunspire</a>
+                </div>
               </div>
               <div className="flex items-center space-x-2 text-sm text-gray-500 text-right">
                 <span>🗺️</span>
