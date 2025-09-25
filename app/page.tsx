@@ -464,8 +464,8 @@ function HomeContent() {
           </div>
 
           {/* KPI Band - Single band only */}
-          <div className="py-16 bg-gradient-to-br from-white via-white to-[var(--brand-primary)]/25 relative">
-            <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/40 to-[var(--brand-primary)]/25 opacity-100"></div>
+          <div className="py-16 bg-gradient-to-br from-white via-white to-[var(--brand-primary)]/40 relative">
+            <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/60 to-[var(--brand-primary)]/40 opacity-100"></div>
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
               <div className="grid grid-cols-3 gap-12 text-center">
                 <div className="group">
