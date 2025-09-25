@@ -464,7 +464,7 @@ function HomeContent() {
           </div>
 
           {/* KPI Band - Single band only */}
-          <div className="py-16 brand-gradient">
+          <div className="py-16" style={{ background: 'linear-gradient(135deg, var(--brand-primary), var(--brand-primary)CC)' }}>
             <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="grid grid-cols-3 gap-12 text-center">
                 <div className="group">
