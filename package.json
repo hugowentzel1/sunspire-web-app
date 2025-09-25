@@ -14,6 +14,7 @@
     "test:debug": "playwright test --debug",
     "test:e2e:prod": "playwright test tests/legal.spec.ts",
     "test:e2e:live": "cross-env NEXT_PUBLIC_E2E=1 playwright test tests/e2e.live.sunspire.spec.ts",
+    "fast:check": "npx playwright test tests/footer.fast.spec.ts --project=chromium --headed --reporter=line",
     "prune:unused": "node scripts/prune-unused.js",
     "prune:unused:delete": "node scripts/prune-unused.js --delete"
   },
@@ -46,7 +47,7 @@
     "zod": "^4.1.3"
   },
   "devDependencies": {
-    "@playwright/test": "^1.55.0",
+    "@playwright/test": "^1.55.1",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^20",
     "@types/react": "^18",

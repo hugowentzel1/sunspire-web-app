@@ -5,7 +5,7 @@
   - generic [ref=e2]:
     - generic [ref=e3]:
       - strong [ref=e4]: Exclusive preview built for Apple
-      - generic [ref=e5]: Exclusive preview — expires in 6:23:59:59
+      - generic [ref=e5]: Exclusive preview — expires in 6:23:59:55
       - generic [ref=e6]: "Runs left: 2"
     - generic [ref=e7]:
       - button "Launch on Apple" [ref=e8] [cursor=pointer]
@@ -64,7 +64,7 @@
                 - img [ref=e63]
             - generic [ref=e65]:
               - paragraph [ref=e66]: "Preview: 2 runs left."
-              - paragraph [ref=e67]: Expires in 6d 23h 59m 59s
+              - paragraph [ref=e67]: Expires in 6d 23h 59m 55s
         - generic [ref=e69]:
           - generic [ref=e70]:
             - paragraph [ref=e71]: “Cut quoting time from 15 minutes to 1 minute — we now respond faster than local competitors.”
