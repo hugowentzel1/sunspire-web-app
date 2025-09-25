@@ -328,8 +328,6 @@ function HomeContent() {
           
           <div className="space-y-6">
             <div className="space-y-6">
-              {/* Eyebrow */}
-              <p className="text-sm text-gray-500 font-medium">Private demo — not affiliated.</p>
               
               <h1 className="text-5xl md:text-7xl font-black text-gray-900 leading-tight">
                 Your Branded Solar Quote Tool — Ready to Launch

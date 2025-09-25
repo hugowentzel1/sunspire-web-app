@@ -26,6 +26,9 @@ test('footer is ≥120px and visually ok', async ({ page }) => {
   // Take a full page screenshot to see what's loading
   await page.screenshot({ path: 'debug-page.png', fullPage: true });
   
+  // Take a screenshot of just the footer
+  await page.screenshot({ path: 'footer-debug.png', fullPage: false });
+  
   // Check if footer exists
   const footerExists = await page.locator('[data-testid="footer"]').count() > 0;
   console.log('Footer exists:', footerExists);
