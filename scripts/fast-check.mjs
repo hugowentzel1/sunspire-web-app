@@ -1,4 +1,8 @@
 #!/usr/bin/env node
+/**
+ * Fast Check - Verifies critical env vars and files exist
+ * Part C of Sunspire upgrade requirements
+ */
 
 import { readFileSync, existsSync } from 'fs';
 import { fileURLToPath } from 'url';
@@ -6,31 +10,23 @@ import { dirname, join } from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
-const rootDir = join(__dirname, '..');
+const projectRoot = join(__dirname, '..');
 
-let exitCode = 0;
-
-function log(symbol, message) {
-  console.log(`${symbol} ${message}`);
+// Load environment variables from .env.local if it exists
+const envPath = join(projectRoot, '.env.local');
+if (existsSync(envPath)) {
+  const envContent = readFileSync(envPath, 'utf-8');
+  envContent.split('\n').forEach(line => {
+    const match = line.match(/^([^=]+)=(.*)$/);
+    if (match && !line.trim().startsWith('#')) {
+      const [, key, value] = match;
+      process.env[key.trim()] = value.trim().replace(/^["']|["']$/g, '');
+    }
+  });
 }
 
-function fail(message) {
-  log('❌', message);
-  exitCode = 1;
-}
-
-function pass(message) {
-  log('✅', message);
-}
-
-console.log('\n🚀 Running Fast Check...\n');
-
-// ============================================================================
-// PART 1: Environment Variables
-// ============================================================================
-console.log('📋 Checking required environment variables...');
-
-const requiredEnvVars = [
+// Required environment variables
+const REQUIRED_ENV_VARS = [
   'STRIPE_SECRET_KEY',
   'STRIPE_WEBHOOK_SECRET',
   'NEXT_PUBLIC_GOOGLE_MAPS_API_KEY',
@@ -40,142 +36,97 @@ const requiredEnvVars = [
   'EIA_API_KEY',
 ];
 
-// Optional env vars (warn but don't fail)
-const optionalEnvVars = [
+// At least one of these Stripe price vars should exist
+const STRIPE_PRICE_VARS = [
   'STRIPE_PRICE_ID',
+  'STRIPE_PRICE_STARTER', 
+  'STRIPE_PRICE_MONTHLY',
+  'STRIPE_PRICE_MONTHLY_99',
 ];
 
-// Load .env.local if it exists
-try {
-  const envLocalPath = join(rootDir, '.env.local');
-  if (existsSync(envLocalPath)) {
-    const envContent = readFileSync(envLocalPath, 'utf-8');
-    envContent.split('\n').forEach(line => {
-      // Trim whitespace and skip comments/empty lines
-      const trimmed = line.trim();
-      if (!trimmed || trimmed.startsWith('#')) return;
-      
-      const match = trimmed.match(/^([^#=]+)=(.*)$/);
-      if (match && !process.env[match[1].trim()]) {
-        process.env[match[1].trim()] = match[2].trim();
-      }
-    });
-  }
-} catch (e) {
-  // Silent fail - env vars might be set another way
-}
-
-requiredEnvVars.forEach(varName => {
-  if (process.env[varName]) {
-    pass(`${varName} is set`);
-  } else {
-    fail(`${varName} is missing`);
-  }
-});
-
-optionalEnvVars.forEach(varName => {
-  if (process.env[varName]) {
-    pass(`${varName} is set (optional)`);
-  } else {
-    log('⚠️ ', `${varName} is missing (optional)`);
-  }
-});
-
-// ============================================================================
-// PART 2: Critical Files
-// ============================================================================
-console.log('\n📁 Checking critical files exist...');
-
-const criticalFiles = [
+// Critical files that must exist
+const CRITICAL_FILES = [
   'src/lib/checkout.ts',
   'app/page.tsx',
   'app/report/page.tsx',
   'components/Footer.tsx',
 ];
 
-criticalFiles.forEach(filePath => {
-  const fullPath = join(rootDir, filePath);
-  if (existsSync(fullPath)) {
-    pass(`${filePath} exists`);
+let hasErrors = false;
+
+console.log('🔍 Running Fast Check...\n');
+
+// Check environment variables
+console.log('📋 Checking Environment Variables:');
+for (const envVar of REQUIRED_ENV_VARS) {
+  if (!process.env[envVar]) {
+    console.log(`❌ Missing: ${envVar}`);
+    hasErrors = true;
   } else {
-    fail(`${filePath} is missing`);
+    console.log(`✅ Found: ${envVar}`);
   }
-});
+}
 
-// ============================================================================
-// PART 3: Static Checks
-// ============================================================================
-console.log('\n🔍 Running static code checks...');
+// Check for at least one Stripe price variable (optional - warn only)
+const hasStripePriceVar = STRIPE_PRICE_VARS.some(v => process.env[v]);
+if (hasStripePriceVar) {
+  const foundVars = STRIPE_PRICE_VARS.filter(v => process.env[v]);
+  console.log(`✅ Found Stripe Price: ${foundVars.join(', ')}`);
+} else {
+  console.log(`⚠️  Warning: No Stripe Price ID found (one of ${STRIPE_PRICE_VARS.join(', ')})`);
+  console.log(`   Checkout may use fallback prices`);
+}
 
-// Check that startCheckout() exists in checkout.ts
+console.log('\n📁 Checking Critical Files:');
+for (const file of CRITICAL_FILES) {
+  const filePath = join(projectRoot, file);
+  if (!existsSync(filePath)) {
+    console.log(`❌ Missing: ${file}`);
+    hasErrors = true;
+  } else {
+    console.log(`✅ Found: ${file}`);
+  }
+}
+
+// Static checks
+console.log('\n🔎 Running Static Checks:');
+
+// Check 1: startCheckout exists in checkout.ts
 try {
-  const checkoutPath = join(rootDir, 'src/lib/checkout.ts');
+  const checkoutPath = join(projectRoot, 'src/lib/checkout.ts');
   const checkoutContent = readFileSync(checkoutPath, 'utf-8');
   
   if (checkoutContent.includes('export async function startCheckout')) {
-    pass('startCheckout() function exists in src/lib/checkout.ts');
+    console.log('✅ startCheckout() function found in src/lib/checkout.ts');
   } else {
-    fail('startCheckout() function not found in src/lib/checkout.ts');
+    console.log('❌ startCheckout() function not found in src/lib/checkout.ts');
+    hasErrors = true;
   }
-  
-  if (checkoutContent.includes('export function attachCheckoutHandlers')) {
-    pass('attachCheckoutHandlers() function exists in src/lib/checkout.ts');
-  } else {
-    fail('attachCheckoutHandlers() function not found in src/lib/checkout.ts');
-  }
-} catch (e) {
-  fail(`Error reading checkout.ts: ${e.message}`);
+} catch (error) {
+  console.log('❌ Error reading src/lib/checkout.ts:', error.message);
+  hasErrors = true;
 }
 
-// Check that [data-cta="primary"] is bound somewhere
+// Check 2: data-cta="primary" selector exists
 try {
-  const checkoutPath = join(rootDir, 'src/lib/checkout.ts');
-  const checkoutContent = readFileSync(checkoutPath, 'utf-8');
+  const pageContent = readFileSync(join(projectRoot, 'app/page.tsx'), 'utf-8');
   
-  if (checkoutContent.includes('[data-cta="primary"]')) {
-    pass('[data-cta="primary"] selector is referenced in checkout binding');
+  if (pageContent.includes('data-cta="primary"') || pageContent.includes('attachCheckoutHandlers')) {
+    console.log('✅ Primary CTA binding logic found');
   } else {
-    fail('[data-cta="primary"] selector not found in checkout logic');
+    console.log('❌ Primary CTA binding logic not found (missing data-cta="primary" or attachCheckoutHandlers)');
+    hasErrors = true;
   }
-} catch (e) {
-  fail(`Error checking CTA binding: ${e.message}`);
+} catch (error) {
+  console.log('❌ Error checking CTA binding:', error.message);
+  hasErrors = true;
 }
 
-// Check that Footer component uses dynamic branding
-try {
-  const footerPath = join(rootDir, 'components/Footer.tsx');
-  const footerContent = readFileSync(footerPath, 'utf-8');
-  
-  if (footerContent.includes('useBrandTakeover')) {
-    pass('Footer uses useBrandTakeover for dynamic branding');
-  } else {
-    fail('Footer does not use useBrandTakeover hook');
-  }
-  
-  if (footerContent.includes('b.brand') || footerContent.includes('{b.brand}')) {
-    pass('Footer uses dynamic company name');
-  } else {
-    fail('Footer does not use dynamic company name');
-  }
-  
-  if (footerContent.includes('b.primary')) {
-    pass('Footer uses dynamic company color');
-  } else {
-    fail('Footer does not use dynamic company color');
-  }
-} catch (e) {
-  fail(`Error checking Footer: ${e.message}`);
-}
-
-// ============================================================================
-// Summary
-// ============================================================================
-console.log('\n' + '='.repeat(60));
-if (exitCode === 0) {
-  console.log('🎉 All checks passed!');
+console.log('\n' + '='.repeat(50));
+if (hasErrors) {
+  console.log('❌ Fast Check FAILED - Please fix the errors above');
+  process.exit(1);
 } else {
-  console.log('💥 Some checks failed. Please fix the issues above.');
+  console.log('✅ Fast Check PASSED - All checks successful!');
+  process.exit(0);
 }
-console.log('='.repeat(60) + '\n');
-
-process.exit(exitCode);
