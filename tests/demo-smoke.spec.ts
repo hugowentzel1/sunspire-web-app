@@ -17,6 +17,11 @@ test.describe('@demo-smoke Demo Smoke Tests', () => {
     // Check hero content
     await expect(page.locator('h1').filter({ hasText: 'Your Branded Solar Quote Tool' })).toBeVisible();
     
+    // Check micro testimonial strip
+    const microTestimonial = page.locator('[data-testid="micro-testimonial"]');
+    await expect(microTestimonial).toBeVisible();
+    console.log('✅ Micro testimonial strip visible');
+    
     // Check address input placeholder
     const addressInput = page.locator('input[placeholder*="Start typing"]');
     await expect(addressInput).toBeVisible();

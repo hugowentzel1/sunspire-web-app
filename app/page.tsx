@@ -354,14 +354,16 @@ function HomeContent() {
             </div>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-8 text-sm section-spacing">
-            {/* Tenant trust badges are removed as per edit hint */}
-            {/* {tenant.trustBadges.slice(0, 3).map((badge, index) => ( */}
-            {/*   <div key={index} className="flex items-center space-x-3 bg-white/60 backdrop-blur-sm rounded-2xl px-6 py-3 border border-gray-200/50"> */}
-            {/*     <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div> */}
-            {/*     <span className="font-semibold text-gray-700">{badge}</span> */}
-            {/*   </div> */}
-            {/* ))} */}
+          {/* Micro Testimonial Strip - Single line testimonial */}
+          <div className="max-w-2xl mx-auto mt-8" data-testid="micro-testimonial">
+            <div className="inline-flex items-center gap-3 bg-white/90 backdrop-blur-sm rounded-full px-6 py-3 shadow-sm ring-1 ring-gray-200/50">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white text-xs font-bold">
+                JS
+              </div>
+              <p className="text-sm text-gray-700 italic">
+                &ldquo;Cut quoting time from 15 min to 1 min&rdquo; — Solar Company Owner, CA
+              </p>
+            </div>
           </div>
 
           {/* Address Input Section - Exact match to c548b88 */}
@@ -699,6 +701,23 @@ function HomeContent() {
 
       <Footer />
       
+      {/* Mobile Sticky CTA - Only show on mobile for demo */}
+      {isDemo && (
+        <div 
+          className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 p-4 md:hidden z-50 safe-area-inset-bottom"
+          data-testid="mobile-sticky-cta"
+        >
+          <button
+            onClick={handleLaunchClick}
+            data-cta="primary"
+            className="w-full inline-flex items-center justify-center px-6 py-3 rounded-full text-base font-medium text-white shadow-lg hover:shadow-xl transition-all duration-200"
+            style={{ backgroundColor: 'var(--brand-primary)' }}
+          >
+            <span className="mr-2">⚡</span>
+            Activate on Your Domain — 24 Hours
+          </button>
+        </div>
+      )}
 
     </div>
   );
