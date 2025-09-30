@@ -5,6 +5,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* CTA Button Hover Effects */
+button[data-cta="primary"],
+button[data-cta-button] {
+  transition: all 200ms ease-out;
+}
+
+button[data-cta="primary"]:hover,
+button[data-cta-button]:hover:not(:disabled) {
+  filter: brightness(1.1);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+}
+
 /* Fast Check: Disable transitions/animations for stability */
 [data-testid="footer"] * { 
   transition: none !important; 

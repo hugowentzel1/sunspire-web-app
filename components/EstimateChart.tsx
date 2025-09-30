@@ -25,15 +25,45 @@ interface EstimateChartProps {
   cashflowData: CashflowData[];
   netCostAfterITC: number;
   className?: string;
+  brandColor?: string;
 }
 
 export default function EstimateChart({
   cashflowData,
   netCostAfterITC,
   className = "",
+  brandColor = "#10b981", // Default green
 }: EstimateChartProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Helper function to get color name from hex
+  const getColorName = (hex: string): string => {
+    const colorMap: Record<string, string> = {
+      '#10b981': 'green',
+      '#E50914': 'red',
+      '#CC0000': 'red',
+      '#D21F3C': 'red',
+      '#D71E28': 'red',
+      '#FF0000': 'red',
+      '#0071E3': 'blue',
+      '#1877F2': 'blue',
+      '#4285F4': 'blue',
+      '#00A4EF': 'blue',
+      '#0A66C2': 'blue',
+      '#117ACA': 'blue',
+      '#006AFF': 'blue',
+      '#1DA1F2': 'blue',
+      '#1DB954': 'green',
+      '#FF9900': 'orange',
+      '#FFA63D': 'orange',
+    };
+    
+    const normalized = hex.toUpperCase();
+    return colorMap[normalized] || 'colored';
+  };
+
+  const colorName = getColorName(brandColor);
 
   useEffect(() => {
     // Lazy load the chart
@@ -223,8 +253,8 @@ export default function EstimateChart({
       {/* Simple explanation */}
       <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
         <p className="text-sm text-gray-700">
-          <span className="font-semibold">How to read this:</span> The green
-          area shows your total savings growing over time. After {paybackYear}{" "}
+          <span className="font-semibold">How to read this:</span> The {colorName}
+          {" "}area shows your total savings growing over time. After {paybackYear}{" "}
           years, you&apos;ll have saved enough to cover your initial investment.
           By year 25, you&apos;ll have saved $
           {Math.round(cashflowData[24]?.cumulativeSavings / 1000)}k total.

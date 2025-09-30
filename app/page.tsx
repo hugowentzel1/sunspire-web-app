@@ -340,6 +340,7 @@ function HomeContent() {
               <div className="flex flex-col items-center space-y-4">
                 <button 
                   onClick={handleLaunchClick}
+                  data-cta="primary"
                   data-cta-button
                   className="inline-flex items-center px-8 py-4 rounded-full text-lg font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer" 
                   style={{ backgroundColor: 'var(--brand-primary)' }}
@@ -540,6 +541,7 @@ function HomeContent() {
                 </p>
                 <button 
                   onClick={handleLaunchClick}
+                  data-cta="primary"
                   data-cta-button
                   className="inline-flex items-center px-8 py-4 rounded-full text-lg font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer" 
                   style={{ backgroundColor: 'var(--brand-primary)' }}

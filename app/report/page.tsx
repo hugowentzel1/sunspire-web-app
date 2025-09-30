@@ -821,7 +821,7 @@ function ReportContent() {
           {/* Chart */}
           <div data-testid="savings-chart" className="relative rounded-2xl bg-white p-5 overflow-hidden">
             <div className="relative z-10 min-h-[400px]">
-              <EstimateChart cashflowData={estimate.cashflowProjection} netCostAfterITC={estimate.netCostAfterITC} />
+              <EstimateChart cashflowData={estimate.cashflowProjection} netCostAfterITC={estimate.netCostAfterITC} brandColor={b.primary} />
             </div>
           </div>
 
@@ -965,7 +965,7 @@ function ReportContent() {
                   whileHover={{ scale: 1.05 }} 
                   whileTap={{ scale: 0.95 }}
                 >
-                  Activate on Your Domain — $99/mo + $399
+                  Activate on Your Domain — $99/mo + $399 setup
                 </motion.button>
               </div>
               <div className="mt-8 pt-4 border-t border-white/20">
