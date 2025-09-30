@@ -114,10 +114,10 @@ export default function Footer() {
 
             {/* RIGHT: Google */}
             <div className="flex-1 flex gap-2 justify-end text-right">
+              <span className="flex-shrink-0 mt-0.5">🗺️</span>
               <span className="leading-relaxed">
                 Mapping & location<br />data © Google
               </span>
-              <span className="flex-shrink-0 mt-0.5">🗺️</span>
             </div>
           </div>
         </div>

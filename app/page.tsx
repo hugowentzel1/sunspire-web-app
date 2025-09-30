@@ -375,7 +375,7 @@ function HomeContent() {
           <div className="max-w-2xl mx-auto mt-8" data-testid="micro-testimonial">
             <div className="inline-flex items-center gap-3 bg-white/90 backdrop-blur-sm rounded-full px-6 py-3 shadow-sm ring-1 ring-gray-200/50">
               <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white text-xs font-bold">
-                JS
+                <span className="flex items-center justify-center w-full h-full">JS</span>
               </div>
               <p className="text-sm text-gray-700 italic">
                 &ldquo;Cut quoting time from 15 min to 1 min&rdquo; — Solar Company Owner, CA
