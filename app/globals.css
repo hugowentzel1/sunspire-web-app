@@ -5,12 +5,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* CTA Button Hover Effects with Glossy Shine */
+/* CTA Button Hover Effects with Glossy Shine - Standardized Motion */
 button[data-cta="primary"],
 button[data-cta-button] {
   position: relative;
   overflow: hidden;
-  transition: all 200ms ease-out;
+  transition: all var(--motion-ui, 200ms) var(--ease-standard, cubic-bezier(0.2, 0, 0, 1));
 }
 
 /* Glossy shine overlay */

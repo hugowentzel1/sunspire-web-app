@@ -1,14 +1,22 @@
 /* Motion Tokens - Centralized animation system */
 
 :root {
-  /* Durations */
-  --motion-ui: 150ms;
-  --motion-section: 220ms;
+  /* Standardized Durations - Material Design Standard Ease */
+  --motion-ui: 200ms;
+  --motion-default: 250ms;
+  --motion-enter: 300ms;
+  --motion-exit: 150ms;
   --motion-count: 700ms;
   
-  /* Easing */
-  --ease-out: cubic-bezier(0.22, 0.61, 0.36, 1);
-  --ease-in-out: cubic-bezier(0.45, 0, 0.55, 1);
+  /* Standardized Easing - Material Standard */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-out: cubic-bezier(0.0, 0, 0.2, 1);
+  --ease-in: cubic-bezier(0.4, 0, 1, 1);
+  
+  /* Spring for value tiles */
+  --spring-mass: 1;
+  --spring-stiffness: 170;
+  --spring-damping: 26;
   
   /* Stagger delay */
   --stagger-delay: 40ms;
@@ -29,11 +37,23 @@
   }
 }
 
-/* Fade-in animation */
+/* Fade-in animation - uses standardized easing */
 @keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Entrance animation for sections */
+@keyframes enterSection {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -73,21 +93,25 @@
   }
 }
 
-/* Utility classes */
+/* Utility classes - standardized timing */
 .fade-in {
-  animation: fadeIn var(--motion-section) var(--ease-out) both;
+  animation: fadeIn var(--motion-default) var(--ease-standard) both;
 }
 
 .fade-in-delay-1 {
-  animation: fadeIn var(--motion-section) var(--ease-out) var(--stagger-delay) both;
+  animation: fadeIn var(--motion-default) var(--ease-standard) var(--stagger-delay) both;
 }
 
 .fade-in-delay-2 {
-  animation: fadeIn var(--motion-section) var(--ease-out) calc(var(--stagger-delay) * 2) both;
+  animation: fadeIn var(--motion-default) var(--ease-standard) calc(var(--stagger-delay) * 2) both;
 }
 
 .fade-in-delay-3 {
-  animation: fadeIn var(--motion-section) var(--ease-out) calc(var(--stagger-delay) * 3) both;
+  animation: fadeIn var(--motion-default) var(--ease-standard) calc(var(--stagger-delay) * 3) both;
+}
+
+.enter-section {
+  animation: enterSection var(--motion-enter) var(--ease-standard) both;
 }
 
 .skeleton {
@@ -97,10 +121,32 @@
 }
 
 .hover-lift {
-  transition: transform var(--motion-ui) var(--ease-out), box-shadow var(--motion-ui) var(--ease-out);
+  transition: transform var(--motion-ui) var(--ease-standard), box-shadow var(--motion-ui) var(--ease-standard);
 }
 
 .hover-lift:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Focus-visible for accessibility */
+*:focus-visible {
+  outline: 2px solid var(--brand-primary, #2563EB);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Remove default focus for mouse users */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Progress bar animation for checkout */
+@keyframes progressSlide {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }

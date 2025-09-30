@@ -75,6 +75,12 @@ function HomeContent() {
   // Ensure client-side rendering
   useEffect(() => {
     setIsClient(true);
+    
+    // Restore last typed address for continuity
+    const savedAddress = localStorage.getItem('sunspire-last-address');
+    if (savedAddress && !address) {
+      setAddress(savedAddress);
+    }
   }, []);
 
   // Load trust data
@@ -124,6 +130,9 @@ function HomeContent() {
   const handleAddressSelect = (result: any) => {
     setAddress(result.formattedAddress);
     setSelectedPlace(result);
+    
+    // Save address for state continuity
+    localStorage.setItem('sunspire-last-address', result.formattedAddress);
     
     if (b.enabled && isClient) {
 
@@ -220,12 +229,19 @@ function HomeContent() {
         const utm_source = searchParams.get('utm_source');
         const utm_campaign = searchParams.get('utm_campaign');
         
-        // Show loading state
+        // Show optimistic loading state with micro-feedback
         const button = document.querySelector('[data-cta-button]') as HTMLButtonElement;
         if (button) {
           const originalText = button.textContent;
-          button.textContent = 'Loading...';
+          button.textContent = 'Preparing your branded checkout...';
           button.disabled = true;
+          
+          // Add progress indicator at top
+          const progressBar = document.createElement('div');
+          progressBar.id = 'checkout-progress';
+          progressBar.className = 'fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 z-50';
+          progressBar.style.animation = 'progressSlide 1.5s ease-in-out infinite';
+          document.body.appendChild(progressBar);
           
           // Start checkout
           const response = await fetch('/api/stripe/create-checkout-session', {
