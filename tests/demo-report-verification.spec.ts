@@ -18,7 +18,7 @@ test.describe('Demo Report Page Verification', () => {
     console.log('✅ Countdown timer visible');
 
     // Check for runs left counter
-    const runsLeft = page.locator('text=/Runs left/');
+    const runsLeft = page.locator('text=/2 runs left/');
     await expect(runsLeft).toBeVisible();
     console.log('✅ Runs left counter visible');
 
@@ -33,12 +33,12 @@ test.describe('Demo Report Page Verification', () => {
     console.log('✅ Demo CTA visible');
 
     // Check for company branding
-    const companyName = page.locator('text=Netflix');
+    const companyName = page.locator('h1').filter({ hasText: 'Netflix' });
     await expect(companyName).toBeVisible();
     console.log('✅ Company name (Netflix) visible');
 
     // Check for Sunspire branding in footer
-    const sunspireText = page.locator('[data-testid="footer"]').locator('text=Sunspire');
+    const sunspireText = page.locator('[data-testid="footer"]').locator('span.font-medium').filter({ hasText: 'Sunspire' });
     await expect(sunspireText).toBeVisible();
     console.log('✅ Sunspire branding in footer');
   });
