@@ -6,8 +6,8 @@ import { test, expect } from '@playwright/test';
  * Part D of Sunspire upgrade requirements
  */
 
-const DEMO_URL = 'http://localhost:3001/?company=Netflix&demo=1';
-const PAID_URL = 'http://localhost:3001/paid?company=Apple&brandColor=%23FF0000';
+const DEMO_URL = 'http://localhost:3000/?company=Netflix&demo=1';
+const PAID_URL = 'http://localhost:3000/paid?company=Apple&brandColor=%23FF0000';
 
 test.describe('@demo-smoke Demo Smoke Tests', () => {
   
