@@ -92,12 +92,19 @@ test('Current visual requirements check', async ({ page }) => {
     });
     console.log('Sunspire text color:', sunspireColor);
     
+    // Check for Apple blue color (should be dynamic based on URL)
     const hasCompanyColor = sunspireColor.includes('rgb(0, 113, 227)') || sunspireColor.includes('#0071E3');
     console.log('✅ Sunspire text has company color:', hasCompanyColor);
     expect(hasCompanyColor).toBe(true);
   } else {
     throw new Error('Sunspire text not found in footer');
   }
+
+  // Check if company name is dynamic (should show "Apple" for this URL)
+  const companyNameText = footer.locator('text=Demo for Apple — Powered by Sunspire');
+  const companyNameExists = await companyNameText.count() > 0;
+  console.log('✅ Company name is dynamic (shows Apple):', companyNameExists);
+  expect(companyNameExists).toBe(true);
   
   // 3. CHECK FOOTER CONTENT LENGTH BALANCE
   const leftContent = await footer.locator('text=Estimates generated using NREL PVWatts® v8').textContent();
@@ -114,7 +121,8 @@ test('Current visual requirements check', async ({ page }) => {
   console.log('   - KPI band has white to company color gradient');
   console.log('   - Quick Links is fully centered horizontally in footer block');
   console.log('   - Powered by Sunspire is centered horizontally in footer');
-  console.log('   - Sunspire text has company color (not a link)');
+  console.log('   - Sunspire text has dynamic company color (not a link)');
+  console.log('   - Company name is dynamic based on URL');
   console.log('   - Footer has proper left, center, right alignment');
   
   // Keep browser open for 30 seconds to view the beautiful footer

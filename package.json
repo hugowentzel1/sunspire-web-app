@@ -14,6 +14,8 @@
     "test:debug": "playwright test --debug",
     "test:e2e:prod": "playwright test tests/legal.spec.ts",
     "test:e2e:live": "cross-env NEXT_PUBLIC_E2E=1 playwright test tests/e2e.live.sunspire.spec.ts",
+    "test:smoke": "playwright test -g \"@demo-smoke\" --reporter=list",
+    "fast-check": "node scripts/fast-check.mjs",
     "fast:check": "npx playwright test tests/footer.fast.spec.ts --project=chromium --headed --reporter=line",
     "prune:unused": "node scripts/prune-unused.js",
     "prune:unused:delete": "node scripts/prune-unused.js --delete"

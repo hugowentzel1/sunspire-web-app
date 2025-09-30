@@ -1,5 +1,6 @@
 // components/Footer.tsx
 import Link from "next/link";
+import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 
 function Pill({ children }: { children: React.ReactNode }) {
   return (
@@ -10,6 +11,7 @@ function Pill({ children }: { children: React.ReactNode }) {
 }
 
 export default function Footer() {
+  const b = useBrandTakeover();
   return (
     <footer className="bg-slate-100/60 py-10" data-testid="footer">
       {/* FOOTER CARD (everything lives inside this block) */}
@@ -23,7 +25,7 @@ export default function Footer() {
                 Sunspire Solar Intelligence
               </h3>
               <p className="mt-2 text-sm text-slate-600">
-                Demo for Apple — Powered by Sunspire
+                Demo for {b.brand} — Powered by Sunspire
               </p>
 
               <div className="mt-5 space-y-3 text-sm leading-relaxed text-slate-700">
@@ -102,7 +104,7 @@ export default function Footer() {
             <div className="flex-1 flex justify-center">
               <span>
                 Powered by{" "}
-                <span className="font-medium" style={{ color: 'var(--brand-primary)' }}>
+                <span className="font-medium" style={{ color: b.primary }}>
                   Sunspire
                 </span>
               </span>
