@@ -16,6 +16,7 @@ import { SolarEstimate } from '@/lib/estimate';
 import EstimateChart from '@/components/EstimateChart';
 import { formatDateSafe } from '@/lib/format';
 import LegalFooter from '@/components/legal/LegalFooter';
+import Footer from '@/components/Footer';
 import { IconBadge } from '@/components/ui/IconBadge';
 import UnlockButton from '@/components/UnlockButton';
 import { ResultsAttribution } from '@/components/legal/ResultsAttribution';
@@ -1012,13 +1013,8 @@ function ReportContent() {
       </main>
 
 
-      <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <LegalFooter 
-          hideMarketingLinks={!demoMode} 
-          showPoweredBy={true} 
-          brand={b.enabled ? b.brand : undefined}
-        />
-      </footer>
+      {/* Use consistent Footer component across entire demo site */}
+      <Footer />
 
       {/* Sticky Sidebar for Demo Mode */}
       {demoMode && (
