@@ -1,9 +1,10 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import { useBrandColors } from '@/hooks/useBrandColors';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function PricingPage() {
   const searchParams = useSearchParams();
@@ -45,9 +46,28 @@ export default function PricingPage() {
     }
   };
 
+  // Function to create URLs with preserved parameters
+  const createUrlWithParams = (path: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    return `${path}?${params.toString()}`;
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter">
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        {/* Back to Home Button */}
+        <div className="mb-8">
+          <Link 
+            href={createUrlWithParams('/')}
+            className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors duration-200"
+          >
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Home
+          </Link>
+        </div>
+
         <div className="text-center space-y-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
