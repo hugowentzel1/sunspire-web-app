@@ -91,6 +91,9 @@ function ReportContent() {
   const [pageLoadId] = useState(() => Date.now().toString());
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   
+  // Determine if this is a demo session
+  const isDemo = isDemoFromSearchParams(searchParams);
+  
   // Countdown for demo expiry
   const countdown = useCountdown(b.expireDays || 7);
   
@@ -105,12 +108,19 @@ function ReportContent() {
     setQuotaConsumed(false);
   }, [searchParams]);
   
-  // Update remaining quota
+  // Update remaining quota and consume quota on report view
   useEffect(() => {
     const currentRemaining = read();
     console.log('🔒 Demo quota - read():', currentRemaining);
     setRemaining(currentRemaining);
-  }, [read]);
+    
+    // Consume quota when report page loads (for demo mode)
+    if (isDemo && !quotaConsumed) {
+      console.log('🔒 Demo quota - consuming quota on report view');
+      consume();
+      setQuotaConsumed(true);
+    }
+  }, [read, isDemo, quotaConsumed, consume]);
 
   // Don't reset quota consumed flag - track per URL session
   
