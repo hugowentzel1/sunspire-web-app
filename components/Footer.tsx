@@ -95,8 +95,8 @@ export default function Footer() {
           {/* BOTTOM BAR (inside the same card) */}
           <div className="flex flex-col gap-4 text-sm text-slate-600 md:flex-row md:items-start">
             {/* LEFT: PVWatts */}
-            <div className="flex-1 flex items-start gap-2">
-              <span>⚡</span>
+            <div className="flex-1 flex gap-2">
+              <span className="flex-shrink-0 mt-0.5">⚡</span>
               <span className="leading-relaxed">
                 Estimates generated<br />using NREL PVWatts® v8
               </span>
@@ -113,11 +113,11 @@ export default function Footer() {
             </div>
 
             {/* RIGHT: Google */}
-            <div className="flex-1 flex items-start gap-2 justify-end text-right">
-              <span>🗺️</span>
+            <div className="flex-1 flex gap-2 justify-end text-right">
               <span className="leading-relaxed">
                 Mapping & location<br />data © Google
               </span>
+              <span className="flex-shrink-0 mt-0.5">🗺️</span>
             </div>
           </div>
         </div>
