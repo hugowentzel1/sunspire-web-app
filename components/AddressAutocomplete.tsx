@@ -323,7 +323,7 @@ export default function AddressAutocomplete({
           handleInputFocus();
         }}
         placeholder={placeholder}
-        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
         autoComplete="street-address"
         data-testid={testId}
         id={id}
@@ -341,12 +341,12 @@ export default function AddressAutocomplete({
         <div
           ref={dropdownRef}
           data-autosuggest
-          className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto"
+          className="absolute z-10 w-full mt-1 bg-white border border-gray-300 rounded-md shadow-lg max-h-60 overflow-auto dropdown-animate"
         >
           {predictions.map((prediction, index) => (
             <div
               key={prediction.place_id}
-              className={`px-3 py-2 cursor-pointer hover:bg-gray-100 ${
+              className={`px-3 py-2 cursor-pointer hover:bg-gray-100 transition-colors duration-150 ${
                 index === selectedIndex ? "bg-blue-100" : ""
               }`}
               onClick={() => handleSelect(prediction)}

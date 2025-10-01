@@ -291,7 +291,7 @@ function HomeContent() {
                     data-cta="primary"
                     onClick={handleLaunchClick}
                     data-cta-button
-                    className="inline-flex items-center px-4 py-4 rounded-full text-sm font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer" 
+                    className="inline-flex items-center px-4 py-4 rounded-full text-sm font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer button-press" 
                     style={{ backgroundColor: 'var(--brand-primary)' }}
                   >
                     <span className="mr-2">⚡</span>
@@ -362,7 +362,7 @@ function HomeContent() {
           </div>
 
           {/* Address Input Section - Exact match to c548b88 */}
-          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-3xl mx-auto section-spacing">
+          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-3xl mx-auto section-spacing slide-up-fade">
             <div className="space-y-6">
               <div className="text-center space-y-4">
                 <h2 className="text-2xl font-bold text-gray-900">Enter Your Property Address</h2>
@@ -433,25 +433,25 @@ function HomeContent() {
           {/* Testimonials - Single block with 4 quotes */}
           <div className="max-w-4xl mx-auto py-12">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-lg hover:scale-105 transition-all duration-300 group">
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-lg hover:scale-105 transition-all duration-300 group stagger-item hover-lift">
                 <p className="text-sm text-gray-600 italic mb-3 group-hover:text-gray-800 transition-colors duration-300">
                   &ldquo;Cut quoting time from 15 minutes to 1 minute — we now respond faster than local competitors.&rdquo;
                 </p>
                 <p className="text-xs text-gray-500 font-medium">— Solar Company Owner, 25-employee firm, California</p>
               </div>
-              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-lg hover:scale-105 transition-all duration-300 group">
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-lg hover:scale-105 transition-all duration-300 group stagger-item hover-lift">
                 <p className="text-sm text-gray-600 italic mb-3 group-hover:text-gray-800 transition-colors duration-300">
                   &ldquo;Booked 4 extra consults in week one thanks to branded quotes.&rdquo;
                 </p>
                 <p className="text-xs text-gray-500 font-medium">— Ops Manager, Texas solar installer</p>
               </div>
-              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-lg hover:scale-105 transition-all duration-300 group">
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-lg hover:scale-105 transition-all duration-300 group stagger-item hover-lift">
                 <p className="text-sm text-gray-600 italic mb-3 group-hover:text-gray-800 transition-colors duration-300">
                   &ldquo;Lead conversion grew 40% in our first month using Sunspire.&rdquo;
                 </p>
                 <p className="text-xs text-gray-500 font-medium">— Solar Company Owner, Florida</p>
               </div>
-              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-lg hover:scale-105 transition-all duration-300 group">
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-lg hover:scale-105 transition-all duration-300 group stagger-item hover-lift">
                 <p className="text-sm text-gray-600 italic mb-3 group-hover:text-gray-800 transition-colors duration-300">
                   &ldquo;Investing in Sunspire paid for itself in week two. Customers now trust our estimates instantly.&rdquo;
                 </p>
@@ -497,21 +497,21 @@ function HomeContent() {
 
           {/* Features - Single row of 3 cards with company color gradient shading */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto section-spacing">
-            <div className="relative bg-gradient-to-br from-white via-white to-[var(--brand-primary)]/15 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-2xl hover:scale-105 transition-all duration-500 flex flex-col items-center justify-center group">
+            <div className="relative bg-gradient-to-br from-white via-white to-[var(--brand-primary)]/15 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-2xl hover:scale-105 transition-all duration-500 flex flex-col items-center justify-center group stagger-item hover-lift">
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/40 to-[var(--brand-primary)]/25 rounded-3xl opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10">
                 <div className="text-2xl font-black text-gray-900 mb-3 group-hover:text-[var(--brand-primary)] transition-colors duration-300">NREL PVWatts® v8</div>
                 <div className="text-gray-600 font-semibold leading-relaxed">Industry-standard solar modeling with current utility rates</div>
               </div>
             </div>
-            <div className="relative bg-gradient-to-br from-white via-white to-[var(--brand-primary)]/15 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-2xl hover:scale-105 transition-all duration-500 flex flex-col items-center justify-center group">
+            <div className="relative bg-gradient-to-br from-white via-white to-[var(--brand-primary)]/15 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-2xl hover:scale-105 transition-all duration-500 flex flex-col items-center justify-center group stagger-item hover-lift">
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/40 to-[var(--brand-primary)]/25 rounded-3xl opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10">
                 <div className="text-2xl font-black text-gray-900 mb-3 group-hover:text-[var(--brand-primary)] transition-colors duration-300">CRM Integration</div>
                 <div className="text-gray-600 font-semibold leading-relaxed">Direct push to HubSpot, Salesforce, and Airtable</div>
               </div>
             </div>
-            <div className="relative bg-gradient-to-br from-white via-white to-[var(--brand-primary)]/15 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-2xl hover:scale-105 transition-all duration-500 flex flex-col items-center justify-center group">
+            <div className="relative bg-gradient-to-br from-white via-white to-[var(--brand-primary)]/15 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-2xl hover:scale-105 transition-all duration-500 flex flex-col items-center justify-center group stagger-item hover-lift">
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/40 to-[var(--brand-primary)]/25 rounded-3xl opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10">
                 <div className="text-2xl font-black text-gray-900 mb-3 group-hover:text-[var(--brand-primary)] transition-colors duration-300">End-to-End Encryption</div>
