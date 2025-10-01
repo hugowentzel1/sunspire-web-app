@@ -689,8 +689,11 @@ function ReportContent() {
       {/* Trust Signals - Logo Wall */}
       {trustData && <LogoWall logos={trustData.logos} className="py-8" />}
 
-      <main data-testid="report-page" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-
+      <main data-testid="report-page" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        {/* Grid layout for demo mode: content + sidebar */}
+        <div className={demoMode ? "lg:grid lg:grid-cols-[1fr_320px] lg:gap-8" : ""}>
+          {/* Main content area */}
+          <div>
         {/* Success toast for paid mode */}
         {showSuccessToast && (
           <div className="fixed top-4 right-4 z-50 text-white px-6 py-3 rounded-lg shadow-lg" style={{ backgroundColor: b.primary }} {...tid('lead-success-toast')}>
@@ -1035,19 +1038,23 @@ function ReportContent() {
             </motion.div>
           )}
         </motion.div>
+          </div>
+          
+          {/* Sticky Sidebar for Demo Mode */}
+          {demoMode && (
+            <aside className="hidden lg:block">
+              <SidebarCta
+                brandName={b.brand}
+                onCtaClick={handleCheckout}
+              />
+            </aside>
+          )}
+        </div>
       </main>
 
 
       {/* Use consistent Footer component across entire demo site */}
       <Footer />
-
-      {/* Optimized Sticky Sidebar CTA for Demo Mode */}
-      {demoMode && (
-        <SidebarCta
-          brandName={b.brand}
-          onCtaClick={handleCheckout}
-        />
-      )}
 
       {/* LeadModal removed - no popups wanted */}
       

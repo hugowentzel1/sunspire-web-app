@@ -8,28 +8,21 @@
   transition: box-shadow 150ms ease;
 }
 
-/* Desktop sticky behavior */
+/* Desktop sticky behavior - inline in layout, not fixed */
 @media (min-width: 1024px) {
   .sidebar-cta {
-    position: fixed;
-    top: 120px;
-    right: 24px;
-    max-height: calc(100vh - 144px);
-    z-index: 40;
+    position: sticky;
+    top: 100px;
+    align-self: flex-start;
   }
 }
 
-/* Mobile inline behavior */
+/* Mobile inline behavior - below content, not sticky */
 @media (max-width: 1023px) {
   .sidebar-cta {
     width: 100%;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    border-radius: 16px 16px 0 0;
-    z-index: 40;
-    box-shadow: 0 -4px 6px -1px rgb(0 0 0 / 0.1);
+    position: relative;
+    margin-top: 24px;
   }
 }
 

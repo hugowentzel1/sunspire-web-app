@@ -12,12 +12,12 @@ export type CountdownState = {
   deadline: Date | null;
 };
 
-export function useCountdown(expireDays: number = 3): CountdownState {
+export function useCountdown(expireDays: number = 7): CountdownState {
   const [state, setState] = useState<CountdownState>({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
+    days: expireDays,
+    hours: 23,
+    minutes: 59,
+    seconds: 59,
     isExpired: false,
     deadline: null,
   });
