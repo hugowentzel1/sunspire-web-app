@@ -25,8 +25,14 @@ export async function POST(req: NextRequest) {
 
     // Get price IDs from environment
     const price =
-      process.env.STRIPE_PRICE_STARTER || process.env.STRIPE_PRICE_MONTHLY;
-    if (!price) throw new Error("Missing STRIPE price env");
+      process.env.STRIPE_PRICE_STARTER || 
+      process.env.STRIPE_PRICE_MONTHLY ||
+      process.env.STRIPE_PRICE_MONTHLY_99;
+    
+    if (!price) {
+      console.error("❌ Missing STRIPE price env");
+      return NextResponse.json({ error: "Stripe price configuration missing" }, { status: 500 });
+    }
 
     // Read params from POST JSON
     const body = await req.json();
@@ -81,13 +87,16 @@ export async function POST(req: NextRequest) {
         utm_source: utm_source || "",
         utm_campaign: utm_campaign || "",
       },
-    success_url: `${base}/activate?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${base}/?canceled=1`,
+      success_url: `${base}/activate?session_id={CHECKOUT_SESSION_ID}&company=${encodeURIComponent(company || '')}&plan=${plan}`,
+      cancel_url: `${base}/?canceled=1&company=${encodeURIComponent(company || '')}`,
       customer_email: email || undefined,
       allow_promotion_codes: true,
       automatic_tax: { enabled: true },
     });
 
+    console.log("✅ Stripe checkout session created:", checkoutSession.id);
+    console.log("✅ Checkout URL:", checkoutSession.url);
+    
     return NextResponse.json({ url: checkoutSession.url });
   } catch (err: unknown) {
     const errorMessage = err instanceof Error ? err.message : String(err);
@@ -110,8 +119,14 @@ export async function GET(req: NextRequest) {
 
     // Get price IDs from environment
     const price =
-      process.env.STRIPE_PRICE_STARTER || process.env.STRIPE_PRICE_MONTHLY;
-    if (!price) throw new Error("Missing STRIPE price env");
+      process.env.STRIPE_PRICE_STARTER || 
+      process.env.STRIPE_PRICE_MONTHLY ||
+      process.env.STRIPE_PRICE_MONTHLY_99;
+    
+    if (!price) {
+      console.error("❌ Missing STRIPE price env");
+      return NextResponse.json({ error: "Stripe price configuration missing" }, { status: 500 });
+    }
 
     // Read params from URL query string
     const url = new URL(req.url);
@@ -164,12 +179,15 @@ export async function GET(req: NextRequest) {
         utm_source: utm_source || "",
         utm_campaign: utm_campaign || "",
       },
-    success_url: `${base}/activate?session_id={CHECKOUT_SESSION_ID}`,
-    cancel_url: `${base}/?canceled=1`,
+      success_url: `${base}/activate?session_id={CHECKOUT_SESSION_ID}&company=${encodeURIComponent(company || '')}&plan=${plan}`,
+      cancel_url: `${base}/?canceled=1&company=${encodeURIComponent(company || '')}`,
       customer_email: email || undefined,
       allow_promotion_codes: true,
       automatic_tax: { enabled: true },
     });
+
+    console.log("✅ Stripe checkout session created:", checkoutSession.id);
+    console.log("✅ Checkout URL:", checkoutSession.url);
 
     return NextResponse.json({ url: checkoutSession.url });
   } catch (err: unknown) {

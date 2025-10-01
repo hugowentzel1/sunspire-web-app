@@ -1,0 +1,47 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "Netflix logo Netflix Solar Intelligence" [ref=e5] [cursor=pointer]:
+        - /url: /?company=Netflix
+        - img "Netflix logo" [ref=e6] [cursor=pointer]
+        - generic [ref=e7] [cursor=pointer]:
+          - heading "Netflix" [level=1] [ref=e8] [cursor=pointer]
+          - paragraph [ref=e9] [cursor=pointer]: Solar Intelligence
+      - navigation
+  - generic [ref=e12]:
+    - generic [ref=e13]:
+      - heading "🎉 Your Solar Tool is Ready!" [level=1] [ref=e14]
+      - paragraph [ref=e15]: Your branded solar calculator is now live and ready to generate leads.
+    - generic [ref=e17]:
+      - button "Instant URL" [ref=e18] [cursor=pointer]
+      - button "Custom Domain" [active] [ref=e19] [cursor=pointer]
+      - button "Embed Code" [ref=e20] [cursor=pointer]
+    - generic [ref=e22]:
+      - heading "Attach Your Custom Domain" [level=2] [ref=e23]
+      - paragraph [ref=e24]:
+        - text: Use your own domain like
+        - code [ref=e25]: quote.yourcompany.com
+        - text: for a more professional look.
+      - generic [ref=e27]:
+        - generic [ref=e28]: Custom Domain
+        - generic [ref=e29]:
+          - textbox "quote.yourcompany.com" [ref=e30]
+          - button "Attach Domain" [disabled] [ref=e31]
+    - paragraph [ref=e33]:
+      - text: Need help? Check out our
+      - link "setup guide" [ref=e34] [cursor=pointer]:
+        - /url: /docs/setup
+      - text: or
+      - link "contact support" [ref=e35] [cursor=pointer]:
+        - /url: /support
+      - text: .
+  - alert [ref=e36]
+  - generic [ref=e38]:
+    - paragraph [ref=e39]: We use cookies to improve your experience.
+    - generic [ref=e40]:
+      - button "Manage" [ref=e41] [cursor=pointer]
+      - button "Accept" [ref=e42] [cursor=pointer]
+```
