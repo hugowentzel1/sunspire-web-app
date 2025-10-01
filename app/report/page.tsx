@@ -25,6 +25,7 @@ import Testimonial from '@/components/trust/Testimonial';
 import MetricsBar from '@/components/trust/MetricsBar';
 import TrustFooterLine from '@/components/trust/TrustFooterLine';
 import StickySidebar from '@/components/StickySidebar';
+import { SidebarCta } from '@/src/components/SidebarCta';
 import { getTrustData } from '@/lib/trust';
 
 import { ensureBlurSupport } from '@/src/lib/ensureBlur';
@@ -1026,14 +1027,11 @@ function ReportContent() {
       {/* Use consistent Footer component across entire demo site */}
       <Footer />
 
-      {/* Sticky Sidebar for Demo Mode */}
+      {/* Optimized Sticky Sidebar CTA for Demo Mode */}
       {demoMode && (
-        <StickySidebar
-          brand={b.brand}
-          onUpgradeClick={handleCheckout}
-          onFeaturesClick={() => {
-            window.location.href = '/#whitelabel';
-          }}
+        <SidebarCta
+          brandName={b.brand}
+          onCtaClick={handleCheckout}
         />
       )}
 

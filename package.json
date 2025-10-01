@@ -17,6 +17,7 @@
     "fast-check": "node scripts/fast-check.mjs",
     "fast:check": "npx playwright test tests/footer.fast.spec.ts --project=chromium --headed --reporter=line",
     "test:smoke": "playwright test tests/demo-smoke.spec.ts -g \"@demo-smoke\" --reporter=list",
+    "test:sidebar": "playwright test tests/sidebar-cta.spec.ts -g \"@sidebar\" --reporter=list",
     "prune:unused": "node scripts/prune-unused.js",
     "prune:unused:delete": "node scripts/prune-unused.js --delete"
   },
