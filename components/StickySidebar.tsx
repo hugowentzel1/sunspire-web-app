@@ -10,16 +10,13 @@ interface StickySidebarProps {
 
 export default function StickySidebar({ brand, onUpgradeClick, onFeaturesClick }: StickySidebarProps) {
   return (
-    <motion.div 
-      initial={{ opacity: 0, x: 20, y: '-50%' }}
-      animate={{ opacity: 1, x: 0, y: '-50%' }}
-      transition={{ duration: 0.5 }}
-      className="hidden lg:block fixed right-8 z-40"
-      style={{ 
-        top: '50%'
-      }}
-      data-testid="report-sidebar"
-    >
+    <div className="hidden lg:block fixed right-8 z-40" style={{ top: '50vh', transform: 'translateY(-50%)' }}>
+      <motion.div 
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.5 }}
+        data-testid="report-sidebar"
+      >
       <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-gray-200/50 max-w-sm">
         <div className="space-y-4">
           <div>
@@ -72,6 +69,7 @@ export default function StickySidebar({ brand, onUpgradeClick, onFeaturesClick }
           </div>
         </div>
       </div>
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }

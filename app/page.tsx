@@ -376,7 +376,7 @@ function HomeContent() {
                     value={address}
                     onChange={setAddress}
                     onSelect={handleAddressSelect}
-                    placeholder={b.city ? `Start typing an address in ${b.city}...` : "Start typing your property address..."}
+                    placeholder={b.city && b.city !== 'undefined' ? `Start typing an address in ${b.city}...` : "Start typing your property address..."}
                     className="w-full"
                   />
                 </div>

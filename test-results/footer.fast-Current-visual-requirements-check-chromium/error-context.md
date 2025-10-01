@@ -1,0 +1,133 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - strong [ref=e4]: Exclusive preview built for Apple
+      - generic [ref=e5]: Exclusive preview — expires in 6:23:59:56
+      - generic [ref=e6]: "Runs left: 2"
+    - generic [ref=e7]:
+      - button "Launch on Apple" [ref=e8] [cursor=pointer]
+      - button "Copy link" [ref=e9] [cursor=pointer]
+      - button "Dismiss" [ref=e10] [cursor=pointer]: ✕
+  - banner [ref=e11]:
+    - generic [ref=e13]:
+      - link "Apple logo Apple Solar Intelligence" [ref=e14] [cursor=pointer]:
+        - /url: /?company=Apple&demo=1
+        - img "Apple logo" [ref=e15] [cursor=pointer]
+        - generic [ref=e16] [cursor=pointer]:
+          - heading "Apple" [level=1] [ref=e17] [cursor=pointer]
+          - paragraph [ref=e18] [cursor=pointer]: Solar Intelligence
+      - navigation [ref=e19]:
+        - link "Pricing" [active] [ref=e20] [cursor=pointer]:
+          - /url: /pricing?company=Apple&demo=1
+        - link "Partners" [ref=e21] [cursor=pointer]:
+          - /url: /partners?company=Apple&demo=1
+        - link "Support" [ref=e22] [cursor=pointer]:
+          - /url: /support?company=Apple&demo=1
+        - button "Activate on Your Domain — 24 Hours" [ref=e23] [cursor=pointer]
+    - paragraph [ref=e26]: Private demo for Apple. Not affiliated.
+  - alert [ref=e27]: Apple — Solar Intelligence
+  - main [ref=e29]:
+    - link "Back to Home" [ref=e31] [cursor=pointer]:
+      - /url: /?company=Apple&demo=1
+      - img [ref=e32] [cursor=pointer]
+      - text: Back to Home
+    - generic [ref=e34]:
+      - heading "$99/mo + $399 setup" [level=1] [ref=e35]
+      - paragraph [ref=e36]: Live in <24 hours · CNAME · CRM (HubSpot/Salesforce) · Unlimited quotes
+    - generic [ref=e37]:
+      - generic [ref=e38]:
+        - heading "What You Get" [level=2] [ref=e39]
+        - generic [ref=e40]:
+          - generic [ref=e41]:
+            - img [ref=e42]
+            - generic [ref=e44]: Branded reports & PDFs
+          - generic [ref=e45]:
+            - img [ref=e46]
+            - generic [ref=e48]: Your domain (CNAME)
+          - generic [ref=e49]:
+            - img [ref=e50]
+            - generic [ref=e52]: CRM integrations (HubSpot, Salesforce)
+          - generic [ref=e53]:
+            - img [ref=e54]
+            - generic [ref=e56]: Unlimited quotes
+          - generic [ref=e57]:
+            - img [ref=e58]
+            - generic [ref=e60]: SLA & support
+          - generic [ref=e61]:
+            - img [ref=e62]
+            - generic [ref=e64]: End-to-end encryption
+        - button "Start setup — $399 today" [ref=e65] [cursor=pointer]
+        - generic [ref=e66]:
+          - img [ref=e67]
+          - generic [ref=e69]: Secure checkout — powered by Stripe
+        - paragraph [ref=e70]: 14-day refund if it doesn't lift booked calls
+      - generic [ref=e71]:
+        - heading "Why Installers Switch" [level=2] [ref=e72]
+        - generic [ref=e73]:
+          - generic [ref=e74]:
+            - img [ref=e75]
+            - generic [ref=e77]: Live in <24 hours — no coding
+          - generic [ref=e78]:
+            - img [ref=e79]
+            - generic [ref=e81]: Teams report +25–40% more booked calls after adding instant quotes
+        - generic [ref=e82]:
+          - paragraph [ref=e83]: “Cut quoting time from 15 min to 1 min.”
+          - paragraph [ref=e84]: — Solar Company Owner, CA
+    - paragraph [ref=e86]:
+      - generic [ref=e87]: 100+ installers live today
+      - generic [ref=e88]: ·
+      - generic [ref=e89]: 14-day refund
+      - generic [ref=e90]: ·
+      - generic [ref=e91]: Bank-level security
+    - generic [ref=e92]:
+      - generic [ref=e93]:
+        - generic [ref=e94]:
+          - generic [ref=e95]: "1"
+          - generic [ref=e96]: Connect domain
+        - img [ref=e97]
+      - generic [ref=e99]:
+        - generic [ref=e100]:
+          - generic [ref=e101]: "2"
+          - generic [ref=e102]: Brand & CRM
+        - img [ref=e103]
+      - generic [ref=e106]:
+        - generic [ref=e107]: "3"
+        - generic [ref=e108]: Live in 24h
+    - generic [ref=e109]:
+      - heading "Frequently Asked Questions" [level=2] [ref=e110]
+      - generic [ref=e111]:
+        - button "Accuracy & data sources" [ref=e113] [cursor=pointer]:
+          - generic [ref=e114] [cursor=pointer]: Accuracy & data sources
+          - img [ref=e115] [cursor=pointer]
+        - button "Security & encryption" [ref=e118] [cursor=pointer]:
+          - generic [ref=e119] [cursor=pointer]: Security & encryption
+          - img [ref=e120] [cursor=pointer]
+        - button "Cancel & refund policy" [ref=e123] [cursor=pointer]:
+          - generic [ref=e124] [cursor=pointer]: Cancel & refund policy
+          - img [ref=e125] [cursor=pointer]
+        - button "Support" [ref=e128] [cursor=pointer]:
+          - generic [ref=e129] [cursor=pointer]: Support
+          - img [ref=e130] [cursor=pointer]
+    - generic [ref=e132]:
+      - link "Privacy" [ref=e133] [cursor=pointer]:
+        - /url: /privacy?company=Apple&demo=1
+      - generic [ref=e134]: •
+      - link "Terms" [ref=e135] [cursor=pointer]:
+        - /url: /terms?company=Apple&demo=1
+      - generic [ref=e136]: •
+      - link "Security" [ref=e137] [cursor=pointer]:
+        - /url: /security?company=Apple&demo=1
+      - generic [ref=e138]: •
+      - link "DPA" [ref=e139] [cursor=pointer]:
+        - /url: /dpa?company=Apple&demo=1
+  - generic [ref=e142]:
+    - generic [ref=e143]:
+      - heading "We use cookies to improve your experience" [level=3] [ref=e144]
+      - paragraph [ref=e145]: We use cookies and similar technologies to analyze site usage, personalize content, and provide social media features. By continuing to use our site, you consent to our use of cookies.
+    - generic [ref=e146]:
+      - button "Decline" [ref=e147] [cursor=pointer]
+      - button "Accept All" [ref=e148] [cursor=pointer]
+```
