@@ -1,5 +1,5 @@
 "use client";
-const KEY = "demo_quota_v4"; // Bumped to reset all demos to 2 runs
+const KEY = "demo_quota_v5"; // Bumped to reset all demos to 2 runs
 const AUTO_OPEN_KEY = "demo_auto_open_v1";
 
 export function usePreviewQuota(allowed: number = 2) {

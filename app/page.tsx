@@ -78,7 +78,7 @@ function HomeContent() {
     
     // Restore last typed address for continuity
     const savedAddress = localStorage.getItem('sunspire-last-address');
-    if (savedAddress && !address) {
+    if (savedAddress && savedAddress !== 'undefined' && !address) {
       setAddress(savedAddress);
     }
   }, []);
@@ -131,8 +131,10 @@ function HomeContent() {
     setAddress(result.formattedAddress);
     setSelectedPlace(result);
     
-    // Save address for state continuity
-    localStorage.setItem('sunspire-last-address', result.formattedAddress);
+    // Save address for state continuity (only if valid)
+    if (result.formattedAddress && result.formattedAddress !== 'undefined') {
+      localStorage.setItem('sunspire-last-address', result.formattedAddress);
+    }
     
     if (b.enabled && isClient) {
 
