@@ -462,6 +462,7 @@ function HomeContent() {
 
           {/* KPI Band - Single band only */}
           <div 
+            data-testid="kpi-band"
             className="py-16 relative"
             style={{ 
               background: `linear-gradient(135deg, white, white, ${b.primary})`,
