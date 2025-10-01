@@ -14,7 +14,8 @@ export default function StickySidebar({ brand, onUpgradeClick, onFeaturesClick }
       initial={{ opacity: 0, x: 20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.5 }}
-      className="hidden lg:block fixed right-4 top-1/2 -translate-y-1/2 z-40"
+      className="hidden lg:block fixed right-4 z-40"
+      style={{ top: '50vh', transform: 'translateY(-50%)' }}
       data-testid="report-sidebar"
     >
       <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-xl border border-gray-200/50 max-w-sm">
