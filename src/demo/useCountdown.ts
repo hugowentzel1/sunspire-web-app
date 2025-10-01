@@ -37,6 +37,13 @@ export function useCountdown(expireDays: number = 3): CountdownState {
       localStorage.setItem(COUNTDOWN_KEY, JSON.stringify(deadlines));
     } else {
       deadline = new Date(deadlines[link]);
+      // If deadline has passed, reset it
+      if (deadline.getTime() <= Date.now()) {
+        deadline = new Date();
+        deadline.setDate(deadline.getDate() + expireDays);
+        deadlines[link] = deadline.toISOString();
+        localStorage.setItem(COUNTDOWN_KEY, JSON.stringify(deadlines));
+      }
     }
 
     const updateCountdown = () => {
