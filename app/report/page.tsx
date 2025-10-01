@@ -116,7 +116,8 @@ function ReportContent() {
     setRemaining(currentRemaining);
     
     // Consume quota when report page loads (for demo mode)
-    if (isDemo && !quotaConsumed) {
+    // Only consume if quota is > 0 (don't consume if already at 0)
+    if (isDemo && !quotaConsumed && currentRemaining > 0) {
       console.log('🔒 Demo quota - consuming quota on report view');
       consume();
       setQuotaConsumed(true);
@@ -577,8 +578,10 @@ function ReportContent() {
   const currentQuota = read();
   console.log('🔒 Demo quota check - demoMode:', demoMode, 'currentQuota:', currentQuota, 'remaining:', remaining);
   
-  // Show lock overlay if quota is negative (only after all runs are exhausted)
-  if (demoMode && currentQuota < 0) {
+  // Show lock overlay when quota is 0 or less AND we haven't just consumed quota this session
+  // This prevents showing lock after the 2nd report consumption (quota goes 1→0)
+  // But shows lock on the 3rd attempt (quota already at 0, nothing consumed)
+  if (demoMode && currentQuota <= 0 && !quotaConsumed) {
     console.log('🔒 Showing lock overlay - quota exhausted');
     return <LockOverlay />;
   }

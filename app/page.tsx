@@ -145,36 +145,14 @@ function HomeContent() {
     console.log('Generating estimate for address:', address);
     console.log('Selected place:', selectedPlace);
     
-    // Check and consume quota
+    // Check quota (don't consume here - report page will consume)
     if (b.enabled) {
       const currentQuota = read();
       console.log('🔒 Homepage quota check - currentQuota:', currentQuota);
       
-      // Consume demo quota first
-      consume();
-      const newQuota = read();
-      console.log('🔒 Homepage quota consumed, remaining:', newQuota);
-      
-      // If quota is now negative, navigate to lockout page
-      if (newQuota < 0) {
-        console.log('🔒 Quota exhausted after consumption, navigating to report page to show lockout');
-        // Navigate to report page which will show lockout overlay
-        const company = searchParams.get('company');
-        const demo = searchParams.get('demo');
-        
-        const q = new URLSearchParams({ 
-          address: address || '123 Main St', 
-          lat: '40.7128', 
-          lng: '-74.0060', 
-          placeId: 'demo' 
-        });
-        
-        if (company) q.set('company', company);
-        if (demo) q.set('demo', demo);
-        
-        router.push(`/report?${q.toString()}`);
-        return;
-      }
+      // Just check quota, don't consume yet - report page will handle consumption
+      // This allows: 2 runs → use 1st (2→1) → use 2nd (1→0) → try 3rd (0, shows lock)
+      console.log('🔒 Homepage - quota available:', currentQuota);
     }
     
     setIsLoading(true);
