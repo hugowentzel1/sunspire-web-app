@@ -161,15 +161,26 @@ function ReportContent() {
         })
       });
       
+      console.log('🛒 Response status:', response.status);
+      
       if (!response.ok) {
-        throw new Error('Checkout failed');
+        const errorData = await response.json().catch(() => ({}));
+        console.error('🛒 Checkout API error:', errorData);
+        throw new Error(errorData.error || 'Checkout failed');
       }
       
       const { url } = await response.json();
+      console.log('🛒 Got checkout URL:', url);
+      
+      if (!url) {
+        throw new Error('No checkout URL returned');
+      }
+      
       window.location.href = url;
     } catch (error) {
       console.error('🛒 Checkout error:', error);
-      alert('Unable to start checkout. Please try again.');
+      const errorMessage = error instanceof Error ? error.message : 'Unable to start checkout';
+      alert(errorMessage + '. Please try again.');
     }
   };
 
