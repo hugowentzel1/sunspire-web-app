@@ -678,7 +678,7 @@ function ReportContent() {
       {/* Trust Signals - Logo Wall */}
       {trustData && <LogoWall logos={trustData.logos} className="py-8" />}
 
-      <main data-testid="report-page" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main data-testid="report-page" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
         {/* Success toast for paid mode */}
         {showSuccessToast && (
