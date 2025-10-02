@@ -19,7 +19,7 @@ export default function SignupPage() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div className="text-center">
               <h1 className="text-4xl font-bold text-gray-900 mb-4">
-                Start your {searchParams.get('company') || 'Company'}-branded Sunspire
+                Start your {searchParams?.get('company') || 'Company'}-branded Sunspire
               </h1>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
                 Make your demo permanent — no calls required
@@ -102,8 +102,8 @@ export default function SignupPage() {
 
       <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <LegalFooter 
-          brand={searchParams.get('company') || undefined} 
-          hideMarketingLinks={!searchParams.get('demo')}
+          brand={searchParams?.get('company') || undefined} 
+          hideMarketingLinks={!searchParams?.get('demo')}
         />
       </footer>
     </>

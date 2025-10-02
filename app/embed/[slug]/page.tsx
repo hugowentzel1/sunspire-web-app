@@ -13,7 +13,7 @@ const AddressAutocomplete = dynamic(() => import('@/components/AddressAutocomple
 
 export default function EmbedPage() {
   const params = useParams();
-  const slug = params.slug as string;
+  const slug = params?.slug as string;
   
   const [address, setAddress] = useState('');
   const [selectedPlace, setSelectedPlace] = useState<PlaceResult | null>(null);

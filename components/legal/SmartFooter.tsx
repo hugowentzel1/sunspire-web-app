@@ -22,10 +22,10 @@ export default function SmartFooter({
 
     // Demo/report pages with company personalization
     if (
-      pathname.includes("/demo") ||
-      pathname.includes("/report") ||
-      pathname.includes("/tenant-preview") ||
-      searchParams.get("company")
+      pathname?.includes("/demo") ||
+      pathname?.includes("/report") ||
+      pathname?.includes("/tenant-preview") ||
+      searchParams?.get("company")
     ) {
       return "slim";
     }
@@ -33,7 +33,7 @@ export default function SmartFooter({
     // Main marketing pages
     if (
       ["/", "/pricing", "/partners", "/support", "/methodology"].includes(
-        pathname,
+        pathname || "",
       )
     ) {
       return "full";
@@ -48,7 +48,7 @@ export default function SmartFooter({
         "/status",
         "/preferences",
         "/unsubscribe",
-      ].includes(pathname)
+      ].includes(pathname || "")
     ) {
       return "full";
     }

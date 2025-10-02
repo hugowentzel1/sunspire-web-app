@@ -5,8 +5,8 @@ import { getRootDomain, buildQuoteFQDN } from "@/src/lib/domainRoot";
 
 export default function OnboardDomainPage() {
   const qp = useSearchParams();
-  const tenant = qp.get("tenant") || "";
-  const companyWebsite = qp.get("companyWebsite") || "";
+  const tenant = qp?.get("tenant") || "";
+  const companyWebsite = qp?.get("companyWebsite") || "";
   const root = useMemo(
     () => getRootDomain(companyWebsite) || "",
     [companyWebsite],

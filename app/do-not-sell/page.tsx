@@ -24,7 +24,7 @@ export default function DoNotSellPage() {
         {/* Back to Home Button */}
         <div className="mb-8">
           <a
-            href={searchParams.get('demo') ? `/?${searchParams.toString()}` : `/paid?${searchParams.toString()}`}
+            href={searchParams?.get('demo') ? `/?${searchParams?.toString()}` : `/paid?${searchParams?.toString()}`}
             className="inline-flex items-center text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
           >
             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -144,8 +144,8 @@ export default function DoNotSellPage() {
       </main>
 
       <LegalFooter 
-        brand={b.enabled ? b.brand : searchParams.get('company') || undefined} 
-        hideMarketingLinks={!searchParams.get('demo')}
+        brand={b.enabled ? b.brand : searchParams?.get('company') || undefined} 
+        hideMarketingLinks={!searchParams?.get('demo')}
       />
     </div>
   );

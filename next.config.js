@@ -31,6 +31,10 @@ const nextConfig = {
             value: "max-age=31536000; includeSubDomains",
           },
           {
+            key: "X-Commit-SHA",
+            value: process.env.NEXT_PUBLIC_COMMIT_SHA || 'unknown',
+          },
+          {
             key: "Content-Security-Policy",
             value: [
               "default-src 'self'",

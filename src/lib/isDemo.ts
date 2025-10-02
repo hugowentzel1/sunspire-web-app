@@ -18,5 +18,5 @@ export const isDemoFromSearchParams = isDemoFromSearch;
 
 export function useIsDemo(): boolean {
   const searchParams = useSearchParams();
-  return isDemoFromSearch(searchParams);
+  return isDemoFromSearch(searchParams || new URLSearchParams());
 }

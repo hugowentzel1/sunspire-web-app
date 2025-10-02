@@ -24,9 +24,9 @@ export default function BrandProvider({
     // Always check for URL parameters, even if brand takeover is not enabled
 
     // Check if URL has brandColor parameter - if so, use that instead of forced colors
-    const urlBrandColor = searchParams.get('brandColor');
+    const urlBrandColor = searchParams?.get('brandColor');
     console.log("BrandProvider: URL brandColor parameter:", urlBrandColor);
-    console.log("BrandProvider: All search params:", searchParams.toString());
+    console.log("BrandProvider: All search params:", searchParams?.toString());
     
     if (urlBrandColor) {
       const cleanColor = urlBrandColor.startsWith('#') ? urlBrandColor : `#${urlBrandColor}`;
@@ -37,7 +37,7 @@ export default function BrandProvider({
     }
     
     // Also check for primary parameter
-    const urlPrimary = searchParams.get('primary');
+    const urlPrimary = searchParams?.get('primary');
     if (urlPrimary) {
       const cleanColor = urlPrimary.startsWith('#') ? urlPrimary : `#${urlPrimary}`;
       document.documentElement.style.setProperty("--brand-primary", cleanColor);

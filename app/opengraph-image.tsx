@@ -10,9 +10,9 @@ function hex(h: string | null) {
 }
 export async function GET(req: Request) {
   const url = new URL(req.url);
-  const brand = clean(url.searchParams.get("brand"));
-  const primary = hex(url.searchParams.get("primary"));
-  const expire = url.searchParams.get("expire");
+  const brand = clean(url.searchParams?.get("brand"));
+  const primary = hex(url.searchParams?.get("primary"));
+  const expire = url.searchParams?.get("expire");
 
   return new ImageResponse(
     (

@@ -17,23 +17,23 @@ export default function LegalFooter({
   const searchParams = useSearchParams();
   
   // Use passed brand prop or fall back to brand takeover, or use URL parameter
-  const urlCompany = searchParams.get('company');
-  const urlLogo = searchParams.get('logo');
-  const urlBrandColor = searchParams.get('brandColor') || searchParams.get('primary');
+  const urlCompany = searchParams?.get('company');
+  const urlLogo = searchParams?.get('logo');
+  const urlBrandColor = searchParams?.get('brandColor') || searchParams?.get('primary');
   const companyName = brand || (b.enabled && b.brand ? b.brand : (urlCompany || 'Sunspire'));
   const brandColor = urlBrandColor ? `#${urlBrandColor.replace('#', '')}` : (b.enabled && b.primary ? b.primary : '#d97706');
   const logoUrl = b.logo || urlLogo;
   
   // Check if this is demo mode
-  const isDemo = searchParams.get('demo') === '1' || searchParams.get('demo') === 'true';
+  const isDemo = searchParams?.get('demo') === '1' || searchParams?.get('demo') === 'true';
 
   // Function to create URLs with preserved parameters
   const createUrlWithParams = (path: string) => {
     const params = new URLSearchParams();
     if (urlCompany) params.set('company', urlCompany);
-    if (searchParams.get('demo')) params.set('demo', searchParams.get('demo') || '1');
-    if (searchParams.get('brandColor')) params.set('brandColor', searchParams.get('brandColor') || '');
-    if (searchParams.get('logo')) params.set('logo', searchParams.get('logo') || '');
+    if (searchParams?.get('demo')) params.set('demo', searchParams?.get('demo') || '1');
+    if (searchParams?.get('brandColor')) params.set('brandColor', searchParams?.get('brandColor') || '');
+    if (searchParams?.get('logo')) params.set('logo', searchParams?.get('logo') || '');
 
     const queryString = params.toString();
     return queryString ? `${path}?${queryString}` : path;

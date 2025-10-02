@@ -45,7 +45,7 @@ function HomeContent() {
   const b = useBrandTakeover();
 
   // Demo mode detection - use brand state instead of separate hook
-  const isDemo = searchParams.get('demo') === '1' || searchParams.get('demo') === 'true';
+  const isDemo = searchParams?.get('demo') === '1' || searchParams?.get('demo') === 'true';
 
   // Debug logging for brand state
   useEffect(() => {

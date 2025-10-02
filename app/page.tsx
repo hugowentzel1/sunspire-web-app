@@ -103,7 +103,7 @@ function HomeContent() {
   useEffect(() => {
     const timer = setTimeout(() => {
       if (!isDemo && typeof window !== 'undefined') {
-        const company = searchParams.get('company');
+        const company = searchParams?.get('company');
         if (company) {
           // Redirect to paid version with all URL parameters
           const currentUrl = new URL(window.location.href);
@@ -119,7 +119,7 @@ function HomeContent() {
 
   // Early return for paid versions to prevent demo content from rendering
   if (!isDemo) {
-    const company = searchParams.get('company');
+    const company = searchParams?.get('company');
     if (company) {
       return <div>Redirecting to paid version...</div>;
     }
@@ -184,8 +184,8 @@ function HomeContent() {
     
     try {
       // Get current URL parameters to preserve company and demo
-      const company = searchParams.get('company');
-      const demo = searchParams.get('demo');
+      const company = searchParams?.get('company');
+      const demo = searchParams?.get('demo');
       
       if (currentPlace && currentPlace.formattedAddress) {
         const q = new URLSearchParams({
@@ -227,10 +227,10 @@ function HomeContent() {
       // Start Stripe checkout with tracking
       try {
         // Collect tracking parameters from URL
-        const token = searchParams.get('token');
-        const company = searchParams.get('company');
-        const utm_source = searchParams.get('utm_source');
-        const utm_campaign = searchParams.get('utm_campaign');
+        const token = searchParams?.get('token');
+        const company = searchParams?.get('company');
+        const utm_source = searchParams?.get('utm_source');
+        const utm_campaign = searchParams?.get('utm_campaign');
         
         // Show optimistic loading state with micro-feedback
         const button = document.querySelector('[data-cta-button]') as HTMLButtonElement;

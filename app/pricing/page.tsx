@@ -17,10 +17,10 @@ export default function PricingPage() {
 
   const handleStartSetup = async () => {
     try {
-      const token = searchParams.get('token');
-      const company = searchParams.get('company');
-      const utm_source = searchParams.get('utm_source');
-      const utm_campaign = searchParams.get('utm_campaign');
+      const token = searchParams?.get('token');
+      const company = searchParams?.get('company');
+      const utm_source = searchParams?.get('utm_source');
+      const utm_campaign = searchParams?.get('utm_campaign');
       
       const response = await fetch('/api/stripe/create-checkout-session', {
         method: 'POST',
@@ -45,7 +45,7 @@ export default function PricingPage() {
   };
 
   const createUrlWithParams = (path: string) => {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(searchParams?.toString());
     return `${path}?${params.toString()}`;
   };
 

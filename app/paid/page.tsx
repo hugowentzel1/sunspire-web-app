@@ -51,7 +51,7 @@ function HomeContent() {
   const isDemo = b.isDemo;
 
   // Get brand color directly from URL for server-side rendering
-  const urlBrandColor = searchParams.get('brandColor') || searchParams.get('primary');
+  const urlBrandColor = searchParams?.get('brandColor') || searchParams?.get('primary');
   const brandColor = urlBrandColor ? `#${urlBrandColor.replace('#', '')}` : (b.primary || '#d97706');
   
   // Set CSS variable directly for consistency
@@ -100,10 +100,10 @@ function HomeContent() {
   // Function to create URLs with preserved parameters
   const createUrlWithParams = (path: string) => {
     const params = new URLSearchParams();
-    if (searchParams.get("company")) params.set("company", searchParams.get("company") || "");
-    if (searchParams.get("brandColor")) params.set("brandColor", searchParams.get("brandColor") || "");
-    if (searchParams.get("logo")) params.set("logo", searchParams.get("logo") || "");
-    if (searchParams.get("demo")) params.set("demo", searchParams.get("demo") || "");
+    if (searchParams?.get("company")) params.set("company", searchParams?.get("company") || "");
+    if (searchParams?.get("brandColor")) params.set("brandColor", searchParams?.get("brandColor") || "");
+    if (searchParams?.get("logo")) params.set("logo", searchParams?.get("logo") || "");
+    if (searchParams?.get("demo")) params.set("demo", searchParams?.get("demo") || "");
 
     const queryString = params.toString();
     return queryString ? `${path}?${queryString}` : path;
@@ -147,9 +147,9 @@ function HomeContent() {
         });
 
         // Add all URL parameters
-        if (searchParams.get("company")) q.set("company", searchParams.get("company") || "");
-        if (searchParams.get("brandColor")) q.set("brandColor", searchParams.get("brandColor") || "");
-        if (searchParams.get("logo")) q.set("logo", searchParams.get("logo") || "");
+        if (searchParams?.get("company")) q.set("company", searchParams?.get("company") || "");
+        if (searchParams?.get("brandColor")) q.set("brandColor", searchParams?.get("brandColor") || "");
+        if (searchParams?.get("logo")) q.set("logo", searchParams?.get("logo") || "");
 
         router.push(`/report?${q.toString()}`);
         return;
@@ -168,9 +168,9 @@ function HomeContent() {
         });
 
         // Add all URL parameters
-        if (searchParams.get("company")) q.set("company", searchParams.get("company") || "");
-        if (searchParams.get("brandColor")) q.set("brandColor", searchParams.get("brandColor") || "");
-        if (searchParams.get("logo")) q.set("logo", searchParams.get("logo") || "");
+        if (searchParams?.get("company")) q.set("company", searchParams?.get("company") || "");
+        if (searchParams?.get("brandColor")) q.set("brandColor", searchParams?.get("brandColor") || "");
+        if (searchParams?.get("logo")) q.set("logo", searchParams?.get("logo") || "");
 
         console.log("Navigating to report with selected place:", q.toString());
         router.push(`/report?${q.toString()}`);
@@ -183,9 +183,9 @@ function HomeContent() {
         });
 
         // Add all URL parameters
-        if (searchParams.get("company")) q.set("company", searchParams.get("company") || "");
-        if (searchParams.get("brandColor")) q.set("brandColor", searchParams.get("brandColor") || "");
-        if (searchParams.get("logo")) q.set("logo", searchParams.get("logo") || "");
+        if (searchParams?.get("company")) q.set("company", searchParams?.get("company") || "");
+        if (searchParams?.get("brandColor")) q.set("brandColor", searchParams?.get("brandColor") || "");
+        if (searchParams?.get("logo")) q.set("logo", searchParams?.get("logo") || "");
 
         console.log("Navigating to report with manual address:", q.toString());
         router.push(`/report?${q.toString()}`);
@@ -201,10 +201,10 @@ function HomeContent() {
       // Start Stripe checkout with tracking
       try {
         // Collect tracking parameters from URL
-        const token = searchParams.get("token");
-        const company = searchParams.get("company");
-        const utm_source = searchParams.get("utm_source");
-        const utm_campaign = searchParams.get("utm_campaign");
+        const token = searchParams?.get("token");
+        const company = searchParams?.get("company");
+        const utm_source = searchParams?.get("utm_source");
+        const utm_campaign = searchParams?.get("utm_campaign");
 
         // Show loading state
         const button = document.querySelector("[data-cta-button]") as HTMLButtonElement;

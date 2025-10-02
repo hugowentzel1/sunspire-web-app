@@ -6,7 +6,7 @@ import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 
 export default function ActivatePage() {
   const searchParams = useSearchParams();
-  const sessionId = searchParams.get('session_id');
+  const sessionId = searchParams?.get('session_id');
   const b = useBrandTakeover();
   
   const [sessionDetails, setSessionDetails] = useState<any>(null);

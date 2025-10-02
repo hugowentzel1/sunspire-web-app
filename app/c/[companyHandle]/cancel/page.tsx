@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function CancelPage() {
   const params = useParams();
-  const companyHandle = params.companyHandle as string;
+  const companyHandle = params?.companyHandle as string;
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-orange-50 to-orange-100 flex items-center justify-center px-4">

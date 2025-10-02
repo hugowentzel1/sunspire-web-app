@@ -65,15 +65,15 @@ export function useBrandTakeover(): BrandState {
     // Function to process brand takeover
     const processBrandTakeover = () => {
       const sp = searchParams;
-      const isDemo = isDemoFromSearch(sp);
-      const hasCompany = !!sp.get("company");
+      const isDemo = isDemoFromSearch(sp || new URLSearchParams());
+      const hasCompany = !!sp?.get("company");
       const urlEnabled = isDemo || hasCompany; // Enable for both demo and company branding
       
       if (urlEnabled) {
         // URL has brand parameters - use them and save to localStorage
-        const companyName = clean(sp.get("company") || sp.get("brand")) || "Your Company";
-        const customColor = sp.get("primary") || sp.get("brandColor");
-        const logoUrl = sp.get("logo");
+        const companyName = clean(sp?.get("company") || sp?.get("brand") || null) || "Your Company";
+        const customColor = sp?.get("primary") || sp?.get("brandColor");
+        const logoUrl = sp?.get("logo");
         
         // Use custom color from URL if provided, otherwise use brand theme
         let themeColor;
@@ -91,16 +91,16 @@ export function useBrandTakeover(): BrandState {
           enabled: urlEnabled, // Enable for both demo and company branding
           brand: companyName,
           primary: themeColor,
-          logo: allowLogo(sp.get("logo")),
-          domain: sp.get("domain") || sp.get("company"),
-          city: sp.get("city"),
-          rep: sp.get("rep"),
-          firstName: clean(sp.get("firstName")),
-          role: clean(sp.get("role")),
-          expireDays: Math.max(1, parseInt(sp.get("expire")||"7",10)||7),
+          logo: allowLogo(sp?.get("logo") || null),
+          domain: sp?.get("domain") || sp?.get("company") || null,
+          city: sp?.get("city") || null,
+          rep: sp?.get("rep") || null,
+          firstName: clean(sp?.get("firstName") || null),
+          role: clean(sp?.get("role") || null),
+          expireDays: Math.max(1, parseInt(sp?.get("expire")||"7",10)||7),
           runs: 2,
           blur: true,
-          pilot: sp.get("pilot")==="1",
+          pilot: sp?.get("pilot")==="1",
           isDemo: isDemo
         };
         

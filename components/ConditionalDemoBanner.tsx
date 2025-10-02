@@ -14,7 +14,7 @@ export default function ConditionalDemoBanner() {
   const searchParams = useSearchParams();
   
   // Only show banner in demo mode
-  const isDemo = isDemoFromSearch(searchParams);
+  const isDemo = isDemoFromSearch(searchParams || new URLSearchParams());
   if (!isDemo) {
     return null;
   }
@@ -35,7 +35,7 @@ export default function ConditionalDemoBanner() {
   ];
   
   // Don't show banner on legal/regulatory pages
-  if (noBannerPages.some(page => pathname.startsWith(page))) {
+  if (noBannerPages.some(page => pathname?.startsWith(page))) {
     return null;
   }
   

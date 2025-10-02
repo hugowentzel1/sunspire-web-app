@@ -8,13 +8,16 @@
   transition: box-shadow 150ms ease;
 }
 
-/* Desktop sticky behavior - centered vertically */
+/* Desktop sticky behavior - attached to right side, vertically centered */
 @media (min-width: 1024px) {
   .sidebar-cta {
-    position: sticky;
+    position: fixed;
     top: 50vh;
+    right: 0;
     transform: translateY(-50%);
-    align-self: flex-start;
+    width: 320px;
+    z-index: 40;
+    margin-right: 1rem;
   }
 }
 

@@ -17,8 +17,8 @@ export default function SuccessPage() {
   const [tenantData, setTenantData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const companyHandle = params.companyHandle as string;
-  const sessionId = searchParams.get("session_id");
+  const companyHandle = params?.companyHandle as string;
+  const sessionId = searchParams?.get("session_id");
 
   useEffect(() => {
     // In a real app, you'd fetch the tenant data from your API

@@ -93,7 +93,7 @@ function ReportContent() {
   const [showSuccessToast, setShowSuccessToast] = useState(false);
   
   // Determine if this is a demo session
-  const isDemo = isDemoFromSearchParams(searchParams);
+  const isDemo = isDemoFromSearchParams(searchParams || new URLSearchParams());
   
   // Countdown for demo expiry
   const countdown = useCountdown(b.expireDays || 7);
@@ -451,7 +451,7 @@ function ReportContent() {
   useEffect(() => {
     const sp = new URLSearchParams(searchParams as any);
     const isDemo = isDemoFromSearchParams(sp);
-    const company = searchParams.get('company');
+    const company = searchParams?.get('company');
     const hasBrand = !!company; // Company parameter does NOT imply demo
     const demoModeValue = isDemo; // Only demo param determines demo mode
     
@@ -460,7 +460,7 @@ function ReportContent() {
       isDemo,
       hasBrand,
       demoModeValue,
-      searchParams: Object.fromEntries(searchParams.entries())
+      searchParams: Object.fromEntries(searchParams?.entries() || [])
     });
     
     // Set demo mode state
@@ -469,11 +469,11 @@ function ReportContent() {
     // Ensure blur support is available
     ensureBlurSupport();
 
-    let address = searchParams.get('address') || '';
-    let lat = parseFloat(searchParams.get('lat') || '');
-    let lng = parseFloat(searchParams.get('lng') || '');
-    const placeId = searchParams.get('placeId');
-    const state = searchParams.get('state') || undefined;
+    let address = searchParams?.get('address') || '';
+    let lat = parseFloat(searchParams?.get('lat') || '');
+    let lng = parseFloat(searchParams?.get('lng') || '');
+    const placeId = searchParams?.get('placeId');
+    const state = searchParams?.get('state') || undefined;
 
     // If demo mode and missing coords, pick a good default by state
     if (isDemo && (!Number.isFinite(lat) || !Number.isFinite(lng) || !address)) {
@@ -562,10 +562,10 @@ function ReportContent() {
             <div className="font-semibold mb-2">Error Loading Report</div>
             <div>{error}</div>
             <button onClick={() => {
-              const company = searchParams.get('company');
-              const demo = searchParams.get('demo');
-              const brandColor = searchParams.get('brandColor');
-              const logo = searchParams.get('logo');
+              const company = searchParams?.get('company');
+              const demo = searchParams?.get('demo');
+              const brandColor = searchParams?.get('brandColor');
+              const logo = searchParams?.get('logo');
               
               const params = new URLSearchParams();
               if (company) params.set('company', company);
@@ -641,29 +641,29 @@ function ReportContent() {
             
             <nav className="hidden md:flex items-center space-x-8">
               <a
-                href={`/pricing?${searchParams.toString()}`}
+                href={`/privacy?${searchParams?.toString()}`}
                 className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
               >
-                Pricing
+                Privacy
               </a>
               <a
-                href={`/partners?${searchParams.toString()}`}
+                href={`/terms?${searchParams?.toString()}`}
                 className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
               >
-                Partners
+                Terms
               </a>
               <a
-                href={`/support?${searchParams.toString()}`}
+                href={`/security?${searchParams?.toString()}`}
                 className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
               >
-                Support
+                Security
               </a>
               <motion.button 
                 onClick={() => {
-                  const company = searchParams.get('company');
-                  const demo = searchParams.get('demo');
-                  const brandColor = searchParams.get('brandColor');
-                  const logo = searchParams.get('logo');
+                  const company = searchParams?.get('company');
+                  const demo = searchParams?.get('demo');
+                  const brandColor = searchParams?.get('brandColor');
+                  const logo = searchParams?.get('logo');
                   
                   const params = new URLSearchParams();
                   if (company) params.set('company', company);
@@ -720,7 +720,7 @@ function ReportContent() {
         {/* Theme probe for testing */}
         <div data-testid="theme-probe" style={{ color: 'var(--brand)' }} className="hidden" />
         {/* Brand theme CSS variable */}
-        <style>{`:root{--brand:${getBrandTheme(searchParams.get('company') || undefined)};--brand-primary:${b.primary};}`}</style>
+        <style>{`:root{--brand:${getBrandTheme(searchParams?.get('company') || undefined)};--brand-primary:${b.primary};}`}</style>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="space-y-8">
           <div className="text-center space-y-6">
             <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="w-24 h-24 mx-auto">

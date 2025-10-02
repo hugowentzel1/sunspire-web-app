@@ -14,7 +14,7 @@ interface Lead {
 
 export default function LeadsPage() {
   const params = useParams();
-  const companyHandle = params.companyHandle as string;
+  const companyHandle = params?.companyHandle as string;
   const [leads, setLeads] = useState<Lead[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);

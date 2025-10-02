@@ -17,10 +17,10 @@ export default function SharedNavigation() {
   // Function to create URLs with preserved parameters
   const createUrlWithParams = (path: string) => {
     const params = new URLSearchParams();
-    if (searchParams.get('company')) params.set('company', searchParams.get('company') || '');
-    if (searchParams.get('demo')) params.set('demo', searchParams.get('demo') || '');
-    if (searchParams.get('brandColor')) params.set('brandColor', searchParams.get('brandColor') || '');
-    if (searchParams.get('logo')) params.set('logo', searchParams.get('logo') || '');
+    if (searchParams?.get('company')) params.set('company', searchParams?.get('company') || '');
+    if (searchParams?.get('demo')) params.set('demo', searchParams?.get('demo') || '');
+    if (searchParams?.get('brandColor')) params.set('brandColor', searchParams?.get('brandColor') || '');
+    if (searchParams?.get('logo')) params.set('logo', searchParams?.get('logo') || '');
 
     const queryString = params.toString();
     return queryString ? `${path}?${queryString}` : path;
