@@ -70,12 +70,12 @@ export default function PricingPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter">
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-16">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-16 sm:py-8">
         {/* Back Button */}
         <div className="mb-8">
           <Link 
             href={createUrlWithParams('/')}
-            className="inline-flex items-center text-gray-600 hover:text-gray-900 transition-colors button-press"
+            className="inline-flex items-center text-neutral-500 hover:text-neutral-900 transition-colors button-press"
           >
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -85,12 +85,12 @@ export default function PricingPage() {
         </div>
 
         {/* Pricing Header */}
-        <div className="text-center mb-12">
+        <div className="text-center space-y-3 py-12">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-5xl md:text-7xl font-black text-gray-900 mb-4"
+            className="text-4xl md:text-5xl font-black text-neutral-900"
           >
             $99/mo + $399 setup
           </motion.h1>
@@ -98,24 +98,24 @@ export default function PricingPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-xl md:text-2xl text-gray-700 max-w-3xl mx-auto"
+            className="text-lg md:text-xl text-neutral-700 max-w-3xl mx-auto"
           >
             Go live in under 24 hours with branded solar quotes.
           </motion.p>
         </div>
 
-        {/* Two Equal-Height Cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12 max-w-5xl mx-auto">
+        {/* Two Column Grid - What You Get + Why Installers Switch */}
+        <div className="grid grid-cols-[1fr_0.9fr] gap-8 md:gap-6 mb-16 max-w-5xl mx-auto mt-12">
           {/* LEFT: What You Get */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="bg-white rounded-3xl p-8 md:p-10 border border-gray-200 shadow-xl"
+            className="bg-white rounded-xl border border-neutral-200/60 shadow-sm p-6 sm:p-5"
           >
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">What You Get</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-6">What You Get</h2>
             
-            <div className="space-y-5 mb-8">
+            <div className="space-y-4">
               {[
                 'Branded reports & PDFs',
                 'Your domain (CNAME)',
@@ -129,14 +129,14 @@ export default function PricingPage() {
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.3, delay: 0.3 + (idx * 0.06) }}
-                  className="flex items-center gap-4"
+                  className="flex items-center gap-3"
                 >
                   <div className="flex-shrink-0">
                     <svg className="w-6 h-6 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                   </div>
-                  <span className="text-gray-800 font-medium text-lg">{feature}</span>
+                  <span className="text-neutral-700 font-medium">{feature}</span>
                 </motion.div>
               ))}
             </div>
@@ -147,37 +147,37 @@ export default function PricingPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="bg-white rounded-3xl p-8 md:p-10 border border-gray-200 shadow-xl"
+            className="bg-white rounded-xl border border-neutral-200/60 shadow-sm p-6 sm:p-5"
           >
-            <h2 className="text-2xl font-bold text-gray-900 mb-8">Why Installers Switch</h2>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-6">Why Installers Switch</h2>
             
-            <div className="space-y-5 mb-8">
+            <div className="space-y-4">
               <motion.div
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.5 }}
-                className="flex items-start gap-4"
+                className="flex items-start gap-3"
               >
                 <div className="flex-shrink-0">
                   <svg className="w-6 h-6 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <span className="text-gray-800 font-medium text-lg">Live in &lt;24 hours — no coding required</span>
+                <span className="text-neutral-700 font-medium">Live in &lt;24 hours — no coding required</span>
               </motion.div>
 
               <motion.div
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.6 }}
-                className="flex items-start gap-4"
+                className="flex items-start gap-3"
               >
                 <div className="flex-shrink-0">
                   <svg className="w-6 h-6 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
                 </div>
-                <span className="text-gray-800 font-medium text-lg">Teams report +25–40% more booked calls after adding instant quotes</span>
+                <span className="text-neutral-700 font-medium">Teams report +25–40% more booked calls after adding instant quotes</span>
               </motion.div>
             </div>
 
@@ -186,12 +186,12 @@ export default function PricingPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.4, delay: 0.7 }}
-              className="pt-6 border-t border-gray-100"
+              className="pt-6 border-t border-neutral-100"
             >
-              <p className="text-base italic text-gray-600 leading-relaxed">
+              <p className="text-base italic text-neutral-600 leading-relaxed">
                 &ldquo;Cut quoting time from 15 min to 1 min.&rdquo;
               </p>
-              <p className="text-sm text-gray-500 mt-2">— Solar Company Owner, CA</p>
+              <p className="text-sm text-neutral-500 mt-2">— Solar Company Owner, CA</p>
             </motion.div>
           </motion.div>
         </div>
@@ -201,19 +201,19 @@ export default function PricingPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.8 }}
-          className="max-w-2xl mx-auto text-center mb-8"
+          className="max-w-2xl mx-auto text-center mt-8"
         >
           {/* Primary CTA */}
           <button
             onClick={handleStartSetup}
-            className="w-full md:w-auto px-12 py-5 rounded-2xl text-white font-bold text-xl shadow-xl hover:shadow-2xl transition-all button-press hover-lift mb-4"
+            className="w-full md:w-auto px-12 py-5 rounded-2xl text-white font-bold text-xl shadow-xl hover:shadow-2xl transition-all button-press hover-lift mb-6"
             style={{ backgroundColor: 'var(--brand-primary)', minHeight: '64px', minWidth: '320px' }}
           >
             Start setup — $399 today
           </button>
 
           {/* Stripe Trust Row */}
-          <div className="flex items-center justify-center gap-2 mb-3 text-sm text-gray-500">
+          <div className="flex items-center justify-center gap-2 mb-3 text-sm text-neutral-500 mt-4">
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
             </svg>
@@ -221,12 +221,12 @@ export default function PricingPage() {
           </div>
 
           {/* Refund Guarantee */}
-          <p className="text-sm italic text-gray-600 mb-6">
+          <p className="text-sm italic text-neutral-600 mb-6">
             14-day refund if it doesn&apos;t lift booked calls
           </p>
 
           {/* Trust Badges Row */}
-          <div className="flex items-center justify-center gap-6 flex-wrap text-xs text-gray-500 font-medium">
+          <div className="flex items-center justify-center gap-6 flex-wrap text-xs text-neutral-500 font-medium">
             <div className="flex items-center gap-2">
               <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -287,17 +287,17 @@ export default function PricingPage() {
           transition={{ duration: 0.5, delay: 1.2 }}
           className="max-w-3xl mx-auto mb-20"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-10">Frequently Asked Questions</h2>
-          <div className="space-y-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 text-center mb-10">Frequently Asked Questions</h2>
+          <div className="space-y-6">
             {faqs.map((faq, idx) => (
-              <div key={idx} className="bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+              <div key={idx} className="bg-white rounded-xl border border-neutral-200/60 shadow-sm overflow-hidden">
                 <button
                   onClick={() => setOpenFAQ(openFAQ === idx ? null : idx)}
-                  className="w-full px-6 md:px-8 py-5 flex items-center justify-between text-left hover:bg-gray-50 transition-colors"
+                  className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-neutral-50 transition-colors"
                 >
-                  <span className="font-semibold text-gray-900 text-lg pr-4">{faq.q}</span>
+                  <span className="font-semibold text-neutral-900 pr-4">{faq.q}</span>
                   <svg
-                    className={`w-5 h-5 text-gray-500 flex-shrink-0 transition-transform duration-200 ${openFAQ === idx ? 'rotate-180' : ''}`}
+                    className={`w-5 h-5 text-neutral-500 flex-shrink-0 transition-transform duration-200 ${openFAQ === idx ? 'rotate-180' : ''}`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -310,9 +310,9 @@ export default function PricingPage() {
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
                     transition={{ duration: 0.3 }}
-                    className="px-6 md:px-8 pb-5"
+                    className="px-6 py-4"
                   >
-                    <p className="text-gray-600 leading-relaxed">{faq.a}</p>
+                    <p className="text-neutral-600 leading-relaxed">{faq.a}</p>
                   </motion.div>
                 )}
               </div>

@@ -41,7 +41,7 @@ export async function POST(req: NextRequest) {
   
   try {
     const body = await req.json();
-    const { company, name, email, phone, type, experience, message } = body;
+    const { company, name, email, phone, experience, message } = body;
     
     // Validate required fields
     if (!company || !name || !email) {
@@ -63,8 +63,7 @@ Company: ${company}
 Name: ${name}
 Email: ${email}
 Phone: ${phone || 'Not provided'}
-Type: ${type || 'Not specified'}
-Experience: ${experience || 'Not specified'}
+Solar Companies: ${experience || 'Not specified'}
 
 Message:
 ${message || 'No message provided'}
@@ -142,7 +141,6 @@ IP: ${clientIP}
         name,
         email,
         phone,
-        type,
         experience,
         message,
         timestamp: new Date().toISOString(),
