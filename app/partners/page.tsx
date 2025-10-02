@@ -146,7 +146,7 @@ export default function PartnersPage() {
         {/* Apply to Become a Partner - Balanced spacing */}
         <section className="py-16 md:py-12 sm:py-8">
           <div className="max-w-6xl mx-auto px-6 sm:px-4">
-            <div className="grid grid-cols-[1fr_1.1fr] gap-8 md:gap-6">
+            <div className="grid grid-cols-[1fr_1.1fr] gap-8 md:grid-cols-1 md:gap-6">
               {/* Left Column - Partner Benefits */}
               <div className="space-y-6">
                 {/* Partner Benefits */}
@@ -215,7 +215,7 @@ export default function PartnersPage() {
               </div>
 
               {/* Right Column - Application Form */}
-              <div className="rounded-2xl border border-black/10 bg-white/80 backdrop-blur shadow-sm p-6 md:p-6 sm:p-5">
+              <div className="rounded-xl border border-neutral-200/60 shadow-sm p-6 space-y-4">
                 <h2 className="text-2xl font-bold text-neutral-900 mb-6">Apply to Become a Partner</h2>
             
                 <form onSubmit={handleSubmit} className="space-y-4">

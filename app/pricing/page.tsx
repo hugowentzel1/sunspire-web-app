@@ -105,13 +105,13 @@ export default function PricingPage() {
         </div>
 
         {/* Two Column Grid - What You Get + Why Installers Switch */}
-        <div className="grid grid-cols-2 md:grid-cols-1 items-start gap-8 md:gap-6 sm:gap-5 mt-8">
+        <div className="grid grid-cols-[1fr_0.9fr] gap-8 md:grid-cols-1 md:gap-6 mt-12">
           {/* LEFT: What You Get */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="rounded-2xl border border-black/10 bg-white/80 backdrop-blur shadow-sm p-6 md:p-6 sm:p-5"
+            className="rounded-xl border border-neutral-200/60 shadow-sm p-6 space-y-4"
           >
             <h3 className="text-lg font-semibold mb-4">What You Get</h3>
             
@@ -147,7 +147,7 @@ export default function PricingPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="rounded-2xl border border-black/10 bg-white/80 backdrop-blur shadow-sm p-6 md:p-6 sm:p-5"
+            className="rounded-xl border border-neutral-200/60 shadow-sm p-6 space-y-4"
           >
             <h3 className="text-lg font-semibold mb-4">Why Installers Switch</h3>
             
@@ -184,7 +184,7 @@ export default function PricingPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.8 }}
-          className="flex flex-col items-center mt-8"
+          className="flex flex-col items-center mt-6 mb-6"
         >
           {/* Primary CTA */}
           <button
@@ -202,7 +202,7 @@ export default function PricingPage() {
         </motion.div>
 
         {/* Trust badges & 1-2-3 steps */}
-        <div className="mt-6">
+        <div className="mt-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -229,7 +229,7 @@ export default function PricingPage() {
           </motion.div>
         </div>
 
-        <h2 className="text-2xl font-bold text-center mt-12">Frequently Asked Questions</h2>
+        <h2 className="text-2xl font-bold text-center mt-16">Frequently Asked Questions</h2>
         <div className="mt-6">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

@@ -120,8 +120,8 @@ export default function SupportPage() {
         </div>
 
         {/* Contact Options */}
-        <div className="grid grid-cols-3 gap-8 md:gap-6 mb-16">
-          <div className="bg-white rounded-xl border border-neutral-200/60 shadow-sm p-6 sm:p-5 text-center">
+        <div className="grid grid-cols-3 gap-8 md:grid-cols-1 md:gap-6 mb-16">
+          <div className="bg-white rounded-xl border border-neutral-200/60 shadow-sm p-6 space-y-3 text-center">
             <div className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-[0_8px_30px_rgba(0,0,0,.12)]" style={{
               background: b.enabled && b.primary ? `linear-gradient(135deg, #ffffff, ${b.primary})` : 'linear-gradient(135deg, #ffffff, #d97706)'
             }}>
@@ -140,7 +140,7 @@ export default function SupportPage() {
             </a>
           </div>
 
-          <div className="bg-white rounded-xl border border-neutral-200/60 shadow-sm p-6 sm:p-5 text-center">
+          <div className="bg-white rounded-xl border border-neutral-200/60 shadow-sm p-6 space-y-3 text-center">
             <div className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-[0_8px_30px_rgba(0,0,0,.12)]" style={{
               background: b.enabled && b.primary ? `linear-gradient(135deg, #ffffff, ${b.primary})` : 'linear-gradient(135deg, #ffffff, #d97706)'
             }}>
@@ -159,7 +159,7 @@ export default function SupportPage() {
             </a>
           </div>
 
-          <div className="bg-white rounded-xl border border-neutral-200/60 shadow-sm p-6 sm:p-5 text-center">
+          <div className="bg-white rounded-xl border border-neutral-200/60 shadow-sm p-6 space-y-3 text-center">
             <div className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-[0_8px_30px_rgba(0,0,0,.12)]" style={{
               background: b.enabled && b.primary ? `linear-gradient(135deg, #ffffff, ${b.primary})` : 'linear-gradient(135deg, #ffffff, #d97706)'
             }}>
