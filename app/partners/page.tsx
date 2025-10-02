@@ -6,7 +6,7 @@ import { useSearchParams } from 'next/navigation';
 import { useCompany } from '@/components/CompanyContext';
 import { IconBadge } from '@/components/ui/IconBadge';
 
-import LegalFooter from '@/components/legal/LegalFooter';
+import Footer from '@/components/Footer';
 
 export default function PartnersPage() {
   const b = useBrandTakeover();
@@ -25,11 +25,33 @@ export default function PartnersPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Track partner application
-    console.log('Partner application submitted:', formData);
-    
-    // In production, send to your CRM/Airtable
-    alert('Thank you! Our partner team will review your application and contact you within 48 hours.');
+    try {
+      // Send partner application to support@getsunspire.com
+      const response = await fetch('/api/partner-apply', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      
+      if (response.ok) {
+        alert('Thank you! Our partner team will review your application and contact you within 48 hours.');
+        // Reset form
+        setFormData({
+          company: '',
+          name: '',
+          email: '',
+          phone: '',
+          type: '',
+          experience: '',
+          message: ''
+        });
+      } else {
+        throw new Error('Failed to submit application');
+      }
+    } catch (error) {
+      console.error('Partner application error:', error);
+      alert('Something went wrong. Please try again or email support@getsunspire.com directly.');
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -95,10 +117,12 @@ export default function PartnersPage() {
           </p>
           
           {/* Eligibility and Payout Terms */}
-          <div className="mt-6 p-4 bg-gray-50 rounded-lg border border-gray-200">
-            <div className="text-center">
+          <div className="mt-8 p-6 bg-gray-50 rounded-xl border border-gray-200">
+            <div className="text-center space-y-2">
               <p className="text-sm text-gray-700">
-                <strong>Eligibility:</strong> Agencies with ≥5 solar clients • 
+                <strong>Eligibility:</strong> Agencies with ≥5 solar clients
+              </p>
+              <p className="text-sm text-gray-700">
                 <strong>Payout:</strong> 30% recurring, Net-30, 30-day cookie
               </p>
             </div>
@@ -332,11 +356,8 @@ export default function PartnersPage() {
         </div>
       </main>
 
-      <LegalFooter 
-        hideMarketingLinks={!!searchParams.get('demo')} 
-        showPoweredBy={true} 
-        brand={b.enabled ? b.brand : undefined} 
-      />
+      {/* Use consistent Footer component across entire demo site */}
+      <Footer />
     </div>
   );
 }

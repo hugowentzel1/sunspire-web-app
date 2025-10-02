@@ -127,17 +127,29 @@ function HomeContent() {
 
 
 
-  const handleAddressSelect = (result: any) => {
-    setAddress(result.formattedAddress);
-    setSelectedPlace(result);
+  const handleAddressSelect = (address: string, placeId?: string) => {
+    console.log('Address selected:', address, 'placeId:', placeId);
+    
+    // Create a mock selectedPlace object for navigation
+    const mockPlace = {
+      formattedAddress: address,
+      placeId: placeId || 'selected',
+      lat: 40.7128, // Default NYC coordinates
+      lng: -74.0060,
+    };
+    
+    setAddress(address);
+    setSelectedPlace(mockPlace);
     
     // Save address for state continuity (only if valid)
-    if (result.formattedAddress && result.formattedAddress !== 'undefined') {
-      localStorage.setItem('sunspire-last-address', result.formattedAddress);
+    if (address && address !== 'undefined') {
+      localStorage.setItem('sunspire-last-address', address);
     }
     
-    if (b.enabled && isClient) {
-
+    // Automatically navigate to report page when address is selected
+    if (address.trim()) {
+      console.log('Auto-navigating to report page with selected address');
+      handleGenerateEstimate();
     }
   };
 
@@ -284,7 +296,7 @@ function HomeContent() {
               <div className="bg-white/80 backdrop-blur-sm rounded-3xl py-6 px-8 border border-gray-200/50 shadow-lg mx-auto max-w-2xl">
                 <div className="space-y-4 text-center" {...tid('demo-cta')}>
                   <h2 className="text-3xl font-bold text-gray-900">
-                    Demo for {b.brand || 'Your Company'} — Powered by <span style={{ color: b.primary }}>Sunspire</span>
+                    Demo for {b.brand || 'Your Company'} — Powered by <a href="/status" className="hover:underline" style={{ color: b.primary }}>Sunspire</a>
                   </h2>
                   <p className="text-lg text-gray-600">
                     Your Logo. Your URL. Instant Solar Quotes — Live in 24 Hours

@@ -6,6 +6,7 @@ import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import { useBrandColors } from '@/hooks/useBrandColors';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import Footer from '@/components/Footer';
 
 export default function PricingPage() {
   const searchParams = useSearchParams();
@@ -319,17 +320,10 @@ export default function PricingPage() {
           </div>
         </motion.div>
 
-        {/* Legal Footer */}
-        <div className="text-center text-sm text-gray-500 space-x-4 pb-8">
-          <Link href={createUrlWithParams('/privacy')} className="hover:text-gray-700 transition-colors">Privacy</Link>
-          <span>•</span>
-          <Link href={createUrlWithParams('/terms')} className="hover:text-gray-700 transition-colors">Terms</Link>
-          <span>•</span>
-          <Link href={createUrlWithParams('/security')} className="hover:text-gray-700 transition-colors">Security</Link>
-          <span>•</span>
-          <Link href={createUrlWithParams('/dpa')} className="hover:text-gray-700 transition-colors">DPA</Link>
-        </div>
       </main>
+
+      {/* Use consistent Footer component across entire demo site */}
+      <Footer />
 
       {/* Mobile Sticky Bottom Bar - Single Primary CTA */}
       <div 

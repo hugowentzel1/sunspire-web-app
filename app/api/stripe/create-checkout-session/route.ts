@@ -24,14 +24,21 @@ export async function POST(req: NextRequest) {
     console.log("🔍 Stripe checkout request received");
 
     // Get price IDs from environment
-    const price =
+    const monthlyPrice =
       process.env.STRIPE_PRICE_STARTER || 
       process.env.STRIPE_PRICE_MONTHLY ||
       process.env.STRIPE_PRICE_MONTHLY_99;
     
-    if (!price) {
-      console.error("❌ Missing STRIPE price env");
-      return NextResponse.json({ error: "Stripe price configuration missing" }, { status: 500 });
+    const setupPrice = process.env.STRIPE_PRICE_SETUP_399;
+    
+    if (!monthlyPrice) {
+      console.error("❌ Missing STRIPE monthly price env");
+      return NextResponse.json({ error: "Stripe monthly price configuration missing" }, { status: 500 });
+    }
+    
+    if (!setupPrice) {
+      console.error("❌ Missing STRIPE setup price env");
+      return NextResponse.json({ error: "Stripe setup price configuration missing" }, { status: 500 });
     }
 
     // Read params from POST JSON
@@ -61,13 +68,17 @@ export async function POST(req: NextRequest) {
     const base =
       process.env.NEXT_PUBLIC_APP_URL || "https://demo.sunspiredemo.com";
 
-    // Create Stripe checkout session
+    // Create Stripe checkout session with both setup fee and monthly subscription
     const checkoutSession = await stripeClient.checkout.sessions.create({
       payment_method_types: ["card"],
       mode: "subscription",
       line_items: [
         {
-          price: price,
+          price: monthlyPrice,
+          quantity: 1,
+        },
+        {
+          price: setupPrice,
           quantity: 1,
         },
       ],
@@ -118,14 +129,21 @@ export async function GET(req: NextRequest) {
     console.log("🔍 Stripe checkout GET request received");
 
     // Get price IDs from environment
-    const price =
+    const monthlyPrice =
       process.env.STRIPE_PRICE_STARTER || 
       process.env.STRIPE_PRICE_MONTHLY ||
       process.env.STRIPE_PRICE_MONTHLY_99;
     
-    if (!price) {
-      console.error("❌ Missing STRIPE price env");
-      return NextResponse.json({ error: "Stripe price configuration missing" }, { status: 500 });
+    const setupPrice = process.env.STRIPE_PRICE_SETUP_399;
+    
+    if (!monthlyPrice) {
+      console.error("❌ Missing STRIPE monthly price env");
+      return NextResponse.json({ error: "Stripe monthly price configuration missing" }, { status: 500 });
+    }
+    
+    if (!setupPrice) {
+      console.error("❌ Missing STRIPE setup price env");
+      return NextResponse.json({ error: "Stripe setup price configuration missing" }, { status: 500 });
     }
 
     // Read params from URL query string
@@ -153,13 +171,17 @@ export async function GET(req: NextRequest) {
     const base =
       process.env.NEXT_PUBLIC_APP_URL || "https://demo.sunspiredemo.com";
 
-    // Create Stripe checkout session
+    // Create Stripe checkout session with both setup fee and monthly subscription
     const checkoutSession = await stripeClient.checkout.sessions.create({
       payment_method_types: ["card"],
       mode: "subscription",
       line_items: [
         {
-          price: price,
+          price: monthlyPrice,
+          quantity: 1,
+        },
+        {
+          price: setupPrice,
           quantity: 1,
         },
       ],

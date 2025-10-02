@@ -8,11 +8,12 @@
   transition: box-shadow 150ms ease;
 }
 
-/* Desktop sticky behavior - inline in layout, not fixed */
+/* Desktop sticky behavior - centered vertically */
 @media (min-width: 1024px) {
   .sidebar-cta {
     position: sticky;
-    top: 100px;
+    top: 50vh;
+    transform: translateY(-50%);
     align-self: flex-start;
   }
 }
