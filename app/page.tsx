@@ -149,15 +149,18 @@ function HomeContent() {
     // Automatically navigate to report page when address is selected
     if (address.trim()) {
       console.log('Auto-navigating to report page with selected address');
-      handleGenerateEstimate();
+      handleGenerateEstimate(address, mockPlace);
     }
   };
 
-  const handleGenerateEstimate = () => {
-    if (!address.trim()) return;
+  const handleGenerateEstimate = (addressParam?: string, placeParam?: any) => {
+    const currentAddress = addressParam || address;
+    const currentPlace = placeParam || selectedPlace;
     
-    console.log('Generating estimate for address:', address);
-    console.log('Selected place:', selectedPlace);
+    if (!currentAddress.trim()) return;
+    
+    console.log('Generating estimate for address:', currentAddress);
+    console.log('Selected place:', currentPlace);
     
     // Check quota (don't consume here - report page will consume)
     if (b.enabled) {
@@ -176,12 +179,12 @@ function HomeContent() {
       const company = searchParams.get('company');
       const demo = searchParams.get('demo');
       
-      if (selectedPlace && selectedPlace.formattedAddress) {
+      if (currentPlace && currentPlace.formattedAddress) {
         const q = new URLSearchParams({
-          address: selectedPlace.formattedAddress,
-          lat: String(selectedPlace.lat),
-          lng: String(selectedPlace.lng),
-          placeId: selectedPlace.placeId,
+          address: currentPlace.formattedAddress,
+          lat: String(currentPlace.lat),
+          lng: String(currentPlace.lng),
+          placeId: currentPlace.placeId,
         });
         
         // Add company and demo parameters if they exist
@@ -192,7 +195,7 @@ function HomeContent() {
         router.push(`/report?${q.toString()}`);
       } else {
         const q = new URLSearchParams({ 
-          address, 
+          address: currentAddress, 
           lat: '40.7128', 
           lng: '-74.0060', 
           placeId: 'demo' 
