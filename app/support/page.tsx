@@ -65,7 +65,7 @@ export default function SupportPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-16 sm:py-8">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-12 sm:py-8">
         {/* Back to Home Button */}
         <div className="mb-8">
           <a 

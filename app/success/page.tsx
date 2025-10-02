@@ -25,12 +25,6 @@ export default function SuccessPage() {
   const [error, setError] = useState<string | null>(null);
   const b = useBrandTakeover();
 
-  useEffect(() => {
-    if (sessionId) {
-      fetchSessionDetails();
-    }
-  }, [sessionId]);
-
   const fetchSessionDetails = useCallback(async () => {
     try {
       const response = await fetch(`/api/stripe/session?session_id=${sessionId}`);
@@ -45,6 +39,12 @@ export default function SuccessPage() {
       setLoading(false);
     }
   }, [sessionId]);
+
+  useEffect(() => {
+    if (sessionId) {
+      fetchSessionDetails();
+    }
+  }, [sessionId, fetchSessionDetails]);
 
   const handleManageBilling = async () => {
     try {

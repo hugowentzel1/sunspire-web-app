@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 
@@ -16,15 +16,7 @@ export default function ActivatePage() {
   const [activeTab, setActiveTab] = useState<'instant' | 'domain' | 'embed'>('instant');
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    if (sessionId) {
-      fetchSessionDetails();
-    } else {
-      setIsLoading(false);
-    }
-  }, [sessionId]);
-
-  const fetchSessionDetails = async () => {
+  const fetchSessionDetails = useCallback(async () => {
     try {
       const response = await fetch(`/api/stripe/session?session_id=${sessionId}`);
       const data = await response.json();
@@ -39,7 +31,15 @@ export default function ActivatePage() {
     } finally {
       setIsLoading(false);
     }
-  };
+  }, [sessionId]);
+
+  useEffect(() => {
+    if (sessionId) {
+      fetchSessionDetails();
+    } else {
+      setIsLoading(false);
+    }
+  }, [sessionId, fetchSessionDetails]);
 
   const handleVerifyDomain = async () => {
     if (!customDomain) return;

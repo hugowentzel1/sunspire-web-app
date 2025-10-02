@@ -81,7 +81,7 @@ function HomeContent() {
     if (savedAddress && savedAddress !== 'undefined' && !address) {
       setAddress(savedAddress);
     }
-  }, []);
+  }, [address]);
 
   // Load trust data
   useEffect(() => {

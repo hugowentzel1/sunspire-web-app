@@ -52,7 +52,7 @@ export default function PricingPage() {
   const faqs = [
     {
       q: 'Is there a setup fee?',
-      a: 'Yes, there\'s a one-time $399 setup fee that covers domain configuration, branding, and CRM integration. After that, it\'s just $99/month.'
+      a: 'Yes, there&apos;s a one-time $399 setup fee that covers domain configuration, branding, and CRM integration. After that, it&apos;s just $99/month.'
     },
     {
       q: 'How accurate are the solar estimates?',
@@ -60,7 +60,7 @@ export default function PricingPage() {
     },
     {
       q: 'Can I cancel anytime?',
-      a: 'Yes, 14-day full refund if it doesn\'t increase booked calls. Cancel anytime after with 30 days notice. No lock-in.'
+      a: 'Yes, 14-day full refund if it doesn&apos;t increase booked calls. Cancel anytime after with 30 days notice. No lock-in.'
     },
     {
       q: 'What support do you provide?',
@@ -105,7 +105,7 @@ export default function PricingPage() {
         </div>
 
         {/* Two Column Grid - What You Get + Why Installers Switch */}
-        <div className="grid grid-cols-[1fr_0.9fr] gap-8 md:grid-cols-1 md:gap-6 mt-12">
+        <div className="grid grid-cols-[1fr_0.9fr] gap-8 md:grid-cols-1 md:gap-6 mt-12" data-testid="pricing-grid">
           {/* LEFT: What You Get */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -191,18 +191,19 @@ export default function PricingPage() {
             onClick={handleStartSetup}
             className="inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 shadow-md"
             style={{ backgroundColor: 'var(--brand-primary)' }}
+            data-testid="pricing-cta"
           >
             Start setup — $399 today (then $99/mo)
           </button>
 
           {/* compact pricing/guarantee */}
           <div className="mt-3 text-sm text-gray-600 text-center">
-            Secure checkout — powered by Stripe · 14-day refund if it doesn't lift booked calls · No coding required
+            Secure checkout — powered by Stripe · 14-day refund if it doesn&apos;t lift booked calls · No coding required
           </div>
         </motion.div>
 
         {/* Trust badges & 1-2-3 steps */}
-        <div className="mt-4">
+        <div className="mt-4" data-testid="trust-badges">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

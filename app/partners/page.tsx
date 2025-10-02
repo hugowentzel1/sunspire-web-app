@@ -61,7 +61,7 @@ export default function PartnersPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-16 sm:py-8">
+      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-12 sm:py-8">
         {/* Back to Home Button */}
         <div className="mb-8">
           <a 
@@ -116,14 +116,14 @@ export default function PartnersPage() {
           
           {/* Short summary line */}
           <p className="mt-2 text-gray-600 text-center max-w-3xl mx-auto">
-            $99/mo + $399 setup. 14-day refund if it doesn't lift booked calls. Live in 24h.
+            $99/mo + $399 setup. 14-day refund if it doesn&apos;t lift booked calls. Live in 24h.
           </p>
         </div>
 
         {/* Eligibility and Payout Terms - Balanced spacing */}
         <section className="py-16 md:py-12 sm:py-8">
           <div className="max-w-6xl mx-auto px-6 sm:px-4">
-            <div className="rounded-2xl border border-black/10 bg-white/80 backdrop-blur shadow-sm p-6 md:p-6 sm:p-5">
+            <div className="rounded-xl border border-neutral-200/60 bg-white/80 backdrop-blur shadow-sm p-6 sm:p-5">
               <h3 className="text-lg font-semibold mb-4">Commission Structure</h3>
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
@@ -203,7 +203,7 @@ export default function PartnersPage() {
                 </div>
 
                 {/* Success Story */}
-                <div className="bg-neutral-50 rounded-xl border border-neutral-200/60 shadow-sm p-6">
+                <div className="bg-neutral-50 rounded-xl border border-neutral-200/60 shadow-sm p-6" data-testid="success-story">
                   <h4 className="font-semibold text-neutral-900 mb-2">Success Story</h4>
                   <p className="text-neutral-600 italic mb-3">
                     &ldquo;We&apos;ve generated over $15,000 in recurring revenue in just 6 months by 
@@ -312,7 +312,7 @@ export default function PartnersPage() {
                       onChange={handleChange}
                       className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:border-transparent"
                       style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
-                      placeholder="Tell us about your client base and how you'd promote Sunspire..."
+                      placeholder="Tell us about your client base and how you&apos;d promote Sunspire..."
                     />
                   </div>
 
