@@ -146,7 +146,7 @@ function HomeContent() {
       localStorage.setItem('sunspire-last-address', address);
     }
     
-    // Automatically navigate to report page when address is selected
+    // Automatically navigate to report page when address is selected - deployment fix
     if (address && address.trim()) {
       console.log('Auto-navigating to report page with selected address');
       handleGenerateEstimate(address, mockPlace);
