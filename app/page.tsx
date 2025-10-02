@@ -136,6 +136,14 @@ function HomeContent() {
       placeId: placeId || 'selected',
       lat: 40.7128, // Default NYC coordinates
       lng: -74.0060,
+      components: {
+        street_number: '',
+        route: '',
+        locality: '',
+        administrative_area_level_1: '',
+        country: '',
+        postal_code: ''
+      }
     };
     
     setAddress(address);
@@ -400,7 +408,7 @@ function HomeContent() {
 
                 {/* Generate Button - Now below the search bar */}
                 <button 
-                  onClick={address.trim() ? handleGenerateEstimate : (b.enabled ? handleLaunchClick : handleGenerateEstimate)}
+                  onClick={address.trim() ? () => handleGenerateEstimate() : (b.enabled ? handleLaunchClick : () => handleGenerateEstimate())}
                   disabled={!address.trim() || isLoading} 
                   data-cta-button
                   className={`w-full ${
