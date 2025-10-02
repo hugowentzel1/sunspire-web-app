@@ -147,7 +147,7 @@ function HomeContent() {
     }
     
     // Automatically navigate to report page when address is selected
-    if (address.trim()) {
+    if (address && address.trim()) {
       console.log('Auto-navigating to report page with selected address');
       handleGenerateEstimate(address, mockPlace);
     }
