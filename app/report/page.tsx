@@ -161,26 +161,15 @@ function ReportContent() {
         })
       });
       
-      console.log('🛒 Response status:', response.status);
-      
       if (!response.ok) {
-        const errorData = await response.json().catch(() => ({}));
-        console.error('🛒 Checkout API error:', errorData);
-        throw new Error(errorData.error || 'Checkout failed');
+        throw new Error('Checkout failed');
       }
       
       const { url } = await response.json();
-      console.log('🛒 Got checkout URL:', url);
-      
-      if (!url) {
-        throw new Error('No checkout URL returned');
-      }
-      
       window.location.href = url;
     } catch (error) {
       console.error('🛒 Checkout error:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Unable to start checkout';
-      alert(errorMessage + '. Please try again.');
+      alert('Unable to start checkout. Please try again.');
     }
   };
 
@@ -689,11 +678,8 @@ function ReportContent() {
       {/* Trust Signals - Logo Wall */}
       {trustData && <LogoWall logos={trustData.logos} className="py-8" />}
 
-      <main data-testid="report-page" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Grid layout for demo mode: content + sidebar */}
-        <div className={demoMode ? "lg:grid lg:grid-cols-[1fr_320px] lg:gap-8" : ""}>
-          {/* Main content area */}
-          <div>
+      <main data-testid="report-page" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
         {/* Success toast for paid mode */}
         {showSuccessToast && (
           <div className="fixed top-4 right-4 z-50 text-white px-6 py-3 rounded-lg shadow-lg" style={{ backgroundColor: b.primary }} {...tid('lead-success-toast')}>
@@ -988,7 +974,7 @@ function ReportContent() {
                 <motion.button 
                   data-cta="primary"
                   onClick={handleCheckout}
-                  className="px-14 py-6 text-white rounded-2xl font-bold text-2xl border-4 border-white/60 hover:border-white hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 ring-2 ring-white/30" 
+                  className="px-14 py-6 text-white rounded-2xl font-bold text-2xl border-2 border-white/20 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105" 
                   style={{ backgroundColor: 'var(--brand-primary)' }}
                   whileHover={{ scale: 1.05 }} 
                   whileTap={{ scale: 0.95 }}
@@ -1038,23 +1024,19 @@ function ReportContent() {
             </motion.div>
           )}
         </motion.div>
-          </div>
-          
-          {/* Sticky Sidebar for Demo Mode */}
-          {demoMode && (
-            <aside className="hidden lg:block">
-              <SidebarCta
-                brandName={b.brand}
-                onCtaClick={handleCheckout}
-              />
-            </aside>
-          )}
-        </div>
       </main>
 
 
       {/* Use consistent Footer component across entire demo site */}
       <Footer />
+
+      {/* Optimized Sticky Sidebar CTA for Demo Mode */}
+      {demoMode && (
+        <SidebarCta
+          brandName={b.brand}
+          onCtaClick={handleCheckout}
+        />
+      )}
 
       {/* LeadModal removed - no popups wanted */}
       
