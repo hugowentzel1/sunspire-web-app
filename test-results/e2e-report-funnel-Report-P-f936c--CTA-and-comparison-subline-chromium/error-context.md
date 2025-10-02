@@ -1,0 +1,223 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - strong [ref=e4]: Exclusive preview built for Apple
+      - generic [ref=e5]: Exclusive preview — expires in 6:23:59:01
+      - generic [ref=e6]: "Runs left: 2"
+    - generic [ref=e7]:
+      - button "Launch on Apple" [ref=e8] [cursor=pointer]
+      - button "Copy link" [ref=e9] [cursor=pointer]
+      - button "Dismiss" [ref=e10] [cursor=pointer]: ✕
+  - banner [ref=e11]:
+    - generic [ref=e13]:
+      - link "Apple logo Apple Solar Intelligence" [ref=e14] [cursor=pointer]:
+        - /url: /?company=Apple&demo=1
+        - img "Apple logo" [ref=e15] [cursor=pointer]
+        - generic [ref=e16] [cursor=pointer]:
+          - heading "Apple" [level=1] [ref=e17] [cursor=pointer]
+          - paragraph [ref=e18] [cursor=pointer]: Solar Intelligence
+      - navigation [ref=e19]:
+        - link "Pricing" [ref=e20] [cursor=pointer]:
+          - /url: /pricing?company=Apple&demo=1
+        - link "Partners" [ref=e21] [cursor=pointer]:
+          - /url: /partners?company=Apple&demo=1
+        - link "Support" [active] [ref=e22] [cursor=pointer]:
+          - /url: /support?company=Apple&demo=1
+        - button "Activate on Your Domain — 24 Hours" [ref=e23] [cursor=pointer]
+    - paragraph [ref=e26]: Private demo for Apple. Not affiliated.
+  - alert [ref=e27]: Apple — Solar Intelligence
+  - generic [ref=e28]:
+    - main [ref=e29]:
+      - link "Back to Home" [ref=e31] [cursor=pointer]:
+        - /url: /?company=Apple&demo=1
+        - img [ref=e32] [cursor=pointer]
+        - text: Back to Home
+      - generic [ref=e36]:
+        - heading "Demo for Apple — Powered by Sunspire" [level=2] [ref=e37]:
+          - text: Demo for Apple — Powered by
+          - generic [ref=e38]: Sunspire
+        - paragraph [ref=e39]: Your Logo. Your URL. Instant Solar Quotes — Live in 24 Hours
+        - button "⚡ Activate on Your Domain — 24 Hours" [ref=e40] [cursor=pointer]:
+          - generic [ref=e41] [cursor=pointer]: ⚡
+          - text: Activate on Your Domain — 24 Hours
+        - paragraph [ref=e42]: No call required. $99/mo + $399 setup. 14-day refund if it doesn't lift booked calls.
+      - generic [ref=e43]:
+        - heading "Support Center" [level=1] [ref=e44]
+        - paragraph [ref=e45]: Get help with setup, integration, and optimization. Our team responds to all tickets within 24 hours.
+      - generic [ref=e46]:
+        - generic [ref=e47]:
+          - img [ref=e49]
+          - heading "Email Support" [level=3] [ref=e51]
+          - paragraph [ref=e52]: Send us a detailed message
+          - link "Email Us" [ref=e53] [cursor=pointer]:
+            - /url: mailto:support@getsunspire.com
+        - generic [ref=e54]:
+          - img [ref=e56]
+          - heading "Documentation" [level=3] [ref=e58]
+          - paragraph [ref=e59]: Browse our guides
+          - link "View Docs" [ref=e60] [cursor=pointer]:
+            - /url: /docs/setup
+        - generic [ref=e61]:
+          - img [ref=e63]
+          - heading "System Status" [level=3] [ref=e65]
+          - paragraph [ref=e66]: Check uptime & performance
+          - link "View Status" [ref=e67] [cursor=pointer]:
+            - /url: /status
+      - generic [ref=e68]:
+        - generic [ref=e69]:
+          - heading "Frequently Asked Questions" [level=2] [ref=e70]
+          - generic [ref=e71]:
+            - generic [ref=e72]:
+              - heading "How accurate are the solar estimates?" [level=3] [ref=e73]
+              - paragraph [ref=e74]: Our estimates use NREL PVWatts v8, EIA electricity rates, and local solar irradiance data. Accuracy is typically ±10-15%, comparable to professional site surveys.
+            - generic [ref=e75]:
+              - heading "How quickly can I get the tool live on my website?" [level=3] [ref=e76]
+              - paragraph [ref=e77]: Standard setup takes 24-48 hours. Enterprise clients get priority setup within 12 hours.
+            - generic [ref=e78]:
+              - heading "Can I customize the branding and colors?" [level=3] [ref=e79]
+              - paragraph [ref=e80]: Yes! All plans include full white-label customization with your colors, logo, and domain.
+            - generic [ref=e81]:
+              - heading "Do you integrate with CRM systems?" [level=3] [ref=e82]
+              - paragraph [ref=e83]: Yes, we integrate with most major CRMs including Salesforce, HubSpot, and Pipedrive. Custom integrations available for enterprise clients.
+            - generic [ref=e84]:
+              - heading "What if the tool doesn't increase my conversions?" [level=3] [ref=e85]
+              - paragraph [ref=e86]: We offer a 14-day money-back guarantee. If you don't see increased booked calls, you get a full refund.
+            - generic [ref=e87]:
+              - heading "Is there a setup fee?" [level=3] [ref=e88]
+              - paragraph [ref=e89]: Standard plans include a $399 setup fee. Enterprise plans have custom setup pricing based on requirements.
+          - generic [ref=e90]:
+            - heading "Helpful Resources" [level=3] [ref=e91]
+            - generic [ref=e92]:
+              - link "Calculation Methodology" [ref=e93] [cursor=pointer]:
+                - /url: /methodology
+                - img [ref=e94] [cursor=pointer]
+                - text: Calculation Methodology
+              - link "Enterprise Features" [ref=e96] [cursor=pointer]:
+                - /url: /pricing
+                - img [ref=e97] [cursor=pointer]
+                - text: Enterprise Features
+              - link "Partner Program" [ref=e99] [cursor=pointer]:
+                - /url: /partners
+                - img [ref=e100] [cursor=pointer]
+                - text: Partner Program
+              - link "Setup Assistance" [ref=e102] [cursor=pointer]:
+                - /url: mailto:setup@getsunspire.com
+                - img [ref=e103] [cursor=pointer]
+                - text: Setup Assistance
+        - generic [ref=e105]:
+          - heading "Create Support Ticket" [level=2] [ref=e106]
+          - generic [ref=e107]:
+            - generic [ref=e108]:
+              - generic [ref=e109]:
+                - generic [ref=e110]: Name
+                - textbox "Your name" [ref=e111]
+              - generic [ref=e112]:
+                - generic [ref=e113]: Email
+                - textbox "your@email.com" [ref=e114]
+            - generic [ref=e115]:
+              - generic [ref=e116]: Company
+              - textbox "Your company name" [ref=e117]
+            - generic [ref=e118]:
+              - generic [ref=e119]:
+                - generic [ref=e120]: Priority
+                - combobox [ref=e121]:
+                  - option "Select priority" [selected]
+                  - option "Low - General question"
+                  - option "Normal - Need help"
+                  - option "High - System issue"
+                  - option "Urgent - Site down"
+              - generic [ref=e122]:
+                - generic [ref=e123]: Category
+                - combobox [ref=e124]:
+                  - option "Select category" [selected]
+                  - option "Setup & Installation"
+                  - option "CRM Integration"
+                  - option "Branding & Customization"
+                  - option "Billing & Account"
+                  - option "Technical Issue"
+                  - option "Other"
+            - generic [ref=e125]:
+              - generic [ref=e126]: Subject
+              - textbox "Brief description of your issue" [ref=e127]
+            - generic [ref=e128]:
+              - generic [ref=e129]: Message
+              - textbox "Please provide as much detail as possible..." [ref=e130]
+            - button "Create Support Ticket" [ref=e131] [cursor=pointer]
+          - generic [ref=e132]:
+            - heading "Response Times" [level=4] [ref=e133]
+            - list [ref=e134]:
+              - listitem [ref=e135]: "• Standard: 24 hours"
+              - listitem [ref=e136]: "• High Priority: 4 hours"
+              - listitem [ref=e137]: "• Urgent: 1 hour"
+              - listitem [ref=e138]: "• Enterprise: 2 hours guaranteed"
+    - generic [ref=e139]:
+      - heading "Helpful Guides & Resources" [level=2] [ref=e140]
+      - generic [ref=e141]:
+        - link "Setup Guide Step-by-step installation" [ref=e142] [cursor=pointer]:
+          - /url: /docs/setup
+          - img [ref=e144] [cursor=pointer]
+          - heading "Setup Guide" [level=3] [ref=e146] [cursor=pointer]
+          - paragraph [ref=e147] [cursor=pointer]: Step-by-step installation
+        - link "Embed Guide Add to your website" [ref=e148] [cursor=pointer]:
+          - /url: /docs/embed
+          - img [ref=e150] [cursor=pointer]
+          - heading "Embed Guide" [level=3] [ref=e152] [cursor=pointer]
+          - paragraph [ref=e153] [cursor=pointer]: Add to your website
+        - link "CRM Guides HubSpot, Salesforce, Airtable" [ref=e154] [cursor=pointer]:
+          - /url: /docs/crm
+          - img [ref=e156] [cursor=pointer]
+          - heading "CRM Guides" [level=3] [ref=e158] [cursor=pointer]
+          - paragraph [ref=e159] [cursor=pointer]: HubSpot, Salesforce, Airtable
+        - link "System Status Live uptime & performance" [ref=e160] [cursor=pointer]:
+          - /url: /status
+          - img [ref=e162] [cursor=pointer]
+          - heading "System Status" [level=3] [ref=e164] [cursor=pointer]
+          - paragraph [ref=e165] [cursor=pointer]: Live uptime & performance
+    - contentinfo [ref=e166]:
+      - generic [ref=e167]:
+        - generic [ref=e168]:
+          - heading "Sunspire Solar Intelligence" [level=3] [ref=e170]
+          - generic [ref=e171]:
+            - heading "Legal & Support" [level=4] [ref=e172]
+            - generic [ref=e173]:
+              - link "Privacy Policy" [ref=e174] [cursor=pointer]:
+                - /url: /privacy?company=Apple&demo=1
+              - link "Terms of Service" [ref=e175] [cursor=pointer]:
+                - /url: /terms?company=Apple&demo=1
+              - link "Security" [ref=e176] [cursor=pointer]:
+                - /url: /security?company=Apple&demo=1
+              - link "DPA" [ref=e177] [cursor=pointer]:
+                - /url: /dpa?company=Apple&demo=1
+              - link "Do Not Sell My Data" [ref=e178] [cursor=pointer]:
+                - /url: /do-not-sell?company=Apple&demo=1
+          - generic [ref=e179]:
+            - heading "Contact" [level=4] [ref=e180]
+            - generic [ref=e181]:
+              - paragraph [ref=e182]:
+                - img [ref=e183]
+                - link "support@getsunspire.com" [ref=e185] [cursor=pointer]:
+                  - /url: mailto:support@getsunspire.com
+              - paragraph [ref=e186]:
+                - img [ref=e187]
+                - text: +1 (404) 770-2672
+        - generic [ref=e190]:
+          - generic [ref=e191]:
+            - img [ref=e192]
+            - generic [ref=e194]: Estimates generated using NREL PVWatts® v8
+          - paragraph [ref=e196]:
+            - text: Powered by
+            - generic [ref=e197]: Sunspire
+          - generic [ref=e198]:
+            - img [ref=e199]
+            - generic [ref=e201]: Mapping & location data © Google
+  - generic [ref=e204]:
+    - generic [ref=e205]:
+      - heading "We use cookies to improve your experience" [level=3] [ref=e206]
+      - paragraph [ref=e207]: We use cookies and similar technologies to analyze site usage, personalize content, and provide social media features. By continuing to use our site, you consent to our use of cookies.
+    - generic [ref=e208]:
+      - button "Decline" [ref=e209] [cursor=pointer]
+      - button "Accept All" [ref=e210] [cursor=pointer]
+```

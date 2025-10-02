@@ -197,13 +197,21 @@ export default function PricingPage() {
           </button>
 
           {/* compact pricing/guarantee */}
-          <div className="mt-3 text-sm text-gray-600 text-center">
+          <div className="mt-4 text-sm text-gray-600 text-center">
             Secure checkout — powered by Stripe · 14-day refund if it doesn&apos;t lift booked calls · No coding required
           </div>
         </motion.div>
 
-        {/* Trust badges & 1-2-3 steps */}
-        <div className="mt-4" data-testid="trust-badges">
+        {/* Trust badges */}
+        <div className="mt-8 flex items-center justify-center gap-6 flex-wrap">
+          <div className="text-sm text-gray-500">SOC2</div>
+          <div className="text-sm text-gray-500">HubSpot</div>
+          <div className="text-sm text-gray-500">Salesforce</div>
+          <div className="text-sm text-gray-500">GDPR</div>
+        </div>
+
+        {/* 1-2-3 steps */}
+        <div className="mt-8" data-testid="trust-badges">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
