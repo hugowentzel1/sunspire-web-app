@@ -225,155 +225,160 @@ export default function SupportPage() {
             </div>
           </div>
 
-          {/* Right Column - Support Form */}
-          <div className="bg-white rounded-xl border border-neutral-200/60 shadow-sm p-6 sm:p-5">
-            <h2 className="text-2xl font-bold text-neutral-900 mb-6">Create Support Ticket</h2>
-            
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {/* Right Column - Support Form + Response Times */}
+          <aside className="w-full lg:w-80 min-w-[320px]">
+            <div className="rounded-2xl border border-black/10 bg-white/80 backdrop-blur shadow-sm p-6 space-y-4">
+              <h2 className="text-2xl font-bold text-neutral-900 mb-6">Create Support Ticket</h2>
+              
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-neutral-700 mb-2">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      value={formData.name}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:border-transparent"
+                      style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
+                      placeholder="Your name"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-neutral-700 mb-2">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      value={formData.email}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:border-transparent"
+                      style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
+                      placeholder="your@email.com"
+                    />
+                  </div>
+                </div>
+
                 <div>
                   <label className="block text-sm font-medium text-neutral-700 mb-2">
-                    Name
+                    Company
                   </label>
                   <input
                     type="text"
-                    name="name"
-                    required
-                    value={formData.name}
+                    name="company"
+                    value={formData.company}
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:border-transparent"
                     style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
-                    placeholder="Your name"
+                    placeholder="Your company name"
                   />
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-neutral-700 mb-2">
+                      Priority
+                    </label>
+                    <select
+                      name="priority"
+                      required
+                      value={formData.priority}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:border-transparent"
+                      style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
+                    >
+                      <option value="">Select priority</option>
+                      <option value="low">Low - General question</option>
+                      <option value="normal">Normal - Need help</option>
+                      <option value="high">High - System issue</option>
+                      <option value="urgent">Urgent - Site down</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-neutral-700 mb-2">
+                      Category
+                    </label>
+                    <select
+                      name="category"
+                      required
+                      value={formData.category}
+                      onChange={handleChange}
+                      className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:border-transparent"
+                      style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
+                    >
+                      <option value="">Select category</option>
+                      <option value="setup">Setup & Installation</option>
+                      <option value="integration">CRM Integration</option>
+                      <option value="customization">Branding & Customization</option>
+                      <option value="billing">Billing & Account</option>
+                      <option value="technical">Technical Issue</option>
+                      <option value="other">Other</option>
+                    </select>
+                  </div>
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-neutral-700 mb-2">
-                    Email
+                    Subject
                   </label>
                   <input
-                    type="email"
-                    name="email"
+                    type="text"
+                    name="subject"
                     required
-                    value={formData.email}
+                    value={formData.subject}
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:border-transparent"
                     style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
-                    placeholder="your@email.com"
+                    placeholder="Brief description of your issue"
                   />
                 </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-2">
-                  Company
-                </label>
-                <input
-                  type="text"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:border-transparent"
-                  style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
-                  placeholder="Your company name"
-                />
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-neutral-700 mb-2">
-                    Priority
-                  </label>
-                  <select
-                    name="priority"
-                    required
-                    value={formData.priority}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:border-transparent"
-                    style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
-                  >
-                    <option value="">Select priority</option>
-                    <option value="low">Low - General question</option>
-                    <option value="normal">Normal - Need help</option>
-                    <option value="high">High - System issue</option>
-                    <option value="urgent">Urgent - Site down</option>
-                  </select>
-                </div>
 
                 <div>
                   <label className="block text-sm font-medium text-neutral-700 mb-2">
-                    Category
+                    Message
                   </label>
-                  <select
-                    name="category"
+                  <textarea
+                    name="message"
+                    rows={6}
                     required
-                    value={formData.category}
+                    value={formData.message}
                     onChange={handleChange}
                     className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:border-transparent"
                     style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
-                  >
-                    <option value="">Select category</option>
-                    <option value="setup">Setup & Installation</option>
-                    <option value="integration">CRM Integration</option>
-                    <option value="customization">Branding & Customization</option>
-                    <option value="billing">Billing & Account</option>
-                    <option value="technical">Technical Issue</option>
-                    <option value="other">Other</option>
-                  </select>
+                    placeholder="Please provide as much detail as possible..."
+                  />
                 </div>
-              </div>
 
-              <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-2">
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  name="subject"
-                  required
-                  value={formData.subject}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:border-transparent"
-                  style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
-                  placeholder="Brief description of your issue"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-2">
-                  Message
-                </label>
-                <textarea
-                  name="message"
-                  rows={6}
-                  required
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:border-transparent"
-                  style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
-                  placeholder="Please provide as much detail as possible..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full text-white py-3 px-6 rounded-lg font-semibold transition-colors mt-6"
-                style={{ backgroundColor: 'var(--brand-primary)' }}
-              >
-                Create Support Ticket
-              </button>
-            </form>
-
-            <div className="mt-6 p-4 rounded-lg bg-neutral-50 border border-neutral-200">
-              <h4 className="font-semibold text-neutral-900 mb-2">Response Times</h4>
-              <ul className="text-sm text-neutral-700 space-y-1">
-                <li>• Standard: 24 hours</li>
-                <li>• High Priority: 4 hours</li>
-                <li>• Urgent: 1 hour</li>
-                <li>• Enterprise: 2 hours guaranteed</li>
-              </ul>
+                <button
+                  type="submit"
+                  className="w-full text-white py-3 px-6 rounded-lg font-semibold transition-colors mt-6"
+                  style={{ backgroundColor: 'var(--brand-primary)' }}
+                >
+                  Create Support Ticket
+                </button>
+              </form>
             </div>
-          </div>
+
+            {/* Enlarged Response Times Card */}
+            <div className="mt-6">
+              <div className="rounded-2xl border border-black/10 bg-white/80 backdrop-blur shadow-sm p-6">
+                <h4 className="text-base font-semibold mb-3">Response Times</h4>
+                <ul className="space-y-2 text-sm text-gray-700">
+                  <li>Standard: 24 hours</li>
+                  <li>High Priority: 4 hours</li>
+                  <li>Urgent: 1 hour</li>
+                  <li>Enterprise: 2 hours guaranteed</li>
+                </ul>
+              </div>
+            </div>
+          </aside>
         </div>
       </main>
 

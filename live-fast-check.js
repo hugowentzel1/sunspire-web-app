@@ -8,7 +8,7 @@ async function liveFastCheck() {
   
   console.log('📋 Step 1: Loading LIVE demo page...');
   await page.goto('https://sunspire-web-app.vercel.app/?company=Netflix&demo=1');
-  await page.waitForTimeout(3000);
+  await page.waitForTimeout(500);
   
   console.log('📋 Step 2: Taking screenshot of LIVE demo page...');
   await page.screenshot({ path: 'live-demo-page.png', fullPage: true });
@@ -31,12 +31,12 @@ async function liveFastCheck() {
   const socialProof = await page.locator('text=Trusted by').isVisible();
   console.log('✅ Social proof visible:', socialProof);
   
-  // Check testimonials
-  const testimonials = await page.locator('text=Cut quoting time').isVisible();
+  // Check testimonials (use first occurrence to avoid strict mode violation)
+  const testimonials = await page.locator('text=Cut quoting time').first().isVisible();
   console.log('✅ Testimonials visible:', testimonials);
   
-  // Check stats
-  const stats = await page.locator('text=quotes').isVisible();
+  // Check stats (use more specific selector to avoid strict mode violation)
+  const stats = await page.locator('text=quotes modeled this month').isVisible();
   console.log('✅ Stats visible:', stats);
   
   // Check CTA button
@@ -46,7 +46,7 @@ async function liveFastCheck() {
   console.log('📋 Step 4: Testing address autocomplete on LIVE site...');
   const addressInput = page.locator('input[placeholder*="address"]');
   await addressInput.fill('123 Main St San Francisco CA');
-  await page.waitForTimeout(2000);
+  await page.waitForTimeout(500);
   
   const autocomplete = page.locator('[data-autosuggest]');
   const suggestions = await autocomplete.locator('div').count();
@@ -55,7 +55,7 @@ async function liveFastCheck() {
   if (suggestions > 0) {
     await autocomplete.locator('div').first().click();
     console.log('✅ Clicked first suggestion');
-    await page.waitForTimeout(3000);
+    await page.waitForTimeout(1000);
     
     const currentUrl = page.url();
     if (currentUrl.includes('/report')) {
@@ -91,7 +91,7 @@ async function liveFastCheck() {
   
   console.log('📋 Step 5: Testing pricing page on LIVE site...');
   await page.goto('https://sunspire-web-app.vercel.app/pricing?company=Netflix&demo=1');
-  await page.waitForTimeout(2000);
+  await page.waitForTimeout(1000);
   await page.screenshot({ path: 'live-pricing-page.png', fullPage: true });
   
   const proofSidebar = await page.locator('text=Why Installers Switch').isVisible();
@@ -102,7 +102,7 @@ async function liveFastCheck() {
   
   console.log('📋 Step 6: Testing support page on LIVE site...');
   await page.goto('https://sunspire-web-app.vercel.app/support?company=Netflix&demo=1');
-  await page.waitForTimeout(2000);
+  await page.waitForTimeout(500);
   await page.screenshot({ path: 'live-support-page.png', fullPage: true });
   
   const supportFaq = await page.locator('[data-testid="support-faq"]').isVisible();
@@ -113,7 +113,7 @@ async function liveFastCheck() {
   
   console.log('📋 Step 7: Testing partners page on LIVE site...');
   await page.goto('https://sunspire-web-app.vercel.app/partners?company=Netflix&demo=1');
-  await page.waitForTimeout(2000);
+  await page.waitForTimeout(500);
   await page.screenshot({ path: 'live-partners-page.png', fullPage: true });
   
   const partnersForm = await page.locator('form').isVisible();
@@ -121,13 +121,13 @@ async function liveFastCheck() {
   
   console.log('📋 Step 8: Testing Stripe checkout on LIVE site...');
   await page.goto('https://sunspire-web-app.vercel.app/report?company=Netflix&demo=1');
-  await page.waitForTimeout(2000);
+  await page.waitForTimeout(500);
   
   const stripeButton = page.locator('button[data-cta-button]').first();
   if (await stripeButton.isVisible()) {
     await stripeButton.click();
     console.log('✅ Clicked Stripe button');
-    await page.waitForTimeout(3000);
+    await page.waitForTimeout(1000);
     
     const checkoutUrl = page.url();
     if (checkoutUrl.includes('checkout.stripe.com')) {
