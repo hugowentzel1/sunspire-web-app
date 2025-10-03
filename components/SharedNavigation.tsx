@@ -178,33 +178,29 @@ export default function SharedNavigation() {
           </Link>
           
           <nav className="hidden md:flex items-center space-x-12">
-            {isDemo && (
-              <>
-                <Link href={createUrlWithParams("/pricing")} className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Pricing</Link>
-                <Link href={createUrlWithParams("/partners")} className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Partners</Link>
-                <Link href={createUrlWithParams("/support")} className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Support</Link>
-                <button 
-                  onClick={handleLaunchClick}
-                  className="btn-primary ml-12"
-                >
-                  Activate on Your Domain — 24 Hours
-                </button>
-              </>
-            )}
+            <Link href={createUrlWithParams("/pricing")} className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Pricing</Link>
+            <Link href={createUrlWithParams("/partners")} className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Partners</Link>
+            <Link href={createUrlWithParams("/support")} className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Support</Link>
+            <button 
+              onClick={handleLaunchClick}
+              className="btn-primary ml-12"
+            >
+              Activate on Your Domain — 24 Hours
+            </button>
           </nav>
         </div>
       </div>
       
-      {/* Disclaimer Footer - Old banner from c548b88 */}
-      <div className="border-t border-gray-100 bg-gray-50/50">
-        {isDemo && (
+      {/* Disclaimer Footer - Only show in demo mode */}
+      {isDemo && (
+        <div className="border-t border-gray-100 bg-gray-50/50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
             <p className="text-xs text-gray-500 text-center">
               Private demo for {b.brand || 'Your Company'}. Not affiliated.
             </p>
           </div>
-        )}
-      </div>
+        </div>
+      )}
     </header>
   );
 }
