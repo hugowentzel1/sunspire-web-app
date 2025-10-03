@@ -595,7 +595,7 @@ function ReportContent() {
     >
       {/* Custom banner for report page */}
       <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
-        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
+        <Container>
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center space-x-4">
               {(b.logo || getDefaultLogo(b.brand)) ? (
@@ -674,7 +674,7 @@ function ReportContent() {
               </motion.button>
             </nav>
           </div>
-        </div>
+        </Container>
       </header>
       
       {/* Trust Signals - Logo Wall */}
