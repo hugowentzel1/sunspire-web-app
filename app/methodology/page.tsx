@@ -2,6 +2,8 @@
 
 import { useSearchParams } from 'next/navigation';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+import SharedNavigation from '@/components/SharedNavigation';
+import LegalFooter from '@/components/legal/LegalFooter';
 
 export default function MethodologyPage() {
   const searchParams = useSearchParams();
@@ -24,6 +26,8 @@ export default function MethodologyPage() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-gray-100 font-inter">
       {/* Set CSS variable for consistent brand colors */}
       <style>{`:root{--brand-primary:${b.primary};}`}</style>
+      
+      <SharedNavigation />
       
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="text-center mb-12">
@@ -142,6 +146,8 @@ export default function MethodologyPage() {
           </a>
         </div>
       </main>
+      
+      <LegalFooter />
     </div>
   );
 }

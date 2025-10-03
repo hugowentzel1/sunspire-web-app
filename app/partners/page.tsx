@@ -10,6 +10,7 @@ import { Stack } from '@/components/layout/Stack';
 import { Card } from '@/components/ui/Card';
 import EarningsMini from '@/components/partners/EarningsMini';
 import Footer from '@/components/Footer';
+import { Button } from '@/components/ui/Button';
 
 export default function PartnersPage() {
   const b = useBrandTakeover();
@@ -32,8 +33,15 @@ export default function PartnersPage() {
     setSubmitStatus('idle');
     
     try {
-      // For demo purposes, simulate successful submission
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      const response = await fetch('/api/partner-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      });
+      
+      if (!response.ok) {
+        throw new Error('Failed to submit application');
+      }
       
       setSubmitStatus('success');
       setFormData({
@@ -281,14 +289,13 @@ export default function PartnersPage() {
                       />
                     </div>
 
-                    <button
+                    <Button
                       type="submit"
+                      className="w-full mt-6"
                       disabled={isSubmitting}
-                      className="w-full text-white py-3 px-6 rounded-lg font-semibold transition-colors mt-6 disabled:opacity-60 disabled:cursor-not-allowed"
-                      style={{ backgroundColor: 'var(--brand-primary)' }}
                     >
                       {isSubmitting ? 'Submitting...' : 'Submit Partner Application'}
-                    </button>
+                    </Button>
                   </form>
 
                   {/* Success/Error Messages */}

@@ -8,6 +8,8 @@ import { Section } from '@/components/layout/Section';
 import { Stack } from '@/components/layout/Stack';
 import { Card } from '@/components/ui/Card';
 import LegalFooter from '@/components/legal/LegalFooter';
+import { Button } from '@/components/ui/Button';
+import Link from 'next/link';
 
 export default function SupportPage() {
   const b = useBrandTakeover();
@@ -333,13 +335,12 @@ export default function SupportPage() {
                       />
                     </div>
 
-                    <button
+                    <Button
                       type="submit"
-                      className="w-full text-white py-3 px-6 rounded-lg font-semibold transition-colors mt-6"
-                      style={{ backgroundColor: 'var(--brand-primary)' }}
+                      className="w-full mt-6"
                     >
                       Create Support Ticket
-                    </button>
+                    </Button>
                   </form>
                 </Card>
 

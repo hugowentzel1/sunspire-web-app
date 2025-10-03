@@ -3,8 +3,8 @@ import { Card } from "@/components/ui/Card";
 
 export default function EarningsMini() {
   const [clients, setClients] = useState(10);
-  const recurring = clients * 30;   // $30 per client per month
-  const setup = clients * 120;      // $120 per client one-time
+  const recurring = clients * 30;
+  const setup = clients * 120;
   
   return (
     <Card>

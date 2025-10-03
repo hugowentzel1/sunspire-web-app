@@ -11,7 +11,7 @@ import Container from '@/components/layout/Container';
 import { Section } from '@/components/layout/Section';
 import { Stack } from '@/components/layout/Stack';
 import { Card } from '@/components/ui/Card';
-import { primaryBtn } from '@/components/ui/Button';
+import { Button } from '@/components/ui/Button';
 
 export default function PricingPage() {
   const searchParams = useSearchParams();
@@ -137,21 +137,20 @@ export default function PricingPage() {
               </motion.p>
 
               {/* Main CTA */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="mt-8"
-              >
-                <button
-                  id="main-cta"
-                  onClick={handleStartSetup}
-                  className={`${primaryBtn} w-full md:w-auto`}
-                  style={{ backgroundColor: 'var(--brand-primary)' }}
-                >
-                  Start setup — $399 today + $99/mo
-                </button>
-              </motion.div>
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                        className="mt-8"
+                      >
+                        <Button
+                          id="main-cta"
+                          onClick={handleStartSetup}
+                          className="w-full md:w-auto"
+                        >
+                          Start setup — $399 today + $99/mo
+                        </Button>
+                      </motion.div>
 
               {/* Trust Row */}
               <motion.div
@@ -271,20 +270,19 @@ export default function PricingPage() {
       {/* Use consistent Footer component across entire demo site */}
       <Footer />
 
-      {/* Mobile Sticky CTA */}
-      {showStickyCTA && (
-        <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-2xl z-50">
-          <div className="px-4 py-4">
-            <button
-              onClick={handleStartSetup}
-              className={`${primaryBtn} w-full`}
-              style={{ backgroundColor: 'var(--brand-primary)' }}
-            >
-              Start setup — $399 today + $99/mo
-            </button>
-          </div>
-        </div>
-      )}
+              {/* Mobile Sticky CTA */}
+              {showStickyCTA && (
+                <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-2xl z-50">
+                  <div className="px-4 py-4">
+                    <Button
+                      onClick={handleStartSetup}
+                      className="w-full"
+                    >
+                      Start setup — $399 today + $99/mo
+                    </Button>
+                  </div>
+                </div>
+              )}
     </div>
   );
 }

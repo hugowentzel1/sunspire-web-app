@@ -54,6 +54,39 @@ button[data-cta-button]:hover:not(:disabled) {
   --brand: #ff7a00; /* fallback */
   --brand-2: #ff3d81;
 
+  /* Brand color variables for adaptive theming */
+  --brand-50:#fff7ed; --brand-100:#ffedd5; --brand-200:#fed7aa; --brand-300:#fdba74;
+  --brand-400:#fb923c; --brand-500:#f97316; --brand-600:#ea580c; --brand-700:#c2410c;
+  --brand-800:#9a3412;   --brand-900:#7c2d12;
+
+  /* Optional per-company overrides via data attribute */
+  --brand-50-override: var(--brand-50);
+  --brand-100-override: var(--brand-100);
+  --brand-200-override: var(--brand-200);
+  --brand-300-override: var(--brand-300);
+  --brand-400-override: var(--brand-400);
+  --brand-500-override: var(--brand-500);
+  --brand-600-override: var(--brand-600);
+  --brand-700-override: var(--brand-700);
+  --brand-800-override: var(--brand-800);
+  --brand-900-override: var(--brand-900);
+}
+
+/* Optional per-company overrides via data attribute */
+[data-brand] {
+  --brand-50:  var(--brand-50-override,  var(--brand-50));
+  --brand-100: var(--brand-100-override, var(--brand-100));
+  --brand-200: var(--brand-200-override, var(--brand-200));
+  --brand-300: var(--brand-300-override, var(--brand-300));
+  --brand-400: var(--brand-400-override, var(--brand-400));
+  --brand-500: var(--brand-500-override, var(--brand-500));
+  --brand-600: var(--brand-600-override, var(--brand-600));
+  --brand-700: var(--brand-700-override, var(--brand-700));
+  --brand-800: var(--brand-800-override, var(--brand-800));
+  --brand-900: var(--brand-900-override, var(--brand-900));
+}
+
+:root {
   /* Premium Orange/Gold Color Palette */
   --primary: #ea580c; /* Rich orange */
   --primary-light: #fb923c; /* Light orange */
