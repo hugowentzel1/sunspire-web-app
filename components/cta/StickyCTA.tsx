@@ -32,7 +32,10 @@ export default function StickyCTA({
   useEffect(() => {
     // Hide when hero CTA is visible
     const hero = document.querySelector(heroSelector);
-    if (!hero) return;
+    if (!hero) {
+      setHiddenByHero(false); // If no hero CTA, don't hide sticky CTA
+      return;
+    }
     const io = new IntersectionObserver(
       ([entry]) => setHiddenByHero(entry.isIntersecting),
       { rootMargin: "0px 0px -30% 0px", threshold: 0.1 }
