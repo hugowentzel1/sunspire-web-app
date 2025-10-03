@@ -1,0 +1,144 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - strong [ref=e4]: Exclusive preview built for Netflix
+      - generic [ref=e5]: Exclusive preview — expires in 6:23:59:59
+      - generic [ref=e6]: "Runs left: 2"
+    - generic [ref=e7]:
+      - button "Launch on Netflix" [ref=e8] [cursor=pointer]
+      - button "Copy link" [ref=e9] [cursor=pointer]
+      - button "Dismiss" [ref=e10] [cursor=pointer]: ✕
+  - banner [ref=e11]:
+    - generic [ref=e13]:
+      - link "Netflix logo Netflix Solar Intelligence" [ref=e14] [cursor=pointer]:
+        - /url: /?company=Netflix&demo=1
+        - img "Netflix logo" [ref=e15] [cursor=pointer]
+        - generic [ref=e16] [cursor=pointer]:
+          - heading "Netflix" [level=1] [ref=e17] [cursor=pointer]
+          - paragraph [ref=e18] [cursor=pointer]: Solar Intelligence
+      - navigation [ref=e19]:
+        - link "Pricing" [ref=e20] [cursor=pointer]:
+          - /url: /pricing?company=Netflix&demo=1
+        - link "Partners" [ref=e21] [cursor=pointer]:
+          - /url: /partners?company=Netflix&demo=1
+        - link "Support" [ref=e22] [cursor=pointer]:
+          - /url: /support?company=Netflix&demo=1
+        - button "Activate on Your Domain — 24 Hours" [ref=e23] [cursor=pointer]
+    - paragraph [ref=e26]: Private demo for Netflix. Not affiliated.
+  - generic [ref=e27]:
+    - main [ref=e28]:
+      - link "Back to Home" [ref=e30] [cursor=pointer]:
+        - /url: /?company=Netflix&demo=1
+        - img [ref=e31] [cursor=pointer]
+        - text: Back to Home
+      - generic [ref=e35]:
+        - heading "Demo for Netflix — Powered by Sunspire" [level=2] [ref=e36]:
+          - text: Demo for Netflix — Powered by
+          - generic [ref=e37]: Sunspire
+        - paragraph [ref=e38]: Your Logo. Your URL. Instant Solar Quotes — Live in 24 Hours
+        - button "⚡ Activate on Your Domain — 24 Hours" [ref=e39] [cursor=pointer]:
+          - generic [ref=e40] [cursor=pointer]: ⚡
+          - text: Activate on Your Domain — 24 Hours
+        - paragraph [ref=e41]: No call required. $99/mo + $399 setup. 14-day refund if it doesn't lift booked calls.
+      - generic [ref=e42]:
+        - generic [ref=e43]:
+          - generic [ref=e46]: 💰
+          - generic [ref=e47]:
+            - heading "Simple, Transparent Pricing" [level=1] [ref=e48]:
+              - text: Simple, Transparent
+              - generic [ref=e49]: Pricing
+            - paragraph [ref=e50]: One flat rate. No hidden fees. 14-day refund guarantee if it doesn't lift your booked calls.
+        - generic [ref=e52]:
+          - heading "$99/mo + $399 setup" [level=2] [ref=e54]
+          - generic [ref=e55]:
+            - generic [ref=e56]:
+              - generic [ref=e58]: ✓
+              - generic [ref=e59]: Unlimited solar quotes
+            - generic [ref=e60]:
+              - generic [ref=e62]: ✓
+              - generic [ref=e63]: CRM integration (HubSpot, Salesforce)
+            - generic [ref=e64]:
+              - generic [ref=e66]: ✓
+              - generic [ref=e67]: White-label branding
+            - generic [ref=e68]:
+              - generic [ref=e70]: ✓
+              - generic [ref=e71]: 24/7 support
+            - generic [ref=e72]:
+              - generic [ref=e74]: ✓
+              - generic [ref=e75]: SOC 2 compliance
+          - button "⚡ Activate on Your Domain — 24 Hours" [ref=e76] [cursor=pointer]:
+            - generic [ref=e77] [cursor=pointer]: ⚡
+            - text: Activate on Your Domain — 24 Hours
+          - paragraph [ref=e78]: No call required. 14-day refund if it doesn't lift booked calls.
+        - generic [ref=e79]:
+          - heading "What's included in the setup fee?" [level=3] [ref=e80]
+          - generic [ref=e81]:
+            - paragraph [ref=e82]: • Custom domain setup and SSL certificate
+            - paragraph [ref=e83]: • White-label branding and logo integration
+            - paragraph [ref=e84]: • CRM connection (HubSpot, Salesforce, Airtable)
+            - paragraph [ref=e85]: • Team training and onboarding
+            - paragraph [ref=e86]: • 24/7 priority support for first 30 days
+        - generic [ref=e87]:
+          - heading "Frequently Asked Questions" [level=2] [ref=e88]
+          - generic [ref=e89]:
+            - heading "How long does setup take?" [level=3] [ref=e90]
+            - paragraph [ref=e91]: Most customers are live within 24 hours. Complex integrations may take up to 48 hours.
+          - generic [ref=e92]:
+            - heading "Can I cancel anytime?" [level=3] [ref=e93]
+            - paragraph [ref=e94]: Yes, no long-term contracts. Cancel anytime with 30 days notice.
+          - generic [ref=e95]:
+            - heading "What if it doesn't work for my business?" [level=3] [ref=e96]
+            - paragraph [ref=e97]: We offer a 14-day refund guarantee if the platform doesn't help increase your booked calls.
+          - generic [ref=e98]:
+            - heading "Do you offer volume discounts?" [level=3] [ref=e99]
+            - paragraph [ref=e100]: Yes, for companies with 10+ locations. Contact us for enterprise pricing.
+    - contentinfo [ref=e101]:
+      - contentinfo [ref=e102]:
+        - generic [ref=e103]:
+          - generic [ref=e104]:
+            - heading "Sunspire Solar Intelligence" [level=3] [ref=e106]
+            - generic [ref=e107]:
+              - heading "Legal & Support" [level=4] [ref=e108]
+              - generic [ref=e109]:
+                - link "Privacy Policy" [ref=e110] [cursor=pointer]:
+                  - /url: /privacy?company=Netflix&demo=1
+                - link "Terms of Service" [ref=e111] [cursor=pointer]:
+                  - /url: /terms?company=Netflix&demo=1
+                - link "Security" [ref=e112] [cursor=pointer]:
+                  - /url: /security?company=Netflix&demo=1
+                - link "DPA" [ref=e113] [cursor=pointer]:
+                  - /url: /dpa?company=Netflix&demo=1
+                - link "Do Not Sell My Data" [ref=e114] [cursor=pointer]:
+                  - /url: /do-not-sell?company=Netflix&demo=1
+            - generic [ref=e115]:
+              - heading "Contact" [level=4] [ref=e116]
+              - generic [ref=e117]:
+                - paragraph [ref=e118]:
+                  - img [ref=e119]
+                  - link "support@getsunspire.com" [ref=e121] [cursor=pointer]:
+                    - /url: mailto:support@getsunspire.com
+                - paragraph [ref=e122]:
+                  - img [ref=e123]
+                  - text: +1 (404) 770-2672
+          - generic [ref=e126]:
+            - generic [ref=e127]:
+              - img [ref=e128]
+              - generic [ref=e130]: Estimates generated using NREL PVWatts® v8
+            - paragraph [ref=e132]:
+              - text: Powered by
+              - generic [ref=e133]: Sunspire
+            - generic [ref=e134]:
+              - img [ref=e135]
+              - generic [ref=e137]: Mapping & location data © Google
+  - alert [ref=e138]
+  - generic [ref=e141]:
+    - generic [ref=e142]:
+      - heading "We use cookies to improve your experience" [level=3] [ref=e143]
+      - paragraph [ref=e144]: We use cookies and similar technologies to analyze site usage, personalize content, and provide social media features. By continuing to use our site, you consent to our use of cookies.
+    - generic [ref=e145]:
+      - button "Decline" [ref=e146] [cursor=pointer]
+      - button "Accept All" [ref=e147] [cursor=pointer]
+```

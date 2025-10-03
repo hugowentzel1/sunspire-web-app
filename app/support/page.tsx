@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import { useSearchParams } from 'next/navigation';
 import Container from '@/components/layout/Container';
-import Section from '@/components/layout/Section';
-import Stack from '@/components/layout/Stack';
-import Card from '@/components/ui/Card';
+import { Section } from '@/components/layout/Section';
+import { Stack } from '@/components/layout/Stack';
+import { Card } from '@/components/ui/Card';
 import LegalFooter from '@/components/legal/LegalFooter';
 
 export default function SupportPage() {

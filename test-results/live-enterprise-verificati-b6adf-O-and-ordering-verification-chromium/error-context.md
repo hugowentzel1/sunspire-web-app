@@ -1,0 +1,222 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - strong [ref=e4]: Exclusive preview built for Netflix
+      - generic [ref=e5]: Exclusive preview — expires in 7:00:00:00
+      - generic [ref=e6]: "Runs left: 2"
+    - generic [ref=e7]:
+      - button "Launch on Netflix" [ref=e8] [cursor=pointer]
+      - button "Copy link" [ref=e9] [cursor=pointer]
+      - button "Dismiss" [ref=e10] [cursor=pointer]: ✕
+  - banner [ref=e11]:
+    - generic [ref=e13]:
+      - link "Netflix logo Netflix Solar Intelligence" [ref=e14] [cursor=pointer]:
+        - /url: /?company=Netflix&demo=1
+        - img "Netflix logo" [ref=e15] [cursor=pointer]
+        - generic [ref=e16] [cursor=pointer]:
+          - heading "Netflix" [level=1] [ref=e17] [cursor=pointer]
+          - paragraph [ref=e18] [cursor=pointer]: Solar Intelligence
+      - navigation [ref=e19]:
+        - link "Pricing" [ref=e20] [cursor=pointer]:
+          - /url: /pricing?company=Netflix&demo=1
+        - link "Partners" [ref=e21] [cursor=pointer]:
+          - /url: /partners?company=Netflix&demo=1
+        - link "Support" [ref=e22] [cursor=pointer]:
+          - /url: /support?company=Netflix&demo=1
+        - button "Activate on Your Domain — 24 Hours" [ref=e23] [cursor=pointer]
+    - paragraph [ref=e26]: Private demo for Netflix. Not affiliated.
+  - generic [ref=e27]:
+    - main [ref=e28]:
+      - link "Back to Home" [ref=e30] [cursor=pointer]:
+        - /url: /?company=Netflix&demo=1
+        - img [ref=e31] [cursor=pointer]
+        - text: Back to Home
+      - generic [ref=e35]:
+        - heading "Demo for Netflix — Powered by Sunspire" [level=2] [ref=e36]:
+          - text: Demo for Netflix — Powered by
+          - generic [ref=e37]: Sunspire
+        - paragraph [ref=e38]: Your Logo. Your URL. Instant Solar Quotes — Live in 24 Hours
+        - button "⚡ Activate on Your Domain — 24 Hours" [ref=e39] [cursor=pointer]:
+          - generic [ref=e40] [cursor=pointer]: ⚡
+          - text: Activate on Your Domain — 24 Hours
+        - paragraph [ref=e41]: No call required. $99/mo + $399 setup. 14-day refund if it doesn't lift booked calls.
+      - generic [ref=e42]:
+        - heading "Support Center" [level=1] [ref=e43]
+        - paragraph [ref=e44]: Get help with setup, integration, and optimization. Our team responds to all tickets within 24 hours (2 hours for priority support).
+      - generic [ref=e45]:
+        - generic [ref=e46]:
+          - img [ref=e48]
+          - heading "Live Chat" [level=3] [ref=e50]
+          - paragraph [ref=e51]: Get instant help from our support team
+          - button "Start Chat" [ref=e52] [cursor=pointer]
+        - generic [ref=e53]:
+          - img [ref=e55]
+          - heading "Email Support" [level=3] [ref=e57]
+          - paragraph [ref=e58]: Send us a detailed message
+          - link "Email Us" [ref=e59] [cursor=pointer]:
+            - /url: mailto:support@sunspire.app
+        - generic [ref=e60]:
+          - img [ref=e62]
+          - heading "Priority Support" [level=3] [ref=e64]
+          - paragraph [ref=e65]: Enterprise clients get phone support
+          - link "Upgrade" [ref=e66] [cursor=pointer]:
+            - /url: /pricing
+      - generic [ref=e67]:
+        - generic [ref=e68]:
+          - heading "Frequently Asked Questions" [level=2] [ref=e69]
+          - generic [ref=e70]:
+            - generic [ref=e71]:
+              - heading "How accurate are the solar estimates?" [level=3] [ref=e72]
+              - paragraph [ref=e73]: Our estimates use NREL PVWatts v8, EIA electricity rates, and local solar irradiance data. Accuracy is typically ±10-15%, comparable to professional site surveys.
+            - generic [ref=e74]:
+              - heading "How quickly can I get the tool live on my website?" [level=3] [ref=e75]
+              - paragraph [ref=e76]: Standard setup takes 24-48 hours. Enterprise clients get priority setup within 12 hours.
+            - generic [ref=e77]:
+              - heading "Can I customize the branding and colors?" [level=3] [ref=e78]
+              - paragraph [ref=e79]: Yes! All plans include full white-label customization with your colors, logo, and domain.
+            - generic [ref=e80]:
+              - heading "Do you integrate with CRM systems?" [level=3] [ref=e81]
+              - paragraph [ref=e82]: Yes, we integrate with most major CRMs including Salesforce, HubSpot, and Pipedrive. Custom integrations available for enterprise clients.
+            - generic [ref=e83]:
+              - heading "What if the tool doesn't increase my conversions?" [level=3] [ref=e84]
+              - paragraph [ref=e85]: We offer a 14-day money-back guarantee. If you don't see increased booked calls, you get a full refund.
+            - generic [ref=e86]:
+              - heading "Is there a setup fee?" [level=3] [ref=e87]
+              - paragraph [ref=e88]: Standard plans include a $399 setup fee. Enterprise plans have custom setup pricing based on requirements.
+          - generic [ref=e89]:
+            - heading "Helpful Resources" [level=3] [ref=e90]
+            - generic [ref=e91]:
+              - link "Calculation Methodology" [ref=e92] [cursor=pointer]:
+                - /url: /methodology
+                - img [ref=e93] [cursor=pointer]
+                - text: Calculation Methodology
+              - link "Enterprise Features" [ref=e95] [cursor=pointer]:
+                - /url: /pricing
+                - img [ref=e96] [cursor=pointer]
+                - text: Enterprise Features
+              - link "Partner Program" [ref=e98] [cursor=pointer]:
+                - /url: /partners
+                - img [ref=e99] [cursor=pointer]
+                - text: Partner Program
+              - link "Setup Assistance" [ref=e101] [cursor=pointer]:
+                - /url: mailto:setup@sunspire.app
+                - img [ref=e102] [cursor=pointer]
+                - text: Setup Assistance
+        - generic [ref=e104]:
+          - heading "Create Support Ticket" [level=2] [ref=e105]
+          - generic [ref=e106]:
+            - generic [ref=e107]:
+              - generic [ref=e108]:
+                - generic [ref=e109]: Name
+                - textbox "Your name" [ref=e110]
+              - generic [ref=e111]:
+                - generic [ref=e112]: Email
+                - textbox "your@email.com" [ref=e113]
+            - generic [ref=e114]:
+              - generic [ref=e115]: Company
+              - textbox "Your company name" [ref=e116]
+            - generic [ref=e117]:
+              - generic [ref=e118]:
+                - generic [ref=e119]: Priority
+                - combobox [ref=e120]:
+                  - option "Select priority" [selected]
+                  - option "Low - General question"
+                  - option "Normal - Need help"
+                  - option "High - System issue"
+                  - option "Urgent - Site down"
+              - generic [ref=e121]:
+                - generic [ref=e122]: Category
+                - combobox [ref=e123]:
+                  - option "Select category" [selected]
+                  - option "Setup & Installation"
+                  - option "CRM Integration"
+                  - option "Branding & Customization"
+                  - option "Billing & Account"
+                  - option "Technical Issue"
+                  - option "Other"
+            - generic [ref=e124]:
+              - generic [ref=e125]: Subject
+              - textbox "Brief description of your issue" [ref=e126]
+            - generic [ref=e127]:
+              - generic [ref=e128]: Message
+              - textbox "Please provide as much detail as possible..." [ref=e129]
+            - button "Create Support Ticket" [ref=e130] [cursor=pointer]
+          - generic [ref=e131]:
+            - heading "Response Times" [level=4] [ref=e132]
+            - list [ref=e133]:
+              - listitem [ref=e134]: "• Standard: 24 hours"
+              - listitem [ref=e135]: "• High Priority: 4 hours"
+              - listitem [ref=e136]: "• Urgent: 1 hour"
+              - listitem [ref=e137]: "• Enterprise: 2 hours guaranteed"
+    - generic [ref=e138]:
+      - heading "Helpful Guides & Resources" [level=2] [ref=e139]
+      - generic [ref=e140]:
+        - link "Setup Guide Step-by-step installation" [ref=e141] [cursor=pointer]:
+          - /url: /docs/setup
+          - img [ref=e143] [cursor=pointer]
+          - heading "Setup Guide" [level=3] [ref=e145] [cursor=pointer]
+          - paragraph [ref=e146] [cursor=pointer]: Step-by-step installation
+        - link "Embed Guide Add to your website" [ref=e147] [cursor=pointer]:
+          - /url: /docs/embed
+          - img [ref=e149] [cursor=pointer]
+          - heading "Embed Guide" [level=3] [ref=e151] [cursor=pointer]
+          - paragraph [ref=e152] [cursor=pointer]: Add to your website
+        - link "CRM Guides HubSpot, Salesforce, Airtable" [ref=e153] [cursor=pointer]:
+          - /url: /docs/crm
+          - img [ref=e155] [cursor=pointer]
+          - heading "CRM Guides" [level=3] [ref=e157] [cursor=pointer]
+          - paragraph [ref=e158] [cursor=pointer]: HubSpot, Salesforce, Airtable
+        - link "System Status Live uptime & performance" [ref=e159] [cursor=pointer]:
+          - /url: /status
+          - img [ref=e161] [cursor=pointer]
+          - heading "System Status" [level=3] [ref=e163] [cursor=pointer]
+          - paragraph [ref=e164] [cursor=pointer]: Live uptime & performance
+    - contentinfo [ref=e165]:
+      - generic [ref=e166]:
+        - generic [ref=e167]:
+          - heading "Sunspire Solar Intelligence" [level=3] [ref=e169]
+          - generic [ref=e170]:
+            - heading "Legal & Support" [level=4] [ref=e171]
+            - generic [ref=e172]:
+              - link "Privacy Policy" [ref=e173] [cursor=pointer]:
+                - /url: /privacy?company=Netflix&demo=1
+              - link "Terms of Service" [ref=e174] [cursor=pointer]:
+                - /url: /terms?company=Netflix&demo=1
+              - link "Security" [ref=e175] [cursor=pointer]:
+                - /url: /security?company=Netflix&demo=1
+              - link "DPA" [ref=e176] [cursor=pointer]:
+                - /url: /dpa?company=Netflix&demo=1
+              - link "Do Not Sell My Data" [ref=e177] [cursor=pointer]:
+                - /url: /do-not-sell?company=Netflix&demo=1
+          - generic [ref=e178]:
+            - heading "Contact" [level=4] [ref=e179]
+            - generic [ref=e180]:
+              - paragraph [ref=e181]:
+                - img [ref=e182]
+                - link "support@getsunspire.com" [ref=e184] [cursor=pointer]:
+                  - /url: mailto:support@getsunspire.com
+              - paragraph [ref=e185]:
+                - img [ref=e186]
+                - text: +1 (404) 770-2672
+        - generic [ref=e189]:
+          - generic [ref=e190]:
+            - img [ref=e191]
+            - generic [ref=e193]: Estimates generated using NREL PVWatts® v8
+          - paragraph [ref=e195]:
+            - text: Powered by
+            - generic [ref=e196]: Sunspire
+          - generic [ref=e197]:
+            - img [ref=e198]
+            - generic [ref=e200]: Mapping & location data © Google
+  - alert [ref=e201]
+  - generic [ref=e204]:
+    - generic [ref=e205]:
+      - heading "We use cookies to improve your experience" [level=3] [ref=e206]
+      - paragraph [ref=e207]: We use cookies and similar technologies to analyze site usage, personalize content, and provide social media features. By continuing to use our site, you consent to our use of cookies.
+    - generic [ref=e208]:
+      - button "Decline" [ref=e209] [cursor=pointer]
+      - button "Accept All" [ref=e210] [cursor=pointer]
+```

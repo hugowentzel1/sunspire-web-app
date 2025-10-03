@@ -8,9 +8,9 @@ import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
 import Container from '@/components/layout/Container';
-import Section from '@/components/layout/Section';
-import Stack from '@/components/layout/Stack';
-import Card from '@/components/ui/Card';
+import { Section } from '@/components/layout/Section';
+import { Stack } from '@/components/layout/Stack';
+import { Card } from '@/components/ui/Card';
 import { primaryBtn } from '@/components/ui/Button';
 
 export default function PricingPage() {
@@ -133,7 +133,7 @@ export default function PricingPage() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-sm text-neutral-500 mt-6"
               >
-                14-day refund if it doesn't lift booked calls.
+                14-day refund if it doesn&apos;t lift booked calls.
               </motion.p>
 
               {/* Main CTA */}
@@ -175,7 +175,7 @@ export default function PricingPage() {
               className="text-center py-6 border-y border-neutral-200/60"
             >
               <p className="text-sm italic text-neutral-600">
-                "Cut quoting time from 15 min to 1 min." — Solar Company Owner, CA
+                &ldquo;Cut quoting time from 15 min to 1 min.&rdquo; — Solar Company Owner, CA
               </p>
             </motion.div>
 

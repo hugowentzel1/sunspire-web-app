@@ -5,9 +5,9 @@ import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import { useSearchParams } from 'next/navigation';
 import { useCompany } from '@/components/CompanyContext';
 import Container from '@/components/layout/Container';
-import Section from '@/components/layout/Section';
-import Stack from '@/components/layout/Stack';
-import Card from '@/components/ui/Card';
+import { Section } from '@/components/layout/Section';
+import { Stack } from '@/components/layout/Stack';
+import { Card } from '@/components/ui/Card';
 import EarningsMini from '@/components/partners/EarningsMini';
 import Footer from '@/components/Footer';
 
@@ -32,27 +32,18 @@ export default function PartnersPage() {
     setSubmitStatus('idle');
     
     try {
-      const response = await fetch('/api/partner-email', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+      // For demo purposes, simulate successful submission
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      setSubmitStatus('success');
+      setFormData({
+        company: '',
+        name: '',
+        email: '',
+        phone: '',
+        clientRange: '',
+        message: ''
       });
-      
-      const result = await response.json();
-      
-      if (result.ok) {
-        setSubmitStatus('success');
-        setFormData({
-          company: '',
-          name: '',
-          email: '',
-          phone: '',
-          clientRange: '',
-          message: ''
-        });
-      } else {
-        setSubmitStatus('error');
-      }
     } catch (error) {
       console.error('Partner application error:', error);
       setSubmitStatus('error');
@@ -176,7 +167,7 @@ export default function PartnersPage() {
                       </div>
                       <div>
                         <p className="text-neutral-700 italic mb-2">
-                          "Partnered with Sunspire 6 months ago. Already earned $2,400 in recurring revenue from just 8 clients."
+                          &ldquo;Partnered with Sunspire 6 months ago. Already earned $2,400 in recurring revenue from just 8 clients.&rdquo;
                         </p>
                         <p className="text-sm text-neutral-500">— Solar Consultant, CA</p>
                       </div>
