@@ -185,7 +185,7 @@ export default function PricingPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 mt-10 md:mt-16">
               {/* What You Get */}
               <Card>
-                <h2 className="text-2xl font-bold text-neutral-900 mb-6">What You Get</h2>
+                <h2 className="text-2xl font-bold text-[var(--brand-primary)] mb-6">What You Get</h2>
                 <div className="space-y-4">
                   {[
                     { text: 'Branded reports & PDFs', highlight: 'Branded' },
@@ -204,7 +204,7 @@ export default function PricingPage() {
                           <span key={i}>
                             {part}
                             {i < feature.text.split(feature.highlight).length - 1 && (
-                              <span className="text-[var(--brand-primary)] font-semibold">{feature.highlight}</span>
+                              <span className="text-gray-500 font-semibold">{feature.highlight}</span>
                             )}
                           </span>
                         ))}
@@ -216,19 +216,19 @@ export default function PricingPage() {
 
               {/* Why Installers Switch */}
               <Card>
-                <h2 className="text-2xl font-bold text-neutral-900 mb-6">Why Installers Switch</h2>
+                <h2 className="text-2xl font-bold text-[var(--brand-primary)] mb-6">Why Installers Switch</h2>
                 <div className="space-y-4">
                   <div className="flex items-start gap-3">
                     <svg className="w-6 h-6 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-neutral-700 font-medium">Live in <span className="text-[var(--brand-primary)] font-semibold">&lt;24 hours</span> — no <span className="text-[var(--brand-primary)] font-semibold">coding</span> required</span>
+                    <span className="text-neutral-700 font-medium">Live in <span className="text-gray-500 font-semibold">&lt;24 hours</span> — no <span className="text-gray-500 font-semibold">coding</span> required</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <svg className="w-6 h-6 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-neutral-700 font-medium">Teams report <span className="text-[var(--brand-primary)] font-semibold">+25–40%</span> more booked calls after adding instant quotes</span>
+                    <span className="text-neutral-700 font-medium">Teams report <span className="text-gray-500 font-semibold">+25–40%</span> more booked calls after adding instant quotes</span>
                   </div>
                 </div>
               </Card>

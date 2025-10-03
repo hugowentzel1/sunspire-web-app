@@ -118,7 +118,7 @@ export default function SupportPage() {
                   <p className="text-xs text-gray-500">&lt;24h response time</p>
                   <a 
                     href="mailto:support@getsunspire.com"
-                    className="inline-block text-sm text-[var(--brand-600)] hover:text-[var(--brand-700)] font-medium"
+                    className="inline-block text-sm text-gray-500 hover:text-gray-600 font-medium"
                   >
                     support@getsunspire.com
                   </a>
@@ -138,7 +138,7 @@ export default function SupportPage() {
                   <p className="text-xs text-gray-500">Self-service resources</p>
                   <a 
                     href="#"
-                    className="inline-block text-sm text-[var(--brand-600)] hover:text-[var(--brand-700)] font-medium"
+                    className="inline-block text-sm text-gray-500 hover:text-gray-600 font-medium"
                   >
                     View Documentation
                   </a>
@@ -155,7 +155,7 @@ export default function SupportPage() {
                   </div>
                   <h3 className="text-lg font-semibold text-neutral-900">System Status</h3>
                   <p className="text-sm text-gray-600">Service uptime</p>
-                  <p className="text-xs text-[var(--brand-600)] font-medium">All systems operational</p>
+                  <p className="text-xs text-gray-500 font-medium">All systems operational</p>
                   <a 
                     href="#"
                     className="inline-block text-sm text-gray-600 hover:text-gray-700 font-medium"
