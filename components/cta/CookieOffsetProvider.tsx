@@ -33,7 +33,7 @@ export default function CookieOffsetProvider({
 
     const update = () => {
       banner = banner || findBanner();
-      const h = banner && banner.offsetParent !== null
+      const h = banner && (banner.offsetParent !== null || getComputedStyle(banner).position === 'fixed')
         ? (banner.getBoundingClientRect().height || banner.offsetHeight || 0)
         : 0;
       root.style.setProperty("--cookie-offset", `${Math.ceil(h)}px`);

@@ -55,15 +55,14 @@ export default function StickyCTA({
 
   return (
     <>
-      {/* Desktop: right-center positioned like original SidebarCta */}
+      {/* Desktop: bottom-right positioned with original size */}
       <div
         className={`hidden md:block fixed z-50 transition-opacity ${
           isHidden ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
         style={{
-          top: "50vh",
+          bottom: `calc(24px + env(safe-area-inset-bottom) + var(--cookie-offset, 0px))`,
           right: "1rem",
-          transform: "translateY(-50%)",
           width: "320px",
           paddingRight: "env(safe-area-inset-right)",
         }}

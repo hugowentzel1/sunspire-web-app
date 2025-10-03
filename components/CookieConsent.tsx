@@ -113,6 +113,7 @@ export default function CookieConsent() {
   // For demo mode, show full banner
   return (
     <div
+      id="cookie-banner"
       className="fixed bottom-0 left-0 right-0 z-50 bg-white border-t border-gray-200 shadow-lg"
       style={{ maxHeight: "56px" }}
       data-cookie-banner
