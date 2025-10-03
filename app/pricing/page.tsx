@@ -279,7 +279,7 @@ export default function PricingPage() {
                             </>
                           ) : faq.a.includes('14-day') ? (
                             <>
-                              <span className="text-[var(--brand-primary)] font-semibold">14-day</span> full refund if it doesn't increase booked calls. Cancel anytime after with <span className="text-[var(--brand-primary)] font-semibold">30 days</span> notice. No lock-in.
+                              <span className="text-[var(--brand-primary)] font-semibold">14-day</span> full refund if it doesn&apos;t increase booked calls. Cancel anytime after with <span className="text-[var(--brand-primary)] font-semibold">30 days</span> notice. No lock-in.
                             </>
                           ) : faq.a.includes('<24h') ? (
                             <>
