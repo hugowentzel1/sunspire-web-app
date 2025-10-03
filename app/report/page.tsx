@@ -28,7 +28,6 @@ import StickySidebar from '@/components/StickySidebar';
 import { SidebarCta } from '@/src/components/SidebarCta';
 import StickyCTA from '@/components/cta/StickyCTA';
 import { getTrustData } from '@/lib/trust';
-import Container from '@/components/layout/Container';
 
 import { ensureBlurSupport } from '@/src/lib/ensureBlur';
 import { isDemoFromSearchParams } from '@/src/lib/isDemo';
@@ -595,7 +594,7 @@ function ReportContent() {
     >
       {/* Custom banner for report page */}
       <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
-        <Container>
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-20">
             <div className="flex items-center space-x-4">
               {(b.logo || getDefaultLogo(b.brand)) ? (
@@ -632,22 +631,22 @@ function ReportContent() {
             
             <nav className="hidden md:flex items-center space-x-8">
               <a
-                href={`/pricing?${searchParams?.toString()}`}
+                href={`/privacy?${searchParams?.toString()}`}
                 className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
               >
-                Pricing
+                Privacy
               </a>
               <a
-                href={`/partners?${searchParams?.toString()}`}
+                href={`/terms?${searchParams?.toString()}`}
                 className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
               >
-                Partners
+                Terms
               </a>
               <a
-                href={`/support?${searchParams?.toString()}`}
+                href={`/security?${searchParams?.toString()}`}
                 className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
               >
-                Support
+                Security
               </a>
               <motion.button 
                 onClick={() => {
@@ -680,8 +679,7 @@ function ReportContent() {
       {/* Trust Signals - Logo Wall */}
       {trustData && <LogoWall logos={trustData.logos} className="py-8" />}
 
-      <main data-testid="report-page" className="py-12">
-        <Container>
+      <main data-testid="report-page" className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
         {/* Success toast for paid mode */}
         {showSuccessToast && (
@@ -1027,7 +1025,6 @@ function ReportContent() {
             </motion.div>
           )}
         </motion.div>
-        </Container>
       </main>
 
 
