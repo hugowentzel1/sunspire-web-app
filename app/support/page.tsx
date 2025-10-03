@@ -373,6 +373,14 @@ export default function SupportPage() {
       </Section>
 
       <LegalFooter />
+      
+      {/* Sticky CTA */}
+      <StickyCTA 
+        href="/pricing" 
+        heroSelector="#main-cta" 
+        label="Activate on Your Domain — 24 Hours" 
+        subtext="113+ installers live • SOC2 • GDPR • NREL PVWatts®"
+      />
     </div>
   );
 }

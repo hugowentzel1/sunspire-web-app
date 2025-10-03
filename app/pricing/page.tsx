@@ -283,6 +283,14 @@ export default function PricingPage() {
                   </div>
                 </div>
               )}
+      
+      {/* Sticky CTA */}
+      <StickyCTA 
+        href="/checkout" 
+        heroSelector="#main-cta" 
+        label="Start setup — $399 today + $99/mo" 
+        subtext="113+ installers live • SOC2 • GDPR • NREL PVWatts®"
+      />
     </div>
   );
 }

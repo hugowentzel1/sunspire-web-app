@@ -26,6 +26,7 @@ import MetricsBar from '@/components/trust/MetricsBar';
 import TrustFooterLine from '@/components/trust/TrustFooterLine';
 import StickySidebar from '@/components/StickySidebar';
 import { SidebarCta } from '@/src/components/SidebarCta';
+import StickyCTA from '@/components/cta/StickyCTA';
 import { getTrustData } from '@/lib/trust';
 
 import { ensureBlurSupport } from '@/src/lib/ensureBlur';
@@ -1030,11 +1031,13 @@ function ReportContent() {
       {/* Use consistent Footer component across entire demo site */}
       <Footer />
 
-      {/* Optimized Sticky Sidebar CTA for Demo Mode */}
+      {/* Optimized Sticky CTA for Demo Mode */}
       {demoMode && (
-        <SidebarCta
-          brandName={b.brand}
-          onCtaClick={handleCheckout}
+        <StickyCTA
+          href="/checkout"
+          heroSelector="#main-cta"
+          label="Activate on Your Domain — 24 Hours"
+          subtext="113+ installers live • SOC2 • GDPR • NREL PVWatts®"
         />
       )}
 

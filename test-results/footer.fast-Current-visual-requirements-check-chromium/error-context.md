@@ -1,0 +1,51 @@
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - strong [ref=e4]: Exclusive preview built for Apple
+      - generic [ref=e5]: Exclusive preview — expires in 6:23:59:56
+      - generic [ref=e6]: "Runs left: 2"
+    - generic [ref=e7]:
+      - button "Launch on Apple" [ref=e8] [cursor=pointer]
+      - button "Copy link" [ref=e9] [cursor=pointer]
+      - button "Dismiss" [ref=e10] [cursor=pointer]: ✕
+  - banner [ref=e11]:
+    - generic [ref=e13]:
+      - link "Apple logo Apple Solar Intelligence" [ref=e14] [cursor=pointer]:
+        - /url: /?company=Apple&demo=1
+        - img "Apple logo" [ref=e15] [cursor=pointer]
+        - generic [ref=e16] [cursor=pointer]:
+          - heading "Apple" [level=1] [ref=e17] [cursor=pointer]
+          - paragraph [ref=e18] [cursor=pointer]: Solar Intelligence
+      - navigation [ref=e19]:
+        - link "Pricing" [ref=e20] [cursor=pointer]:
+          - /url: /pricing?company=Apple&demo=1
+        - link "Partners" [ref=e21] [cursor=pointer]:
+          - /url: /partners?company=Apple&demo=1
+        - link "Support" [active] [ref=e22] [cursor=pointer]:
+          - /url: /support?company=Apple&demo=1
+        - button "Activate on Your Domain — 24 Hours" [ref=e23] [cursor=pointer]
+    - paragraph [ref=e26]: Private demo for Apple. Not affiliated.
+  - alert [ref=e27]: Apple — Solar Intelligence
+  - generic [ref=e29]:
+    - generic [ref=e31]: ⚠️
+    - heading "Something went wrong" [level=1] [ref=e32]
+    - paragraph [ref=e33]: StickyCTA is not defined
+    - generic [ref=e34]:
+      - button "Try again" [ref=e35] [cursor=pointer]
+      - button "Go home" [ref=e36] [cursor=pointer]
+  - generic [ref=e39]:
+    - generic [ref=e40]:
+      - heading "We use cookies to improve your experience" [level=3] [ref=e41]
+      - paragraph [ref=e42]: We use cookies and similar technologies to analyze site usage, personalize content, and provide social media features. By continuing to use our site, you consent to our use of cookies.
+    - generic [ref=e43]:
+      - button "Decline" [ref=e44] [cursor=pointer]
+      - button "Accept All" [ref=e45] [cursor=pointer]
+  - generic [ref=e48] [cursor=pointer]:
+    - img [ref=e49] [cursor=pointer]
+    - generic [ref=e51] [cursor=pointer]: 8 errors
+    - button "Hide Errors" [ref=e52] [cursor=pointer]:
+      - img [ref=e53] [cursor=pointer]
+```
