@@ -3,7 +3,10 @@
 import { useState } from 'react';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import { useSearchParams } from 'next/navigation';
-
+import Container from '@/components/layout/Container';
+import Section from '@/components/layout/Section';
+import Stack from '@/components/layout/Stack';
+import Card from '@/components/ui/Card';
 import LegalFooter from '@/components/legal/LegalFooter';
 
 export default function SupportPage() {
@@ -18,6 +21,7 @@ export default function SupportPage() {
     subject: '',
     message: ''
   });
+  const [openFAQ, setOpenFAQ] = useState<number | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,392 +54,324 @@ export default function SupportPage() {
       answer: "Yes! All plans include full white-label customization with your colors, logo, and domain."
     },
     {
-      question: "Do you integrate with CRM systems?",
-      answer: "Yes, we integrate with most major CRMs including Salesforce, HubSpot, and Pipedrive. Custom integrations available for enterprise clients."
+      question: "What CRM integrations are available?",
+      answer: "We integrate with HubSpot, Salesforce, Pipedrive, and Zapier. Custom integrations available for enterprise clients."
     },
     {
-      question: "What if the tool doesn't increase my conversions?",
-      answer: "We offer a 14-day money-back guarantee. If you don't see increased booked calls, you get a full refund."
-    },
-    {
-      question: "Is there a setup fee?",
-      answer: "Standard plans include a $399 setup fee. Enterprise plans have custom setup pricing based on requirements."
+      question: "Is there a free trial?",
+      answer: "We offer a 14-day refund guarantee. If the tool doesn't increase your booked calls, we'll refund your setup fee."
     }
   ];
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white">
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-16 sm:py-8">
-        {/* Back to Home Button */}
-        <div className="mb-8">
-          <a 
-            href={searchParams?.get('demo') ? `/?${searchParams?.toString()}` : `/paid?${searchParams?.toString()}`} 
-            className="inline-flex items-center text-neutral-500 hover:text-neutral-900 transition-colors font-medium"
-          >
-            <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            Back to Home
-          </a>
-        </div>
-
-        {/* Demo Banner */}
-        {searchParams?.get('demo') && b.enabled && (
-          <div className="mb-8">
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl py-6 px-8 border border-gray-200/50 shadow-lg mx-auto max-w-2xl">
-              <div className="space-y-4 text-center">
-                <h2 className="text-3xl font-bold text-gray-900">
-                  Demo for {b.brand || 'Your Company'} — Powered by <span style={{ color: b.primary }}>Sunspire</span>
-                </h2>
-                <p className="text-lg text-gray-600">
-                  Your Logo. Your URL. Instant Solar Quotes — Live in 24 Hours
-                </p>
-                <button 
-                  data-cta="primary"
-                  onClick={() => window.location.href = `/?${searchParams.toString()}`}
-                  data-cta-button
-                  className="inline-flex items-center px-4 py-4 rounded-full text-sm font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer" 
-                  style={{ backgroundColor: 'var(--brand-primary)' }}
-                >
-                  <span className="mr-2">⚡</span>
-                  Activate on Your Domain — 24 Hours
-                </button>
-                <p className="text-sm text-gray-600 mt-2">
-                  No call required. $99/mo + $399 setup. 14-day refund if it doesn&apos;t lift booked calls.
-                </p>
-              </div>
-            </div>
-          </div>
-        )}
-
-        {/* Hero Section */}
-        <div className="text-center space-y-3 py-12">
-          <h1 className="text-4xl font-bold text-neutral-900">
-            Support Center
-          </h1>
-          <p className="text-lg text-neutral-700 max-w-3xl mx-auto">
-            Get help with setup, integration, and optimization. Our team responds to all 
-            tickets within 24 hours.
-          </p>
-        </div>
-
-        {/* Contact Options */}
-        <div className="grid grid-cols-3 gap-8 md:gap-6 mb-16">
-          <div className="bg-white rounded-xl border border-neutral-200/60 shadow-sm p-6 sm:p-5 text-center">
-            <div className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-[0_8px_30px_rgba(0,0,0,.12)]" style={{
-              background: b.enabled && b.primary ? `linear-gradient(135deg, #ffffff, ${b.primary})` : 'linear-gradient(135deg, #ffffff, #d97706)'
-            }}>
-              <svg className="w-6 h-6 text-neutral-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-              </svg>
-            </div>
-            <h3 className="text-lg font-semibold text-neutral-900 mb-2">Email Support</h3>
-            <p className="text-neutral-600 mb-4">Send us a detailed message</p>
-            <a 
-              href="mailto:support@getsunspire.com"
-              className="px-4 py-2 rounded-lg text-white transition-colors inline-block"
-              style={{ backgroundColor: 'var(--brand-primary)' }}
-            >
-              Email Us
-            </a>
-          </div>
-
-          <div className="bg-white rounded-xl border border-neutral-200/60 shadow-sm p-6 sm:p-5 text-center">
-            <div className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-[0_8px_30px_rgba(0,0,0,.12)]" style={{
-              background: b.enabled && b.primary ? `linear-gradient(135deg, #ffffff, ${b.primary})` : 'linear-gradient(135deg, #ffffff, #d97706)'
-            }}>
-              <svg className="w-6 h-6 text-neutral-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v6a2 2 0 01-2 2h-2a2 2 0 01-2-2zm0 0V5a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-              </svg>
-            </div>
-            <h3 className="text-lg font-semibold text-neutral-900 mb-2">Documentation</h3>
-            <p className="text-neutral-600 mb-4">Browse our guides</p>
-            <a 
-              href="/docs/setup"
-              className="px-4 py-2 rounded-lg text-white transition-colors inline-block"
-              style={{ backgroundColor: 'var(--brand-primary)' }}
-            >
-              View Docs
-            </a>
-          </div>
-
-          <div className="bg-white rounded-xl border border-neutral-200/60 shadow-sm p-6 sm:p-5 text-center">
-            <div className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-[0_8px_30px_rgba(0,0,0,.12)]" style={{
-              background: b.enabled && b.primary ? `linear-gradient(135deg, #ffffff, ${b.primary})` : 'linear-gradient(135deg, #ffffff, #d97706)'
-            }}>
-              <svg className="w-6 h-6 text-neutral-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
-              </svg>
-            </div>
-            <h3 className="text-lg font-semibold text-neutral-900 mb-2">System Status</h3>
-            <p className="text-neutral-600 mb-4">Check uptime & performance</p>
-            <a 
-              href="/status"
-              className="px-4 py-2 rounded-lg text-white transition-colors inline-block"
-              style={{ backgroundColor: 'var(--brand-primary)' }}
-            >
-              View Status
-            </a>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-6">
-          {/* Left Column - FAQ */}
-          <div>
-            <h2 className="text-2xl font-bold text-neutral-900 mb-8">Frequently Asked Questions</h2>
-            
-            <div className="space-y-6">
-              {faqs.map((faq, index) => (
-                <div key={index} className="bg-white rounded-xl border border-neutral-200/60 shadow-sm p-6">
-                  <h3 className="font-semibold text-neutral-900 mb-2">{faq.question}</h3>
-                  <p className="text-neutral-600">{faq.answer}</p>
-                </div>
-              ))}
-            </div>
-
-            {/* Resources */}
-            <div className="mt-12">
-              <h3 className="text-xl font-semibold text-neutral-900 mb-6">Helpful Resources</h3>
-              <div className="space-y-3">
-                <a href="/methodology" className="block hover:text-opacity-80 transition-colors text-neutral-500 hover:text-neutral-700 pl-0 flex items-center">
-                  <svg className="w-4 h-4 mr-2 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v6a2 2 0 01-2 2h-2a2 2 0 01-2-2zm0 0V5a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-                  </svg>
-                  Calculation Methodology
-                </a>
-                <a href="/pricing" className="block hover:text-opacity-80 transition-colors text-neutral-500 hover:text-neutral-700 pl-0 flex items-center">
-                  <svg className="w-4 h-4 mr-2 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"/>
-                  </svg>
-                  Enterprise Features
-                </a>
-                <a href="/partners" className="block hover:text-opacity-80 transition-colors text-neutral-500 hover:text-neutral-700 pl-0 flex items-center">
-                  <svg className="w-4 h-4 mr-2 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-                  </svg>
-                  Partner Program
-                </a>
-                <a href="mailto:setup@getsunspire.com" className="block hover:text-opacity-80 transition-colors text-neutral-500 hover:text-neutral-700 pl-0 flex items-center">
-                  <svg className="w-4 h-4 mr-2 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                  </svg>
-                  Setup Assistance
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Right Column - Support Form */}
-          <div className="bg-white rounded-xl border border-neutral-200/60 shadow-sm p-6 sm:p-5">
-            <h2 className="text-2xl font-bold text-neutral-900 mb-6">Create Support Ticket</h2>
-            
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-neutral-700 mb-2">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    name="name"
-                    required
-                    value={formData.name}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:border-transparent"
-                    style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
-                    placeholder="Your name"
-                  />
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-neutral-700 mb-2">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    name="email"
-                    required
-                    value={formData.email}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:border-transparent"
-                    style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
-                    placeholder="your@email.com"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-2">
-                  Company
-                </label>
-                <input
-                  type="text"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:border-transparent"
-                  style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
-                  placeholder="Your company name"
-                />
-              </div>
-
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block text-sm font-medium text-neutral-700 mb-2">
-                    Priority
-                  </label>
-                  <select
-                    name="priority"
-                    required
-                    value={formData.priority}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:border-transparent"
-                    style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
-                  >
-                    <option value="">Select priority</option>
-                    <option value="low">Low - General question</option>
-                    <option value="normal">Normal - Need help</option>
-                    <option value="high">High - System issue</option>
-                    <option value="urgent">Urgent - Site down</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-sm font-medium text-neutral-700 mb-2">
-                    Category
-                  </label>
-                  <select
-                    name="category"
-                    required
-                    value={formData.category}
-                    onChange={handleChange}
-                    className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:border-transparent"
-                    style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
-                  >
-                    <option value="">Select category</option>
-                    <option value="setup">Setup & Installation</option>
-                    <option value="integration">CRM Integration</option>
-                    <option value="customization">Branding & Customization</option>
-                    <option value="billing">Billing & Account</option>
-                    <option value="technical">Technical Issue</option>
-                    <option value="other">Other</option>
-                  </select>
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-2">
-                  Subject
-                </label>
-                <input
-                  type="text"
-                  name="subject"
-                  required
-                  value={formData.subject}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:border-transparent"
-                  style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
-                  placeholder="Brief description of your issue"
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-neutral-700 mb-2">
-                  Message
-                </label>
-                <textarea
-                  name="message"
-                  rows={6}
-                  required
-                  value={formData.message}
-                  onChange={handleChange}
-                  className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:border-transparent"
-                  style={{ '--tw-ring-color': 'var(--brand-primary)' } as React.CSSProperties}
-                  placeholder="Please provide as much detail as possible..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full text-white py-3 px-6 rounded-lg font-semibold transition-colors mt-6"
-                style={{ backgroundColor: 'var(--brand-primary)' }}
+      <Section>
+        <Container>
+          <Stack>
+            {/* Back Button */}
+            <div className="mb-8">
+              <a 
+                href={searchParams?.get('demo') ? `/?${searchParams?.toString()}` : `/paid?${searchParams?.toString()}`} 
+                className="inline-flex items-center text-neutral-500 hover:text-neutral-900 transition-colors font-medium"
               >
-                Create Support Ticket
-              </button>
-            </form>
+                <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+                Back to Home
+              </a>
+            </div>
 
-            <div className="mt-6 p-4 rounded-lg bg-neutral-50 border border-neutral-200">
-              <h4 className="font-semibold text-neutral-900 mb-2">Response Times</h4>
-              <ul className="text-sm text-neutral-700 space-y-1">
-                <li>• Standard: 24 hours</li>
-                <li>• High Priority: 4 hours</li>
-                <li>• Urgent: 1 hour</li>
-                <li>• Enterprise: 2 hours guaranteed</li>
-              </ul>
+            {/* Hero Block */}
+            <div className="text-center">
+              <h1 className="text-4xl md:text-5xl font-black text-neutral-900 mb-6">
+                Support Center
+              </h1>
+              <p className="text-lg md:text-xl text-neutral-700 max-w-3xl mx-auto">
+                Get help with setup, integrations, and optimization
+              </p>
             </div>
-          </div>
-        </div>
-      </main>
 
-      {/* Resource Tiles */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 mt-16">
-        <h2 className="text-2xl font-bold text-neutral-900 mb-8 text-center">Helpful Guides & Resources</h2>
-        <div className="grid grid-cols-4 gap-6 md:grid-cols-2 sm:grid-cols-1">
-          <a href="/docs/setup" className="bg-white rounded-xl border border-neutral-200/60 shadow-sm p-5 hover:shadow-md transition-shadow text-center">
-            <div className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-[0_8px_30px_rgba(0,0,0,.12)]" style={{
-              background: b.enabled && b.primary ? `linear-gradient(135deg, #ffffff, ${b.primary})` : 'linear-gradient(135deg, #ffffff, #d97706)'
-            }}>
-              <svg className="w-6 h-6 text-neutral-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
-              </svg>
+            {/* SLO Badge Row */}
+            <div className="text-center py-4 border-y border-neutral-200/60">
+              <p className="text-sm text-neutral-600">
+                Avg reply &lt;24h • High priority 4h • Urgent 1h • Enterprise 2h SLA
+              </p>
             </div>
-            <h3 className="font-semibold text-neutral-900 mb-2">Setup Guide</h3>
-            <p className="text-sm text-neutral-600">Step-by-step installation</p>
-          </a>
-          
-          <a href="/docs/embed" className="bg-white rounded-xl border border-neutral-200/60 shadow-sm p-5 hover:shadow-md transition-shadow text-center">
-            <div className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-[0_8px_30px_rgba(0,0,0,.12)]" style={{
-              background: b.enabled && b.primary ? `linear-gradient(135deg, #ffffff, ${b.primary})` : 'linear-gradient(135deg, #ffffff, #d97706)'
-            }}>
-              <svg className="w-6 h-6 text-neutral-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13.828 10.172a4 4 0 005.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"/>
-              </svg>
-            </div>
-            <h3 className="font-semibold text-neutral-900 mb-2">Embed Guide</h3>
-            <p className="text-sm text-neutral-600">Add to your website</p>
-          </a>
-          
-          <a href="/docs/crm" className="bg-white rounded-xl border border-neutral-200/60 shadow-sm p-5 hover:shadow-md transition-shadow text-center">
-            <div className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-[0_8px_30px_rgba(0,0,0,.12)]" style={{
-              background: b.enabled && b.primary ? `linear-gradient(135deg, #ffffff, ${b.primary})` : 'linear-gradient(135deg, #ffffff, #d97706)'
-            }}>
-              <svg className="w-6 h-6 text-neutral-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v6a2 2 0 01-2 2h-2a2 2 0 01-2-2zm0 0V5a2 2 0 012-2h2a2 2 0 012 2v4a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
-              </svg>
-            </div>
-            <h3 className="font-semibold text-neutral-900 mb-2">CRM Guides</h3>
-            <p className="text-sm text-neutral-600">HubSpot, Salesforce, Airtable</p>
-          </a>
-          
-          <a href="/status" className="bg-white rounded-xl border border-neutral-200/60 shadow-sm p-5 hover:shadow-md transition-shadow text-center">
-            <div className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-[0_8px_30px_rgba(0,0,0,.12)]" style={{
-              background: b.enabled && b.primary ? `linear-gradient(135deg, #ffffff, ${b.primary})` : 'linear-gradient(135deg, #ffffff, #d97706)'
-            }}>
-              <svg className="w-6 h-6 text-neutral-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/>
-              </svg>
-            </div>
-            <h3 className="font-semibold text-neutral-900 mb-2">System Status</h3>
-            <p className="text-sm text-neutral-600">Live uptime & performance</p>
-          </a>
-        </div>
-      </div>
 
-      <LegalFooter 
-        hideMarketingLinks={!!searchParams?.get('demo')} 
-        showPoweredBy={true} 
-        brand={b.enabled ? b.brand : undefined} 
-      />
+            {/* Support Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mt-10 md:mt-16">
+              {/* Email Support */}
+              <Card>
+                <div className="text-center space-y-2">
+                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
+                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-semibold text-neutral-900">Email Support</h3>
+                  <p className="text-sm text-neutral-600">Primary support channel</p>
+                  <p className="text-xs text-neutral-500">&lt;24h response time</p>
+                  <a 
+                    href="mailto:support@getsunspire.com"
+                    className="inline-block text-sm text-blue-600 hover:text-blue-700 font-medium"
+                  >
+                    support@getsunspire.com
+                  </a>
+                  <p className="text-xs text-neutral-500 mt-2">
+                    Prefer a quick call? <a href="#" className="text-blue-600 hover:underline">Book 15-min setup (optional)</a>
+                  </p>
+                </div>
+              </Card>
+
+              {/* Documentation */}
+              <Card>
+                <div className="text-center space-y-2">
+                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                    <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-semibold text-neutral-900">Documentation</h3>
+                  <p className="text-sm text-neutral-600">Setup guides & tutorials</p>
+                  <p className="text-xs text-neutral-500">Self-service resources</p>
+                  <a 
+                    href="#"
+                    className="inline-block text-sm text-green-600 hover:text-green-700 font-medium"
+                  >
+                    View Documentation
+                  </a>
+                </div>
+              </Card>
+
+              {/* System Status */}
+              <Card>
+                <div className="text-center space-y-2">
+                  <div className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center mx-auto">
+                    <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                  </div>
+                  <h3 className="text-lg font-semibold text-neutral-900">System Status</h3>
+                  <p className="text-sm text-neutral-600">Service uptime</p>
+                  <p className="text-xs text-green-600 font-medium">All systems operational</p>
+                  <a 
+                    href="#"
+                    className="inline-block text-sm text-gray-600 hover:text-gray-700 font-medium"
+                  >
+                    Check Status
+                  </a>
+                </div>
+              </Card>
+            </div>
+
+            {/* Main Grid - FAQ + Support Form */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-6 mt-10 md:mt-16">
+              {/* Left Column - FAQ */}
+              <div>
+                <h2 className="text-2xl font-bold text-neutral-900 mb-8">Frequently Asked Questions</h2>
+                <div className="space-y-6">
+                  {faqs.map((faq, idx) => (
+                    <div key={idx} className="bg-white rounded-xl border border-neutral-200/60 shadow-sm overflow-hidden">
+                      <button
+                        onClick={() => setOpenFAQ(openFAQ === idx ? null : idx)}
+                        className="w-full px-6 py-5 md:px-7 md:py-6 flex items-center justify-between text-left hover:bg-neutral-50 transition-colors"
+                      >
+                        <span className="font-semibold text-neutral-900 pr-4">{faq.question}</span>
+                        <svg
+                          className={`w-5 h-5 text-neutral-500 flex-shrink-0 transition-transform duration-200 ${openFAQ === idx ? 'rotate-180' : ''}`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                        </svg>
+                      </button>
+                      {openFAQ === idx && (
+                        <div className="px-6 py-5 md:px-7 md:py-6">
+                          <p className="text-neutral-600 leading-relaxed">{faq.answer}</p>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+
+                {/* Helpful Resources */}
+                <div className="mt-12">
+                  <h3 className="text-xl font-semibold text-neutral-900 mb-6">Helpful Resources</h3>
+                  <div className="space-y-3">
+                    <a href="#" className="block text-blue-600 hover:text-blue-700 font-medium">Setup Guide</a>
+                    <a href="#" className="block text-blue-600 hover:text-blue-700 font-medium">CRM Integration Tutorial</a>
+                    <a href="#" className="block text-blue-600 hover:text-blue-700 font-medium">Branding Customization</a>
+                    <a href="#" className="block text-blue-600 hover:text-blue-700 font-medium">API Documentation</a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column - Support Form */}
+              <div>
+                <Card>
+                  <h2 className="text-2xl font-bold text-neutral-900 mb-6">Create Support Ticket</h2>
+                  
+                  <form onSubmit={handleSubmit} className="space-y-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label htmlFor="name" className="block text-sm font-medium text-neutral-700 mb-2">
+                          Full Name *
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleChange}
+                          required
+                          className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          placeholder="Your full name"
+                        />
+                      </div>
+                      <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-neutral-700 mb-2">
+                          Email Address *
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleChange}
+                          required
+                          className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          placeholder="your@email.com"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <label htmlFor="company" className="block text-sm font-medium text-neutral-700 mb-2">
+                        Company Name
+                      </label>
+                      <input
+                        type="text"
+                        id="company"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleChange}
+                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Your company name"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label htmlFor="priority" className="block text-sm font-medium text-neutral-700 mb-2">
+                          Priority Level
+                        </label>
+                        <select
+                          id="priority"
+                          name="priority"
+                          value={formData.priority}
+                          onChange={handleChange}
+                          className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        >
+                          <option value="">Select priority</option>
+                          <option value="low">Low - General question</option>
+                          <option value="medium">Medium - Setup help</option>
+                          <option value="high">High - Urgent issue</option>
+                          <option value="critical">Critical - System down</option>
+                        </select>
+                      </div>
+                      <div>
+                        <label htmlFor="category" className="block text-sm font-medium text-neutral-700 mb-2">
+                          Category
+                        </label>
+                        <select
+                          id="category"
+                          name="category"
+                          value={formData.category}
+                          onChange={handleChange}
+                          className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        >
+                          <option value="">Select category</option>
+                          <option value="setup">Setup & Onboarding</option>
+                          <option value="integration">CRM Integration</option>
+                          <option value="technical">Technical Issue</option>
+                          <option value="billing">Billing Question</option>
+                          <option value="feature">Feature Request</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div>
+                      <label htmlFor="subject" className="block text-sm font-medium text-neutral-700 mb-2">
+                        Subject *
+                      </label>
+                      <input
+                        type="text"
+                        id="subject"
+                        name="subject"
+                        value={formData.subject}
+                        onChange={handleChange}
+                        required
+                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Brief description of your issue"
+                      />
+                    </div>
+
+                    <div>
+                      <label htmlFor="message" className="block text-sm font-medium text-neutral-700 mb-2">
+                        Message *
+                      </label>
+                      <textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                        rows={5}
+                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        placeholder="Please provide detailed information about your issue..."
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="w-full text-white py-3 px-6 rounded-lg font-semibold transition-colors mt-6"
+                      style={{ backgroundColor: 'var(--brand-primary)' }}
+                    >
+                      Create Support Ticket
+                    </button>
+                  </form>
+                </Card>
+
+                {/* Response Times */}
+                <Card className="mt-6">
+                  <h3 className="text-lg font-semibold text-neutral-900 mb-4">Response Times</h3>
+                  <div className="space-y-3 text-sm">
+                    <div className="flex justify-between">
+                      <span className="text-neutral-600">General inquiries:</span>
+                      <span className="font-medium">&lt;24 hours</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-neutral-600">High priority:</span>
+                      <span className="font-medium">&lt;4 hours</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-neutral-600">Critical issues:</span>
+                      <span className="font-medium">&lt;1 hour</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span className="text-neutral-600">Enterprise SLA:</span>
+                      <span className="font-medium">&lt;2 hours</span>
+                    </div>
+                  </div>
+                </Card>
+              </div>
+            </div>
+          </Stack>
+        </Container>
+      </Section>
+
+      <LegalFooter />
     </div>
   );
 }
