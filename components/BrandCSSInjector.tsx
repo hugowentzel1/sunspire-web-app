@@ -3,6 +3,34 @@
 import { useEffect } from "react";
 import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
 
+// Helper function to generate brand color variations
+function generateBrandColors(primaryColor: string) {
+  // Convert hex to RGB
+  const hex = primaryColor.replace('#', '');
+  const r = parseInt(hex.substr(0, 2), 16);
+  const g = parseInt(hex.substr(2, 2), 16);
+  const b = parseInt(hex.substr(4, 2), 16);
+
+  // Generate lighter variations
+  const brand50 = `rgb(${Math.min(255, r + 200)}, ${Math.min(255, g + 200)}, ${Math.min(255, b + 200)})`;
+  const brand100 = `rgb(${Math.min(255, r + 150)}, ${Math.min(255, g + 150)}, ${Math.min(255, b + 150)})`;
+  const brand200 = `rgb(${Math.min(255, r + 100)}, ${Math.min(255, g + 100)}, ${Math.min(255, b + 100)})`;
+  const brand300 = `rgb(${Math.min(255, r + 50)}, ${Math.min(255, g + 50)}, ${Math.min(255, b + 50)})`;
+  const brand400 = `rgb(${Math.min(255, r + 25)}, ${Math.min(255, g + 25)}, ${Math.min(255, b + 25)})`;
+  
+  // Base color
+  const brand500 = primaryColor;
+  const brand600 = primaryColor;
+  const brand700 = primaryColor;
+  const brand800 = primaryColor;
+  const brand900 = primaryColor;
+
+  return {
+    brand50, brand100, brand200, brand300, brand400,
+    brand500, brand600, brand700, brand800, brand900
+  };
+}
+
 export default function BrandCSSInjector() {
   const { enabled, primary, brand } = useBrandTakeover();
 
@@ -15,17 +43,18 @@ export default function BrandCSSInjector() {
       root.style.setProperty("--brand-2", primary); // Use same color for consistency
       root.style.setProperty("--brand-primary", primary); // This is what the CSS actually uses
       
-      // Generate the full brand color range for consistent theming
-      root.style.setProperty("--brand-50", `${primary}20`); // Very light
-      root.style.setProperty("--brand-100", `${primary}30`); // Light
-      root.style.setProperty("--brand-200", `${primary}40`); // Lighter
-      root.style.setProperty("--brand-300", `${primary}60`); // Light-medium
-      root.style.setProperty("--brand-400", `${primary}80`); // Medium-light
-      root.style.setProperty("--brand-500", primary); // Base color
-      root.style.setProperty("--brand-600", primary); // Same as base for buttons
-      root.style.setProperty("--brand-700", primary); // Same as base for hover
-      root.style.setProperty("--brand-800", primary); // Same as base
-      root.style.setProperty("--brand-900", primary); // Same as base
+      // Generate proper brand color variations
+      const colors = generateBrandColors(primary);
+      root.style.setProperty("--brand-50", colors.brand50);
+      root.style.setProperty("--brand-100", colors.brand100);
+      root.style.setProperty("--brand-200", colors.brand200);
+      root.style.setProperty("--brand-300", colors.brand300);
+      root.style.setProperty("--brand-400", colors.brand400);
+      root.style.setProperty("--brand-500", colors.brand500);
+      root.style.setProperty("--brand-600", colors.brand600);
+      root.style.setProperty("--brand-700", colors.brand700);
+      root.style.setProperty("--brand-800", colors.brand800);
+      root.style.setProperty("--brand-900", colors.brand900);
 
       console.log(`Brand CSS injected: ${brand} with color ${primary}`);
     } else {

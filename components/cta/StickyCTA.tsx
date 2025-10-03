@@ -55,34 +55,36 @@ export default function StickyCTA({
 
   return (
     <>
-      {/* Desktop: bottom-right flush; offset by cookie height */}
+      {/* Desktop: right-center positioned like original SidebarCta */}
       <div
-        className={`hidden md:block fixed right-0 z-50 transition-opacity ${
+        className={`hidden md:block fixed z-50 transition-opacity ${
           isHidden ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
         style={{
-          // 24px base + safe area + cookie offset
-          bottom: `calc(24px + env(safe-area-inset-bottom) + var(--cookie-offset, 0px))`,
+          top: "50vh",
+          right: "1rem",
+          transform: "translateY(-50%)",
+          width: "320px",
           paddingRight: "env(safe-area-inset-right)",
         }}
         aria-hidden={isHidden}
       >
         <div
-          className="rounded-l-xl bg-white/95 backdrop-blur border border-neutral-200 shadow-lg"
+          className="rounded-2xl bg-white border border-neutral-200 shadow-lg"
           role="complementary"
           aria-label="Sticky action"
         >
-          <div className="p-3 min-w-[220px]">
+          <div className="p-5">
             <Link
               id={`sticky-desktop-${id}`}
               href={href}
-              className="inline-flex items-center justify-center h-12 px-7 rounded-xl font-semibold text-white bg-[var(--brand-600)] hover:bg-[var(--brand-700)] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--brand-600)]"
+              className="block w-full h-12 px-5 rounded-xl font-semibold text-center leading-[48px] text-white bg-[var(--brand-600)] hover:bg-[var(--brand-700)] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--brand-600)] transition-all duration-200 hover:scale-[1.02]"
               data-analytics={analyticsId || undefined}
             >
               {label}
             </Link>
             {subtext ? (
-              <p className="mt-2 text-[11px] leading-4 text-neutral-600">
+              <p className="mt-3 text-[11px] leading-4 text-neutral-500 text-center">
                 {subtext}
               </p>
             ) : null}
