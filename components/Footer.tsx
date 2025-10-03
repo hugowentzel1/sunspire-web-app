@@ -1,6 +1,7 @@
 // components/Footer.tsx
 import Link from "next/link";
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+import Container from '@/components/layout/Container';
 
 function Pill({ children }: { children: React.ReactNode }) {
   return (
@@ -15,7 +16,7 @@ export default function Footer() {
   return (
     <footer className="bg-slate-100/60 py-10" data-testid="footer">
       {/* FOOTER CARD (everything lives inside this block) */}
-      <div className="mx-auto max-w-[1200px] rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
+      <Container className="rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
         <div className="px-6 py-10 md:px-10 md:py-12">
           {/* 3-COLUMN GRID */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16 items-start">
@@ -121,7 +122,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }

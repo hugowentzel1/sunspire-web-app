@@ -104,15 +104,15 @@ export default function PartnersPage() {
                 <h2 className="text-xl font-bold text-neutral-900 mb-4">Partner Eligibility & Payouts</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div>
-                    <div className="text-2xl font-bold text-green-600">$30/mo</div>
+                    <div className="text-2xl font-bold text-[var(--brand-600)]">$30/mo</div>
                     <div className="text-sm text-neutral-600">Per active client</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-green-600">$120</div>
+                    <div className="text-2xl font-bold text-[var(--brand-600)]">$120</div>
                     <div className="text-sm text-neutral-600">One-time setup bonus</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-green-600">30 days</div>
+                    <div className="text-2xl font-bold text-[var(--brand-600)]">30 days</div>
                     <div className="text-sm text-neutral-600">Cookie window</div>
                   </div>
                 </div>
@@ -133,15 +133,15 @@ export default function PartnersPage() {
                     <div className="space-y-3">
                       <div className="flex justify-between">
                         <span className="text-neutral-700">Monthly recurring:</span>
-                        <span className="font-semibold text-green-600">$30/client</span>
+                        <span className="font-semibold text-[var(--brand-600)]">$30/client</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-neutral-700">Setup bonus:</span>
-                        <span className="font-semibold text-green-600">$120/client</span>
+                        <span className="font-semibold text-[var(--brand-600)]">$120/client</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-neutral-700">Cookie window:</span>
-                        <span className="font-semibold text-green-600">30 days</span>
+                        <span className="font-semibold text-[var(--brand-600)]">30 days</span>
                       </div>
                     </div>
                   </Card>
@@ -161,7 +161,7 @@ export default function PartnersPage() {
                         'Co-marketing opportunities'
                       ].map((benefit) => (
                         <div key={benefit} className="flex items-center gap-3">
-                          <svg className="w-5 h-5 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <svg className="w-5 h-5 text-[var(--brand-500)] flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
                           <span className="text-neutral-700">{benefit}</span>
@@ -204,7 +204,7 @@ export default function PartnersPage() {
                         value={formData.company}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-[var(--brand-500)] focus:border-transparent"
                         placeholder="Your company name"
                       />
                     </div>
@@ -221,7 +221,7 @@ export default function PartnersPage() {
                           value={formData.name}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-[var(--brand-500)] focus:border-transparent"
                           placeholder="Your full name"
                         />
                       </div>
@@ -236,7 +236,7 @@ export default function PartnersPage() {
                           value={formData.email}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-[var(--brand-500)] focus:border-transparent"
                           placeholder="your@email.com"
                         />
                       </div>
@@ -253,7 +253,7 @@ export default function PartnersPage() {
                           name="phone"
                           value={formData.phone}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-[var(--brand-500)] focus:border-transparent"
                           placeholder="(555) 123-4567"
                         />
                       </div>
@@ -266,7 +266,7 @@ export default function PartnersPage() {
                           name="clientRange"
                           value={formData.clientRange}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-[var(--brand-500)] focus:border-transparent"
                         >
                           <option value="">Select range</option>
                           <option value="1-5">1-5 clients</option>
@@ -287,7 +287,7 @@ export default function PartnersPage() {
                         value={formData.message}
                         onChange={handleChange}
                         rows={4}
-                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-[var(--brand-500)] focus:border-transparent"
                         placeholder="Tell us about your solar business and why you'd like to partner with us..."
                       />
                     </div>
@@ -303,7 +303,7 @@ export default function PartnersPage() {
 
                   {/* Success/Error Messages */}
                   {submitStatus === 'success' && (
-                    <div className="bg-green-50 text-green-800 border border-green-200 rounded-xl p-4 mt-4">
+                    <div className="bg-[var(--brand-50)] text-[var(--brand-800)] border border-[var(--brand-200)] rounded-xl p-4 mt-4">
                       ✅ Thank you! Our partner team will review your application and contact you within 48 hours.
                     </div>
                   )}

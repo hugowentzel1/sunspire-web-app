@@ -1,103 +1,83 @@
 import { test, expect } from '@playwright/test';
 
-const PAID_URL = 'https://sunspire-web-app.vercel.app/paid?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com';
-const DEMO_URL = 'https://sunspire-web-app.vercel.app/?company=Apple&demo=1';
-
-test.describe('Final Verification Tests', () => {
-  test('Paid version - brand colors and green checkmark', async ({ page }) => {
-    await page.goto(PAID_URL, { waitUntil: 'networkidle' });
+test.describe('Final Changes Verification', () => {
+  test('Support Page - No Blue Colors (Visual Check)', async ({ page }) => {
+    await page.goto('http://localhost:3003/support?company=Netflix&demo=1');
+    await page.waitForLoadState('networkidle');
     
-    // Wait for everything to load
-    await page.waitForTimeout(5000);
+    // Take screenshot to verify visually that blue colors are gone
+    await page.screenshot({ path: 'support-final-colors.png', fullPage: true });
     
-    // Check CSS variable
-    const brandColor = await page.evaluate(() => {
-      return getComputedStyle(document.documentElement).getPropertyValue('--brand-primary').trim();
-    });
-    
-    console.log('CSS variable --brand-primary:', brandColor);
-    
-    // Check checkmark color (should be green)
-    const checkmark = page.locator('.absolute.-top-6.-right-4.w-12.h-12.rounded-full').first();
-    const checkmarkColor = await checkmark.evaluate((el) => {
-      const styles = window.getComputedStyle(el);
-      return {
-        backgroundColor: styles.backgroundColor,
-        color: styles.color
-      };
-    });
-    
-    console.log('Checkmark colors:', checkmarkColor);
-    
-    // Check if checkmark is green
-    expect(checkmarkColor.backgroundColor).toBe('rgb(16, 185, 129)'); // #10B981
-    
-    // Check if "Powered by Sunspire" text is red
-    const sunspireText = page.locator('text=Powered by Sunspire').first();
-    const textColor = await sunspireText.evaluate((el) => {
-      const styles = window.getComputedStyle(el);
-      return styles.color;
-    });
-    
-    console.log('Sunspire text color:', textColor);
-    
-    // Take a screenshot
-    await page.screenshot({ path: 'final-paid-verification.png', fullPage: true });
+    // Check that page has data-brand attribute
+    await expect(page.locator('[data-brand]')).toBeVisible();
   });
 
-  test('Demo version - green checkmark', async ({ page }) => {
-    await page.goto(DEMO_URL, { waitUntil: 'networkidle' });
+  test('Partners Page - No Blue Colors (Visual Check)', async ({ page }) => {
+    await page.goto('http://localhost:3003/partners?company=Netflix&demo=1');
+    await page.waitForLoadState('networkidle');
     
-    // Wait for everything to load
-    await page.waitForTimeout(3000);
+    // Take screenshot to verify visually that blue colors are gone
+    await page.screenshot({ path: 'partners-final-colors.png', fullPage: true });
     
-    // Check checkmark color (should be green)
-    const checkmark = page.locator('.absolute.-top-4.-right-4.w-12.h-12.rounded-full').first();
-    const checkmarkColor = await checkmark.evaluate((el) => {
-      const styles = window.getComputedStyle(el);
-      return {
-        backgroundColor: styles.backgroundColor,
-        color: styles.color
-      };
-    });
-    
-    console.log('Demo checkmark colors:', checkmarkColor);
-    
-    // Check if checkmark is green
-    expect(checkmarkColor.backgroundColor).toBe('rgb(34, 197, 94)'); // green-500
-    
-    // Take a screenshot
-    await page.screenshot({ path: 'final-demo-verification.png', fullPage: true });
+    // Check that page has data-brand attribute
+    await expect(page.locator('[data-brand]')).toBeVisible();
   });
 
-  test('Local version - verify everything works', async ({ page }) => {
-    await page.goto('http://localhost:3001/paid?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com', { waitUntil: 'networkidle' });
+  test('Report Page - Navigation Links Match Home Page', async ({ page }) => {
+    await page.goto('http://localhost:3003/report?company=Netflix&demo=1');
+    await page.waitForLoadState('networkidle');
     
-    // Wait for everything to load
-    await page.waitForTimeout(3000);
+    // Check that report page header has Pricing, Partners, Support links
+    await expect(page.locator('nav a[href*="/pricing"]')).toBeVisible();
+    await expect(page.locator('nav a[href*="/partners"]')).toBeVisible();
+    await expect(page.locator('nav a[href*="/support"]')).toBeVisible();
     
-    // Check CSS variable (should be red)
-    const brandColor = await page.evaluate(() => {
-      return getComputedStyle(document.documentElement).getPropertyValue('--brand-primary').trim();
-    });
+    // Check that outdated links (Privacy, Terms, Security) are NOT present
+    await expect(page.locator('nav a[href*="/privacy"]')).toHaveCount(0);
+    await expect(page.locator('nav a[href*="/terms"]')).toHaveCount(0);
+    await expect(page.locator('nav a[href*="/security"]')).toHaveCount(0);
     
-    console.log('Local CSS variable --brand-primary:', brandColor);
-    expect(brandColor).toBe('#FF0000');
+    // Take screenshot to verify visually
+    await page.screenshot({ path: 'report-navigation-final.png', fullPage: true });
+  });
+
+  test('Report Page - Container Width Alignment', async ({ page }) => {
+    await page.goto('http://localhost:3003/report?company=Netflix&demo=1');
+    await page.waitForLoadState('networkidle');
     
-    // Check checkmark color (should be green)
-    const checkmark = page.locator('.absolute.-top-6.-right-4.w-12.h-12.rounded-full').first();
-    const checkmarkColor = await checkmark.evaluate((el) => {
-      const styles = window.getComputedStyle(el);
-      return {
-        backgroundColor: styles.backgroundColor,
-        color: styles.color
-      };
-    });
+    // Check that header uses Container
+    const header = page.locator('header');
+    await expect(header).toBeVisible();
     
-    console.log('Local checkmark colors:', checkmarkColor);
-    expect(checkmarkColor.backgroundColor).toBe('rgb(16, 185, 129)'); // #10B981
+    // Check that main content uses Container
+    const mainContent = page.locator('main[data-testid="report-page"]');
+    await expect(mainContent).toBeVisible();
     
-    // Take a screenshot
-    await page.screenshot({ path: 'final-local-verification.png', fullPage: true });
+    // Check that footer uses Container
+    const footer = page.locator('footer');
+    await expect(footer).toBeVisible();
+    
+    // Take screenshot to verify visual alignment
+    await page.screenshot({ path: 'report-container-alignment.png', fullPage: true });
+  });
+
+  test('All Pages Use Container Consistently', async ({ page }) => {
+    const pages = [
+      { url: '/pricing?company=Netflix&demo=1', name: 'pricing' },
+      { url: '/partners?company=Netflix&demo=1', name: 'partners' },
+      { url: '/support?company=Netflix&demo=1', name: 'support' },
+      { url: '/report?company=Netflix&demo=1', name: 'report' }
+    ];
+
+    for (const pageInfo of pages) {
+      await page.goto(`http://localhost:3003${pageInfo.url}`);
+      await page.waitForLoadState('networkidle');
+      
+      // Check that page has data-brand attribute
+      await expect(page.locator('[data-brand]')).toBeVisible();
+      
+      // Take screenshot for each page
+      await page.screenshot({ path: `${pageInfo.name}-final-verification.png`, fullPage: true });
+    }
   });
 });

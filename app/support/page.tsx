@@ -108,8 +108,8 @@ export default function SupportPage() {
               {/* Email Support */}
               <Card>
                 <div className="text-center space-y-2">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
-                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-12 h-12 bg-[var(--brand-100)] rounded-full flex items-center justify-center mx-auto">
+                    <svg className="w-6 h-6 text-[var(--brand-600)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                     </svg>
                   </div>
@@ -118,12 +118,12 @@ export default function SupportPage() {
                   <p className="text-xs text-neutral-500">&lt;24h response time</p>
                   <a 
                     href="mailto:support@getsunspire.com"
-                    className="inline-block text-sm text-blue-600 hover:text-blue-700 font-medium"
+                    className="inline-block text-sm text-[var(--brand-600)] hover:text-[var(--brand-700)] font-medium"
                   >
                     support@getsunspire.com
                   </a>
                   <p className="text-xs text-neutral-500 mt-2">
-                    Prefer a quick call? <a href="#" className="text-blue-600 hover:underline">Book 15-min setup (optional)</a>
+                    Prefer a quick call? <a href="#" className="text-[var(--brand-600)] hover:underline">Book 15-min setup (optional)</a>
                   </p>
                 </div>
               </Card>
@@ -131,8 +131,8 @@ export default function SupportPage() {
               {/* Documentation */}
               <Card>
                 <div className="text-center space-y-2">
-                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mx-auto">
-                    <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <div className="w-12 h-12 bg-[var(--brand-100)] rounded-full flex items-center justify-center mx-auto">
+                    <svg className="w-6 h-6 text-[var(--brand-600)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
                   </div>
@@ -141,7 +141,7 @@ export default function SupportPage() {
                   <p className="text-xs text-neutral-500">Self-service resources</p>
                   <a 
                     href="#"
-                    className="inline-block text-sm text-green-600 hover:text-green-700 font-medium"
+                    className="inline-block text-sm text-[var(--brand-600)] hover:text-[var(--brand-700)] font-medium"
                   >
                     View Documentation
                   </a>
@@ -158,7 +158,7 @@ export default function SupportPage() {
                   </div>
                   <h3 className="text-lg font-semibold text-neutral-900">System Status</h3>
                   <p className="text-sm text-neutral-600">Service uptime</p>
-                  <p className="text-xs text-green-600 font-medium">All systems operational</p>
+                  <p className="text-xs text-[var(--brand-600)] font-medium">All systems operational</p>
                   <a 
                     href="#"
                     className="inline-block text-sm text-gray-600 hover:text-gray-700 font-medium"
@@ -204,10 +204,10 @@ export default function SupportPage() {
                 <div className="mt-12">
                   <h3 className="text-xl font-semibold text-neutral-900 mb-6">Helpful Resources</h3>
                   <div className="space-y-3">
-                    <a href="#" className="block text-blue-600 hover:text-blue-700 font-medium">Setup Guide</a>
-                    <a href="#" className="block text-blue-600 hover:text-blue-700 font-medium">CRM Integration Tutorial</a>
-                    <a href="#" className="block text-blue-600 hover:text-blue-700 font-medium">Branding Customization</a>
-                    <a href="#" className="block text-blue-600 hover:text-blue-700 font-medium">API Documentation</a>
+                    <a href="#" className="block text-[var(--brand-600)] hover:text-[var(--brand-700)] font-medium">Setup Guide</a>
+                    <a href="#" className="block text-[var(--brand-600)] hover:text-[var(--brand-700)] font-medium">CRM Integration Tutorial</a>
+                    <a href="#" className="block text-[var(--brand-600)] hover:text-[var(--brand-700)] font-medium">Branding Customization</a>
+                    <a href="#" className="block text-[var(--brand-600)] hover:text-[var(--brand-700)] font-medium">API Documentation</a>
                   </div>
                 </div>
               </div>
@@ -230,7 +230,7 @@ export default function SupportPage() {
                           value={formData.name}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-[var(--brand-500)] focus:border-transparent"
                           placeholder="Your full name"
                         />
                       </div>
@@ -245,7 +245,7 @@ export default function SupportPage() {
                           value={formData.email}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-[var(--brand-500)] focus:border-transparent"
                           placeholder="your@email.com"
                         />
                       </div>
@@ -261,7 +261,7 @@ export default function SupportPage() {
                         name="company"
                         value={formData.company}
                         onChange={handleChange}
-                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-[var(--brand-500)] focus:border-transparent"
                         placeholder="Your company name"
                       />
                     </div>
@@ -276,7 +276,7 @@ export default function SupportPage() {
                           name="priority"
                           value={formData.priority}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-[var(--brand-500)] focus:border-transparent"
                         >
                           <option value="">Select priority</option>
                           <option value="low">Low - General question</option>
@@ -294,7 +294,7 @@ export default function SupportPage() {
                           name="category"
                           value={formData.category}
                           onChange={handleChange}
-                          className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                          className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-[var(--brand-500)] focus:border-transparent"
                         >
                           <option value="">Select category</option>
                           <option value="setup">Setup & Onboarding</option>
@@ -317,7 +317,7 @@ export default function SupportPage() {
                         value={formData.subject}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-[var(--brand-500)] focus:border-transparent"
                         placeholder="Brief description of your issue"
                       />
                     </div>
@@ -333,7 +333,7 @@ export default function SupportPage() {
                         onChange={handleChange}
                         required
                         rows={5}
-                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-4 py-3 border border-neutral-300 rounded-lg focus:ring-2 focus:ring-[var(--brand-500)] focus:border-transparent"
                         placeholder="Please provide detailed information about your issue..."
                       />
                     </div>
