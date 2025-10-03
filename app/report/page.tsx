@@ -28,6 +28,7 @@ import StickySidebar from '@/components/StickySidebar';
 import { SidebarCta } from '@/src/components/SidebarCta';
 import StickyCTA from '@/components/cta/StickyCTA';
 import { getTrustData } from '@/lib/trust';
+import Container from '@/components/layout/Container';
 
 import { ensureBlurSupport } from '@/src/lib/ensureBlur';
 import { isDemoFromSearchParams } from '@/src/lib/isDemo';
@@ -679,7 +680,8 @@ function ReportContent() {
       {/* Trust Signals - Logo Wall */}
       {trustData && <LogoWall logos={trustData.logos} className="py-8" />}
 
-      <main data-testid="report-page" className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main data-testid="report-page" className="py-12">
+        <Container>
 
         {/* Success toast for paid mode */}
         {showSuccessToast && (
@@ -1025,6 +1027,7 @@ function ReportContent() {
             </motion.div>
           )}
         </motion.div>
+        </Container>
       </main>
 
 

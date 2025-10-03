@@ -1,12 +1,13 @@
 import * as React from "react";
 
-export default function Container({
-  className = "",
-  ...props
-}: React.HTMLAttributes<HTMLDivElement>) {
+type Props = React.HTMLAttributes<HTMLDivElement> & {
+  as?: React.ElementType;
+};
+
+export default function Container({ as: Tag = "div", className = "", ...props }: Props) {
   return (
-    <div
-      className={`mx-auto max-w-[1200px] px-4 md:px-6 ${className}`}
+    <Tag
+      className={`mx-auto w-full max-w-[var(--content-max)] px-[var(--gutter-x-sm)] md:px-[var(--gutter-x-md)] ${className}`}
       {...props}
     />
   );

@@ -5,6 +5,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Global width and gutter tokens - single source of truth */
+:root {
+  --content-max: 1200px;     /* exact inner width for report and footer */
+  --gutter-x-sm: 1rem;       /* 16px (mobile) */
+  --gutter-x-md: 1.5rem;     /* 24px (md+) */
+}
+
 /* CTA Button Hover Effects with Glossy Shine - Standardized Motion */
 button[data-cta="primary"],
 button[data-cta-button] {
