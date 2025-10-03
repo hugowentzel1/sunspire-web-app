@@ -91,7 +91,7 @@ export default function PricingPage() {
 
   return (
     <div 
-      className="min-h-screen bg-gradient-to-br from-slate-50 via-[var(--brand-50)] to-[var(--brand-100)] font-inter"
+      className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-gray-50 font-inter"
       data-brand
     >
       <Section>
