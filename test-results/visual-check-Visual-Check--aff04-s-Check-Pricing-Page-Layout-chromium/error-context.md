@@ -1,0 +1,175 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - strong [ref=e4]: Exclusive preview built for Netflix
+      - generic [ref=e5]: Exclusive preview — expires in 6:23:59:59
+      - generic [ref=e6]: "Runs left: 2"
+    - generic [ref=e7]:
+      - button "Launch on Netflix" [ref=e8] [cursor=pointer]
+      - button "Copy link" [ref=e9] [cursor=pointer]
+      - button "Dismiss" [ref=e10] [cursor=pointer]: ✕
+  - banner [ref=e11]:
+    - generic [ref=e13]:
+      - link "Netflix logo Netflix Solar Intelligence" [ref=e14] [cursor=pointer]:
+        - /url: /?company=Netflix&demo=1
+        - img "Netflix logo" [ref=e15] [cursor=pointer]
+        - generic [ref=e16] [cursor=pointer]:
+          - heading "Netflix" [level=1] [ref=e17] [cursor=pointer]
+          - paragraph [ref=e18] [cursor=pointer]: Solar Intelligence
+      - navigation [ref=e19]:
+        - link "Pricing" [ref=e20] [cursor=pointer]:
+          - /url: /pricing?company=Netflix&demo=1
+        - link "Partners" [ref=e21] [cursor=pointer]:
+          - /url: /partners?company=Netflix&demo=1
+        - link "Support" [ref=e22] [cursor=pointer]:
+          - /url: /support?company=Netflix&demo=1
+        - button "Activate on Your Domain — 24 Hours" [ref=e23] [cursor=pointer]
+    - paragraph [ref=e26]: Private demo for Netflix. Not affiliated.
+  - generic [ref=e27]:
+    - generic [ref=e30]:
+      - link "Back to Home" [ref=e32] [cursor=pointer]:
+        - /url: /?company=Netflix&demo=1
+        - img [ref=e33] [cursor=pointer]
+        - text: Back to Home
+      - generic [ref=e35]:
+        - heading "$99/mo + $399 setup" [level=1] [ref=e36]
+        - paragraph [ref=e37]: Go live in under 24 hours with branded solar quotes.
+        - paragraph [ref=e38]: 14-day refund if it doesn't lift booked calls.
+        - button "Start setup — $399 today + $99/mo" [ref=e40] [cursor=pointer]
+        - generic [ref=e41]:
+          - img [ref=e42]
+          - generic [ref=e44]: Secure Stripe checkout • No hidden fees • 14-day refund
+      - paragraph [ref=e46]: “Cut quoting time from 15 min to 1 min.” — Solar Company Owner, CA
+      - generic [ref=e47]:
+        - generic [ref=e48]:
+          - heading "What You Get" [level=2] [ref=e49]
+          - generic [ref=e50]:
+            - generic [ref=e51]:
+              - img [ref=e52]
+              - generic [ref=e54]: Branded reports & PDFs
+            - generic [ref=e55]:
+              - img [ref=e56]
+              - generic [ref=e58]: Your domain (CNAME)
+            - generic [ref=e59]:
+              - img [ref=e60]
+              - generic [ref=e62]: CRM integrations (HubSpot, Salesforce)
+            - generic [ref=e63]:
+              - img [ref=e64]
+              - generic [ref=e66]: Unlimited quotes
+            - generic [ref=e67]:
+              - img [ref=e68]
+              - generic [ref=e70]: SLA & support
+            - generic [ref=e71]:
+              - img [ref=e72]
+              - generic [ref=e74]: End-to-end encryption
+        - generic [ref=e75]:
+          - heading "Why Installers Switch" [level=2] [ref=e76]
+          - generic [ref=e77]:
+            - generic [ref=e78]:
+              - img [ref=e79]
+              - generic [ref=e81]: Live in <24 hours — no coding required
+            - generic [ref=e82]:
+              - img [ref=e83]
+              - generic [ref=e85]: Teams report +25–40% more booked calls after adding instant quotes
+      - paragraph [ref=e87]: One extra booked job per month typically covers the subscription.
+      - generic [ref=e88]:
+        - heading "Frequently Asked Questions" [level=2] [ref=e89]
+        - generic [ref=e90]:
+          - button "Accuracy & data sources" [ref=e92] [cursor=pointer]:
+            - generic [ref=e93] [cursor=pointer]: Accuracy & data sources
+            - img [ref=e94] [cursor=pointer]
+          - button "Security & encryption" [ref=e97] [cursor=pointer]:
+            - generic [ref=e98] [cursor=pointer]: Security & encryption
+            - img [ref=e99] [cursor=pointer]
+          - button "Cancel & refund policy" [ref=e102] [cursor=pointer]:
+            - generic [ref=e103] [cursor=pointer]: Cancel & refund policy
+            - img [ref=e104] [cursor=pointer]
+          - button "Support" [ref=e107] [cursor=pointer]:
+            - generic [ref=e108] [cursor=pointer]: Support
+            - img [ref=e109] [cursor=pointer]
+    - contentinfo [ref=e111]:
+      - generic [ref=e113]:
+        - generic [ref=e114]:
+          - generic [ref=e115]:
+            - heading "Sunspire Solar Intelligence" [level=3] [ref=e116]
+            - paragraph [ref=e117]: Demo for Netflix — Powered by Sunspire
+            - generic [ref=e118]:
+              - generic [ref=e119]:
+                - generic [ref=e120]: 📍
+                - generic [ref=e121]:
+                  - text: "1700 Northside Drive Suite A7 #5164"
+                  - text: Atlanta, GA 30318
+              - generic [ref=e122]:
+                - generic [ref=e123]: GDPR
+                - generic [ref=e124]: CCPA
+                - generic [ref=e125]: SOC 2
+              - list [ref=e126]:
+                - listitem [ref=e127]:
+                  - generic [ref=e128]: ✉️
+                  - link "support@getsunspire.com" [ref=e129] [cursor=pointer]:
+                    - /url: mailto:support@getsunspire.com
+                - listitem [ref=e130]:
+                  - generic [ref=e131]: ✉️
+                  - link "billing@getsunspire.com" [ref=e132] [cursor=pointer]:
+                    - /url: mailto:billing@getsunspire.com
+                - listitem [ref=e133]:
+                  - generic [ref=e134]: ☎️
+                  - link "+1 (404) 123-4567" [ref=e135] [cursor=pointer]:
+                    - /url: tel:+14041234567
+          - generic [ref=e136]:
+            - heading "Quick Links" [level=4] [ref=e137]
+            - list [ref=e138]:
+              - listitem [ref=e139]:
+                - link "Pricing" [ref=e140] [cursor=pointer]:
+                  - /url: /pricing
+              - listitem [ref=e141]:
+                - link "Partners" [ref=e142] [cursor=pointer]:
+                  - /url: /partners
+              - listitem [ref=e143]:
+                - link "Support" [ref=e144] [cursor=pointer]:
+                  - /url: /support
+          - generic [ref=e145]:
+            - heading "Legal & Support" [level=4] [ref=e146]
+            - list [ref=e147]:
+              - listitem [ref=e148]:
+                - link "Privacy Policy" [ref=e149] [cursor=pointer]:
+                  - /url: /privacy
+              - listitem [ref=e150]:
+                - link "Terms of Service" [ref=e151] [cursor=pointer]:
+                  - /url: /terms
+              - listitem [ref=e152]:
+                - link "Security" [ref=e153] [cursor=pointer]:
+                  - /url: /security
+              - listitem [ref=e154]:
+                - link "DPA" [ref=e155] [cursor=pointer]:
+                  - /url: /dpa
+              - listitem [ref=e156]:
+                - link "Do Not Sell My Data" [ref=e157] [cursor=pointer]:
+                  - /url: /do-not-sell
+        - separator [ref=e158]
+        - generic [ref=e159]:
+          - generic [ref=e160]:
+            - generic [ref=e161]: ⚡
+            - generic [ref=e162]:
+              - text: Estimates generated
+              - text: using NREL PVWatts® v8
+          - generic [ref=e164]:
+            - text: Powered by
+            - generic [ref=e165]: Sunspire
+          - generic [ref=e166]:
+            - generic [ref=e167]: 🗺️
+            - generic [ref=e168]:
+              - text: Mapping & location
+              - text: data © Google
+  - alert [ref=e169]
+  - generic [ref=e172]:
+    - generic [ref=e173]:
+      - heading "We use cookies to improve your experience" [level=3] [ref=e174]
+      - paragraph [ref=e175]: We use cookies and similar technologies to analyze site usage, personalize content, and provide social media features. By continuing to use our site, you consent to our use of cookies.
+    - generic [ref=e176]:
+      - button "Decline" [ref=e177] [cursor=pointer]
+      - button "Accept All" [ref=e178] [cursor=pointer]
+```

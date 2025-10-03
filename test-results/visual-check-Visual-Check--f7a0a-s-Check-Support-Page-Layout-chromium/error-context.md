@@ -1,0 +1,196 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - strong [ref=e4]: Exclusive preview built for Netflix
+      - generic [ref=e5]: Exclusive preview — expires in 6:23:59:59
+      - generic [ref=e6]: "Runs left: 2"
+    - generic [ref=e7]:
+      - button "Launch on Netflix" [ref=e8] [cursor=pointer]
+      - button "Copy link" [ref=e9] [cursor=pointer]
+      - button "Dismiss" [ref=e10] [cursor=pointer]: ✕
+  - banner [ref=e11]:
+    - generic [ref=e13]:
+      - link "Netflix logo Netflix Solar Intelligence" [ref=e14] [cursor=pointer]:
+        - /url: /?company=Netflix&demo=1
+        - img "Netflix logo" [ref=e15] [cursor=pointer]
+        - generic [ref=e16] [cursor=pointer]:
+          - heading "Netflix" [level=1] [ref=e17] [cursor=pointer]
+          - paragraph [ref=e18] [cursor=pointer]: Solar Intelligence
+      - navigation [ref=e19]:
+        - link "Pricing" [ref=e20] [cursor=pointer]:
+          - /url: /pricing?company=Netflix&demo=1
+        - link "Partners" [ref=e21] [cursor=pointer]:
+          - /url: /partners?company=Netflix&demo=1
+        - link "Support" [ref=e22] [cursor=pointer]:
+          - /url: /support?company=Netflix&demo=1
+        - button "Activate on Your Domain — 24 Hours" [ref=e23] [cursor=pointer]
+    - paragraph [ref=e26]: Private demo for Netflix. Not affiliated.
+  - generic [ref=e27]:
+    - generic [ref=e30]:
+      - link "Back to Home" [ref=e32] [cursor=pointer]:
+        - /url: /?company=Netflix&demo=1
+        - img [ref=e33] [cursor=pointer]
+        - text: Back to Home
+      - generic [ref=e35]:
+        - heading "Support Center" [level=1] [ref=e36]
+        - paragraph [ref=e37]: Get help with setup, integrations, and optimization
+      - paragraph [ref=e39]: Avg reply <24h • High priority 4h • Urgent 1h • Enterprise 2h SLA
+      - generic [ref=e40]:
+        - generic [ref=e42]:
+          - img [ref=e44]
+          - heading "Email Support" [level=3] [ref=e46]
+          - paragraph [ref=e47]: Primary support channel
+          - paragraph [ref=e48]: <24h response time
+          - link "support@getsunspire.com" [ref=e49] [cursor=pointer]:
+            - /url: mailto:support@getsunspire.com
+          - paragraph [ref=e50]:
+            - text: Prefer a quick call?
+            - link "Book 15-min setup (optional)" [ref=e51] [cursor=pointer]:
+              - /url: "#"
+        - generic [ref=e53]:
+          - img [ref=e55]
+          - heading "Documentation" [level=3] [ref=e57]
+          - paragraph [ref=e58]: Setup guides & tutorials
+          - paragraph [ref=e59]: Self-service resources
+          - link "View Documentation" [ref=e60] [cursor=pointer]:
+            - /url: "#"
+        - generic [ref=e62]:
+          - img [ref=e64]
+          - heading "System Status" [level=3] [ref=e66]
+          - paragraph [ref=e67]: Service uptime
+          - paragraph [ref=e68]: All systems operational
+          - link "Check Status" [ref=e69] [cursor=pointer]:
+            - /url: "#"
+      - generic [ref=e70]:
+        - generic [ref=e71]:
+          - heading "Frequently Asked Questions" [level=2] [ref=e72]
+          - generic [ref=e73]:
+            - button "How accurate are the solar estimates?" [ref=e75] [cursor=pointer]:
+              - generic [ref=e76] [cursor=pointer]: How accurate are the solar estimates?
+              - img [ref=e77] [cursor=pointer]
+            - button "How quickly can I get the tool live on my website?" [ref=e80] [cursor=pointer]:
+              - generic [ref=e81] [cursor=pointer]: How quickly can I get the tool live on my website?
+              - img [ref=e82] [cursor=pointer]
+            - button "Can I customize the branding and colors?" [ref=e85] [cursor=pointer]:
+              - generic [ref=e86] [cursor=pointer]: Can I customize the branding and colors?
+              - img [ref=e87] [cursor=pointer]
+            - button "What CRM integrations are available?" [ref=e90] [cursor=pointer]:
+              - generic [ref=e91] [cursor=pointer]: What CRM integrations are available?
+              - img [ref=e92] [cursor=pointer]
+            - button "Is there a free trial?" [ref=e95] [cursor=pointer]:
+              - generic [ref=e96] [cursor=pointer]: Is there a free trial?
+              - img [ref=e97] [cursor=pointer]
+          - generic [ref=e99]:
+            - heading "Helpful Resources" [level=3] [ref=e100]
+            - generic [ref=e101]:
+              - link "Setup Guide" [ref=e102] [cursor=pointer]:
+                - /url: "#"
+              - link "CRM Integration Tutorial" [ref=e103] [cursor=pointer]:
+                - /url: "#"
+              - link "Branding Customization" [ref=e104] [cursor=pointer]:
+                - /url: "#"
+              - link "API Documentation" [ref=e105] [cursor=pointer]:
+                - /url: "#"
+        - generic [ref=e106]:
+          - generic [ref=e107]:
+            - heading "Create Support Ticket" [level=2] [ref=e108]
+            - generic [ref=e109]:
+              - generic [ref=e110]:
+                - generic [ref=e111]:
+                  - generic [ref=e112]: Full Name *
+                  - textbox "Full Name *" [ref=e113]
+                - generic [ref=e114]:
+                  - generic [ref=e115]: Email Address *
+                  - textbox "Email Address *" [ref=e116]
+              - generic [ref=e117]:
+                - generic [ref=e118]: Company Name
+                - textbox "Company Name" [ref=e119]
+              - generic [ref=e120]:
+                - generic [ref=e121]:
+                  - generic [ref=e122]: Priority Level
+                  - combobox "Priority Level" [ref=e123]:
+                    - option "Select priority" [selected]
+                    - option "Low - General question"
+                    - option "Medium - Setup help"
+                    - option "High - Urgent issue"
+                    - option "Critical - System down"
+                - generic [ref=e124]:
+                  - generic [ref=e125]: Category
+                  - combobox "Category" [ref=e126]:
+                    - option "Select category" [selected]
+                    - option "Setup & Onboarding"
+                    - option "CRM Integration"
+                    - option "Technical Issue"
+                    - option "Billing Question"
+                    - option "Feature Request"
+              - generic [ref=e127]:
+                - generic [ref=e128]: Subject *
+                - textbox "Subject *" [ref=e129]
+              - generic [ref=e130]:
+                - generic [ref=e131]: Message *
+                - textbox "Message *" [ref=e132]
+              - button "Create Support Ticket" [ref=e133] [cursor=pointer]
+          - generic [ref=e134]:
+            - heading "Response Times" [level=3] [ref=e135]
+            - generic [ref=e136]:
+              - generic [ref=e137]:
+                - generic [ref=e138]: "General inquiries:"
+                - generic [ref=e139]: <24 hours
+              - generic [ref=e140]:
+                - generic [ref=e141]: "High priority:"
+                - generic [ref=e142]: <4 hours
+              - generic [ref=e143]:
+                - generic [ref=e144]: "Critical issues:"
+                - generic [ref=e145]: <1 hour
+              - generic [ref=e146]:
+                - generic [ref=e147]: "Enterprise SLA:"
+                - generic [ref=e148]: <2 hours
+    - contentinfo [ref=e149]:
+      - generic [ref=e150]:
+        - generic [ref=e151]:
+          - heading "Sunspire Solar Intelligence" [level=3] [ref=e153]
+          - generic [ref=e154]:
+            - heading "Legal & Support" [level=4] [ref=e155]
+            - generic [ref=e156]:
+              - link "Privacy Policy" [ref=e157] [cursor=pointer]:
+                - /url: /privacy?company=Netflix&demo=1
+              - link "Terms of Service" [ref=e158] [cursor=pointer]:
+                - /url: /terms?company=Netflix&demo=1
+              - link "Security" [ref=e159] [cursor=pointer]:
+                - /url: /security?company=Netflix&demo=1
+              - link "DPA" [ref=e160] [cursor=pointer]:
+                - /url: /dpa?company=Netflix&demo=1
+              - link "Do Not Sell My Data" [ref=e161] [cursor=pointer]:
+                - /url: /do-not-sell?company=Netflix&demo=1
+          - generic [ref=e162]:
+            - heading "Contact" [level=4] [ref=e163]
+            - generic [ref=e164]:
+              - paragraph [ref=e165]:
+                - img [ref=e166]
+                - link "support@getsunspire.com" [ref=e168] [cursor=pointer]:
+                  - /url: mailto:support@getsunspire.com
+              - paragraph [ref=e169]:
+                - img [ref=e170]
+                - text: +1 (404) 770-2672
+        - generic [ref=e173]:
+          - generic [ref=e174]:
+            - img [ref=e175]
+            - generic [ref=e177]: Estimates generated using NREL PVWatts® v8
+          - paragraph [ref=e179]:
+            - text: Powered by
+            - generic [ref=e180]: Sunspire
+          - generic [ref=e181]:
+            - img [ref=e182]
+            - generic [ref=e184]: Mapping & location data © Google
+  - alert [ref=e185]
+  - generic [ref=e188]:
+    - generic [ref=e189]:
+      - heading "We use cookies to improve your experience" [level=3] [ref=e190]
+      - paragraph [ref=e191]: We use cookies and similar technologies to analyze site usage, personalize content, and provide social media features. By continuing to use our site, you consent to our use of cookies.
+    - generic [ref=e192]:
+      - button "Decline" [ref=e193] [cursor=pointer]
+      - button "Accept All" [ref=e194] [cursor=pointer]
+```

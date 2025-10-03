@@ -322,14 +322,6 @@ export default function PartnersPage() {
       </Section>
 
       <Footer />
-      
-      {/* Sticky CTA */}
-      <StickyCTA 
-        href="/partners#apply" 
-        heroSelector="#main-cta" 
-        label="Apply to Partner Program" 
-        subtext="30% recurring • $120 setup per client"
-      />
     </div>
   );
 }
