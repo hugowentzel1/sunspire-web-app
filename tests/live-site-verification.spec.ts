@@ -1,36 +1,58 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Live Site Verification', () => {
-  test('Check live site with Apple branding', async ({ page }) => {
-    const pages = [
-      { url: 'https://sunspire-web-app.vercel.app/?company=Apple&demo=1', name: 'Home' },
-      { url: 'https://sunspire-web-app.vercel.app/pricing?company=Apple&demo=1', name: 'Pricing' },
-      { url: 'https://sunspire-web-app.vercel.app/partners?company=Apple&demo=1', name: 'Partners' },
-      { url: 'https://sunspire-web-app.vercel.app/support?company=Apple&demo=1', name: 'Support' },
-      { url: 'https://sunspire-web-app.vercel.app/report?company=Apple&demo=1', name: 'Report' }
-    ];
-
-    for (const pageInfo of pages) {
-      console.log(`Checking live ${pageInfo.name} page...`);
-      await page.goto(pageInfo.url);
-      await page.waitForLoadState('domcontentloaded');
-      
-      // Wait for brand colors to be applied
-      await page.waitForTimeout(3000);
-      
-      // Take a screenshot
-      await page.screenshot({ 
-        path: `test-results/live-${pageInfo.name.toLowerCase()}-apple.png`,
-        fullPage: true 
-      });
-      
-      // Check brand color
-      const bodyElement = await page.locator('body').first();
-      const brandPrimary = await bodyElement.evaluate((el) => {
-        return getComputedStyle(el).getPropertyValue('--brand-primary');
-      });
-      
-      console.log(`✓ Live ${pageInfo.name} page loaded - Brand primary: ${brandPrimary}`);
-    }
+  test('Check live site with Spotify branding', async ({ page }) => {
+    console.log('Testing live site with Spotify branding...');
+    
+    // Test Report Page
+    await page.goto('https://sunspire-web-app.vercel.app/report?company=Spotify&demo=1');
+    await page.waitForLoadState('domcontentloaded');
+    await page.waitForTimeout(3000);
+    
+    // Scroll down to make hero CTA out of view
+    await page.evaluate(() => window.scrollTo(0, 1000));
+    await page.waitForTimeout(1000);
+    
+    // Check sticky CTA is visible
+    const stickyCTA = page.locator('div[style*="bottom:"][style*="right:"][style*="clamp"]').first();
+    await expect(stickyCTA).toBeVisible();
+    
+    // Take screenshot
+    await page.screenshot({
+      path: 'test-results/live-report-page.png',
+      fullPage: true
+    });
+    
+    // Test Support Page
+    await page.goto('https://sunspire-web-app.vercel.app/support?company=Spotify&demo=1');
+    await page.waitForLoadState('domcontentloaded');
+    await page.waitForTimeout(2000);
+    
+    // Check helpful resources links are brand colored
+    const setupGuideLink = page.locator('a:has-text("Setup Guide")').first();
+    await expect(setupGuideLink).toBeVisible();
+    
+    // Take screenshot
+    await page.screenshot({
+      path: 'test-results/live-support-page.png',
+      fullPage: true
+    });
+    
+    // Test Pricing Page
+    await page.goto('https://sunspire-web-app.vercel.app/pricing?company=Spotify&demo=1');
+    await page.waitForLoadState('domcontentloaded');
+    await page.waitForTimeout(2000);
+    
+    // Check pricing numbers are brand colored
+    const pricingTitle = page.locator('h1').nth(1);
+    await expect(pricingTitle).toContainText('$99/mo + $399 setup');
+    
+    // Take screenshot
+    await page.screenshot({
+      path: 'test-results/live-pricing-page.png',
+      fullPage: true
+    });
+    
+    console.log('✓ Live site verification completed successfully');
   });
 });

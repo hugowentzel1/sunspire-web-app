@@ -66,7 +66,7 @@ export default function StickyCTA({
         style={{
           bottom: `calc(24px + env(safe-area-inset-bottom) + var(--cookie-offset, 0px))`,
           right: "1rem",
-          width: "clamp(280px, 28vw, 400px)",
+          width: "clamp(320px, 32vw, 480px)",
           paddingRight: "env(safe-area-inset-right)",
         }}
         aria-hidden={isHidden}

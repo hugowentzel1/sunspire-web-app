@@ -118,7 +118,7 @@ export default function PricingPage() {
                 transition={{ duration: 0.5 }}
                 className="text-4xl md:text-5xl font-black text-neutral-900"
               >
-                $<span className="text-[var(--brand-primary)]">99</span>/mo + $<span className="text-[var(--brand-primary)]">399</span> setup
+                $<span className="text-neutral-900">99</span>/mo + $<span className="text-neutral-900">399</span> setup
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -136,7 +136,7 @@ export default function PricingPage() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-sm text-neutral-500 mt-6"
               >
-                <span className="text-[var(--brand-primary)] font-semibold">14-day refund</span> if it doesn&apos;t lift booked calls.
+                <span className="text-gray-500 font-semibold">14-day refund</span> if it doesn&apos;t lift booked calls.
               </motion.p>
 
               {/* Main CTA */}
@@ -165,7 +165,7 @@ export default function PricingPage() {
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
                 </svg>
-                <span className="font-medium">Secure Stripe checkout • No hidden fees • <span className="text-[var(--brand-primary)]">14-day refund</span></span>
+                <span className="font-medium text-[var(--brand-primary)]">Secure Stripe checkout • No hidden fees • 14-day refund</span>
               </motion.div>
             </div>
 
