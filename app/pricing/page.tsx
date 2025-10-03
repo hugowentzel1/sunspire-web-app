@@ -126,7 +126,7 @@ export default function PricingPage() {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="text-lg md:text-xl text-neutral-700 max-w-3xl mx-auto mt-8"
               >
-                Go live in under 24 hours with branded solar quotes.
+                Go live in under <span className="text-[var(--brand-primary)] font-semibold">24 hours</span> with <span className="text-[var(--brand-primary)] font-semibold">branded</span> solar quotes.
               </motion.p>
               
               {/* Risk Line */}
@@ -165,7 +165,7 @@ export default function PricingPage() {
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
                 </svg>
-                <span className="font-medium text-[var(--brand-primary)]">Secure Stripe checkout • No hidden fees • 14-day refund</span>
+                <span className="font-medium text-gray-500">Secure Stripe checkout • No hidden fees • 14-day refund</span>
               </motion.div>
             </div>
 
@@ -188,18 +188,27 @@ export default function PricingPage() {
                 <h2 className="text-2xl font-bold text-neutral-900 mb-6">What You Get</h2>
                 <div className="space-y-4">
                   {[
-                    'Branded reports & PDFs',
-                    'Your domain (CNAME)',
-                    'CRM integrations (HubSpot, Salesforce)',
-                    'Unlimited quotes',
-                    'SLA & support',
-                    'End-to-end encryption'
+                    { text: 'Branded reports & PDFs', highlight: 'Branded' },
+                    { text: 'Your domain (CNAME)', highlight: 'domain' },
+                    { text: 'CRM integrations (HubSpot, Salesforce)', highlight: 'CRM' },
+                    { text: 'Unlimited quotes', highlight: 'Unlimited' },
+                    { text: 'SLA & support', highlight: 'SLA' },
+                    { text: 'End-to-end encryption', highlight: 'encryption' }
                   ].map((feature, idx) => (
-                    <div key={feature} className="flex items-center gap-3">
+                    <div key={idx} className="flex items-center gap-3">
                       <svg className="w-6 h-6 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
-                      <span className="text-neutral-700 font-medium">{feature}</span>
+                      <span className="text-neutral-700 font-medium">
+                        {feature.text.split(feature.highlight).map((part, i) => (
+                          <span key={i}>
+                            {part}
+                            {i < feature.text.split(feature.highlight).length - 1 && (
+                              <span className="text-[var(--brand-primary)] font-semibold">{feature.highlight}</span>
+                            )}
+                          </span>
+                        ))}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -213,7 +222,7 @@ export default function PricingPage() {
                     <svg className="w-6 h-6 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-neutral-700 font-medium">Live in <span className="text-[var(--brand-primary)] font-semibold">&lt;24 hours</span> — no coding required</span>
+                    <span className="text-neutral-700 font-medium">Live in <span className="text-[var(--brand-primary)] font-semibold">&lt;24 hours</span> — no <span className="text-[var(--brand-primary)] font-semibold">coding</span> required</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <svg className="w-6 h-6 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
@@ -228,7 +237,7 @@ export default function PricingPage() {
             {/* ROI Micro-nudge */}
             <div className="text-center mt-6">
               <p className="text-sm text-neutral-600">
-                <span className="text-[var(--brand-primary)] font-semibold">One extra booked job</span> per month typically covers the subscription.
+                <span className="text-gray-500 font-semibold">One extra booked job</span> per month typically covers the subscription.
               </p>
             </div>
 
@@ -259,7 +268,27 @@ export default function PricingPage() {
                         transition={{ duration: 0.3 }}
                         className="px-6 py-5 md:px-7 md:py-6"
                       >
-                        <p className="text-neutral-600 leading-relaxed">{faq.a}</p>
+                        <p className="text-neutral-600 leading-relaxed">
+                          {faq.a.includes('NREL') ? (
+                            <>
+                              <span className="text-[var(--brand-primary)] font-semibold">NREL PVWatts® v8</span> for solar modeling, EIA utility rates, and real-time irradiance data. Industry-standard precision.
+                            </>
+                          ) : faq.a.includes('TLS 1.3') ? (
+                            <>
+                              End-to-end encryption (<span className="text-[var(--brand-primary)] font-semibold">TLS 1.3</span> in transit, <span className="text-[var(--brand-primary)] font-semibold">AES-256</span> at rest). <span className="text-[var(--brand-primary)] font-semibold">SOC 2</span>-aligned controls. Bank-level security.
+                            </>
+                          ) : faq.a.includes('14-day') ? (
+                            <>
+                              <span className="text-[var(--brand-primary)] font-semibold">14-day</span> full refund if it doesn't increase booked calls. Cancel anytime after with <span className="text-[var(--brand-primary)] font-semibold">30 days</span> notice. No lock-in.
+                            </>
+                          ) : faq.a.includes('<24h') ? (
+                            <>
+                              Email support with <span className="text-[var(--brand-primary)] font-semibold">&lt;24h</span> response. Priority onboarding for setup and <span className="text-[var(--brand-primary)] font-semibold">CRM</span> integrations included.
+                            </>
+                          ) : (
+                            faq.a
+                          )}
+                        </p>
                       </motion.div>
                     )}
                   </div>

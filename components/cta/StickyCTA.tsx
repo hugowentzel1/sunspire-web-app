@@ -66,7 +66,7 @@ export default function StickyCTA({
         style={{
           bottom: `calc(24px + env(safe-area-inset-bottom) + var(--cookie-offset, 0px))`,
           right: "1rem",
-          width: "clamp(320px, 32vw, 480px)",
+          width: "clamp(280px, 28vw, 320px)",
           paddingRight: "env(safe-area-inset-right)",
         }}
         aria-hidden={isHidden}
@@ -76,17 +76,17 @@ export default function StickyCTA({
           role="complementary"
           aria-label="Sticky action"
         >
-          <div className="p-5">
+          <div className="p-6">
             <Link
               id={`sticky-desktop-${id}`}
               href={href}
-              className="block w-full h-12 px-5 rounded-xl font-semibold text-center leading-[48px] text-white bg-[var(--brand-600)] hover:bg-[var(--brand-700)] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--brand-600)] transition-all duration-200 hover:scale-[1.02]"
+              className="block w-full h-14 px-5 rounded-xl font-semibold text-center leading-[56px] text-white bg-[var(--brand-600)] hover:bg-[var(--brand-700)] focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--brand-600)] transition-all duration-200 hover:scale-[1.02]"
               data-analytics={analyticsId || undefined}
             >
               {label}
             </Link>
             {subtext ? (
-              <p className="mt-3 text-[11px] leading-4 text-neutral-500 text-center">
+              <p className="mt-4 text-[12px] leading-4 text-neutral-500 text-center">
                 {subtext}
               </p>
             ) : null}
