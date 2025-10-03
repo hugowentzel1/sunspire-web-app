@@ -51,19 +51,19 @@ export default function PricingPage() {
 
   const faqs = [
     {
-      q: 'Is there a setup fee?',
-      a: 'Yes, there&apos;s a one-time $399 setup fee that covers domain configuration, branding, and CRM integration. After that, it&apos;s just $99/month.'
+      q: 'Accuracy & data sources',
+      a: 'NREL PVWatts® v8 for solar modeling, EIA utility rates, and real-time irradiance data. Industry-standard precision.'
     },
     {
-      q: 'How accurate are the solar estimates?',
-      a: 'We use NREL PVWatts® v8 for solar modeling, EIA utility rates, and real-time irradiance data for industry-standard precision.'
+      q: 'Security & encryption',
+      a: 'End-to-end encryption (TLS 1.3 in transit, AES-256 at rest). SOC 2-aligned controls. Bank-level security.'
     },
     {
-      q: 'Can I cancel anytime?',
-      a: 'Yes, 14-day full refund if it doesn&apos;t increase booked calls. Cancel anytime after with 30 days notice. No lock-in.'
+      q: 'Cancel & refund policy',
+      a: '14-day full refund if it doesn\'t increase booked calls. Cancel anytime after with 30 days notice. No lock-in.'
     },
     {
-      q: 'What support do you provide?',
+      q: 'Support',
       a: 'Email support with <24h response. Priority onboarding for setup and CRM integrations included.'
     }
   ];
@@ -90,7 +90,7 @@ export default function PricingPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="text-4xl md:text-3xl font-extrabold text-neutral-900"
+            className="text-4xl md:text-5xl font-black text-neutral-900"
           >
             $99/mo + $399 setup
           </motion.h1>
@@ -98,24 +98,24 @@ export default function PricingPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="mt-2 text-center text-gray-600"
+            className="text-lg md:text-xl text-neutral-700 max-w-3xl mx-auto"
           >
             Go live in under 24 hours with branded solar quotes.
           </motion.p>
         </div>
 
         {/* Two Column Grid - What You Get + Why Installers Switch */}
-        <div className="grid grid-cols-[1fr_0.9fr] gap-8 md:grid-cols-1 md:gap-6 mt-12" data-testid="pricing-grid">
+        <div className="grid grid-cols-[1fr_0.9fr] gap-8 md:gap-6 mb-16 max-w-5xl mx-auto mt-12">
           {/* LEFT: What You Get */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="rounded-xl border border-neutral-200/60 shadow-sm p-6 space-y-4"
+            className="bg-white rounded-xl border border-neutral-200/60 shadow-sm p-6 sm:p-5"
           >
-            <h3 className="text-lg font-semibold mb-4">What You Get</h3>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-6">What You Get</h2>
             
-            <ul className="space-y-3">
+            <div className="space-y-4">
               {[
                 'Branded reports & PDFs',
                 'Your domain (CNAME)',
@@ -124,7 +124,7 @@ export default function PricingPage() {
                 'SLA & support',
                 'End-to-end encryption'
               ].map((feature, idx) => (
-                <motion.li
+                <motion.div
                   key={feature}
                   initial={{ opacity: 0, x: -10 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -136,10 +136,10 @@ export default function PricingPage() {
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                   </div>
-                  <span className="text-gray-700">{feature}</span>
-                </motion.li>
+                  <span className="text-neutral-700 font-medium">{feature}</span>
+                </motion.div>
               ))}
-            </ul>
+            </div>
           </motion.div>
 
           {/* RIGHT: Why Installers Switch */}
@@ -147,35 +147,52 @@ export default function PricingPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.4 }}
-            className="rounded-xl border border-neutral-200/60 shadow-sm p-6 space-y-4"
+            className="bg-white rounded-xl border border-neutral-200/60 shadow-sm p-6 sm:p-5"
           >
-            <h3 className="text-lg font-semibold mb-4">Why Installers Switch</h3>
+            <h2 className="text-2xl font-bold text-neutral-900 mb-6">Why Installers Switch</h2>
             
-            <ul className="space-y-3">
-              <motion.li
+            <div className="space-y-4">
+              <motion.div
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.5 }}
-                className="text-gray-700"
+                className="flex items-start gap-3"
               >
-                Live in &lt;24 hours — no coding required
-              </motion.li>
+                <div className="flex-shrink-0">
+                  <svg className="w-6 h-6 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <span className="text-neutral-700 font-medium">Live in &lt;24 hours — no coding required</span>
+              </motion.div>
 
-              <motion.li
+              <motion.div
                 initial={{ opacity: 0, x: -10 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.3, delay: 0.6 }}
-                className="text-gray-700"
+                className="flex items-start gap-3"
               >
-                Teams report +25–40% more booked calls after adding instant quotes
-              </motion.li>
-            </ul>
+                <div className="flex-shrink-0">
+                  <svg className="w-6 h-6 text-green-500 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                    <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <span className="text-neutral-700 font-medium">Teams report +25–40% more booked calls after adding instant quotes</span>
+              </motion.div>
+            </div>
 
-            {/* Testimonial - aligned with checklist text */}
-            <blockquote className="mt-6 border-l-2 border-gray-200 pl-4">
-              <p className="italic text-gray-700">&ldquo;Cut quoting time from 15 min to 1 min.&rdquo;</p>
-              <footer className="mt-2 text-sm text-gray-500">— Solar Company Owner, CA</footer>
-            </blockquote>
+            {/* Testimonial */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4, delay: 0.7 }}
+              className="pt-6 border-t border-neutral-100"
+            >
+              <p className="text-base italic text-neutral-600 leading-relaxed">
+                &ldquo;Cut quoting time from 15 min to 1 min.&rdquo;
+              </p>
+              <p className="text-sm text-neutral-500 mt-2">— Solar Company Owner, CA</p>
+            </motion.div>
           </motion.div>
         </div>
 
@@ -184,92 +201,124 @@ export default function PricingPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.8 }}
-          className="flex flex-col items-center mt-6 mb-6"
+          className="max-w-2xl mx-auto text-center mt-8"
         >
           {/* Primary CTA */}
           <button
             onClick={handleStartSetup}
-            className="inline-flex items-center justify-center rounded-full px-6 py-3 font-semibold text-white bg-red-600 hover:bg-red-700 shadow-md"
-            style={{ backgroundColor: 'var(--brand-primary)' }}
-            data-testid="pricing-cta"
+            className="w-full md:w-auto px-12 py-5 rounded-2xl text-white font-bold text-xl shadow-xl hover:shadow-2xl transition-all button-press hover-lift mb-6"
+            style={{ backgroundColor: 'var(--brand-primary)', minHeight: '64px', minWidth: '320px' }}
           >
-            Start setup — $399 today (then $99/mo)
+            Start setup — $399 today
           </button>
 
-          {/* compact pricing/guarantee */}
-          <div className="mt-3 text-sm text-gray-600 text-center">
-            Secure checkout — powered by Stripe · 14-day refund if it doesn&apos;t lift booked calls · No coding required
+          {/* Stripe Trust Row */}
+          <div className="flex items-center justify-center gap-2 mb-3 text-sm text-neutral-500 mt-4">
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+              <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+            </svg>
+            <span className="font-medium">Secure checkout — powered by Stripe</span>
+          </div>
+
+          {/* Refund Guarantee */}
+          <p className="text-sm italic text-neutral-600 mb-6">
+            14-day refund if it doesn&apos;t lift booked calls
+          </p>
+
+          {/* Trust Badges Row */}
+          <div className="flex items-center justify-center gap-6 flex-wrap text-xs text-neutral-500 font-medium">
+            <div className="flex items-center gap-2">
+              <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              <span>SOC2</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              <span>HubSpot</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              <span>Salesforce</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+              </svg>
+              <span>GDPR</span>
+            </div>
           </div>
         </motion.div>
 
-        {/* Trust badges & 1-2-3 steps */}
-        <div className="mt-4" data-testid="trust-badges">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1 }}
-            className="flex items-center justify-center gap-4 md:gap-8 mb-16 flex-wrap max-w-4xl mx-auto"
-          >
-            {[
-              { num: 1, title: 'Connect domain' },
-              { num: 2, title: 'Brand & CRM' },
-              { num: 3, title: 'Live in 24h' }
-            ].map((step, idx) => (
-              <div key={step.num} className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-full font-bold text-white flex items-center justify-center" style={{ backgroundColor: 'var(--brand-primary)' }}>
-                  {step.num}
-                </div>
-                <span className="font-semibold text-gray-900">{step.title}</span>
-                {idx < 2 && (
-                  <svg className="hidden md:block w-5 h-5 text-gray-300 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+        {/* 3-Step Setup */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 1 }}
+          className="flex items-center justify-center gap-4 md:gap-8 mb-16 flex-wrap max-w-4xl mx-auto"
+        >
+          {[
+            { num: 1, title: 'Connect domain' },
+            { num: 2, title: 'Brand & CRM' },
+            { num: 3, title: 'Live in 24h' }
+          ].map((step, idx) => (
+            <div key={step.num} className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full font-bold text-white flex items-center justify-center" style={{ backgroundColor: 'var(--brand-primary)' }}>
+                {step.num}
+              </div>
+              <span className="font-semibold text-gray-900">{step.title}</span>
+              {idx < 2 && (
+                <svg className="hidden md:block w-5 h-5 text-gray-300 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              )}
+            </div>
+          ))}
+        </motion.div>
+
+        {/* FAQ Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 1.2 }}
+          className="max-w-3xl mx-auto mb-20"
+        >
+          <h2 className="text-3xl md:text-4xl font-bold text-neutral-900 text-center mb-10">Frequently Asked Questions</h2>
+          <div className="space-y-6">
+            {faqs.map((faq, idx) => (
+              <div key={idx} className="bg-white rounded-xl border border-neutral-200/60 shadow-sm overflow-hidden">
+                <button
+                  onClick={() => setOpenFAQ(openFAQ === idx ? null : idx)}
+                  className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-neutral-50 transition-colors"
+                >
+                  <span className="font-semibold text-neutral-900 pr-4">{faq.q}</span>
+                  <svg
+                    className={`w-5 h-5 text-neutral-500 flex-shrink-0 transition-transform duration-200 ${openFAQ === idx ? 'rotate-180' : ''}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
+                </button>
+                {openFAQ === idx && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: 'auto' }}
+                    transition={{ duration: 0.3 }}
+                    className="px-6 py-4"
+                  >
+                    <p className="text-neutral-600 leading-relaxed">{faq.a}</p>
+                  </motion.div>
                 )}
               </div>
             ))}
-          </motion.div>
-        </div>
-
-        <h2 className="text-2xl font-bold text-center mt-16">Frequently Asked Questions</h2>
-        <div className="mt-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 1.2 }}
-            className="max-w-3xl mx-auto mb-20"
-          >
-            <div className="space-y-6">
-              {faqs.map((faq, idx) => (
-                <div key={idx} className="bg-white rounded-xl border border-neutral-200/60 shadow-sm overflow-hidden">
-                  <button
-                    onClick={() => setOpenFAQ(openFAQ === idx ? null : idx)}
-                    className="w-full px-6 py-4 flex items-center justify-between text-left hover:bg-neutral-50 transition-colors"
-                  >
-                    <span className="font-semibold text-neutral-900 pr-4">{faq.q}</span>
-                    <svg
-                      className={`w-5 h-5 text-neutral-500 flex-shrink-0 transition-transform duration-200 ${openFAQ === idx ? 'rotate-180' : ''}`}
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  {openFAQ === idx && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      transition={{ duration: 0.3 }}
-                      className="px-6 py-4"
-                    >
-                      <p className="text-neutral-600 leading-relaxed">{faq.a}</p>
-                    </motion.div>
-                  )}
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
 
       </main>
 
@@ -284,7 +333,7 @@ export default function PricingPage() {
         <div className="px-4 py-4">
           <div className="flex items-center justify-between gap-4 max-w-md mx-auto">
             <div className="flex-shrink-0">
-              <div className="text-lg font-bold text-gray-900">$99/mo + $399 setup</div>
+              <div className="text-lg font-bold text-gray-900">$99/mo + $399</div>
               <div className="text-xs text-gray-500">14-day refund</div>
             </div>
             <button
