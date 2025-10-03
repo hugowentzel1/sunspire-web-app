@@ -628,24 +628,24 @@ function ReportContent() {
               </div>
             </div>
             
-            <nav className="hidden md:flex items-center space-x-12">
+            <nav className="hidden md:flex items-center space-x-8">
               <a
-                href={`/pricing?${searchParams?.toString()}`}
+                href={`/privacy?${searchParams?.toString()}`}
                 className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
               >
-                Pricing
+                Privacy
               </a>
               <a
-                href={`/partners?${searchParams?.toString()}`}
+                href={`/terms?${searchParams?.toString()}`}
                 className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
               >
-                Partners
+                Terms
               </a>
               <a
-                href={`/support?${searchParams?.toString()}`}
+                href={`/security?${searchParams?.toString()}`}
                 className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
               >
-                Support
+                Security
               </a>
               <motion.button 
                 onClick={() => {
@@ -678,7 +678,7 @@ function ReportContent() {
       {/* Trust Signals - Logo Wall */}
       {trustData && <LogoWall logos={trustData.logos} className="py-8" />}
 
-      <main data-testid="report-page" className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main data-testid="report-page" className="max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
         {/* Success toast for paid mode */}
         {showSuccessToast && (
