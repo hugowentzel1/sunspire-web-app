@@ -8,7 +8,7 @@ test.describe('Live Site Enterprise UX Verification', () => {
     await page.waitForLoadState('networkidle');
     
     // Check hero elements
-    await expect(page.locator('h1')).toContainText('$99/mo + $399 setup');
+    await expect(page.locator('h1').nth(1)).toContainText('$99/mo + $399 setup');
     await expect(page.locator('text=14-day refund if it doesn\'t lift booked calls')).toBeVisible();
     await expect(page.locator('text=Start setup — $399 today + $99/mo')).toBeVisible();
     
@@ -30,7 +30,7 @@ test.describe('Live Site Enterprise UX Verification', () => {
     await page.waitForLoadState('networkidle');
     
     // Check hero
-    await expect(page.locator('h1')).toContainText('Partner Program');
+    await expect(page.locator('h1').nth(1)).toContainText('Partner Program');
     
     // Check eligibility/payout strip
     await expect(page.locator('text=$30/mo')).toBeVisible();
@@ -56,7 +56,7 @@ test.describe('Live Site Enterprise UX Verification', () => {
     await page.waitForLoadState('networkidle');
     
     // Check hero
-    await expect(page.locator('h1')).toContainText('Support Center');
+    await expect(page.locator('h1').nth(1)).toContainText('Support Center');
     
     // Check SLO badge row
     await expect(page.locator('text=Avg reply <24h • High priority 4h • Urgent 1h • Enterprise 2h SLA')).toBeVisible();
