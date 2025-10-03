@@ -58,7 +58,7 @@ export default function StickyCTA({
 
   return (
     <>
-      {/* Desktop: bottom-right positioned with original size */}
+      {/* Desktop: bottom-right positioned with larger responsive size */}
       <div
         className={`hidden md:block fixed z-50 transition-opacity ${
           isHidden ? "opacity-0 pointer-events-none" : "opacity-100"
@@ -66,7 +66,7 @@ export default function StickyCTA({
         style={{
           bottom: `calc(24px + env(safe-area-inset-bottom) + var(--cookie-offset, 0px))`,
           right: "1rem",
-          width: "320px",
+          width: "clamp(280px, 28vw, 400px)",
           paddingRight: "env(safe-area-inset-right)",
         }}
         aria-hidden={isHidden}

@@ -118,7 +118,7 @@ export default function PricingPage() {
                 transition={{ duration: 0.5 }}
                 className="text-4xl md:text-5xl font-black text-neutral-900"
               >
-                $99/mo + $399 setup
+                $<span className="text-[var(--brand-primary)]">99</span>/mo + $<span className="text-[var(--brand-primary)]">399</span> setup
               </motion.h1>
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
@@ -136,7 +136,7 @@ export default function PricingPage() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-sm text-neutral-500 mt-6"
               >
-                14-day refund if it doesn&apos;t lift booked calls.
+                <span className="text-[var(--brand-primary)] font-semibold">14-day refund</span> if it doesn&apos;t lift booked calls.
               </motion.p>
 
               {/* Main CTA */}
@@ -151,7 +151,7 @@ export default function PricingPage() {
                           onClick={handleStartSetup}
                           className="w-full md:w-auto"
                         >
-                          Start setup — $399 today + $99/mo
+                          Start setup — $<span className="text-white">399</span> today + $<span className="text-white">99</span>/mo
                         </Button>
                       </motion.div>
 
@@ -165,7 +165,7 @@ export default function PricingPage() {
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
                 </svg>
-                <span className="font-medium">Secure Stripe checkout • No hidden fees • 14-day refund</span>
+                <span className="font-medium">Secure Stripe checkout • No hidden fees • <span className="text-[var(--brand-primary)]">14-day refund</span></span>
               </motion.div>
             </div>
 
@@ -213,13 +213,13 @@ export default function PricingPage() {
                     <svg className="w-6 h-6 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-neutral-700 font-medium">Live in &lt;24 hours — no coding required</span>
+                    <span className="text-neutral-700 font-medium">Live in <span className="text-[var(--brand-primary)] font-semibold">&lt;24 hours</span> — no coding required</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <svg className="w-6 h-6 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-neutral-700 font-medium">Teams report +25–40% more booked calls after adding instant quotes</span>
+                    <span className="text-neutral-700 font-medium">Teams report <span className="text-[var(--brand-primary)] font-semibold">+25–40%</span> more booked calls after adding instant quotes</span>
                   </div>
                 </div>
               </Card>
@@ -228,7 +228,7 @@ export default function PricingPage() {
             {/* ROI Micro-nudge */}
             <div className="text-center mt-6">
               <p className="text-sm text-neutral-600">
-                One extra booked job per month typically covers the subscription.
+                <span className="text-[var(--brand-primary)] font-semibold">One extra booked job</span> per month typically covers the subscription.
               </p>
             </div>
 
@@ -281,7 +281,7 @@ export default function PricingPage() {
                       onClick={handleStartSetup}
                       className="w-full"
                     >
-                      Start setup — $399 today + $99/mo
+                      Start setup — $<span className="text-white">399</span> today + $<span className="text-white">99</span>/mo
                     </Button>
                   </div>
                 </div>
