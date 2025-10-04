@@ -12,6 +12,7 @@ import { Section } from '@/components/layout/Section';
 import { Stack } from '@/components/layout/Stack';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
+import StickyCTA from '@/components/cta/StickyCTA';
 
 export default function PricingPage() {
   const searchParams = useSearchParams();
@@ -302,18 +303,14 @@ export default function PricingPage() {
       {/* Use consistent Footer component across entire demo site */}
       <Footer />
 
-              {/* Mobile Sticky CTA */}
+              {/* Consistent Sticky CTA */}
               {showStickyCTA && (
-                <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-2xl z-50">
-                  <div className="px-4 py-4">
-                    <Button
-                      onClick={handleStartSetup}
-                      className="w-full"
-                    >
-                      Start setup — $<span className="text-white">399</span> today + $<span className="text-white">99</span>/mo
-                    </Button>
-                  </div>
-                </div>
+                <StickyCTA
+                  href="/pricing"
+                  heroSelector="#main-cta"
+                  label="Activate on Your Domain — 24 Hours"
+                  hideWhenCookieVisible={false}
+                />
               )}
     </div>
   );

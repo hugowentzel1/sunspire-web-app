@@ -1037,10 +1037,9 @@ function ReportContent() {
       {/* Optimized Sticky CTA for Demo Mode */}
       {demoMode && (
         <StickyCTA
-          href="/checkout"
+          href="/pricing"
           heroSelector="#main-cta"
           label="Activate on Your Domain — 24 Hours"
-          subtext="113+ installers live • SOC2 • GDPR • NREL PVWatts®"
           hideWhenCookieVisible={false}
         />
       )}

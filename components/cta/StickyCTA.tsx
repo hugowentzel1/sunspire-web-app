@@ -25,7 +25,7 @@ export default function StickyCTA({
   heroSelector = "#main-cta",
   label = "Activate on Your Domain — 24 Hours",
   href,
-  subtext = "113+ installers live • SOC2 • GDPR • NREL PVWatts®",
+  subtext = "$99/mo + $399 setup • Cancel anytime",
   analyticsId,
   hideWhenCookieVisible = true,
   cookieSelector = "[data-cookie-banner]",

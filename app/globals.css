@@ -10,6 +10,7 @@
   --content-max: 1200px;     /* exact inner width for report and footer */
   --gutter-x-sm: 1rem;       /* 16px (mobile) */
   --gutter-x-md: 1.5rem;     /* 24px (md+) */
+  --sat-safe-bottom: 0px;    /* JS will set actual safe-area */
 }
 
 /* CTA Button Hover Effects with Glossy Shine - Standardized Motion */
