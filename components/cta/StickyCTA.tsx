@@ -72,20 +72,20 @@ function PremiumCapsule({
         "focus-visible:outline-2 focus-visible:outline-offset-2",
       ].join(" ")}
       style={{
-        background: `linear-gradient(180deg, #fff 0%, color-mix(in srgb, var(--brand-50, #f6f8fc) 40%, #ffffff 60%) 100%)`,
+        background: `linear-gradient(180deg, #fff 0%, ${companyColor}15 100%)`, // 40% brand tint using hex opacity
         boxShadow: "inset 0 1px 0 rgba(255,255,255,0.65), 0 1px 0 rgba(16,24,40,0.06)",
         border: "1px solid rgba(0,0,0,0.82)",
         letterSpacing: "0.01em",
         color: "#000000", // Pure black text
       }}
       onMouseEnter={(e) => {
-        e.currentTarget.style.boxShadow = `inset 0 1px 0 rgba(255,255,255,0.7), 0 2px 12px color-mix(in srgb, var(--brand-600, #2563eb) 10%, rgba(16,24,40,0.08) 90%)`;
+        e.currentTarget.style.boxShadow = `inset 0 1px 0 rgba(255,255,255,0.7), 0 2px 12px ${companyColor}20`;
       }}
       onMouseLeave={(e) => {
         e.currentTarget.style.boxShadow = "inset 0 1px 0 rgba(255,255,255,0.65), 0 1px 0 rgba(16,24,40,0.06)";
       }}
       onFocus={(e) => {
-        e.currentTarget.style.outline = `2px solid color-mix(in srgb, var(--brand-600, #2563eb) 80%, #ffffff 20%)`;
+        e.currentTarget.style.outline = `2px solid ${companyColor}`;
       }}
       onBlur={(e) => {
         e.currentTarget.style.outline = "none";
@@ -247,7 +247,7 @@ export default function StickyCTA({
                 e.currentTarget.style.boxShadow = "0 16px 32px rgba(16,24,40,0.2), 0 4px 8px rgba(16,24,40,0.15)";
               }}
               onFocus={(e) => {
-                e.currentTarget.style.boxShadow = `0 0 0 3px color-mix(in srgb, var(--brand-600, #2563eb) 70%, #ffffff 30%), 0 8px 20px rgba(16,24,40,0.15)`;
+                e.currentTarget.style.boxShadow = `0 0 0 3px ${companyColor}70, 0 8px 20px rgba(16,24,40,0.15)`;
               }}
               onBlur={(e) => {
                 e.currentTarget.style.boxShadow = "0 8px 20px rgba(16,24,40,0.15), 0 2px 4px rgba(16,24,40,0.1)";
@@ -330,7 +330,7 @@ export default function StickyCTA({
               e.currentTarget.style.boxShadow = "0 16px 32px rgba(16,24,40,0.2), 0 4px 8px rgba(16,24,40,0.15)";
             }}
             onFocus={(e) => {
-              e.currentTarget.style.boxShadow = `0 0 0 3px color-mix(in srgb, var(--brand-600, #2563eb) 70%, #ffffff 30%), 0 8px 20px rgba(16,24,40,0.15)`;
+              e.currentTarget.style.boxShadow = `0 0 0 3px ${companyColor}70, 0 8px 20px rgba(16,24,40,0.15)`;
             }}
             onBlur={(e) => {
               e.currentTarget.style.boxShadow = "0 8px 20px rgba(16,24,40,0.15), 0 2px 4px rgba(16,24,40,0.1)";
