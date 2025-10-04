@@ -302,15 +302,19 @@ export default function PricingPage() {
       {/* Use consistent Footer component across entire demo site */}
       <Footer />
 
-              {/* Consistent Sticky CTA */}
+              {/* Mobile Sticky CTA */}
               {showStickyCTA && (
-                <StickyCTA
-                  href="/pricing"
-                  heroSelector="#main-cta"
-                  label="Activate on Your Domain — 24 Hours"
-                  hideWhenCookieVisible={false}
-                />
-              )}
+                <div className="lg:hidden fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 shadow-2xl z-50">
+                  <div className="px-4 py-4">
+                    <Button
+                      onClick={handleStartSetup}
+                      className="w-full"
+                    >
+                      Start setup — $<span className="text-white">399</span> today + $<span className="text-white">99</span>/mo
+                    </Button>
+                  </div>
+                </div>
+              )}              )}
     </div>
   );
 }
