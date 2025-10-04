@@ -68,41 +68,55 @@ export default function StickyCTA({
     const calcOffset = () => {
       const root = document.documentElement;
       const safe = Number(root.style.getPropertyValue("--sat-safe-bottom").replace("px", "")) || 0;
+      const viewportHeight = window.innerHeight;
 
-      // Measure tallest visible cookie banner
+      // More aggressive detection - look for ANY element at the bottom of the viewport
       let cookieHeight = 0;
-      for (const sel of COOKIE_SELECTORS) {
-        const elements = document.querySelectorAll<HTMLElement>(sel);
-        elements.forEach(el => {
-          if (el && el.offsetParent !== null) {
-            const rect = el.getBoundingClientRect();
-            const viewportHeight = window.innerHeight;
-            // Only consider elements that are actually visible and positioned at the bottom
-            if (rect.height > 0 && rect.bottom >= viewportHeight * 0.8) {
-              cookieHeight = Math.max(cookieHeight, rect.height);
-              console.log('🍪 Found cookie banner:', sel, 'height:', rect.height, 'bottom:', rect.bottom, 'viewport:', viewportHeight);
-            }
-          }
-        });
-      }
       
-      // Also check for any fixed positioned elements at the bottom
-      const allFixedElements = document.querySelectorAll<HTMLElement>('[style*="position: fixed"], [style*="position:fixed"]');
-      allFixedElements.forEach(el => {
-        if (el.offsetParent !== null) {
-          const rect = el.getBoundingClientRect();
-          const viewportHeight = window.innerHeight;
-          // Check if it's positioned at the bottom and looks like a cookie banner
-          if (rect.height > 0 && rect.bottom >= viewportHeight - 10) {
-            cookieHeight = Math.max(cookieHeight, rect.height);
-            console.log('🍪 Found fixed element at bottom:', 'height:', rect.height, 'bottom:', rect.bottom, 'viewport:', viewportHeight);
+      // Check all elements that might be cookie banners
+      const allElements = document.querySelectorAll('*');
+      allElements.forEach(el => {
+        const element = el as HTMLElement;
+        if (element.offsetParent !== null) {
+          const rect = element.getBoundingClientRect();
+          
+          // Check if element is at the very bottom of the viewport
+          if (rect.height > 0 && rect.bottom >= viewportHeight - 5) {
+            // Additional checks to confirm it's likely a cookie banner
+            const style = getComputedStyle(element);
+            const isFixed = style.position === 'fixed';
+            const isSticky = style.position === 'sticky';
+            const hasCookieText = element.textContent?.toLowerCase().includes('cookie') || 
+                                 element.textContent?.toLowerCase().includes('consent') ||
+                                 element.textContent?.toLowerCase().includes('privacy') ||
+                                 element.textContent?.toLowerCase().includes('accept') ||
+                                 element.textContent?.toLowerCase().includes('decline');
+            
+            // More selective: only consider elements that are actually at the bottom and reasonable size
+            if ((isFixed || isSticky || hasCookieText) && 
+                rect.top < viewportHeight && 
+                rect.height < 200 && // Reasonable size for a cookie banner
+                rect.height > 20) { // Not too small
+              cookieHeight = Math.max(cookieHeight, rect.height);
+              console.log('🍪 Found potential cookie banner:', {
+                tagName: element.tagName,
+                height: rect.height,
+                bottom: rect.bottom,
+                top: rect.top,
+                viewport: viewportHeight,
+                isFixed,
+                isSticky,
+                hasCookieText,
+                text: element.textContent?.substring(0, 50)
+              });
+            }
           }
         }
       });
 
       const BASE = 16; // base spacing from viewport bottom when no banner
-      const next = Math.round(BASE + (cookieHeight > 0 ? cookieHeight + 16 : 0) + safe); // +16 for proper clearance
-      console.log('🍪 Setting bottom offset:', next, 'cookieHeight:', cookieHeight);
+      const next = Math.round(BASE + (cookieHeight > 0 ? cookieHeight + 16 : 0) + safe); // +16 for just above the banner
+      console.log('🍪 Setting bottom offset:', next, 'cookieHeight:', cookieHeight, 'BASE:', BASE, 'safe:', safe);
       setBottomOffset(next);
     };
 
@@ -113,20 +127,22 @@ export default function StickyCTA({
     moRef.current = new MutationObserver(calcOffset);
     moRef.current.observe(document.body, { childList: true, subtree: true, attributes: true });
 
-    // React to banner resizes
+    // React to banner resizes - observe all elements
     roRef.current = new ResizeObserver(calcOffset);
-    COOKIE_SELECTORS.forEach(sel => {
-      const el = document.querySelector(sel);
-      if (el) roRef.current?.observe(el as Element);
-    });
+    // Observe the entire document for any size changes
+    roRef.current.observe(document.body);
 
     // Window resize as fallback
     window.addEventListener("resize", calcOffset);
+    
+    // Also run detection periodically to catch any missed changes
+    const interval = setInterval(calcOffset, 1000);
 
     return () => {
       window.removeEventListener("resize", calcOffset);
       moRef.current?.disconnect();
       roRef.current?.disconnect();
+      clearInterval(interval);
     };
   }, []);
 
