@@ -126,7 +126,7 @@ export default function PricingPage() {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="text-lg md:text-xl text-neutral-700 max-w-3xl mx-auto mt-8"
               >
-                Go live in under <span className="text-[var(--brand-primary)] font-semibold">24 hours</span> with <span className="text-[var(--brand-primary)] font-semibold">branded</span> solar quotes.
+                <span className="text-gray-500">Go live in under 24 hours with branded solar quotes.</span>
               </motion.p>
               
               {/* Risk Line */}
