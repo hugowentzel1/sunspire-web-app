@@ -19,6 +19,8 @@
     "check:long": ".github/scripts/long-check-deploy.sh",
     "test:smoke": "playwright test tests/demo-smoke.spec.ts -g \"@demo-smoke\" --reporter=list",
     "test:sidebar": "playwright test tests/sidebar-cta.spec.ts -g \"@sidebar\" --reporter=list",
+    "test:all-browsers": "node scripts/test-all-browsers.js",
+    "test:cross-browser": "playwright test tests/cross-browser-consistency.spec.ts --reporter=list",
     "prune:unused": "node scripts/prune-unused.js",
     "prune:unused:delete": "node scripts/prune-unused.js --delete"
   },
