@@ -2,6 +2,45 @@ import React, { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import clsx from "clsx";
 import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
+import { ShieldCheck, Lock, SunMedium, Users } from "lucide-react";
+
+const BRAND_600 = "var(--brand-600)";
+const BRAND_700 = "var(--brand-700)";
+const BRAND_50  = "var(--brand-50)";
+
+function TrustBadge({
+  icon: Icon,
+  children,
+  className = "",
+}: {
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <span
+      className={[
+        "inline-flex w-full items-center justify-center gap-1.5 rounded-full",
+        "border bg-white px-3 py-1.5",
+        "text-[12px] leading-5 font-medium",
+        "transition-colors duration-150 ease-out",
+        "hover:bg-[color-mix(in_srgb,_var(--brand-50)_18%,_white)]",
+        className,
+      ].join(" ")}
+      style={{
+        borderColor: `color-mix(in srgb, ${BRAND_600} 88%, black)`,
+        color: `color-mix(in srgb, ${BRAND_700} 92%, black)`,
+      }}
+    >
+      <Icon
+        aria-hidden
+        className="h-3.5 w-3.5"
+        style={{ color: `color-mix(in srgb, ${BRAND_700} 92%, black)` }}
+      />
+      {children}
+    </span>
+  );
+}
 
 type StickyCTAProps = {
   href?: string;
@@ -13,7 +52,6 @@ type StickyCTAProps = {
 
 const CTA_LABEL = "Activate on Your Domain — 24 Hours";
 const SUBCOPY   = "$99/mo + $399 setup • Cancel anytime";
-const TRUST_CHIPS = ["SOC 2", "GDPR", "NREL PVWatts®", "113+ installers live"];
 
 // Candidate cookie banner selectors.
 // Add your exact selector here if you have one.
@@ -171,33 +209,13 @@ export default function StickyCTA({
               </p>
             )}
 
-            {/* Trust badges - balanced 2x2 grid on mobile */}
+            {/* Trust row (flat, brand-bordered, equal width, 2×2) */}
             {showTrustChips && (
-              <div className="mt-5 grid grid-cols-2 gap-3">
-                {TRUST_CHIPS.map((t, index) => {
-                  const icons = ['🔒', '🛡️', '☀️', '👥'];
-                  return (
-                    <span
-                      key={t}
-                      className="
-                        inline-flex items-center justify-center gap-1.5
-                        rounded-full text-[11px] font-medium
-                        px-4 py-3
-                        whitespace-nowrap
-                        min-h-[36px] w-full
-                        transition-all duration-200 hover:shadow-md hover:scale-[1.02]
-                      "
-                      style={{
-                        background: `linear-gradient(135deg, white 0%, color-mix(in srgb, ${companyColor} 20%, white) 100%)`,
-                        color: companyColor,
-                        border: `1px solid ${companyColor}`
-                      }}
-                    >
-                      <span className="text-[10px]">{icons[index]}</span>
-                      {t}
-                    </span>
-                  );
-                })}
+              <div className="mt-3 grid grid-cols-2 gap-2">
+                <TrustBadge icon={ShieldCheck}>SOC 2</TrustBadge>
+                <TrustBadge icon={Lock}>GDPR</TrustBadge>
+                <TrustBadge icon={SunMedium}>NREL PVWatts®</TrustBadge>
+                <TrustBadge icon={Users}>113+ installers live</TrustBadge>
               </div>
             )}
           </div>
@@ -235,33 +253,13 @@ export default function StickyCTA({
             </p>
           )}
 
-          {/* Trust badges - balanced 2x2 grid on desktop */}
+          {/* Trust row (flat, brand-bordered, equal width, 2×2) */}
           {showTrustChips && (
-            <div className="mt-5 grid grid-cols-2 gap-3">
-              {TRUST_CHIPS.map((t, index) => {
-                const icons = ['🔒', '🛡️', '☀️', '👥'];
-                return (
-                  <span
-                    key={t}
-                    className="
-                      inline-flex items-center justify-center gap-1.5
-                      rounded-full text-[11px] font-medium
-                      px-4 py-3
-                      whitespace-nowrap
-                      min-h-[36px] w-full
-                      transition-all duration-200 hover:shadow-md hover:scale-[1.02]
-                    "
-                    style={{
-                      background: `linear-gradient(135deg, white 0%, color-mix(in srgb, ${companyColor} 20%, white) 100%)`,
-                      color: companyColor,
-                      border: `1px solid ${companyColor}`
-                    }}
-                  >
-                    <span className="text-[10px]">{icons[index]}</span>
-                    {t}
-                  </span>
-                );
-              })}
+            <div className="mt-3 grid grid-cols-2 gap-2">
+              <TrustBadge icon={ShieldCheck}>SOC 2</TrustBadge>
+              <TrustBadge icon={Lock}>GDPR</TrustBadge>
+              <TrustBadge icon={SunMedium}>NREL PVWatts®</TrustBadge>
+              <TrustBadge icon={Users}>113+ installers live</TrustBadge>
             </div>
           )}
         </div>
