@@ -50,30 +50,34 @@ function isLikelyBottomBanner(el: HTMLElement): boolean {
   return nearBottom || inLowerThird;
 }
 
-// Quiet, luxury pill badge (brand icon, neutral text)
+// Quiet, luxury pill badge (brand icon, neutral text, black outline)
 function QuietBadge({
   icon: Icon,
   children,
   ariaLabel,
+  className,
 }: {
   icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   children: React.ReactNode;
   ariaLabel?: string;
+  className?: string;
 }) {
   return (
     <span
       role="listitem"
       aria-label={ariaLabel}
       className={[
-        "inline-flex items-center gap-2 rounded-full",
+        "inline-flex items-center gap-2 rounded-full border",
         "px-3 py-[7px]",
         "text-[13px] leading-[18px] font-medium",
         "shadow-[0_1px_0_rgba(0,0,0,0.02)]",
         "transition-colors duration-150 ease-out",
+        className,
       ].join(" ")}
       style={{
         backgroundColor: CARD_BG,
         color: NEUTRAL_800,
+        borderColor: "rgb(0, 0, 0)", // Black outline
       }}
     >
       {/* crisp line icon in brand color */}
@@ -213,11 +217,11 @@ export default function StickyCTA({
             )}
 
             {showTrust && (
-              <div role="list" className="mt-3 flex flex-wrap items-center gap-3">
+              <div role="list" className="mt-3 grid grid-cols-3 gap-3 justify-items-center">
                 <QuietBadge icon={ShieldCheck} ariaLabel="SOC 2 attestation">SOC 2</QuietBadge>
                 <QuietBadge icon={Lock}        ariaLabel="GDPR compliant">GDPR</QuietBadge>
                 <QuietBadge icon={SunMedium}   ariaLabel="NREL PVWatts data">NREL PVWatts®</QuietBadge>
-                <QuietBadge icon={Users}       ariaLabel="Installers using Sunspire">113+ installers live</QuietBadge>
+                <QuietBadge icon={Users}       ariaLabel="Installers using Sunspire" className="col-start-2">113+ installers live</QuietBadge>
               </div>
             )}
           </div>
@@ -256,11 +260,11 @@ export default function StickyCTA({
           )}
 
           {showTrust && (
-            <div role="list" className="mt-3 flex flex-wrap items-center gap-3">
+            <div role="list" className="mt-3 grid grid-cols-3 gap-3 justify-items-center">
               <QuietBadge icon={ShieldCheck} ariaLabel="SOC 2 attestation">SOC 2</QuietBadge>
               <QuietBadge icon={Lock}        ariaLabel="GDPR compliant">GDPR</QuietBadge>
               <QuietBadge icon={SunMedium}   ariaLabel="NREL PVWatts data">NREL PVWatts®</QuietBadge>
-              <QuietBadge icon={Users}       ariaLabel="Installers using Sunspire">113+ installers live</QuietBadge>
+              <QuietBadge icon={Users}       ariaLabel="Installers using Sunspire" className="col-start-2">113+ installers live</QuietBadge>
             </div>
           )}
         </div>
