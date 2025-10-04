@@ -104,15 +104,15 @@ export default function PartnersPage() {
                 <h2 className="text-xl font-bold text-neutral-900 mb-4">Partner Eligibility & Payouts</h2>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                   <div>
-                    <div className="text-2xl font-bold text-[var(--brand-600)]">$30/mo</div>
+                    <div className="text-2xl font-bold text-brand-600">$30/mo</div>
                     <div className="text-sm text-neutral-600">Per active client</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-[var(--brand-600)]">$120</div>
+                    <div className="text-2xl font-bold text-brand-600">$120</div>
                     <div className="text-sm text-neutral-600">One-time setup bonus</div>
                   </div>
                   <div>
-                    <div className="text-2xl font-bold text-[var(--brand-600)]">30 days</div>
+                    <div className="text-2xl font-bold text-brand-600">30 days</div>
                     <div className="text-sm text-neutral-600">Cookie window</div>
                   </div>
                 </div>
@@ -133,15 +133,15 @@ export default function PartnersPage() {
                     <div className="space-y-3">
                       <div className="flex justify-between">
                         <span className="text-neutral-700">Monthly recurring:</span>
-                        <span className="font-semibold text-[var(--brand-600)]">$30/client</span>
+                        <span className="font-semibold text-brand-600">$30/client</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-neutral-700">Setup bonus:</span>
-                        <span className="font-semibold text-[var(--brand-600)]">$120/client</span>
+                        <span className="font-semibold text-brand-600">$120/client</span>
                       </div>
                       <div className="flex justify-between">
                         <span className="text-neutral-700">Cookie window:</span>
-                        <span className="font-semibold text-[var(--brand-600)]">30 days</span>
+                        <span className="font-semibold text-brand-600">30 days</span>
                       </div>
                     </div>
                   </Card>

@@ -56,6 +56,17 @@ export default function BrandCSSInjector() {
       root.style.setProperty("--brand-800", colors.brand800);
       root.style.setProperty("--brand-900", colors.brand900);
 
+      // Also inject CSS rules for Tailwind compatibility
+      const style = document.createElement('style');
+      style.textContent = `
+        .text-brand-600 { color: ${primary} !important; }
+        .text-brand-primary { color: ${primary} !important; }
+        .bg-brand-50 { background-color: ${colors.brand50} !important; }
+        .border-brand-200 { border-color: ${colors.brand200} !important; }
+        .text-brand-800 { color: ${colors.brand800} !important; }
+      `;
+      document.head.appendChild(style);
+
       console.log(`Brand CSS injected: ${brand} with color ${primary}`);
     } else {
       // Fallback to default brand
