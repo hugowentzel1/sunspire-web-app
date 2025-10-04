@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Card } from "@/components/ui/Card";
 
 export default function EarningsMini() {
+  // Force redeploy to fix company colors
   const [clients, setClients] = useState(10);
   const recurring = clients * 30;
   const setup = clients * 120;
