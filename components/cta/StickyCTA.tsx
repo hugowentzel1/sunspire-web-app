@@ -1,13 +1,12 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import clsx from "clsx";
-import { ShieldCheck, Lock, BarChart3, Users } from "lucide-react";
 import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
 
 /**
- * Premium sticky CTA for Sunspire:
+ * Premium text-only sticky CTA for Sunspire:
  * - Dynamic company color from URL/theme (no hardcoded colors)
- * - Luxury gradient trust badges with subtle company color tints
+ * - Text-only trust capsules with uniform sizing
  * - Premium shadows, spacing, and animations
  * - Cookie-aware positioning with smooth transitions
  * - Consistent with site's minimalist, professional style
@@ -29,12 +28,9 @@ const COOKIE_CANDIDATE_SELECTORS = [
 ];
 
 // ---- Color variables (fallbacks; you set real values per-company) ----
-const BRAND_50  = "var(--brand-50, #f5f7fa)";
+const BRAND_50  = "var(--brand-50, #f6f8fc)";
 const BRAND_600 = "var(--brand-600, #2563eb)"; // fallback: blue-600
 const BRAND_700 = "var(--brand-700, #1d4ed8)";
-
-const NEUTRAL_800 = "rgb(38 38 38)"; // neutral text tone
-const CARD_BG     = "#FFFFFF";       // pure white pill surface
 
 // ---- Helpers ----
 function isLikelyBottomBanner(el: HTMLElement): boolean {
@@ -51,18 +47,14 @@ function isLikelyBottomBanner(el: HTMLElement): boolean {
   return nearBottom || inLowerThird;
 }
 
-// Luxury trust badge with Sunspire-native styling
-function PremiumBadge({
-  icon: Icon,
+// Premium text-only capsule with stronger brand tint and subtle brand text
+function PremiumCapsule({
   children,
   ariaLabel,
-  className,
   companyColor,
 }: {
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
   children: React.ReactNode;
   ariaLabel?: string;
-  className?: string;
   companyColor: string;
 }) {
   return (
@@ -70,35 +62,36 @@ function PremiumBadge({
       role="listitem"
       aria-label={ariaLabel}
       className={[
-        "relative inline-flex items-center justify-center gap-2",
+        "inline-flex items-center justify-center",
+        "h-11 w-[180px] px-3",
         "rounded-full select-none",
-        "h-10 sm:h-11 w-[168px] sm:w-[180px] px-3",
         "text-[14px] leading-[18px] font-medium",
-        "ring-1 ring-[rgba(0,0,0,0.82)]",
-        "shadow-[inset_0_1px_0_rgba(255,255,255,0.55),0_1px_0_rgba(16,24,40,0.06)]",
-        "overflow-hidden whitespace-nowrap text-ellipsis",
+        "whitespace-nowrap text-ellipsis overflow-hidden",
         "transition-all duration-150 ease-out",
-        "hover:-translate-y-[0.5px] hover:shadow-[0_2px_10px_rgba(16,24,40,0.06)]",
-        className,
+        "hover:-translate-y-[0.5px]",
+        "focus-visible:outline-2 focus-visible:outline-offset-2",
       ].join(" ")}
       style={{
-        background: `linear-gradient(180deg, #ffffff 0%, color-mix(in srgb, var(--brand-50, #f6f8fc) 14%, #ffffff 86%) 100%)`,
-        color: "rgb(23,23,23)",
+        background: `linear-gradient(180deg, #fff 0%, color-mix(in srgb, var(--brand-50, #f6f8fc) 40%, #ffffff 60%) 100%)`,
+        boxShadow: "inset 0 1px 0 rgba(255,255,255,0.65), 0 1px 0 rgba(16,24,40,0.06)",
+        border: "1px solid rgba(0,0,0,0.82)",
+        letterSpacing: "0.01em",
+        color: "#000000", // Pure black text
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = `inset 0 1px 0 rgba(255,255,255,0.7), 0 2px 12px color-mix(in srgb, var(--brand-600, #2563eb) 10%, rgba(16,24,40,0.08) 90%)`;
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = "inset 0 1px 0 rgba(255,255,255,0.65), 0 1px 0 rgba(16,24,40,0.06)";
+      }}
+      onFocus={(e) => {
+        e.currentTarget.style.outline = `2px solid color-mix(in srgb, var(--brand-600, #2563eb) 80%, #ffffff 20%)`;
+      }}
+      onBlur={(e) => {
+        e.currentTarget.style.outline = "none";
       }}
     >
-      {/* Inner hairline for Sunspire card sheen */}
-      <span 
-        className="absolute inset-[1px] rounded-full pointer-events-none"
-        style={{
-          boxShadow: "inset 0 0 0 1px rgba(255,255,255,.6)"
-        }}
-      />
-      <Icon 
-        aria-hidden 
-        className="h-[15px] w-[15px] stroke-[1.75] flex-shrink-0" 
-        style={{ color: "var(--brand-600)" }} 
-      />
-      <span className="min-w-0 overflow-hidden text-ellipsis text-slate-900">{children}</span>
+      {children}
     </span>
   );
 }
@@ -207,9 +200,17 @@ export default function StickyCTA({
       {/* Mobile: full-width sticky bar */}
       <div className="sm:hidden pointer-events-auto">
         <div className="mx-auto max-w-[720px]">
-          <div className="rounded-2xl bg-white/92 ring-1 ring-black/5 shadow-[0_10px_30px_rgba(16,24,40,0.08)] backdrop-blur-[6px] px-5 py-4 transition-all duration-200">
+            <div 
+              className="rounded-2xl px-5 py-4 transition-all duration-200"
+              style={{
+                background: "rgba(255,255,255,0.92)",
+                backdropFilter: "blur(6px)",
+                boxShadow: "0 10px 30px rgba(16,24,40,0.08), inset 0 1px 0 rgba(255,255,255,0.7)",
+                outline: "1px solid rgba(0,0,0,0.06)",
+              }}
+            >
             <Link
-              href={href}
+              href="/api/stripe/create-checkout-session"
               aria-label={
                 companyName
                   ? `Activate for ${companyName} — go live in 24 hours`
@@ -219,20 +220,45 @@ export default function StickyCTA({
                 "relative inline-flex w-full items-center justify-center",
                 "rounded-full text-white text-[16px] font-semibold tracking-[-0.01em]",
                 "min-h-[52px] px-5",
-                "transition-all duration-200",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--brand-600)]",
-                "hover:brightness-[1.03] active:brightness-[0.98]",
-                "hover:-translate-y-[1px]",
-                "hover:shadow-[0_12px_24px_rgba(16,24,40,0.12)]",
+                "transition-all duration-300 ease-out",
+                "focus-visible:outline-none",
+                "hover:-translate-y-[2px] hover:scale-[1.02]",
+                "active:translate-y-0 active:scale-[0.98]",
+                "group",
               ].join(" ")}
               style={{
                 background: `linear-gradient(180deg, var(--brand-600, #2563eb) 0%, var(--brand-700, #1d4ed8) 100%)`,
+                boxShadow: "0 8px 20px rgba(16,24,40,0.15), 0 2px 4px rgba(16,24,40,0.1)",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = "translateY(-2px) scale(1.02)";
+                e.currentTarget.style.boxShadow = "0 16px 32px rgba(16,24,40,0.2), 0 4px 8px rgba(16,24,40,0.15)";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = "translateY(0) scale(1)";
+                e.currentTarget.style.boxShadow = "0 8px 20px rgba(16,24,40,0.15), 0 2px 4px rgba(16,24,40,0.1)";
+              }}
+              onMouseDown={(e) => {
+                e.currentTarget.style.transform = "translateY(0) scale(0.98)";
+                e.currentTarget.style.boxShadow = "0 4px 12px rgba(16,24,40,0.2), inset 0 1px 2px rgba(0,0,0,0.2)";
+              }}
+              onMouseUp={(e) => {
+                e.currentTarget.style.transform = "translateY(-2px) scale(1.02)";
+                e.currentTarget.style.boxShadow = "0 16px 32px rgba(16,24,40,0.2), 0 4px 8px rgba(16,24,40,0.15)";
+              }}
+              onFocus={(e) => {
+                e.currentTarget.style.boxShadow = `0 0 0 3px color-mix(in srgb, var(--brand-600, #2563eb) 70%, #ffffff 30%), 0 8px 20px rgba(16,24,40,0.15)`;
+              }}
+              onBlur={(e) => {
+                e.currentTarget.style.boxShadow = "0 8px 20px rgba(16,24,40,0.15), 0 2px 4px rgba(16,24,40,0.1)";
               }}
             >
-              {/* Optional top gloss */}
+              {/* Enhanced gloss effect */}
               <span 
-                className="absolute inset-x-2 top-1.5 h-[16%] rounded-full pointer-events-none"
-                style={{ background: "rgba(255,255,255,.18)" }}
+                className="absolute inset-0 rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                style={{ 
+                  background: "linear-gradient(180deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05))",
+                }}
               />
               {CTA_LABEL}
             </Link>
@@ -245,10 +271,10 @@ export default function StickyCTA({
 
             {showTrust && (
               <div role="list" className="mt-3 grid grid-cols-2 gap-3 justify-items-center items-center">
-                <PremiumBadge icon={ShieldCheck} ariaLabel="SOC 2 attestation" companyColor={companyColor}>SOC 2</PremiumBadge>
-                <PremiumBadge icon={Lock}        ariaLabel="GDPR compliant" companyColor={companyColor}>GDPR</PremiumBadge>
-                <PremiumBadge icon={BarChart3}   ariaLabel="NREL PVWatts data" companyColor={companyColor}>NREL PVWatts®</PremiumBadge>
-                <PremiumBadge icon={Users}       ariaLabel="Installers using Sunspire" companyColor={companyColor}>113+ installers live</PremiumBadge>
+                <PremiumCapsule ariaLabel="SOC 2 attestation" companyColor={companyColor}>SOC 2</PremiumCapsule>
+                <PremiumCapsule ariaLabel="GDPR compliant" companyColor={companyColor}>GDPR</PremiumCapsule>
+                <PremiumCapsule ariaLabel="NREL PVWatts data" companyColor={companyColor}>NREL PVWatts®</PremiumCapsule>
+                <PremiumCapsule ariaLabel="Installers using Sunspire" companyColor={companyColor}>113+ installers live</PremiumCapsule>
               </div>
             )}
           </div>
@@ -257,9 +283,17 @@ export default function StickyCTA({
 
       {/* Desktop: bottom-right pill */}
       <div className="hidden sm:block ml-auto pointer-events-auto">
-        <div className="rounded-2xl bg-white/92 ring-1 ring-black/5 shadow-[0_10px_30px_rgba(16,24,40,0.08)] backdrop-blur-[6px] px-6 py-5 max-w-[440px] transition-all duration-200">
+        <div 
+          className="rounded-2xl px-6 py-5 max-w-[440px] transition-all duration-200"
+          style={{
+            background: "rgba(255,255,255,0.92)",
+            backdropFilter: "blur(6px)",
+            boxShadow: "0 10px 30px rgba(16,24,40,0.08), inset 0 1px 0 rgba(255,255,255,0.7)",
+            outline: "1px solid rgba(0,0,0,0.06)",
+          }}
+        >
           <Link
-            href={href}
+            href="/api/stripe/create-checkout-session"
             aria-label={
               companyName
                 ? `Activate for ${companyName} — go live in 24 hours`
@@ -269,20 +303,45 @@ export default function StickyCTA({
               "relative inline-flex w-full items-center justify-center",
               "rounded-full text-white text-[17px] font-semibold tracking-[-0.01em]",
               "min-h-[56px] px-6",
-              "transition-all duration-200",
-              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--brand-600)]",
-              "hover:brightness-[1.03] active:brightness-[0.98]",
-              "hover:-translate-y-[1px]",
-              "hover:shadow-[0_12px_24px_rgba(16,24,40,0.12)]",
+              "transition-all duration-300 ease-out",
+              "focus-visible:outline-none",
+              "hover:-translate-y-[2px] hover:scale-[1.02]",
+              "active:translate-y-0 active:scale-[0.98]",
+              "group",
             ].join(" ")}
             style={{
               background: `linear-gradient(180deg, var(--brand-600, #2563eb) 0%, var(--brand-700, #1d4ed8) 100%)`,
+              boxShadow: "0 8px 20px rgba(16,24,40,0.15), 0 2px 4px rgba(16,24,40,0.1)",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "translateY(-2px) scale(1.02)";
+              e.currentTarget.style.boxShadow = "0 16px 32px rgba(16,24,40,0.2), 0 4px 8px rgba(16,24,40,0.15)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "translateY(0) scale(1)";
+              e.currentTarget.style.boxShadow = "0 8px 20px rgba(16,24,40,0.15), 0 2px 4px rgba(16,24,40,0.1)";
+            }}
+            onMouseDown={(e) => {
+              e.currentTarget.style.transform = "translateY(0) scale(0.98)";
+              e.currentTarget.style.boxShadow = "0 4px 12px rgba(16,24,40,0.2), inset 0 1px 2px rgba(0,0,0,0.2)";
+            }}
+            onMouseUp={(e) => {
+              e.currentTarget.style.transform = "translateY(-2px) scale(1.02)";
+              e.currentTarget.style.boxShadow = "0 16px 32px rgba(16,24,40,0.2), 0 4px 8px rgba(16,24,40,0.15)";
+            }}
+            onFocus={(e) => {
+              e.currentTarget.style.boxShadow = `0 0 0 3px color-mix(in srgb, var(--brand-600, #2563eb) 70%, #ffffff 30%), 0 8px 20px rgba(16,24,40,0.15)`;
+            }}
+            onBlur={(e) => {
+              e.currentTarget.style.boxShadow = "0 8px 20px rgba(16,24,40,0.15), 0 2px 4px rgba(16,24,40,0.1)";
             }}
           >
-            {/* Optional top gloss */}
+            {/* Enhanced gloss effect */}
             <span 
-              className="absolute inset-x-2 top-1.5 h-[16%] rounded-full pointer-events-none"
-              style={{ background: "rgba(255,255,255,.18)" }}
+              className="absolute inset-0 rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              style={{ 
+                background: "linear-gradient(180deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05))",
+              }}
             />
             {CTA_LABEL}
           </Link>
@@ -295,10 +354,10 @@ export default function StickyCTA({
 
           {showTrust && (
             <div role="list" className="mt-3 grid grid-cols-2 gap-3 justify-items-center items-center">
-              <PremiumBadge icon={ShieldCheck} ariaLabel="SOC 2 attestation" companyColor={companyColor}>SOC 2</PremiumBadge>
-              <PremiumBadge icon={Lock}        ariaLabel="GDPR compliant" companyColor={companyColor}>GDPR</PremiumBadge>
-              <PremiumBadge icon={BarChart3}   ariaLabel="NREL PVWatts data" companyColor={companyColor}>NREL PVWatts®</PremiumBadge>
-              <PremiumBadge icon={Users}       ariaLabel="Installers using Sunspire" companyColor={companyColor}>113+ installers live</PremiumBadge>
+              <PremiumCapsule ariaLabel="SOC 2 attestation" companyColor={companyColor}>SOC 2</PremiumCapsule>
+              <PremiumCapsule ariaLabel="GDPR compliant" companyColor={companyColor}>GDPR</PremiumCapsule>
+              <PremiumCapsule ariaLabel="NREL PVWatts data" companyColor={companyColor}>NREL PVWatts®</PremiumCapsule>
+              <PremiumCapsule ariaLabel="Installers using Sunspire" companyColor={companyColor}>113+ installers live</PremiumCapsule>
             </div>
           )}
         </div>
