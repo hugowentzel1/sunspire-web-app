@@ -314,7 +314,7 @@ export default function PricingPage() {
                     </Button>
                   </div>
                 </div>
-              )}              )}
+              )}
     </div>
   );
 }
