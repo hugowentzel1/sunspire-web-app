@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import SharedNavigation from '@/components/SharedNavigation';
-import LegalFooter from '@/components/legal/LegalFooter';
+import Footer from '@/components/Footer';
 
 interface HealthStatus {
   ok: boolean;
@@ -184,7 +184,7 @@ export default function StatusPage() {
         </div>
       </div>
       
-      <LegalFooter />
+      <Footer />
     </div>
   );
 }

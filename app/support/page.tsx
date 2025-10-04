@@ -7,7 +7,7 @@ import Container from '@/components/layout/Container';
 import { Section } from '@/components/layout/Section';
 import { Stack } from '@/components/layout/Stack';
 import { Card } from '@/components/ui/Card';
-import LegalFooter from '@/components/legal/LegalFooter';
+import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/Button';
 import Link from 'next/link';
 
@@ -372,7 +372,7 @@ export default function SupportPage() {
         </Container>
       </Section>
 
-      <LegalFooter />
+      <Footer />
     </div>
   );
 }

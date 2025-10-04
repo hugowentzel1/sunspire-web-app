@@ -3,7 +3,7 @@
 import { useSearchParams } from 'next/navigation';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import SharedNavigation from '@/components/SharedNavigation';
-import LegalFooter from '@/components/legal/LegalFooter';
+import Footer from '@/components/Footer';
 
 export default function MethodologyPage() {
   const searchParams = useSearchParams();
@@ -147,7 +147,7 @@ export default function MethodologyPage() {
         </div>
       </main>
       
-      <LegalFooter />
+      <Footer />
     </div>
   );
 }
