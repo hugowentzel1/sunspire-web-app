@@ -1038,9 +1038,8 @@ function ReportContent() {
       {demoMode && (
         <StickyCTA
           href="/pricing"
-          heroSelector="#main-cta"
-          label="Activate on Your Domain — 24 Hours"
-          hideWhenCookieVisible={false}
+          companyName="Tesla"
+          showTrustChips={true}
         />
       )}
 

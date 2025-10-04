@@ -1,160 +1,182 @@
-"use client";
-import { useEffect, useId, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import clsx from "clsx";
 
 type StickyCTAProps = {
-  /** CSS selector for the main/hero CTA to observe */
-  heroSelector?: string;
-  /** Button label */
-  label?: string;
-  /** Destination href */
-  href: string;
-  /** Optional small trust line under button */
-  subtext?: string;
-  /** Optional analytics id */
-  analyticsId?: string;
-  /** If true, auto-hide sticky whenever cookie banner is visible */
-  hideWhenCookieVisible?: boolean;
-  /** CSS selector for cookie banner */
-  cookieSelector?: string;
-  /** CSS selector for chat widget */
-  chatSelector?: string;
+  href?: string;                 // where the CTA goes (pricing/checkout)
+  companyName?: string;          // for aria-label context
+  showSubcopy?: boolean;         // default: true
+  showTrustChips?: boolean;      // default: true
+  className?: string;
+  testId?: string;
 };
 
+const CTA_LABEL = "Activate on Your Domain — 24 Hours";
+const SUBCOPY   = "$99/mo + $399 setup • Cancel anytime";
+
+// Legacy trust signals to display under the button (compact)
+const TRUST_CHIPS = [
+  "SOC 2",
+  "GDPR",
+  "NREL PVWatts®",
+  "113+ installers live"
+];
+
+// Common cookie banner selectors (add yours if different)
+const COOKIE_SELECTORS = [
+  '[data-cookie-banner]',
+  '#cookie-consent',
+  '[role="dialog"][data-cookie]',
+  '.cookie-banner',
+  '.cc-window'
+];
+
 export default function StickyCTA({
-  heroSelector = "#main-cta",
-  label = "Activate on Your Domain — 24 Hours",
-  href,
-  subtext = "$99/mo + $399 setup • Cancel anytime",
-  analyticsId,
-  hideWhenCookieVisible = true,
-  cookieSelector = "[data-cookie-banner]",
-  chatSelector = "[data-chat-widget]",
+  href = "/pricing",
+  companyName,
+  showSubcopy = true,
+  showTrustChips = true,
+  className,
+  testId = "sticky-cta",
 }: StickyCTAProps) {
-  const [hiddenByHero, setHiddenByHero] = useState(false);
-  const [hiddenByCookie, setHiddenByCookie] = useState(false);
-  const [offset, setOffset] = useState(0);
-  const id = useId();
+  const [bottomOffset, setBottomOffset] = useState<number>(16);
+  const moRef = useRef<MutationObserver | null>(null);
+  const roRef = useRef<ResizeObserver | null>(null);
 
   useEffect(() => {
-    // Hide when hero CTA is visible
-    const hero = document.querySelector(heroSelector);
-    if (!hero) {
-      setHiddenByHero(false); // If no hero CTA, don't hide sticky CTA
-      return;
-    }
-    const io = new IntersectionObserver(
-      ([entry]) => setHiddenByHero(entry.isIntersecting),
-      { rootMargin: "0px 0px -30% 0px", threshold: 0.1 }
-    );
-    io.observe(hero);
-    return () => io.disconnect();
-  }, [heroSelector]);
-
-  useEffect(() => {
-    if (!hideWhenCookieVisible) return;
-    const root = document.documentElement;
-    const update = () => setHiddenByCookie(root.hasAttribute("data-cookie-visible"));
-    update();
-    const mo = new MutationObserver(update);
-    mo.observe(root, { attributes: true, attributeFilter: ["data-cookie-visible"] });
-    return () => mo.disconnect();
-  }, [hideWhenCookieVisible]);
-
-  // Compute dynamic bottom offset to avoid collisions (cookie/chat)
-  useEffect(() => {
-    const compute = () => {
-      let extra = 0;
-      const cookie = document.querySelector(cookieSelector) as HTMLElement | null;
-      const chat = document.querySelector(chatSelector) as HTMLElement | null;
-      if (cookie && cookie.offsetParent !== null) extra += cookie.getBoundingClientRect().height + 8;
-      if (chat && chat.offsetParent !== null) extra += 56; // typical launcher size
-      setOffset(extra);
+    const setSafeArea = () => {
+      const root = document.documentElement;
+      const probe = document.createElement("div");
+      probe.style.cssText = `
+        position: fixed; inset: auto 0 0 0;
+        padding-bottom: env(safe-area-inset-bottom);
+        visibility: hidden; pointer-events: none;
+      `;
+      document.body.appendChild(probe);
+      const pb = parseFloat(getComputedStyle(probe).paddingBottom || "0");
+      root.style.setProperty("--sat-safe-bottom", `${pb || 0}px`);
+      probe.remove();
     };
-    compute();
-    const ro = new ResizeObserver(compute);
-    document.querySelectorAll(`${cookieSelector}, ${chatSelector}`).forEach(el => ro.observe(el));
-    window.addEventListener("resize", compute);
+
+    const calcOffset = () => {
+      const root = document.documentElement;
+      const safe = Number(root.style.getPropertyValue("--sat-safe-bottom").replace("px", "")) || 0;
+
+      // Measure tallest visible cookie banner
+      let cookieHeight = 0;
+      for (const sel of COOKIE_SELECTORS) {
+        const el = document.querySelector<HTMLElement>(sel);
+        if (el && el.offsetParent !== null) {
+          cookieHeight = Math.max(cookieHeight, el.getBoundingClientRect().height);
+        }
+      }
+
+      const BASE = 16; // base spacing from viewport bottom when no banner
+      const next = Math.round(BASE + (cookieHeight > 0 ? cookieHeight : 0) + safe);
+      setBottomOffset(next);
+    };
+
+    setSafeArea();
+    calcOffset();
+
+    // React to DOM mutations (banner show/hide/attribute changes)
+    moRef.current = new MutationObserver(calcOffset);
+    moRef.current.observe(document.body, { childList: true, subtree: true, attributes: true });
+
+    // React to banner resizes
+    roRef.current = new ResizeObserver(calcOffset);
+    COOKIE_SELECTORS.forEach(sel => {
+      const el = document.querySelector(sel);
+      if (el) roRef.current?.observe(el as Element);
+    });
+
+    // Window resize as fallback
+    window.addEventListener("resize", calcOffset);
+
     return () => {
-      ro.disconnect();
-      window.removeEventListener("resize", compute);
+      window.removeEventListener("resize", calcOffset);
+      moRef.current?.disconnect();
+      roRef.current?.disconnect();
     };
-  }, [cookieSelector, chatSelector]);
-
-  const isHidden = hiddenByHero || hiddenByCookie;
+  }, []);
 
   return (
-    <>
-      {/* Desktop: bottom-right card with improved sizing and elevation */}
-      <div
-        data-sticky-cta-desktop
-        className={`hidden md:block fixed right-0 z-50 transition-opacity duration-200 ${
-          isHidden ? "opacity-0 pointer-events-none" : "opacity-100"
-        }`}
-        style={{
-          bottom: `calc(32px + env(safe-area-inset-bottom) + ${offset}px)`,
-          paddingRight: "env(safe-area-inset-right)"
-        }}
-        aria-hidden={isHidden}
-      >
-        <div className="rounded-2xl border bg-white/98 backdrop-blur supports-[backdrop-filter]:bg-white/80
-                        border-black/5 shadow-[0_6px_16px_rgba(0,0,0,.12)]">
-          <div className="p-4">
+    <div
+      data-testid={testId}
+      className={clsx(
+        "fixed z-[70] pointer-events-none w-full sm:w-auto",
+        className
+      )}
+      style={{
+        right: "16px",
+        left: "16px",             // enables full-width mobile bar in same wrapper
+        bottom: `${bottomOffset}px`
+      }}
+      aria-live="polite"
+    >
+      {/* Mobile: full-width sticky bar (64–68px total, tap ≥52–56px) */}
+      <div className="sm:hidden pointer-events-auto">
+        <div className="mx-auto max-w-[720px]">
+          <div className="flex items-center justify-between gap-3 rounded-xl bg-white/95 shadow-lg ring-1 ring-black/5 px-3 py-3 backdrop-blur supports-[backdrop-filter]:bg-white/75">
+            <span className="sr-only">
+              {companyName ? `Activate for ${companyName}` : "Activate on your domain"}
+            </span>
             <Link
-              id={`sticky-desktop-${id}`}
               href={href}
-              className="block w-full min-h-[50px] px-5 rounded-xl font-semibold text-center leading-[50px] text-white bg-[var(--brand-600)] hover:bg-[var(--brand-700)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-600)] focus-visible:ring-offset-2 transition-colors"
-              data-analytics={analyticsId || undefined}
+              aria-label={companyName ? `Activate for ${companyName} — go live in 24 hours` : "Activate on your domain — go live in 24 hours"}
+              className="flex-1 text-center rounded-lg bg-red-600 text-white font-semibold px-4 py-3.5 min-h-[52px]"
             >
-              {label}
+              {CTA_LABEL}
             </Link>
-            {subtext ? (
-              <div className="mt-2 text-[13px] text-neutral-600 text-center">
-                {subtext}
-              </div>
-            ) : null}
           </div>
-        </div>
-      </div>
 
-      {/* Mobile: full-width sticky bar */}
-      <div
-        className={`md:hidden fixed inset-x-0 z-50 transition-transform duration-200 ${
-          isHidden ? "translate-y-full" : "translate-y-0"
-        }`}
-        style={{
-          bottom: `calc(0px + env(safe-area-inset-bottom) + ${offset}px)`
-        }}
-        aria-hidden={isHidden}
-      >
-        <div className="mx-3 mb-3 rounded-2xl border bg-white/98 backdrop-blur border-black/5 shadow-[0_6px_16px_rgba(0,0,0,.12)]">
-          <Link
-            id={`sticky-mobile-${id}`}
-            href={href}
-            className="block w-full min-h-[52px] px-5 rounded-2xl font-semibold text-center leading-[52px] text-white bg-[var(--brand-600)] hover:bg-[var(--brand-700)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--brand-600)] focus-visible:ring-offset-2 transition-colors"
-            data-analytics={analyticsId || undefined}
-          >
-            {label}
-          </Link>
-          {subtext ? (
-            <div className="px-4 pt-1 pb-3 text-[12.5px] text-neutral-600 text-center">
-              {subtext}
+          {showSubcopy && (
+            <p className="mt-1 text-center text-xs text-neutral-600">{SUBCOPY}</p>
+          )}
+
+          {showTrustChips && (
+            <div className="mt-2 flex flex-wrap items-center justify-center gap-6 text-[11px] text-neutral-600">
+              {TRUST_CHIPS.map((t) => (
+                <span key={t} className="inline-flex items-center gap-1">
+                  <span className="inline-block h-1.5 w-1.5 rounded-full bg-neutral-400" />
+                  {t}
+                </span>
+              ))}
             </div>
-          ) : null}
+          )}
         </div>
       </div>
 
-      {/* Reduced motion: soft fade only */}
-      <style jsx global>{`
-        @media (prefers-reduced-motion: reduce) {
-          [data-sticky-cta-desktop] .transition-opacity { transition: none !important; }
-        }
+      {/* Desktop: bottom-right pill (button ≈60px tall) */}
+      <div className="hidden sm:block ml-auto mr-4 pointer-events-auto">
+        <div className="rounded-2xl bg-white/95 shadow-xl ring-1 ring-black/5 px-5 py-4 backdrop-blur supports-[backdrop-filter]:bg-white/75 max-w-[400px]">
+          <Link
+            href={href}
+            aria-label={companyName ? `Activate for ${companyName} — go live in 24 hours` : "Activate on your domain — go live in 24 hours"}
+            className="inline-flex items-center justify-center rounded-full bg-red-600 text-white font-semibold px-6 py-4 min-h-[60px] w-full hover:bg-red-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600"
+          >
+            {CTA_LABEL}
+          </Link>
 
-        /* tiny micro-nudge to avoid crowding the container gutter on mid-width laptops */
-        @media (min-width:1210px) and (max-width:1360px) {
-          [data-sticky-cta-desktop] { right: 6px; }
-        }
-      `}</style>
-    </>
+          {showSubcopy && (
+            <div className="mt-1.5 text-center text-[12px] text-neutral-700">{SUBCOPY}</div>
+          )}
+
+          {showTrustChips && (
+            <div className="mt-2 flex flex-wrap items-center justify-center gap-2 text-[11px] text-neutral-600">
+              {TRUST_CHIPS.map((t) => (
+                <span
+                  key={t}
+                  className="rounded-md border px-2 py-1"
+                  style={{ borderColor: "color-mix(in srgb, var(--brand, #999) 35%, transparent)" }}
+                >
+                  {t}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
   );
 }
