@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import clsx from "clsx";
+import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
 
 type StickyCTAProps = {
   href?: string;
@@ -50,6 +51,11 @@ export default function StickyCTA({
 }: StickyCTAProps) {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const [bottomOffset, setBottomOffset] = useState<number>(16);
+  const brand = useBrandTakeover();
+
+  // Get company color or fallback to red
+  const companyColor = brand?.primary || "#ef4444"; // red-500 fallback
+  const companyColorHover = brand?.primary || "#dc2626"; // red-600 fallback
 
   const calcOffset = useMemo(() => {
     let raf: number | null = null;
@@ -145,7 +151,8 @@ export default function StickyCTA({
                   ? `Activate for ${companyName} — go live in 24 hours`
                   : "Activate on your domain — go live in 24 hours"
               }
-              className="flex-1 text-center rounded-lg bg-red-600 text-white font-semibold px-4 py-3.5 min-h-[52px]"
+              className="flex-1 text-center rounded-lg text-white font-semibold px-4 py-3.5 min-h-[52px]"
+              style={{ backgroundColor: companyColor }}
             >
               {CTA_LABEL}
             </Link>
@@ -177,7 +184,17 @@ export default function StickyCTA({
                 ? `Activate for ${companyName} — go live in 24 hours`
                 : "Activate on your domain — go live in 24 hours"
             }
-            className="inline-flex items-center justify-center rounded-full bg-red-600 text-white font-semibold px-6 py-4 min-h-[60px] w-full hover:bg-red-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600"
+            className="inline-flex items-center justify-center rounded-full text-white font-semibold px-6 py-4 min-h-[60px] w-full focus:outline-none focus-visible:ring-2"
+            style={{ 
+              backgroundColor: companyColor,
+              '--hover-color': companyColorHover
+            } as React.CSSProperties & { '--hover-color': string }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.backgroundColor = companyColorHover;
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.backgroundColor = companyColor;
+            }}
           >
             {CTA_LABEL}
           </Link>
