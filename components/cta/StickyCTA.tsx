@@ -28,7 +28,14 @@ const COOKIE_SELECTORS = [
   '#cookie-consent',
   '[role="dialog"][data-cookie]',
   '.cookie-banner',
-  '.cc-window'
+  '.cc-window',
+  '[id*="cookie"]',
+  '[class*="cookie"]',
+  '[data-testid*="cookie"]',
+  '.cookie-notice',
+  '#cookie-notice',
+  '.cookie-consent',
+  '[data-cookie]'
 ];
 
 export default function StickyCTA({
@@ -65,14 +72,37 @@ export default function StickyCTA({
       // Measure tallest visible cookie banner
       let cookieHeight = 0;
       for (const sel of COOKIE_SELECTORS) {
-        const el = document.querySelector<HTMLElement>(sel);
-        if (el && el.offsetParent !== null) {
-          cookieHeight = Math.max(cookieHeight, el.getBoundingClientRect().height);
-        }
+        const elements = document.querySelectorAll<HTMLElement>(sel);
+        elements.forEach(el => {
+          if (el && el.offsetParent !== null) {
+            const rect = el.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+            // Only consider elements that are actually visible and positioned at the bottom
+            if (rect.height > 0 && rect.bottom >= viewportHeight * 0.8) {
+              cookieHeight = Math.max(cookieHeight, rect.height);
+              console.log('🍪 Found cookie banner:', sel, 'height:', rect.height, 'bottom:', rect.bottom, 'viewport:', viewportHeight);
+            }
+          }
+        });
       }
+      
+      // Also check for any fixed positioned elements at the bottom
+      const allFixedElements = document.querySelectorAll<HTMLElement>('[style*="position: fixed"], [style*="position:fixed"]');
+      allFixedElements.forEach(el => {
+        if (el.offsetParent !== null) {
+          const rect = el.getBoundingClientRect();
+          const viewportHeight = window.innerHeight;
+          // Check if it's positioned at the bottom and looks like a cookie banner
+          if (rect.height > 0 && rect.bottom >= viewportHeight - 10) {
+            cookieHeight = Math.max(cookieHeight, rect.height);
+            console.log('🍪 Found fixed element at bottom:', 'height:', rect.height, 'bottom:', rect.bottom, 'viewport:', viewportHeight);
+          }
+        }
+      });
 
       const BASE = 16; // base spacing from viewport bottom when no banner
-      const next = Math.round(BASE + (cookieHeight > 0 ? cookieHeight : 0) + safe);
+      const next = Math.round(BASE + (cookieHeight > 0 ? cookieHeight + 16 : 0) + safe); // +16 for proper clearance
+      console.log('🍪 Setting bottom offset:', next, 'cookieHeight:', cookieHeight);
       setBottomOffset(next);
     };
 
@@ -109,7 +139,6 @@ export default function StickyCTA({
       )}
       style={{
         right: "16px",
-        left: "16px",             // enables full-width mobile bar in same wrapper
         bottom: `${bottomOffset}px`
       }}
       aria-live="polite"
@@ -135,10 +164,12 @@ export default function StickyCTA({
           )}
 
           {showTrustChips && (
-            <div className="mt-2 flex flex-wrap items-center justify-center gap-6 text-[11px] text-neutral-600">
+            <div className="mt-2 flex flex-wrap items-center justify-center gap-2 text-[11px] text-neutral-600">
               {TRUST_CHIPS.map((t) => (
-                <span key={t} className="inline-flex items-center gap-1">
-                  <span className="inline-block h-1.5 w-1.5 rounded-full bg-neutral-400" />
+                <span
+                  key={t}
+                  className="rounded-md border border-black/20 px-2 py-1"
+                >
                   {t}
                 </span>
               ))}
@@ -167,8 +198,7 @@ export default function StickyCTA({
               {TRUST_CHIPS.map((t) => (
                 <span
                   key={t}
-                  className="rounded-md border px-2 py-1"
-                  style={{ borderColor: "color-mix(in srgb, var(--brand, #999) 35%, transparent)" }}
+                  className="rounded-md border border-black/20 px-2 py-1"
                 >
                   {t}
                 </span>
