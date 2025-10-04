@@ -51,7 +51,7 @@ function isLikelyBottomBanner(el: HTMLElement): boolean {
   return nearBottom || inLowerThird;
 }
 
-// Uniform trust badge with fixed dimensions and white background
+// Luxury trust badge with Sunspire-native styling
 function PremiumBadge({
   icon: Icon,
   children,
@@ -70,29 +70,35 @@ function PremiumBadge({
       role="listitem"
       aria-label={ariaLabel}
       className={[
-        "inline-flex items-center justify-center gap-2",
+        "relative inline-flex items-center justify-center gap-2",
         "rounded-full select-none",
-        // Fixed height and equal width on breakpoints:
-        "h-10 sm:h-10",
-        "w-[168px] sm:w-[172px]",              // equal pill width
-        "px-3",                                 // inner padding (keeps icon/label comfy)
-        "text-[13px] leading-[18px] font-medium",
-        "transition-colors duration-150 ease-out",
-        "overflow-hidden",                      // prevent spill
-        "whitespace-nowrap",
+        "h-10 sm:h-11 w-[168px] sm:w-[180px] px-3",
+        "text-[14px] leading-[18px] font-medium",
+        "ring-1 ring-[rgba(0,0,0,0.82)]",
+        "shadow-[inset_0_1px_0_rgba(255,255,255,0.55),0_1px_0_rgba(16,24,40,0.06)]",
+        "overflow-hidden whitespace-nowrap text-ellipsis",
+        "transition-all duration-150 ease-out",
+        "hover:-translate-y-[0.5px] hover:shadow-[0_2px_10px_rgba(16,24,40,0.06)]",
         className,
       ].join(" ")}
       style={{
-        backgroundColor: "#FFFFFF",            // pure white surface
-        color: "rgb(38 38 38)",
-        border: "1px solid rgba(0,0,0,0.85)",  // BLACK outline as requested
+        background: `linear-gradient(180deg, #ffffff 0%, color-mix(in srgb, var(--brand-50, #f6f8fc) 14%, #ffffff 86%) 100%)`,
+        color: "rgb(23,23,23)",
       }}
-      // subtle hover tint using brand-50; safe if var is present
-      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "color-mix(in srgb, var(--brand-50, #f5f7fa) 18%, #FFFFFF)")}
-      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#FFFFFF")}
     >
-      <Icon aria-hidden className="h-[14px] w-[14px] flex-shrink-0" style={{ color: companyColor }} />
-      <span className="min-w-0 overflow-hidden text-ellipsis">{children}</span>
+      {/* Inner hairline for Sunspire card sheen */}
+      <span 
+        className="absolute inset-[1px] rounded-full pointer-events-none"
+        style={{
+          boxShadow: "inset 0 0 0 1px rgba(255,255,255,.6)"
+        }}
+      />
+      <Icon 
+        aria-hidden 
+        className="h-[15px] w-[15px] stroke-[1.75] flex-shrink-0" 
+        style={{ color: "var(--brand-600)" }} 
+      />
+      <span className="min-w-0 overflow-hidden text-ellipsis text-slate-900">{children}</span>
     </span>
   );
 }
@@ -190,7 +196,7 @@ export default function StickyCTA({
       ref={rootRef}
       data-testid={testId}
       className={clsx(
-        "fixed z-[70] pointer-events-none w-full sm:w-auto",
+        "fixed z-50 pointer-events-none w-full sm:w-auto",
         // mobile: full width with 24px side insets; desktop: true bottom-right (no left)
         "left-6 right-6 sm:left-auto sm:right-6",
         "transition-all duration-200 ease-in-out" // Smooth repositioning
@@ -201,7 +207,7 @@ export default function StickyCTA({
       {/* Mobile: full-width sticky bar */}
       <div className="sm:hidden pointer-events-auto">
         <div className="mx-auto max-w-[720px]">
-          <div className="rounded-2xl bg-white shadow-[0_8px_32px_rgba(0,0,0,0.12)] ring-1 ring-black/5 px-6 py-5">
+          <div className="rounded-2xl bg-white/92 ring-1 ring-black/5 shadow-[0_10px_30px_rgba(16,24,40,0.08)] backdrop-blur-[6px] px-5 py-4 transition-all duration-200">
             <Link
               href={href}
               aria-label={
@@ -210,22 +216,29 @@ export default function StickyCTA({
                   : "Activate on your domain — go live in 24 hours"
               }
               className={[
-                "block w-full rounded-full text-white font-bold",
-                "text-[16px] leading-tight tracking-[-0.01em]",
-                "px-6 py-4 min-h-[56px]",
-                "transition-all duration-200 ease-in-out",
-                "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-                "hover:shadow-lg transform hover:-translate-y-0.5",
+                "relative inline-flex w-full items-center justify-center",
+                "rounded-full text-white text-[16px] font-semibold tracking-[-0.01em]",
+                "min-h-[52px] px-5",
+                "transition-all duration-200",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--brand-600)]",
+                "hover:brightness-[1.03] active:brightness-[0.98]",
+                "hover:-translate-y-[1px]",
+                "hover:shadow-[0_12px_24px_rgba(16,24,40,0.12)]",
               ].join(" ")}
               style={{
-                backgroundColor: companyColor,
+                background: `linear-gradient(180deg, var(--brand-600, #2563eb) 0%, var(--brand-700, #1d4ed8) 100%)`,
               }}
             >
+              {/* Optional top gloss */}
+              <span 
+                className="absolute inset-x-2 top-1.5 h-[16%] rounded-full pointer-events-none"
+                style={{ background: "rgba(255,255,255,.18)" }}
+              />
               {CTA_LABEL}
             </Link>
 
             {showSubcopy && (
-              <p className="mt-2 text-center text-[13px] leading-5 text-neutral-700">
+              <p className="mt-2 text-[14px] leading-[20px] text-slate-800/90 tracking-[0.005em] text-center">
                 {SUBCOPY}
               </p>
             )}
@@ -244,7 +257,7 @@ export default function StickyCTA({
 
       {/* Desktop: bottom-right pill */}
       <div className="hidden sm:block ml-auto pointer-events-auto">
-        <div className="rounded-2xl bg-white shadow-[0_12px_40px_rgba(0,0,0,0.15)] ring-1 ring-black/5 px-6 py-6 max-w-[440px]">
+        <div className="rounded-2xl bg-white/92 ring-1 ring-black/5 shadow-[0_10px_30px_rgba(16,24,40,0.08)] backdrop-blur-[6px] px-6 py-5 max-w-[440px] transition-all duration-200">
           <Link
             href={href}
             aria-label={
@@ -253,22 +266,29 @@ export default function StickyCTA({
                 : "Activate on your domain — go live in 24 hours"
             }
             className={[
-              "inline-flex w-full items-center justify-center rounded-full text-white font-bold",
-              "text-[17px] leading-tight tracking-[-0.01em]",
-              "px-6 py-5 min-h-[64px]",
-              "transition-all duration-200 ease-in-out",
-              "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2",
-              "hover:shadow-lg transform hover:-translate-y-0.5",
+              "relative inline-flex w-full items-center justify-center",
+              "rounded-full text-white text-[17px] font-semibold tracking-[-0.01em]",
+              "min-h-[56px] px-6",
+              "transition-all duration-200",
+              "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color:var(--brand-600)]",
+              "hover:brightness-[1.03] active:brightness-[0.98]",
+              "hover:-translate-y-[1px]",
+              "hover:shadow-[0_12px_24px_rgba(16,24,40,0.12)]",
             ].join(" ")}
             style={{
-              backgroundColor: companyColor,
+              background: `linear-gradient(180deg, var(--brand-600, #2563eb) 0%, var(--brand-700, #1d4ed8) 100%)`,
             }}
           >
+            {/* Optional top gloss */}
+            <span 
+              className="absolute inset-x-2 top-1.5 h-[16%] rounded-full pointer-events-none"
+              style={{ background: "rgba(255,255,255,.18)" }}
+            />
             {CTA_LABEL}
           </Link>
 
           {showSubcopy && (
-            <div className="mt-2 text-center text-[13px] leading-5 text-neutral-700">
+            <div className="mt-2 text-[14px] leading-[20px] text-slate-800/90 tracking-[0.005em] text-center">
               {SUBCOPY}
             </div>
           )}

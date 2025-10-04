@@ -1035,7 +1035,7 @@ function ReportContent() {
       <Footer />
 
       {/* Optimized Sticky CTA for Demo Mode */}
-      {demoMode && (
+      {(demoMode || isDemo) && (
         <StickyCTA
           href="/pricing"
           companyName="Tesla"
