@@ -145,10 +145,10 @@ export default function StickyCTA({
         <div className="mx-auto max-w-[720px]">
           <div
             className="
-              rounded-2xl bg-white/90 backdrop-blur
-              shadow-[0_10px_30px_rgba(0,0,0,0.08)]
-              ring-1 ring-black/5
-              px-4 py-4
+              rounded-xl bg-white/95 backdrop-blur
+              shadow-[0_8px_25px_rgba(0,0,0,0.12)]
+              border border-gray-200/50
+              px-6 py-5
             "
           >
             {/* CTA button */}
@@ -156,14 +156,17 @@ export default function StickyCTA({
               href={href}
               aria-label={companyName ? `Activate for ${companyName} — go live in 24 hours` : "Activate on your domain — go live in 24 hours"}
               className="
-                block w-full rounded-full
-                text-white
-                text-[16px] font-semibold leading-tight tracking-[-0.01em]
-                px-5 py-3.5 min-h-[52px]
-                focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600
-                transition-colors
+                block w-full rounded-lg
+                text-white font-semibold
+                text-[16px] leading-tight
+                px-6 py-4 min-h-[56px]
+                focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
+                transition-all duration-200
               "
-              style={{ backgroundColor: companyColor }}
+              style={{ 
+                backgroundColor: companyColor,
+                '--tw-ring-color': companyColor
+              } as React.CSSProperties & { '--tw-ring-color': string }}
               onMouseEnter={(e) => {
                 e.currentTarget.style.backgroundColor = companyColorHover;
               }}
@@ -176,35 +179,24 @@ export default function StickyCTA({
 
             {/* Price line */}
             {showSubcopy && (
-              <p
-                className="
-                  mt-2 text-[13px] leading-5 text-neutral-700 text-center
-                "
-              >
+              <p className="mt-3 text-center text-[13px] text-gray-600 leading-relaxed">
                 {SUBCOPY}
               </p>
             )}
 
-            {/* Trust row */}
+            {/* Trust badges - 2 columns on mobile */}
             {showTrustChips && (
-              <div
-                className="
-                  mt-3 grid grid-flow-row auto-rows-max
-                  grid-cols-2 xs:grid-cols-3 sm:grid-cols-4
-                  gap-2
-                  justify-items-center
-                "
-              >
+              <div className="mt-4 grid grid-cols-2 gap-2">
                 {TRUST_CHIPS.map((t) => (
                   <span
                     key={t}
                     className="
                       inline-flex items-center justify-center
-                      rounded-lg border border-black
-                      text-black text-[12px] leading-[18px]
-                      px-2.5 py-1.5
+                      rounded-md border border-gray-300 bg-white
+                      text-gray-700 text-[11px] font-medium
+                      px-3 py-2
                       whitespace-nowrap
-                      min-h-[28px] min-w-[112px]
+                      min-h-[32px]
                     "
                   >
                     {t}
@@ -220,11 +212,11 @@ export default function StickyCTA({
       <div className="hidden sm:block ml-auto pointer-events-auto">
         <div
           className="
-            rounded-2xl bg-white/90 backdrop-blur
-            shadow-[0_12px_36px_rgba(0,0,0,0.08)]
-            ring-1 ring-black/5
-            px-5 py-5
-            max-w-[420px]
+            rounded-xl bg-white/95 backdrop-blur
+            shadow-[0_8px_25px_rgba(0,0,0,0.12)]
+            border border-gray-200/50
+            px-6 py-6
+            max-w-[380px]
           "
         >
           {/* CTA button */}
@@ -233,13 +225,16 @@ export default function StickyCTA({
             aria-label={companyName ? `Activate for ${companyName} — go live in 24 hours` : "Activate on your domain — go live in 24 hours"}
             className="
               inline-flex w-full items-center justify-center
-              rounded-full text-white
-              text-[17px] font-semibold leading-tight tracking-[-0.01em]
-              px-6 py-4 min-h-[60px]
-              focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600
-              transition-colors
+              rounded-lg text-white font-semibold
+              text-[16px] leading-tight
+              px-6 py-4 min-h-[56px]
+              focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
+              transition-all duration-200
             "
-            style={{ backgroundColor: companyColor }}
+            style={{ 
+              backgroundColor: companyColor,
+              '--tw-ring-color': companyColor
+            } as React.CSSProperties & { '--tw-ring-color': string }}
             onMouseEnter={(e) => {
               e.currentTarget.style.backgroundColor = companyColorHover;
             }}
@@ -252,31 +247,24 @@ export default function StickyCTA({
 
           {/* Price line */}
           {showSubcopy && (
-            <div className="mt-2 text-center">
-              <span className="text-[13px] leading-5 text-neutral-700">{SUBCOPY}</span>
-            </div>
+            <p className="mt-3 text-center text-[13px] text-gray-600 leading-relaxed">
+              {SUBCOPY}
+            </p>
           )}
 
-          {/* Trust row */}
+          {/* Trust badges - single row on desktop, wrap to 2 rows if needed */}
           {showTrustChips && (
-            <div
-              className="
-                mt-3 grid grid-flow-row auto-rows-max
-                grid-cols-2 md:grid-cols-4
-                gap-2
-                justify-items-center
-              "
-            >
+            <div className="mt-4 flex flex-wrap gap-2 justify-center">
               {TRUST_CHIPS.map((t) => (
                 <span
                   key={t}
                   className="
                     inline-flex items-center justify-center
-                    rounded-lg border border-black
-                    text-black text-[12px] leading-[18px]
-                    px-2.5 py-1.5
+                    rounded-md border border-gray-300 bg-white
+                    text-gray-700 text-[11px] font-medium
+                    px-3 py-2
                     whitespace-nowrap
-                    min-h-[28px] min-w-[120px]
+                    min-h-[32px] flex-1 min-w-[80px] max-w-[90px]
                   "
                 >
                   {t}
