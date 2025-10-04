@@ -233,10 +233,20 @@ export default function StickyCTA({
               onMouseEnter={(e) => {
                 e.currentTarget.style.transform = "translateY(-2px) scale(1.02)";
                 e.currentTarget.style.boxShadow = "0 16px 32px rgba(16,24,40,0.2), 0 4px 8px rgba(16,24,40,0.15)";
+                // Trigger shimmer effect
+                const shimmer = e.currentTarget.querySelector('span[style*="linear-gradient(90deg"]') as HTMLElement;
+                if (shimmer) {
+                  shimmer.style.left = "100%";
+                }
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.transform = "translateY(0) scale(1)";
                 e.currentTarget.style.boxShadow = "0 8px 20px rgba(16,24,40,0.15), 0 2px 4px rgba(16,24,40,0.1)";
+                // Reset shimmer effect
+                const shimmer = e.currentTarget.querySelector('span[style*="linear-gradient(90deg"]') as HTMLElement;
+                if (shimmer) {
+                  shimmer.style.left = "-100%";
+                }
               }}
               onMouseDown={(e) => {
                 e.currentTarget.style.transform = "translateY(0) scale(0.98)";
@@ -253,11 +263,13 @@ export default function StickyCTA({
                 e.currentTarget.style.boxShadow = "0 8px 20px rgba(16,24,40,0.15), 0 2px 4px rgba(16,24,40,0.1)";
               }}
             >
-              {/* Enhanced gloss effect */}
+              {/* Shimmer effect */}
               <span 
-                className="absolute inset-0 rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                className="absolute inset-0 rounded-full pointer-events-none"
                 style={{ 
-                  background: "linear-gradient(180deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05))",
+                  background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)",
+                  left: "-100%",
+                  transition: "left 0.8s ease",
                 }}
               />
               {CTA_LABEL}
@@ -316,10 +328,20 @@ export default function StickyCTA({
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = "translateY(-2px) scale(1.02)";
               e.currentTarget.style.boxShadow = "0 16px 32px rgba(16,24,40,0.2), 0 4px 8px rgba(16,24,40,0.15)";
+              // Trigger shimmer effect
+              const shimmer = e.currentTarget.querySelector('span[style*="linear-gradient(90deg"]') as HTMLElement;
+              if (shimmer) {
+                shimmer.style.left = "100%";
+              }
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.transform = "translateY(0) scale(1)";
               e.currentTarget.style.boxShadow = "0 8px 20px rgba(16,24,40,0.15), 0 2px 4px rgba(16,24,40,0.1)";
+              // Reset shimmer effect
+              const shimmer = e.currentTarget.querySelector('span[style*="linear-gradient(90deg"]') as HTMLElement;
+              if (shimmer) {
+                shimmer.style.left = "-100%";
+              }
             }}
             onMouseDown={(e) => {
               e.currentTarget.style.transform = "translateY(0) scale(0.98)";
@@ -336,11 +358,13 @@ export default function StickyCTA({
               e.currentTarget.style.boxShadow = "0 8px 20px rgba(16,24,40,0.15), 0 2px 4px rgba(16,24,40,0.1)";
             }}
           >
-            {/* Enhanced gloss effect */}
+            {/* Shimmer effect */}
             <span 
-              className="absolute inset-0 rounded-full pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+              className="absolute inset-0 rounded-full pointer-events-none"
               style={{ 
-                background: "linear-gradient(180deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05))",
+                background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)",
+                left: "-100%",
+                transition: "left 0.8s ease",
               }}
             />
             {CTA_LABEL}
