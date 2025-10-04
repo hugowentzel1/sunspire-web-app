@@ -33,7 +33,7 @@ const BRAND_600 = "var(--brand-600, #2563eb)"; // fallback: blue-600
 const BRAND_700 = "var(--brand-700, #1d4ed8)";
 
 const NEUTRAL_800 = "rgb(38 38 38)"; // neutral text tone
-const CARD_BG     = "#F7F8FA";       // near-white pill surface
+const CARD_BG     = "#FFFFFF";       // pure white pill surface
 
 // ---- Helpers ----
 function isLikelyBottomBanner(el: HTMLElement): boolean {
@@ -213,7 +213,7 @@ export default function StickyCTA({
             )}
 
             {showTrust && (
-              <div role="list" className="mt-3 flex flex-wrap items-center gap-8">
+              <div role="list" className="mt-3 flex flex-wrap items-center gap-3">
                 <QuietBadge icon={ShieldCheck} ariaLabel="SOC 2 attestation">SOC 2</QuietBadge>
                 <QuietBadge icon={Lock}        ariaLabel="GDPR compliant">GDPR</QuietBadge>
                 <QuietBadge icon={SunMedium}   ariaLabel="NREL PVWatts data">NREL PVWatts®</QuietBadge>
@@ -256,7 +256,7 @@ export default function StickyCTA({
           )}
 
           {showTrust && (
-            <div role="list" className="mt-3 flex flex-wrap items-center gap-8">
+            <div role="list" className="mt-3 flex flex-wrap items-center gap-3">
               <QuietBadge icon={ShieldCheck} ariaLabel="SOC 2 attestation">SOC 2</QuietBadge>
               <QuietBadge icon={Lock}        ariaLabel="GDPR compliant">GDPR</QuietBadge>
               <QuietBadge icon={SunMedium}   ariaLabel="NREL PVWatts data">NREL PVWatts®</QuietBadge>
