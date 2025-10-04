@@ -12,7 +12,6 @@ import { Section } from '@/components/layout/Section';
 import { Stack } from '@/components/layout/Stack';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
-import StickyCTA from '@/components/cta/StickyCTA';
 
 export default function PricingPage() {
   const searchParams = useSearchParams();
