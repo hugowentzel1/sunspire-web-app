@@ -51,7 +51,7 @@ function isLikelyBottomBanner(el: HTMLElement): boolean {
   return nearBottom || inLowerThird;
 }
 
-// Clean white trust badge with company color icon
+// Uniform trust badge with fixed dimensions and white background
 function PremiumBadge({
   icon: Icon,
   children,
@@ -70,20 +70,29 @@ function PremiumBadge({
       role="listitem"
       aria-label={ariaLabel}
       className={[
-        "inline-flex items-center gap-2 rounded-full border border-black/10",
-        "px-3 py-[7px]",
+        "inline-flex items-center justify-center gap-2",
+        "rounded-full select-none",
+        // Fixed height and equal width on breakpoints:
+        "h-10 sm:h-10",
+        "w-[168px] sm:w-[172px]",              // equal pill width
+        "px-3",                                 // inner padding (keeps icon/label comfy)
         "text-[13px] leading-[18px] font-medium",
-        "transition-all duration-200 ease-in-out",
+        "transition-colors duration-150 ease-out",
+        "overflow-hidden",                      // prevent spill
+        "whitespace-nowrap",
         className,
       ].join(" ")}
       style={{
-        backgroundColor: "#FFFFFF", // Pure white background
-        color: NEUTRAL_800,
+        backgroundColor: "#FFFFFF",            // pure white surface
+        color: "rgb(38 38 38)",
+        border: "1px solid rgba(0,0,0,0.85)",  // BLACK outline as requested
       }}
+      // subtle hover tint using brand-50; safe if var is present
+      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "color-mix(in srgb, var(--brand-50, #f5f7fa) 18%, #FFFFFF)")}
+      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#FFFFFF")}
     >
-      {/* Modern icon in company color */}
-      <Icon aria-hidden className="h-[14px] w-[14px]" style={{ color: companyColor }} />
-      <span className="whitespace-nowrap">{children}</span>
+      <Icon aria-hidden className="h-[14px] w-[14px] flex-shrink-0" style={{ color: companyColor }} />
+      <span className="min-w-0 overflow-hidden text-ellipsis">{children}</span>
     </span>
   );
 }
@@ -222,7 +231,7 @@ export default function StickyCTA({
             )}
 
             {showTrust && (
-              <div role="list" className="mt-4 grid grid-cols-2 gap-3 justify-items-center">
+              <div role="list" className="mt-3 grid grid-cols-2 gap-3 justify-items-center items-center">
                 <PremiumBadge icon={ShieldCheck} ariaLabel="SOC 2 attestation" companyColor={companyColor}>SOC 2</PremiumBadge>
                 <PremiumBadge icon={Lock}        ariaLabel="GDPR compliant" companyColor={companyColor}>GDPR</PremiumBadge>
                 <PremiumBadge icon={BarChart3}   ariaLabel="NREL PVWatts data" companyColor={companyColor}>NREL PVWatts®</PremiumBadge>
@@ -265,7 +274,7 @@ export default function StickyCTA({
           )}
 
           {showTrust && (
-            <div role="list" className="mt-4 grid grid-cols-2 gap-3 justify-items-center">
+            <div role="list" className="mt-3 grid grid-cols-2 gap-3 justify-items-center items-center">
               <PremiumBadge icon={ShieldCheck} ariaLabel="SOC 2 attestation" companyColor={companyColor}>SOC 2</PremiumBadge>
               <PremiumBadge icon={Lock}        ariaLabel="GDPR compliant" companyColor={companyColor}>GDPR</PremiumBadge>
               <PremiumBadge icon={BarChart3}   ariaLabel="NREL PVWatts data" companyColor={companyColor}>NREL PVWatts®</PremiumBadge>
