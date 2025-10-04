@@ -22,7 +22,7 @@ export default function EarningsMini() {
         />
       </div>
       <p className="mt-4">
-        <span className="text-[var(--brand-600)] font-semibold">{clients}</span> clients → <b className="text-[var(--brand-600)]">${recurring}/mo recurring</b> + <b className="text-[var(--brand-600)]">${setup} setup</b>
+        <span className="text-gray-600 font-semibold">{clients}</span> clients → <b className="text-brand-600">${recurring}/mo recurring</b> + <b className="text-brand-600">${setup} setup</b>
       </p>
     </Card>
   );
