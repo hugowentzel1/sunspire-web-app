@@ -1,60 +1,22 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import clsx from "clsx";
-import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
 import { ShieldCheck, Lock, SunMedium, Users } from "lucide-react";
 
-const BRAND_50  = "var(--brand-50)";
-const BRAND_600 = "var(--brand-600)";
-const BRAND_700 = "var(--brand-700)";
+/**
+ * Brand-aware sticky CTA for Sunspire:
+ * - All color accents use CSS vars:
+ *   --brand-50, --brand-600, --brand-700
+ * - No hardcoded reds.
+ * - Cookie-aware offset (no overlap, no jitter).
+ * - Luxury quiet trust badges: near-white pills, brand line icons, neutral text.
+ */
 
-// Neutral text so CTA remains the hero
-const NEUTRAL_TEXT = "rgb(38 38 38)"; // ~neutral-800
-
-function TrustBadge({
-  icon: Icon,
-  children,
-  className = "",
-}: {
-  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <span
-      className={[
-        "inline-flex w-full items-center justify-center gap-2",
-        "rounded-full border bg-white px-3.5 py-2",
-        "text-[13px] leading-[18px] font-medium",
-        "transition-colors duration-150 ease-out",
-        "hover:bg-[color-mix(in_srgb,_var(--brand-50)_16%,_white)]",
-        className,
-      ].join(" ")}
-      style={{
-        borderColor: BRAND_600,
-        color: NEUTRAL_TEXT,
-      }}
-    >
-      {/* line icon only, brand color */}
-      <Icon aria-hidden className="h-[14px] w-[14px]" style={{ color: BRAND_700 }} />
-      <span className="truncate">{children}</span>
-    </span>
-  );
-}
-
-type StickyCTAProps = {
-  href?: string;
-  companyName?: string;
-  showSubcopy?: boolean;     // default true
-  showTrustChips?: boolean;  // default true
-  testId?: string;
-};
-
+// ---- Copy ----
 const CTA_LABEL = "Activate on Your Domain — 24 Hours";
 const SUBCOPY   = "$99/mo + $399 setup • Cancel anytime";
 
-// Candidate cookie banner selectors.
-// Add your exact selector here if you have one.
+// ---- Cookie banner detection ----
 const COOKIE_CANDIDATE_SELECTORS = [
   '[data-cookie-banner]',
   '#cookie-consent',
@@ -65,6 +27,15 @@ const COOKIE_CANDIDATE_SELECTORS = [
   '[class*="cookie"]'
 ];
 
+// ---- Color variables (fallbacks; you set real values per-company) ----
+const BRAND_50  = "var(--brand-50, #f5f7fa)";
+const BRAND_600 = "var(--brand-600, #2563eb)"; // fallback: blue-600
+const BRAND_700 = "var(--brand-700, #1d4ed8)";
+
+const NEUTRAL_800 = "rgb(38 38 38)"; // neutral text tone
+const CARD_BG     = "#F7F8FA";       // near-white pill surface
+
+// ---- Helpers ----
 function isLikelyBottomBanner(el: HTMLElement): boolean {
   const cs = getComputedStyle(el);
   if (!(cs.position === "fixed" || cs.position === "sticky")) return false;
@@ -74,26 +45,61 @@ function isLikelyBottomBanner(el: HTMLElement): boolean {
   const vh = window.innerHeight || document.documentElement.clientHeight;
   if (rect.height < 40 || rect.width < 120) return false;
 
-  // Near the bottom (within 4px), or lives in lower third of the viewport
   const nearBottom = Math.abs(vh - rect.bottom) <= 4;
   const inLowerThird = rect.top > vh * (2 / 3);
   return nearBottom || inLowerThird;
 }
 
+// Quiet, luxury pill badge (brand icon, neutral text)
+function QuietBadge({
+  icon: Icon,
+  children,
+  ariaLabel,
+}: {
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  children: React.ReactNode;
+  ariaLabel?: string;
+}) {
+  return (
+    <span
+      role="listitem"
+      aria-label={ariaLabel}
+      className={[
+        "inline-flex items-center gap-2 rounded-full",
+        "px-3 py-[7px]",
+        "text-[13px] leading-[18px] font-medium",
+        "shadow-[0_1px_0_rgba(0,0,0,0.02)]",
+        "transition-colors duration-150 ease-out",
+      ].join(" ")}
+      style={{
+        backgroundColor: CARD_BG,
+        color: NEUTRAL_800,
+      }}
+    >
+      {/* crisp line icon in brand color */}
+      <Icon aria-hidden className="h-[14px] w-[14px]" style={{ color: BRAND_600 }} />
+      <span className="whitespace-nowrap">{children}</span>
+    </span>
+  );
+}
+
+type StickyCTAProps = {
+  href?: string;                 // destination (pricing/checkout)
+  companyName?: string;          // for ARIA label context
+  showSubcopy?: boolean;         // default true
+  showTrust?: boolean;           // default true
+  testId?: string;
+};
+
 export default function StickyCTA({
   href = "/pricing",
   companyName,
   showSubcopy = true,
-  showTrustChips = true,
+  showTrust = true,
   testId = "sticky-cta",
 }: StickyCTAProps) {
   const rootRef = useRef<HTMLDivElement | null>(null);
   const [bottomOffset, setBottomOffset] = useState<number>(16);
-  const brand = useBrandTakeover();
-
-  // Get company color or fallback to red
-  const companyColor = brand?.primary || "#ef4444"; // red-500 fallback
-  const companyColorHover = brand?.primary || "#dc2626"; // red-600 fallback
 
   const calcOffset = useMemo(() => {
     let raf: number | null = null;
@@ -101,17 +107,18 @@ export default function StickyCTA({
       if (raf) cancelAnimationFrame(raf);
       raf = requestAnimationFrame(() => {
         try {
-          const safeProbe = document.createElement("div");
-          safeProbe.style.cssText = `
+          // safe area via env() probe
+          const probe = document.createElement("div");
+          probe.style.cssText = `
             position: fixed; inset: auto 0 0 0;
             padding-bottom: env(safe-area-inset-bottom);
             visibility: hidden; pointer-events: none;
           `;
-          document.body.appendChild(safeProbe);
-          const safe = parseFloat(getComputedStyle(safeProbe).paddingBottom || "0") || 0;
-          safeProbe.remove();
+          document.body.appendChild(probe);
+          const safe = parseFloat(getComputedStyle(probe).paddingBottom || "0") || 0;
+          probe.remove();
 
-          // Find visible cookie banners (ignore our own sticky).
+          // find cookie banners (ignore our own subtree)
           const banners = new Set<HTMLElement>();
           for (const sel of COOKIE_CANDIDATE_SELECTORS) {
             document.querySelectorAll<HTMLElement>(sel).forEach((el) => {
@@ -121,7 +128,7 @@ export default function StickyCTA({
             });
           }
 
-          // Measure max overlap with bottom viewport
+          // measure max overlap at viewport bottom
           const vh = window.innerHeight || document.documentElement.clientHeight;
           let overlap = 0;
           banners.forEach((el) => {
@@ -132,29 +139,25 @@ export default function StickyCTA({
             }
           });
 
-          const BASE = 16;
+          const BASE = 16; // inset from bottom when no banner
           const next = Math.round(BASE + safe + overlap);
-
-          // Only update state if we actually changed by ≥1px to avoid jitter
-          setBottomOffset((prev) => (Math.abs(prev - next) >= 1 ? next : prev));
+          setBottomOffset((prev) => (Math.abs(prev - next) >= 1 ? next : prev)); // avoid micro-jitter
         } catch {
-          // noop
+          /* noop */
         }
       });
     };
   }, []);
 
   useEffect(() => {
-    // Initial and on resize
     const handleResize = () => calcOffset();
     calcOffset();
     window.addEventListener("resize", handleResize);
 
-    // Observe DOM mutations broadly but debounce via rAF in calcOffset
     const mo = new MutationObserver(() => calcOffset());
     mo.observe(document.body, { childList: true, subtree: true, attributes: true });
 
-    // Lightweight periodic check to catch CSS-only animation of banners
+    // periodic check for CSS-only animated banners
     const id = window.setInterval(calcOffset, 800);
 
     return () => {
@@ -168,98 +171,96 @@ export default function StickyCTA({
     <div
       ref={rootRef}
       data-testid={testId}
-      data-sticky-cta // used to ignore us in queries
       className={clsx(
         "fixed z-[70] pointer-events-none w-full sm:w-auto",
-        // Positioning: mobile full-width with 16px side insets; desktop true bottom-right
-        // (We use Tailwind responsive utilities so we don't set left on desktop)
+        // mobile: full width with 16px side insets; desktop: true bottom-right (no left)
         "left-4 right-4 sm:left-auto sm:right-4"
       )}
       style={{ bottom: `${bottomOffset}px` }}
       aria-live="polite"
     >
-      {/* Mobile: full-width sticky bar */}
+      {/* Mobile: full-width sticky bar (unchanged size) */}
       <div className="sm:hidden pointer-events-auto">
         <div className="mx-auto max-w-[720px]">
-          <div
-            className="
-              rounded-xl bg-white/95 backdrop-blur
-              shadow-[0_8px_25px_rgba(0,0,0,0.12)]
-              border border-gray-200/50
-              px-6 py-6
-            "
-          >
-            {/* CTA button */}
+          <div className="rounded-2xl bg-white/90 backdrop-blur shadow-[0_10px_30px_rgba(0,0,0,0.08)] ring-1 ring-black/5 px-4 py-4">
             <Link
               href={href}
-              aria-label={companyName ? `Activate for ${companyName} — go live in 24 hours` : "Activate on your domain — go live in 24 hours"}
-              className="btn-cta w-full text-center relative overflow-hidden"
-              style={{ 
-                background: `linear-gradient(135deg, ${companyColor} 0%, ${companyColor} 50%, color-mix(in srgb, ${companyColor} 85%, white) 100%)`,
-                '--tw-ring-color': companyColor
-              } as React.CSSProperties & { '--tw-ring-color': string }}
+              aria-label={
+                companyName
+                  ? `Activate for ${companyName} — go live in 24 hours`
+                  : "Activate on your domain — go live in 24 hours"
+              }
+              className={[
+                "block w-full rounded-full text-white",
+                "text-[16px] font-semibold leading-tight tracking-[-0.01em]",
+                "px-5 py-3.5 min-h-[52px]",
+                "transition-colors",
+                // brand-aware background + hover + focus ring
+                "focus:outline-none focus-visible:ring-2",
+                "focus-visible:ring-[color:var(--brand-600)]",
+                "hover:bg-[color:var(--brand-700)]",
+                "bg-[color:var(--brand-600)]",
+              ].join(" ")}
+              // no inline styles needed; classes above use CSS vars
             >
-              <span className="relative z-10">{CTA_LABEL}</span>
+              {CTA_LABEL}
             </Link>
 
-            {/* Price line */}
             {showSubcopy && (
-              <p className="mt-4 text-center text-[13px] text-gray-600 leading-relaxed">
+              <p className="mt-2 text-center text-[13px] leading-5 text-neutral-700">
                 {SUBCOPY}
               </p>
             )}
 
-            {/* Trust row — quiet, brand-outlined pills, equal widths, 2×2 */}
-            {showTrustChips && (
-              <div className="mt-3 grid grid-cols-2 gap-2">
-                <TrustBadge icon={ShieldCheck}>SOC 2</TrustBadge>
-                <TrustBadge icon={Lock}>GDPR</TrustBadge>
-                <TrustBadge icon={SunMedium}>NREL PVWatts®</TrustBadge>
-                <TrustBadge icon={Users}>113+ installers live</TrustBadge>
+            {showTrust && (
+              <div role="list" className="mt-3 flex flex-wrap items-center gap-8">
+                <QuietBadge icon={ShieldCheck} ariaLabel="SOC 2 attestation">SOC 2</QuietBadge>
+                <QuietBadge icon={Lock}        ariaLabel="GDPR compliant">GDPR</QuietBadge>
+                <QuietBadge icon={SunMedium}   ariaLabel="NREL PVWatts data">NREL PVWatts®</QuietBadge>
+                <QuietBadge icon={Users}       ariaLabel="Installers using Sunspire">113+ installers live</QuietBadge>
               </div>
             )}
           </div>
         </div>
       </div>
 
-      {/* Desktop: bottom-right pill */}
+      {/* Desktop: bottom-right pill (unchanged size) */}
       <div className="hidden sm:block ml-auto pointer-events-auto">
-        <div
-          className="
-            rounded-xl bg-white/95 backdrop-blur
-            shadow-[0_8px_25px_rgba(0,0,0,0.12)]
-            border border-gray-200/50
-            px-6 py-6
-            max-w-[420px]
-          "
-        >
-          {/* CTA button */}
+        <div className="rounded-2xl bg-white/90 backdrop-blur shadow-[0_12px_36px_rgba(0,0,0,0.08)] ring-1 ring-black/5 px-5 py-5 max-w-[420px]">
           <Link
             href={href}
-            aria-label={companyName ? `Activate for ${companyName} — go live in 24 hours` : "Activate on your domain — go live in 24 hours"}
-            className="btn-cta w-full text-center relative overflow-hidden"
-            style={{ 
-              background: `linear-gradient(135deg, ${companyColor} 0%, ${companyColor} 50%, color-mix(in srgb, ${companyColor} 85%, white) 100%)`,
-              '--tw-ring-color': companyColor
-            } as React.CSSProperties & { '--tw-ring-color': string }}
+            aria-label={
+              companyName
+                ? `Activate for ${companyName} — go live in 24 hours`
+                : "Activate on your domain — go live in 24 hours"
+            }
+            className={[
+              "inline-flex w-full items-center justify-center rounded-full text-white",
+              "text-[17px] font-semibold leading-tight tracking-[-0.01em]",
+              "px-6 py-4 min-h-[60px]",
+              "transition-colors",
+              // brand-aware states
+              "focus:outline-none focus-visible:ring-2",
+              "focus-visible:ring-[color:var(--brand-600)]",
+              "hover:bg-[color:var(--brand-700)]",
+              "bg-[color:var(--brand-600)]",
+            ].join(" ")}
           >
-            <span className="relative z-10">{CTA_LABEL}</span>
+            {CTA_LABEL}
           </Link>
 
-          {/* Price line */}
           {showSubcopy && (
-            <p className="mt-4 text-center text-[13px] text-gray-600 leading-relaxed">
+            <div className="mt-2 text-center text-[13px] leading-5 text-neutral-700">
               {SUBCOPY}
-            </p>
+            </div>
           )}
 
-          {/* Trust row — quiet, brand-outlined pills, equal widths, 2×2 */}
-          {showTrustChips && (
-            <div className="mt-3 grid grid-cols-2 gap-2">
-              <TrustBadge icon={ShieldCheck}>SOC 2</TrustBadge>
-              <TrustBadge icon={Lock}>GDPR</TrustBadge>
-              <TrustBadge icon={SunMedium}>NREL PVWatts®</TrustBadge>
-              <TrustBadge icon={Users}>113+ installers live</TrustBadge>
+          {showTrust && (
+            <div role="list" className="mt-3 flex flex-wrap items-center gap-8">
+              <QuietBadge icon={ShieldCheck} ariaLabel="SOC 2 attestation">SOC 2</QuietBadge>
+              <QuietBadge icon={Lock}        ariaLabel="GDPR compliant">GDPR</QuietBadge>
+              <QuietBadge icon={SunMedium}   ariaLabel="NREL PVWatts data">NREL PVWatts®</QuietBadge>
+              <QuietBadge icon={Users}       ariaLabel="Installers using Sunspire">113+ installers live</QuietBadge>
             </div>
           )}
         </div>
