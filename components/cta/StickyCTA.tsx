@@ -148,7 +148,7 @@ export default function StickyCTA({
               rounded-xl bg-white/95 backdrop-blur
               shadow-[0_8px_25px_rgba(0,0,0,0.12)]
               border border-gray-200/50
-              px-6 py-5
+              px-6 py-6
             "
           >
             {/* CTA button */}
@@ -159,7 +159,7 @@ export default function StickyCTA({
                 block w-full rounded-lg
                 text-white font-semibold
                 text-[16px] leading-tight
-                px-6 py-4 min-h-[56px]
+                px-6 py-5 min-h-[64px]
                 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
                 transition-all duration-200
               "
@@ -179,24 +179,24 @@ export default function StickyCTA({
 
             {/* Price line */}
             {showSubcopy && (
-              <p className="mt-3 text-center text-[13px] text-gray-600 leading-relaxed">
+              <p className="mt-4 text-center text-[13px] text-gray-600 leading-relaxed">
                 {SUBCOPY}
               </p>
             )}
 
-            {/* Trust badges - 2 columns on mobile */}
+            {/* Trust badges - balanced 2x2 grid on mobile */}
             {showTrustChips && (
-              <div className="mt-4 grid grid-cols-2 gap-2">
+              <div className="mt-5 grid grid-cols-2 gap-3">
                 {TRUST_CHIPS.map((t) => (
                   <span
                     key={t}
                     className="
                       inline-flex items-center justify-center
-                      rounded-md border border-gray-300 bg-white
-                      text-gray-700 text-[11px] font-medium
-                      px-3 py-2
+                      rounded-full border border-black bg-white
+                      text-black text-[11px] font-medium
+                      px-4 py-2.5
                       whitespace-nowrap
-                      min-h-[32px]
+                      min-h-[36px] w-full
                     "
                   >
                     {t}
@@ -216,7 +216,7 @@ export default function StickyCTA({
             shadow-[0_8px_25px_rgba(0,0,0,0.12)]
             border border-gray-200/50
             px-6 py-6
-            max-w-[380px]
+            max-w-[420px]
           "
         >
           {/* CTA button */}
@@ -227,7 +227,7 @@ export default function StickyCTA({
               inline-flex w-full items-center justify-center
               rounded-lg text-white font-semibold
               text-[16px] leading-tight
-              px-6 py-4 min-h-[56px]
+              px-6 py-5 min-h-[64px]
               focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
               transition-all duration-200
             "
@@ -247,24 +247,24 @@ export default function StickyCTA({
 
           {/* Price line */}
           {showSubcopy && (
-            <p className="mt-3 text-center text-[13px] text-gray-600 leading-relaxed">
+            <p className="mt-4 text-center text-[13px] text-gray-600 leading-relaxed">
               {SUBCOPY}
             </p>
           )}
 
-          {/* Trust badges - single row on desktop, wrap to 2 rows if needed */}
+          {/* Trust badges - balanced 2x2 grid on desktop */}
           {showTrustChips && (
-            <div className="mt-4 flex flex-wrap gap-2 justify-center">
+            <div className="mt-5 grid grid-cols-2 gap-3">
               {TRUST_CHIPS.map((t) => (
                 <span
                   key={t}
                   className="
                     inline-flex items-center justify-center
-                    rounded-md border border-gray-300 bg-white
-                    text-gray-700 text-[11px] font-medium
-                    px-3 py-2
+                    rounded-full border border-black bg-white
+                    text-black text-[11px] font-medium
+                    px-4 py-2.5
                     whitespace-nowrap
-                    min-h-[32px] flex-1 min-w-[80px] max-w-[90px]
+                    min-h-[36px] w-full
                   "
                 >
                   {t}
