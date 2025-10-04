@@ -77,6 +77,10 @@ export async function POST(req: NextRequest) {
           price: monthlyPrice,
           quantity: 1,
         },
+        {
+          price: setupPrice,
+          quantity: 1,
+        },
       ],
       subscription_data: {
         metadata: {
@@ -174,6 +178,10 @@ export async function GET(req: NextRequest) {
       line_items: [
         {
           price: monthlyPrice,
+          quantity: 1,
+        },
+        {
+          price: setupPrice,
           quantity: 1,
         },
       ],
