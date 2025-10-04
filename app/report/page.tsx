@@ -1039,7 +1039,7 @@ function ReportContent() {
         <StickyCTA
           href="/pricing"
           companyName="Tesla"
-          showTrustChips={true}
+          showTrust={true}
         />
       )}
 
