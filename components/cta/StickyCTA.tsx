@@ -155,26 +155,13 @@ export default function StickyCTA({
             <Link
               href={href}
               aria-label={companyName ? `Activate for ${companyName} — go live in 24 hours` : "Activate on your domain — go live in 24 hours"}
-              className="
-                block w-full rounded-lg
-                text-white font-semibold
-                text-[16px] leading-tight
-                px-6 py-5 min-h-[64px]
-                focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
-                transition-all duration-200
-              "
+              className="btn-cta w-full text-center relative overflow-hidden"
               style={{ 
-                backgroundColor: companyColor,
+                background: `linear-gradient(135deg, ${companyColor} 0%, ${companyColor} 50%, color-mix(in srgb, ${companyColor} 85%, white) 100%)`,
                 '--tw-ring-color': companyColor
               } as React.CSSProperties & { '--tw-ring-color': string }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = companyColorHover;
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = companyColor;
-              }}
             >
-              {CTA_LABEL}
+              <span className="relative z-10">{CTA_LABEL}</span>
             </Link>
 
             {/* Price line */}
@@ -187,21 +174,30 @@ export default function StickyCTA({
             {/* Trust badges - balanced 2x2 grid on mobile */}
             {showTrustChips && (
               <div className="mt-5 grid grid-cols-2 gap-3">
-                {TRUST_CHIPS.map((t) => (
-                  <span
-                    key={t}
-                    className="
-                      inline-flex items-center justify-center
-                      rounded-full border border-black bg-white
-                      text-black text-[11px] font-medium
-                      px-4 py-2.5
-                      whitespace-nowrap
-                      min-h-[36px] w-full
-                    "
-                  >
-                    {t}
-                  </span>
-                ))}
+                {TRUST_CHIPS.map((t, index) => {
+                  const icons = ['🔒', '🛡️', '☀️', '👥'];
+                  return (
+                    <span
+                      key={t}
+                      className="
+                        inline-flex items-center justify-center gap-1.5
+                        rounded-full text-[11px] font-medium
+                        px-4 py-3
+                        whitespace-nowrap
+                        min-h-[36px] w-full
+                        transition-all duration-200 hover:shadow-md hover:scale-[1.02]
+                      "
+                      style={{
+                        background: `linear-gradient(135deg, white 0%, color-mix(in srgb, ${companyColor} 20%, white) 100%)`,
+                        color: companyColor,
+                        border: `1px solid ${companyColor}`
+                      }}
+                    >
+                      <span className="text-[10px]">{icons[index]}</span>
+                      {t}
+                    </span>
+                  );
+                })}
               </div>
             )}
           </div>
@@ -223,26 +219,13 @@ export default function StickyCTA({
           <Link
             href={href}
             aria-label={companyName ? `Activate for ${companyName} — go live in 24 hours` : "Activate on your domain — go live in 24 hours"}
-            className="
-              inline-flex w-full items-center justify-center
-              rounded-lg text-white font-semibold
-              text-[16px] leading-tight
-              px-6 py-5 min-h-[64px]
-              focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2
-              transition-all duration-200
-            "
+            className="btn-cta w-full text-center relative overflow-hidden"
             style={{ 
-              backgroundColor: companyColor,
+              background: `linear-gradient(135deg, ${companyColor} 0%, ${companyColor} 50%, color-mix(in srgb, ${companyColor} 85%, white) 100%)`,
               '--tw-ring-color': companyColor
             } as React.CSSProperties & { '--tw-ring-color': string }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.backgroundColor = companyColorHover;
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = companyColor;
-            }}
           >
-            {CTA_LABEL}
+            <span className="relative z-10">{CTA_LABEL}</span>
           </Link>
 
           {/* Price line */}
@@ -255,21 +238,30 @@ export default function StickyCTA({
           {/* Trust badges - balanced 2x2 grid on desktop */}
           {showTrustChips && (
             <div className="mt-5 grid grid-cols-2 gap-3">
-              {TRUST_CHIPS.map((t) => (
-                <span
-                  key={t}
-                  className="
-                    inline-flex items-center justify-center
-                    rounded-full border border-black bg-white
-                    text-black text-[11px] font-medium
-                    px-4 py-2.5
-                    whitespace-nowrap
-                    min-h-[36px] w-full
-                  "
-                >
-                  {t}
-                </span>
-              ))}
+              {TRUST_CHIPS.map((t, index) => {
+                const icons = ['🔒', '🛡️', '☀️', '👥'];
+                return (
+                  <span
+                    key={t}
+                    className="
+                      inline-flex items-center justify-center gap-1.5
+                      rounded-full text-[11px] font-medium
+                      px-4 py-3
+                      whitespace-nowrap
+                      min-h-[36px] w-full
+                      transition-all duration-200 hover:shadow-md hover:scale-[1.02]
+                    "
+                    style={{
+                      background: `linear-gradient(135deg, white 0%, color-mix(in srgb, ${companyColor} 20%, white) 100%)`,
+                      color: companyColor,
+                      border: `1px solid ${companyColor}`
+                    }}
+                  >
+                    <span className="text-[10px]">{icons[index]}</span>
+                    {t}
+                  </span>
+                );
+              })}
             </div>
           )}
         </div>
