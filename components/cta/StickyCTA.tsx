@@ -115,7 +115,7 @@ export default function StickyCTA({
       });
 
       const BASE = 16; // base spacing from viewport bottom when no banner
-      const next = Math.round(BASE + (cookieHeight > 0 ? cookieHeight + 16 : 0) + safe); // +16 for just above the banner
+      const next = Math.round(BASE + cookieHeight + safe); // Move up by banner height (original spec)
       console.log('🍪 Setting bottom offset:', next, 'cookieHeight:', cookieHeight, 'BASE:', BASE, 'safe:', safe);
       setBottomOffset(next);
     };
