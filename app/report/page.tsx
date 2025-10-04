@@ -1036,7 +1036,11 @@ function ReportContent() {
 
       {/* Optimized Sticky CTA for Demo Mode */}
       {demoMode && (
-        <StickyCTA />
+        <StickyCTA
+          href="/pricing"
+          companyName="Tesla"
+          showTrustChips={true}
+        />
       )}
 
       {/* LeadModal removed - no popups wanted */}

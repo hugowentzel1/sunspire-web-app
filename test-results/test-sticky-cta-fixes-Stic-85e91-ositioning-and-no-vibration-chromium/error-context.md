@@ -1,0 +1,248 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e6]:
+        - img "tesla logo" [ref=e7]
+        - generic [ref=e8]:
+          - heading "Tesla" [level=1] [ref=e9]
+          - paragraph [ref=e10]: Solar Intelligence
+    - main [ref=e11]:
+      - generic [ref=e12]:
+        - paragraph [ref=e15]: Your branded solar tool is ready to launch.
+        - generic [ref=e16]:
+          - generic [ref=e17]:
+            - img "tesla logo" [ref=e19]
+            - generic [ref=e20]:
+              - heading "New Analysis" [level=1] [ref=e21]
+              - paragraph [ref=e22]: Comprehensive analysis for your property at 123 N Central Ave, Phoenix, AZ
+              - generic [ref=e23]:
+                - generic [ref=e24]: "Data Source: Static"
+                - generic [ref=e25]: •
+                - generic [ref=e26]: Generated on 10/3/2025
+              - generic [ref=e27]:
+                - paragraph [ref=e28]: "Preview: 2 runs left."
+                - paragraph [ref=e29]: Expires in 6d 23h 59m 44s
+          - generic [ref=e30]:
+            - generic [ref=e32]:
+              - generic [ref=e34]: ⚡
+              - generic [ref=e35]: 8.6 kW
+              - generic [ref=e36]: System Size
+            - generic [ref=e38]:
+              - generic [ref=e40]: ☀️
+              - generic [ref=e41]: 11,105,634 kWh
+              - generic [ref=e42]: Annual Production
+            - generic [ref=e43]:
+              - generic [ref=e44]:
+                - generic [ref=e46]: 💰
+                - generic [ref=e47]: — — —
+                - generic [ref=e48]: Net Cost (After ITC)
+              - button "Unlock Full Report" [ref=e50] [cursor=pointer]
+            - generic [ref=e51]:
+              - generic [ref=e52]:
+                - generic [ref=e54]: 📈
+                - generic [ref=e55]: — — —
+                - generic [ref=e56]: Year 1 Savings
+              - button "Unlock Full Report" [ref=e58] [cursor=pointer]
+          - generic [ref=e61]:
+            - generic [ref=e62]:
+              - heading "Your Solar Savings Over Time" [level=3] [ref=e63]
+              - paragraph [ref=e64]: Simple view of how your solar investment pays off over 25 years
+            - application [ref=e68]:
+              - generic [ref=e72]:
+                - generic [ref=e73]:
+                  - generic [ref=e76]: "1"
+                  - generic [ref=e79]: "5"
+                  - generic [ref=e82]: "10"
+                  - generic [ref=e85]: "15"
+                  - generic [ref=e88]: "20"
+                  - generic [ref=e91]: "25"
+                - generic [ref=e93]: Years
+              - generic [ref=e94]:
+                - generic [ref=e95]:
+                  - generic [ref=e98]: $0k
+                  - generic [ref=e101]: $15k
+                  - generic [ref=e104]: $30k
+                  - generic [ref=e107]: $45k
+                  - generic [ref=e110]: $60k
+                - generic [ref=e112]: Total Savings
+            - generic [ref=e124]:
+              - generic [ref=e125]:
+                - generic [ref=e127]: $18k
+                - generic [ref=e128]: Investment
+              - generic [ref=e129]:
+                - generic [ref=e131]: 11 years
+                - generic [ref=e132]: Payback Time
+              - generic [ref=e133]:
+                - generic [ref=e135]: $42k
+                - generic [ref=e136]: 25-Year Savings
+            - paragraph [ref=e138]:
+              - generic [ref=e139]: "How to read this:"
+              - text: The red area shows your total savings growing over time. After 11 years, you'll have saved enough to cover your initial investment. By year 25, you'll have saved $42k total.
+            - img
+          - generic [ref=e140]:
+            - generic [ref=e141]:
+              - generic [ref=e142]:
+                - heading "Financial Analysis" [level=2] [ref=e143]
+                - generic [ref=e144]:
+                  - generic [ref=e145]:
+                    - generic [ref=e146]: Payback Period
+                    - generic [ref=e147]: — — —
+                  - generic [ref=e148]:
+                    - generic [ref=e149]: 25-Year NPV
+                    - generic [ref=e150]: — — —
+                  - generic [ref=e151]:
+                    - generic [ref=e152]: ROI
+                    - generic [ref=e153]: — — —
+                  - generic [ref=e154]:
+                    - generic [ref=e155]: Electricity Rate
+                    - generic [ref=e156]: $0.14/kWh (Static)
+              - button "Unlock Full Report" [ref=e158] [cursor=pointer]
+            - generic [ref=e159]:
+              - generic [ref=e160]:
+                - heading "Environmental Impact" [level=2] [ref=e161]
+                - generic [ref=e162]:
+                  - generic [ref=e163]:
+                    - generic [ref=e164]: CO₂ Offset/Year
+                    - generic [ref=e165]: 10,200 lbs
+                  - generic [ref=e166]:
+                    - generic [ref=e167]: Solar Irradiance
+                    - generic [ref=e168]: 4.5 kWh/m²/day
+                  - generic [ref=e169]:
+                    - generic [ref=e170]: System Tilt
+                    - generic [ref=e171]: 20°
+                  - generic [ref=e172]:
+                    - generic [ref=e173]: System Losses
+                    - generic [ref=e174]: 14%
+              - button "Unlock Full Report" [ref=e176] [cursor=pointer]
+            - generic [ref=e178]:
+              - heading "Calculation Details & Data Sources" [level=2] [ref=e179]
+              - generic [ref=e180]:
+                - heading "Calculation Assumptions" [level=3] [ref=e181]
+                - generic [ref=e182]:
+                  - generic [ref=e183]:
+                    - generic [ref=e184]: Federal Tax Credit (ITC)
+                    - generic [ref=e185]: 30%
+                  - generic [ref=e186]:
+                    - generic [ref=e187]: Cost per Watt
+                    - generic [ref=e188]: $3
+                  - generic [ref=e189]:
+                    - generic [ref=e190]: Panel Degradation
+                    - generic [ref=e191]: 0.5%/year
+                  - generic [ref=e192]:
+                    - generic [ref=e193]: O&M Cost
+                    - generic [ref=e194]: $22/kW/year
+                  - generic [ref=e195]:
+                    - generic [ref=e196]: Rate Increase
+                    - generic [ref=e197]: 2.5%/year
+                  - generic [ref=e198]:
+                    - generic [ref=e199]: Discount Rate
+                    - generic [ref=e200]: 7%
+              - generic [ref=e201]:
+                - heading "Data Sources" [level=3] [ref=e202]
+                - generic [ref=e203]:
+                  - generic [ref=e206]: Solar irradiance data from industry-standard models
+                  - generic [ref=e209]: Utility rates from local utility databases
+                  - generic [ref=e212]: Financial calculations based on current federal and state incentives
+                - generic [ref=e213]:
+                  - paragraph
+                  - paragraph [ref=e214]: Last updated 10/3/2025
+          - generic [ref=e215]:
+            - heading "Ready to Launch Your Branded Tool?" [level=2] [ref=e216]
+            - paragraph [ref=e217]: Get complete financial projections, detailed assumptions, and unblurred savings charts
+            - button "Activate on Your Domain — $99/mo + $399 setup" [ref=e219] [cursor=pointer]
+            - paragraph [ref=e221]: Full version from just $99/mo + $399 setup. Most tools cost $2,500+/mo.
+    - contentinfo [ref=e222]:
+      - generic [ref=e224]:
+        - generic [ref=e225]:
+          - generic [ref=e226]:
+            - heading "Sunspire Solar Intelligence" [level=3] [ref=e227]
+            - paragraph [ref=e228]: Demo for tesla — Powered by Sunspire
+            - generic [ref=e229]:
+              - generic [ref=e230]:
+                - generic [ref=e231]: 📍
+                - generic [ref=e232]: "1700 Northside Drive Suite A7 #5164 Atlanta, GA 30318"
+              - generic [ref=e233]:
+                - generic [ref=e234]: GDPR
+                - generic [ref=e235]: CCPA
+                - generic [ref=e236]: SOC 2
+              - list [ref=e237]:
+                - listitem [ref=e238]:
+                  - generic [ref=e239]: ✉️
+                  - link "support@getsunspire.com" [ref=e240] [cursor=pointer]:
+                    - /url: mailto:support@getsunspire.com
+                - listitem [ref=e241]:
+                  - generic [ref=e242]: ✉️
+                  - link "billing@getsunspire.com" [ref=e243] [cursor=pointer]:
+                    - /url: mailto:billing@getsunspire.com
+                - listitem [ref=e244]:
+                  - generic [ref=e245]: ☎️
+                  - link "+1 (404) 123-4567" [ref=e246] [cursor=pointer]:
+                    - /url: tel:+14041234567
+          - generic [ref=e247]:
+            - heading "Quick Links" [level=4] [ref=e248]
+            - list [ref=e249]:
+              - listitem [ref=e250]:
+                - link "Pricing" [ref=e251] [cursor=pointer]:
+                  - /url: /pricing
+              - listitem [ref=e252]:
+                - link "Partners" [ref=e253] [cursor=pointer]:
+                  - /url: /partners
+              - listitem [ref=e254]:
+                - link "Support" [ref=e255] [cursor=pointer]:
+                  - /url: /support
+          - generic [ref=e256]:
+            - heading "Legal & Support" [level=4] [ref=e257]
+            - list [ref=e258]:
+              - listitem [ref=e259]:
+                - link "Privacy Policy" [ref=e260] [cursor=pointer]:
+                  - /url: /privacy
+              - listitem [ref=e261]:
+                - link "Terms of Service" [ref=e262] [cursor=pointer]:
+                  - /url: /terms
+              - listitem [ref=e263]:
+                - link "Security" [ref=e264] [cursor=pointer]:
+                  - /url: /security
+              - listitem [ref=e265]:
+                - link "DPA" [ref=e266] [cursor=pointer]:
+                  - /url: /dpa
+              - listitem [ref=e267]:
+                - link "Do Not Sell My Data" [ref=e268] [cursor=pointer]:
+                  - /url: /do-not-sell
+        - separator [ref=e269]
+        - generic [ref=e270]:
+          - generic [ref=e271]:
+            - generic [ref=e272]: ⚡
+            - generic [ref=e273]:
+              - text: Estimates generated
+              - text: using NREL PVWatts® v8
+          - generic [ref=e275]:
+            - text: Powered by
+            - generic [ref=e276]: Sunspire
+          - generic [ref=e277]:
+            - generic [ref=e278]: 🗺️
+            - generic [ref=e279]:
+              - text: Mapping & location
+              - text: data © Google
+    - generic [ref=e281]:
+      - link "Activate for Tesla — go live in 24 hours" [ref=e283] [cursor=pointer]:
+        - /url: /pricing
+        - text: Activate on Your Domain — 24 Hours
+      - paragraph [ref=e284]: $99/mo + $399 setup • Cancel anytime
+      - generic [ref=e285]:
+        - generic [ref=e286]: SOC 2
+        - generic [ref=e287]: GDPR
+        - generic [ref=e288]: NREL PVWatts®
+        - generic [ref=e289]: 113+ installers live
+  - alert [ref=e290]
+  - generic [ref=e293]:
+    - generic [ref=e294]:
+      - heading "We use cookies to improve your experience" [level=3] [ref=e295]
+      - paragraph [ref=e296]: We use cookies and similar technologies to analyze site usage, personalize content, and provide social media features. By continuing to use our site, you consent to our use of cookies.
+    - generic [ref=e297]:
+      - button "Decline" [ref=e298] [cursor=pointer]
+      - button "Accept All" [ref=e299] [cursor=pointer]
+  - generic [ref=e300]: $0k
+```
