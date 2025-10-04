@@ -4,9 +4,12 @@ import clsx from "clsx";
 import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
 import { ShieldCheck, Lock, SunMedium, Users } from "lucide-react";
 
+const BRAND_50  = "var(--brand-50)";
 const BRAND_600 = "var(--brand-600)";
 const BRAND_700 = "var(--brand-700)";
-const BRAND_50  = "var(--brand-50)";
+
+// Neutral text so CTA remains the hero
+const NEUTRAL_TEXT = "rgb(38 38 38)"; // ~neutral-800
 
 function TrustBadge({
   icon: Icon,
@@ -20,24 +23,21 @@ function TrustBadge({
   return (
     <span
       className={[
-        "inline-flex w-full items-center justify-center gap-1.5 rounded-full",
-        "border bg-white px-3 py-1.5",
-        "text-[12px] leading-5 font-medium",
+        "inline-flex w-full items-center justify-center gap-2",
+        "rounded-full border bg-white px-3.5 py-2",
+        "text-[13px] leading-[18px] font-medium",
         "transition-colors duration-150 ease-out",
-        "hover:bg-[color-mix(in_srgb,_var(--brand-50)_18%,_white)]",
+        "hover:bg-[color-mix(in_srgb,_var(--brand-50)_16%,_white)]",
         className,
       ].join(" ")}
       style={{
-        borderColor: `color-mix(in srgb, ${BRAND_600} 88%, black)`,
-        color: `color-mix(in srgb, ${BRAND_700} 92%, black)`,
+        borderColor: BRAND_600,
+        color: NEUTRAL_TEXT,
       }}
     >
-      <Icon
-        aria-hidden
-        className="h-3.5 w-3.5"
-        style={{ color: `color-mix(in srgb, ${BRAND_700} 92%, black)` }}
-      />
-      {children}
+      {/* line icon only, brand color */}
+      <Icon aria-hidden className="h-[14px] w-[14px]" style={{ color: BRAND_700 }} />
+      <span className="truncate">{children}</span>
     </span>
   );
 }
@@ -209,7 +209,7 @@ export default function StickyCTA({
               </p>
             )}
 
-            {/* Trust row (flat, brand-bordered, equal width, 2×2) */}
+            {/* Trust row — quiet, brand-outlined pills, equal widths, 2×2 */}
             {showTrustChips && (
               <div className="mt-3 grid grid-cols-2 gap-2">
                 <TrustBadge icon={ShieldCheck}>SOC 2</TrustBadge>
@@ -253,7 +253,7 @@ export default function StickyCTA({
             </p>
           )}
 
-          {/* Trust row (flat, brand-bordered, equal width, 2×2) */}
+          {/* Trust row — quiet, brand-outlined pills, equal widths, 2×2 */}
           {showTrustChips && (
             <div className="mt-3 grid grid-cols-2 gap-2">
               <TrustBadge icon={ShieldCheck}>SOC 2</TrustBadge>
