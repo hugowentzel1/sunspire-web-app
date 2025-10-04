@@ -21,7 +21,7 @@ export default function EarningsMini() {
           className="w-24 h-10 rounded-lg border border-neutral-300 px-3" 
         />
       </div>
-      <p className="mt-4 text-neutral-700">
+      <p className="mt-4">
         <span className="text-[var(--brand-600)] font-semibold">{clients}</span> clients → <b className="text-[var(--brand-600)]">${recurring}/mo recurring</b> + <b className="text-[var(--brand-600)]">${setup} setup</b>
       </p>
     </Card>
