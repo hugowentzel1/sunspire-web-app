@@ -143,52 +143,103 @@ export default function StickyCTA({
       {/* Mobile: full-width sticky bar */}
       <div className="sm:hidden pointer-events-auto">
         <div className="mx-auto max-w-[720px]">
-          <div className="flex items-center justify-between gap-3 rounded-xl bg-white/95 shadow-lg ring-1 ring-black/5 px-3 py-3 backdrop-blur supports-[backdrop-filter]:bg-white/75">
+          <div
+            className="
+              rounded-2xl bg-white/90 backdrop-blur
+              shadow-[0_10px_30px_rgba(0,0,0,0.08)]
+              ring-1 ring-black/5
+              px-4 py-4
+            "
+          >
+            {/* CTA button */}
             <Link
               href={href}
-              aria-label={
-                companyName
-                  ? `Activate for ${companyName} — go live in 24 hours`
-                  : "Activate on your domain — go live in 24 hours"
-              }
-              className="flex-1 text-center rounded-lg text-white font-semibold px-4 py-3.5 min-h-[52px]"
+              aria-label={companyName ? `Activate for ${companyName} — go live in 24 hours` : "Activate on your domain — go live in 24 hours"}
+              className="
+                block w-full rounded-full
+                text-white
+                text-[16px] font-semibold leading-tight tracking-[-0.01em]
+                px-5 py-3.5 min-h-[52px]
+                focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600
+                transition-colors
+              "
               style={{ backgroundColor: companyColor }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = companyColorHover;
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = companyColor;
+              }}
             >
               {CTA_LABEL}
             </Link>
+
+            {/* Price line */}
+            {showSubcopy && (
+              <p
+                className="
+                  mt-2 text-[13px] leading-5 text-neutral-700 text-center
+                "
+              >
+                {SUBCOPY}
+              </p>
+            )}
+
+            {/* Trust row */}
+            {showTrustChips && (
+              <div
+                className="
+                  mt-3 grid grid-flow-row auto-rows-max
+                  grid-cols-2 xs:grid-cols-3 sm:grid-cols-4
+                  gap-2
+                  justify-items-center
+                "
+              >
+                {TRUST_CHIPS.map((t) => (
+                  <span
+                    key={t}
+                    className="
+                      inline-flex items-center justify-center
+                      rounded-lg border border-black
+                      text-black text-[12px] leading-[18px]
+                      px-2.5 py-1.5
+                      whitespace-nowrap
+                      min-h-[28px] min-w-[112px]
+                    "
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            )}
           </div>
-
-          {showSubcopy && (
-            <p className="mt-1 text-center text-xs text-neutral-600">{SUBCOPY}</p>
-          )}
-
-          {showTrustChips && (
-            <div className="mt-2 flex flex-wrap items-center justify-center gap-2 text-[11px] text-black">
-              {TRUST_CHIPS.map((t) => (
-                <span key={t} className="rounded-md border border-black px-2 py-1">
-                  {t}
-                </span>
-              ))}
-            </div>
-          )}
         </div>
       </div>
 
       {/* Desktop: bottom-right pill */}
       <div className="hidden sm:block ml-auto pointer-events-auto">
-        <div className="rounded-2xl bg-white/95 shadow-xl ring-1 ring-black/5 px-5 py-4 backdrop-blur supports-[backdrop-filter]:bg-white/75 max-w-[420px]">
+        <div
+          className="
+            rounded-2xl bg-white/90 backdrop-blur
+            shadow-[0_12px_36px_rgba(0,0,0,0.08)]
+            ring-1 ring-black/5
+            px-5 py-5
+            max-w-[420px]
+          "
+        >
+          {/* CTA button */}
           <Link
             href={href}
-            aria-label={
-              companyName
-                ? `Activate for ${companyName} — go live in 24 hours`
-                : "Activate on your domain — go live in 24 hours"
-            }
-            className="inline-flex items-center justify-center rounded-full text-white font-semibold px-6 py-4 min-h-[60px] w-full focus:outline-none focus-visible:ring-2"
-            style={{ 
-              backgroundColor: companyColor,
-              '--hover-color': companyColorHover
-            } as React.CSSProperties & { '--hover-color': string }}
+            aria-label={companyName ? `Activate for ${companyName} — go live in 24 hours` : "Activate on your domain — go live in 24 hours"}
+            className="
+              inline-flex w-full items-center justify-center
+              rounded-full text-white
+              text-[17px] font-semibold leading-tight tracking-[-0.01em]
+              px-6 py-4 min-h-[60px]
+              focus:outline-none focus-visible:ring-2 focus-visible:ring-red-600
+              transition-colors
+            "
+            style={{ backgroundColor: companyColor }}
             onMouseEnter={(e) => {
               e.currentTarget.style.backgroundColor = companyColorHover;
             }}
@@ -199,14 +250,35 @@ export default function StickyCTA({
             {CTA_LABEL}
           </Link>
 
+          {/* Price line */}
           {showSubcopy && (
-            <div className="mt-1.5 text-center text-[12px] text-neutral-700">{SUBCOPY}</div>
+            <div className="mt-2 text-center">
+              <span className="text-[13px] leading-5 text-neutral-700">{SUBCOPY}</span>
+            </div>
           )}
 
+          {/* Trust row */}
           {showTrustChips && (
-            <div className="mt-2 flex flex-wrap items-center justify-center gap-2 text-[11px] text-black">
+            <div
+              className="
+                mt-3 grid grid-flow-row auto-rows-max
+                grid-cols-2 md:grid-cols-4
+                gap-2
+                justify-items-center
+              "
+            >
               {TRUST_CHIPS.map((t) => (
-                <span key={t} className="rounded-md border border-black px-2 py-1">
+                <span
+                  key={t}
+                  className="
+                    inline-flex items-center justify-center
+                    rounded-lg border border-black
+                    text-black text-[12px] leading-[18px]
+                    px-2.5 py-1.5
+                    whitespace-nowrap
+                    min-h-[28px] min-w-[120px]
+                  "
+                >
                   {t}
                 </span>
               ))}
