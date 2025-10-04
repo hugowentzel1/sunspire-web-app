@@ -72,7 +72,7 @@ function PremiumCapsule({
         "focus-visible:outline-2 focus-visible:outline-offset-2",
       ].join(" ")}
       style={{
-        background: `linear-gradient(180deg, #fff 0%, ${companyColor}15 100%)`, // 40% brand tint using hex opacity
+        background: `linear-gradient(180deg, #fff 0%, ${companyColor}1A 100%)`, // 50% brand tint using hex opacity
         boxShadow: "inset 0 1px 0 rgba(255,255,255,0.65), 0 1px 0 rgba(16,24,40,0.06)",
         border: "1px solid rgba(0,0,0,0.82)",
         letterSpacing: "0.01em",
