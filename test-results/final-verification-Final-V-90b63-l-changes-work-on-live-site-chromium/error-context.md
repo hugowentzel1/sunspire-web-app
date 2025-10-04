@@ -33,7 +33,7 @@
                 - generic [ref=e31]: Generated on 10/3/2025
               - generic [ref=e32]:
                 - paragraph [ref=e33]: "Preview: 2 runs left."
-                - paragraph [ref=e34]: Expires in 6d 23h 59m 57s
+                - paragraph [ref=e34]: Expires in 6d 23h 59m 55s
           - generic [ref=e35]:
             - generic [ref=e37]:
               - generic [ref=e39]: ⚡
@@ -239,8 +239,8 @@
               - text: data © Google
     - generic [ref=e287]:
       - link "Activate on Your Domain — 24 Hours" [ref=e288] [cursor=pointer]:
-        - /url: /checkout
-      - generic [ref=e289]: 113+ installers live • SOC2 • GDPR • NREL PVWatts®
+        - /url: /pricing
+      - generic [ref=e289]: $99/mo + $399 setup • Cancel anytime
   - alert [ref=e290]
   - generic [ref=e293]:
     - generic [ref=e294]:
