@@ -104,7 +104,7 @@ export default function StickyCTA({
     <div
       data-testid={testId}
       className={clsx(
-        "fixed z-[70] pointer-events-none w-full sm:w-auto",
+        "fixed z-[70] pointer-events-none w-full sm:w-auto sm:left-auto",
         className
       )}
       style={{
@@ -148,7 +148,7 @@ export default function StickyCTA({
       </div>
 
       {/* Desktop: bottom-right pill (button ≈60px tall) */}
-      <div className="hidden sm:block ml-auto mr-4 pointer-events-auto">
+      <div className="hidden sm:block ml-auto pointer-events-auto">
         <div className="rounded-2xl bg-white/95 shadow-xl ring-1 ring-black/5 px-5 py-4 backdrop-blur supports-[backdrop-filter]:bg-white/75 max-w-[400px]">
           <Link
             href={href}
