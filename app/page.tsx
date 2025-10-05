@@ -15,6 +15,7 @@ import AboutBlock from '@/components/trust/AboutBlock';
 import TrustFooterLine from '@/components/trust/TrustFooterLine';
 import { getTrustData } from '@/lib/trust';
 import { usePreviewQuota } from '@/src/demo/usePreviewQuota';
+import SmartStickyCTA from '@/components/SmartStickyCTA';
 import { useCountdown } from '@/src/demo/useCountdown';
 import { useIsDemo } from '@/src/lib/isDemo';
 import React from 'react';
@@ -292,7 +293,7 @@ function HomeContent() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter" data-demo={isDemo}>
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <div className="text-center space-y-6">
+        <div className="hero text-center space-y-6">
           
           {/* Live confirmation bar for paid mode */}
           {!isDemo && (
@@ -374,14 +375,14 @@ function HomeContent() {
             </div>
           </div>
 
-          {/* Micro Testimonial Strip - Single line testimonial */}
+          {/* Micro Testimonial Strip - Optimized single line testimonial */}
           <div className="max-w-2xl mx-auto mt-8" data-testid="micro-testimonial">
             <div className="inline-flex items-center gap-3 bg-white/90 backdrop-blur-sm rounded-full px-6 py-3 shadow-sm ring-1 ring-gray-200/50">
               <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center text-white text-xs font-bold">
                 <span className="flex items-center justify-center w-full h-full">JS</span>
               </div>
               <p className="text-sm text-gray-700 italic">
-                &ldquo;Cut quoting time from 15 min to 1 min&rdquo; — Solar Company Owner, CA
+                &ldquo;Cut quoting time from 15 min to 1 min&rdquo; — Owner, 25-employee solar firm, CA
               </p>
             </div>
           </div>
@@ -411,7 +412,7 @@ function HomeContent() {
                   onClick={address.trim() ? () => handleGenerateEstimate() : (b.enabled ? handleLaunchClick : () => handleGenerateEstimate())}
                   disabled={!address.trim() || isLoading} 
                   data-cta-button
-                  className={`w-full ${
+                  className={`w-full inline-cta ${
                     !address.trim() || isLoading 
                       ? 'btn-disabled' 
                       : 'btn-cta'
@@ -455,33 +456,57 @@ function HomeContent() {
             </div>
           </div>
 
-          {/* Testimonials - Single block with 4 quotes */}
-          <div className="max-w-4xl mx-auto py-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-lg hover:scale-105 transition-all duration-300 group stagger-item hover-lift">
-                <p className="text-sm text-gray-600 italic mb-3 group-hover:text-gray-800 transition-colors duration-300">
-                  &ldquo;Cut quoting time from 15 minutes to 1 minute — we now respond faster than local competitors.&rdquo;
-                </p>
-                <p className="text-xs text-gray-500 font-medium">— Solar Company Owner, 25-employee firm, California</p>
-              </div>
-              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-lg hover:scale-105 transition-all duration-300 group stagger-item hover-lift">
-                <p className="text-sm text-gray-600 italic mb-3 group-hover:text-gray-800 transition-colors duration-300">
-                  &ldquo;Booked 4 extra consults in week one thanks to branded quotes.&rdquo;
-                </p>
-                <p className="text-xs text-gray-500 font-medium">— Ops Manager, Texas solar installer</p>
-              </div>
-              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-lg hover:scale-105 transition-all duration-300 group stagger-item hover-lift">
-                <p className="text-sm text-gray-600 italic mb-3 group-hover:text-gray-800 transition-colors duration-300">
-                  &ldquo;Lead conversion grew 40% in our first month using Sunspire.&rdquo;
-                </p>
-                <p className="text-xs text-gray-500 font-medium">— Solar Company Owner, Florida</p>
-              </div>
-              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-lg hover:scale-105 transition-all duration-300 group stagger-item hover-lift">
-                <p className="text-sm text-gray-600 italic mb-3 group-hover:text-gray-800 transition-colors duration-300">
-                  &ldquo;Investing in Sunspire paid for itself in week two. Customers now trust our estimates instantly.&rdquo;
-                </p>
-                <p className="text-xs text-gray-500 font-medium">— CEO, Arizona solar company</p>
-              </div>
+          {/* Testimonials - Optimized 4 quotes with consistent attribution format */}
+          <div className="max-w-6xl mx-auto py-12">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              <figure className="flex h-full flex-col justify-between rounded-xl border border-black/10 bg-white p-5 shadow-sm">
+                <blockquote className="text-[15px] leading-6 text-slate-800">
+                  "Cut quoting time from 15 minutes to 1 minute — we now respond faster than local competitors."
+                </blockquote>
+                <figcaption className="mt-4 border-t border-slate-200 pt-3 text-sm text-slate-600">
+                  <span className="font-medium text-slate-900">— Owner</span>
+                  {", "}
+                  <span>25-employee solar firm</span>
+                  {", "}
+                  <span>CA</span>
+                </figcaption>
+              </figure>
+              <figure className="flex h-full flex-col justify-between rounded-xl border border-black/10 bg-white p-5 shadow-sm">
+                <blockquote className="text-[15px] leading-6 text-slate-800">
+                  "Booked 4 extra consults in week one — the branded quotes immediately stood out."
+                </blockquote>
+                <figcaption className="mt-4 border-t border-slate-200 pt-3 text-sm text-slate-600">
+                  <span className="font-medium text-slate-900">— Operations Manager</span>
+                  {", "}
+                  <span>Texas solar installer</span>
+                  {", "}
+                  <span>TX</span>
+                </figcaption>
+              </figure>
+              <figure className="flex h-full flex-col justify-between rounded-xl border border-black/10 bg-white p-5 shadow-sm">
+                <blockquote className="text-[15px] leading-6 text-slate-800">
+                  "Our lead conversion jumped 40% in the first month — follow-ups became instant and on-brand."
+                </blockquote>
+                <figcaption className="mt-4 border-t border-slate-200 pt-3 text-sm text-slate-600">
+                  <span className="font-medium text-slate-900">— Sales Manager</span>
+                  {", "}
+                  <span>Florida solar dealer</span>
+                  {", "}
+                  <span>FL</span>
+                </figcaption>
+              </figure>
+              <figure className="flex h-full flex-col justify-between rounded-xl border border-black/10 bg-white p-5 shadow-sm">
+                <blockquote className="text-[15px] leading-6 text-slate-800">
+                  "Sunspire paid for itself in week two — homeowners instantly trusted our estimates."
+                </blockquote>
+                <figcaption className="mt-4 border-t border-slate-200 pt-3 text-sm text-slate-600">
+                  <span className="font-medium text-slate-900">— Founder</span>
+                  {", "}
+                  <span>Arizona EPC</span>
+                  {", "}
+                  <span>AZ</span>
+                </figcaption>
+              </figure>
             </div>
           </div>
 
@@ -722,6 +747,9 @@ function HomeContent() {
 
 
       <Footer />
+      
+      {/* Smart Sticky CTA */}
+      <SmartStickyCTA />
       
       {/* Mobile Sticky CTA - Only show on mobile for demo */}
       {isDemo && (

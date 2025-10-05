@@ -170,7 +170,7 @@ export default function PartnersPage() {
                     </div>
                   </Card>
 
-                  {/* Testimonial */}
+                  {/* Optimized Testimonial */}
                   <Card>
                     <div className="flex items-start gap-4">
                       <div className="w-12 h-12 bg-neutral-200 rounded-full flex items-center justify-center flex-shrink-0">
@@ -178,9 +178,9 @@ export default function PartnersPage() {
                       </div>
                       <div>
                         <p className="text-neutral-700 italic mb-2">
-                          &ldquo;Partnered with Sunspire 6 months ago. Already earned $2,400 in recurring revenue from just 8 clients.&rdquo;
+                          &ldquo;Partnered with Sunspire 6 months ago. Already earned $2,400 in recurring revenue from just 8 clients — homeowners instantly trusted our estimates.&rdquo;
                         </p>
-                        <p className="text-sm text-neutral-500">— Solar Consultant, CA</p>
+                        <p className="text-sm text-neutral-500">— Solar Consultant, California</p>
                       </div>
                     </div>
                   </Card>
