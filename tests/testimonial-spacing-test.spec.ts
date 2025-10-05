@@ -2,7 +2,7 @@ import { test, expect } from '@playwright/test';
 
 test.describe('Testimonial Spacing Improvements', () => {
   test('Home page - Verify improved testimonial spacing and layout', async ({ page }) => {
-    await page.goto('http://localhost:3003/?company=tesla&demo=1');
+    await page.goto('http://localhost:3004/?company=tesla&demo=1');
     await page.waitForLoadState('networkidle');
     
     // Find the testimonials section
@@ -20,7 +20,7 @@ test.describe('Testimonial Spacing Improvements', () => {
     // Verify the fourth testimonial has the extended quote
     const fourthCard = testimonialCards.nth(3);
     const fourthQuote = fourthCard.locator('p.text-sm.text-gray-600.italic');
-    await expect(fourthQuote).toContainText('Sunspire paid for itself in week two — homeowners instantly trusted our estimates and we closed more deals.');
+    await expect(fourthQuote).toContainText('Sunspire paid for itself in week two — homeowners instantly trusted our estimates and closed more deals.');
     
     // Take screenshot of the testimonials section
     await page.screenshot({ 
@@ -33,7 +33,7 @@ test.describe('Testimonial Spacing Improvements', () => {
   });
 
   test('Mobile view - Verify responsive testimonial layout', async ({ page }) => {
-    await page.goto('http://localhost:3003/?company=tesla&demo=1');
+    await page.goto('http://localhost:3004/?company=tesla&demo=1');
     await page.waitForLoadState('networkidle');
     
     // Set mobile viewport
