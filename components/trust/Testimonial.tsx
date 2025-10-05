@@ -28,7 +28,7 @@ export default function Testimonial({
     <div className={`py-16 bg-gray-50 ${className}`} data-testid="hero-testimonial">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <blockquote className="text-xl md:text-2xl font-medium text-gray-900 mb-8">
+          <blockquote className="text-xl md:text-2xl font-medium text-gray-900 mb-8 italic">
             &ldquo;{quote}&rdquo;
           </blockquote>
           <div className="flex flex-col items-center">
