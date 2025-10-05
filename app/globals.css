@@ -632,18 +632,6 @@ a {
   max-width: 58ch;
   text-wrap: balance;              /* modern browsers balance lines */
   position: relative;
-  padding-left: 20px;              /* room for decorative mark */
-}
-.t-quote::before{
-  content: "u201C";
-  position: absolute;
-  left: 0;
-  top: -2px;
-  font-size: 26px;
-  line-height: 1;
-  color: var(--brand);
-  opacity: .35;                    /* subtle, not emoji */
-  font-weight: 700;
 }
 
 /* ---------- Citation ---------- */
