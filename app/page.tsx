@@ -456,57 +456,33 @@ function HomeContent() {
             </div>
           </div>
 
-          {/* Testimonials - Optimized 4 quotes with consistent attribution format */}
-          <div className="max-w-6xl mx-auto py-12">
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              <figure className="flex h-full flex-col justify-between rounded-xl border border-black/10 bg-white p-5 shadow-sm">
-                <blockquote className="text-[15px] leading-6 text-slate-800">
+          {/* Testimonials - Original 4-box format with improved content */}
+          <div className="max-w-4xl mx-auto py-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-lg hover:scale-105 transition-all duration-300 group stagger-item hover-lift">
+                <p className="text-sm text-gray-600 italic mb-3 group-hover:text-gray-800 transition-colors duration-300">
                   &ldquo;Cut quoting time from 15 minutes to 1 minute — we now respond faster than local competitors.&rdquo;
-                </blockquote>
-                <figcaption className="mt-4 border-t border-slate-200 pt-3 text-sm text-slate-600">
-                  <span className="font-medium text-slate-900">— Owner</span>
-                  {", "}
-                  <span>25-employee solar firm</span>
-                  {", "}
-                  <span>CA</span>
-                </figcaption>
-              </figure>
-              <figure className="flex h-full flex-col justify-between rounded-xl border border-black/10 bg-white p-5 shadow-sm">
-                <blockquote className="text-[15px] leading-6 text-slate-800">
+                </p>
+                <p className="text-xs text-gray-500 font-medium">— Owner, 25-employee solar firm, CA</p>
+              </div>
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-lg hover:scale-105 transition-all duration-300 group stagger-item hover-lift">
+                <p className="text-sm text-gray-600 italic mb-3 group-hover:text-gray-800 transition-colors duration-300">
                   &ldquo;Booked 4 extra consults in week one — the branded quotes immediately stood out.&rdquo;
-                </blockquote>
-                <figcaption className="mt-4 border-t border-slate-200 pt-3 text-sm text-slate-600">
-                  <span className="font-medium text-slate-900">— Operations Manager</span>
-                  {", "}
-                  <span>Texas solar installer</span>
-                  {", "}
-                  <span>TX</span>
-                </figcaption>
-              </figure>
-              <figure className="flex h-full flex-col justify-between rounded-xl border border-black/10 bg-white p-5 shadow-sm">
-                <blockquote className="text-[15px] leading-6 text-slate-800">
+                </p>
+                <p className="text-xs text-gray-500 font-medium">— Operations Manager, Texas solar installer</p>
+              </div>
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-lg hover:scale-105 transition-all duration-300 group stagger-item hover-lift">
+                <p className="text-sm text-gray-600 italic mb-3 group-hover:text-gray-800 transition-colors duration-300">
                   &ldquo;Our lead conversion jumped 40% in the first month — follow-ups became instant and on-brand.&rdquo;
-                </blockquote>
-                <figcaption className="mt-4 border-t border-slate-200 pt-3 text-sm text-slate-600">
-                  <span className="font-medium text-slate-900">— Sales Manager</span>
-                  {", "}
-                  <span>Florida solar dealer</span>
-                  {", "}
-                  <span>FL</span>
-                </figcaption>
-              </figure>
-              <figure className="flex h-full flex-col justify-between rounded-xl border border-black/10 bg-white p-5 shadow-sm">
-                <blockquote className="text-[15px] leading-6 text-slate-800">
+                </p>
+                <p className="text-xs text-gray-500 font-medium">— Sales Manager, Florida solar dealer</p>
+              </div>
+              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-lg hover:scale-105 transition-all duration-300 group stagger-item hover-lift">
+                <p className="text-sm text-gray-600 italic mb-3 group-hover:text-gray-800 transition-colors duration-300">
                   &ldquo;Sunspire paid for itself in week two — homeowners instantly trusted our estimates.&rdquo;
-                </blockquote>
-                <figcaption className="mt-4 border-t border-slate-200 pt-3 text-sm text-slate-600">
-                  <span className="font-medium text-slate-900">— Founder</span>
-                  {", "}
-                  <span>Arizona EPC</span>
-                  {", "}
-                  <span>AZ</span>
-                </figcaption>
-              </figure>
+                </p>
+                <p className="text-xs text-gray-500 font-medium">— Founder, Arizona EPC</p>
+              </div>
             </div>
           </div>
 
