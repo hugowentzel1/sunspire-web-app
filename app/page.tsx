@@ -456,33 +456,33 @@ function HomeContent() {
             </div>
           </div>
 
-          {/* Testimonials - Original 4-box format with improved content */}
+          {/* Testimonials - Premium system with balanced spacing */}
           <div className="max-w-4xl mx-auto py-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-lg hover:scale-105 transition-all duration-300 group stagger-item hover-lift flex flex-col justify-between min-h-[140px]">
-                <p className="text-sm text-gray-600 italic mb-3 group-hover:text-gray-800 transition-colors duration-300 leading-relaxed">
-                  &ldquo;Cut quoting time from 15 minutes to 1 minute — we now respond faster than local competitors.&rdquo;
-                </p>
-                <p className="text-xs text-gray-500 font-medium mt-auto">— Owner, 25-employee solar firm, CA</p>
-              </div>
-              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-lg hover:scale-105 transition-all duration-300 group stagger-item hover-lift flex flex-col justify-between min-h-[140px]">
-                <p className="text-sm text-gray-600 italic mb-3 group-hover:text-gray-800 transition-colors duration-300 leading-relaxed">
-                  &ldquo;Booked 4 extra consults in week one — the branded quotes immediately stood out.&rdquo;
-                </p>
-                <p className="text-xs text-gray-500 font-medium mt-auto">— Operations Manager, Texas solar installer</p>
-              </div>
-              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-lg hover:scale-105 transition-all duration-300 group stagger-item hover-lift flex flex-col justify-between min-h-[140px]">
-                <p className="text-sm text-gray-600 italic mb-3 group-hover:text-gray-800 transition-colors duration-300 leading-relaxed">
-                  &ldquo;Our lead conversion jumped 40% in the first month — follow-ups became instant and on-brand.&rdquo;
-                </p>
-                <p className="text-xs text-gray-500 font-medium mt-auto">— Sales Manager, Florida solar dealer</p>
-              </div>
-              <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 hover:shadow-lg hover:scale-105 transition-all duration-300 group stagger-item hover-lift flex flex-col justify-between min-h-[140px]">
-                <p className="text-sm text-gray-600 italic mb-3 group-hover:text-gray-800 transition-colors duration-300 leading-relaxed">
-                  &ldquo;Sunspire paid for itself in week two — homeowners instantly trusted our estimates and closed more deals.&rdquo;
-                </p>
-                <p className="text-xs text-gray-500 font-medium mt-auto">— Founder, Arizona EPC</p>
-              </div>
+            <div className="t-grid" data-section="testimonials">
+              <figure className="t-card">
+                <blockquote className="t-quote">
+                  Cut quoting time from 15 minutes to 1 minute — we now respond faster than local competitors.
+                </blockquote>
+                <figcaption className="t-cite">— Owner, 25-employee solar firm, CA</figcaption>
+              </figure>
+              <figure className="t-card">
+                <blockquote className="t-quote">
+                  Booked 4 extra consults in week one — the branded quotes immediately stood out.
+                </blockquote>
+                <figcaption className="t-cite">— Operations Manager, Texas solar installer</figcaption>
+              </figure>
+              <figure className="t-card">
+                <blockquote className="t-quote">
+                  Our lead conversion jumped 40% in the first month — follow-ups became instant and on-brand.
+                </blockquote>
+                <figcaption className="t-cite">— Sales Manager, Florida solar dealer</figcaption>
+              </figure>
+              <figure className="t-card">
+                <blockquote className="t-quote">
+                  Sunspire paid for itself in week two — homeowners instantly trusted our estimates and closed more deals.
+                </blockquote>
+                <figcaption className="t-cite">— Founder, Arizona EPC</figcaption>
+              </figure>
             </div>
           </div>
 

@@ -573,6 +573,111 @@ a {
   display: none !important; 
 }
 
+/* ---------- Premium Testimonial System ---------- */
+:root{
+  --brand: var(--brand-600, #E11900);           /* dynamic company color */
+  --card-bg: rgba(255,255,255,0.82);
+  --card-border: rgba(15,23,42,0.08);
+  --shadow-sm: 0 6px 18px rgba(2,6,23,0.06), 0 1px 2px rgba(2,6,23,0.05);
+  --shadow-md: 0 10px 28px rgba(2,6,23,0.08), 0 6px 10px rgba(2,6,23,0.05);
+  --text: #0B1220;
+  --muted: rgba(11,18,32,0.66);
+}
+
+/* ---------- Grid ---------- */
+.t-grid[data-section="testimonials"]{
+  --col-min: 300px;             /* prevents super-wide lines */
+  --col-max: 560px;             /* sweet spot ~52–65ch */
+  --gap: 28px;
+
+  display: grid;
+  grid-template-columns: repeat(2, minmax(var(--col-min), 1fr));
+  gap: var(--gap);
+  align-items: stretch;         /* equal height cards per row */
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: clamp(12px, 3vw, 24px);
+}
+
+@media (max-width: 860px){
+  .t-grid[data-section="testimonials"]{
+    grid-template-columns: 1fr;
+    --gap: 18px;
+  }
+}
+
+/* ---------- Card ---------- */
+.t-card{
+  background: var(--card-bg);
+  backdrop-filter: saturate(110%) blur(6px);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  padding: 22px 24px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;   /* keeps cite pinned low */
+  min-height: 156px;                /* row harmony */
+  transition: box-shadow .25s ease, transform .25s ease;
+}
+.t-card:hover{ box-shadow: var(--shadow-md); transform: translateY(-1px); }
+
+/* ---------- Quote & typography ---------- */
+.t-quote{
+  color: var(--text);
+  font-size: clamp(15.5px, .98rem + .1vw, 16.5px);
+  line-height: 1.48;               /* tight but readable */
+  letter-spacing: 0.005em;
+  margin: 0 0 14px 0;
+  max-width: 58ch;
+  text-wrap: balance;              /* modern browsers balance lines */
+  position: relative;
+  padding-left: 20px;              /* room for decorative mark */
+}
+.t-quote::before{
+  content: "u201C";
+  position: absolute;
+  left: 0;
+  top: -2px;
+  font-size: 26px;
+  line-height: 1;
+  color: var(--brand);
+  opacity: .35;                    /* subtle, not emoji */
+  font-weight: 700;
+}
+
+/* ---------- Citation ---------- */
+.t-cite{
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.35;
+  margin: 2px 0 0 0;
+  /* hairline divider for polish */
+  padding-top: 10px;
+  position: relative;
+}
+.t-cite::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 28px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--brand), transparent);
+  opacity: .35;
+  border-radius: 1px;
+}
+
+/* ---------- Dark mode guard (optional) ---------- */
+@media (prefers-color-scheme: dark){
+  .t-card{
+    --card-bg: rgba(7,11,18,0.6);
+    --card-border: rgba(255,255,255,0.08);
+  }
+  .t-quote{ color: rgba(255,255,255,0.94); }
+  .t-cite{ color: rgba(255,255,255,0.72); }
+}
+
 /* Disabled Button - Clean and professional */
 .btn-disabled {
   @apply inline-flex items-center justify-center rounded-2xl px-6 py-4 font-semibold transition-all duration-300 cursor-not-allowed;
