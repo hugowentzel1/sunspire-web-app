@@ -69,7 +69,9 @@ export default function SmartStickyCTA() {
 
       const shouldShow = stickyAllowed && heroGone && scrolledEnough && !inlineVisible && !formFocused && !cookiesVisible();
 
-      sticky.classList.toggle('sticky-cta--visible', shouldShow);
+      if (sticky) {
+        sticky.classList.toggle('sticky-cta--visible', shouldShow);
+      }
     }
 
     window.addEventListener('scroll', updateSticky, { passive: true });

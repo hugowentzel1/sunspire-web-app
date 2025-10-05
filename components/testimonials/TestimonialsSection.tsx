@@ -44,9 +44,9 @@ function TestimonialCard({ t }: { t: Testimonial }) {
       className="flex h-full flex-col justify-between rounded-xl border border-black/10 bg-white p-5 shadow-sm"
       aria-label={`Testimonial from ${t.role}, ${t.company} (${t.region})`}
     >
-      <blockquote className="text-[15px] leading-6 text-slate-800">
-        "{t.quote}"
-      </blockquote>
+          <blockquote className="text-[15px] leading-6 text-slate-800">
+            &ldquo;{t.quote}&rdquo;
+          </blockquote>
       <figcaption className="mt-4 border-t border-slate-200 pt-3 text-sm text-slate-600">
         <span className="font-medium text-slate-900">— {t.role}</span>
         {", "}
