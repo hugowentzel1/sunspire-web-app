@@ -3,24 +3,37 @@
 import { useState, useEffect } from "react";
 import { isEmbed } from "@/lib/flags";
 import { isDemoFromSearch } from "@/lib/isDemo";
+import { getTenantFlags } from "@/lib/tenantConfig";
 
 export default function CookieConsent() {
   const [showBanner, setShowBanner] = useState(false);
   const [isAccepted, setIsAccepted] = useState(false);
   const [isEmbedMode, setIsEmbedMode] = useState(false);
   const [isDemoMode, setIsDemoMode] = useState(false);
+  const [tenantAllowsCookieBanner, setTenantAllowsCookieBanner] = useState(true);
 
   useEffect(() => {
     // Check if we're in embed mode
     const urlParams = new URLSearchParams(window.location.search);
     const embedMode = isEmbed(urlParams);
     const demoMode = isDemoFromSearch(urlParams);
+    const company = urlParams.get('company');
+    
     setIsEmbedMode(embedMode);
     setIsDemoMode(demoMode);
+    
+    // Check tenant configuration
+    const flags = getTenantFlags(company || undefined);
+    setTenantAllowsCookieBanner(flags.showCookieBanner !== false);
 
     // Check if user has already made a choice
     const cookieChoice = localStorage.getItem("cookie-consent");
-    if (!cookieChoice && !embedMode) {
+    
+    // Only show banner if:
+    // 1. Not in embed mode
+    // 2. Tenant allows cookie banner (paid mode defaults to false)
+    // 3. User hasn't made a choice yet
+    if (!cookieChoice && !embedMode && flags.showCookieBanner !== false) {
       setShowBanner(true);
     } else if (cookieChoice === "accepted") {
       setIsAccepted(true);

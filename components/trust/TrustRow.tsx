@@ -1,11 +1,9 @@
 import { SITE_STATS, installersLivePlus } from "@/lib/siteStats";
 
-// Industry-Standard Trust Badges
-// References: Stripe, Notion, HubSpot, Linear
-// - Clean, minimal design with consistent spacing
-// - Icon + text horizontal layout
-// - Muted colors for credibility (not flashy)
-// - Responsive: grid on mobile, inline on desktop
+// Elevated Trust Badges: Matches site's gradient-heavy, warm design
+// Individual pill badges with gradient backgrounds (like feature cards)
+// Filled circular icons for prominence
+// Research: Figma, Notion, HubSpot (gradient-heavy, sales-focused SaaS)
 
 function UsersIcon() {
   return (
@@ -69,16 +67,17 @@ function StarIcon() {
 
 function TrustBadge({ icon, text }: { icon: React.ReactNode; text: string }) {
   return (
-    <span className="inline-flex items-center gap-2">
+    <span className="inline-flex items-center gap-2.5">
       <div 
-        className="flex items-center justify-center w-5 h-5 flex-shrink-0"
+        className="flex items-center justify-center w-8 h-8 rounded-full"
         style={{
-          color: '#64748b', // Muted slate color for credibility
+          backgroundColor: 'color-mix(in srgb, var(--brand-primary, #ea580c) 15%, white 85%)',
+          color: 'var(--brand-600, #ea580c)',
         }}
       >
         {icon}
       </div>
-      <span className="text-sm font-medium text-slate-700">
+      <span className="text-[13px] font-semibold text-slate-800 tracking-tight">
         {text}
       </span>
     </span>
@@ -90,31 +89,17 @@ export default function TrustRow() {
     <div
       data-testid="hero-trust-strip"
       aria-label="Trust signals"
-      className="mt-4 md:mt-5 w-full max-w-5xl mx-auto"
+      className="mt-4 md:mt-5 inline-flex flex-wrap items-center justify-center gap-3 md:gap-4 px-6 py-3 rounded-2xl bg-white/80 backdrop-blur-md border border-slate-200/60 shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
     >
-      {/* Desktop: Single row with subtle dividers */}
-      <div className="hidden md:flex flex-wrap items-center justify-center gap-x-6 gap-y-3 px-8 py-4 rounded-xl bg-white border border-slate-200 shadow-sm w-full">
-        <TrustBadge icon={<UsersIcon />} text={`${installersLivePlus} installers live`} />
-        <div className="w-px h-4 bg-slate-300"></div>
-        <TrustBadge icon={<LockIcon />} text="SOC 2 compliant" />
-        <div className="w-px h-4 bg-slate-300"></div>
-        <TrustBadge icon={<ShieldIcon />} text="GDPR ready" />
-        <div className="w-px h-4 bg-slate-300"></div>
-        <TrustBadge icon={<SunIcon />} text="NREL PVWatts®" />
-        <div className="w-px h-4 bg-slate-300"></div>
-        <TrustBadge icon={<StarIcon />} text={`${SITE_STATS.rating}/5 rating`} />
-      </div>
-
-      {/* Mobile: Clean 2-column grid without dividers */}
-      <div className="grid md:hidden grid-cols-2 gap-4 px-6 py-5 rounded-xl bg-white border border-slate-200 shadow-sm">
-        <TrustBadge icon={<UsersIcon />} text={`${installersLivePlus} installers`} />
-        <TrustBadge icon={<LockIcon />} text="SOC 2" />
-        <TrustBadge icon={<ShieldIcon />} text="GDPR" />
-        <TrustBadge icon={<SunIcon />} text="NREL PVWatts®" />
-        <div className="col-span-2 flex justify-center pt-1">
-          <TrustBadge icon={<StarIcon />} text={`${SITE_STATS.rating}/5 rating`} />
-        </div>
-      </div>
+      <TrustBadge icon={<UsersIcon />} text={`${installersLivePlus} installers live`} />
+      <span className="text-slate-300">•</span>
+      <TrustBadge icon={<LockIcon />} text="SOC 2 compliant" />
+      <span className="text-slate-300">•</span>
+      <TrustBadge icon={<ShieldIcon />} text="GDPR ready" />
+      <span className="text-slate-300">•</span>
+      <TrustBadge icon={<SunIcon />} text="NREL PVWatts®" />
+      <span className="text-slate-300">•</span>
+      <TrustBadge icon={<StarIcon />} text={`${SITE_STATS.rating}/5 rating`} />
     </div>
   );
 }

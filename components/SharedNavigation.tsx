@@ -178,15 +178,25 @@ export default function SharedNavigation() {
           </Link>
           
           <nav className="hidden md:flex items-center space-x-12">
-            <Link href={createUrlWithParams("/pricing")} className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Pricing</Link>
-            <Link href={createUrlWithParams("/partners")} className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Partners</Link>
-            <Link href={createUrlWithParams("/support")} className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Support</Link>
-            <button 
-              onClick={handleLaunchClick}
-              className="btn-primary ml-12"
-            >
-              Activate on Your Domain — 24 Hours
-            </button>
+            {/* Demo mode: Show Pricing/Partners/Support + Activation CTA */}
+            {isDemo ? (
+              <>
+                <Link href={createUrlWithParams("/pricing")} className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Pricing</Link>
+                <Link href={createUrlWithParams("/partners")} className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Partners</Link>
+                <Link href={createUrlWithParams("/support")} className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Support</Link>
+                <button 
+                  onClick={handleLaunchClick}
+                  className="btn-primary ml-12"
+                >
+                  Activate on Your Domain — 24 Hours
+                </button>
+              </>
+            ) : (
+              // Paid mode: No installer-facing links or activation CTA
+              <div className="text-sm text-gray-600">
+                {/* Minimal paid navigation - can add report/support later if needed */}
+              </div>
+            )}
           </nav>
         </div>
       </div>
