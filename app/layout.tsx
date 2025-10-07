@@ -21,6 +21,7 @@ import { CompanyProvider } from '@/components/CompanyContext'
 import CookieConsent from '@/components/CookieConsent'
 import ConditionalDemoBanner from '@/components/ConditionalDemoBanner'
 import CookieOffsetProvider from '@/components/cta/CookieOffsetProvider'
+import DynamicFavicon from '@/components/DynamicFavicon'
 
 export const metadata: Metadata = {
   title: 'Sunspire - Solar Intelligence',
@@ -47,6 +48,7 @@ export default function RootLayout({
           <BrandProvider>
             <CompanyProvider>
               <BrandCSSInjector />
+              <DynamicFavicon />
               <CookieOffsetProvider />
               {/* DemoRibbon removed */}
               <ConditionalDemoBanner />
