@@ -1,0 +1,70 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "microsoft logo microsoft Solar Intelligence" [ref=e5] [cursor=pointer]:
+        - /url: /?company=microsoft&demo=0
+        - img "microsoft logo" [ref=e6] [cursor=pointer]
+        - generic [ref=e7] [cursor=pointer]:
+          - heading "microsoft" [level=1] [ref=e8] [cursor=pointer]
+          - paragraph [ref=e9] [cursor=pointer]: Solar Intelligence
+      - navigation
+  - generic [ref=e10]:
+    - main [ref=e11]:
+      - generic [ref=e12]:
+        - img "microsoft logo" [ref=e14]
+        - generic [ref=e15]:
+          - generic [ref=e17]: ✓
+          - generic [ref=e18]:
+            - heading "Instant Solar Analysis for Your Home" [level=1] [ref=e19]
+            - paragraph [ref=e20]: Enter your address to see solar production, savings, and payback—instantly.
+        - generic [ref=e22]:
+          - generic [ref=e23]:
+            - heading "Enter Your Property Address" [level=2] [ref=e24]
+            - paragraph [ref=e25]: Get a comprehensive solar analysis tailored to your specific location
+          - generic [ref=e26]:
+            - generic [ref=e27]:
+              - generic [ref=e28]: Enter Your Property Address
+              - textbox "Enter Your Property Address" [ref=e30]
+              - paragraph [ref=e31]: Used for local rates & irradiance. Private.
+            - button "Generate Solar Intelligence Report" [disabled] [ref=e32]:
+              - generic [ref=e33]:
+                - generic [ref=e34]: Generate Solar Intelligence Report
+                - img [ref=e35]
+        - generic [ref=e37]:
+          - generic [ref=e38]:
+            - generic [ref=e39]:
+              - generic [ref=e40]: NREL v8
+              - generic [ref=e41]: Accurate Modeling
+            - generic [ref=e42]:
+              - generic [ref=e43]: Current Rates
+              - generic [ref=e44]: Local Utility Data
+            - generic [ref=e45]:
+              - generic [ref=e46]: Private
+              - generic [ref=e47]: Encrypted
+          - generic [ref=e49]:
+            - generic [ref=e50]:
+              - img [ref=e52]
+              - generic [ref=e54]: NREL PVWatts® v8
+              - generic [ref=e55]: Industry-standard solar modeling with current utility rates
+            - generic [ref=e56]:
+              - img [ref=e58]
+              - generic [ref=e60]: End-to-End Encryption
+              - generic [ref=e61]: Secure data protection
+    - contentinfo [ref=e62]:
+      - generic [ref=e63]:
+        - heading "microsoft" [level=3] [ref=e66]
+        - generic [ref=e68]:
+          - generic [ref=e69]:
+            - img [ref=e70]
+            - generic [ref=e72]: Estimates generated using NREL PVWatts® v8
+          - paragraph [ref=e74]:
+            - text: Powered by
+            - generic [ref=e75]: Sunspire
+          - generic [ref=e76]:
+            - img [ref=e77]
+            - generic [ref=e79]: Mapping & location data © Google
+  - alert [ref=e80]
+```

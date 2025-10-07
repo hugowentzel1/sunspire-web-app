@@ -3,6 +3,8 @@ import { test, expect } from '@playwright/test';
 const BASE_URL = process.env.BASE_URL || 'http://localhost:3000';
 const DEMO = `${BASE_URL}/?company=facebook&demo=1`;
 const PAID = `${BASE_URL}/?company=microsoft&demo=0`;
+const DEMO_REPORT = `${BASE_URL}/report?company=facebook&demo=1`;
+const PAID_REPORT = `${BASE_URL}/report?company=microsoft&demo=0`;
 const SAMPLE_ADDR = '465%20Page%20Pl%2C%20Roswell%2C%20GA';
 
 test.describe('Navigation differences', () => {
@@ -15,30 +17,31 @@ test.describe('Navigation differences', () => {
 
   test('demo shows Pricing/Partners/Support and activation button', async ({ page }) => {
     await page.goto(DEMO);
-    await expect(page.getByRole('link', { name: 'Pricing' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Partners' })).toBeVisible();
-    await expect(page.getByRole('link', { name: 'Support' })).toBeVisible();
+    // Use .first() to avoid strict mode violations (nav + footer both have these links)
+    await expect(page.getByRole('link', { name: 'Pricing' }).first()).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Partners' }).first()).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Support' }).first()).toBeVisible();
     await expect(page.getByRole('button', { name: /Activate on Your Domain/i })).toBeVisible();
   });
 });
 
 test.describe('Report page affordances', () => {
   test('paid report shows Back to Home + New Analysis', async ({ page }) => {
-    await page.goto(`${PAID}&address=${SAMPLE_ADDR}`);
+    await page.goto(`${PAID_REPORT}&address=${SAMPLE_ADDR}`);
     await page.waitForSelector('[data-testid="report-page"]', { timeout: 10000 });
     await expect(page.getByTestId('back-home-link')).toBeVisible();
     await expect(page.getByTestId('new-analysis-button')).toBeVisible();
   });
 
   test('demo report shows Back to Home + New Analysis', async ({ page }) => {
-    await page.goto(`${DEMO}&address=${SAMPLE_ADDR}`);
+    await page.goto(`${DEMO_REPORT}&address=${SAMPLE_ADDR}`);
     await page.waitForSelector('[data-testid="report-page"]', { timeout: 10000 });
     await expect(page.getByTestId('back-home-link')).toBeVisible();
     await expect(page.getByTestId('new-analysis-button')).toBeVisible();
   });
 
-  test('demo report nav hides Pricing/Partners/Support in report header', async ({ page }) => {
-    await page.goto(`${DEMO}&address=${SAMPLE_ADDR}`);
+  test('demo report nav shows Pricing/Partners/Support in report header', async ({ page }) => {
+    await page.goto(`${DEMO_REPORT}&address=${SAMPLE_ADDR}`);
     await page.waitForSelector('[data-testid="report-page"]', { timeout: 10000 });
     // In report header, these should be visible in demo mode
     const nav = page.locator('header nav');
@@ -48,7 +51,7 @@ test.describe('Report page affordances', () => {
   });
 
   test('paid report nav hides Pricing/Partners/Support in report header', async ({ page }) => {
-    await page.goto(`${PAID}&address=${SAMPLE_ADDR}`);
+    await page.goto(`${PAID_REPORT}&address=${SAMPLE_ADDR}`);
     await page.waitForSelector('[data-testid="report-page"]', { timeout: 10000 });
     // In report header, these should NOT be visible in paid mode
     const nav = page.locator('header nav');
@@ -60,7 +63,7 @@ test.describe('Report page affordances', () => {
 
 test.describe('Paid homeowner CTAs', () => {
   test('paid has top/bottom CTAs + download/share', async ({ page }) => {
-    await page.goto(`${PAID}&address=${SAMPLE_ADDR}`);
+    await page.goto(`${PAID_REPORT}&address=${SAMPLE_ADDR}`);
     await page.waitForSelector('[data-testid="report-page"]', { timeout: 10000 });
     
     // Top CTA
@@ -79,7 +82,7 @@ test.describe('Paid homeowner CTAs', () => {
   });
 
   test('demo does NOT show paid CTAs', async ({ page }) => {
-    await page.goto(`${DEMO}&address=${SAMPLE_ADDR}`);
+    await page.goto(`${DEMO_REPORT}&address=${SAMPLE_ADDR}`);
     await page.waitForSelector('[data-testid="report-page"]', { timeout: 10000 });
     
     await expect(page.getByTestId('paid-cta-top')).toHaveCount(0);
@@ -142,7 +145,7 @@ test.describe('Minimal legal/attribution and no duplicates', () => {
   });
 
   test('report data sources line appears exactly once on paid', async ({ page }) => {
-    await page.goto(`${PAID}&address=${SAMPLE_ADDR}`);
+    await page.goto(`${PAID_REPORT}&address=${SAMPLE_ADDR}`);
     await page.waitForSelector('[data-testid="report-page"]', { timeout: 10000 });
     
     const dataSourcesLine = page.getByTestId('data-sources-line');
@@ -154,7 +157,7 @@ test.describe('Minimal legal/attribution and no duplicates', () => {
   });
 
   test('report data sources line appears exactly once on demo', async ({ page }) => {
-    await page.goto(`${DEMO}&address=${SAMPLE_ADDR}`);
+    await page.goto(`${DEMO_REPORT}&address=${SAMPLE_ADDR}`);
     await page.waitForSelector('[data-testid="report-page"]', { timeout: 10000 });
     
     const dataSourcesLine = page.getByTestId('data-sources-line');
@@ -162,7 +165,7 @@ test.describe('Minimal legal/attribution and no duplicates', () => {
   });
 
   test('PVWatts trademark line appears at most once', async ({ page }) => {
-    await page.goto(`${PAID}&address=${SAMPLE_ADDR}`);
+    await page.goto(`${PAID_REPORT}&address=${SAMPLE_ADDR}`);
     await page.waitForSelector('[data-testid="report-page"]', { timeout: 10000 });
     
     const count = await page.locator('text=/PVWatts.*registered trademark/i').count();
@@ -191,7 +194,7 @@ test.describe('Minimal legal/attribution and no duplicates', () => {
 
 test.describe('View Methodology affordance', () => {
   test('report page has View Methodology link (paid)', async ({ page }) => {
-    await page.goto(`${PAID}&address=${SAMPLE_ADDR}`);
+    await page.goto(`${PAID_REPORT}&address=${SAMPLE_ADDR}`);
     await page.waitForSelector('[data-testid="report-page"]', { timeout: 10000 });
     
     // Look for View Methodology link or button
@@ -200,7 +203,7 @@ test.describe('View Methodology affordance', () => {
   });
 
   test('report page has View Methodology link (demo)', async ({ page }) => {
-    await page.goto(`${DEMO}&address=${SAMPLE_ADDR}`);
+    await page.goto(`${DEMO_REPORT}&address=${SAMPLE_ADDR}`);
     await page.waitForSelector('[data-testid="report-page"]', { timeout: 10000 });
     
     const methodologyLink = page.getByText(/View Methodology/i);
