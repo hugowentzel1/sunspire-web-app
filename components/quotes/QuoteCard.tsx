@@ -29,7 +29,7 @@ export default function QuoteCard({
         <div className="flex items-center justify-center gap-3">
           <div
             data-testid="quote-attribution-row"
-            className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[13px] text-neutral-600"
+            className="flex items-center justify-center gap-x-2 text-[13px] text-neutral-600"
           >
             <span className="font-medium text-neutral-900">{name}</span>
             <span className="text-neutral-300">•</span>
@@ -41,7 +41,7 @@ export default function QuoteCard({
                 <span
                   data-testid="verified-chip"
                   title="Verified installer quote"
-                  className="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[11px] font-medium text-emerald-700"
+                  className="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[11px] font-medium text-emerald-700 whitespace-nowrap"
                 >
                   <span className="text-emerald-600" aria-hidden>✓</span>
                   Verified
