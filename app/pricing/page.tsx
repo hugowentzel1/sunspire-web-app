@@ -122,22 +122,6 @@ export default function PricingPage() {
                 <span className="text-gray-500 font-semibold">14-day refund</span> if it doesn&apos;t lift booked calls.
               </motion.p>
 
-              {/* Main CTA */}
-                      <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5, delay: 0.3 }}
-                        className="mt-8"
-                      >
-                        <Button
-                          id="main-cta"
-                          onClick={handleStartSetup}
-                          className="w-full md:w-auto"
-                        >
-                          Start setup — $<span className="text-white">399</span> today + $<span className="text-white">99</span>/mo
-                        </Button>
-                      </motion.div>
-
               {/* Trust Row */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}

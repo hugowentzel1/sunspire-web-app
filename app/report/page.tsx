@@ -30,6 +30,7 @@ import MethodologyModal from '@/components/MethodologyModal';
 import QuoteCard from '@/components/QuoteCard';
 import { getTrustData } from '@/lib/trust';
 import Container from '@/components/layout/Container';
+import BottomCtaBand from '@/components/cta/BottomCtaBand';
 
 import { ensureBlurSupport } from '@/src/lib/ensureBlur';
 import { isDemoFromSearchParams } from '@/src/lib/isDemo';
@@ -975,26 +976,15 @@ function ReportContent() {
           )}
 
 
-          {/* Demo-only CTA section */}
+          {/* Demo-only CTA section - using shared BottomCtaBand */}
           {demoMode && (
-            <motion.div data-testid="report-endcap-cta" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="rounded-3xl py-8 px-8 text-center text-white mt-4" style={{ backgroundColor: 'var(--brand)' }}>
-              <h2 className="text-3xl font-bold mb-6">Ready to Launch Your Branded Tool?</h2>
-              <p className="text-xl mb-8 opacity-90">Get complete financial projections, detailed assumptions, and unblurred savings charts</p>
-              <div className="flex justify-center items-center px-4 py-4">
-                <motion.button 
-                  data-cta="primary"
-                  onClick={handleCheckout}
-                  className="px-14 py-6 text-white rounded-2xl font-bold text-2xl border-2 border-white/20 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1 hover:scale-105" 
-                  style={{ backgroundColor: 'var(--brand-primary)' }}
-                  whileHover={{ scale: 1.05 }} 
-                  whileTap={{ scale: 0.95 }}
-                >
-                  Activate on Your Domain — $99/mo + $399 setup
-                </motion.button>
-              </div>
-              <div className="mt-8 pt-4 border-t border-white/20">
-                <p className="text-sm opacity-90 mt-3">Full version from just $99/mo + $399 setup. Most tools cost $2,500+/mo.</p>
-              </div>
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ delay: 1.0, duration: 0.8 }}
+              className="mt-12"
+            >
+              <BottomCtaBand variant="report" data-testid="report-bottom-cta" />
             </motion.div>
           )}
           

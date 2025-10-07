@@ -1,73 +1,86 @@
 import { SITE_STATS, installersLivePlus } from "@/lib/siteStats";
 
-// Modern gradient icons with subtle shine
+// Elevated Trust Badges: Matches site's gradient-heavy, warm design
+// Individual pill badges with gradient backgrounds (like feature cards)
+// Filled circular icons for prominence
+// Research: Figma, Notion, HubSpot (gradient-heavy, sales-focused SaaS)
+
 function UsersIcon() {
   return (
-    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24">
-      <defs>
-        <linearGradient id="users-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#3b82f6" stopOpacity="1" />
-          <stop offset="100%" stopColor="#8b5cf6" stopOpacity="1" />
-        </linearGradient>
-      </defs>
-      <path stroke="url(#users-gradient)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+    <svg 
+      className="h-5 w-5" 
+      fill="currentColor" 
+      viewBox="0 0 24 24"
+    >
+      <path d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
     </svg>
   );
 }
 
 function LockIcon() {
   return (
-    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24">
-      <defs>
-        <linearGradient id="lock-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#10b981" stopOpacity="1" />
-          <stop offset="100%" stopColor="#06b6d4" stopOpacity="1" />
-        </linearGradient>
-      </defs>
-      <path stroke="url(#lock-gradient)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+    <svg 
+      className="h-5 w-5" 
+      fill="currentColor" 
+      viewBox="0 0 24 24"
+    >
+      <path fillRule="evenodd" d="M12 1.5a5.25 5.25 0 00-5.25 5.25v3a3 3 0 00-3 3v6.75a3 3 0 003 3h10.5a3 3 0 003-3v-6.75a3 3 0 00-3-3v-3c0-2.9-2.35-5.25-5.25-5.25zm3.75 8.25v-3a3.75 3.75 0 10-7.5 0v3h7.5z" clipRule="evenodd" />
     </svg>
   );
 }
 
 function ShieldIcon() {
   return (
-    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24">
-      <defs>
-        <linearGradient id="shield-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#f59e0b" stopOpacity="1" />
-          <stop offset="100%" stopColor="#ef4444" stopOpacity="1" />
-        </linearGradient>
-      </defs>
-      <path stroke="url(#shield-gradient)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+    <svg 
+      className="h-5 w-5" 
+      fill="currentColor" 
+      viewBox="0 0 24 24"
+    >
+      <path fillRule="evenodd" d="M12.516 2.17a.75.75 0 00-1.032 0 11.209 11.209 0 01-7.877 3.08.75.75 0 00-.722.515A12.74 12.74 0 002.25 9.75c0 5.942 4.064 10.933 9.563 12.348a.749.749 0 00.374 0c5.499-1.415 9.563-6.406 9.563-12.348 0-1.39-.223-2.73-.635-3.985a.75.75 0 00-.722-.516l-.143.001c-2.996 0-5.717-1.17-7.734-3.08zm3.094 8.016a.75.75 0 10-1.22-.872l-3.236 4.53L9.53 12.22a.75.75 0 00-1.06 1.06l2.25 2.25a.75.75 0 001.14-.094l3.75-5.25z" clipRule="evenodd" />
     </svg>
   );
 }
 
 function SunIcon() {
   return (
-    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24">
-      <defs>
-        <linearGradient id="sun-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#fbbf24" stopOpacity="1" />
-          <stop offset="100%" stopColor="#f59e0b" stopOpacity="1" />
-        </linearGradient>
-      </defs>
-      <path stroke="url(#sun-gradient)" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+    <svg 
+      className="h-5 w-5" 
+      fill="currentColor" 
+      viewBox="0 0 24 24"
+    >
+      <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" />
     </svg>
   );
 }
 
 function StarIcon() {
   return (
-    <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24">
-      <defs>
-        <linearGradient id="star-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#fbbf24" stopOpacity="1" />
-          <stop offset="100%" stopColor="#f59e0b" stopOpacity="1" />
-        </linearGradient>
-      </defs>
-      <path stroke="url(#star-gradient)" strokeWidth={1.8} fill="url(#star-gradient)" strokeLinecap="round" strokeLinejoin="round" d="M11.48 3.499a.562.562 0 011.04 0l2.125 5.111a.563.563 0 00.475.345l5.518.442c.499.04.701.663.321.988l-4.204 3.602a.563.563 0 00-.182.557l1.285 5.385a.562.562 0 01-.84.61l-4.725-2.885a.563.563 0 00-.586 0L6.982 20.54a.562.562 0 01-.84-.61l1.285-5.386a.562.562 0 00-.182-.557l-4.204-3.602a.563.563 0 01.321-.988l5.518-.442a.563.563 0 00.475-.345L11.48 3.5z" />
+    <svg 
+      className="h-5 w-5" 
+      fill="currentColor" 
+      viewBox="0 0 24 24"
+    >
+      <path fillRule="evenodd" d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.007 5.404.433c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.433 2.082-5.006z" clipRule="evenodd" />
     </svg>
+  );
+}
+
+function TrustBadge({ icon, text }: { icon: React.ReactNode; text: string }) {
+  return (
+    <span className="inline-flex items-center gap-2.5">
+      <div 
+        className="flex items-center justify-center w-8 h-8 rounded-full"
+        style={{
+          backgroundColor: 'color-mix(in srgb, var(--brand-primary, #ea580c) 15%, white 85%)',
+          color: 'var(--brand-600, #ea580c)',
+        }}
+      >
+        {icon}
+      </div>
+      <span className="text-[13px] font-semibold text-slate-800 tracking-tight">
+        {text}
+      </span>
+    </span>
   );
 }
 
@@ -76,41 +89,17 @@ export default function TrustRow() {
     <div
       data-testid="hero-trust-strip"
       aria-label="Trust signals"
-      className="mt-4 md:mt-5 inline-flex flex-wrap items-center justify-center gap-3 md:gap-4 px-6 py-3 rounded-2xl bg-gradient-to-br from-slate-50 to-white border border-slate-200/60 shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
+      className="mt-4 md:mt-5 inline-flex flex-wrap items-center justify-center gap-3 md:gap-4 px-6 py-3 rounded-2xl bg-white/80 backdrop-blur-md border border-slate-200/60 shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
     >
-      <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/80 backdrop-blur-sm shadow-sm border border-slate-100 transition-all hover:shadow-md hover:-translate-y-0.5">
-        <UsersIcon />
-        <span className="text-[13px] font-medium text-slate-700">{installersLivePlus} installers live</span>
-      </span>
-
+      <TrustBadge icon={<UsersIcon />} text={`${installersLivePlus} installers live`} />
       <span className="text-slate-300">•</span>
-
-      <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/80 backdrop-blur-sm shadow-sm border border-slate-100 transition-all hover:shadow-md hover:-translate-y-0.5">
-        <LockIcon />
-        <span className="text-[13px] font-medium text-slate-700">SOC 2 compliant</span>
-      </span>
-
+      <TrustBadge icon={<LockIcon />} text="SOC 2 compliant" />
       <span className="text-slate-300">•</span>
-
-      <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/80 backdrop-blur-sm shadow-sm border border-slate-100 transition-all hover:shadow-md hover:-translate-y-0.5">
-        <ShieldIcon />
-        <span className="text-[13px] font-medium text-slate-700">GDPR ready</span>
-      </span>
-
+      <TrustBadge icon={<ShieldIcon />} text="GDPR ready" />
       <span className="text-slate-300">•</span>
-
-      <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/80 backdrop-blur-sm shadow-sm border border-slate-100 transition-all hover:shadow-md hover:-translate-y-0.5">
-        <SunIcon />
-        <span className="text-[13px] font-medium text-slate-700">NREL PVWatts®</span>
-      </span>
-
+      <TrustBadge icon={<SunIcon />} text="NREL PVWatts®" />
       <span className="text-slate-300">•</span>
-
-      <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/80 backdrop-blur-sm shadow-sm border border-slate-100 transition-all hover:shadow-md hover:-translate-y-0.5">
-        <StarIcon />
-        <span className="text-[13px] font-medium text-slate-700">{SITE_STATS.rating}/5 rating</span>
-      </span>
+      <TrustBadge icon={<StarIcon />} text={`${SITE_STATS.rating}/5 rating`} />
     </div>
   );
 }
-

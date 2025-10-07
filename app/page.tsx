@@ -302,8 +302,9 @@ function HomeContent() {
           
           {/* Live confirmation bar for paid mode */}
           {!isDemo && (
-            <div className="mx-auto max-w-3xl mt-4 rounded-lg bg-emerald-50 text-emerald-900 text-sm px-4 py-2 border border-emerald-200" {...tid('live-bar')}>
-              ✅ Live for <b>{b.brand || 'Your Company'}</b>. Leads now save to your CRM.
+            <div className="mx-auto max-w-3xl mt-4 rounded-lg bg-emerald-50 text-emerald-900 text-sm px-4 py-2 border border-emerald-200 flex items-center justify-center gap-2" {...tid('live-bar')}>
+              <span>✅</span>
+              <span>Live for <b>{b.brand || 'Your Company'}</b>. Leads now save to your CRM.</span>
             </div>
           )}
           
@@ -328,6 +329,9 @@ function HomeContent() {
                     <span className="mr-2">⚡</span>
                     Activate on Your Domain — 24 Hours
                   </button>
+                  <p className="text-sm text-gray-600">
+                    $99/mo + $399 setup • 14-day refund if it doesn&rsquo;t lift booked calls
+                  </p>
                 </div>
               </div>
             </div>
@@ -440,26 +444,26 @@ function HomeContent() {
             <h3 id="installer-outcomes" className="sr-only">Installer outcomes</h3>
             <QuoteGrid>
               <QuoteCard 
-                headline="Cut quoting time from 15 minutes to 1 minute"
-                support="we now respond faster than local competitors."
+                headline="Cut quoting time from 15 minutes to 1 minute,"
+                support="and now we respond faster than local competitors."
                 name="Owner" 
                 roleAndLocation="25-employee solar firm, CA" 
               />
               <QuoteCard 
-                headline="Booked 4 extra consults in week one"
-                support="the branded quotes immediately stood out."
+                headline="Booked 4 extra consults in week one,"
+                support="and the branded quotes immediately stood out."
                 name="Ops Manager" 
                 roleAndLocation="Texas solar installer" 
               />
               <QuoteCard 
-                headline="Our lead conversion jumped 40% in the first month"
-                support="follow-ups became instant and on-brand."
+                headline="Our lead conversion jumped 40% in the first month,"
+                support="and follow-ups became instant and on-brand."
                 name="Sales Manager" 
                 roleAndLocation="Florida solar dealer" 
               />
               <QuoteCard 
-                headline="Sunspire paid for itself in week two"
-                support="homeowners instantly trusted our estimates and closed more deals."
+                headline="Sunspire paid for itself in week two,"
+                support="as homeowners instantly trusted our estimates and closed more deals."
                 name="Founder" 
                 roleAndLocation="Arizona EPC" 
               />
