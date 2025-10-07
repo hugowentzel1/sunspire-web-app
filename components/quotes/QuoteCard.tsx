@@ -26,10 +26,10 @@ export default function QuoteCard({
 
       {/* Attribution pinned to bottom with separator line */}
       <figcaption className="mt-auto pt-4 border-t border-neutral-100">
-        <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center justify-center gap-3">
           <div
             data-testid="quote-attribution-row"
-            className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[13px] text-neutral-600"
+            className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-[13px] text-neutral-600"
           >
             <span className="font-medium text-neutral-900">{name}</span>
             <span className="text-neutral-300">•</span>
