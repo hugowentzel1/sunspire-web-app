@@ -1,7 +1,11 @@
 // components/Footer.tsx
+"use client";
+
 import Link from "next/link";
+import Image from "next/image";
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import Container from '@/components/layout/Container';
+import { useIsDemo } from '@/src/lib/isDemo';
 
 function Pill({ children }: { children: React.ReactNode }) {
   return (
@@ -11,8 +15,26 @@ function Pill({ children }: { children: React.ReactNode }) {
   );
 }
 
+// Helper to get default logo URL
+const getDefaultLogo = (brand: string) => {
+  const brandLower = brand.toLowerCase();
+  
+  if (brandLower.includes('google')) return 'https://logo.clearbit.com/google.com';
+  if (brandLower.includes('microsoft')) return 'https://logo.clearbit.com/microsoft.com';
+  if (brandLower.includes('apple')) return 'https://logo.clearbit.com/apple.com';
+  if (brandLower.includes('amazon')) return 'https://logo.clearbit.com/amazon.com';
+  if (brandLower.includes('meta') || brandLower.includes('facebook')) return 'https://logo.clearbit.com/facebook.com';
+  if (brandLower.includes('netflix')) return 'https://logo.clearbit.com/netflix.com';
+  if (brandLower.includes('tesla')) return 'https://logo.clearbit.com/tesla.com';
+  
+  return null;
+};
+
 export default function Footer() {
   const b = useBrandTakeover();
+  const isDemo = useIsDemo();
+  const logoUrl = b.logo || getDefaultLogo(b.brand);
+  
   return (
     <footer className="bg-slate-100/60 py-10" data-testid="footer">
       {/* FOOTER CARD (everything lives inside this block) */}
@@ -22,11 +44,28 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16 items-start">
             {/* LEFT - Mobile: centered, Desktop: left-aligned */}
             <div className="min-w-0 md:max-w-sm text-center md:text-left">
+              {/* Company Logo (paid mode only) */}
+              {!isDemo && logoUrl && (
+                <div className="flex justify-center md:justify-start mb-4">
+                  <Image
+                    src={logoUrl}
+                    alt={`${b.brand} logo`}
+                    width={48}
+                    height={48}
+                    className="rounded-lg"
+                    style={{
+                      objectFit: "contain",
+                      width: "48px",
+                      height: "48px"
+                    }}
+                  />
+                </div>
+              )}
               <h3 className="text-xl font-semibold text-slate-900">
                 Sunspire Solar Intelligence
               </h3>
               <p className="mt-2 text-sm text-slate-600">
-                Demo for {b.brand} — Powered by Sunspire
+                {isDemo ? `Demo for ${b.brand} — Powered by Sunspire` : `Powered by Sunspire for ${b.brand}`}
               </p>
 
               <div className="mt-5 space-y-3 text-sm leading-relaxed text-slate-700">

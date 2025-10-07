@@ -89,7 +89,7 @@ export default function TrustRow() {
     <div
       data-testid="hero-trust-strip"
       aria-label="Trust signals"
-      className="mt-4 md:mt-5 inline-flex flex-wrap items-center justify-center gap-3 md:gap-4 px-6 py-3 rounded-2xl bg-white/80 backdrop-blur-md border border-slate-200/60 shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
+      className="mt-4 md:mt-5 inline-flex flex-wrap items-center justify-center gap-3 md:gap-4 px-6 py-3 rounded-2xl bg-white/80 backdrop-blur-md border border-slate-200/60 shadow-[0_2px_8px_rgba(0,0,0,0.04)] mx-auto"
     >
       <TrustBadge icon={<UsersIcon />} text={`${installersLivePlus} installers live`} />
       <span className="text-slate-300">•</span>
