@@ -362,7 +362,7 @@ function HomeContent() {
                 Go live in 24 hours. Capture more leads. Book more consults. Close more installs — all under your brand.
               </p>
               
-              <div className="flex flex-col items-center space-y-4">
+              <div className="flex flex-col items-center space-y-4" data-testid="home-hero-cta">
                 <button 
                   onClick={handleLaunchClick}
                   data-cta="primary"
@@ -373,9 +373,6 @@ function HomeContent() {
                   <span className="mr-2">⚡</span>
                   Activate on Your Domain — 24 Hours
                 </button>
-                <p className="text-sm text-slate-500">
-                  $99/mo + $399 setup • 14-day refund if it doesn&rsquo;t lift booked calls
-                </p>
               </div>
             </div>
           </div>
