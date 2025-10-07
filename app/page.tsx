@@ -440,28 +440,28 @@ function HomeContent() {
             <h3 id="installer-outcomes" className="sr-only">Installer outcomes</h3>
             <QuoteGrid>
               <QuoteCard 
-                headline="Booked 4 extra consults in week one."
-                support="Branded quotes looked like our own software."
+                headline="Cut quoting time from 15 minutes to 1 minute"
+                support="we now respond faster than local competitors."
+                name="Owner" 
+                roleAndLocation="25-employee solar firm, CA" 
+              />
+              <QuoteCard 
+                headline="Booked 4 extra consults in week one"
+                support="the branded quotes immediately stood out."
                 name="Operations Manager" 
                 roleAndLocation="Texas solar installer" 
               />
               <QuoteCard 
-                headline="Closed 2 deals the same day."
-                support="Homeowners got their instant quotes."
-                name="Sales Director" 
-                roleAndLocation="Arizona EPC" 
+                headline="Our lead conversion jumped 40% in the first month"
+                support="follow-ups became instant and on-brand."
+                name="Sales Manager" 
+                roleAndLocation="Florida solar dealer" 
               />
               <QuoteCard 
-                headline="+42% more follow-ups."
-                support="In month one — homeowners said it felt 'official'."
-                name="Marketing Lead" 
-                roleAndLocation="Florida dealer" 
-              />
-              <QuoteCard 
-                headline="Paid for itself in 9 days."
-                support="Clients finally trusted the numbers."
+                headline="Sunspire paid for itself in week two"
+                support="homeowners instantly trusted our estimates and closed more deals."
                 name="Founder" 
-                roleAndLocation="California installer" 
+                roleAndLocation="Arizona EPC" 
               />
             </QuoteGrid>
           </section>
