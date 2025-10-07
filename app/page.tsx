@@ -448,7 +448,7 @@ function HomeContent() {
               <QuoteCard 
                 headline="Booked 4 extra consults in week one"
                 support="the branded quotes immediately stood out."
-                name="Operations Manager" 
+                name="Ops Manager" 
                 roleAndLocation="Texas solar installer" 
               />
               <QuoteCard 

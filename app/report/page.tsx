@@ -26,10 +26,7 @@ import MetricsBar from '@/components/trust/MetricsBar';
 import TrustFooterLine from '@/components/trust/TrustFooterLine';
 import StickySidebar from '@/components/StickySidebar';
 import { SidebarCta } from '@/src/components/SidebarCta';
-import StickyCTA from '@/components/ui/StickyCTA';
-import FooterCtaReveal from '@/components/cta/FooterCtaReveal';
 import MethodologyModal from '@/components/MethodologyModal';
-import AssumptionsTray from '@/components/AssumptionTray';
 import QuoteCard from '@/components/QuoteCard';
 import { getTrustData } from '@/lib/trust';
 import Container from '@/components/layout/Container';
@@ -842,31 +839,24 @@ function ReportContent() {
 
           {/* Chart */}
           <div id="savings-chart" data-testid="savings-chart" className="relative rounded-2xl bg-white p-5 overflow-hidden">
-            <div className="flex justify-between items-center mb-4">
-              <h2 className="text-lg font-semibold text-gray-900">Financial Projection</h2>
-              <button
-                onClick={() => setShowMethodologyModal(true)}
-                className="text-sm text-blue-600 hover:text-blue-700 font-medium"
-              >
-                View Methodology
-              </button>
-            </div>
+            <header data-testid="report-chart-header" className="mb-3">
+              <div className="flex justify-between items-start">
+                <div>
+                  <h3 className="text-[18px] md:text-[20px] font-semibold text-neutral-900">Savings Projection</h3>
+                  <p className="text-[13px] md:text-[14px] text-neutral-600">Total savings over 25 years</p>
+                </div>
+                <button
+                  onClick={() => setShowMethodologyModal(true)}
+                  className="text-sm text-[var(--brand-600)] hover:text-[var(--brand-700)] transition-colors underline"
+                >
+                  View Methodology
+                </button>
+              </div>
+            </header>
             <div className="relative z-10 min-h-[400px]">
               <EstimateChart cashflowData={estimate.cashflowProjection} netCostAfterITC={estimate.netCostAfterITC} brandColor={b.primary} />
             </div>
           </div>
-
-          {/* Assumptions Tray */}
-          <AssumptionsTray items={[
-            { label: 'ITC', value: '30%' },
-            { label: 'Cost/W', value: '$3.50' },
-            { label: 'O&M', value: '$25/yr' },
-            { label: 'Degradation', value: '0.5%/yr' },
-            { label: 'Rate increase', value: '3%/yr' },
-            { label: 'Discount rate', value: '4%' },
-            { label: 'Utility fees', value: '$12/mo' },
-            { label: 'Export credits', value: '100%' },
-          ]} />
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.8 }} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Financial Analysis - Blurred */}
@@ -1005,7 +995,7 @@ function ReportContent() {
 
           {/* Demo-only CTA section */}
           {demoMode && (
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="rounded-3xl py-8 px-8 text-center text-white mt-4" style={{ backgroundColor: 'var(--brand)' }}>
+            <motion.div data-testid="report-endcap-cta" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 1.0, duration: 0.8 }} className="rounded-3xl py-8 px-8 text-center text-white mt-4" style={{ backgroundColor: 'var(--brand)' }}>
               <h2 className="text-3xl font-bold mb-6">Ready to Launch Your Branded Tool?</h2>
               <p className="text-xl mb-8 opacity-90">Get complete financial projections, detailed assumptions, and unblurred savings charts</p>
               <div className="flex justify-center items-center px-4 py-4">
@@ -1078,20 +1068,8 @@ function ReportContent() {
         onClose={() => setShowMethodologyModal(false)}
       />
 
-      {/* Smart Sticky CTA for Demo Mode */}
-      {(demoMode || isDemo) && <StickyCTA />}
-
-      {/* Footer CTA Reveal */}
-      {(demoMode || isDemo) && <FooterCtaReveal />}
-
       {/* Use consistent Footer component across entire demo site */}
       <Footer />
-
-      {/* LeadModal removed - no popups wanted */}
-      
-      {/* Demo components removed - no more popup */}
-      
-      {/* StickyCTA removed - no popups wanted */}
     </div>
   );
 }

@@ -28,11 +28,37 @@ export default function SupportPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Track support request
-    console.log('Support request submitted:', formData);
-    
-    // In production, send to your support system
-    alert('Support ticket created! We\'ll respond within 24 hours (or 2 hours for priority tickets).');
+    try {
+      const response = await fetch('/api/support-ticket', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          subject: formData.subject,
+          email: formData.email,
+          message: formData.message,
+          priority: formData.priority
+        })
+      });
+      
+      if (!response.ok) {
+        // Fallback to mailto
+        const subject = encodeURIComponent(formData.subject);
+        const body = encodeURIComponent(`From: ${formData.email}\nPriority: ${formData.priority}\n\n${formData.message}`);
+        window.location.href = `mailto:support@getsunspire.com?subject=${subject}&body=${body}`;
+        throw new Error('Failed to submit support ticket');
+      }
+      
+      alert('Support ticket created! We\'ll respond within 24 hours (or 4 hours for high priority tickets).');
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+        priority: 'normal'
+      });
+    } catch (error) {
+      console.error('Support submission error:', error);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -335,13 +361,19 @@ export default function SupportPage() {
                       />
                     </div>
 
-                    <Button
+                    <button
                       type="submit"
-                      className="w-full mt-6"
+                      data-testid="support-submit-btn"
+                      className="w-full mt-6 inline-flex items-center justify-center rounded-lg bg-[var(--brand-600)] px-4 py-2 text-white hover:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--brand-600)] disabled:opacity-50"
                     >
                       Create Support Ticket
-                    </Button>
+                    </button>
                   </form>
+
+                  {/* SLA / Reply Times */}
+                  <p className="mt-4 text-center text-sm text-neutral-600">
+                    Typical reply times: &lt;24h • High priority &lt;4h • Critical &lt;1h
+                  </p>
                 </Card>
 
                 {/* Response Times */}

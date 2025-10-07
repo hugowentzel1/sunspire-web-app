@@ -33,13 +33,22 @@ export default function PartnersPage() {
     setSubmitStatus('idle');
     
     try {
-      const response = await fetch('/api/partner-email', {
+      const response = await fetch('/api/partner-apply', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        body: JSON.stringify({
+          company: formData.company,
+          name: formData.name,
+          email: formData.email,
+          note: `Phone: ${formData.phone}\nClient Range: ${formData.clientRange}\n\n${formData.message}`
+        })
       });
       
       if (!response.ok) {
+        // Fallback to mailto
+        const subject = encodeURIComponent(`Partner Application - ${formData.company}`);
+        const body = encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\nCompany: ${formData.company}\nPhone: ${formData.phone}\nClient Range: ${formData.clientRange}\n\n${formData.message}`);
+        window.location.href = `mailto:support@getsunspire.com?subject=${subject}&body=${body}`;
         throw new Error('Failed to submit application');
       }
       
@@ -292,13 +301,14 @@ export default function PartnersPage() {
                       />
                     </div>
 
-                    <Button
+                    <button
                       type="submit"
-                      className="w-full mt-6"
+                      data-testid="partner-apply-btn"
+                      className="w-full mt-6 inline-flex items-center justify-center rounded-lg bg-[var(--brand-600)] px-4 py-2 text-white hover:brightness-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--brand-600)] disabled:opacity-50"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? 'Submitting...' : 'Submit Partner Application'}
-                    </Button>
+                    </button>
                   </form>
 
                   {/* Success/Error Messages */}
