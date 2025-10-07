@@ -1,90 +1,36 @@
 "use client";
+import { useEffect, useState } from "react";
+import { useCookieBannerOffset } from "../hooks/useCookieBannerOffset";
 
-import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import useCookieBannerOffset from '../hooks/useCookieBannerOffset';
-
-interface FooterCtaRevealProps {
-  className?: string;
-}
-
-export default function FooterCtaReveal({ className = '' }: FooterCtaRevealProps) {
-  const [isVisible, setIsVisible] = useState(false);
+export default function FooterCtaReveal() {
   const { offsetBottomPx } = useCookieBannerOffset();
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-      
-      // Show around 80-85% scroll
-      const shouldShow = scrollPercent > 0.8;
-      
-      // Only show if sticky CTA is hidden (near footer)
-      const stickyCta = document.querySelector('[data-testid="sticky-cta"]');
-      const stickyVisible = stickyCta ? getComputedStyle(stickyCta).opacity !== '0' : false;
-      
-      // Hide when modal is open
-      const modalOpen = document.querySelector('[data-modal-open="true"]') !== null;
-      
-      const finalVisibility = shouldShow && !stickyVisible && !modalOpen;
-      setIsVisible(finalVisibility);
+    const onScroll = () => {
+      const doc = document.documentElement;
+      const scrolled = (window.scrollY + window.innerHeight) / (doc.scrollHeight || document.body.scrollHeight);
+      const stickyUp = !document.querySelector('[data-testid="sticky-cta"]');
+      setShow(scrolled > 0.82 && stickyUp);
     };
-
-    // Initial check
-    handleScroll();
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    // Watch for sticky CTA changes
-    const observer = new MutationObserver(handleScroll);
-    observer.observe(document.body, { childList: true, subtree: true, attributes: true });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      observer.disconnect();
-    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  if (!isVisible) return null;
-
+  if (!show) return null;
   return (
-    <div
-      data-testid="footer-cta"
-      className={`fixed z-40 transition-all duration-300 ease-out ${className}`}
-      style={{ 
-        bottom: `${20 + offsetBottomPx}px`,
-        right: '16px',
-        left: '16px',
-        maxWidth: '420px',
-        margin: '0 auto'
-      }}
-    >
-      <div className="bg-white/95 backdrop-blur-md border border-gray-200 shadow-xl rounded-2xl p-4">
-        <p className="text-sm text-gray-700 mb-3 text-center">
-          Launch your branded quote experience — live in 24 hours.
+    <div data-testid="footer-cta"
+         className="fixed inset-x-0 z-30 mx-auto w-[92%] max-w-[720px] rounded-2xl border border-neutral-200 bg-white/90 p-4 shadow-lg backdrop-blur"
+         style={{ bottom: 16 + offsetBottomPx }}>
+      <div className="flex flex-col items-center gap-3 md:flex-row md:justify-between">
+        <p className="text-center text-[14px] text-neutral-800 md:text-left">
+          Ready to launch branded quotes on your domain?
         </p>
-        <Link
-          href="/api/stripe/create-checkout-session"
-          className="block w-full"
-        >
-          <button
-            className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400/50"
-            style={{ 
-              transform: 'scale(1)',
-              transition: 'transform 0.2s ease'
-            }}
-            onMouseEnter={(e) => {
-              if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                e.currentTarget.style.transform = 'scale(1.02)';
-              }
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'scale(1)';
-            }}
-          >
-            Activate on Your Domain — 24 Hours
-          </button>
-        </Link>
+        <button className="w-full rounded-xl bg-[#2F80ED] px-4 py-3 text-[14px] font-semibold text-white md:w-auto"
+                onClick={() => (window.location.href = "/pricing")}>
+          Activate on Your Domain — 24 Hours
+        </button>
       </div>
     </div>
   );

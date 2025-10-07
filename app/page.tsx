@@ -22,8 +22,9 @@ import React from 'react';
 import { attachCheckoutHandlers } from '@/src/lib/checkout';
 import { tid } from '@/src/lib/testids';
 import Footer from '@/components/Footer';
-import QuoteCard from '@/components/QuoteCard';
-import MiniTestimonial from '@/components/MiniTestimonial';
+import QuoteCard from '@/components/quotes/QuoteCard';
+import QuoteGrid from '@/components/quotes/QuoteGrid';
+import TrustRow from '@/components/trust/TrustRow';
 import ReadingProgressBar from '@/components/ReadingProgressBar';
 
 const AddressAutocomplete = dynamic(() => import('@/components/AddressAutocomplete'), { 
@@ -379,30 +380,8 @@ function HomeContent() {
             </div>
           </div>
 
-          {/* Hero Micro Testimonial Chip */}
-          <div className="max-w-2xl mx-auto mt-6" data-testid="micro-testimonial">
-            <MiniTestimonial text="Cut quoting time from 15 min → 1 min — Owner, CA" />
-          </div>
-
           {/* Hero Trust Row */}
-          <div className="max-w-3xl mx-auto mt-8" data-testid="hero-trust-row">
-            <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-gray-600">
-              <span className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
-                100+ installers live
-              </span>
-              <span className="text-gray-400">•</span>
-              <span className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-blue-600" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
-                SOC 2 compliant
-              </span>
-              <span className="text-gray-400">•</span>
-              <span className="flex items-center gap-2">
-                <svg className="w-5 h-5 text-purple-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
-                4.9/5 rating
-              </span>
-            </div>
-          </div>
+          <TrustRow />
 
           {/* Address Input Section - Exact match to c548b88 */}
           <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-3xl mx-auto section-spacing slide-up-fade">
@@ -474,30 +453,35 @@ function HomeContent() {
           </div>
 
           {/* Quotes - Social Proof Grid */}
-          <div className="max-w-6xl mx-auto py-12">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <QuoteCard
-                quote="Booked 4 extra consults in week one."
-                proof="Branded quotes looked like our own software."
-                attribution="Operations Manager, Texas solar installer"
+          <section aria-labelledby="week-one-proofs" className="mt-12 md:mt-16">
+            <h3 id="week-one-proofs" className="sr-only">What installers saw in week one</h3>
+            <QuoteGrid>
+              <QuoteCard 
+                headline="Booked 4 extra consults in week one."
+                support="Branded quotes looked like our own software."
+                name="Operations Manager" 
+                roleAndLocation="Texas solar installer" 
               />
-              <QuoteCard
-                quote="Closed 2 deals the same day"
-                proof="homeowners got their instant quotes."
-                attribution="Sales Director, Arizona EPC"
+              <QuoteCard 
+                headline="Closed 2 deals the same day."
+                support="Homeowners got their instant quotes."
+                name="Sales Director" 
+                roleAndLocation="Arizona EPC" 
               />
-              <QuoteCard
-                quote="+42% more follow-ups"
-                proof="in month one — homeowners said it felt 'official'."
-                attribution="Marketing Lead, Florida dealer"
+              <QuoteCard 
+                headline="+42% more follow-ups."
+                support="In month one — homeowners said it felt 'official'."
+                name="Marketing Lead" 
+                roleAndLocation="Florida dealer" 
               />
-              <QuoteCard
-                quote="Paid for itself in 9 days."
-                proof="Clients finally trust the numbers."
-                attribution="Founder, California installer"
+              <QuoteCard 
+                headline="Paid for itself in 9 days."
+                support="Clients finally trusted the numbers."
+                name="Founder" 
+                roleAndLocation="California installer" 
               />
-            </div>
-          </div>
+            </QuoteGrid>
+          </section>
 
           {/* KPI Band - Single band only */}
           <div 

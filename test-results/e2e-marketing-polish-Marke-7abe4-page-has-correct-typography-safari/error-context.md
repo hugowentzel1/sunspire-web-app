@@ -1,0 +1,212 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - strong [ref=e4]: Exclusive preview built for Apple
+      - generic [ref=e5]: Exclusive preview — expires in 6:23:59:59
+      - generic [ref=e6]: "Runs left: 2"
+    - generic [ref=e7]:
+      - button "Launch on Apple" [ref=e8] [cursor=pointer]
+      - button "Copy link" [ref=e9] [cursor=pointer]
+      - button "Dismiss" [ref=e10] [cursor=pointer]: ✕
+  - banner [ref=e11]:
+    - generic [ref=e13]:
+      - link "Apple logo Apple Solar Intelligence" [ref=e14]:
+        - /url: /?company=Apple&demo=1
+        - img "Apple logo" [ref=e15]
+        - generic [ref=e16]:
+          - heading "Apple" [level=1] [ref=e17]
+          - paragraph [ref=e18]: Solar Intelligence
+      - navigation [ref=e19]:
+        - link "Pricing" [ref=e20]:
+          - /url: /pricing?company=Apple&demo=1
+        - link "Partners" [ref=e21]:
+          - /url: /partners?company=Apple&demo=1
+        - link "Support" [ref=e22]:
+          - /url: /support?company=Apple&demo=1
+        - button "Activate on Your Domain — 24 Hours" [ref=e23] [cursor=pointer]
+    - paragraph [ref=e26]: Private demo for Apple. Not affiliated.
+  - generic [ref=e27]:
+    - generic [ref=e30]:
+      - link "Back to Home" [ref=e32]:
+        - /url: /?company=Apple&demo=1
+        - img [ref=e33]
+        - text: Back to Home
+      - generic [ref=e35]:
+        - heading "$99/mo + $399 setup" [level=1] [ref=e36]:
+          - text: $
+          - generic [ref=e37]: "99"
+          - text: /mo + $
+          - generic [ref=e38]: "399"
+          - text: setup
+        - paragraph [ref=e39]:
+          - generic [ref=e40]: Go live in under 24 hours with branded solar quotes.
+        - paragraph [ref=e41]:
+          - generic [ref=e42]: 14-day refund
+          - text: if it doesn't lift booked calls.
+        - button "Start setup — $ 399 today + $ 99 /mo" [ref=e44] [cursor=pointer]:
+          - text: Start setup — $
+          - generic [ref=e45] [cursor=pointer]: "399"
+          - text: today + $
+          - generic [ref=e46] [cursor=pointer]: "99"
+          - text: /mo
+        - generic [ref=e47]:
+          - img [ref=e48]
+          - generic [ref=e50]: Secure Stripe checkout • No hidden fees • 14-day refund
+      - paragraph [ref=e52]: “Cut quoting time from 15 min to 1 min — we now respond faster than local competitors.” — Owner, 25-employee solar firm, CA
+      - generic [ref=e53]:
+        - generic [ref=e54]:
+          - heading "What You Get" [level=2] [ref=e55]
+          - generic [ref=e56]:
+            - generic [ref=e57]:
+              - img [ref=e58]
+              - generic [ref=e60]:
+                - generic [ref=e62]: Branded
+                - generic [ref=e63]: reports & PDFs
+            - generic [ref=e64]:
+              - img [ref=e65]
+              - generic [ref=e67]:
+                - generic [ref=e68]:
+                  - text: Your
+                  - generic [ref=e69]: domain
+                - generic [ref=e70]: (CNAME)
+            - generic [ref=e71]:
+              - img [ref=e72]
+              - generic [ref=e74]:
+                - generic [ref=e76]: CRM
+                - generic [ref=e77]: integrations (HubSpot, Salesforce)
+            - generic [ref=e78]:
+              - img [ref=e79]
+              - generic [ref=e81]:
+                - generic [ref=e83]: Unlimited
+                - generic [ref=e84]: quotes
+            - generic [ref=e85]:
+              - img [ref=e86]
+              - generic [ref=e88]:
+                - generic [ref=e90]: SLA
+                - generic [ref=e91]: "& support"
+            - generic [ref=e92]:
+              - img [ref=e93]
+              - generic [ref=e96]:
+                - text: End-to-end
+                - generic [ref=e97]: encryption
+        - generic [ref=e98]:
+          - heading "Why Installers Switch" [level=2] [ref=e99]
+          - generic [ref=e100]:
+            - generic [ref=e101]:
+              - img [ref=e102]
+              - generic [ref=e104]:
+                - text: Live in
+                - generic [ref=e105]: <24 hours
+                - text: — no
+                - generic [ref=e106]: coding
+                - text: required
+            - generic [ref=e107]:
+              - img [ref=e108]
+              - generic [ref=e110]:
+                - text: Teams report
+                - generic [ref=e111]: +25–40%
+                - text: more booked calls after adding instant quotes
+      - paragraph [ref=e113]:
+        - generic [ref=e114]: One extra booked job
+        - text: per month typically covers the subscription.
+      - generic [ref=e115]:
+        - heading "Frequently Asked Questions" [level=2] [ref=e116]
+        - generic [ref=e117]:
+          - button "Accuracy & data sources" [ref=e119] [cursor=pointer]:
+            - generic [ref=e120] [cursor=pointer]: Accuracy & data sources
+            - img [ref=e121] [cursor=pointer]
+          - button "Security & encryption" [ref=e124] [cursor=pointer]:
+            - generic [ref=e125] [cursor=pointer]: Security & encryption
+            - img [ref=e126] [cursor=pointer]
+          - button "Cancel & refund policy" [ref=e129] [cursor=pointer]:
+            - generic [ref=e130] [cursor=pointer]: Cancel & refund policy
+            - img [ref=e131] [cursor=pointer]
+          - button "Support" [ref=e134] [cursor=pointer]:
+            - generic [ref=e135] [cursor=pointer]: Support
+            - img [ref=e136] [cursor=pointer]
+    - contentinfo [ref=e138]:
+      - generic [ref=e140]:
+        - generic [ref=e141]:
+          - generic [ref=e142]:
+            - heading "Sunspire Solar Intelligence" [level=3] [ref=e143]
+            - paragraph [ref=e144]: Demo for Apple — Powered by Sunspire
+            - generic [ref=e145]:
+              - generic [ref=e146]:
+                - generic [ref=e147]: 📍
+                - generic [ref=e148]:
+                  - text: "1700 Northside Drive Suite A7 #5164"
+                  - text: Atlanta, GA 30318
+              - generic [ref=e149]:
+                - generic [ref=e150]: GDPR
+                - generic [ref=e151]: CCPA
+                - generic [ref=e152]: SOC 2
+              - list [ref=e153]:
+                - listitem [ref=e154]:
+                  - generic [ref=e155]: ✉️
+                  - link "support@getsunspire.com" [ref=e156]:
+                    - /url: mailto:support@getsunspire.com
+                - listitem [ref=e157]:
+                  - generic [ref=e158]: ✉️
+                  - link "billing@getsunspire.com" [ref=e159]:
+                    - /url: mailto:billing@getsunspire.com
+                - listitem [ref=e160]:
+                  - generic [ref=e161]: ☎️
+                  - link "+1 (404) 123-4567" [ref=e162]:
+                    - /url: tel:+14041234567
+          - generic [ref=e163]:
+            - heading "Quick Links" [level=4] [ref=e164]
+            - list [ref=e165]:
+              - listitem [ref=e166]:
+                - link "Pricing" [ref=e167]:
+                  - /url: /pricing
+              - listitem [ref=e168]:
+                - link "Partners" [ref=e169]:
+                  - /url: /partners
+              - listitem [ref=e170]:
+                - link "Support" [ref=e171]:
+                  - /url: /support
+          - generic [ref=e172]:
+            - heading "Legal & Support" [level=4] [ref=e173]
+            - list [ref=e174]:
+              - listitem [ref=e175]:
+                - link "Privacy Policy" [ref=e176]:
+                  - /url: /privacy
+              - listitem [ref=e177]:
+                - link "Terms of Service" [ref=e178]:
+                  - /url: /terms
+              - listitem [ref=e179]:
+                - link "Security" [ref=e180]:
+                  - /url: /security
+              - listitem [ref=e181]:
+                - link "DPA" [ref=e182]:
+                  - /url: /dpa
+              - listitem [ref=e183]:
+                - link "Do Not Sell My Data" [ref=e184]:
+                  - /url: /do-not-sell
+        - separator [ref=e185]
+        - generic [ref=e186]:
+          - generic [ref=e187]:
+            - generic [ref=e188]: ⚡
+            - generic [ref=e189]:
+              - text: Estimates generated
+              - text: using NREL PVWatts® v8
+          - generic [ref=e191]:
+            - text: Powered by
+            - generic [ref=e192]: Sunspire
+          - generic [ref=e193]:
+            - generic [ref=e194]: 🗺️
+            - generic [ref=e195]:
+              - text: Mapping & location
+              - text: data © Google
+  - alert [ref=e196]
+  - generic [ref=e199]:
+    - generic [ref=e200]:
+      - heading "We use cookies to improve your experience" [level=3] [ref=e201]
+      - paragraph [ref=e202]: We use cookies and similar technologies to analyze site usage, personalize content, and provide social media features. By continuing to use our site, you consent to our use of cookies.
+    - generic [ref=e203]:
+      - button "Decline" [ref=e204] [cursor=pointer]
+      - button "Accept All" [ref=e205] [cursor=pointer]
+```

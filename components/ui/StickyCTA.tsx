@@ -1,137 +1,57 @@
 "use client";
+import { useEffect, useState } from "react";
+import { useCookieBannerOffset } from "../hooks/useCookieBannerOffset";
 
-import React, { useEffect, useRef, useState } from 'react';
-import Link from 'next/link';
-import useCookieBannerOffset from '../hooks/useCookieBannerOffset';
-
-interface StickyCTAProps {
-  className?: string;
+function useChartSeenOrHalfScroll() {
+  const [ready, setReady] = useState(false);
+  useEffect(() => {
+    const chart = document.getElementById("savings-chart");
+    const onScroll = () => {
+      const doc = document.documentElement;
+      const scrolled = (window.scrollY + window.innerHeight) / (doc.scrollHeight || document.body.scrollHeight);
+      if (scrolled > 0.5) setReady(true);
+    };
+    const io = chart ? new IntersectionObserver(es => es.forEach(e => e.isIntersecting && setReady(true)), { threshold: 0.2 }) : null;
+    window.addEventListener("scroll", onScroll, { passive: true });
+    if (chart && io) io.observe(chart);
+    return () => { window.removeEventListener("scroll", onScroll); io?.disconnect(); };
+  }, []);
+  return ready;
 }
 
-export default function StickyCTA({ className = '' }: StickyCTAProps) {
-  const [isVisible, setIsVisible] = useState(false);
-  const [showValidationCue, setShowValidationCue] = useState(false);
-  const stickyRef = useRef<HTMLDivElement>(null);
+export default function StickyCta() {
+  const seen = useChartSeenOrHalfScroll();
   const { offsetBottomPx } = useCookieBannerOffset();
+  const [hidden, setHidden] = useState(true);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPercent = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
-      const savingsChart = document.getElementById('savings-chart');
-      const chartInView = savingsChart ? savingsChart.getBoundingClientRect().top < window.innerHeight : false;
-      
-      // Show after ~50% scroll OR when savings chart enters view
-      const shouldShow = scrollPercent > 0.5 || chartInView;
-      
-      // Hide near footer (last ~640px)
-      const nearFooter = window.scrollY + window.innerHeight > document.documentElement.scrollHeight - 640;
-      
-      // Hide on tiny viewports (<540px tall)
-      const tinyViewport = window.innerHeight < 540;
-      
-      // Hide when modal is open
-      const modalOpen = document.querySelector('[data-modal-open="true"]') !== null;
-      
-      const finalVisibility = shouldShow && !nearFooter && !tinyViewport && !modalOpen;
-      
-      if (finalVisibility && !isVisible) {
-        setIsVisible(true);
-        setShowValidationCue(true);
-        // Auto-fade validation cue after 1.5s
-        setTimeout(() => setShowValidationCue(false), 1500);
-      } else if (!finalVisibility && isVisible) {
-        setIsVisible(false);
-        setShowValidationCue(false);
-      }
+    const onScroll = () => {
+      const nearFooter = window.innerHeight + window.scrollY > document.body.scrollHeight - 640;
+      const modalOpen = !!document.querySelector('[data-modal-open="true"]');
+      const tiny = window.innerHeight < 540;
+      setHidden(nearFooter || modalOpen || tiny || !seen);
     };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, [seen]);
 
-    // Initial check
-    handleScroll();
-
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    
-    // Watch for modal changes
-    const observer = new MutationObserver(handleScroll);
-    observer.observe(document.body, { childList: true, subtree: true, attributes: true });
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      observer.disconnect();
-    };
-  }, [isVisible]);
-
-  // Reserve height to prevent CLS
-  const placeholderHeight = 76;
-
+  if (hidden) return null;
   return (
-    <>
-      {/* Placeholder to prevent CLS */}
-      <div 
-        style={{ height: `${placeholderHeight}px` }}
-        className="pointer-events-none"
-        aria-hidden="true"
-      />
-      
-      {/* Actual sticky CTA */}
-      <div
-        ref={stickyRef}
-        data-testid="sticky-cta"
-        className={`fixed z-50 transition-all duration-300 ease-out ${
-          isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
-        } ${className}`}
-        style={{ 
-          bottom: `${16 + offsetBottomPx}px`,
-          right: '24px',
-          maxWidth: '420px'
-        }}
-      >
-        <div className="bg-white/95 backdrop-blur-md border border-gray-200 shadow-xl rounded-2xl p-4">
-          {/* Validation cue */}
-          {showValidationCue && (
-            <div className="mb-3 text-sm text-green-600 font-medium animate-fade-in">
-              ✓ Ready for your company domain
-            </div>
-          )}
-          
-          {/* Main CTA button */}
-          <Link
-            href="/api/stripe/create-checkout-session"
-            className="block w-full"
-          >
-            <button
-              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-blue-400/50"
-              style={{ 
-                transform: 'scale(1)',
-                transition: 'transform 0.2s ease'
-              }}
-              onMouseEnter={(e) => {
-                if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                  e.currentTarget.style.transform = 'scale(1.02)';
-                }
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = 'scale(1)';
-              }}
-            >
-              Activate on Your Domain — 24 Hours
-            </button>
-          </Link>
-          
-          {/* Microcopy */}
-          <p className="text-xs text-gray-600 mt-2 text-center">
-            Instant setup — no code, live in 2 min.
-          </p>
-          
-          {/* Trust chips */}
-          <div className="flex justify-center gap-2 mt-3 text-xs text-gray-500">
-            <span>SOC 2</span>
-            <span>•</span>
-            <span>GDPR</span>
-            <span>•</span>
-            <span>NREL PVWatts®</span>
-          </div>
-        </div>
+    <aside data-testid="sticky-cta"
+           className="fixed right-4 z-40 w-[92%] max-w-[420px] md:max-w-[480px] rounded-2xl border border-neutral-200/70 bg-white/85 p-4 shadow-lg backdrop-blur-md"
+           style={{ bottom: 16 + offsetBottomPx }}>
+      <button aria-label="Activate on Your Domain — 24 Hours"
+              className="w-full rounded-xl bg-[#2F80ED] px-4 py-3 text-[15px] font-semibold text-white"
+              onClick={() => (window.location.href = "/pricing")}>
+        Activate on Your Domain — 24 Hours
+      </button>
+      <p className="mt-2 text-center text-[12px] text-neutral-700">
+        $99/mo + $399 setup • Cancel anytime • Stripe secured
+      </p>
+      <div className="mt-1 flex items-center justify-center gap-2 text-[11px] text-neutral-600">
+        <span>SOC 2</span><span>•</span><span>GDPR</span><span>•</span><span>NREL PVWatts®</span>
       </div>
-    </>
+    </aside>
   );
 }

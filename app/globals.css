@@ -1194,6 +1194,13 @@ h3 {
   margin: 3rem 0;
 }
 
+/* Sunspire: normalize quote text */
+.sun-quote, .sun-quote * { 
+  color: inherit !important; 
+  font-weight: inherit !important; 
+  font-style: normal !important; 
+}
+
 /* Brand gradient system */
 .brand-gradient {
   background: linear-gradient(135deg, var(--brand), var(--brand-2));

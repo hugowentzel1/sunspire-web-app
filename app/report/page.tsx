@@ -29,7 +29,7 @@ import { SidebarCta } from '@/src/components/SidebarCta';
 import StickyCTA from '@/components/ui/StickyCTA';
 import FooterCtaReveal from '@/components/cta/FooterCtaReveal';
 import MethodologyModal from '@/components/MethodologyModal';
-import AssumptionTray from '@/components/AssumptionTray';
+import AssumptionsTray from '@/components/AssumptionTray';
 import QuoteCard from '@/components/QuoteCard';
 import { getTrustData } from '@/lib/trust';
 import Container from '@/components/layout/Container';
@@ -857,7 +857,16 @@ function ReportContent() {
           </div>
 
           {/* Assumptions Tray */}
-          <AssumptionTray onOpenMethodology={() => setShowMethodologyModal(true)} />
+          <AssumptionsTray items={[
+            { label: 'ITC', value: '30%' },
+            { label: 'Cost/W', value: '$3.50' },
+            { label: 'O&M', value: '$25/yr' },
+            { label: 'Degradation', value: '0.5%/yr' },
+            { label: 'Rate increase', value: '3%/yr' },
+            { label: 'Discount rate', value: '4%' },
+            { label: 'Utility fees', value: '$12/mo' },
+            { label: 'Export credits', value: '100%' },
+          ]} />
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.8 }} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Financial Analysis - Blurred */}
@@ -1065,7 +1074,7 @@ function ReportContent() {
 
       {/* Methodology Modal */}
       <MethodologyModal
-        isOpen={showMethodologyModal}
+        open={showMethodologyModal}
         onClose={() => setShowMethodologyModal(false)}
       />
 

@@ -1,0 +1,263 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e5]:
+        - generic [ref=e6]:
+          - img "uber logo" [ref=e7]
+          - generic [ref=e8]:
+            - heading "Uber" [level=1] [ref=e9]
+            - paragraph [ref=e10]: Solar Intelligence
+        - navigation [ref=e11]:
+          - link "Pricing" [ref=e12] [cursor=pointer]:
+            - /url: /pricing?company=uber&demo=1
+          - link "Partners" [ref=e13] [cursor=pointer]:
+            - /url: /partners?company=uber&demo=1
+          - link "Support" [ref=e14] [cursor=pointer]:
+            - /url: /support?company=uber&demo=1
+          - button "New Analysis" [ref=e15] [cursor=pointer]
+    - main [ref=e16]:
+      - generic [ref=e17]:
+        - paragraph [ref=e20]: Your branded solar tool is ready to launch.
+        - generic [ref=e21]:
+          - generic [ref=e22]:
+            - img "uber logo" [ref=e24]
+            - generic [ref=e25]:
+              - heading "New Analysis" [level=1] [ref=e26]
+              - paragraph [ref=e27]: Comprehensive analysis for your property at 123 N Central Ave, Phoenix, AZ
+              - generic [ref=e28]:
+                - generic [ref=e29]: "Data Source: Demo"
+                - generic [ref=e30]: •
+                - generic [ref=e31]: Generated on 10/7/2025
+              - generic [ref=e32]:
+                - paragraph [ref=e33]: "Preview: 0 runs left."
+                - paragraph [ref=e34]: Expires in 6d 23h 59m 59s
+          - generic [ref=e35]:
+            - generic [ref=e37]:
+              - generic [ref=e39]: ⚡
+              - generic [ref=e40]: 8.6 kW
+              - generic [ref=e41]: System Size
+            - generic [ref=e43]:
+              - generic [ref=e45]: ☀️
+              - generic [ref=e46]: 11,105,634 kWh
+              - generic [ref=e47]: Annual Production
+            - generic [ref=e48]:
+              - generic [ref=e49]:
+                - generic [ref=e51]: 💰
+                - generic [ref=e52]: — — —
+                - generic [ref=e53]: Net Cost (After ITC)
+              - button "Unlock Full Report" [ref=e55] [cursor=pointer]
+            - generic [ref=e56]:
+              - generic [ref=e57]:
+                - generic [ref=e59]: 📈
+                - generic [ref=e60]: — — —
+                - generic [ref=e61]: Year 1 Savings
+              - button "Unlock Full Report" [ref=e63] [cursor=pointer]
+          - generic [ref=e65]:
+            - heading "Financial Projection" [level=2] [ref=e66]
+            - button "View Methodology" [ref=e67] [cursor=pointer]
+          - generic [ref=e73]:
+            - generic [ref=e74]:
+              - heading "Key Assumptions" [level=3] [ref=e75]
+              - button "View Methodology" [ref=e76] [cursor=pointer]
+            - generic [ref=e77]:
+              - generic [ref=e78]:
+                - generic [ref=e79]: ITC
+                - generic [ref=e80]: 30%
+              - generic [ref=e81]:
+                - generic [ref=e82]: Cost/W
+                - generic [ref=e83]: $3.50
+              - generic [ref=e84]:
+                - generic [ref=e85]: O&M
+                - generic [ref=e86]: $25/yr
+              - generic [ref=e87]:
+                - generic [ref=e88]: Degradation
+                - generic [ref=e89]: 0.5%/yr
+              - generic [ref=e90]:
+                - generic [ref=e91]: Rate increase
+                - generic [ref=e92]: 3%/yr
+              - generic [ref=e93]:
+                - generic [ref=e94]: Discount rate
+                - generic [ref=e95]: 4%
+              - generic [ref=e96]:
+                - generic [ref=e97]: Utility fees
+                - generic [ref=e98]: $12/mo
+              - generic [ref=e99]:
+                - generic [ref=e100]: Export credits
+                - generic [ref=e101]: 100%
+          - generic [ref=e102]:
+            - generic [ref=e103]:
+              - generic [ref=e104]:
+                - heading "Financial Analysis" [level=2] [ref=e105]
+                - generic [ref=e106]:
+                  - generic [ref=e107]:
+                    - generic [ref=e108]: Payback Period
+                    - generic [ref=e109]: — — —
+                  - generic [ref=e110]:
+                    - generic [ref=e111]: 25-Year NPV
+                    - generic [ref=e112]: — — —
+                  - generic [ref=e113]:
+                    - generic [ref=e114]: ROI
+                    - generic [ref=e115]: — — —
+                  - generic [ref=e116]:
+                    - generic [ref=e117]: Electricity Rate
+                    - generic [ref=e118]: $0.14/kWh (Demo)
+              - button "Unlock Full Report" [ref=e120] [cursor=pointer]
+            - generic [ref=e121]:
+              - generic [ref=e122]:
+                - heading "Environmental Impact" [level=2] [ref=e123]
+                - generic [ref=e124]:
+                  - generic [ref=e125]:
+                    - generic [ref=e126]: CO₂ Offset/Year
+                    - generic [ref=e127]: 10,200 lbs
+                  - generic [ref=e128]:
+                    - generic [ref=e129]: Solar Irradiance
+                    - generic [ref=e130]: 4.5 kWh/m²/day
+                  - generic [ref=e131]:
+                    - generic [ref=e132]: System Tilt
+                    - generic [ref=e133]: 20°
+                  - generic [ref=e134]:
+                    - generic [ref=e135]: System Losses
+                    - generic [ref=e136]: 14%
+              - button "Unlock Full Report" [ref=e138] [cursor=pointer]
+            - generic [ref=e140]:
+              - heading "Calculation Details & Data Sources" [level=2] [ref=e141]
+              - generic [ref=e142]:
+                - heading "Calculation Assumptions" [level=3] [ref=e143]
+                - generic [ref=e144]:
+                  - generic [ref=e145]:
+                    - generic [ref=e146]: Federal Tax Credit (ITC)
+                    - generic [ref=e147]: 30%
+                  - generic [ref=e148]:
+                    - generic [ref=e149]: Cost per Watt
+                    - generic [ref=e150]: $3
+                  - generic [ref=e151]:
+                    - generic [ref=e152]: Panel Degradation
+                    - generic [ref=e153]: 0.5%/year
+                  - generic [ref=e154]:
+                    - generic [ref=e155]: O&M Cost
+                    - generic [ref=e156]: $22/kW/year
+                  - generic [ref=e157]:
+                    - generic [ref=e158]: Rate Increase
+                    - generic [ref=e159]: 2.5%/year
+                  - generic [ref=e160]:
+                    - generic [ref=e161]: Discount Rate
+                    - generic [ref=e162]: 7%
+              - generic [ref=e163]:
+                - heading "Data Sources" [level=3] [ref=e164]
+                - generic [ref=e165]:
+                  - generic [ref=e168]: Solar irradiance data from industry-standard models
+                  - generic [ref=e171]: Utility rates from local utility databases
+                  - generic [ref=e174]: Financial calculations based on current federal and state incentives
+                - generic [ref=e175]:
+                  - paragraph
+                  - paragraph [ref=e176]: Last updated 10/7/2025
+          - generic [ref=e178]:
+            - paragraph [ref=e180]: Booked 4 extra consults in week one.
+            - paragraph [ref=e181]: Branded quotes looked like our own software.
+            - generic [ref=e182]:
+              - paragraph [ref=e183]: Operations Manager, Texas solar installer
+              - generic [ref=e184]: ✓ Verified
+          - generic [ref=e185]:
+            - heading "Ready to Launch Your Branded Tool?" [level=2] [ref=e186]
+            - paragraph [ref=e187]: Get complete financial projections, detailed assumptions, and unblurred savings charts
+            - button "Activate on Your Domain — $99/mo + $399 setup" [ref=e189] [cursor=pointer]
+            - paragraph [ref=e191]: Full version from just $99/mo + $399 setup. Most tools cost $2,500+/mo.
+          - paragraph [ref=e193]: "Data sources: NREL PVWatts®, EIA, Google Maps • Last validated Oct 2025"
+    - generic:
+      - generic:
+        - link "Activate on Your Domain — 24 Hours":
+          - /url: /api/stripe/create-checkout-session
+          - button "Activate on Your Domain — 24 Hours"
+        - paragraph: Instant setup — no code, live in 2 min.
+        - generic:
+          - generic: SOC 2
+          - generic: •
+          - generic: GDPR
+          - generic: •
+          - generic: NREL PVWatts®
+    - contentinfo [ref=e194]:
+      - generic [ref=e196]:
+        - generic [ref=e197]:
+          - generic [ref=e198]:
+            - heading "Sunspire Solar Intelligence" [level=3] [ref=e199]
+            - paragraph [ref=e200]: Demo for Your Company — Powered by Sunspire
+            - generic [ref=e201]:
+              - generic [ref=e202]:
+                - generic [ref=e203]: 📍
+                - generic [ref=e204]:
+                  - text: "1700 Northside Drive Suite A7 #5164"
+                  - text: Atlanta, GA 30318
+              - generic [ref=e205]:
+                - generic [ref=e206]: GDPR
+                - generic [ref=e207]: CCPA
+                - generic [ref=e208]: SOC 2
+              - list [ref=e209]:
+                - listitem [ref=e210]:
+                  - generic [ref=e211]: ✉️
+                  - link "support@getsunspire.com" [ref=e212] [cursor=pointer]:
+                    - /url: mailto:support@getsunspire.com
+                - listitem [ref=e213]:
+                  - generic [ref=e214]: ✉️
+                  - link "billing@getsunspire.com" [ref=e215] [cursor=pointer]:
+                    - /url: mailto:billing@getsunspire.com
+                - listitem [ref=e216]:
+                  - generic [ref=e217]: ☎️
+                  - link "+1 (404) 123-4567" [ref=e218] [cursor=pointer]:
+                    - /url: tel:+14041234567
+          - generic [ref=e219]:
+            - heading "Quick Links" [level=4] [ref=e220]
+            - list [ref=e221]:
+              - listitem [ref=e222]:
+                - link "Pricing" [ref=e223] [cursor=pointer]:
+                  - /url: /pricing
+              - listitem [ref=e224]:
+                - link "Partners" [ref=e225] [cursor=pointer]:
+                  - /url: /partners
+              - listitem [ref=e226]:
+                - link "Support" [ref=e227] [cursor=pointer]:
+                  - /url: /support
+          - generic [ref=e228]:
+            - heading "Legal & Support" [level=4] [ref=e229]
+            - list [ref=e230]:
+              - listitem [ref=e231]:
+                - link "Privacy Policy" [ref=e232] [cursor=pointer]:
+                  - /url: /privacy
+              - listitem [ref=e233]:
+                - link "Terms of Service" [ref=e234] [cursor=pointer]:
+                  - /url: /terms
+              - listitem [ref=e235]:
+                - link "Security" [ref=e236] [cursor=pointer]:
+                  - /url: /security
+              - listitem [ref=e237]:
+                - link "DPA" [ref=e238] [cursor=pointer]:
+                  - /url: /dpa
+              - listitem [ref=e239]:
+                - link "Do Not Sell My Data" [ref=e240] [cursor=pointer]:
+                  - /url: /do-not-sell
+        - separator [ref=e241]
+        - generic [ref=e242]:
+          - generic [ref=e243]:
+            - generic [ref=e244]: ⚡
+            - generic [ref=e245]:
+              - text: Estimates generated
+              - text: using NREL PVWatts® v8
+          - generic [ref=e247]:
+            - text: Powered by
+            - generic [ref=e248]: Sunspire
+          - generic [ref=e249]:
+            - generic [ref=e250]: 🗺️
+            - generic [ref=e251]:
+              - text: Mapping & location
+              - text: data © Google
+  - alert [ref=e252]
+  - generic [ref=e255]:
+    - generic [ref=e256]:
+      - heading "We use cookies to improve your experience" [level=3] [ref=e257]
+      - paragraph [ref=e258]: We use cookies and similar technologies to analyze site usage, personalize content, and provide social media features. By continuing to use our site, you consent to our use of cookies.
+    - generic [ref=e259]:
+      - button "Decline" [ref=e260] [cursor=pointer]
+      - button "Accept All" [ref=e261] [cursor=pointer]
+```
