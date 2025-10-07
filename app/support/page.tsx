@@ -52,9 +52,11 @@ export default function SupportPage() {
       setFormData({
         name: '',
         email: '',
+        company: '',
+        priority: '',
+        category: '',
         subject: '',
-        message: '',
-        priority: 'normal'
+        message: ''
       });
     } catch (error) {
       console.error('Support submission error:', error);
