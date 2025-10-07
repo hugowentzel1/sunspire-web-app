@@ -760,16 +760,33 @@ function HomeContent() {
           <div className="flex justify-center mb-8">
             {/* Company Logo & Name Only */}
             <div className="flex flex-col items-center">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">
+              {/* Company Logo */}
+              {(() => {
+                // Helper to get default logo URL
+                const getDefaultLogo = (brand: string) => {
+                  const brandLower = brand.toLowerCase();
+                  if (brandLower.includes('google')) return 'https://logo.clearbit.com/google.com';
+                  if (brandLower.includes('microsoft')) return 'https://logo.clearbit.com/microsoft.com';
+                  if (brandLower.includes('apple')) return 'https://logo.clearbit.com/apple.com';
+                  if (brandLower.includes('amazon')) return 'https://logo.clearbit.com/amazon.com';
+                  if (brandLower.includes('meta') || brandLower.includes('facebook')) return 'https://logo.clearbit.com/facebook.com';
+                  if (brandLower.includes('netflix')) return 'https://logo.clearbit.com/netflix.com';
+                  if (brandLower.includes('tesla')) return 'https://logo.clearbit.com/tesla.com';
+                  return null;
+                };
+                const logoUrl = b.logo || getDefaultLogo(b.brand);
+                
+                return logoUrl ? (
+                  <img
+                    src={logoUrl}
+                    alt={`${b.brand || "Your Company"} logo`}
+                    className="h-16 w-16 rounded-lg object-contain mb-4"
+                  />
+                ) : null;
+              })()}
+              <h3 className="text-lg font-semibold text-gray-900">
                 {b.brand || "Your Company"}
               </h3>
-              {b.logo && (
-                <img
-                  src={b.logo}
-                  alt={`${b.brand || "Your Company"} logo`}
-                  className="h-16 w-16 rounded-lg object-contain"
-                />
-              )}
             </div>
           </div>
 
