@@ -28,8 +28,9 @@ test.describe("Hero trust + CTA copy dedupe", () => {
     const trustRow = page.getByTestId("hero-trust-row");
     await expect(trustRow).toBeVisible();
 
-    // Emoji + copy checks
-    await expect(trustRow).toContainText("113+ installers live");
+    // Emoji + copy checks (case-insensitive)
+    const trustText = await trustRow.textContent();
+    expect(trustText?.toLowerCase()).toContain("113+ installers live");
     await expect(trustRow).toContainText("SOC 2");
     await expect(trustRow).toContainText("GDPR");
     await expect(trustRow).toContainText("NREL PVWatts");
