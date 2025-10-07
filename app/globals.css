@@ -1178,6 +1178,22 @@ h3 {
   background: var(--gray-400);
 }
 
+/* Fade-in animation for validation cue */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Section dividers */
+.section-divider {
+  border-top: 1px solid rgb(229, 231, 235);
+  margin: 3rem 0;
+}
+
 /* Brand gradient system */
 .brand-gradient {
   background: linear-gradient(135deg, var(--brand), var(--brand-2));

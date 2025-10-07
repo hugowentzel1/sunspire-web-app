@@ -26,7 +26,11 @@ import MetricsBar from '@/components/trust/MetricsBar';
 import TrustFooterLine from '@/components/trust/TrustFooterLine';
 import StickySidebar from '@/components/StickySidebar';
 import { SidebarCta } from '@/src/components/SidebarCta';
-import StickyCTA from '@/components/cta/StickyCTA';
+import StickyCTA from '@/components/ui/StickyCTA';
+import FooterCtaReveal from '@/components/cta/FooterCtaReveal';
+import MethodologyModal from '@/components/MethodologyModal';
+import AssumptionTray from '@/components/AssumptionTray';
+import QuoteCard from '@/components/QuoteCard';
 import { getTrustData } from '@/lib/trust';
 import Container from '@/components/layout/Container';
 
@@ -67,6 +71,7 @@ function ReportContent() {
   // showLeadModal state removed - no popups wanted
   const [demoMode, setDemoMode] = useState(false);
   const [trustData, setTrustData] = useState<any>(null);
+  const [showMethodologyModal, setShowMethodologyModal] = useState(false);
   
   // Brand takeover mode detection
   const b = useBrandTakeover();
@@ -836,11 +841,23 @@ function ReportContent() {
           </motion.div>
 
           {/* Chart */}
-          <div data-testid="savings-chart" className="relative rounded-2xl bg-white p-5 overflow-hidden">
+          <div id="savings-chart" data-testid="savings-chart" className="relative rounded-2xl bg-white p-5 overflow-hidden">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-lg font-semibold text-gray-900">Financial Projection</h2>
+              <button
+                onClick={() => setShowMethodologyModal(true)}
+                className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+              >
+                View Methodology
+              </button>
+            </div>
             <div className="relative z-10 min-h-[400px]">
               <EstimateChart cashflowData={estimate.cashflowProjection} netCostAfterITC={estimate.netCostAfterITC} brandColor={b.primary} />
             </div>
           </div>
+
+          {/* Assumptions Tray */}
+          <AssumptionTray onOpenMethodology={() => setShowMethodologyModal(true)} />
 
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.8, duration: 0.8 }} className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Financial Analysis - Blurred */}
@@ -951,6 +968,15 @@ function ReportContent() {
             </div>
           </motion.div>
 
+          {/* Quote Card */}
+          <div className="max-w-xl mx-auto my-8">
+            <QuoteCard
+              quote="Booked 4 extra consults in week one."
+              proof="Branded quotes looked like our own software."
+              attribution="Operations Manager, Texas solar installer"
+            />
+          </div>
+
           {/* Trust Signals - Testimonial and Metrics */}
           {trustData && (
             <>
@@ -1026,22 +1052,31 @@ function ReportContent() {
               </div>
             </motion.div>
           )}
+          {/* Data Attribution Strip */}
+          <div className="mt-12 pt-6 border-t border-gray-200 text-center">
+            <p className="text-xs text-gray-500">
+              Data sources: NREL PVWatts®, EIA, Google Maps • Last validated Oct 2025
+            </p>
+          </div>
+
         </motion.div>
         </Container>
       </main>
 
+      {/* Methodology Modal */}
+      <MethodologyModal
+        isOpen={showMethodologyModal}
+        onClose={() => setShowMethodologyModal(false)}
+      />
+
+      {/* Smart Sticky CTA for Demo Mode */}
+      {(demoMode || isDemo) && <StickyCTA />}
+
+      {/* Footer CTA Reveal */}
+      {(demoMode || isDemo) && <FooterCtaReveal />}
 
       {/* Use consistent Footer component across entire demo site */}
       <Footer />
-
-      {/* Optimized Sticky CTA for Demo Mode */}
-      {(demoMode || isDemo) && (
-        <StickyCTA
-          href="/pricing"
-          companyName="Tesla"
-          showTrust={true}
-        />
-      )}
 
       {/* LeadModal removed - no popups wanted */}
       
