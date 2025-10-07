@@ -839,22 +839,13 @@ function ReportContent() {
 
           {/* Chart */}
           <div id="savings-chart" data-testid="savings-chart" className="relative rounded-2xl bg-white p-5 overflow-hidden">
-            <header data-testid="report-chart-header" className="mb-3">
-              <div className="flex justify-between items-start">
-                <div>
-                  <h3 className="text-[18px] md:text-[20px] font-semibold text-neutral-900">Savings Projection</h3>
-                  <p className="text-[13px] md:text-[14px] text-neutral-600">Total savings over 25 years</p>
-                </div>
-                <button
-                  onClick={() => setShowMethodologyModal(true)}
-                  className="text-sm text-[var(--brand-600)] hover:text-[var(--brand-700)] transition-colors underline"
-                >
-                  View Methodology
-                </button>
-              </div>
-            </header>
             <div className="relative z-10 min-h-[400px]">
-              <EstimateChart cashflowData={estimate.cashflowProjection} netCostAfterITC={estimate.netCostAfterITC} brandColor={b.primary} />
+              <EstimateChart 
+                cashflowData={estimate.cashflowProjection} 
+                netCostAfterITC={estimate.netCostAfterITC} 
+                brandColor={b.primary}
+                onViewMethodology={() => setShowMethodologyModal(true)}
+              />
             </div>
           </div>
 
@@ -966,15 +957,6 @@ function ReportContent() {
               </div>
             </div>
           </motion.div>
-
-          {/* Quote Card */}
-          <div className="max-w-xl mx-auto my-8">
-            <QuoteCard
-              quote="Booked 4 extra consults in week one."
-              proof="Branded quotes looked like our own software."
-              attribution="Operations Manager, Texas solar installer"
-            />
-          </div>
 
           {/* Trust Signals - Testimonial and Metrics */}
           {trustData && (

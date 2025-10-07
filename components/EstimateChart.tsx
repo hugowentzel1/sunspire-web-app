@@ -26,6 +26,7 @@ interface EstimateChartProps {
   netCostAfterITC: number;
   className?: string;
   brandColor?: string;
+  onViewMethodology?: () => void;
 }
 
 export default function EstimateChart({
@@ -33,6 +34,7 @@ export default function EstimateChart({
   netCostAfterITC,
   className = "",
   brandColor = "#10b981", // Default green
+  onViewMethodology,
 }: EstimateChartProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -140,12 +142,24 @@ export default function EstimateChart({
       className={`bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 ${className}`}
     >
       <div className="mb-6">
-        <h3 className="text-xl font-bold text-gray-900 mb-2">
-          Your Solar Savings Over Time
-        </h3>
-        <p className="text-gray-600 text-sm">
-          Simple view of how your solar investment pays off over 25 years
-        </p>
+        <div className="flex justify-between items-start">
+          <div>
+            <h3 className="text-xl font-bold text-gray-900 mb-2">
+              Your Solar Savings Over Time
+            </h3>
+            <p className="text-gray-600 text-sm">
+              Simple view of how your solar investment pays off over 25 years
+            </p>
+          </div>
+          {onViewMethodology && (
+            <button
+              onClick={onViewMethodology}
+              className="text-sm text-[var(--brand-600)] hover:text-[var(--brand-700)] transition-colors underline whitespace-nowrap ml-4"
+            >
+              View Methodology
+            </button>
+          )}
+        </div>
       </div>
 
       <div className="h-64">
