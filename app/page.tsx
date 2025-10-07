@@ -453,8 +453,8 @@ function HomeContent() {
           </div>
 
           {/* Quotes - Social Proof Grid */}
-          <section aria-labelledby="week-one-proofs" className="mt-12 md:mt-16">
-            <h3 id="week-one-proofs" className="sr-only">What installers saw in week one</h3>
+          <section aria-labelledby="installer-outcomes" className="mt-12 md:mt-16">
+            <h3 id="installer-outcomes" className="sr-only">Installer outcomes</h3>
             <QuoteGrid>
               <QuoteCard 
                 headline="Booked 4 extra consults in week one."

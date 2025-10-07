@@ -1194,12 +1194,13 @@ h3 {
   margin: 3rem 0;
 }
 
-/* Sunspire: normalize quote text */
-.sun-quote, .sun-quote * { 
-  color: inherit !important; 
-  font-weight: inherit !important; 
-  font-style: normal !important; 
+/* Sunspire — normalize quote text so no rogue bold/gray/indents slip in */
+.sun-quote, .sun-quote * {
+  color: inherit !important;
+  font-weight: inherit !important;
+  font-style: normal !important;
 }
+.sep-dot::before { content: "•"; color: rgb(163 163 163); } /* neutral-400 */
 
 /* Brand gradient system */
 .brand-gradient {
