@@ -287,8 +287,8 @@ function HomeContent() {
 
           <div className="space-y-6">
             <div className="relative">
-              <div className="absolute -top-6 -right-4 w-12 h-12 rounded-full flex items-center justify-center shadow-lg" style={{ backgroundColor: '#10B981' }}>
-                <span className="text-white text-lg ml-0.5">✓</span>
+              <div className="absolute -top-6 -right-12 w-12 h-12 rounded-full flex items-center justify-center shadow-lg" style={{ backgroundColor: '#10B981' }}>
+                <span className="text-white text-lg">✓</span>
               </div>
             </div>
 
