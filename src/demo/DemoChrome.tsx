@@ -65,37 +65,123 @@ export function DemoBanner() {
         top: 0,
         zIndex: 1000,
         display: "flex",
-        gap: 10,
+        flexWrap: "wrap",
+        gap: 16,
         justifyContent: "space-between",
         alignItems: "center",
-        padding: "10px 12px",
-        background: "#fff",
-        borderBottom: "1px solid #eee",
+        padding: "14px 20px",
+        background: "linear-gradient(180deg, #ffffff 0%, #fafbfc 100%)",
+        borderBottom: "1px solid #e5e7eb",
+        boxShadow: "0 1px 3px rgba(0, 0, 0, 0.04)",
       }}
     >
-      <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
-        <strong>Exclusive preview built for {b.brand}</strong>
+      <div style={{ 
+        display: "flex", 
+        flexWrap: "wrap",
+        gap: 12, 
+        alignItems: "center",
+        minWidth: 0,
+        flex: "1 1 auto"
+      }}>
+        <div style={{
+          display: "flex",
+          alignItems: "center",
+          gap: 8,
+          padding: "6px 12px",
+          background: "white",
+          borderRadius: 8,
+          border: "1px solid #e5e7eb",
+        }}>
+          <strong style={{ 
+            whiteSpace: "nowrap", 
+            fontSize: 14,
+            color: "#111827",
+            fontWeight: 600
+          }}>
+            Exclusive preview built for {b.brand}
+          </strong>
+        </div>
         <ExpiryBadge
           days={countdown.days}
           hours={countdown.hours}
           minutes={countdown.minutes}
           seconds={countdown.seconds}
         />
-        <span style={{ fontSize: 12, color: "#6B7280" }}>
-          Runs left: {remaining}
+        <span style={{ 
+          fontSize: 13, 
+          color: "#6B7280", 
+          whiteSpace: "nowrap",
+          fontWeight: 500
+        }}>
+          {remaining} {remaining === 1 ? 'run' : 'runs'} left
         </span>
       </div>
-      <div style={{ display: "flex", gap: 10, alignItems: "center" }}>
+      <div style={{ 
+        display: "flex", 
+        gap: 8, 
+        alignItems: "center",
+        flexWrap: "wrap",
+        justifyContent: "flex-end"
+      }}>
         <button
           className="btn"
           onClick={open}
+          style={{ 
+            fontSize: 13,
+            padding: "8px 14px",
+            whiteSpace: "nowrap",
+            fontWeight: 600,
+            background: "linear-gradient(180deg, var(--brand-primary, #2563eb) 0%, color-mix(in srgb, var(--brand-primary, #2563eb) 90%, black 10%) 100%)",
+            color: "white",
+            border: "none",
+            borderRadius: 8,
+            cursor: "pointer",
+            boxShadow: "0 1px 2px rgba(0, 0, 0, 0.08)",
+            transition: "all 0.15s ease"
+          }}
         >
           Launch on {b.domain || "your domain"}
         </button>
-        <button className="btn" onClick={copy}>
+        <button 
+          className="btn" 
+          onClick={copy}
+          style={{ 
+            fontSize: 13,
+            padding: "8px 14px",
+            whiteSpace: "nowrap",
+            fontWeight: 500,
+            background: "white",
+            color: "#374151",
+            border: "1px solid #d1d5db",
+            borderRadius: 8,
+            cursor: "pointer",
+            transition: "all 0.15s ease"
+          }}
+        >
           Copy link
         </button>
-        <button onClick={() => setClosed(true)} aria-label="Dismiss">
+        <button 
+          onClick={() => setClosed(true)} 
+          aria-label="Dismiss"
+          style={{
+            padding: "6px 10px",
+            fontSize: 18,
+            cursor: "pointer",
+            border: "none",
+            background: "transparent",
+            color: "#9CA3AF",
+            borderRadius: 6,
+            transition: "all 0.15s ease"
+          }}
+          onMouseEnter={(e) => {
+            e.currentTarget.style.background = "#f3f4f6";
+            e.currentTarget.style.color = "#6B7280";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.background = "transparent";
+            e.currentTarget.style.color = "#9CA3AF";
+          }}
+        >
           ✕
         </button>
       </div>

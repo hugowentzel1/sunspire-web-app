@@ -575,30 +575,30 @@ function HomeContent() {
             </>
           )}
 
-          {/* How It Works Section - Compressed */}
-          <div className="max-w-4xl mx-auto py-12 md:py-16">
+          {/* How It Works Section - Centered */}
+          <div className="max-w-4xl mx-auto py-12 md:py-16 px-4">
             <div className="text-center space-y-8">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900">How it works</h2>
-              <div className="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8">
-                <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 bg-[var(--brand-primary)] rounded-full flex items-center justify-center text-white font-semibold text-sm">
+              <div className="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-8">
+                <div className="flex flex-col items-center space-y-2 w-full md:w-auto text-center">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-[var(--brand-primary)] rounded-full flex items-center justify-center text-white font-semibold text-base shadow-md flex-shrink-0">
                     1
                   </div>
-                  <span className="text-base text-slate-700">Customer requests quote</span>
+                  <span className="text-base text-slate-700 max-w-[140px]">Customer requests quote</span>
                 </div>
-                <div className="hidden md:block text-slate-400">→</div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 bg-[var(--brand-primary)] rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                <div className="hidden md:block text-slate-400 text-2xl flex-shrink-0 -mt-8">→</div>
+                <div className="flex flex-col items-center space-y-2 w-full md:w-auto text-center">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-[var(--brand-primary)] rounded-full flex items-center justify-center text-white font-semibold text-base shadow-md flex-shrink-0">
                     2
                   </div>
-                  <span className="text-base text-slate-700">Instant branded report</span>
+                  <span className="text-base text-slate-700 max-w-[140px]">Instant branded report</span>
                 </div>
-                <div className="hidden md:block text-slate-400">→</div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-6 h-6 bg-[var(--brand-primary)] rounded-full flex items-center justify-center text-white font-semibold text-sm">
+                <div className="hidden md:block text-slate-400 text-2xl flex-shrink-0 -mt-8">→</div>
+                <div className="flex flex-col items-center space-y-2 w-full md:w-auto text-center">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-[var(--brand-primary)] rounded-full flex items-center justify-center text-white font-semibold text-base shadow-md flex-shrink-0">
                     3
                   </div>
-                  <span className="text-base text-slate-700">Consultation booked</span>
+                  <span className="text-base text-slate-700 max-w-[140px]">Consultation booked</span>
                 </div>
               </div>
             </div>
