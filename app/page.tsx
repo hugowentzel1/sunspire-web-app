@@ -358,24 +358,13 @@ function HomeContent() {
               <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                 Go live in 24 hours. Capture more leads. Book more consults. Close more installs — all under your brand.
               </p>
-              
-              <div className="flex flex-col items-center space-y-4" data-testid="home-hero-cta">
-                <button 
-                  onClick={handleLaunchClick}
-                  data-cta="primary"
-                  data-cta-button
-                  className="inline-flex items-center px-8 py-4 rounded-full text-lg font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer" 
-                  style={{ backgroundColor: 'var(--brand-primary)' }}
-                >
-                  <span className="mr-2">⚡</span>
-                  Activate on Your Domain — 24 Hours
-                </button>
-              </div>
             </div>
           </div>
 
           {/* Hero Trust Row */}
-          <TrustRow />
+          <div data-testid="home-hero-cta">
+            <TrustRow />
+          </div>
 
           {/* Address Input Section - Exact match to c548b88 */}
           <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-3xl mx-auto section-spacing slide-up-fade">
