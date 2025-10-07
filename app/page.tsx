@@ -302,8 +302,8 @@ function HomeContent() {
           
           {/* Live confirmation bar for paid mode */}
           {!isDemo && (
-            <div className="mx-auto max-w-3xl mt-4 rounded-lg bg-emerald-50 text-emerald-900 text-sm px-4 py-2 border border-emerald-200 flex items-center justify-center gap-4" {...tid('live-bar')}>
-              <span className="flex-shrink-0 mr-1">✅</span>
+            <div className="mx-auto max-w-3xl mt-4 rounded-lg bg-emerald-50 text-emerald-900 text-sm px-4 py-2 border border-emerald-200 flex items-center justify-center gap-6" {...tid('live-bar')}>
+              <span className="flex-shrink-0 mr-2">✅</span>
               <span>Live for <b>{b.brand || 'Your Company'}</b>. Leads now save to your CRM.</span>
             </div>
           )}
