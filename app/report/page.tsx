@@ -600,58 +600,74 @@ function ReportContent() {
       <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
         <Container>
           <div className="flex justify-between items-center h-20">
+            {/* Left: Back to Home + Logo/Brand */}
             <div className="flex items-center space-x-4">
+              <motion.a
+                href={`/?${searchParams?.toString()}`}
+                data-testid="back-home-link"
+                className="text-sm text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium flex items-center gap-1"
+                whileHover={{ x: -2 }}
+              >
+                ← Back to Home
+              </motion.a>
+              <span className="text-gray-300">|</span>
               {(b.logo || getDefaultLogo(b.brand)) ? (
                 <Image 
                   src={b.logo || getDefaultLogo(b.brand) || ''} 
                   alt={`${b.brand} logo`} 
-                  width={48} 
-                  height={48} 
+                  width={40} 
+                  height={40} 
                   className="rounded-lg"
                   style={{ 
                     objectFit: "contain",
-                    width: "48px",
-                    height: "48px",
-                    minWidth: "48px",
-                    minHeight: "48px",
-                    maxWidth: "48px",
-                    maxHeight: "48px"
+                    width: "40px",
+                    height: "40px",
+                    minWidth: "40px",
+                    minHeight: "40px",
+                    maxWidth: "40px",
+                    maxHeight: "40px"
                   }}
                 />
               ) : (
-                <div className="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center">
-                  <span className="text-white text-lg font-bold">☀️</span>
+                <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center">
+                  <span className="text-white text-base font-bold">☀️</span>
                 </div>
               )}
               <div>
-                <h1 className="text-2xl font-black text-[var(--brand-primary)]">
+                <h1 className="text-xl font-black text-[var(--brand-primary)]">
                   {capitalizeCompanyName(b.brand)}
                 </h1>
-                <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
+                <p className="text-[10px] font-semibold text-gray-500 tracking-widest uppercase">
                   Solar Intelligence
                 </p>
               </div>
             </div>
             
-            <nav className="hidden md:flex items-center space-x-12">
-              <a
-                href={`/pricing?${searchParams?.toString()}`}
-                className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
-              >
-                Pricing
-              </a>
-              <a
-                href={`/partners?${searchParams?.toString()}`}
-                className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
-              >
-                Partners
-              </a>
-              <a
-                href={`/support?${searchParams?.toString()}`}
-                className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
-              >
-                Support
-              </a>
+            {/* Right: Nav + New Analysis */}
+            <nav className="hidden md:flex items-center space-x-8">
+              {/* Only show Pricing/Partners/Support in demo mode */}
+              {demoMode && (
+                <>
+                  <a
+                    href={`/pricing?${searchParams?.toString()}`}
+                    className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium text-sm"
+                  >
+                    Pricing
+                  </a>
+                  <a
+                    href={`/partners?${searchParams?.toString()}`}
+                    className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium text-sm"
+                  >
+                    Partners
+                  </a>
+                  <a
+                    href={`/support?${searchParams?.toString()}`}
+                    className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium text-sm"
+                  >
+                    Support
+                  </a>
+                </>
+              )}
               <motion.button 
                 onClick={() => {
                   const company = searchParams?.get('company');
@@ -669,7 +685,8 @@ function ReportContent() {
                   const url = queryString ? `/?${queryString}` : '/';
                   router.push(url);
                 }}
-                className="btn-primary ml-12"
+                data-testid="new-analysis-button"
+                className="btn-primary"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -757,9 +774,38 @@ function ReportContent() {
 
           </div>
 
-
-
-
+          {/* Paid-only homeowner CTAs (top) */}
+          {!demoMode && (
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ delay: 0.3, duration: 0.6 }}
+              data-testid="paid-cta-top"
+              className="rounded-2xl py-6 px-6 md:px-8 text-center bg-white border border-gray-200 shadow-sm"
+            >
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">Ready to Go Solar?</h3>
+              <p className="text-base text-gray-600 mb-6 max-w-2xl mx-auto">Connect with a solar specialist to discuss your custom quote and next steps.</p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+                <motion.a 
+                  href={`/contact?${searchParams?.toString()}`}
+                  className="px-6 py-3 text-white rounded-xl font-semibold text-base hover:shadow-lg transition-all duration-200 w-full sm:w-auto" 
+                  style={{ backgroundColor: b.primary }}
+                  whileHover={{ scale: 1.03 }} 
+                  whileTap={{ scale: 0.98 }}
+                >
+                  📅 Book a Consultation
+                </motion.a>
+                <motion.a 
+                  href={`tel:+14041234567`}
+                  className="px-6 py-3 bg-gray-100 text-gray-900 rounded-xl font-semibold text-base hover:bg-gray-200 transition-all duration-200 w-full sm:w-auto border border-gray-300" 
+                  whileHover={{ scale: 1.03 }} 
+                  whileTap={{ scale: 0.98 }}
+                >
+                  📞 Talk to a Specialist
+                </motion.a>
+              </div>
+            </motion.div>
+          )}
 
           {/* Metric Tiles */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
@@ -991,42 +1037,76 @@ function ReportContent() {
           {/* Disclaimer */}
 
 
-          {/* Paid-only CTA section */}
+          {/* Paid-only CTA section (bottom) */}
           {!demoMode && (
             <motion.div 
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ delay: 1.0, duration: 0.8 }} 
-              className="rounded-3xl py-8 px-8 text-center bg-white border border-gray-200 mt-4"
+              data-testid="paid-cta-bottom"
+              className="rounded-3xl py-8 px-8 text-center bg-white border border-gray-200 mt-4 space-y-8"
             >
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Download & Share Your Report</h2>
-              <p className="text-xl text-gray-600 mb-10">Get a professional PDF report and share with your team</p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <motion.button 
-                  onClick={handleDownloadPDF}
-                  className="px-8 py-4 text-white rounded-2xl font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" 
-                  style={{ backgroundColor: b.primary }}
-                  whileHover={{ scale: 1.05 }} 
-                  whileTap={{ scale: 0.95 }}
-                >
-                  📄 Download PDF Report
-                </motion.button>
-                <motion.button 
-                  onClick={handleCopyShareLink}
-                  className="px-8 py-4 text-white rounded-2xl font-bold text-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-1" 
-                  style={{ backgroundColor: b.primary }}
-                  whileHover={{ scale: 1.05 }} 
-                  whileTap={{ scale: 0.95 }}
-                >
-                  🔗 Copy Share Link
-                </motion.button>
+              {/* Homeowner conversion CTAs */}
+              <div>
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Ready to Start Your Solar Journey?</h2>
+                <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">Let's discuss your personalized quote and answer any questions.</p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+                  <motion.a 
+                    href={`/contact?${searchParams?.toString()}`}
+                    className="px-7 py-4 text-white rounded-xl font-semibold text-base hover:shadow-xl transition-all duration-300" 
+                    style={{ backgroundColor: b.primary }}
+                    whileHover={{ scale: 1.03 }} 
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    📅 Book a Consultation
+                  </motion.a>
+                  <motion.a 
+                    href={`tel:+14041234567`}
+                    className="px-7 py-4 bg-gray-100 text-gray-900 rounded-xl font-semibold text-base hover:bg-gray-200 transition-all duration-300 border border-gray-300" 
+                    whileHover={{ scale: 1.03 }} 
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    📞 Talk to a Specialist
+                  </motion.a>
+                </div>
+              </div>
+
+              {/* Divider */}
+              <hr className="border-gray-200" />
+
+              {/* Download & Share */}
+              <div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">Download & Share Your Report</h3>
+                <p className="text-base text-gray-600 mb-5">Get a professional PDF report and share with your team</p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+                  <motion.button 
+                    onClick={handleDownloadPDF}
+                    className="px-6 py-3 text-white rounded-xl font-semibold text-base hover:shadow-lg transition-all duration-200" 
+                    style={{ backgroundColor: b.primary }}
+                    whileHover={{ scale: 1.03 }} 
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    📄 Download PDF Report
+                  </motion.button>
+                  <motion.button 
+                    onClick={handleCopyShareLink}
+                    className="px-6 py-3 bg-gray-100 text-gray-900 rounded-xl font-semibold text-base hover:bg-gray-200 transition-all duration-200 border border-gray-300" 
+                    whileHover={{ scale: 1.03 }} 
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    🔗 Copy Share Link
+                  </motion.button>
+                </div>
               </div>
             </motion.div>
           )}
           {/* Data Attribution Strip */}
-          <div className="mt-12 pt-6 border-t border-gray-200 text-center">
+          <div className="mt-12 pt-6 border-t border-gray-200 text-center" data-testid="data-sources-line">
             <p className="text-xs text-gray-500">
-              Data sources: NREL PVWatts®, EIA, Google Maps • Last validated Oct 2025
+              Data sources: NREL PVWatts, U.S. EIA, and Google Maps • Last validated Oct 2025
+            </p>
+            <p className="text-xs text-gray-400 mt-2">
+              PVWatts is a registered trademark of the Alliance for Sustainable Energy, LLC.
             </p>
           </div>
 

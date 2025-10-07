@@ -18,10 +18,10 @@ export default function Footer() {
       {/* FOOTER CARD (everything lives inside this block) */}
       <Container className="rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
         <div className="px-6 py-10 md:px-10 md:py-12">
-          {/* 3-COLUMN GRID */}
+          {/* 3-COLUMN GRID - Mobile: centered, Desktop: original alignment */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16 items-start">
-            {/* LEFT */}
-            <div className="min-w-0 md:max-w-sm text-left">
+            {/* LEFT - Mobile: centered, Desktop: left-aligned */}
+            <div className="min-w-0 md:max-w-sm text-center md:text-left">
               <h3 className="text-xl font-semibold text-slate-900">
                 Sunspire Solar Intelligence
               </h3>
@@ -30,35 +30,35 @@ export default function Footer() {
               </p>
 
               <div className="mt-5 space-y-3 text-sm leading-relaxed text-slate-700">
-                <div className="flex items-start gap-3">
-                  <span className="mt-0.5">📍</span>
-                  <div className="min-w-0 break-words whitespace-normal">
+                <div className="flex items-start gap-3 justify-center md:justify-start">
+                  <span className="mt-0.5 flex-shrink-0">📍</span>
+                  <div className="min-w-0 break-words whitespace-normal text-left">
                     1700 Northside Drive Suite A7 #5164<br className="hidden sm:block" />
                     Atlanta, GA 30318
                   </div>
                 </div>
 
-                <div className="flex flex-wrap items-center gap-2 pt-1">
+                <div className="flex flex-wrap items-center justify-center md:justify-start gap-2 pt-1">
                   <Pill>GDPR</Pill>
                   <Pill>CCPA</Pill>
                   <Pill>SOC 2</Pill>
                 </div>
 
                 <ul className="mt-1 space-y-2.5">
-                  <li className="flex items-start gap-3">
-                    <span className="mt-0.5">✉️</span>
+                  <li className="flex items-start gap-3 justify-center md:justify-start">
+                    <span className="mt-0.5 flex-shrink-0">✉️</span>
                     <a className="underline-offset-2 hover:underline" href="mailto:support@getsunspire.com">
                       support@getsunspire.com
                     </a>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <span className="mt-0.5">✉️</span>
+                  <li className="flex items-start gap-3 justify-center md:justify-start">
+                    <span className="mt-0.5 flex-shrink-0">✉️</span>
                     <a className="underline-offset-2 hover:underline" href="mailto:billing@getsunspire.com">
                       billing@getsunspire.com
                     </a>
                   </li>
-                  <li className="flex items-start gap-3">
-                    <span className="mt-0.5">☎️</span>
+                  <li className="flex items-start gap-3 justify-center md:justify-start">
+                    <span className="mt-0.5 flex-shrink-0">☎️</span>
                     <a className="underline-offset-2 hover:underline" href="tel:+14041234567">
                       +1 (404) 123-4567
                     </a>
@@ -67,7 +67,7 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* MIDDLE - FULLY CENTERED */}
+            {/* MIDDLE - Always centered */}
             <div className="min-w-0 md:max-w-xs flex flex-col items-center text-center">
               <h4 className="text-xl font-semibold text-slate-900">Quick Links</h4>
               <ul className="mt-4 space-y-3 text-sm text-slate-700 leading-relaxed">
@@ -77,8 +77,8 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* RIGHT */}
-            <div className="min-w-0 md:max-w-xs text-right">
+            {/* RIGHT - Mobile: centered, Desktop: right-aligned */}
+            <div className="min-w-0 md:max-w-xs text-center md:text-right">
               <h4 className="text-xl font-semibold text-slate-900">Legal &amp; Support</h4>
               <ul className="mt-4 space-y-3 text-sm text-slate-700 leading-relaxed">
                 <li><Link className="hover:underline underline-offset-2" href="/privacy">Privacy Policy</Link></li>

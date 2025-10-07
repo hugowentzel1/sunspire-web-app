@@ -354,6 +354,10 @@ export default function AddressAutocomplete({
               {prediction.description}
             </div>
           ))}
+          {/* Google attribution */}
+          <div className="px-3 py-2 text-[10px] text-gray-400 border-t border-gray-200 text-right">
+            Powered by Google
+          </div>
         </div>
       )}
 
