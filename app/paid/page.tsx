@@ -120,7 +120,7 @@ function HomeContent() {
   };
 
   const handleGenerateEstimate = () => {
-    if (!address.trim()) return;
+    if (!address || !address.trim()) return;
 
     console.log("Generating estimate for address:", address);
     console.log("Selected place:", selectedPlace);
@@ -383,17 +383,17 @@ function HomeContent() {
                 {/* Generate Button - Now below the search bar */}
                 <button
                   onClick={
-                    address.trim()
+                    address && address.trim()
                       ? handleGenerateEstimate
                       : b.enabled
                         ? handleLaunchClick
                         : handleGenerateEstimate
                   }
-                  disabled={!address.trim() || isLoading}
+                  disabled={!address || !address.trim() || isLoading}
                   data-cta-button
                   {...tid("cta-primary")}
                   className={`w-full ${
-                    !address.trim() || isLoading ? "btn-disabled" : "btn-cta"
+                    !address || !address.trim() || isLoading ? "btn-disabled" : "btn-cta"
                   }`}
                 >
                   {isLoading ? (
@@ -405,7 +405,7 @@ function HomeContent() {
                     <div className="flex items-center justify-center space-x-4">
                       <span>
                         {isDemo
-                          ? address.trim()
+                          ? address && address.trim()
                             ? `Generate Solar Report`
                             : `Launch Tool`
                           : "Generate Solar Intelligence Report"}
