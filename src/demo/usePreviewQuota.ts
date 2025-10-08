@@ -47,6 +47,15 @@ export function usePreviewQuota(allowed: number = 2) {
     );
     map[link] = newRuns;
     localStorage.setItem(KEY, JSON.stringify(map));
+    
+    // Safari-specific: Force a read-back to ensure persistence
+    // Safari sometimes doesn't immediately persist localStorage changes
+    const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+    if (isSafari) {
+      const verification = localStorage.getItem(KEY);
+      console.log("🍎 Safari verification - localStorage updated:", verification);
+    }
+    
     console.log("🔒 usePreviewQuota - updated map:", map);
 
     // Auto-open InstallSheet after first completed run

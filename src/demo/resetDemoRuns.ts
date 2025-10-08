@@ -5,6 +5,9 @@ export function resetDemoRuns() {
   // Clear ALL localStorage to ensure complete reset
   localStorage.clear();
   
+  // Safari-specific: Also clear sessionStorage
+  sessionStorage.clear();
+  
   // Re-set the brand takeover data with unlimited runs
   const brandData = {
     enabled: true,
@@ -28,6 +31,16 @@ export function resetDemoRuns() {
   
   console.log("✅ Demo runs completely reset - you now have unlimited runs for testing");
   console.log("🔄 All localStorage cleared and brand data reset with unlimited access");
+  
+  // Safari-specific: Force a hard reload to ensure state is refreshed
+  // Safari caches localStorage more aggressively than Chrome
+  const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+  if (isSafari) {
+    console.log("🍎 Safari detected - forcing hard reload...");
+    setTimeout(() => {
+      window.location.reload();
+    }, 100);
+  }
 }
 
 // Make resetDemoRuns available globally for easy access from browser console
