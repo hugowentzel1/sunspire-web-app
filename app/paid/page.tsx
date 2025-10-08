@@ -148,6 +148,7 @@ function HomeContent() {
 
         // Add all URL parameters
         if (searchParams?.get("company")) q.set("company", searchParams?.get("company") || "");
+        if (searchParams?.get("demo")) q.set("demo", searchParams?.get("demo") || "");
         if (searchParams?.get("brandColor")) q.set("brandColor", searchParams?.get("brandColor") || "");
         if (searchParams?.get("logo")) q.set("logo", searchParams?.get("logo") || "");
 
@@ -169,6 +170,7 @@ function HomeContent() {
 
         // Add all URL parameters
         if (searchParams?.get("company")) q.set("company", searchParams?.get("company") || "");
+        if (searchParams?.get("demo")) q.set("demo", searchParams?.get("demo") || "");
         if (searchParams?.get("brandColor")) q.set("brandColor", searchParams?.get("brandColor") || "");
         if (searchParams?.get("logo")) q.set("logo", searchParams?.get("logo") || "");
 
@@ -184,6 +186,7 @@ function HomeContent() {
 
         // Add all URL parameters
         if (searchParams?.get("company")) q.set("company", searchParams?.get("company") || "");
+        if (searchParams?.get("demo")) q.set("demo", searchParams?.get("demo") || "");
         if (searchParams?.get("brandColor")) q.set("brandColor", searchParams?.get("brandColor") || "");
         if (searchParams?.get("logo")) q.set("logo", searchParams?.get("logo") || "");
 
