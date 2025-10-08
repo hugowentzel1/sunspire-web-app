@@ -27,17 +27,17 @@ export default function EmbedPage() {
     setIsClient(true);
   }, []);
 
-  const handleAddressSelect = (address: string, placeId?: string) => {
-    // Create a PlaceResult from the address and placeId
-    const place: PlaceResult = {
-      formattedAddress: address,
-      placeId: placeId || '',
-      lat: 0, // Will be filled by the actual selection
-      lng: 0,
+  const handleAddressSelect = (place: { formattedAddress: string; placeId: string; lat: number; lng: number }) => {
+    // Create a PlaceResult from the place object
+    const placeResult: PlaceResult = {
+      formattedAddress: place.formattedAddress,
+      placeId: place.placeId,
+      lat: place.lat,
+      lng: place.lng,
       components: {}
     };
-    setSelectedPlace(place);
-    setAddress(address);
+    setSelectedPlace(placeResult);
+    setAddress(place.formattedAddress);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {

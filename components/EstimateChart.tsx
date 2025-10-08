@@ -154,7 +154,7 @@ export default function EstimateChart({
           {onViewMethodology && (
             <button
               onClick={onViewMethodology}
-              className="text-sm text-[var(--brand-600)] hover:text-[var(--brand-700)] transition-colors underline whitespace-nowrap ml-4"
+              className="text-sm text-[var(--brand-600)] hover:text-[var(--brand-700)] transition-colors underline whitespace-nowrap self-start mt-1"
             >
               View Methodology
             </button>

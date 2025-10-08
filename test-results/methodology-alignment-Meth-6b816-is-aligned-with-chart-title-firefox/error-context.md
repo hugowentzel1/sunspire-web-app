@@ -1,0 +1,253 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e5]:
+        - generic [ref=e6]:
+          - img "microsoft logo" [ref=e7]
+          - generic [ref=e8]:
+            - heading "Microsoft" [level=1] [ref=e9]
+            - paragraph [ref=e10]: Solar Intelligence
+        - navigation [ref=e11]:
+          - button "New Analysis" [ref=e12] [cursor=pointer]
+    - main [ref=e13]:
+      - generic [ref=e14]:
+        - link "Back to Home" [ref=e16] [cursor=pointer]:
+          - /url: /?address=123+Main+Street%2C+New+York%2C+NY&lat=40.7128&lng=-74.0060&demo=0&company=microsoft
+          - img [ref=e17] [cursor=pointer]
+          - text: Back to Home
+        - generic [ref=e19]:
+          - generic [ref=e20]:
+            - img "microsoft logo" [ref=e22]
+            - generic [ref=e23]:
+              - heading "New Analysis" [level=1] [ref=e24]
+              - paragraph [ref=e25]: Comprehensive analysis for your property at 123 Main Street, New York, NY
+              - generic [ref=e26]:
+                - generic [ref=e27]: "Data Source: Static"
+                - generic [ref=e28]: •
+                - generic [ref=e29]: Generated on 10/8/2025
+          - generic [ref=e30]:
+            - heading "Ready to Go Solar?" [level=3] [ref=e31]
+            - paragraph [ref=e32]: Connect with a solar specialist to discuss your custom quote and next steps.
+            - generic [ref=e33]:
+              - link "📅 Book a Consultation" [ref=e34] [cursor=pointer]:
+                - /url: /contact?address=123+Main+Street%2C+New+York%2C+NY&lat=40.7128&lng=-74.0060&demo=0&company=microsoft
+              - link "📞 Talk to a Specialist" [ref=e35] [cursor=pointer]:
+                - /url: tel:+14041234567
+          - generic [ref=e36]:
+            - generic [ref=e38]:
+              - generic [ref=e40]: ⚡
+              - generic [ref=e41]: 8.6 kW
+              - generic [ref=e42]: System Size
+            - generic [ref=e44]:
+              - generic [ref=e46]: ☀️
+              - generic [ref=e47]: 11,105,634 kWh
+              - generic [ref=e48]: Annual Production
+            - generic [ref=e50]:
+              - generic [ref=e52]: 💰
+              - generic [ref=e53]: $18,060
+              - generic [ref=e54]: Net Cost (After ITC)
+            - generic [ref=e56]:
+              - generic [ref=e58]: 📈
+              - generic [ref=e59]: $2,254
+              - generic [ref=e60]: Year 1 Savings
+          - generic [ref=e63]:
+            - generic [ref=e66]:
+              - generic [ref=e67]:
+                - heading "Your Solar Savings Over Time" [level=3] [ref=e68]
+                - button "View Methodology" [ref=e69] [cursor=pointer]
+              - paragraph [ref=e70]: Simple view of how your solar investment pays off over 25 years
+            - application [ref=e74]:
+              - generic [ref=e89]:
+                - generic [ref=e90]:
+                  - generic [ref=e93]: "1"
+                  - generic [ref=e96]: "5"
+                  - generic [ref=e99]: "10"
+                  - generic [ref=e102]: "15"
+                  - generic [ref=e105]: "20"
+                  - generic [ref=e108]: "25"
+                - generic [ref=e110]: Years
+              - generic [ref=e111]:
+                - generic [ref=e112]:
+                  - generic [ref=e115]: $0k
+                  - generic [ref=e118]: $15k
+                  - generic [ref=e121]: $30k
+                  - generic [ref=e124]: $45k
+                  - generic [ref=e127]: $60k
+                - generic [ref=e129]: Total Savings
+            - generic [ref=e141]:
+              - generic [ref=e142]:
+                - generic [ref=e144]: $18k
+                - generic [ref=e145]: Investment
+              - generic [ref=e146]:
+                - generic [ref=e148]: 11 years
+                - generic [ref=e149]: Payback Time
+              - generic [ref=e150]:
+                - generic [ref=e152]: $42k
+                - generic [ref=e153]: 25-Year Savings
+            - paragraph [ref=e155]:
+              - generic [ref=e156]: "How to read this:"
+              - text: The blue area shows your total savings growing over time. After 11 years, you'll have saved enough to cover your initial investment. By year 25, you'll have saved $42k total.
+            - img
+          - generic [ref=e157]:
+            - generic [ref=e159]:
+              - heading "Financial Analysis" [level=2] [ref=e160]
+              - generic [ref=e161]:
+                - generic [ref=e162]:
+                  - generic [ref=e163]: Payback Period
+                  - generic [ref=e164]: 8 years
+                - generic [ref=e165]:
+                  - generic [ref=e166]: 25-Year NPV
+                  - generic [ref=e167]: $73,000
+                - generic [ref=e168]:
+                  - generic [ref=e169]: ROI
+                  - generic [ref=e170]: 504%
+                - generic [ref=e171]:
+                  - generic [ref=e172]: Electricity Rate
+                  - generic [ref=e173]: $0.14/kWh (Static)
+            - generic [ref=e175]:
+              - heading "Environmental Impact" [level=2] [ref=e176]
+              - generic [ref=e177]:
+                - generic [ref=e178]:
+                  - generic [ref=e179]: CO₂ Offset/Year
+                  - generic [ref=e180]: 10,200 lbs
+                - generic [ref=e181]:
+                  - generic [ref=e182]: Solar Irradiance
+                  - generic [ref=e183]: 4.5 kWh/m²/day
+                - generic [ref=e184]:
+                  - generic [ref=e185]: System Tilt
+                  - generic [ref=e186]: 20°
+                - generic [ref=e187]:
+                  - generic [ref=e188]: System Losses
+                  - generic [ref=e189]: 14%
+            - generic [ref=e191]:
+              - heading "Calculation Details & Data Sources" [level=2] [ref=e192]
+              - generic [ref=e193]:
+                - heading "Calculation Assumptions" [level=3] [ref=e194]
+                - generic [ref=e195]:
+                  - generic [ref=e196]:
+                    - generic [ref=e197]: Federal Tax Credit (ITC)
+                    - generic [ref=e198]: 30%
+                  - generic [ref=e199]:
+                    - generic [ref=e200]: Cost per Watt
+                    - generic [ref=e201]: $3
+                  - generic [ref=e202]:
+                    - generic [ref=e203]: Panel Degradation
+                    - generic [ref=e204]: 0.5%/year
+                  - generic [ref=e205]:
+                    - generic [ref=e206]: O&M Cost
+                    - generic [ref=e207]: $22/kW/year
+                  - generic [ref=e208]:
+                    - generic [ref=e209]: Rate Increase
+                    - generic [ref=e210]: 2.5%/year
+                  - generic [ref=e211]:
+                    - generic [ref=e212]: Discount Rate
+                    - generic [ref=e213]: 7%
+              - generic [ref=e214]:
+                - heading "Data Sources" [level=3] [ref=e215]
+                - generic [ref=e216]:
+                  - generic [ref=e219]: Solar irradiance data from industry-standard models
+                  - generic [ref=e222]: Utility rates from local utility databases
+                  - generic [ref=e225]: Financial calculations based on current federal and state incentives
+                - generic [ref=e226]:
+                  - paragraph
+                  - paragraph [ref=e227]: Last updated 10/8/2025
+          - generic [ref=e228]:
+            - generic [ref=e229]:
+              - heading "Ready to Start Your Solar Journey?" [level=2] [ref=e230]
+              - paragraph [ref=e231]: Let's discuss your personalized quote and answer any questions.
+              - generic [ref=e232]:
+                - link "📅 Book a Consultation" [ref=e233] [cursor=pointer]:
+                  - /url: /contact?address=123+Main+Street%2C+New+York%2C+NY&lat=40.7128&lng=-74.0060&demo=0&company=microsoft
+                - link "📞 Talk to a Specialist" [ref=e234] [cursor=pointer]:
+                  - /url: tel:+14041234567
+            - separator [ref=e235]
+            - generic [ref=e236]:
+              - heading "Download & Share Your Report" [level=3] [ref=e237]
+              - paragraph [ref=e238]: Get a professional PDF report and share with your team
+              - generic [ref=e239]:
+                - button "📄 Download PDF Report" [ref=e240] [cursor=pointer]
+                - button "🔗 Copy Share Link" [ref=e241] [cursor=pointer]
+          - generic [ref=e242]:
+            - paragraph [ref=e243]: "Data sources: NREL PVWatts, U.S. EIA, and Google Maps • Last validated Oct 2025"
+            - paragraph [ref=e244]: PVWatts is a registered trademark of the Alliance for Sustainable Energy, LLC.
+    - contentinfo [ref=e245]:
+      - generic [ref=e247]:
+        - generic [ref=e248]:
+          - generic [ref=e249]:
+            - img "microsoft logo" [ref=e251]
+            - heading "Sunspire Solar Intelligence" [level=3] [ref=e252]
+            - paragraph [ref=e253]: Powered by Sunspire for microsoft
+            - generic [ref=e254]:
+              - generic [ref=e255]:
+                - generic [ref=e256]: 📍
+                - generic [ref=e257]:
+                  - text: "1700 Northside Drive Suite A7 #5164"
+                  - text: Atlanta, GA 30318
+              - generic [ref=e258]:
+                - generic [ref=e259]: GDPR
+                - generic [ref=e260]: CCPA
+                - generic [ref=e261]: SOC 2
+              - list [ref=e262]:
+                - listitem [ref=e263]:
+                  - generic [ref=e264]: ✉️
+                  - link "support@getsunspire.com" [ref=e265] [cursor=pointer]:
+                    - /url: mailto:support@getsunspire.com
+                - listitem [ref=e266]:
+                  - generic [ref=e267]: ✉️
+                  - link "billing@getsunspire.com" [ref=e268] [cursor=pointer]:
+                    - /url: mailto:billing@getsunspire.com
+                - listitem [ref=e269]:
+                  - generic [ref=e270]: ☎️
+                  - link "+1 (404) 123-4567" [ref=e271] [cursor=pointer]:
+                    - /url: tel:+14041234567
+          - generic [ref=e272]:
+            - heading "Quick Links" [level=4] [ref=e273]
+            - list [ref=e274]:
+              - listitem [ref=e275]:
+                - link "Pricing" [ref=e276] [cursor=pointer]:
+                  - /url: /pricing
+              - listitem [ref=e277]:
+                - link "Partners" [ref=e278] [cursor=pointer]:
+                  - /url: /partners
+              - listitem [ref=e279]:
+                - link "Support" [ref=e280] [cursor=pointer]:
+                  - /url: /support
+          - generic [ref=e281]:
+            - heading "Legal & Support" [level=4] [ref=e282]
+            - list [ref=e283]:
+              - listitem [ref=e284]:
+                - link "Privacy Policy" [ref=e285] [cursor=pointer]:
+                  - /url: /privacy
+              - listitem [ref=e286]:
+                - link "Terms of Service" [ref=e287] [cursor=pointer]:
+                  - /url: /terms
+              - listitem [ref=e288]:
+                - link "Security" [ref=e289] [cursor=pointer]:
+                  - /url: /security
+              - listitem [ref=e290]:
+                - link "DPA" [ref=e291] [cursor=pointer]:
+                  - /url: /dpa
+              - listitem [ref=e292]:
+                - link "Do Not Sell My Data" [ref=e293] [cursor=pointer]:
+                  - /url: /do-not-sell
+        - separator [ref=e294]
+        - generic [ref=e295]:
+          - generic [ref=e296]:
+            - generic [ref=e297]: ⚡
+            - generic [ref=e298]:
+              - text: Estimates generated
+              - text: using NREL PVWatts® v8
+          - generic [ref=e300]:
+            - text: Powered by
+            - generic [ref=e301]: Sunspire
+          - generic [ref=e302]:
+            - generic [ref=e303]: 🗺️
+            - generic [ref=e304]:
+              - text: Mapping & location
+              - text: data © Google
+  - alert [ref=e305]
+  - generic [ref=e306]: $0k
+```

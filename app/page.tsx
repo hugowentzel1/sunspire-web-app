@@ -132,15 +132,15 @@ function HomeContent() {
 
 
 
-  const handleAddressSelect = (address: string, placeId?: string) => {
-    console.log('Address selected:', address, 'placeId:', placeId);
+  const handleAddressSelect = (place: { formattedAddress: string; placeId: string; lat: number; lng: number }) => {
+    console.log('Address selected:', place.formattedAddress, 'placeId:', place.placeId);
     
     // Create a mock selectedPlace object for navigation
     const mockPlace = {
-      formattedAddress: address,
-      placeId: placeId || 'selected',
-      lat: 40.7128, // Default NYC coordinates
-      lng: -74.0060,
+      formattedAddress: place.formattedAddress,
+      placeId: place.placeId,
+      lat: place.lat || 40.7128, // Use provided coordinates or default NYC
+      lng: place.lng || -74.0060,
       components: {
         street_number: '',
         route: '',
@@ -151,7 +151,7 @@ function HomeContent() {
       }
     };
     
-    setAddress(address);
+    setAddress(place.formattedAddress);
     setSelectedPlace(mockPlace);
     
     // Save address for state continuity (only if valid)
