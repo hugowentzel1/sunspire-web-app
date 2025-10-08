@@ -1049,7 +1049,7 @@ function ReportContent() {
               {/* Homeowner conversion CTAs */}
               <div>
                 <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Ready to Start Your Solar Journey?</h2>
-                <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">Let's discuss your personalized quote and answer any questions.</p>
+                <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">Let&apos;s discuss your personalized quote and answer any questions.</p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
                   <motion.a 
                     href={`/contact?${searchParams?.toString()}`}
