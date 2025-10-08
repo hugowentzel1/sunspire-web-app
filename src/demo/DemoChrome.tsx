@@ -124,8 +124,9 @@ export function DemoBanner() {
         gap: 8, 
         alignItems: "center",
         flexWrap: "wrap",
-        justifyContent: "flex-end"
-      }}>
+      }}
+      className="md:justify-end justify-center w-full md:w-auto"
+      >
         <button
           className="btn"
           onClick={open}

@@ -86,20 +86,46 @@ function TrustBadge({ icon, text }: { icon: React.ReactNode; text: string }) {
 
 export default function TrustRow() {
   return (
-    <div
-      data-testid="hero-trust-strip"
-      aria-label="Trust signals"
-      className="mt-4 md:mt-5 inline-flex flex-wrap items-center justify-center gap-3 md:gap-4 px-6 py-3 rounded-2xl bg-white/80 backdrop-blur-md border border-slate-200/60 shadow-[0_2px_8px_rgba(0,0,0,0.04)] mx-auto"
-    >
-      <TrustBadge icon={<UsersIcon />} text={`${installersLivePlus} installers live`} />
-      <span className="text-slate-300">•</span>
-      <TrustBadge icon={<LockIcon />} text="SOC 2 compliant" />
-      <span className="text-slate-300">•</span>
-      <TrustBadge icon={<ShieldIcon />} text="GDPR ready" />
-      <span className="text-slate-300">•</span>
-      <TrustBadge icon={<SunIcon />} text="NREL PVWatts®" />
-      <span className="text-slate-300">•</span>
-      <TrustBadge icon={<StarIcon />} text={`${SITE_STATS.rating}/5 rating`} />
-    </div>
+    <>
+      {/* Desktop layout - single row with bullets */}
+      <div
+        data-testid="hero-trust-strip"
+        aria-label="Trust signals"
+        className="mt-4 md:mt-5 hidden md:inline-flex flex-wrap items-center justify-center gap-3 md:gap-4 px-6 py-3 rounded-2xl bg-white/80 backdrop-blur-md border border-slate-200/60 shadow-[0_2px_8px_rgba(0,0,0,0.04)] mx-auto"
+      >
+        <TrustBadge icon={<UsersIcon />} text={`${installersLivePlus} installers live`} />
+        <span className="text-slate-300">•</span>
+        <TrustBadge icon={<LockIcon />} text="SOC 2 compliant" />
+        <span className="text-slate-300">•</span>
+        <TrustBadge icon={<ShieldIcon />} text="GDPR ready" />
+        <span className="text-slate-300">•</span>
+        <TrustBadge icon={<SunIcon />} text="NREL PVWatts®" />
+        <span className="text-slate-300">•</span>
+        <TrustBadge icon={<StarIcon />} text={`${SITE_STATS.rating}/5 rating`} />
+      </div>
+
+      {/* Mobile layout - reorganized with NREL and rating under SOC 2 */}
+      <div
+        data-testid="hero-trust-strip"
+        aria-label="Trust signals"
+        className="mt-4 md:hidden flex flex-col items-center gap-2 px-6 py-3 rounded-2xl bg-white/80 backdrop-blur-md border border-slate-200/60 shadow-[0_2px_8px_rgba(0,0,0,0.04)] mx-auto"
+      >
+        {/* First row */}
+        <div className="flex items-center gap-3">
+          <TrustBadge icon={<UsersIcon />} text={`${installersLivePlus} installers live`} />
+          <span className="text-slate-300">•</span>
+          <TrustBadge icon={<ShieldIcon />} text="GDPR ready" />
+        </div>
+        {/* Second row - NREL, rating under SOC 2 */}
+        <div className="flex items-center gap-3">
+          <TrustBadge icon={<LockIcon />} text="SOC 2 compliant" />
+        </div>
+        <div className="flex items-center gap-3">
+          <TrustBadge icon={<SunIcon />} text="NREL PVWatts®" />
+          <span className="text-slate-300">•</span>
+          <TrustBadge icon={<StarIcon />} text={`${SITE_STATS.rating}/5 rating`} />
+        </div>
+      </div>
+    </>
   );
 }
