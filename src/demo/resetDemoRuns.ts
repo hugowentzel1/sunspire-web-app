@@ -25,7 +25,7 @@ export function resetDemoRuns() {
   sessionStorage.clear();
   console.log("🗑️ Cleared sessionStorage");
   
-  // Re-set the brand takeover data with unlimited runs
+  // Re-set the brand takeover data with default 2 runs
   const brandData = {
     enabled: true,
     brand: "tesla",
@@ -37,7 +37,7 @@ export function resetDemoRuns() {
     firstName: null,
     role: null,
     expireDays: 7,
-    runs: 999, // Set to unlimited
+    runs: 2, // Reset to default
     blur: true,
     pilot: false,
     isDemo: true,
@@ -45,9 +45,9 @@ export function resetDemoRuns() {
   };
   
   localStorage.setItem('sunspire-brand-takeover', JSON.stringify(brandData));
-  console.log("✅ Brand data reset with unlimited runs");
+  console.log("✅ Brand data reset with 2 runs");
   
-  // Initialize the quota system with unlimited runs for current URL
+  // Initialize the quota system with 2 runs for current URL
   const url = new URL(window.location.href);
   const essentialParams = ["company", "demo"];
   const normalizedUrl = new URL(url.origin + "/");
@@ -57,11 +57,11 @@ export function resetDemoRuns() {
     }
   });
   const quotaMap: Record<string, number> = {};
-  quotaMap[normalizedUrl.toString()] = 999;
+  quotaMap[normalizedUrl.toString()] = 2;
   localStorage.setItem("demo_quota_v5", JSON.stringify(quotaMap));
-  console.log("✅ Demo quota reset to 999 runs for:", normalizedUrl.toString());
+  console.log("✅ Demo quota reset to 2 runs for:", normalizedUrl.toString());
   
-  console.log("✅ Demo runs completely reset - you now have unlimited runs for testing");
+  console.log("✅ Demo runs completely reset - you now have 2 runs");
   
   // Safari-specific: Force a hard reload to ensure state is refreshed
   // Safari caches localStorage more aggressively than Chrome
