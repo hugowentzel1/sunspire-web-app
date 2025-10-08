@@ -8,7 +8,7 @@ interface Prediction {
 }
 
 interface AddressAutocompleteProps {
-  onSelect: (address: string, placeId?: string) => void;
+  onSelect: (place: { formattedAddress: string; placeId: string; lat: number; lng: number }) => void;
   placeholder?: string;
   className?: string;
   value?: string;
@@ -239,29 +239,43 @@ export default function AddressAutocomplete({
         service.getDetails(request, (place: any, status: any) => {
           if (status === (window as any).google.maps.places.PlacesServiceStatus.OK && place) {
             const placeResult = {
-              formatted_address: place.formatted_address,
-              place_id: place.place_id,
-              geometry: {
-                location: {
-                  lat: place.geometry.location.lat(),
-                  lng: place.geometry.location.lng()
-                }
-              }
+              formattedAddress: place.formatted_address,
+              placeId: place.place_id,
+              lat: place.geometry.location.lat(),
+              lng: place.geometry.location.lng()
             };
-            onSelect(placeResult.formatted_address, placeResult.place_id);
+            onSelect(placeResult);
           } else {
             // Fallback to basic selection if Place Details fails
-            onSelect(prediction.description, prediction.place_id);
+            const fallbackResult = {
+              formattedAddress: prediction.description,
+              placeId: prediction.place_id,
+              lat: 0,
+              lng: 0
+            };
+            onSelect(fallbackResult);
             window.alert('Unable to get detailed address information. Please try again.');
           }
         });
       } else {
         // Fallback if Places API not available
-        onSelect(prediction.description, prediction.place_id);
+        const fallbackResult = {
+          formattedAddress: prediction.description,
+          placeId: prediction.place_id,
+          lat: 0,
+          lng: 0
+        };
+        onSelect(fallbackResult);
       }
     } catch (error) {
       console.error('Place Details error:', error);
-      onSelect(prediction.description, prediction.place_id);
+      const fallbackResult = {
+        formattedAddress: prediction.description,
+        placeId: prediction.place_id,
+        lat: 0,
+        lng: 0
+      };
+      onSelect(fallbackResult);
       window.alert('Unable to get detailed address information. Please try again.');
     }
   };
@@ -354,10 +368,6 @@ export default function AddressAutocomplete({
               {prediction.description}
             </div>
           ))}
-          {/* Google attribution */}
-          <div className="px-3 py-2 text-[10px] text-gray-400 border-t border-gray-200 text-right">
-            Powered by Google
-          </div>
         </div>
       )}
 

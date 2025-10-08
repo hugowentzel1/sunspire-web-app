@@ -110,12 +110,35 @@ function HomeContent() {
   };
 
   const handleAddressSelect = (result: any) => {
+    console.log("🔍 handleAddressSelect called with:", result);
     setAddress(result.formattedAddress);
     setSelectedPlace(result);
 
     if (b.enabled && isClient) {
       // Track address selection for paid experience
       console.log("Address selected for paid experience:", result);
+    }
+
+    // Automatically navigate to report page when address is selected from dropdown
+    if (result.formattedAddress && result.formattedAddress.trim()) {
+      console.log("🚀 Auto-navigating to report page for address:", result.formattedAddress);
+      
+      // Use the same logic as handleGenerateEstimate but with the selected place
+      const q = new URLSearchParams({
+        address: result.formattedAddress,
+        lat: String(result.lat || 40.7128),
+        lng: String(result.lng || -74.0060),
+        placeId: result.placeId || "demo",
+      });
+
+      // Add all URL parameters
+      if (searchParams?.get("company")) q.set("company", searchParams?.get("company") || "");
+      if (searchParams?.get("demo")) q.set("demo", searchParams?.get("demo") || "");
+      if (searchParams?.get("brandColor")) q.set("brandColor", searchParams?.get("brandColor") || "");
+      if (searchParams?.get("logo")) q.set("logo", searchParams?.get("logo") || "");
+
+      console.log("Navigating to report with selected place:", q.toString());
+      router.push(`/report?${q.toString()}`);
     }
   };
 
@@ -383,17 +406,17 @@ function HomeContent() {
                 {/* Generate Button - Now below the search bar */}
                 <button
                   onClick={
-                    address && address.trim() && address.split(" ").length >= 2
+                    address && address.trim()
                       ? handleGenerateEstimate
                       : b.enabled
                         ? handleLaunchClick
                         : handleGenerateEstimate
                   }
-                  disabled={!address || !address.trim() || address.split(" ").length < 2 || isLoading}
+                  disabled={!address || !address.trim() || isLoading}
                   data-cta-button
                   {...tid("cta-primary")}
                   className={`w-full ${
-                    !address || !address.trim() || address.split(" ").length < 2 || isLoading ? "btn-disabled" : "btn-cta"
+                    !address || !address.trim() || isLoading ? "btn-disabled" : "btn-cta"
                   }`}
                 >
                   {isLoading ? (
@@ -405,7 +428,7 @@ function HomeContent() {
                     <div className="flex items-center justify-center space-x-4">
                       <span>
                         {isDemo
-                          ? address && address.trim() && address.split(" ").length >= 2
+                          ? address && address.trim()
                             ? `Generate Solar Report`
                             : `Launch Tool`
                           : "Generate Solar Intelligence Report"}
