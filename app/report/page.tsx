@@ -600,44 +600,35 @@ function ReportContent() {
       <header className="bg-white/90 backdrop-blur-xl border-b border-gray-200/30 sticky top-0 z-50 shadow-sm">
         <Container>
           <div className="flex justify-between items-center h-20">
-            {/* Left: Back to Home + Logo/Brand */}
+            {/* Left: Logo/Brand */}
             <div className="flex items-center space-x-4">
-              <motion.a
-                href={`/?${searchParams?.toString()}`}
-                data-testid="back-home-link"
-                className="text-sm text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium flex items-center gap-1"
-                whileHover={{ x: -2 }}
-              >
-                ← Back to Home
-              </motion.a>
-              <span className="text-gray-300">|</span>
               {(b.logo || getDefaultLogo(b.brand)) ? (
                 <Image 
                   src={b.logo || getDefaultLogo(b.brand) || ''} 
                   alt={`${b.brand} logo`} 
-                  width={40} 
-                  height={40} 
+                  width={48} 
+                  height={48} 
                   className="rounded-lg"
                   style={{ 
                     objectFit: "contain",
-                    width: "40px",
-                    height: "40px",
-                    minWidth: "40px",
-                    minHeight: "40px",
-                    maxWidth: "40px",
-                    maxHeight: "40px"
+                    width: "48px",
+                    height: "48px",
+                    minWidth: "48px",
+                    minHeight: "48px",
+                    maxWidth: "48px",
+                    maxHeight: "48px"
                   }}
                 />
               ) : (
-                <div className="w-10 h-10 bg-gray-900 rounded-lg flex items-center justify-center">
-                  <span className="text-white text-base font-bold">☀️</span>
+                <div className="w-12 h-12 bg-gray-900 rounded-lg flex items-center justify-center">
+                  <span className="text-white text-lg font-bold">☀️</span>
                 </div>
               )}
               <div>
-                <h1 className="text-xl font-black text-[var(--brand-primary)]">
+                <h1 className="text-2xl font-black text-[var(--brand-primary)]">
                   {capitalizeCompanyName(b.brand)}
                 </h1>
-                <p className="text-[10px] font-semibold text-gray-500 tracking-widest uppercase">
+                <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
                   Solar Intelligence
                 </p>
               </div>
