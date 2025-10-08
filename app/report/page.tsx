@@ -694,6 +694,20 @@ function ReportContent() {
       <main data-testid="report-page" className="py-12">
         <Container>
 
+        {/* Back Button */}
+        <div className="mb-8">
+          <a
+            href={`/?${searchParams?.toString()}`}
+            data-testid="back-home-link"
+            className="inline-flex items-center text-neutral-500 hover:text-neutral-900 transition-colors button-press"
+          >
+            <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+            Back to Home
+          </a>
+        </div>
+
         {/* Success toast for paid mode */}
         {showSuccessToast && (
           <div className="fixed top-4 right-4 z-50 text-white px-6 py-3 rounded-lg shadow-lg" style={{ backgroundColor: b.primary }} {...tid('lead-success-toast')}>
