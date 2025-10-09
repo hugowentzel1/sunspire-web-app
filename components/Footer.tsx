@@ -102,6 +102,8 @@ export default function Footer({
           <span>Mapping &amp; location data © Google</span>
           <span aria-hidden="true">•</span>
           <span>Estimates generated using NREL PVWatts® v8</span>
+          <span aria-hidden="true">•</span>
+          <span>PVWatts® is a registered trademark of the Alliance for Sustainable Energy, LLC.</span>
           {poweredBy && (
             <>
               <span aria-hidden="true">•</span>

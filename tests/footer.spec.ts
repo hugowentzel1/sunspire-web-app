@@ -66,19 +66,16 @@ test("footer has correct structure and accessibility", async ({ page }) => {
   }
 });
 
-test("footer does not duplicate trademark sentence", async ({ page }) => {
+test("footer contains all 4 required footnote items", async ({ page }) => {
   await page.goto("http://localhost:3000/report?demo=0&company=Apple&brandColor=%23FF6B35&address=123%20Main%20St&lat=33.7490&lng=-84.3880", { waitUntil: "domcontentloaded", timeout: 10000 });
 
   const footer = page.locator('footer[aria-label="Site footer"]');
   await expect(footer).toBeVisible();
 
-  // Should NOT contain the trademark sentence anywhere on page
-  const trademarkText = await page.getByText(/PVWatts.*registered trademark.*Alliance for Sustainable Energy/i).count();
-  expect(trademarkText).toBe(0);
-
-  // Should contain the footnote items in the footer
+  // Should contain the footnote items in the footer (4 items total)
   await expect(footer).toContainText("Mapping & location data © Google");
   await expect(footer).toContainText("Estimates generated using NREL PVWatts® v8");
+  await expect(footer).toContainText("PVWatts® is a registered trademark of the Alliance for Sustainable Energy, LLC.");
   await expect(footer).toContainText("Powered by Sunspire");
 });
 
