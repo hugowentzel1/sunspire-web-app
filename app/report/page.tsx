@@ -844,6 +844,11 @@ function ReportContent() {
                   {demoMode ? '— — —' : `$${estimate.netCostAfterITC.toLocaleString()}`}
                 </div>
                 <div className="text-gray-600 font-semibold">Net Cost (After ITC)</div>
+                {!demoMode && (
+                  <div className="mt-2 text-xs text-gray-500">
+                    Includes 30% federal investment tax credit (ITC)
+                  </div>
+                )}
               </div>
 
               {/* UNLOCK BUTTON - Demo Only */}
@@ -872,6 +877,11 @@ function ReportContent() {
                   {demoMode ? '— — —' : `$${estimate.year1Savings.toLocaleString()}`}
                 </div>
                 <div className="text-gray-600 font-semibold">Year 1 Savings</div>
+                {!demoMode && (
+                  <div className="mt-2 text-xs text-gray-500">
+                    Based on current local utility rate and modeled production
+                  </div>
+                )}
               </div>
 
               {/* UNLOCK BUTTON - Demo Only */}
@@ -1124,6 +1134,30 @@ function ReportContent() {
         open={showMethodologyModal}
         onClose={() => setShowMethodologyModal(false)}
       />
+
+      {/* Mobile Sticky CTA for paid mode only */}
+      {!demoMode && (
+        <div 
+          className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-40 p-4"
+          data-testid="mobile-sticky-cta"
+        >
+          <div className="flex gap-3">
+            <a
+              href={`/contact?${searchParams?.toString()}`}
+              className="flex-1 px-4 py-3 text-white rounded-xl font-semibold text-center"
+              style={{ backgroundColor: b.primary }}
+            >
+              📅 Book Consultation
+            </a>
+            <a
+              href={`tel:+14041234567`}
+              className="flex-1 px-4 py-3 bg-gray-100 text-gray-900 rounded-xl font-semibold text-center border border-gray-300"
+            >
+              📞 Call Us
+            </a>
+          </div>
+        </div>
+      )}
 
       {/* Use consistent Footer component across entire demo site */}
       <Footer />

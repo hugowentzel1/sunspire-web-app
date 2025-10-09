@@ -391,7 +391,7 @@ function HomeContent() {
                     aria-label="Enter Your Property Address"
                   />
                   <p className="text-sm text-gray-500 mt-2">
-                    Used for local rates & irradiance. Private.
+                    We only use your address to estimate sun, rates, and savings. Nothing is shared.
                   </p>
                   {address &&
                     address.length > 0 &&
@@ -449,6 +449,17 @@ function HomeContent() {
                     </div>
                   )}
                 </button>
+
+                {/* Compact trust strip for paid mode */}
+                {!isDemo && (
+                  <div className="text-xs text-gray-500 text-center mt-4 flex flex-wrap items-center justify-center gap-2">
+                    <span>Industry-standard modeling (NREL PVWatts® v8)</span>
+                    <span>•</span>
+                    <span>Local utility rates</span>
+                    <span>•</span>
+                    <span>Private</span>
+                  </div>
+                )}
 
                 {isDemo && (
                   <div className="text-sm text-gray-500 text-center space-y-2">
@@ -782,7 +793,7 @@ function HomeContent() {
 
       <footer className="bg-gradient-to-b from-gray-50 via-white to-gray-100 border-t border-gray-200 mt-20">
         <div className="max-w-7xl mx-auto px-6 py-16">
-          {/* Main Footer Content - PAID: White-label, no legal links */}
+          {/* Main Footer Content - PAID */}
           <div className="flex justify-center mb-8">
             {/* Company Logo & Name Only */}
             <div className="flex flex-col items-center">
@@ -816,30 +827,45 @@ function HomeContent() {
             </div>
           </div>
 
-          {/* Bottom Section */}
+          {/* Legal Links - Paid Only */}
+          {!isDemo && (
+            <div className="mb-8 flex flex-wrap justify-center gap-4 text-sm text-gray-600">
+              <a href="/privacy" className="hover:underline">Privacy Policy</a>
+              <span className="text-gray-400">•</span>
+              <a href="/terms" className="hover:underline">Terms of Service</a>
+              <span className="text-gray-400">•</span>
+              <button 
+                onClick={() => {
+                  if (typeof window !== 'undefined') {
+                    if ((window as any).__cmp) {
+                      (window as any).__cmp('open');
+                    } else if ((window as any).__tcfapi) {
+                      (window as any).__tcfapi('displayConsentUi', 2, () => {});
+                    }
+                  }
+                }}
+                className="hover:underline cursor-pointer"
+              >
+                Cookie Preferences
+              </button>
+              <span className="text-gray-400">•</span>
+              <a href="/accessibility" className="hover:underline">Accessibility</a>
+              <span className="text-gray-400">•</span>
+              <a href="/contact" className="hover:underline">Contact</a>
+            </div>
+          )}
+
+          {/* Attribution Section */}
           <div className="border-t border-gray-200 pt-10">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center items-center">
-              {/* NREL Disclaimer */}
-              <div className="flex items-center justify-center text-sm text-gray-500">
-                <svg className="w-4 h-4 ml-1 mr-2 text-gray-400 flex-shrink-0 align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                </svg>
-                <span className="leading-tight">Estimates generated using NREL PVWatts® v8</span>
-              </div>
-
-              {/* Powered By - CENTERED */}
-              <div className="text-center">
-                <p className="text-gray-600 text-sm">
-                  Powered by <span className="font-medium" style={{ color: brandColor }}>Sunspire</span>
-                </p>
-              </div>
-
-              {/* Google Disclaimer */}
-              <div className="flex items-center justify-center text-sm text-gray-500">
-                <svg className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m0 0L9 7"/>
-                </svg>
-                <span className="leading-tight">Mapping & location data © Google</span>
+            <div className="text-xs text-gray-500 space-y-2" data-testid="footer-attribution">
+              <div className="flex flex-col md:flex-row gap-2 md:gap-4 items-center justify-center flex-wrap">
+                <span>Mapping & location data © Google</span>
+                <span className="hidden md:inline">•</span>
+                <span>Estimates generated using NREL PVWatts® v8</span>
+                <span className="hidden md:inline">•</span>
+                <span>PVWatts® is a registered trademark of the Alliance for Sustainable Energy, LLC.</span>
+                <span className="hidden md:inline">•</span>
+                <span className="text-slate-400">Powered by Sunspire</span>
               </div>
             </div>
           </div>
