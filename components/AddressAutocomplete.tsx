@@ -374,6 +374,10 @@ export default function AddressAutocomplete({
         </div>
       )}
 
+      {/* Powered by Google attribution */}
+      <div className="mt-1 flex justify-end">
+        <span className="text-[10px] text-gray-400">Powered by Google</span>
+      </div>
     </div>
   );
 }

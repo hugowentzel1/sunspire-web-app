@@ -47,7 +47,7 @@ export default function ContactPage() {
         </div>
 
         <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg">
-          <h1 className="text-4xl font-black text-gray-900 mb-8 text-center">
+          <h1 className="text-4xl font-black text-gray-900 mb-8 text-center md:text-left">
             Contact Us
           </h1>
 

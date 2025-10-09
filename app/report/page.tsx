@@ -1020,21 +1020,25 @@ function ReportContent() {
           )}
           {/* Paid-only consolidated CTA block */}
           {!demoMode && (
-            <ReportCTAFooter 
-              brandColor={b.primary}
-              searchParams={searchParams?.toString()}
-            />
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ delay: 1.0, duration: 0.8 }}
+              className="mt-12"
+            >
+              <ReportCTAFooter 
+                brandColor={b.primary}
+                searchParams={searchParams?.toString()}
+              />
+              
+              {/* Data Attribution Strip */}
+              <div className="mt-12 pt-6 border-t border-gray-200 text-center" data-testid="report-data-sources">
+                <p className="text-xs text-gray-500">
+                  Data sources: NREL PVWatts® v8, U.S. EIA, and Google Maps • Last validated Oct 2025
+                </p>
+              </div>
+            </motion.div>
           )}
-
-          {/* Data Attribution Strip - only shown on paid mode */}
-          {!demoMode && (
-            <div className="mt-12 pt-6 border-t border-gray-200 text-center" data-testid="report-data-sources">
-              <p className="text-xs text-gray-500">
-                Data sources: NREL PVWatts® v8, U.S. EIA • Last validated Oct 2025
-              </p>
-            </div>
-          )}
-
         </motion.div>
         </Container>
       </main>

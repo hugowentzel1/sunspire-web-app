@@ -1,8 +1,8 @@
 import { test, expect } from '@playwright/test';
 
-const PAID_HOME = 'http://localhost:3000/paid?demo=0&company=Apple&brandColor=%23FF6B35';
-const PAID_REPORT = 'http://localhost:3000/report?demo=0&company=Apple&brandColor=%23FF6B35&address=123%20Main%20St&lat=33.7490&lng=-84.3880';
-const DEMO_HOME = 'http://localhost:3000/?demo=1&company=Netflix&brandColor=%23E50914';
+const PAID_HOME = 'http://localhost:3002/paid?demo=0&company=Apple&brandColor=%23FF6B35';
+const PAID_REPORT = 'http://localhost:3002/report?demo=0&company=Apple&brandColor=%23FF6B35&address=123%20Main%20St&lat=33.7490&lng=-84.3880';
+const DEMO_HOME = 'http://localhost:3002/?demo=1&company=Netflix&brandColor=%23E50914';
 
 test.describe('Paid Footer - Unified & Minimal', () => {
   test('Paid home has PaidFooter with 3 rows, no PVWatts', async ({ page }) => {
@@ -96,6 +96,7 @@ test.describe('Report Page Attribution & CTAs', () => {
     await expect(dataSourcesLine).toBeVisible({ timeout: 10000 });
     await expect(dataSourcesLine).toContainText('NREL PVWatts® v8');
     await expect(dataSourcesLine).toContainText('U.S. EIA');
+    await expect(dataSourcesLine).toContainText('Google Maps');
     
     // Count all "Data sources" mentions on page
     const allDataSources = await page.locator('text=/Data sources:/i').count();
