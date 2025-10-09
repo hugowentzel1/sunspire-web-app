@@ -115,33 +115,33 @@ export default function Footer({
         {/* Footnotes (centered, improved rhythm) */}
         <div className="mt-8 pt-6 border-t border-neutral-200/70 dark:border-neutral-800">
           <div className="mx-auto max-w-4xl px-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center text-sm text-slate-600 dark:text-slate-300">
               {/* Google Attribution */}
               <div className="flex flex-col items-center space-y-1">
-                <div className="text-xs font-medium text-neutral-600 dark:text-neutral-400 uppercase tracking-wide">
+                <div className="font-medium">
                   Mapping Data
                 </div>
-                <div className="text-sm text-neutral-500 dark:text-neutral-400">
+                <div className="text-slate-500 dark:text-slate-400">
                   © Google
                 </div>
               </div>
               
               {/* PVWatts Attribution */}
               <div className="flex flex-col items-center space-y-1">
-                <div className="text-xs font-medium text-neutral-600 dark:text-neutral-400 uppercase tracking-wide">
+                <div className="font-medium">
                   Solar Modeling
                 </div>
-                <div className="text-sm text-neutral-500 dark:text-neutral-400">
+                <div className="text-slate-500 dark:text-slate-400">
                   NREL PVWatts® v8
                 </div>
               </div>
               
               {/* Sunspire Credit */}
               <div className="flex flex-col items-center space-y-1">
-                <div className="text-xs font-medium text-neutral-600 dark:text-neutral-400 uppercase tracking-wide">
+                <div className="font-medium">
                   Powered By
                 </div>
-                <div className="text-sm text-neutral-500 dark:text-neutral-400">
+                <div className="text-slate-500 dark:text-slate-400">
                   Sunspire
                 </div>
               </div>
