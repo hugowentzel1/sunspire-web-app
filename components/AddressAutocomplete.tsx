@@ -338,7 +338,10 @@ export default function AddressAutocomplete({
         }}
         placeholder={placeholder}
         className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-        autoComplete="street-address"
+        autoComplete="off"
+        autoCorrect="off"
+        autoCapitalize="off"
+        spellCheck="false"
         data-testid={testId}
         id={id}
         aria-label={ariaLabel}

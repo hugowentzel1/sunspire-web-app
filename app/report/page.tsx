@@ -31,6 +31,8 @@ import QuoteCard from '@/components/QuoteCard';
 import { getTrustData } from '@/lib/trust';
 import Container from '@/components/layout/Container';
 import BottomCtaBand from '@/components/cta/BottomCtaBand';
+import ReportCTAFooter from '@/components/report/ReportCTAFooter';
+import StickyCTA from '@/components/report/StickyCTA';
 
 import { ensureBlurSupport } from '@/src/lib/ensureBlur';
 import { isDemoFromSearchParams } from '@/src/lib/isDemo';
@@ -779,71 +781,6 @@ function ReportContent() {
 
           </div>
 
-          {/* Paid-only CTA block - Single consolidated section */}
-          {!demoMode && (
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ delay: 0.3, duration: 0.6 }}
-              data-testid="report-cta"
-              className="rounded-2xl py-8 px-6 md:px-8 text-center bg-white border border-gray-200 shadow-sm space-y-6"
-            >
-              {/* Primary and Secondary CTAs */}
-              <div>
-                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">Ready to Go Solar?</h3>
-                <p className="text-base text-gray-600 mb-6 max-w-2xl mx-auto">Connect with a solar specialist to discuss your custom quote and next steps.</p>
-                <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-                  <motion.a 
-                    href={`/contact?${searchParams?.toString()}`}
-                    className="px-6 py-3 text-white rounded-xl font-semibold text-base hover:shadow-lg transition-all duration-200 w-full sm:w-auto" 
-                    style={{ backgroundColor: b.primary }}
-                    whileHover={{ scale: 1.03 }} 
-                    whileTap={{ scale: 0.98 }}
-                    role="button"
-                  >
-                    📅 Book a Consultation
-                  </motion.a>
-                  <motion.a 
-                    href={`tel:+14041234567`}
-                    className="px-6 py-3 bg-gray-100 text-gray-900 rounded-xl font-semibold text-base hover:bg-gray-200 transition-all duration-200 w-full sm:w-auto border border-gray-300" 
-                    whileHover={{ scale: 1.03 }} 
-                    whileTap={{ scale: 0.98 }}
-                    role="button"
-                  >
-                    📞 Talk to a Specialist
-                  </motion.a>
-                </div>
-              </div>
-
-              {/* Divider */}
-              <hr className="border-gray-200" />
-
-              {/* Utility actions: Download & Share */}
-              <div>
-                <h4 className="text-lg font-semibold text-gray-900 mb-4">Download & Share Your Report</h4>
-                <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-                  <motion.button 
-                    onClick={handleDownloadPDF}
-                    className="px-6 py-3 text-white rounded-xl font-semibold text-base hover:shadow-lg transition-all duration-200 w-full sm:w-auto" 
-                    style={{ backgroundColor: b.primary }}
-                    whileHover={{ scale: 1.03 }} 
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    📄 Download PDF Report
-                  </motion.button>
-                  <motion.button 
-                    onClick={handleCopyShareLink}
-                    className="px-6 py-3 bg-gray-100 text-gray-900 rounded-xl font-semibold text-base hover:bg-gray-200 transition-all duration-200 w-full sm:w-auto border border-gray-300" 
-                    whileHover={{ scale: 1.03 }} 
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    🔗 Copy Share Link
-                  </motion.button>
-                </div>
-              </div>
-            </motion.div>
-          )}
-
           {/* Metric Tiles */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 items-stretch">
             {/* System Size - NO BLUR, ALWAYS VISIBLE */}
@@ -1080,10 +1017,21 @@ function ReportContent() {
               <BottomCtaBand variant="report" data-testid="report-bottom-cta" />
             </motion.div>
           )}
+          {/* Paid-only consolidated CTA block */}
+          {!demoMode && (
+            <ReportCTAFooter 
+              brandColor={b.primary}
+              searchParams={searchParams?.toString()}
+            />
+          )}
+
           {/* Data Attribution Strip */}
           <div className="mt-12 pt-6 border-t border-gray-200 text-center" data-testid="data-sources-line">
             <p className="text-xs text-gray-500">
               Data sources: NREL PVWatts® v8, U.S. EIA, and Google Maps • Last validated Oct 2025
+            </p>
+            <p className="text-xs text-gray-500 mt-2">
+              PVWatts® is a registered trademark of the Alliance for Sustainable Energy, LLC.
             </p>
           </div>
 
@@ -1099,26 +1047,10 @@ function ReportContent() {
 
       {/* Mobile Sticky CTA for paid mode only */}
       {!demoMode && (
-        <div 
-          className="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-40 p-4"
-          data-testid="mobile-sticky-cta"
-        >
-          <div className="flex gap-3">
-            <a
-              href={`/contact?${searchParams?.toString()}`}
-              className="flex-1 px-4 py-3 text-white rounded-xl font-semibold text-center"
-              style={{ backgroundColor: b.primary }}
-            >
-              📅 Book Consultation
-            </a>
-            <a
-              href={`tel:+14041234567`}
-              className="flex-1 px-4 py-3 bg-gray-100 text-gray-900 rounded-xl font-semibold text-center border border-gray-300"
-            >
-              📞 Call Us
-            </a>
-          </div>
-        </div>
+        <StickyCTA 
+          brandColor={b.primary}
+          searchParams={searchParams?.toString()}
+        />
       )}
 
       {/* Use consistent Footer component across entire demo site */}

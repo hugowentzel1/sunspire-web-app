@@ -18,6 +18,7 @@ import { isDemoFromSearch } from "@/lib/isDemo";
 import React from "react";
 import { attachCheckoutHandlers } from "@/src/lib/checkout";
 import { tid } from "@/src/lib/testids";
+import Footer from "@/components/Footer";
 
 const AddressAutocomplete = dynamic(
   () => import("@/components/AddressAutocomplete"),
@@ -791,78 +792,7 @@ function HomeContent() {
         </div>
       )}
 
-      <footer className="bg-gradient-to-b from-gray-50 via-white to-gray-100 border-t border-gray-200 mt-20">
-        <div className="max-w-7xl mx-auto px-6 py-16">
-          {/* Main Footer Content - PAID */}
-          <div className="flex justify-center mb-8">
-            {/* Company Logo & Name Only */}
-            <div className="flex flex-col items-center">
-              {/* Company Logo */}
-              {(() => {
-                // Helper to get default logo URL
-                const getDefaultLogo = (brand: string) => {
-                  const brandLower = brand.toLowerCase();
-                  if (brandLower.includes('google')) return 'https://logo.clearbit.com/google.com';
-                  if (brandLower.includes('microsoft')) return 'https://logo.clearbit.com/microsoft.com';
-                  if (brandLower.includes('apple')) return 'https://logo.clearbit.com/apple.com';
-                  if (brandLower.includes('amazon')) return 'https://logo.clearbit.com/amazon.com';
-                  if (brandLower.includes('meta') || brandLower.includes('facebook')) return 'https://logo.clearbit.com/facebook.com';
-                  if (brandLower.includes('netflix')) return 'https://logo.clearbit.com/netflix.com';
-                  if (brandLower.includes('tesla')) return 'https://logo.clearbit.com/tesla.com';
-                  return null;
-                };
-                const logoUrl = b.logo || getDefaultLogo(b.brand);
-                
-                return logoUrl ? (
-                  <img
-                    src={logoUrl}
-                    alt={`${b.brand || "Your Company"} logo`}
-                    className="h-16 w-16 rounded-lg object-contain mb-4"
-                  />
-                ) : null;
-              })()}
-              <h3 className="text-lg font-semibold text-gray-900">
-                {b.brand || "Your Company"}
-              </h3>
-            </div>
-          </div>
-
-          {/* Legal Links - Paid Only */}
-          {!isDemo && (
-            <div className="mb-8 flex flex-wrap justify-center gap-4 text-sm text-gray-600">
-              <a href="/privacy" className="hover:underline">Privacy Policy</a>
-              <span className="text-gray-400">•</span>
-              <a href="/terms" className="hover:underline">Terms of Service</a>
-              <span className="text-gray-400">•</span>
-              <button 
-                onClick={() => {
-                  if (typeof window !== 'undefined') {
-                    if ((window as any).__cmp) {
-                      (window as any).__cmp('open');
-                    } else if ((window as any).__tcfapi) {
-                      (window as any).__tcfapi('displayConsentUi', 2, () => {});
-                    }
-                  }
-                }}
-                className="hover:underline cursor-pointer"
-              >
-                Cookie Preferences
-              </button>
-              <span className="text-gray-400">•</span>
-              <a href="/accessibility" className="hover:underline">Accessibility</a>
-              <span className="text-gray-400">•</span>
-              <a href="/contact" className="hover:underline">Contact</a>
-            </div>
-          )}
-
-          {/* Attribution Section (simplified, centered) */}
-          <div className="border-t border-gray-200 pt-10">
-            <div className="text-xs text-gray-500 text-center" data-testid="footer-attribution">
-              <p>Mapping & location data © Google  •  Estimates generated using NREL PVWatts® v8</p>
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
