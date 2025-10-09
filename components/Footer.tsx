@@ -77,7 +77,7 @@ export default function Footer({
         </div>
 
         {/* Legal links */}
-        <nav aria-label="Legal and support" className="mt-6">
+        <nav aria-label="Legal and support" className="mt-6 mx-auto max-w-3xl">
           <ul className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-slate-600 dark:text-slate-300">
             {[
               { href: "/legal/privacy", label: "Privacy Policy" },
@@ -112,22 +112,18 @@ export default function Footer({
           </ul>
         </nav>
 
-        {/* Footnotes (centered) */}
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs text-slate-500 dark:text-slate-400 text-center">
-          <span>Mapping &amp; location data © Google</span>
-          <span aria-hidden="true">•</span>
-          <span>Estimates generated using NREL PVWatts® v8</span>
-          {poweredBy && (
-            <>
-              <span aria-hidden="true">•</span>
-              <span>
-                Powered by{" "}
-                <span className="font-medium" style={{ color: finalBrandColor }}>
-                  Sunspire
-                </span>
-              </span>
-            </>
-          )}
+        {/* Footnotes (centered, improved rhythm) */}
+        <div className="mt-8 pt-4 border-t border-neutral-200/70 dark:border-neutral-800">
+          <div className="mx-auto max-w-3xl px-2">
+            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-center text-xs md:text-sm leading-6 md:leading-7 text-neutral-500 dark:text-neutral-400">
+              <span>Mapping &amp; location data © Google</span>
+              <span aria-hidden="true" className="text-neutral-400">•</span>
+              <span>Estimates generated using NREL PVWatts® v8</span>
+              {/* Credit only — not a link */}
+              <span aria-hidden="true" className="text-neutral-400">•</span>
+              <span className="text-neutral-500 dark:text-neutral-400">Powered by Sunspire</span>
+            </div>
+          </div>
         </div>
       </div>
     </footer>
