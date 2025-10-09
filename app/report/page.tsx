@@ -779,35 +779,67 @@ function ReportContent() {
 
           </div>
 
-          {/* Paid-only homeowner CTAs (top) */}
+          {/* Paid-only CTA block - Single consolidated section */}
           {!demoMode && (
             <motion.div 
               initial={{ opacity: 0, y: 20 }} 
               animate={{ opacity: 1, y: 0 }} 
               transition={{ delay: 0.3, duration: 0.6 }}
-              data-testid="paid-cta-top"
-              className="rounded-2xl py-6 px-6 md:px-8 text-center bg-white border border-gray-200 shadow-sm"
+              data-testid="report-cta"
+              className="rounded-2xl py-8 px-6 md:px-8 text-center bg-white border border-gray-200 shadow-sm space-y-6"
             >
-              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">Ready to Go Solar?</h3>
-              <p className="text-base text-gray-600 mb-6 max-w-2xl mx-auto">Connect with a solar specialist to discuss your custom quote and next steps.</p>
-              <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-                <motion.a 
-                  href={`/contact?${searchParams?.toString()}`}
-                  className="px-6 py-3 text-white rounded-xl font-semibold text-base hover:shadow-lg transition-all duration-200 w-full sm:w-auto" 
-                  style={{ backgroundColor: b.primary }}
-                  whileHover={{ scale: 1.03 }} 
-                  whileTap={{ scale: 0.98 }}
-                >
-                  📅 Book a Consultation
-                </motion.a>
-                <motion.a 
-                  href={`tel:+14041234567`}
-                  className="px-6 py-3 bg-gray-100 text-gray-900 rounded-xl font-semibold text-base hover:bg-gray-200 transition-all duration-200 w-full sm:w-auto border border-gray-300" 
-                  whileHover={{ scale: 1.03 }} 
-                  whileTap={{ scale: 0.98 }}
-                >
-                  📞 Talk to a Specialist
-                </motion.a>
+              {/* Primary and Secondary CTAs */}
+              <div>
+                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-3">Ready to Go Solar?</h3>
+                <p className="text-base text-gray-600 mb-6 max-w-2xl mx-auto">Connect with a solar specialist to discuss your custom quote and next steps.</p>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+                  <motion.a 
+                    href={`/contact?${searchParams?.toString()}`}
+                    className="px-6 py-3 text-white rounded-xl font-semibold text-base hover:shadow-lg transition-all duration-200 w-full sm:w-auto" 
+                    style={{ backgroundColor: b.primary }}
+                    whileHover={{ scale: 1.03 }} 
+                    whileTap={{ scale: 0.98 }}
+                    role="button"
+                  >
+                    📅 Book a Consultation
+                  </motion.a>
+                  <motion.a 
+                    href={`tel:+14041234567`}
+                    className="px-6 py-3 bg-gray-100 text-gray-900 rounded-xl font-semibold text-base hover:bg-gray-200 transition-all duration-200 w-full sm:w-auto border border-gray-300" 
+                    whileHover={{ scale: 1.03 }} 
+                    whileTap={{ scale: 0.98 }}
+                    role="button"
+                  >
+                    📞 Talk to a Specialist
+                  </motion.a>
+                </div>
+              </div>
+
+              {/* Divider */}
+              <hr className="border-gray-200" />
+
+              {/* Utility actions: Download & Share */}
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">Download & Share Your Report</h4>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
+                  <motion.button 
+                    onClick={handleDownloadPDF}
+                    className="px-6 py-3 text-white rounded-xl font-semibold text-base hover:shadow-lg transition-all duration-200 w-full sm:w-auto" 
+                    style={{ backgroundColor: b.primary }}
+                    whileHover={{ scale: 1.03 }} 
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    📄 Download PDF Report
+                  </motion.button>
+                  <motion.button 
+                    onClick={handleCopyShareLink}
+                    className="px-6 py-3 bg-gray-100 text-gray-900 rounded-xl font-semibold text-base hover:bg-gray-200 transition-all duration-200 w-full sm:w-auto border border-gray-300" 
+                    whileHover={{ scale: 1.03 }} 
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    🔗 Copy Share Link
+                  </motion.button>
+                </div>
               </div>
             </motion.div>
           )}
@@ -1046,73 +1078,6 @@ function ReportContent() {
               className="mt-12"
             >
               <BottomCtaBand variant="report" data-testid="report-bottom-cta" />
-            </motion.div>
-          )}
-          
-          {/* Disclaimer */}
-
-
-          {/* Paid-only CTA section (bottom) */}
-          {!demoMode && (
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ delay: 1.0, duration: 0.8 }} 
-              data-testid="paid-cta-bottom"
-              className="rounded-3xl py-8 px-8 text-center bg-white border border-gray-200 mt-4 space-y-8"
-            >
-              {/* Homeowner conversion CTAs */}
-              <div>
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">Ready to Start Your Solar Journey?</h2>
-                <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">Let&apos;s discuss your personalized quote and answer any questions.</p>
-                <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-                  <motion.a 
-                    href={`/contact?${searchParams?.toString()}`}
-                    className="px-7 py-4 text-white rounded-xl font-semibold text-base hover:shadow-xl transition-all duration-300" 
-                    style={{ backgroundColor: b.primary }}
-                    whileHover={{ scale: 1.03 }} 
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    📅 Book a Consultation
-                  </motion.a>
-                  <motion.a 
-                    href={`tel:+14041234567`}
-                    className="px-7 py-4 bg-gray-100 text-gray-900 rounded-xl font-semibold text-base hover:bg-gray-200 transition-all duration-300 border border-gray-300" 
-                    whileHover={{ scale: 1.03 }} 
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    📞 Talk to a Specialist
-                  </motion.a>
-                </div>
-              </div>
-
-              {/* Divider */}
-              <hr className="border-gray-200" />
-
-              {/* Download & Share */}
-              <div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">Download & Share Your Report</h3>
-                <p className="text-base text-gray-600 mb-5">Get a professional PDF report and share with your team</p>
-                <div className="flex flex-col sm:flex-row gap-3 justify-center items-center">
-                  <motion.button 
-                    onClick={handleDownloadPDF}
-                    className="px-6 py-3 text-white rounded-xl font-semibold text-base hover:shadow-lg transition-all duration-200" 
-                    style={{ backgroundColor: b.primary }}
-                    whileHover={{ scale: 1.03 }} 
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    📄 Download PDF Report
-                  </motion.button>
-                  <motion.button 
-                    onClick={handleCopyShareLink}
-                    className="px-6 py-3 bg-gray-100 text-gray-900 rounded-xl font-semibold text-base hover:bg-gray-200 transition-all duration-200 border border-gray-300" 
-                    whileHover={{ scale: 1.03 }} 
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    🔗 Copy Share Link
-                  </motion.button>
-                </div>
-              </div>
             </motion.div>
           )}
           {/* Data Attribution Strip */}

@@ -173,21 +173,9 @@ export default function Footer() {
           {/* DIVIDER */}
           <hr className="my-10 border-slate-200" />
 
-          {/* BOTTOM BAR - Attribution row */}
-          <div className="text-xs text-slate-500 space-y-2" data-testid="footer-attribution">
-            <div className="flex flex-col md:flex-row gap-2 md:gap-4 items-center justify-center flex-wrap">
-              <span>Mapping &amp; location data © Google</span>
-              <span className="hidden md:inline">•</span>
-              <span>Estimates generated using NREL PVWatts® v8</span>
-              <span className="hidden md:inline">•</span>
-              <span>PVWatts® is a registered trademark of the Alliance for Sustainable Energy, LLC.</span>
-              {tenantFlags.showPoweredBy && (
-                <>
-                  <span className="hidden md:inline">•</span>
-                  <span className="text-slate-400">Powered by Sunspire</span>
-                </>
-              )}
-            </div>
+          {/* BOTTOM BAR - Attribution row (simplified, centered) */}
+          <div className="text-xs text-slate-500 text-center" data-testid="footer-attribution">
+            <p>Mapping &amp; location data © Google  •  Estimates generated using NREL PVWatts® v8</p>
           </div>
         </div>
       </Container>
