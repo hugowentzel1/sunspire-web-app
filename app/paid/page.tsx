@@ -19,6 +19,7 @@ import React from "react";
 import { attachCheckoutHandlers } from "@/src/lib/checkout";
 import { tid } from "@/src/lib/testids";
 import Footer from "@/components/Footer";
+import PaidFooter from "@/components/PaidFooter";
 
 const AddressAutocomplete = dynamic(
   () => import("@/components/AddressAutocomplete"),
@@ -792,7 +793,8 @@ function HomeContent() {
         </div>
       )}
 
-      <Footer />
+      {/* Use PaidFooter for paid mode (demo=0), regular Footer for demo mode */}
+      {isDemo ? <Footer /> : <PaidFooter />}
     </div>
   );
 }

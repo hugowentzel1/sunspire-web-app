@@ -1,163 +1,126 @@
-"use client";
-import Image from "next/image";
+'use client';
 
-type Props = {
-  companyName: string;
-  companyLogo?: string;
-  brandColor?: string;
-  contactEmail?: string; // company-owned, not Sunspire
-  contactPhone?: string; // optional
-  addressHtml?: string; // optional <address> innerHTML (sanitized upstream)
-  poweredByUrl?: string; // default: https://getsunspire.com
+import Link from 'next/link';
+import Image from 'next/image';
+import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+
+// Helper to get default logo URL from Clearbit
+const getDefaultLogo = (brand: string) => {
+  const brandLower = brand.toLowerCase();
+  
+  if (brandLower.includes('google')) return 'https://logo.clearbit.com/google.com';
+  if (brandLower.includes('microsoft')) return 'https://logo.clearbit.com/microsoft.com';
+  if (brandLower.includes('apple')) return 'https://logo.clearbit.com/apple.com';
+  if (brandLower.includes('amazon')) return 'https://logo.clearbit.com/amazon.com';
+  if (brandLower.includes('meta') || brandLower.includes('facebook')) return 'https://logo.clearbit.com/facebook.com';
+  if (brandLower.includes('netflix')) return 'https://logo.clearbit.com/netflix.com';
+  if (brandLower.includes('tesla')) return 'https://logo.clearbit.com/tesla.com';
+  
+  return null;
 };
 
-export default function PaidFooter({
-  companyName,
-  companyLogo,
-  brandColor = "#0A61FF",
-  contactEmail,
-  contactPhone,
-  addressHtml,
-  poweredByUrl = "https://getsunspire.com",
-}: Props) {
+export default function PaidFooter() {
+  const b = useBrandTakeover();
+  const logoUrl = b.logo || getDefaultLogo(b.brand);
+  const brandName = b.brand || 'Your Company';
+  const brandColor = b.primary || '#FF6B35';
+
+  // Handler for cookie preferences
+  const handleCookiePreferences = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (typeof window !== 'undefined') {
+      // Try common CMP APIs
+      if ((window as any).__cmp) {
+        (window as any).__cmp('open');
+      } else if ((window as any).__tcfapi) {
+        (window as any).__tcfapi('displayConsentUi', 2, () => {});
+      } else {
+        // Fallback to route if no CMP available
+        window.location.href = '/legal/cookies';
+      }
+    }
+  };
+
   return (
-    <footer
-      className="mt-16 border-t border-black/10 bg-gradient-to-t from-slate-50/90 to-transparent backdrop-blur-sm"
-      data-footer
-      data-paid-footer
-      role="contentinfo"
-    >
-      <div className="mx-auto max-w-7xl px-6 py-10">
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-8">
-          {/* Brand & address */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              {companyLogo ? (
-                <Image
-                  src={companyLogo}
-                  alt={`${companyName} logo`}
-                  width={32}
-                  height={32}
-                  className="rounded-md"
-                />
-              ) : null}
-              <span className="text-lg font-semibold tracking-tight">
-                {companyName}
-              </span>
+    <footer className="border-t bg-slate-50/80 py-12">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        {/* Row 1: Brand (centered) */}
+        <div data-testid="footer-brand" className="flex flex-col items-center gap-4 mb-8">
+          {logoUrl && (
+            <Image
+              src={logoUrl}
+              alt={`${brandName} logo`}
+              width={32}
+              height={32}
+              className="h-8 w-auto object-contain"
+            />
+          )}
+          {brandName && (
+            <div className="text-base font-semibold text-slate-800">
+              {brandName}
             </div>
-            {addressHtml ? (
-              <address
-                className="not-italic text-sm text-slate-600 leading-6"
-                dangerouslySetInnerHTML={{ __html: addressHtml }}
-              />
-            ) : null}
-          </div>
-
-          {/* Legal */}
-          <nav aria-label="Legal" className="text-sm">
-            <ul className="space-y-2">
-              <li>
-                <a
-                  className="underline underline-offset-2 hover:no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-                  href="/privacy"
-                >
-                  Privacy Policy
-                </a>
-              </li>
-              <li>
-                <a
-                  className="underline underline-offset-2 hover:no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-                  href="/terms"
-                >
-                  Terms of Service
-                </a>
-              </li>
-              <li>
-                <a
-                  className="underline underline-offset-2 hover:no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-                  href="/accessibility"
-                >
-                  Accessibility
-                </a>
-              </li>
-              <li>
-                <a
-                  className="underline underline-offset-2 hover:no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
-                  href="/cookies"
-                >
-                  Cookies
-                </a>
-              </li>
-            </ul>
-          </nav>
-
-          {/* Help / Contact */}
-          <div className="space-y-3">
-            <div className="text-sm">
-              <div className="font-medium">Questions?</div>
-              <ul className="mt-2 space-y-1">
-                {contactEmail && (
-                  <li>
-                    <a
-                      className="underline underline-offset-2"
-                      href={`mailto:${contactEmail}`}
-                    >
-                      Email {companyName}
-                    </a>
-                  </li>
-                )}
-                {contactPhone && (
-                  <li>
-                    <a
-                      className="underline underline-offset-2"
-                      href={`tel:${contactPhone.replace(/[^+\d]/g, "")}`}
-                    >
-                      {contactPhone}
-                    </a>
-                  </li>
-                )}
-              </ul>
-            </div>
-            <div className="pt-2 text-right md:text-left">
-              <a
-                href={poweredByUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Powered by Sunspire"
-                className="inline-flex items-center gap-2 text-xs text-slate-500"
-              >
-                <span
-                  className="relative inline-block h-2 w-2 rounded-full"
-                  style={{ backgroundColor: brandColor }}
-                />
-                <span>Powered by Sunspire</span>
-              </a>
-            </div>
-          </div>
+          )}
         </div>
 
-        {/* Disclaimer */}
-        <div className="mt-8 rounded-xl border border-slate-200 bg-white/70 p-4 text-xs leading-6 text-slate-600">
-          <p>
-            Estimates are informational only, based on modeled data (NREL
-            PVWatts® v8 and current utility rates). Actual results vary by site
-            conditions and installation quality. Not a binding quote.
-          </p>
-          <p className="mt-1">
-            Last updated{" "}
-            <span data-last-updated>{new Date().toLocaleDateString()}</span>.
-          </p>
+        {/* Row 2: Links (centered, evenly spaced) */}
+        <nav data-testid="footer-links" aria-label="Legal and support" className="mb-8">
+          <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm">
+            {[
+              { href: '/legal/privacy', label: 'Privacy Policy' },
+              { href: '/legal/terms', label: 'Terms of Service' },
+              { href: '/legal/cookies', label: 'Cookie Preferences', onClick: handleCookiePreferences },
+              { href: '/legal/accessibility', label: 'Accessibility' },
+              { href: '/contact', label: 'Contact' },
+            ].map((link, i, arr) => (
+              <li key={link.href} className="flex items-center gap-3">
+                {link.onClick ? (
+                  <button
+                    onClick={link.onClick}
+                    className="text-slate-600 hover:text-slate-900 transition-colors underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded"
+                    style={{ 
+                      '--tw-ring-color': brandColor 
+                    } as React.CSSProperties}
+                  >
+                    {link.label}
+                  </button>
+                ) : (
+                  <Link
+                    href={link.href}
+                    className="text-slate-600 hover:text-slate-900 transition-colors underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded"
+                    style={{ 
+                      '--tw-ring-color': brandColor 
+                    } as React.CSSProperties}
+                  >
+                    {link.label}
+                  </Link>
+                )}
+                {i < arr.length - 1 && (
+                  <span aria-hidden="true" className="text-slate-400">•</span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        {/* Row 3: Micro-attribution (centered, subdued) */}
+        <div data-testid="footer-micro" className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-slate-500/70">
+          <span>Mapping &amp; location data © Google</span>
+          <span aria-hidden="true" className="text-slate-400">•</span>
+          <span>Estimates generated using NREL PVWatts® v8</span>
+          <span aria-hidden="true" className="text-slate-400">•</span>
+          <span>
+            Powered by{' '}
+            <a 
+              href="https://getsunspire.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="hover:text-slate-700 transition-colors"
+            >
+              Sunspire
+            </a>
+          </span>
         </div>
       </div>
-
-      <style jsx>{`
-        a {
-          color: ${brandColor};
-        }
-        a:focus-visible {
-          outline-color: ${brandColor};
-        }
-      `}</style>
     </footer>
   );
 }

@@ -17,6 +17,7 @@ import EstimateChart from '@/components/EstimateChart';
 import { formatDateSafe } from '@/lib/format';
 import LegalFooter from '@/components/legal/LegalFooter';
 import Footer from '@/components/Footer';
+import PaidFooter from '@/components/PaidFooter';
 import { IconBadge } from '@/components/ui/IconBadge';
 import UnlockButton from '@/components/UnlockButton';
 import { ResultsAttribution } from '@/components/legal/ResultsAttribution';
@@ -1050,8 +1051,8 @@ function ReportContent() {
         />
       )}
 
-      {/* Use consistent Footer component across entire demo site */}
-      <Footer />
+      {/* Use PaidFooter for paid mode (demo=0), regular Footer for demo mode */}
+      {demoMode ? <Footer /> : <PaidFooter />}
     </div>
   );
 }
