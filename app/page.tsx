@@ -706,7 +706,7 @@ function HomeContent() {
       )}
 
 
-      <Footer />
+      {isDemo ? <LegalFooter /> : <Footer />}
       
       {/* Smart Sticky CTA */}
       <SmartStickyCTA />

@@ -74,7 +74,7 @@ export function DemoBanner() {
         borderBottom: "1px solid #e5e7eb",
         boxShadow: "0 1px 3px rgba(0, 0, 0, 0.04)",
       }}
-      className="md:justify-between justify-center"
+      className="justify-between"
     >
       <div style={{ 
         display: "flex", 
@@ -84,7 +84,7 @@ export function DemoBanner() {
         minWidth: 0,
         flex: "1 1 auto"
       }}
-      className="md:justify-start justify-center"
+      className="justify-start"
       >
         <div style={{
           display: "flex",
