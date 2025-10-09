@@ -1,6 +1,12 @@
+'use client';
+
 import Footer from '@/components/Footer';
+import PaidFooter from '@/components/PaidFooter';
+import { useIsDemo } from '@/src/lib/isDemo';
 
 export default function TermsPage() {
+  const isDemo = useIsDemo();
+  
   return (
     <div className="min-h-screen flex flex-col">
       <main className="flex-1 py-16 px-4">
@@ -14,7 +20,7 @@ export default function TermsPage() {
           </p>
         </div>
       </main>
-      <Footer />
+      {isDemo ? <Footer /> : <PaidFooter />}
     </div>
   );
 }

@@ -102,11 +102,9 @@ export default function PaidFooter() {
           </ul>
         </nav>
 
-        {/* Row 3: Micro-attribution (centered, subdued) */}
+        {/* Row 3: Micro-attribution (centered, subdued) - minimal legal only */}
         <div data-testid="footer-micro" className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-slate-500/70">
           <span>Mapping &amp; location data © Google</span>
-          <span aria-hidden="true" className="text-slate-400">•</span>
-          <span>Estimates generated using NREL PVWatts® v8</span>
           <span aria-hidden="true" className="text-slate-400">•</span>
           <span>
             Powered by{' '}

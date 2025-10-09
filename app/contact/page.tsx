@@ -3,11 +3,14 @@
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import { useSearchParams } from 'next/navigation';
 import Footer from '@/components/Footer';
+import PaidFooter from '@/components/PaidFooter';
 import { useState } from 'react';
+import { useIsDemo } from '@/src/lib/isDemo';
 
 export default function ContactPage() {
   const b = useBrandTakeover();
   const searchParams = useSearchParams();
+  const isDemo = useIsDemo();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -197,7 +200,7 @@ export default function ContactPage() {
         </div>
       </main>
 
-      <Footer />
+      {isDemo ? <Footer /> : <PaidFooter />}
     </div>
   );
 }

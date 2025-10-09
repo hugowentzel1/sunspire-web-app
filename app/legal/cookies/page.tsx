@@ -1,8 +1,12 @@
 'use client';
 
 import Footer from '@/components/Footer';
+import PaidFooter from '@/components/PaidFooter';
+import { useIsDemo } from '@/src/lib/isDemo';
 
 export default function CookiesPage() {
+  const isDemo = useIsDemo();
+  
   const handleOpenPreferences = () => {
     if (typeof window !== 'undefined') {
       if ((window as any).__cmp) {
@@ -32,7 +36,7 @@ export default function CookiesPage() {
           </p>
         </div>
       </main>
-      <Footer />
+      {isDemo ? <Footer /> : <PaidFooter />}
     </div>
   );
 }

@@ -1026,12 +1026,14 @@ function ReportContent() {
             />
           )}
 
-          {/* Data Attribution Strip */}
-          <div className="mt-12 pt-6 border-t border-gray-200 text-center" data-testid="data-sources-line">
-            <p className="text-xs text-gray-500">
-              Data sources: NREL PVWatts® v8, U.S. EIA, and Google Maps • Last validated Oct 2025
-            </p>
-          </div>
+          {/* Data Attribution Strip - only shown on paid mode */}
+          {!demoMode && (
+            <div className="mt-12 pt-6 border-t border-gray-200 text-center" data-testid="report-data-sources">
+              <p className="text-xs text-gray-500">
+                Data sources: NREL PVWatts® v8, U.S. EIA • Last validated Oct 2025
+              </p>
+            </div>
+          )}
 
         </motion.div>
         </Container>
