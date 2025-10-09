@@ -10,6 +10,21 @@ type Props = {
   poweredBy?: boolean;
 };
 
+// Helper to get default logo URL from Clearbit
+const getDefaultLogo = (brand: string) => {
+  const brandLower = brand.toLowerCase();
+  
+  if (brandLower.includes('google')) return 'https://logo.clearbit.com/google.com';
+  if (brandLower.includes('microsoft')) return 'https://logo.clearbit.com/microsoft.com';
+  if (brandLower.includes('apple')) return 'https://logo.clearbit.com/apple.com';
+  if (brandLower.includes('amazon')) return 'https://logo.clearbit.com/amazon.com';
+  if (brandLower.includes('meta') || brandLower.includes('facebook')) return 'https://logo.clearbit.com/facebook.com';
+  if (brandLower.includes('netflix')) return 'https://logo.clearbit.com/netflix.com';
+  if (brandLower.includes('tesla')) return 'https://logo.clearbit.com/tesla.com';
+  
+  return null;
+};
+
 export default function Footer({
   brandName,
   logoUrl,
@@ -19,7 +34,7 @@ export default function Footer({
   // Get brand context if not provided via props
   const b = useBrandTakeover();
   const finalBrandName = brandName || b.brand;
-  const finalLogoUrl = logoUrl || b.logo;
+  const finalLogoUrl = logoUrl || b.logo || getDefaultLogo(finalBrandName);
   const finalBrandColor = brandColor || b.primary;
 
   // Handler for cookie preferences
@@ -102,8 +117,6 @@ export default function Footer({
           <span>Mapping &amp; location data © Google</span>
           <span aria-hidden="true">•</span>
           <span>Estimates generated using NREL PVWatts® v8</span>
-          <span aria-hidden="true">•</span>
-          <span>PVWatts® is a registered trademark of the Alliance for Sustainable Energy, LLC.</span>
           {poweredBy && (
             <>
               <span aria-hidden="true">•</span>
