@@ -1,128 +1,120 @@
 // components/Footer.tsx
+import Image from "next/image";
 import Link from "next/link";
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
-import Container from '@/components/layout/Container';
 
-function Pill({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="inline-flex items-center rounded-full bg-slate-100 text-slate-700 ring-1 ring-slate-200 px-3 py-1 text-xs font-medium">
-      {children}
-    </span>
-  );
-}
+type Props = {
+  brandName?: string;
+  logoUrl?: string;
+  brandColor?: string;
+  poweredBy?: boolean;
+};
 
-export default function Footer() {
+export default function Footer({
+  brandName,
+  logoUrl,
+  brandColor,
+  poweredBy = true,
+}: Props) {
+  // Get brand context if not provided via props
   const b = useBrandTakeover();
+  const finalBrandName = brandName || b.brand;
+  const finalLogoUrl = logoUrl || b.logo;
+  const finalBrandColor = brandColor || b.primary;
+
+  // Handler for cookie preferences
+  const handleCookiePreferences = (e: React.MouseEvent) => {
+    e.preventDefault();
+    if (typeof window !== 'undefined') {
+      // Try common CMP APIs
+      if ((window as any).__cmp) {
+        (window as any).__cmp('open');
+      } else if ((window as any).__tcfapi) {
+        (window as any).__tcfapi('displayConsentUi', 2, () => {});
+      } else {
+        // Fallback to route if no CMP available
+        window.location.href = '/legal/cookies';
+      }
+    }
+  };
+
   return (
-    <footer className="bg-slate-100/60 py-10" data-testid="footer">
-      {/* FOOTER CARD (everything lives inside this block) */}
-      <Container className="rounded-2xl bg-white shadow-sm ring-1 ring-slate-200">
-        <div className="px-6 py-10 md:px-10 md:py-12">
-          {/* 3-COLUMN GRID */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-16 items-start">
-            {/* LEFT */}
-            <div className="min-w-0 md:max-w-sm text-left">
-              <h3 className="text-xl font-semibold text-slate-900">
-                Sunspire Solar Intelligence
-              </h3>
-              <p className="mt-2 text-sm text-slate-600">
-                Demo for {b.brand} — Powered by Sunspire
-              </p>
-
-              <div className="mt-5 space-y-3 text-sm leading-relaxed text-slate-700">
-                <div className="flex items-start gap-3">
-                  <span className="mt-0.5">📍</span>
-                  <div className="min-w-0 break-words whitespace-normal">
-                    1700 Northside Drive Suite A7 #5164<br className="hidden sm:block" />
-                    Atlanta, GA 30318
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap items-center gap-2 pt-1">
-                  <Pill>GDPR</Pill>
-                  <Pill>CCPA</Pill>
-                  <Pill>SOC 2</Pill>
-                </div>
-
-                <ul className="mt-1 space-y-2.5">
-                  <li className="flex items-start gap-3">
-                    <span className="mt-0.5">✉️</span>
-                    <a className="underline-offset-2 hover:underline" href="mailto:support@getsunspire.com">
-                      support@getsunspire.com
-                    </a>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="mt-0.5">✉️</span>
-                    <a className="underline-offset-2 hover:underline" href="mailto:billing@getsunspire.com">
-                      billing@getsunspire.com
-                    </a>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="mt-0.5">☎️</span>
-                    <a className="underline-offset-2 hover:underline" href="tel:+14041234567">
-                      +1 (404) 123-4567
-                    </a>
-                  </li>
-                </ul>
-              </div>
+    <footer aria-label="Site footer" className="border-t bg-slate-50 dark:bg-slate-900">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-10">
+        {/* Brand */}
+        <div className="flex flex-col items-center gap-3">
+          {finalLogoUrl && (
+            <div className="h-8 w-auto">
+              <Image 
+                src={finalLogoUrl} 
+                alt={`${finalBrandName ?? "Brand"} logo`} 
+                width={112} 
+                height={32} 
+                className="h-8 w-auto object-contain" 
+              />
             </div>
-
-            {/* MIDDLE - FULLY CENTERED */}
-            <div className="min-w-0 md:max-w-xs flex flex-col items-center text-center">
-              <h4 className="text-xl font-semibold text-slate-900">Quick Links</h4>
-              <ul className="mt-4 space-y-3 text-sm text-slate-700 leading-relaxed">
-                <li><Link className="hover:underline underline-offset-2" href="/pricing">Pricing</Link></li>
-                <li><Link className="hover:underline underline-offset-2" href="/partners">Partners</Link></li>
-                <li><Link className="hover:underline underline-offset-2" href="/support">Support</Link></li>
-              </ul>
+          )}
+          {finalBrandName && (
+            <div className="text-base font-medium text-slate-800 dark:text-slate-100">
+              {finalBrandName}
             </div>
+          )}
+        </div>
 
-            {/* RIGHT */}
-            <div className="min-w-0 md:max-w-xs text-right">
-              <h4 className="text-xl font-semibold text-slate-900">Legal &amp; Support</h4>
-              <ul className="mt-4 space-y-3 text-sm text-slate-700 leading-relaxed">
-                <li><Link className="hover:underline underline-offset-2" href="/privacy">Privacy Policy</Link></li>
-                <li><Link className="hover:underline underline-offset-2" href="/terms">Terms of Service</Link></li>
-                <li><Link className="hover:underline underline-offset-2" href="/security">Security</Link></li>
-                <li><Link className="hover:underline underline-offset-2" href="/dpa">DPA</Link></li>
-                <li><Link className="hover:underline underline-offset-2" href="/do-not-sell">Do Not Sell My Data</Link></li>
-              </ul>
-            </div>
-          </div>
+        {/* Legal links */}
+        <nav aria-label="Legal and support" className="mt-6">
+          <ul className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-slate-600 dark:text-slate-300">
+            {[
+              { href: "/legal/privacy", label: "Privacy Policy" },
+              { href: "/legal/terms", label: "Terms of Service" },
+              { href: "/legal/cookies", label: "Cookie Preferences", onClick: handleCookiePreferences },
+              { href: "/legal/accessibility", label: "Accessibility" },
+              { href: "/contact", label: "Contact" },
+            ].map((l, i, arr) => (
+              <li key={l.href} className="flex items-center">
+                {l.onClick ? (
+                  <button
+                    onClick={l.onClick}
+                    aria-label={l.label}
+                    className="underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-400 dark:focus-visible:ring-slate-600 rounded"
+                  >
+                    {l.label}
+                  </button>
+                ) : (
+                  <Link
+                    href={l.href}
+                    aria-label={l.label}
+                    className="underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-400 dark:focus-visible:ring-slate-600 rounded"
+                  >
+                    {l.label}
+                  </Link>
+                )}
+                {i < arr.length - 1 && (
+                  <span aria-hidden="true" className="mx-2 text-slate-400">•</span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
 
-          {/* DIVIDER */}
-          <hr className="my-10 border-slate-200" />
-
-          {/* BOTTOM BAR (inside the same card) */}
-          <div className="flex flex-col gap-4 text-sm text-slate-600 md:flex-row md:items-start">
-            {/* LEFT: PVWatts */}
-            <div className="flex-1 flex gap-2">
-              <span className="flex-shrink-0 mt-0.5">⚡</span>
-              <span className="leading-relaxed">
-                Estimates generated<br />using NREL PVWatts® v8
-              </span>
-            </div>
-
-            {/* CENTER: Sunspire - Perfectly centered */}
-            <div className="flex-1 flex flex-col items-center justify-center text-center">
+        {/* Footnotes (centered) */}
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs text-slate-500 dark:text-slate-400 text-center">
+          <span>Mapping &amp; location data © Google</span>
+          <span aria-hidden="true">•</span>
+          <span>Estimates generated using NREL PVWatts® v8</span>
+          {poweredBy && (
+            <>
+              <span aria-hidden="true">•</span>
               <span>
                 Powered by{" "}
-                <span className="font-medium" style={{ color: b.primary }}>
+                <span className="font-medium" style={{ color: finalBrandColor }}>
                   Sunspire
                 </span>
               </span>
-            </div>
-
-            {/* RIGHT: Google */}
-            <div className="flex-1 flex gap-2 justify-end text-right">
-              <span className="flex-shrink-0 mt-0.5">🗺️</span>
-              <span className="leading-relaxed">
-                Mapping & location<br />data © Google
-              </span>
-            </div>
-          </div>
+            </>
+          )}
         </div>
-      </Container>
+      </div>
     </footer>
   );
 }

@@ -1030,9 +1030,6 @@ function ReportContent() {
             <p className="text-xs text-gray-500">
               Data sources: NREL PVWatts® v8, U.S. EIA, and Google Maps • Last validated Oct 2025
             </p>
-            <p className="text-xs text-gray-500 mt-2">
-              PVWatts® is a registered trademark of the Alliance for Sustainable Energy, LLC.
-            </p>
           </div>
 
         </motion.div>
