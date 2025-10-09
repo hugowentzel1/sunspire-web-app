@@ -35,9 +35,9 @@ for (const page of pages) {
     await expect(cookieBtn).toBeVisible();
 
     // Footnotes text exists (three items only)
-    await expect(footer).toContainText("Mapping & location data © Google");
-    await expect(footer).toContainText("Estimates generated using NREL PVWatts® v8");
-    await expect(footer).toContainText("Powered by Sunspire");
+    await expect(footer).toContainText("© Google");
+    await expect(footer).toContainText("NREL PVWatts® v8");
+    await expect(footer).toContainText("Sunspire");
   });
 }
 
@@ -73,9 +73,9 @@ test("footer contains 3 required footnote items", async ({ page }) => {
   await expect(footer).toBeVisible();
 
   // Should contain exactly 3 footnote items (no trademark line)
-  await expect(footer).toContainText("Mapping & location data © Google");
-  await expect(footer).toContainText("Estimates generated using NREL PVWatts® v8");
-  await expect(footer).toContainText("Powered by Sunspire");
+  await expect(footer).toContainText("© Google");
+  await expect(footer).toContainText("NREL PVWatts® v8");
+  await expect(footer).toContainText("Sunspire");
   
   // Should NOT contain the trademark line
   await expect(footer).not.toContainText("PVWatts® is a registered trademark of the Alliance for Sustainable Energy, LLC.");

@@ -113,15 +113,38 @@ export default function Footer({
         </nav>
 
         {/* Footnotes (centered, improved rhythm) */}
-        <div className="mt-8 pt-4 border-t border-neutral-200/70 dark:border-neutral-800">
-          <div className="mx-auto max-w-3xl px-2">
-            <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-center text-xs md:text-sm leading-6 md:leading-7 text-neutral-500 dark:text-neutral-400">
-              <span>Mapping &amp; location data © Google</span>
-              <span aria-hidden="true" className="text-neutral-400">•</span>
-              <span>Estimates generated using NREL PVWatts® v8</span>
-              {/* Credit only — not a link */}
-              <span aria-hidden="true" className="text-neutral-400">•</span>
-              <span className="text-neutral-500 dark:text-neutral-400">Powered by Sunspire</span>
+        <div className="mt-8 pt-6 border-t border-neutral-200/70 dark:border-neutral-800">
+          <div className="mx-auto max-w-4xl px-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+              {/* Google Attribution */}
+              <div className="flex flex-col items-center space-y-1">
+                <div className="text-xs font-medium text-neutral-600 dark:text-neutral-400 uppercase tracking-wide">
+                  Mapping Data
+                </div>
+                <div className="text-sm text-neutral-500 dark:text-neutral-400">
+                  © Google
+                </div>
+              </div>
+              
+              {/* PVWatts Attribution */}
+              <div className="flex flex-col items-center space-y-1">
+                <div className="text-xs font-medium text-neutral-600 dark:text-neutral-400 uppercase tracking-wide">
+                  Solar Modeling
+                </div>
+                <div className="text-sm text-neutral-500 dark:text-neutral-400">
+                  NREL PVWatts® v8
+                </div>
+              </div>
+              
+              {/* Sunspire Credit */}
+              <div className="flex flex-col items-center space-y-1">
+                <div className="text-xs font-medium text-neutral-600 dark:text-neutral-400 uppercase tracking-wide">
+                  Powered By
+                </div>
+                <div className="text-sm text-neutral-500 dark:text-neutral-400">
+                  Sunspire
+                </div>
+              </div>
             </div>
           </div>
         </div>
