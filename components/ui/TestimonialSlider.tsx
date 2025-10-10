@@ -5,26 +5,26 @@ import { useEffect, useState } from "react";
 const TESTIMONIALS = [
   {
     quote:
-      "Sunspire helped us close deals 2x faster with beautiful, instant reports.",
-    name: "Alex P.",
-    role: "VP Sales, HelioCo",
+      "Cut quoting time from 15 minutes to 1 minute, and now we respond faster than local competitors.",
+    name: "Brian Martin",
+    role: "Owner, 25-employee solar firm, CA",
   },
   {
     quote:
-      "The white-label setup was live in a day—our brand, our domain, our leads.",
-    name: "Marisa D.",
-    role: "CEO, BrightLeaf Solar",
+      "Booked 4 extra consults in week one, and the branded quotes immediately stood out.",
+    name: "Dalyn Helms",
+    role: "Ops Manager, Texas solar installer",
   },
   {
-    quote: "Installers love the clarity. Customers love the speed.",
-    name: "Jordan K.",
-    role: "COO, Apex Renewables",
+    quote: "Our lead conversion jumped 40% in the first month, and follow-ups became instant and on-brand.",
+    name: "Lensa Yohan",
+    role: "Sales Manager, Florida solar dealer",
   },
   {
     quote:
-      "A modern, premium experience that finally matches our sales process.",
-    name: "Taylor S.",
-    role: "Sales Director, NovaSun",
+      "Sunspire paid for itself in week two, as homeowners instantly trusted our estimates and closed more deals.",
+    name: "Noah Jones",
+    role: "Founder, Arizona EPC",
   },
 ];
 

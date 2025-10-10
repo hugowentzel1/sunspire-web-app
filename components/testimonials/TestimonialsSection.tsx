@@ -2,6 +2,7 @@ import React from "react";
 
 type Testimonial = {
   quote: string;
+  name: string;
   role: string;
   company: string; // company type (and optional size)
   region: string;  // state/region
@@ -11,6 +12,7 @@ const TESTIMONIALS: Testimonial[] = [
   {
     quote:
       "Cut quoting time from 15 minutes to 1 minute — we now respond faster than local competitors.",
+    name: "Brian Martin",
     role: "Owner",
     company: "25-employee solar firm",
     region: "CA",
@@ -18,6 +20,7 @@ const TESTIMONIALS: Testimonial[] = [
   {
     quote:
       "Booked 4 extra consults in week one — the branded quotes immediately stood out.",
+    name: "Dalyn Helms",
     role: "Operations Manager",
     company: "Texas solar installer",
     region: "TX",
@@ -25,6 +28,7 @@ const TESTIMONIALS: Testimonial[] = [
   {
     quote:
       "Our lead conversion jumped 40% in the first month — follow-ups became instant and on-brand.",
+    name: "Lensa Yohan",
     role: "Sales Manager",
     company: "Florida solar dealer",
     region: "FL",
@@ -32,6 +36,7 @@ const TESTIMONIALS: Testimonial[] = [
   {
     quote:
       "Sunspire paid for itself in week two — homeowners instantly trusted our estimates.",
+    name: "Noah Jones",
     role: "Founder",
     company: "Arizona EPC",
     region: "AZ",
@@ -48,7 +53,9 @@ function TestimonialCard({ t }: { t: Testimonial }) {
             &ldquo;{t.quote}&rdquo;
           </blockquote>
       <figcaption className="mt-4 border-t border-slate-200 pt-3 text-sm text-slate-600">
-        <span className="font-medium text-slate-900">— {t.role}</span>
+        <span className="font-medium text-slate-900">{t.name}</span>
+        {", "}
+        <span>{t.role}</span>
         {", "}
         <span>{t.company}</span>
         {", "}
