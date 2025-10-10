@@ -57,7 +57,7 @@ export default function Testimonials() {
           className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm"
         >
           <p className="text-gray-900 text-[17px] leading-snug mb-5">
-            "{q.quote}"
+            &ldquo;{q.quote}&rdquo;
           </p>
 
           <div className="flex flex-col items-center text-center gap-3">
