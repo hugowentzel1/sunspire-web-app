@@ -124,9 +124,21 @@ function HomeContent() {
     return () => clearTimeout(timer);
   }, [isDemo, searchParams]);
 
+  // Show loading state while brand is being initialized
+  if (!isBrandLoaded) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
+        <div className="text-center">
+          <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 animate-pulse"></div>
+          <p className="text-gray-600">Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
   // Early return for paid versions to prevent demo content from rendering
-  // Only redirect if: (1) brand state loaded, (2) NOT in demo mode, (3) has company, (4) NO demo param
-  if (isBrandLoaded && !isDemo) {
+  // Only redirect if: NOT in demo mode, has company, NO demo param
+  if (!isDemo) {
     const company = searchParams?.get('company');
     const demoParam = searchParams?.get('demo');
     if (company && demoParam !== '1' && demoParam !== 'true') {
