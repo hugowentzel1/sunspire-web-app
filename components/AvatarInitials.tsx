@@ -1,14 +1,16 @@
 import * as React from "react";
 
-// Modern B2B SaaS avatar with unique colors per person
-// Based on industry standards from Google, Dropbox, Slack
+// Consistent, trust-building avatar with brand-colored ring
+// Research: consistent styling increases trust; white center ensures WCAG AA contrast
 export default function AvatarInitials({
   name,
   size = 40,
+  variant = "duo",
   className = "",
 }: {
   name: string;
   size?: number;
+  variant?: "duo";
   className?: string;
 }) {
   const initials = React.useMemo(() => {
@@ -19,33 +21,23 @@ export default function AvatarInitials({
     return (first + last).toUpperCase();
   }, [name]);
 
-  // Professional B2B color palette - unique per person
-  // Colors chosen for trust, credibility, and differentiation
-  const colorMap: Record<string, { bg: string; text: string }> = React.useMemo(() => ({
-    // Brian Martin - Professional blue (trust, authority)
-    "BM": { bg: "bg-blue-100", text: "text-blue-700" },
-    // Dalyn Helms - Warm teal (approachable, modern)
-    "DH": { bg: "bg-teal-100", text: "text-teal-700" },
-    // Lensa Yohan - Sophisticated purple (creative, premium)
-    "LY": { bg: "bg-purple-100", text: "text-purple-700" },
-    // Noah Jones - Fresh green (growth, success)
-    "NJ": { bg: "bg-emerald-100", text: "text-emerald-700" },
-  }), []);
-
-  const colors = colorMap[initials] || { bg: "bg-slate-100", text: "text-slate-700" };
+  // Duo style: white fill + brand ring + dark initials (consistent, accessible, trust-building)
+  const brandRing = "ring-2 ring-[color:var(--brand-primary,#e11d48)]/25";
+  const skin = `bg-white text-gray-800 ${brandRing} shadow-sm`;
 
   const style: React.CSSProperties = { 
     width: size, 
     height: size,
-    fontSize: Math.round(size * 0.42), // Optimized for readability
+    fontSize: Math.round(size * 0.42), // 42% for optimal readability
     lineHeight: 1
   };
   
   return (
     <div
-      className={`inline-flex items-center justify-center rounded-full ${colors.bg} ${colors.text} font-semibold shadow-sm ${className}`}
+      className={`inline-flex items-center justify-center rounded-full font-semibold tracking-tight ${skin} ${className}`}
       style={style}
       aria-label={`Avatar for ${name}`}
+      data-testid="avatar-initials"
     >
       {initials}
     </div>

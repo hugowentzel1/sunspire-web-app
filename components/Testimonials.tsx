@@ -62,7 +62,7 @@ export default function Testimonials() {
 
           <div className="flex flex-col items-center text-center gap-3">
             <div className="flex items-center justify-center gap-3 w-full">
-              <AvatarInitials name={q.name} size={44} />
+              <AvatarInitials name={q.name} size={44} variant="duo" />
               <div className="text-gray-900 font-semibold leading-5">
                 {q.name}
               </div>
