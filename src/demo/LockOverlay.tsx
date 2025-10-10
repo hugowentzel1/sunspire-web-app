@@ -346,7 +346,7 @@ export default function LockOverlay() {
                 "0 8px 32px rgba(0, 0, 0, 0.15)";
             }}
           >
-            Activate on Your Domain — 24 Hours
+            Launch on Your Domain in 24 Hours
           </button>
         </div>
 

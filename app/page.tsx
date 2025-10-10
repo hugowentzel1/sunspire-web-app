@@ -26,6 +26,7 @@ import QuoteCard from '@/components/quotes/QuoteCard';
 import QuoteGrid from '@/components/quotes/QuoteGrid';
 import TrustRow from '@/components/trust/TrustRow';
 import ReadingProgressBar from '@/components/ReadingProgressBar';
+import StickyCtaBar from '@/components/StickyCtaBar';
 
 const AddressAutocomplete = dynamic(() => import('@/components/AddressAutocomplete'), { 
   ssr: false,
@@ -298,6 +299,8 @@ function HomeContent() {
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter" data-demo={isDemo}>
       <ReadingProgressBar />
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 hero">
+        {/* Ensure hero text container is below header but above any background media */}
+        <section className="relative z-10">
         <div className="hero text-center space-y-6">
           
           {/* Live confirmation bar for paid mode */}
@@ -327,7 +330,7 @@ function HomeContent() {
                     style={{ backgroundColor: 'var(--brand-primary)' }}
                   >
                     <span className="mr-2">⚡</span>
-                    Activate on Your Domain — 24 Hours
+                    Launch on Your Domain in 24 Hours
                   </button>
                   <p className="text-sm text-gray-600">
                     $99/mo + $399 setup • 14-day refund if it doesn&rsquo;t lift booked calls
@@ -355,12 +358,14 @@ function HomeContent() {
           <div className="space-y-6">
             <div className="space-y-6">
               
+              {/* SUNSPIRE: DEMO HERO copy (replace H1 + subhead) */}
               <h1 className="text-5xl md:text-7xl font-black text-gray-900 leading-tight">
-                Your Branded Solar Quote Tool — Ready to Launch
+                Your Branded Solar Quote Tool — Live on Your Site in 24 Hours.
               </h1>
               
               <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Go live in 24 hours. Capture more leads. Book more consults. Close more installs — all under your brand.
+                Capture more leads with <span className="font-medium">instant, fully-branded</span> solar estimates.
+                We set it up for you — no coding required. Works as a website embed or shareable link.
               </p>
             </div>
           </div>
@@ -410,7 +415,7 @@ function HomeContent() {
                     <div className="flex items-center justify-center space-x-4">
                       <span>
                         {b.enabled 
-                          ? (address.trim() ? `Launch My Branded Tool` : `Activate on Your Domain — 24 Hours`)
+                          ? (address.trim() ? `Launch My Branded Tool` : `Launch on Your Domain in 24 Hours`)
                           : "Generate Solar Intelligence Report"
                         }
                       </span>
@@ -535,7 +540,7 @@ function HomeContent() {
           <div className="max-w-4xl mx-auto py-12 md:py-16">
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg">
               <div className="text-center space-y-8">
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Activate on Your Domain — 24 Hours</h2>
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Launch on Your Domain in 24 Hours</h2>
                 <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
                   <span>• &lt;24h setup</span>
                   <span>• CRM integrations</span>
@@ -552,7 +557,7 @@ function HomeContent() {
                   style={{ backgroundColor: 'var(--brand-primary)' }}
                 >
                   <span className="mr-2">⚡</span>
-                  Activate on Your Domain — 24 Hours
+                  Launch on Your Domain in 24 Hours
                 </button>
               </div>
             </div>
@@ -608,22 +613,23 @@ function HomeContent() {
           {isDemo && (
             <div className="max-w-4xl mx-auto section-spacing" {...tid('pricing-section')}>
               <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Frequently Asked Questions</h2>
+              {/* SUNSPIRE: DEMO FAQ order */}
               <div className="space-y-6">
-                <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">CMS? — Yes, 1-line &lt;script&gt;. Hosted option too.</h3>
-                  <p className="text-gray-600">Works with any website platform. Just add one line of code.</p>
-                </div>
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Accuracy? — NREL PVWatts v8 • EIA rates • local irradiance</h3>
                   <p className="text-gray-600">Industry-standard data sources. <a href="/methodology" className="text-[var(--brand-primary)] hover:text-[var(--brand-primary)]/80 hover:underline font-medium transition-colors duration-200">View methodology</a>.</p>
                 </div>
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Security? — Encrypted in transit & at rest</h3>
-                  <p className="text-gray-600">Bank-level security for all customer data.</p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Setup time? — Live in &lt;24 hours, no coding required</h3>
+                  <p className="text-gray-600">Quick setup with our one-line script embed or hosted option.</p>
                 </div>
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Cancel? — Yes, 14-day refund if it doesn&apos;t lift booked calls</h3>
-                  <p className="text-gray-600">No long-term contracts. Cancel anytime.</p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">CMS / Embed? — Yes, 1-line &lt;script&gt;. Hosted option too.</h3>
+                  <p className="text-gray-600">Works with any website platform. Just add one line of code.</p>
+                </div>
+                <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Security? — Encrypted in transit & at rest</h3>
+                  <p className="text-gray-600">Bank-level security for all customer data.</p>
                 </div>
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">Support? — Email support 24/7</h3>
@@ -641,6 +647,7 @@ function HomeContent() {
             />
           )}
         </div>
+        </section>
       </main>
 
       {/* Sample Report Modal */}
@@ -711,23 +718,11 @@ function HomeContent() {
       {/* Smart Sticky CTA */}
       <SmartStickyCTA />
       
-      {/* Mobile Sticky CTA - Only show on mobile for demo */}
-      {isDemo && (
-        <div 
-          className="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-md border-t border-gray-200 p-4 md:hidden z-50 safe-area-inset-bottom"
-          data-testid="mobile-sticky-cta"
-        >
-          <button
-            onClick={handleLaunchClick}
-            data-cta="primary"
-            className="w-full inline-flex items-center justify-center px-6 py-3 rounded-full text-base font-medium text-white shadow-lg hover:shadow-xl transition-all duration-200"
-            style={{ backgroundColor: 'var(--brand-primary)' }}
-          >
-            <span className="mr-2">⚡</span>
-            Activate on Your Domain — 24 Hours
-          </button>
-        </div>
-      )}
+      <StickyCtaBar
+        label="Launch on Your Domain in 24 Hours"
+        testId="sticky-demo-cta"
+        className="sm:hidden"   // MOBILE-ONLY
+      />
 
     </div>
   );

@@ -29,7 +29,7 @@ export default function FooterCtaReveal() {
         </p>
         <button className="w-full rounded-xl bg-[#2F80ED] px-4 py-3 text-[14px] font-semibold text-white md:w-auto"
                 onClick={() => (window.location.href = "/pricing")}>
-          Activate on Your Domain — 24 Hours
+          Launch on Your Domain in 24 Hours
         </button>
       </div>
     </div>

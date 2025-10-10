@@ -12,12 +12,49 @@ export default function PrivacyPage() {
       <main className="flex-1 py-16 px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold mb-6 text-center md:text-left">Privacy Policy</h1>
-          <p className="text-lg text-gray-600 mb-4">
-            This page contains information about how we collect, use, and protect your personal data.
-          </p>
-          <p className="text-gray-600">
-            Content coming soon.
-          </p>
+          <div className="prose prose-gray max-w-none">
+            <p className="text-lg text-gray-600 mb-6">
+              This Privacy Policy describes how we collect, use, and protect your personal information when you use our solar analysis services.
+            </p>
+            
+            <h2 className="text-2xl font-semibold mt-8 mb-4">Information We Collect</h2>
+            <ul className="list-disc pl-6 mb-6">
+              <li>Property address and location data</li>
+              <li>Contact information (name, email, phone)</li>
+              <li>Usage data and analytics</li>
+              <li>Payment information (processed securely by Stripe)</li>
+            </ul>
+
+            <h2 className="text-2xl font-semibold mt-8 mb-4">How We Use Your Information</h2>
+            <ul className="list-disc pl-6 mb-6">
+              <li>Generate solar analysis reports</li>
+              <li>Process payments and subscriptions</li>
+              <li>Provide customer support</li>
+              <li>Improve our services</li>
+            </ul>
+
+            <h2 className="text-2xl font-semibold mt-8 mb-4">Data Protection</h2>
+            <p className="mb-4">
+              We implement industry-standard security measures to protect your personal information. All data is encrypted in transit and at rest.
+            </p>
+
+            <h2 className="text-2xl font-semibold mt-8 mb-4">Third-Party Services</h2>
+            <p className="mb-4">
+              We use Google Maps for location services and Stripe for payment processing. These services have their own privacy policies.
+            </p>
+
+            <h2 className="text-2xl font-semibold mt-8 mb-4">Contact Us</h2>
+            <p className="mb-4">
+              If you have questions about this Privacy Policy, please contact us at{' '}
+              <a href="mailto:privacy@getsunspire.com" className="text-blue-600 hover:underline">
+                privacy@getsunspire.com
+              </a>
+            </p>
+
+            <p className="text-sm text-gray-500 mt-8">
+              Last updated: {new Date().toLocaleDateString()}
+            </p>
+          </div>
         </div>
       </main>
       {isDemo ? <Footer /> : <PaidFooter />}

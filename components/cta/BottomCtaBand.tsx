@@ -16,15 +16,15 @@ export default function BottomCtaBand({
 
   const title = isReport
     ? 'Ready to Launch Your Branded, Customer-Facing Tool?'
-    : 'Activate on Your Domain — 24 Hours';
+    : 'Launch on Your Domain in 24 Hours';
 
   const subtext = isReport
     ? 'Get the full paid version—customer-facing and under your brand—with complete projections, detailed assumptions, and unblurred savings charts.'
     : 'Go live in under 24 hours with branded solar quotes on your own domain.';
 
   const buttonLabel = isReport
-    ? 'Activate on Your Domain — $99/mo + $399 setup'
-    : 'Activate on Your Domain — 24 Hours';
+    ? 'Launch on Your Domain — $99/mo + $399 setup'
+    : 'Launch on Your Domain in 24 Hours';
 
   // Home keeps the full price footer;
   // Report replaces it with a comparison anchor only (no duplicate price).

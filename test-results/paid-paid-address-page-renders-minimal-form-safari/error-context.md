@@ -1,0 +1,95 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "☀️ Your Company Solar Intelligence" [ref=e5]:
+        - /url: /
+        - generic [ref=e7]: ☀️
+        - generic [ref=e8]:
+          - heading "Your Company" [level=1] [ref=e9]
+          - paragraph [ref=e10]: Solar Intelligence
+      - navigation
+  - generic [ref=e11]:
+    - main [ref=e12]:
+      - generic [ref=e13]:
+        - generic [ref=e15]: YC
+        - generic [ref=e16]:
+          - generic [ref=e18]: ✓
+          - generic [ref=e19]:
+            - heading "Instant Solar Analysis for Your Home" [level=1] [ref=e20]
+            - paragraph [ref=e21]: Enter your address to see solar production, savings, and payback—instantly.
+        - generic [ref=e23]:
+          - generic [ref=e24]:
+            - heading "Enter Your Property Address" [level=2] [ref=e25]
+            - paragraph [ref=e26]: Get a comprehensive solar analysis tailored to your specific location
+          - generic [ref=e27]:
+            - generic [ref=e28]:
+              - generic [ref=e29]: Enter Your Property Address
+              - generic [ref=e30]:
+                - textbox "Enter Your Property Address" [ref=e31]
+                - generic [ref=e33]: Powered by Google
+              - paragraph [ref=e34]: We only use your address to estimate sun, rates, and savings. Nothing is shared.
+            - button "Generate Solar Intelligence Report" [disabled] [ref=e35]:
+              - generic [ref=e36]:
+                - generic [ref=e37]: Generate Solar Intelligence Report
+                - img [ref=e38]
+            - generic [ref=e40]:
+              - generic [ref=e41]: Industry-standard modeling (NREL PVWatts® v8)
+              - generic [ref=e42]: •
+              - generic [ref=e43]: Local utility rates
+              - generic [ref=e44]: •
+              - generic [ref=e45]: Private
+        - generic [ref=e46]:
+          - generic [ref=e47]:
+            - generic [ref=e48]:
+              - generic [ref=e49]: NREL v8
+              - generic [ref=e50]: Accurate Modeling
+            - generic [ref=e51]:
+              - generic [ref=e52]: Current Rates
+              - generic [ref=e53]: Local Utility Data
+            - generic [ref=e54]:
+              - generic [ref=e55]: Private
+              - generic [ref=e56]: Encrypted
+          - generic [ref=e58]:
+            - generic [ref=e59]:
+              - img [ref=e61]
+              - generic [ref=e63]: NREL PVWatts® v8
+              - generic [ref=e64]: Industry-standard solar modeling with current utility rates
+            - generic [ref=e65]:
+              - img [ref=e67]
+              - generic [ref=e69]: End-to-End Encryption
+              - generic [ref=e70]: Secure data protection
+    - contentinfo [ref=e71]:
+      - generic [ref=e72]:
+        - generic [ref=e74]: Your Company
+        - navigation "Legal and support" [ref=e75]:
+          - list [ref=e76]:
+            - listitem [ref=e77]:
+              - link "Privacy Policy" [ref=e78]:
+                - /url: /legal/privacy
+              - generic [ref=e79]: •
+            - listitem [ref=e80]:
+              - link "Terms of Service" [ref=e81]:
+                - /url: /legal/terms
+              - generic [ref=e82]: •
+            - listitem [ref=e83]:
+              - button "Cookie Preferences" [ref=e84] [cursor=pointer]
+              - generic [ref=e85]: •
+            - listitem [ref=e86]:
+              - link "Accessibility" [ref=e87]:
+                - /url: /legal/accessibility
+              - generic [ref=e88]: •
+            - listitem [ref=e89]:
+              - link "Contact" [ref=e90]:
+                - /url: /contact
+        - generic [ref=e91]:
+          - generic [ref=e92]: Mapping & location data © Google
+          - generic [ref=e93]: •
+          - generic [ref=e94]:
+            - text: Powered by
+            - link "Sunspire" [ref=e95]:
+              - /url: https://getsunspire.com
+  - alert [ref=e96]
+```

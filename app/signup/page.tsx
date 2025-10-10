@@ -89,7 +89,7 @@ export default function SignupPage() {
                 type="submit"
                 className="w-full bg-[var(--brand-primary)] text-white font-semibold py-4 px-6 rounded-lg hover:opacity-90 transition-opacity"
               >
-                Activate on Your Domain — 24 Hours
+                Launch on Your Domain in 24 Hours
               </button>
             </form>
             

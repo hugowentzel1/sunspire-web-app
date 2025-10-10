@@ -12,12 +12,63 @@ export default function TermsPage() {
       <main className="flex-1 py-16 px-4">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold mb-6 text-center md:text-left">Terms of Service</h1>
-          <p className="text-lg text-gray-600 mb-4">
-            This page contains our terms and conditions for using this service.
-          </p>
-          <p className="text-gray-600">
-            Content coming soon.
-          </p>
+          <div className="prose prose-gray max-w-none">
+            <p className="text-lg text-gray-600 mb-6">
+              These Terms of Service govern your use of our solar analysis platform and services.
+            </p>
+            
+            <h2 className="text-2xl font-semibold mt-8 mb-4">Acceptance of Terms</h2>
+            <p className="mb-4">
+              By accessing or using our services, you agree to be bound by these Terms of Service and our Privacy Policy.
+            </p>
+
+            <h2 className="text-2xl font-semibold mt-8 mb-4">Service Description</h2>
+            <p className="mb-4">
+              We provide solar energy analysis tools that generate reports and estimates for residential and commercial properties.
+            </p>
+
+            <h2 className="text-2xl font-semibold mt-8 mb-4">User Responsibilities</h2>
+            <ul className="list-disc pl-6 mb-6">
+              <li>Provide accurate property information</li>
+              <li>Maintain the security of your account</li>
+              <li>Use the service in compliance with applicable laws</li>
+              <li>Not attempt to reverse engineer or copy our software</li>
+            </ul>
+
+            <h2 className="text-2xl font-semibold mt-8 mb-4">Payment Terms</h2>
+            <p className="mb-4">
+              Subscription fees are billed monthly or annually as selected. All payments are processed securely through Stripe.
+              You may cancel your subscription at any time.
+            </p>
+
+            <h2 className="text-2xl font-semibold mt-8 mb-4">Intellectual Property</h2>
+            <p className="mb-4">
+              The service and its original content, features, and functionality are owned by Sunspire and are protected by copyright, trademark, and other intellectual property laws.
+            </p>
+
+            <h2 className="text-2xl font-semibold mt-8 mb-4">Limitation of Liability</h2>
+            <p className="mb-4">
+              Our solar analysis reports are estimates based on available data and should not be considered as professional engineering advice.
+              We recommend consulting with qualified professionals for final decisions.
+            </p>
+
+            <h2 className="text-2xl font-semibold mt-8 mb-4">Termination</h2>
+            <p className="mb-4">
+              We may terminate or suspend your account immediately, without prior notice, for conduct that we believe violates these Terms of Service.
+            </p>
+
+            <h2 className="text-2xl font-semibold mt-8 mb-4">Contact Information</h2>
+            <p className="mb-4">
+              Questions about these Terms of Service should be sent to{' '}
+              <a href="mailto:legal@getsunspire.com" className="text-blue-600 hover:underline">
+                legal@getsunspire.com
+              </a>
+            </p>
+
+            <p className="text-sm text-gray-500 mt-8">
+              Last updated: {new Date().toLocaleDateString()}
+            </p>
+          </div>
         </div>
       </main>
       {isDemo ? <Footer /> : <PaidFooter />}

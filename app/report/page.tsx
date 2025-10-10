@@ -34,6 +34,7 @@ import Container from '@/components/layout/Container';
 import BottomCtaBand from '@/components/cta/BottomCtaBand';
 import ReportCTAFooter from '@/components/report/ReportCTAFooter';
 import StickyCTA from '@/components/report/StickyCTA';
+import StickyCtaBar from '@/components/StickyCtaBar';
 
 import { ensureBlurSupport } from '@/src/lib/ensureBlur';
 import { isDemoFromSearchParams } from '@/src/lib/isDemo';
@@ -1049,13 +1050,11 @@ function ReportContent() {
         onClose={() => setShowMethodologyModal(false)}
       />
 
-      {/* Mobile Sticky CTA for paid mode only */}
-      {!demoMode && (
-        <StickyCTA 
-          brandColor={b.primary}
-          searchParams={searchParams?.toString()}
-        />
-      )}
+      <StickyCtaBar
+        label="Book a Free Consultation"
+        testId="sticky-report-cta"
+        className="sm:hidden"   // MOBILE-ONLY
+      />
 
       {/* Use PaidFooter for paid mode (demo=0), regular Footer for demo mode */}
       {demoMode ? <Footer /> : <PaidFooter />}
