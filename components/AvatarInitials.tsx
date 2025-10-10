@@ -21,14 +21,17 @@ export default function AvatarInitials({
     return (first + last).toUpperCase();
   }, [name]);
 
-  // OPTION 4: Soft Neumorphism - embossed, tactile look with dual shadows (luxury product feel)
-  const skin = `text-gray-800 relative`;
+  // OPTION 5: Double Ring System - concentric rings with layered opacity (luxury watch aesthetic)
+  const skin = `bg-white text-gray-800`;
   
-  // Dual shadow system: bottom-right shadow + top-left highlight
+  // Three concentric rings using box-shadow (white → brand middle → brand outer)
   const shadowStyle = {
-    background: 'linear-gradient(145deg, #ffffff, #f5f5f5)',
-    boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.08), -5px -5px 10px rgba(255, 255, 255, 0.9)',
-    border: '1px solid color-mix(in srgb, var(--brand-primary, #e11d48) 15%, transparent)',
+    boxShadow: `
+      0 0 0 2px white,
+      0 0 0 4px color-mix(in srgb, var(--brand-primary, #e11d48) 15%, transparent),
+      0 0 0 6px color-mix(in srgb, var(--brand-primary, #e11d48) 8%, transparent),
+      0 4px 12px rgba(0, 0, 0, 0.1)
+    `,
   };
 
   const style: React.CSSProperties = { 
