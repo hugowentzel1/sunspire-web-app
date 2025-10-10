@@ -20,13 +20,45 @@ export default function ReportCTAFooter({
   searchParams = "",
 }: ReportCTAFooterProps) {
   
-  const handleBook = () => {
+  const handleBook = async () => {
     if (typeof window !== 'undefined' && (window as any).gtag) {
       (window as any).gtag('event', 'cta_book_consultation_bottom', {
         event_category: 'engagement',
         event_label: 'report_page_bottom'
       });
     }
+    
+    // Start Stripe checkout instead of going to contact
+    try {
+      // Collect tracking parameters from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get('token');
+      const company = urlParams.get('company');
+      const utm_source = urlParams.get('utm_source');
+      const utm_campaign = urlParams.get('utm_campaign');
+      
+      // Start checkout
+      const response = await fetch('/api/stripe/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          plan: 'starter',
+          token,
+          company,
+          utm_source,
+          utm_campaign
+        })
+      });
+      
+      if (!response.ok) throw new Error('Checkout failed');
+      
+      const { url } = await response.json();
+      window.location.href = url;
+    } catch (error) {
+      console.error('Checkout error:', error);
+      alert('Unable to start checkout. Please try again.');
+    }
+    
     if (onBook) onBook();
   };
 
@@ -81,7 +113,7 @@ export default function ReportCTAFooter({
       {/* Primary and Secondary CTAs */}
       <div className="cta-row flex flex-col sm:flex-row gap-3 justify-center items-center mb-4">
         <motion.a
-          href={`/contact${searchParams ? `?${searchParams}` : ''}`}
+          href="#"
           onClick={handleBook}
           className="btn-primary px-6 py-3 text-white rounded-xl font-semibold text-base hover:shadow-lg transition-all duration-200 w-full sm:w-auto"
           style={{ backgroundColor: brandColor }}

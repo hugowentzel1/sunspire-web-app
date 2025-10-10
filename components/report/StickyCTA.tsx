@@ -24,12 +24,43 @@ export default function StickyCTA({ brandColor = "#FF6B35", searchParams = "" }:
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (typeof window !== 'undefined' && (window as any).gtag) {
       (window as any).gtag('event', 'cta_book_consultation_sticky', {
         event_category: 'engagement',
         event_label: 'report_page_sticky'
       });
+    }
+    
+    // Start Stripe checkout instead of going to contact
+    try {
+      // Collect tracking parameters from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get('token');
+      const company = urlParams.get('company');
+      const utm_source = urlParams.get('utm_source');
+      const utm_campaign = urlParams.get('utm_campaign');
+      
+      // Start checkout
+      const response = await fetch('/api/stripe/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          plan: 'starter',
+          token,
+          company,
+          utm_source,
+          utm_campaign
+        })
+      });
+      
+      if (!response.ok) throw new Error('Checkout failed');
+      
+      const { url } = await response.json();
+      window.location.href = url;
+    } catch (error) {
+      console.error('Checkout error:', error);
+      alert('Unable to start checkout. Please try again.');
     }
   };
 
@@ -47,7 +78,7 @@ export default function StickyCTA({ brandColor = "#FF6B35", searchParams = "" }:
         >
           <div className="px-4 py-3 flex gap-2">
             <a
-              href={`/contact${searchParams ? `?${searchParams}` : ''}`}
+              href="#"
               onClick={handleClick}
               className="flex-1 px-4 py-3 text-white rounded-xl font-semibold text-sm text-center hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2"
               style={{ backgroundColor: brandColor }}

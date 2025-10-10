@@ -36,6 +36,38 @@ export default function StickyCta() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [seen]);
 
+  const handleStripeCheckout = async () => {
+    try {
+      // Collect tracking parameters from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get('token');
+      const company = urlParams.get('company');
+      const utm_source = urlParams.get('utm_source');
+      const utm_campaign = urlParams.get('utm_campaign');
+      
+      // Start checkout
+      const response = await fetch('/api/stripe/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          plan: 'starter',
+          token,
+          company,
+          utm_source,
+          utm_campaign
+        })
+      });
+      
+      if (!response.ok) throw new Error('Checkout failed');
+      
+      const { url } = await response.json();
+      window.location.href = url;
+    } catch (error) {
+      console.error('Checkout error:', error);
+      alert('Unable to start checkout. Please try again.');
+    }
+  };
+
   if (hidden) return null;
   return (
     <aside data-testid="sticky-cta"
@@ -43,7 +75,7 @@ export default function StickyCta() {
            style={{ bottom: 16 + offsetBottomPx }}>
       <button aria-label="Launch on Your Domain in 24 Hours"
               className="w-full rounded-xl bg-[#2F80ED] px-4 py-3 text-[15px] font-semibold text-white"
-              onClick={() => (window.location.href = "/pricing")}>
+              onClick={handleStripeCheckout}>
         Launch on Your Domain in 24 Hours
       </button>
       <p className="mt-2 text-center text-[12px] text-neutral-700">

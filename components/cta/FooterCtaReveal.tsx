@@ -18,6 +18,38 @@ export default function FooterCtaReveal() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const handleStripeCheckout = async () => {
+    try {
+      // Collect tracking parameters from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const token = urlParams.get('token');
+      const company = urlParams.get('company');
+      const utm_source = urlParams.get('utm_source');
+      const utm_campaign = urlParams.get('utm_campaign');
+      
+      // Start checkout
+      const response = await fetch('/api/stripe/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          plan: 'starter',
+          token,
+          company,
+          utm_source,
+          utm_campaign
+        })
+      });
+      
+      if (!response.ok) throw new Error('Checkout failed');
+      
+      const { url } = await response.json();
+      window.location.href = url;
+    } catch (error) {
+      console.error('Checkout error:', error);
+      alert('Unable to start checkout. Please try again.');
+    }
+  };
+
   if (!show) return null;
   return (
     <div data-testid="footer-cta"
@@ -28,7 +60,7 @@ export default function FooterCtaReveal() {
           Ready to launch branded quotes on your domain?
         </p>
         <button className="w-full rounded-xl bg-[#2F80ED] px-4 py-3 text-[14px] font-semibold text-white md:w-auto"
-                onClick={() => (window.location.href = "/pricing")}>
+                onClick={handleStripeCheckout}>
           Launch on Your Domain in 24 Hours
         </button>
       </div>

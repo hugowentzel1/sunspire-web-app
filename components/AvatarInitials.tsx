@@ -36,8 +36,8 @@ export default function AvatarInitials({
   const style: React.CSSProperties = { 
     width: size, 
     height: size,
-    fontSize: Math.round(size * 0.42), // 42% for optimal readability
-    lineHeight: `${size}px`, // Match container height for perfect vertical centering
+    fontSize: Math.round(size * 0.38), // 38% for slightly smaller text
+    lineHeight: 1, // Reset line height for perfect centering
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
