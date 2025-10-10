@@ -198,7 +198,7 @@ export default function PartnersPage() {
                         <p className="text-neutral-700 italic mb-2">
                           &ldquo;Partnered with Sunspire 6 months ago. Already earned $2,400 in recurring revenue from just 8 clients — homeowners instantly trusted our estimates.&rdquo;
                         </p>
-                        <p className="text-sm text-neutral-500">— Justin Rota, Owner, 25-employee solar firm, Georgia</p>
+                        <p className="text-sm text-neutral-500">— Justin Rota, Owner, 30-employee solar firm, Georgia</p>
                       </div>
                     </div>
                   </Card>
