@@ -21,11 +21,17 @@ export default function AvatarInitials({
     return (first + last).toUpperCase();
   }, [name]);
 
-  // OPTION 2: Gradient Border Ring - premium gradient replaces solid ring (Stripe/Notion style)
-  const skin = `bg-white text-gray-800 relative`;
+  // OPTION 3: Glassmorphism ⭐ RECOMMENDED - frosted glass with backdrop blur (Apple-esque premium)
+  const skin = `text-gray-800 relative`;
   
-  // No shadow for clean gradient focus
-  const shadowStyle = {};
+  // Multi-layered shadow + subtle brand glow
+  const shadowStyle = {
+    background: 'rgba(255, 255, 255, 0.85)',
+    backdropFilter: 'blur(12px)',
+    WebkitBackdropFilter: 'blur(12px)', // Safari support
+    boxShadow: '0 8px 24px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.9), 0 0 0 1.5px color-mix(in srgb, var(--brand-primary, #e11d48) 20%, transparent)',
+    border: '1px solid rgba(255, 255, 255, 0.5)',
+  };
 
   const style: React.CSSProperties = { 
     width: size, 
@@ -41,33 +47,11 @@ export default function AvatarInitials({
   return (
     <div
       className={`rounded-full font-semibold tracking-tight ${skin} ${className}`}
-      style={{
-        ...style,
-        padding: '2px', // Space for gradient border
-      }}
+      style={style}
       aria-label={`Avatar for ${name}`}
       data-testid="avatar-initials"
     >
-      {/* Gradient border pseudo-element */}
-      <div 
-        className="absolute inset-0 rounded-full -z-10"
-        style={{
-          background: `linear-gradient(135deg, var(--brand-primary, #e11d48), color-mix(in srgb, var(--brand-primary, #e11d48) 50%, transparent))`,
-          padding: '2px',
-          WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-          WebkitMaskComposite: 'xor',
-          maskComposite: 'exclude',
-        }}
-      />
-      {/* Inner content */}
-      <div 
-        className="rounded-full bg-white w-full h-full flex items-center justify-center"
-        style={{
-          fontSize: Math.round(size * 0.42),
-        }}
-      >
-        {initials}
-      </div>
+      {initials}
     </div>
   );
 }
