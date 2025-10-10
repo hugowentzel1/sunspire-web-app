@@ -118,20 +118,16 @@ function ReportContent() {
     setQuotaConsumed(false);
   }, [searchParams]);
   
-  // Update remaining quota and consume quota on report view
+  // Update remaining quota - DO NOT consume quota on page load
   useEffect(() => {
     const currentRemaining = read();
     console.log('🔒 Demo quota - read():', currentRemaining);
     setRemaining(currentRemaining);
     
-    // Consume quota when report page loads (for demo mode)
-    // Only consume if quota is > 0 (don't consume if already at 0)
-    if (isDemo && !quotaConsumed && currentRemaining > 0) {
-      console.log('🔒 Demo quota - consuming quota on report view');
-      consume();
-      setQuotaConsumed(true);
-    }
-  }, [read, isDemo, quotaConsumed, consume]);
+    // DO NOT consume quota when report page loads - only when generating new reports
+    // This prevents quota consumption on page refresh
+    console.log('🔒 Demo quota - report page loaded, quota NOT consumed');
+  }, [read]);
 
   // Don't reset quota consumed flag - track per URL session
   
@@ -141,11 +137,7 @@ function ReportContent() {
 
   // Stripe checkout handler
   const handleCheckout = async () => {
-    // Consume quota when user clicks checkout
-    if (typeof window.consumeQuotaIfNeeded === 'function') {
-      window.consumeQuotaIfNeeded();
-    }
-    
+    // Quota already consumed when estimate was generated
     console.log('🛒 handleCheckout called');
     try {
       // Collect tracking parameters from URL
@@ -397,6 +389,15 @@ function ReportContent() {
 
   const fetchEstimate = async (address: string, lat: number, lng: number, placeId?: string | null) => {
     try {
+      // Consume quota when generating a NEW estimate (not on page load)
+      if (isDemo && !quotaConsumed) {
+        console.log('🔒 Demo quota - consuming quota for new estimate generation');
+        consume();
+        setQuotaConsumed(true);
+        const currentQuota = read();
+        setRemaining(currentQuota);
+      }
+      
       const params = new URLSearchParams({ address, lat: String(lat), lng: String(lng), ...(placeId && { placeId }) });
       const response = await fetch(`/api/estimate?${params}`);
       if (!response.ok) throw new Error(`Failed to fetch estimate: ${response.status}`);
@@ -532,12 +533,12 @@ function ReportContent() {
       setIsLoading(false);
     }
     
-    // Don't consume quota immediately - only when user interacts with report
-    console.log('🔒 Demo quota - report loaded, not consuming quota yet');
+    // Quota is consumed only when generating new estimates via fetchEstimate()
+    console.log('🔒 Demo quota - report loaded with fallback estimate, quota NOT consumed');
     
     // Define consumeQuotaIfNeeded function for checkout clicks (no additional consumption)
     window.consumeQuotaIfNeeded = () => {
-      console.log('🔒 Demo quota - checkout clicked, quota already consumed on report view');
+      console.log('🔒 Demo quota - checkout clicked, quota already consumed on estimate generation');
     };
     }, [searchParams, pickDemoAddress]);
 
