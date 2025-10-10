@@ -364,8 +364,7 @@ function HomeContent() {
               </h1>
               
               <p className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Capture more leads with <span className="font-medium">instant, fully-branded</span> solar estimates.
-                We set it up for you — no coding required. Works as a website embed or shareable link.
+                Capture more leads with instant, branded solar estimates. We set it up—no coding required. Embed on your site or share a link.
               </p>
             </div>
           </div>
