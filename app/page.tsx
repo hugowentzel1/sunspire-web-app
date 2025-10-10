@@ -24,6 +24,7 @@ import { tid } from '@/src/lib/testids';
 import Footer from '@/components/Footer';
 import QuoteCard from '@/components/quotes/QuoteCard';
 import QuoteGrid from '@/components/quotes/QuoteGrid';
+import Testimonials from '@/components/Testimonials';
 import TrustRow from '@/components/trust/TrustRow';
 import ReadingProgressBar from '@/components/ReadingProgressBar';
 import StickyCtaBar from '@/components/StickyCtaBar';
@@ -444,35 +445,7 @@ function HomeContent() {
           </div>
 
           {/* Quotes - Social Proof Grid */}
-          <section aria-labelledby="installer-outcomes" className="mt-12 md:mt-16">
-            <h3 id="installer-outcomes" className="sr-only">Installer outcomes</h3>
-            <QuoteGrid>
-              <QuoteCard 
-                headline="Cut quoting time from 15 minutes to 1 minute,"
-                support="and now we respond faster than local competitors."
-                name="Owner" 
-                roleAndLocation="25-employee solar firm, CA" 
-              />
-              <QuoteCard 
-                headline="Booked 4 extra consults in week one,"
-                support="and the branded quotes immediately stood out."
-                name="Ops Manager" 
-                roleAndLocation="Texas solar installer" 
-              />
-              <QuoteCard 
-                headline="Our lead conversion jumped 40% in the first month,"
-                support="and follow-ups became instant and on-brand."
-                name="Sales Manager" 
-                roleAndLocation="Florida solar dealer" 
-              />
-              <QuoteCard 
-                headline="Sunspire paid for itself in week two,"
-                support="as homeowners instantly trusted our estimates and closed more deals."
-                name="Founder" 
-                roleAndLocation="Arizona EPC" 
-              />
-            </QuoteGrid>
-          </section>
+          <Testimonials />
 
           {/* KPI Band - Single band only */}
           <div 
