@@ -21,9 +21,14 @@ export default function AvatarInitials({
     return (first + last).toUpperCase();
   }, [name]);
 
-  // Duo style: white fill + brand ring + dark initials (consistent, accessible, trust-building)
+  // OPTION 1: Subtle 3D Depth - soft outer shadow + subtle inner shadow for lifted feel
   const brandRing = "ring-2 ring-[color:var(--brand-primary,#e11d48)]/25";
-  const skin = `bg-white text-gray-800 ${brandRing} shadow-sm`;
+  const skin = `bg-white text-gray-800 ${brandRing}`;
+  
+  // Enhanced shadow for 3D depth (Material Design 3 style)
+  const shadowStyle = {
+    boxShadow: '0 4px 12px rgba(0,0,0,0.08), inset 0 -2px 4px rgba(0,0,0,0.04)'
+  };
 
   const style: React.CSSProperties = { 
     width: size, 
@@ -32,7 +37,8 @@ export default function AvatarInitials({
     lineHeight: `${size}px`, // Match container height for perfect vertical centering
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    ...shadowStyle // Apply 3D depth shadow
   };
   
   return (
