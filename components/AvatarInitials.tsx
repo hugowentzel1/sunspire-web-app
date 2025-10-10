@@ -29,12 +29,15 @@ export default function AvatarInitials({
     width: size, 
     height: size,
     fontSize: Math.round(size * 0.42), // 42% for optimal readability
-    lineHeight: 1
+    lineHeight: `${size}px`, // Match container height for perfect vertical centering
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   };
   
   return (
     <div
-      className={`inline-flex items-center justify-center rounded-full font-semibold tracking-tight ${skin} ${className}`}
+      className={`rounded-full font-semibold tracking-tight ${skin} ${className}`}
       style={style}
       aria-label={`Avatar for ${name}`}
       data-testid="avatar-initials"
