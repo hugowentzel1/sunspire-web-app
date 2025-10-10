@@ -182,14 +182,23 @@ export default function PartnersPage() {
                   {/* Optimized Testimonial */}
                   <Card>
                     <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-neutral-200 rounded-full flex items-center justify-center flex-shrink-0">
-                        <span className="text-neutral-600 font-semibold">NJ</span>
+                      <div 
+                        className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
+                        style={{
+                          background: 'rgba(255, 255, 255, 0.85)',
+                          backdropFilter: 'blur(12px)',
+                          WebkitBackdropFilter: 'blur(12px)',
+                          boxShadow: '0 8px 24px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.9), 0 0 0 2.5px color-mix(in srgb, var(--brand-primary, #e11d48) 35%, transparent)',
+                          border: '1px solid rgba(255, 255, 255, 0.5)',
+                        }}
+                      >
+                        <span className="text-gray-800 font-semibold" style={{ fontSize: '16px', lineHeight: 1 }}>JR</span>
                       </div>
                       <div>
                         <p className="text-neutral-700 italic mb-2">
                           &ldquo;Partnered with Sunspire 6 months ago. Already earned $2,400 in recurring revenue from just 8 clients — homeowners instantly trusted our estimates.&rdquo;
                         </p>
-                        <p className="text-sm text-neutral-500">— Noah Jones, Founder, Arizona EPC</p>
+                        <p className="text-sm text-neutral-500">— Justin Rota, Founder, Arizona EPC</p>
                       </div>
                     </div>
                   </Card>
