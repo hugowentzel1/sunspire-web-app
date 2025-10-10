@@ -107,7 +107,7 @@ export default function ReportCTAFooter({
 
       {/* Reassurance line */}
       <p className="text-sm text-gray-600 text-center mb-4" data-testid="report-cta-subtext">
-        We'll confirm site details & incentives — no obligation.
+        We&apos;ll confirm site details &amp; incentives — no obligation.
       </p>
 
       {/* Utility actions row */}
