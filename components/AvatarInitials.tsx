@@ -21,16 +21,14 @@ export default function AvatarInitials({
     return (first + last).toUpperCase();
   }, [name]);
 
-  // OPTION 3: Glassmorphism ⭐ RECOMMENDED - frosted glass with backdrop blur (Apple-esque premium)
+  // OPTION 4: Soft Neumorphism - embossed, tactile look with dual shadows (luxury product feel)
   const skin = `text-gray-800 relative`;
   
-  // Multi-layered shadow + subtle brand glow
+  // Dual shadow system: bottom-right shadow + top-left highlight
   const shadowStyle = {
-    background: 'rgba(255, 255, 255, 0.85)',
-    backdropFilter: 'blur(12px)',
-    WebkitBackdropFilter: 'blur(12px)', // Safari support
-    boxShadow: '0 8px 24px rgba(0,0,0,0.12), 0 2px 8px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.9), 0 0 0 1.5px color-mix(in srgb, var(--brand-primary, #e11d48) 20%, transparent)',
-    border: '1px solid rgba(255, 255, 255, 0.5)',
+    background: 'linear-gradient(145deg, #ffffff, #f5f5f5)',
+    boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.08), -5px -5px 10px rgba(255, 255, 255, 0.9)',
+    border: '1px solid color-mix(in srgb, var(--brand-primary, #e11d48) 15%, transparent)',
   };
 
   const style: React.CSSProperties = { 
