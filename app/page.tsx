@@ -125,9 +125,11 @@ function HomeContent() {
   }, [isDemo, searchParams]);
 
   // Early return for paid versions to prevent demo content from rendering
-  if (!isDemo) {
+  // Only redirect if: (1) brand state loaded, (2) NOT in demo mode, (3) has company, (4) NO demo param
+  if (isBrandLoaded && !isDemo) {
     const company = searchParams?.get('company');
-    if (company) {
+    const demoParam = searchParams?.get('demo');
+    if (company && demoParam !== '1' && demoParam !== 'true') {
       return <div>Redirecting to paid version...</div>;
     }
   }
