@@ -21,17 +21,13 @@ export default function AvatarInitials({
     return (first + last).toUpperCase();
   }, [name]);
 
-  // OPTION 5: Double Ring System - concentric rings with layered opacity (luxury watch aesthetic)
-  const skin = `bg-white text-gray-800`;
+  // OPTION 6: Micro-Animation on Hover - subtle scale + brand glow (Linear/Vercel interactive premium)
+  const skin = `bg-white text-gray-800 transition-all duration-300 ease-out hover:scale-105`;
   
-  // Three concentric rings using box-shadow (white → brand middle → brand outer)
+  // Base shadow that intensifies on hover (CSS handles the transition)
   const shadowStyle = {
-    boxShadow: `
-      0 0 0 2px white,
-      0 0 0 4px color-mix(in srgb, var(--brand-primary, #e11d48) 15%, transparent),
-      0 0 0 6px color-mix(in srgb, var(--brand-primary, #e11d48) 8%, transparent),
-      0 4px 12px rgba(0, 0, 0, 0.1)
-    `,
+    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
+    transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
   };
 
   const style: React.CSSProperties = { 
@@ -47,8 +43,21 @@ export default function AvatarInitials({
   
   return (
     <div
-      className={`rounded-full font-semibold tracking-tight ${skin} ${className}`}
-      style={style}
+      className={`rounded-full font-semibold tracking-tight ${skin} ${className} group`}
+      style={{
+        ...style,
+        // Hover effect applied via inline style for brand color integration
+        cursor: 'pointer',
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.boxShadow = `
+          0 0 0 4px color-mix(in srgb, var(--brand-primary, #e11d48) 15%, transparent),
+          0 8px 24px color-mix(in srgb, var(--brand-primary, #e11d48) 25%, transparent)
+        `;
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.boxShadow = '0 2px 8px rgba(0, 0, 0, 0.08)';
+      }}
       aria-label={`Avatar for ${name}`}
       data-testid="avatar-initials"
     >
