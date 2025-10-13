@@ -721,18 +721,47 @@ function ReportContent() {
           </div>
         )}
 
-        {/* Minimal demo banner - Only show in demo mode */}
+        {/* Elegant corner badge - Only show in demo mode */}
         {demoMode && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ duration: 0.6 }} 
-            className="text-center py-4 mb-8"
-            data-testid="demo-banner"
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+            className="fixed top-4 right-4 z-40 bg-white/95 backdrop-blur-md rounded-xl shadow-lg border border-gray-200/50 px-4 py-2.5 max-w-xs"
+            data-testid="demo-badge"
           >
-            <p className="text-lg text-gray-700">
-              Demo for <span className="font-semibold">{b.brand || 'Your Company'}</span> — Powered by <a href="/status" className="hover:underline font-semibold" style={{ color: b.primary }}>Sunspire</a>
-            </p>
+            <div className="flex items-center gap-2.5">
+              {/* Pulsing indicator */}
+              <div className="flex items-center gap-1.5">
+                <div className="relative w-2 h-2 rounded-full" style={{ backgroundColor: b.primary }}>
+                  <div className="absolute inset-0 w-2 h-2 rounded-full animate-ping" style={{ backgroundColor: b.primary, opacity: 0.5 }} />
+                </div>
+                <span className="text-sm font-semibold text-gray-900">
+                  Preview
+                </span>
+              </div>
+              
+              {/* Divider */}
+              <div className="h-4 w-px bg-gray-300" />
+              
+              {/* Company */}
+              <span className="text-sm text-gray-600 truncate">
+                for {b.brand || 'Your Company'}
+              </span>
+            </div>
+            
+            {/* Attribution link - secondary line */}
+            <div className="mt-1.5 pt-1.5 border-t border-gray-200">
+              <a 
+                href="/pricing" 
+                className="text-xs text-gray-500 hover:text-[var(--brand-primary)] transition-colors flex items-center gap-1"
+              >
+                <span>Powered by Sunspire</span>
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </a>
+            </div>
           </motion.div>
         )}
 
