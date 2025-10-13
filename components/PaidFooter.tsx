@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
+import { FEATURES } from '@/src/lib/compliance';
 
 // Helper to get default logo URL from Clearbit
 const getDefaultLogo = (brand: string) => {
@@ -62,50 +63,93 @@ export default function PaidFooter() {
           )}
         </div>
 
-        {/* Row 2: Links (centered, evenly spaced) */}
+        {/* Row 2: Links (centered, evenly spaced) - conditional based on feature flags */}
         <nav data-testid="footer-links" aria-label="Legal and support" className="mb-8">
-          <ul className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm">
-            {[
-              { href: '/legal/privacy', label: 'Privacy Policy' },
-              { href: '/legal/terms', label: 'Terms of Service' },
-              { href: '/legal/cookies', label: 'Cookie Preferences', onClick: handleCookiePreferences },
-              { href: '/legal/accessibility', label: 'Accessibility' },
-              { href: '/contact', label: 'Contact' },
-            ].map((link, i, arr) => (
-              <li key={link.href} className="flex items-center gap-3">
-                {link.onClick ? (
-                  <button
-                    onClick={link.onClick}
-                    className="text-slate-600 hover:text-slate-900 transition-colors underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded"
-                    style={{ 
-                      '--tw-ring-color': brandColor 
-                    } as React.CSSProperties}
-                  >
-                    {link.label}
-                  </button>
-                ) : (
-                  <Link
-                    href={link.href}
-                    className="text-slate-600 hover:text-slate-900 transition-colors underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded"
-                    style={{ 
-                      '--tw-ring-color': brandColor 
-                    } as React.CSSProperties}
-                  >
-                    {link.label}
-                  </Link>
-                )}
-                {i < arr.length - 1 && (
+          <ul className="flex flex-wrap items-center justify-center gap-x-3 gap-y-3 text-sm">
+            <li className="flex items-center gap-3">
+              <Link
+                href="/legal/privacy"
+                className="text-slate-600 hover:text-slate-900 transition-colors underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded"
+                style={{ 
+                  '--tw-ring-color': brandColor 
+                } as React.CSSProperties}
+              >
+                Privacy Policy
+              </Link>
+              <span aria-hidden="true" className="text-slate-400">•</span>
+            </li>
+            <li className="flex items-center gap-3">
+              <Link
+                href="/legal/terms"
+                className="text-slate-600 hover:text-slate-900 transition-colors underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded"
+                style={{ 
+                  '--tw-ring-color': brandColor 
+                } as React.CSSProperties}
+              >
+                Terms of Service
+              </Link>
+              {(FEATURES.cookiePreferences || FEATURES.cpraDoNotSell) && (
+                <span aria-hidden="true" className="text-slate-400">•</span>
+              )}
+            </li>
+            {FEATURES.cookiePreferences && (
+              <li className="flex items-center gap-3">
+                <button
+                  onClick={handleCookiePreferences}
+                  className="text-slate-600 hover:text-slate-900 transition-colors underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded"
+                  style={{ 
+                    '--tw-ring-color': brandColor 
+                  } as React.CSSProperties}
+                >
+                  Cookie Preferences
+                </button>
+                {FEATURES.cpraDoNotSell && (
                   <span aria-hidden="true" className="text-slate-400">•</span>
                 )}
               </li>
-            ))}
+            )}
+            {FEATURES.cpraDoNotSell && (
+              <li className="flex items-center gap-3">
+                <Link
+                  href="/legal/do-not-sell"
+                  className="text-slate-600 hover:text-slate-900 transition-colors underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded"
+                  style={{ 
+                    '--tw-ring-color': brandColor 
+                  } as React.CSSProperties}
+                >
+                  Do Not Sell or Share My Personal Information
+                </Link>
+                <span aria-hidden="true" className="text-slate-400">•</span>
+              </li>
+            )}
+            <li className="flex items-center gap-3">
+              <Link
+                href="/legal/accessibility"
+                className="text-slate-600 hover:text-slate-900 transition-colors underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded"
+                style={{ 
+                  '--tw-ring-color': brandColor 
+                } as React.CSSProperties}
+              >
+                Accessibility
+              </Link>
+              <span aria-hidden="true" className="text-slate-400">•</span>
+            </li>
+            <li>
+              <Link
+                href="/contact"
+                className="text-slate-600 hover:text-slate-900 transition-colors underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded"
+                style={{ 
+                  '--tw-ring-color': brandColor 
+                } as React.CSSProperties}
+              >
+                Contact
+              </Link>
+            </li>
           </ul>
         </nav>
 
         {/* Row 3: Micro-attribution (centered, subdued) - minimal legal only */}
         <div data-testid="footer-micro" className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-slate-500/70">
-          <span>Mapping &amp; location data © Google</span>
-          <span aria-hidden="true" className="text-slate-400">•</span>
           <span>
             Powered by{' '}
             <a 

@@ -39,6 +39,7 @@ import StickyCtaBar from '@/components/StickyCtaBar';
 import { ensureBlurSupport } from '@/src/lib/ensureBlur';
 import { isDemoFromSearchParams } from '@/src/lib/isDemo';
 import { tid } from '@/src/lib/testids';
+import { FEATURES, lastValidatedLabel } from '@/src/lib/compliance';
 
 import { getBrandTheme } from '@/lib/brandTheme';
 // import StickyBuyBar from '@/src/demo/StickyBuyBar';
@@ -767,8 +768,6 @@ function ReportContent() {
               <p className="text-base md:text-lg text-slate-700 max-w-2xl mx-auto">Comprehensive analysis for your property at {estimate.address}</p>
 
               <div className="flex items-center justify-center space-x-4 text-sm text-gray-500">
-                <span>Data Source: {estimate.utilityRateSource}</span>
-                <span>•</span>
                 <span>Generated on {formatDateSafe(estimate.date)}</span>
               </div>
               
@@ -962,32 +961,34 @@ function ReportContent() {
                   </div>
                 </div>
 
-                {/* Data Sources */}
-                <div className="pt-6 border-t border-gray-200">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-4">Data Sources</h3>
-                  <div className="space-y-3 text-sm text-gray-600">
-                    <div className="flex items-center">
-                      <span className="w-2 h-2 rounded-full mr-3" style={{ backgroundColor: b.primary }}></span>
-                      <span>Solar irradiance data from industry-standard models</span>
+                {/* Data Sources - Paid only */}
+                {!demoMode && (
+                  <div className="pt-6 border-t border-gray-200">
+                    <h3 className="text-lg font-semibold text-gray-800 mb-4">Data Sources</h3>
+                    <div className="space-y-3 text-sm text-gray-600">
+                      <div className="flex items-center">
+                        <span className="w-2 h-2 rounded-full mr-3" style={{ backgroundColor: b.primary }}></span>
+                        <span>Solar irradiance data from industry-standard models</span>
+                      </div>
+                      <div className="flex items-center">
+                        <span className="w-2 h-2 rounded-full mr-3" style={{ backgroundColor: b.primary }}></span>
+                        <span>Utility rates from local utility databases</span>
+                      </div>
+                      <div className="flex items-center">
+                        <span className="w-2 h-2 rounded-full mr-3" style={{ backgroundColor: b.primary }}></span>
+                        <span>Financial calculations based on current federal and state incentives</span>
+                      </div>
                     </div>
-                    <div className="flex items-center">
-                      <span className="w-2 h-2 rounded-full mr-3" style={{ backgroundColor: b.primary }}></span>
-                      <span>Utility rates from local utility databases</span>
-                    </div>
-                    <div className="flex items-center">
-                      <span className="w-2 h-2 rounded-full mr-3" style={{ backgroundColor: b.primary }}></span>
-                      <span>Financial calculations based on current federal and state incentives</span>
+                    
+                    <div className="mt-6 pt-4 border-t border-gray-200">
+                      <p className="text-xs text-gray-500 text-center">
+                      </p>
+                      <p className="text-xs text-gray-500 text-center mt-2">
+                        Last updated {new Date().toLocaleDateString()}
+                      </p>
                     </div>
                   </div>
-                  
-                  <div className="mt-6 pt-4 border-t border-gray-200">
-                    <p className="text-xs text-gray-500 text-center">
-                    </p>
-                    <p className="text-xs text-gray-500 text-center mt-2">
-                      Last updated {new Date().toLocaleDateString()}
-                    </p>
-                  </div>
-                </div>
+                )}
               </div>
             </div>
           </motion.div>
@@ -1033,11 +1034,20 @@ function ReportContent() {
                 searchParams={searchParams?.toString()}
               />
               
-              {/* Data Attribution Strip */}
+              {/* Data Attribution Strip - Paid only */}
               <div className="mt-12 pt-6 border-t border-gray-200 text-center" data-testid="report-data-sources">
-                <p className="text-xs text-gray-500">
-                  Data sources: NREL PVWatts® v8, U.S. EIA, and Google Maps • Last validated Oct 2025
+                <p className="text-xs text-gray-500" data-testid="data-sources-line">
+                  <span className="font-medium">Data sources:</span>{" "}
+                  PVWatts® v8 (NREL) • U.S. EIA (average retail rates) • Google Maps (geocoding).
+                  {FEATURES.showLastValidated && (
+                    <> <span className="text-gray-400"> Last validated {lastValidatedLabel()}.</span></>
+                  )}
                 </p>
+                {FEATURES.showEstimateDisclaimer && (
+                  <p className="mt-2 text-[11px] text-gray-500 text-center" data-testid="estimate-disclaimer">
+                    Estimates are for planning only and not a guarantee; final results depend on site conditions and utility policies.
+                  </p>
+                )}
               </div>
             </motion.div>
           )}

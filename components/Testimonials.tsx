@@ -55,12 +55,15 @@ export default function Testimonials() {
         <article
           key={q.quote.slice(0, 32)}
           className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm"
+          data-testid="testimonial-card"
         >
-          <p className="text-gray-900 text-[17px] leading-snug mb-5">
-            &ldquo;{q.quote}&rdquo;
-          </p>
+          <blockquote>
+            <p className="text-gray-900 text-[17px] leading-snug mb-5 max-w-[62ch]">
+              &ldquo;{q.quote}&rdquo;
+            </p>
+          </blockquote>
 
-          <div className="flex flex-col items-center text-center gap-3">
+          <figcaption className="flex flex-col items-center text-center gap-3">
             <div className="flex items-center justify-center gap-3 w-full">
               <AvatarInitials name={q.name} size={40} variant="duo" />
               <div className="text-gray-900 font-semibold leading-5">
@@ -75,7 +78,7 @@ export default function Testimonials() {
                 <>
                   <span aria-hidden="true">•</span>
                   <span
-                    data-testid="verified-chip"
+                    data-testid="verified-pill"
                     title="Verified installer quote"
                     className="inline-flex items-center gap-1 rounded-full border border-emerald-200 bg-emerald-50 px-2 py-0.5 text-[11px] font-medium text-emerald-700"
                   >
@@ -85,7 +88,7 @@ export default function Testimonials() {
                 </>
               )}
             </div>
-          </div>
+          </figcaption>
         </article>
       ))}
     </section>

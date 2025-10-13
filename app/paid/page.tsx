@@ -377,21 +377,29 @@ function HomeContent() {
                   >
                     Enter Your Property Address
                   </label>
-                  <AddressAutocomplete
-                    id="address-input"
-                    value={address}
-                    onChange={setAddress}
-                    onSelect={handleAddressSelect}
-                    {...tid("address-input")}
-                    data-address-input
-                    placeholder={
-                      b.city
-                        ? `Start typing an address in ${b.city}...`
-                        : "Start typing your property address..."
-                    }
-                    className="w-full"
-                    aria-label="Enter Your Property Address"
-                  />
+                  <div className="relative">
+                    <AddressAutocomplete
+                      id="address-input"
+                      value={address}
+                      onChange={setAddress}
+                      onSelect={handleAddressSelect}
+                      data-testid="paid-address-input"
+                      data-address-input
+                      placeholder={
+                        b.city
+                          ? `Start typing an address in ${b.city}...`
+                          : "Start typing your property address..."
+                      }
+                      className="w-full"
+                      aria-label="Enter Your Property Address"
+                    />
+                    <div 
+                      className="pointer-events-none absolute right-3 -bottom-5 text-[11px] text-gray-400"
+                      data-testid="powered-by-google"
+                    >
+                      Powered by Google
+                    </div>
+                  </div>
                   <p className="text-sm text-gray-500 mt-2">
                     We only use your address to estimate sun, rates, and savings. Nothing is shared.
                   </p>
@@ -415,6 +423,7 @@ function HomeContent() {
                         : handleGenerateEstimate
                   }
                   disabled={!address || !address.trim() || isLoading}
+                  data-testid="paid-generate-btn"
                   data-cta-button
                   {...tid("cta-primary")}
                   className={`w-full ${
@@ -451,17 +460,6 @@ function HomeContent() {
                     </div>
                   )}
                 </button>
-
-                {/* Compact trust strip for paid mode */}
-                {!isDemo && (
-                  <div className="text-xs text-gray-500 text-center mt-4 flex flex-wrap items-center justify-center gap-2">
-                    <span>Industry-standard modeling (NREL PVWatts® v8)</span>
-                    <span>•</span>
-                    <span>Local utility rates</span>
-                    <span>•</span>
-                    <span>Private</span>
-                  </div>
-                )}
 
                 {isDemo && (
                   <div className="text-sm text-gray-500 text-center space-y-2">

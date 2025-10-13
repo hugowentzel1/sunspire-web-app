@@ -21,6 +21,9 @@
     "test:sidebar": "playwright test tests/sidebar-cta.spec.ts -g \"@sidebar\" --reporter=list",
     "test:all-browsers": "node scripts/test-all-browsers.js",
     "test:cross-browser": "playwright test tests/cross-browser-consistency.spec.ts --reporter=list",
+    "test:unit": "vitest run",
+    "test:watch": "vitest",
+    "test:estimation": "vitest run tests/estimation.unit.test.ts tests/estimation.integration.test.ts && playwright test tests/estimation.e2e.spec.ts --reporter=list",
     "prune:unused": "node scripts/prune-unused.js",
     "prune:unused:delete": "node scripts/prune-unused.js --delete"
   },
@@ -58,17 +61,20 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@vitest/ui": "^3.2.4",
     "autoprefixer": "^10.0.1",
     "cross-env": "^7.0.3",
     "eslint": "^8",
     "eslint-config-next": "14.0.0",
     "fast-glob": "^3.3.3",
     "minimatch": "^10.0.3",
+    "msw": "^2.11.5",
     "postcss": "^8",
     "tailwindcss": "^3.3.0",
     "ts-morph": "^26.0.0",
     "ts-node": "^10.9.2",
     "typescript": "^5",
-    "vercel": "^45.0.10"
+    "vercel": "^45.0.10",
+    "vitest": "^3.2.4"
   }
 }
