@@ -766,17 +766,15 @@ function ReportContent() {
               <h1 className="text-2xl md:text-3xl font-bold text-gray-900">New Analysis</h1>
               <p className="text-base md:text-lg text-slate-700 max-w-2xl mx-auto">Comprehensive analysis for your property at {estimate.address}</p>
 
-              <div className="space-y-3 text-center">
-                <div className="flex items-center justify-center text-sm text-gray-500">
-                  <span>Generated on {formatDateSafe(estimate.date)}</span>
-                </div>
+              <div className="text-sm text-gray-500 text-center space-y-2">
+                <p>Generated on {formatDateSafe(estimate.date)}</p>
                 
                 {/* Demo quota counter - only show in demo mode */}
                 {demoMode && (
-                  <div className="text-sm text-gray-500 space-y-1">
+                  <>
                     <p>Preview: {remaining} run{remaining === 1 ? "" : "s"} left.</p>
                     <p>Expires in {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</p>
-                  </div>
+                  </>
                 )}
               </div>
             </div>
