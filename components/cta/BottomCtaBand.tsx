@@ -30,7 +30,7 @@ export default function BottomCtaBand({
   // Report replaces it with a comparison anchor only (no duplicate price).
   const footerLine = isReport
     ? 'Comparable tools cost $2,500+/mo.'
-    : '$99/mo + $399 setup • 14-day refund if it does not lift booked calls';
+    : '$99/mo + $399 setup • 14-day money-back guarantee';
 
   return (
     <section

@@ -721,7 +721,7 @@ function ReportContent() {
           </div>
         )}
 
-        {/* Ready-to text section - Only show in demo mode */}
+        {/* Primary CTA section - Only show in demo mode */}
         {demoMode && (
           <motion.div 
             initial={{ opacity: 0, y: -20 }} 
@@ -729,10 +729,27 @@ function ReportContent() {
             transition={{ duration: 0.6 }} 
             className="mb-8"
           >
-            <div className="text-center">
-              <h1 data-testid="demo-hero-title" className="text-3xl font-semibold text-gray-900">
-                Custom demo for {b.brand || 'your company'} — ready to launch.
-              </h1>
+            <div className="bg-white/80 backdrop-blur-sm rounded-3xl py-6 px-8 border border-gray-200/50 shadow-lg mx-auto max-w-2xl">
+              <div className="space-y-4 text-center" data-testid="demo-cta">
+                <h2 className="text-3xl font-bold text-gray-900">
+                  Demo for {b.brand || 'Your Company'} — Powered by <a href="/status" className="hover:underline" style={{ color: b.primary }}>Sunspire</a>
+                </h2>
+                <p className="text-lg text-gray-600">
+                  Your Logo. Your URL. Instant Solar Quotes — Live in 24 Hours
+                </p>
+                <button 
+                  onClick={handleCheckout}
+                  className="inline-flex items-center px-4 py-4 rounded-full text-sm font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer button-press" 
+                  style={{ backgroundColor: 'var(--brand-primary)' }}
+                  data-testid="report-hero-cta"
+                >
+                  <span className="mr-2">⚡</span>
+                  Launch on Your Domain in 24 Hours
+                </button>
+                <p className="text-sm text-gray-600">
+                  $99/mo + $399 setup • 14-day money-back guarantee
+                </p>
+              </div>
             </div>
           </motion.div>
         )}
@@ -1019,14 +1036,6 @@ function ReportContent() {
               className="mt-12"
             >
               <BottomCtaBand variant="report" data-testid="report-bottom-cta" />
-              
-              {/* Data Attribution Strip - Demo only */}
-              <div className="mt-16 pt-8 border-t border-gray-200 text-center">
-                <p className="text-xs text-gray-500" data-testid="demo-data-sources-line">
-                  <span className="font-medium">Data sources:</span>{" "}
-                  PVWatts® v8 (NREL) • U.S. EIA (average retail rates) • Google Maps (geocoding).
-                </p>
-              </div>
             </motion.div>
           )}
           {/* Paid-only consolidated CTA block */}
@@ -1041,22 +1050,6 @@ function ReportContent() {
                 brandColor={b.primary}
                 searchParams={searchParams?.toString()}
               />
-              
-              {/* Data Attribution Strip - Paid only */}
-              <div className="mt-16 pt-8 border-t border-gray-200 text-center" data-testid="report-data-sources">
-                <p className="text-xs text-gray-500 leading-relaxed" data-testid="data-sources-line">
-                  <span className="font-medium">Data sources:</span>{" "}
-                  PVWatts® v8 (NREL) • U.S. EIA (average retail rates) • Google Maps (geocoding).
-                  {FEATURES.showLastValidated && (
-                    <> <span className="text-gray-400"> Last validated {lastValidatedLabel()}.</span></>
-                  )}
-                </p>
-                {FEATURES.showEstimateDisclaimer && (
-                  <p className="mt-3 text-[11px] text-gray-500 text-center leading-relaxed" data-testid="estimate-disclaimer">
-                    Estimates are for planning only and not a guarantee; final results depend on site conditions and utility policies.
-                  </p>
-                )}
-              </div>
             </motion.div>
           )}
         </motion.div>

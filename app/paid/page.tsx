@@ -633,7 +633,7 @@ function HomeContent() {
                     <span>3</span>
                   </div>
                   <h3 className="text-xl font-bold text-gray-900">
-                    Your team gets booked calls
+                    Your team gets qualified leads
                   </h3>
                   <p className="text-gray-600">
                     Qualified leads ready to convert
@@ -686,7 +686,7 @@ function HomeContent() {
                 </div>
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    Cancel? — Yes, 14-day refund if it doesn&apos;t lift booked calls
+                    Cancel? — Yes, 14-day money-back guarantee
                   </h3>
                   <p className="text-gray-600">
                     No long-term contracts. Cancel anytime.

@@ -89,7 +89,7 @@ export default function SupportPage() {
     },
     {
       question: "Is there a free trial?",
-      answer: "We offer a 14-day refund guarantee. If the tool doesn't increase your booked calls, we'll refund your setup fee."
+      answer: "We offer a 14-day money-back guarantee. See our Terms for details."
     }
   ];
 

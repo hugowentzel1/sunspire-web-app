@@ -348,7 +348,7 @@ function HomeContent() {
                     Launch on Your Domain in 24 Hours
                   </button>
                   <p className="text-sm text-gray-600">
-                    $99/mo + $399 setup • 14-day refund if it doesn&rsquo;t lift booked calls
+                    $99/mo + $399 setup • 14-day money-back guarantee
                   </p>
                 </div>
               </div>
@@ -544,7 +544,7 @@ function HomeContent() {
                   <span>• Ongoing support</span>
                 </div>
                 <p className="text-sm text-slate-500">
-                  $99/mo + $399 setup • 14-day refund if it doesn&rsquo;t increase bookings
+                  $99/mo + $399 setup • 14-day money-back guarantee
                 </p>
                 <button 
                   onClick={handleLaunchClick}

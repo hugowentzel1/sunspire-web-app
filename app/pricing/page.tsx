@@ -64,7 +64,7 @@ export default function PricingPage() {
     },
     {
       q: 'Cancel & refund policy',
-      a: '14-day full refund if it doesn\'t increase booked calls. Cancel anytime after with 30 days notice. No lock-in.'
+      a: '14-day money-back guarantee. Cancel anytime after with 30 days notice. No lock-in.'
     },
     {
       q: 'Support',
@@ -119,7 +119,7 @@ export default function PricingPage() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-sm text-neutral-500 mt-6"
               >
-                <span className="text-gray-500 font-semibold">14-day refund</span> if it doesn&apos;t lift booked calls.
+                <span className="text-gray-500 font-semibold">14-day money-back guarantee</span>.
               </motion.p>
 
               {/* Trust Row */}
@@ -196,7 +196,7 @@ export default function PricingPage() {
                     <svg className="w-6 h-6 text-green-500 mt-0.5 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    <span className="text-neutral-700 font-medium">Teams report <span className="text-gray-500 font-semibold">+25–40%</span> more booked calls after adding instant quotes</span>
+                    <span className="text-neutral-700 font-medium">Turn website visitors into qualified solar leads with instant, branded quotes</span>
                   </div>
                 </div>
               </Card>
@@ -247,7 +247,7 @@ export default function PricingPage() {
                             </>
                           ) : faq.a.includes('14-day') ? (
                             <>
-                              <span className="text-[var(--brand-primary)] font-semibold">14-day</span> full refund if it doesn&apos;t increase booked calls. Cancel anytime after with <span className="text-[var(--brand-primary)] font-semibold">30 days</span> notice. No lock-in.
+                              <span className="text-[var(--brand-primary)] font-semibold">14-day money-back guarantee</span>. Cancel anytime after with <span className="text-[var(--brand-primary)] font-semibold">30 days</span> notice. No lock-in.
                             </>
                           ) : faq.a.includes('<24h') ? (
                             <>

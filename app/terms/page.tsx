@@ -68,8 +68,11 @@ export default function TermsPage() {
 
             <section className="mb-8">
               <h2 id="refunds" className="text-2xl font-bold text-gray-900 mb-4">6. Refunds & Guarantee</h2>
+              <p className="text-gray-600 mb-4" id="guarantee">
+                We offer a <strong>14-day money-back guarantee</strong>. If you&apos;re dissatisfied for any reason in the first 14 days after activation (first deployment on your domain), email <strong>support@getsunspire.com</strong> to request a refund. Refunds are issued within 5–10 business days to the original payment method.
+              </p>
               <p className="text-gray-600 mb-4">
-                We offer a 14-day pilot guarantee. If Sunspire doesn&apos;t increase booked calls or you&apos;re dissatisfied for any reason in the first 14 days, email support@getsunspire.com for a full refund of the setup fee. Ongoing subscriptions can be cancelled any time and remain active until the end of the billing period.
+                Ongoing subscriptions can be cancelled at any time and remain active until the end of the billing period. Refunds are not available for abuse, fraud, or violations of these Terms. Chargebacks void eligibility.
               </p>
             </section>
 
