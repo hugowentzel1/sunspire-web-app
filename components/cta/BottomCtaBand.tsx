@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import clsx from 'clsx';
+import PriceWithMicrocopy from '@/components/PriceWithMicrocopy';
 
 type BottomCtaBandProps = {
   variant: 'home' | 'report';

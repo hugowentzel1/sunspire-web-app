@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { useSearchParams } from 'next/navigation';
 import Footer from '@/components/Footer';
 import SharedNavigation from '@/components/SharedNavigation';
+import PriceWithMicrocopy from '@/components/PriceWithMicrocopy';
 
 export default function SignupPage() {
   const searchParams = useSearchParams();
