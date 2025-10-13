@@ -348,7 +348,7 @@ function HomeContent() {
                     Launch on Your Domain in 24 Hours
                   </button>
                   <p className="text-sm text-gray-600">
-                    $99/mo + $399 setup • 14-day money-back guarantee
+                    $99/mo + $399 setup
                   </p>
                 </div>
               </div>

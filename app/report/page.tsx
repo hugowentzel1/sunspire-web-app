@@ -727,7 +727,7 @@ function ReportContent() {
             initial={{ opacity: 0, y: -20 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ duration: 0.6 }} 
-            className="text-center py-4 border-b border-gray-200 mb-8"
+            className="text-center py-4 mb-8"
             data-testid="demo-banner"
           >
             <p className="text-lg text-gray-700">
