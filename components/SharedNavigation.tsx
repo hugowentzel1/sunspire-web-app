@@ -188,7 +188,7 @@ export default function SharedNavigation() {
                   onClick={handleLaunchClick}
                   className="btn-primary ml-12"
                 >
-                  Launch on Your Domain in 24 Hours
+                  Launch on Your Domain Now
                 </button>
               </>
             ) : (

@@ -89,7 +89,7 @@ export default function SupportPage() {
     },
     {
       question: "Is there a free trial?",
-      answer: "We offer a 14-day money-back guarantee. See our Terms for details."
+      answer: "We guarantee live on your domain in 24 hours. See our Terms for details."
     }
   ];
 

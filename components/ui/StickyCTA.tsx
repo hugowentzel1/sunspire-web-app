@@ -73,10 +73,10 @@ export default function StickyCta() {
     <aside data-testid="sticky-cta"
            className="fixed right-4 z-40 w-[92%] max-w-[420px] md:max-w-[480px] rounded-2xl border border-neutral-200/70 bg-white/85 p-4 shadow-lg backdrop-blur-md"
            style={{ bottom: 16 + offsetBottomPx }}>
-      <button aria-label="Launch on Your Domain in 24 Hours"
+      <button aria-label="Launch on Your Domain Now"
               className="w-full rounded-xl bg-[#2F80ED] px-4 py-3 text-[15px] font-semibold text-white"
               onClick={handleStripeCheckout}>
-        Launch on Your Domain in 24 Hours
+        Launch on Your Domain Now
       </button>
       <p className="mt-2 text-center text-[12px] text-neutral-700">
         $99/mo + $399 setup • Cancel anytime • Stripe secured

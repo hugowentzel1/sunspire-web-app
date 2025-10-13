@@ -89,14 +89,14 @@ export default function SignupPage() {
                 type="submit"
                 className="w-full bg-[var(--brand-primary)] text-white font-semibold py-4 px-6 rounded-lg hover:opacity-90 transition-opacity"
               >
-                Launch on Your Domain in 24 Hours
+                Launch on Your Domain Now
               </button>
             </form>
             
             <div className="mt-6 text-center">
-              <p className="text-sm text-gray-500">
-                $99/mo + $399 setup. 14-day money-back guarantee.
-              </p>
+              <div className="mt-2">
+                <PriceWithMicrocopy priceText="$99/mo + $399 setup" idSuffix="signup" />
+              </div>
             </div>
           </div>
         </div>

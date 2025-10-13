@@ -8,7 +8,7 @@ import LegalFooter from '@/components/legal/LegalFooter';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import HeroBrand from '@/src/brand/HeroBrand';
 import { useBrandColors } from '@/hooks/useBrandColors';
-import RiskReversal from '@/components/ui/RiskReversal';
+import PriceWithMicrocopy from '@/components/PriceWithMicrocopy';
 import LogoWall from '@/components/trust/LogoWall';
 import Testimonial from '@/components/trust/Testimonial';
 import MetricsBar from '@/components/trust/MetricsBar';
@@ -344,15 +344,15 @@ function HomeContent() {
          data-cta-button
          className="inline-flex items-center px-4 py-4 rounded-full text-sm font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer button-press mt-6" 
          style={{ backgroundColor: 'var(--brand-primary)' }}
-         aria-describedby="cta-home-reassure"
+         aria-label="Launch on your domain now"
+         data-testid="primary-cta-hero"
        >
          <span className="mr-2">⚡</span>
-         Launch on Your Domain in 24 Hours
+         Launch on Your Domain Now
        </button>
-       <RiskReversal id="cta-home-reassure" />
-       <p className="text-sm text-gray-600 mt-2">
-         $99/mo + $399 setup
-       </p>
+       <div className="mt-2">
+         <PriceWithMicrocopy priceText="$99/mo + $399 setup" idSuffix="hero" />
+       </div>
                 </div>
               </div>
             </div>
@@ -443,7 +443,7 @@ function HomeContent() {
                     <div className="flex items-center justify-center space-x-4">
                       <span>
                         {b.enabled 
-                          ? (address.trim() ? `Launch My Branded Tool` : `Launch on Your Domain in 24 Hours`)
+                          ? (address.trim() ? `Launch My Branded Tool` : `Launch on Your Domain Now`)
                           : "Generate Solar Intelligence Report"
                         }
                       </span>
@@ -540,9 +540,9 @@ function HomeContent() {
           <div className="max-w-4xl mx-auto py-12 md:py-16">
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg">
               <div className="text-center space-y-8">
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Launch on Your Domain in 24 Hours</h2>
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Launch on Your Domain Now</h2>
                 <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
-                  <span>• &lt;24h setup</span>
+                  <span>• Live on your domain in 24 hours</span>
                   <span>• CRM integrations</span>
                   <span>• Ongoing support</span>
                 </div>
@@ -552,15 +552,15 @@ function HomeContent() {
          data-cta-button
          className="inline-flex items-center px-8 py-4 rounded-full text-lg font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer" 
          style={{ backgroundColor: 'var(--brand-primary)' }}
-         aria-describedby="cta-bottom-reassure"
+         aria-label="Launch on your domain now"
+         data-testid="primary-cta-bottom"
        >
          <span className="mr-2">⚡</span>
-         Launch on Your Domain in 24 Hours
+         Launch on Your Domain Now
        </button>
-       <RiskReversal id="cta-bottom-reassure" />
-       <p className="text-sm text-slate-500 mt-2">
-         $99/mo + $399 setup
-       </p>
+       <div className="mt-2">
+         <PriceWithMicrocopy priceText="$99/mo + $399 setup" idSuffix="bottom" />
+       </div>
               </div>
             </div>
           </div>
@@ -622,7 +622,7 @@ function HomeContent() {
                   <p className="text-gray-600">Industry-standard data sources. <a href="/methodology" className="text-[var(--brand-primary)] hover:text-[var(--brand-primary)]/80 hover:underline font-medium transition-colors duration-200">View methodology</a>.</p>
                 </div>
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Setup time? — Live in &lt;24 hours, no coding required</h3>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Setup time? — Live on your domain in 24 hours, no coding required</h3>
                   <p className="text-gray-600">Quick setup with our one-line script embed or hosted option.</p>
                 </div>
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
@@ -721,7 +721,7 @@ function HomeContent() {
       <SmartStickyCTA />
       
       <StickyCtaBar
-        label="Launch on Your Domain in 24 Hours"
+        label="Launch on Your Domain Now"
         testId="sticky-demo-cta"
         className="sm:hidden"   // MOBILE-ONLY
       />

@@ -6,7 +6,7 @@ export default function RiskReversal({ id }: { id?: string }) {
       id={id ?? "risk-reversal"}
       className="mt-2 text-sm opacity-80 text-center leading-snug"
     >
-      14-day money-back guarantee. Cancel anytime.
+      Live on your domain in 24 hours. Cancel anytime.
     </p>
   );
 }

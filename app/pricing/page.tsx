@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import { useBrandColors } from '@/hooks/useBrandColors';
 import { motion } from 'framer-motion';
-import RiskReversal from '@/components/ui/RiskReversal';
+import PriceWithMicrocopy from '@/components/PriceWithMicrocopy';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
 import Container from '@/components/layout/Container';
@@ -65,7 +65,7 @@ export default function PricingPage() {
     },
     {
       q: 'Cancel & refund policy',
-      a: '14-day money-back guarantee. Cancel anytime. No lock-in.'
+      a: 'Live on your domain in 24 hours. Cancel anytime. No lock-in.'
     },
     {
       q: 'Support',
@@ -110,7 +110,7 @@ export default function PricingPage() {
                 transition={{ duration: 0.5, delay: 0.1 }}
                 className="text-lg md:text-xl text-neutral-700 max-w-3xl mx-auto mt-8"
               >
-                <span className="text-gray-500">Go live in under 24 hours with branded solar quotes.</span>
+                <span className="text-gray-500">Go live on your domain in 24 hours.</span>
               </motion.p>
               
               {/* Risk Line */}
@@ -120,7 +120,7 @@ export default function PricingPage() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="mt-6"
               >
-                <RiskReversal />
+                <PriceWithMicrocopy priceText="$99/mo + $399 setup" idSuffix="pricing" />
               </motion.div>
 
               {/* Trust Row */}
@@ -133,7 +133,7 @@ export default function PricingPage() {
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
                 </svg>
-                <span className="font-medium text-gray-500">Secure Stripe checkout • No hidden fees</span>
+                <span className="font-medium text-gray-500">Secure Stripe checkout • No hidden fees • Setup-fee refund if not live in 24 hours</span>
               </motion.div>
             </div>
 
@@ -248,7 +248,7 @@ export default function PricingPage() {
                             </>
                           ) : faq.a.includes('14-day') ? (
                             <>
-                              <span className="text-[var(--brand-primary)] font-semibold">14-day money-back guarantee. Cancel anytime.</span> No lock-in.
+                              <span className="text-[var(--brand-primary)] font-semibold">Live on your domain in 24 hours. Cancel anytime.</span> No lock-in.
                             </>
                           ) : faq.a.includes('<24h') ? (
                             <>
