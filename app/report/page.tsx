@@ -733,9 +733,6 @@ function ReportContent() {
             <p className="text-lg text-gray-700">
               Demo for <span className="font-semibold">{b.brand || 'Your Company'}</span> — Powered by <a href="/status" className="hover:underline font-semibold" style={{ color: b.primary }}>Sunspire</a>
             </p>
-            <p className="text-sm text-gray-500 mt-1">
-              See how instant solar quotes convert visitors. <a href="/pricing" className="hover:underline" style={{ color: b.primary }}>Launch your tool →</a>
-            </p>
           </motion.div>
         )}
 
