@@ -79,7 +79,7 @@ export default function EmbedPage() {
                 className="h-8 w-auto"
               />
             )}
-            <h1 className="text-lg font-semibold text-gray-900">
+            <h2 className="text-lg font-semibold text-gray-900">
               {b.brand || 'Solar Calculator'}
             </h1>
           </div>

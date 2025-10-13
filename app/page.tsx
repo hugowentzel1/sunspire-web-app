@@ -8,6 +8,7 @@ import LegalFooter from '@/components/legal/LegalFooter';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import HeroBrand from '@/src/brand/HeroBrand';
 import { useBrandColors } from '@/hooks/useBrandColors';
+import RiskReversal from '@/components/ui/RiskReversal';
 import LogoWall from '@/components/trust/LogoWall';
 import Testimonial from '@/components/trust/Testimonial';
 import MetricsBar from '@/components/trust/MetricsBar';
@@ -337,19 +338,21 @@ function HomeContent() {
                   <p className="text-lg text-gray-600 mt-4">
                     Your Logo. Your URL. Instant Solar Quotes — Live in 24 Hours
                   </p>
-                  <button 
-                    data-cta="primary"
-                    onClick={handleLaunchClick}
-                    data-cta-button
-                    className="inline-flex items-center px-4 py-4 rounded-full text-sm font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer button-press mt-6" 
-                    style={{ backgroundColor: 'var(--brand-primary)' }}
-                  >
-                    <span className="mr-2">⚡</span>
-                    Launch on Your Domain in 24 Hours
-                  </button>
-                  <p className="text-sm text-gray-600 mt-6">
-                    $99/mo + $399 setup • 14-day money-back guarantee. Cancel anytime.
-                  </p>
+       <button 
+         data-cta="primary"
+         onClick={handleLaunchClick}
+         data-cta-button
+         className="inline-flex items-center px-4 py-4 rounded-full text-sm font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer button-press mt-6" 
+         style={{ backgroundColor: 'var(--brand-primary)' }}
+         aria-describedby="cta-home-reassure"
+       >
+         <span className="mr-2">⚡</span>
+         Launch on Your Domain in 24 Hours
+       </button>
+       <RiskReversal id="cta-home-reassure" />
+       <p className="text-sm text-gray-600 mt-2">
+         $99/mo + $399 setup
+       </p>
                 </div>
               </div>
             </div>
@@ -543,19 +546,21 @@ function HomeContent() {
                   <span>• CRM integrations</span>
                   <span>• Ongoing support</span>
                 </div>
-                <button 
-                  onClick={handleLaunchClick}
-                  data-cta="primary"
-                  data-cta-button
-                  className="inline-flex items-center px-8 py-4 rounded-full text-lg font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer" 
-                  style={{ backgroundColor: 'var(--brand-primary)' }}
-                >
-                  <span className="mr-2">⚡</span>
-                  Launch on Your Domain in 24 Hours
-                </button>
-                <p className="text-sm text-slate-500 mt-2">
-                  $99/mo + $399 setup • 14-day money-back guarantee. Cancel anytime.
-                </p>
+       <button 
+         onClick={handleLaunchClick}
+         data-cta="primary"
+         data-cta-button
+         className="inline-flex items-center px-8 py-4 rounded-full text-lg font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer" 
+         style={{ backgroundColor: 'var(--brand-primary)' }}
+         aria-describedby="cta-bottom-reassure"
+       >
+         <span className="mr-2">⚡</span>
+         Launch on Your Domain in 24 Hours
+       </button>
+       <RiskReversal id="cta-bottom-reassure" />
+       <p className="text-sm text-slate-500 mt-2">
+         $99/mo + $399 setup
+       </p>
               </div>
             </div>
           </div>

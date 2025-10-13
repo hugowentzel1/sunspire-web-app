@@ -764,7 +764,7 @@ function ReportContent() {
               )}
             </motion.div>
             <div className="space-y-4">
-              {!demoMode && <h1 className="text-2xl md:text-3xl font-bold text-gray-900">New Analysis</h1>}
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">New Analysis</h2>
               <p className="text-base md:text-lg text-slate-700 max-w-2xl mx-auto">Comprehensive analysis for your property at {estimate.address}</p>
 
               <div className="text-sm text-gray-500 text-center space-y-2">

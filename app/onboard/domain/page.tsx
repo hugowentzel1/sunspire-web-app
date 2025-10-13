@@ -69,7 +69,7 @@ export default function OnboardDomainPage() {
 
   return (
     <main className="mx-auto max-w-2xl p-6">
-      <h1 className="text-2xl font-semibold mb-4">
+      <h2 className="text-2xl font-semibold mb-4">
         Connect your custom domain
       </h1>
       <p className="mb-2">We&apos;ll use a subdomain on your site:</p>

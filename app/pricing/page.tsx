@@ -5,6 +5,7 @@ import { useSearchParams } from 'next/navigation';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import { useBrandColors } from '@/hooks/useBrandColors';
 import { motion } from 'framer-motion';
+import RiskReversal from '@/components/ui/RiskReversal';
 import Link from 'next/link';
 import Footer from '@/components/Footer';
 import Container from '@/components/layout/Container';
@@ -113,14 +114,14 @@ export default function PricingPage() {
               </motion.p>
               
               {/* Risk Line */}
-              <motion.p
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="text-sm text-neutral-500 mt-6"
+                className="mt-6"
               >
-                <span className="text-gray-500 font-semibold">14-day money-back guarantee. Cancel anytime.</span>
-              </motion.p>
+                <RiskReversal />
+              </motion.div>
 
               {/* Trust Row */}
               <motion.div
@@ -132,7 +133,7 @@ export default function PricingPage() {
                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
                 </svg>
-                <span className="font-medium text-gray-500">Secure Stripe checkout • No hidden fees • 14-day refund</span>
+                <span className="font-medium text-gray-500">Secure Stripe checkout • No hidden fees</span>
               </motion.div>
             </div>
 

@@ -19,7 +19,7 @@ export default function CRMGuidesPage() {
                 <span className="text-white text-lg font-bold">☀️</span>
               </div>
               <div>
-                <h1 className="text-2xl font-black text-[var(--brand-primary)]">
+                <h2 className="text-2xl font-black text-[var(--brand-primary)]">
                   {b.enabled ? b.brand : "Your Company"}
                 </h1>
                 <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
@@ -63,7 +63,7 @@ export default function CRMGuidesPage() {
           className="text-center space-y-8"
         >
           <div className="space-y-4">
-            <h1 className="text-4xl md:text-5xl font-black text-gray-900">
+            <h2 className="text-4xl md:text-5xl font-black text-gray-900">
               CRM Integration Guides
             </h1>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
