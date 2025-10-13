@@ -114,14 +114,14 @@ export default function PricingPage() {
               </motion.p>
               
               {/* Risk Line */}
-              <motion.div
+              <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.2 }}
-                className="mt-6"
+                className="text-sm text-neutral-500 mt-6"
               >
-                <PriceWithMicrocopy priceText="$99/mo + $399 setup" idSuffix="pricing" />
-              </motion.div>
+                $99/mo + $399 setup • Launch now — live on your domain in 24 hours.
+              </motion.p>
 
               {/* Trust Row */}
               <motion.div

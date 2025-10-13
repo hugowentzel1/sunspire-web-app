@@ -350,9 +350,9 @@ function HomeContent() {
          <span className="mr-2">⚡</span>
          Launch on Your Domain Now
        </button>
-       <div className="mt-2">
-         <PriceWithMicrocopy priceText="$99/mo + $399 setup" idSuffix="hero" />
-       </div>
+       <p className="text-sm text-gray-600 mt-6">
+         $99/mo + $399 setup • Launch now — live on your domain in 24 hours.
+       </p>
                 </div>
               </div>
             </div>
@@ -558,9 +558,9 @@ function HomeContent() {
          <span className="mr-2">⚡</span>
          Launch on Your Domain Now
        </button>
-       <div className="mt-2">
-         <PriceWithMicrocopy priceText="$99/mo + $399 setup" idSuffix="bottom" />
-       </div>
+       <p className="text-sm text-slate-500 mt-2">
+         $99/mo + $399 setup • Launch now — live on your domain in 24 hours.
+       </p>
               </div>
             </div>
           </div>

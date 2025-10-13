@@ -57,9 +57,9 @@ export default function BottomCtaBand({
           </Link>
         </div>
 
-       <div className="mt-4">
-         <PriceWithMicrocopy priceText="$99/mo + $399 setup" idSuffix="bottom-band" className="text-white/90" />
-       </div>
+       <p className="mt-4 text-sm text-white/90">
+         $99/mo + $399 setup • Launch now — live on your domain in 24 hours.
+       </p>
 
         {comparisonLine && (
           <p className="mt-4 text-sm md:text-base opacity-90" data-testid="bottom-cta-footer">

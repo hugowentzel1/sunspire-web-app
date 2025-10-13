@@ -95,9 +95,9 @@ export default function SignupPage() {
             </form>
             
             <div className="mt-6 text-center">
-              <div className="mt-2">
-                <PriceWithMicrocopy priceText="$99/mo + $399 setup" idSuffix="signup" />
-              </div>
+              <p className="text-sm text-gray-500">
+                $99/mo + $399 setup • Launch now — live on your domain in 24 hours.
+              </p>
             </div>
           </div>
         </div>
