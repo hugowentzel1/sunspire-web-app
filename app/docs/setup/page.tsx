@@ -1,7 +1,7 @@
 "use client";
 
 import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
-import LegalFooter from "@/components/legal/LegalFooter";
+import Footer from "@/components/Footer";
 
 export default function SetupGuidePage() {
   const b = useBrandTakeover();
@@ -390,7 +390,7 @@ export default function SetupGuidePage() {
           </div>
         </div>
       </main>
-      <LegalFooter brand={b.enabled ? b.brand : undefined} />
+      <Footer />
     </div>
   );
 }

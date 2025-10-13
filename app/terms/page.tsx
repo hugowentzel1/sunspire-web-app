@@ -74,6 +74,9 @@ export default function TermsPage() {
               <p className="text-gray-600 mb-4">
                 Ongoing subscriptions can be cancelled at any time and remain active until the end of the billing period. Refunds are not available for abuse, fraud, or violations of these Terms. Chargebacks void eligibility.
               </p>
+              <p className="text-gray-600">
+                For complete details, see our <a href="/legal/refund" className="text-[var(--brand-primary)] hover:underline">Refund Policy</a>.
+              </p>
             </section>
 
             <section className="mb-8">

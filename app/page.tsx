@@ -330,25 +330,25 @@ function HomeContent() {
           {isDemo && b.enabled && (
             <div>
               <div className="bg-white/80 backdrop-blur-sm rounded-3xl py-6 px-8 border border-gray-200/50 shadow-lg mx-auto max-w-2xl">
-                <div className="space-y-4 text-center" {...tid('demo-cta')}>
+                <div className="text-center" {...tid('demo-cta')}>
                   <h2 className="text-3xl font-bold text-gray-900">
                     Demo for {b.brand || 'Your Company'} — Powered by <a href="/status" className="hover:underline" style={{ color: b.primary }}>Sunspire</a>
                   </h2>
-                  <p className="text-lg text-gray-600">
+                  <p className="text-lg text-gray-600 mt-4">
                     Your Logo. Your URL. Instant Solar Quotes — Live in 24 Hours
                   </p>
                   <button 
                     data-cta="primary"
                     onClick={handleLaunchClick}
                     data-cta-button
-                    className="inline-flex items-center px-4 py-4 rounded-full text-sm font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer button-press" 
+                    className="inline-flex items-center px-4 py-4 rounded-full text-sm font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer button-press mt-6" 
                     style={{ backgroundColor: 'var(--brand-primary)' }}
                   >
                     <span className="mr-2">⚡</span>
                     Launch on Your Domain in 24 Hours
                   </button>
-                  <p className="text-sm text-gray-600">
-                    $99/mo + $399 setup
+                  <p className="text-sm text-gray-600 mt-6">
+                    $99/mo + $399 setup • 14-day money-back guarantee. Cancel anytime.
                   </p>
                 </div>
               </div>
@@ -543,9 +543,6 @@ function HomeContent() {
                   <span>• CRM integrations</span>
                   <span>• Ongoing support</span>
                 </div>
-                <p className="text-sm text-slate-500">
-                  $99/mo + $399 setup • 14-day money-back guarantee
-                </p>
                 <button 
                   onClick={handleLaunchClick}
                   data-cta="primary"
@@ -556,6 +553,9 @@ function HomeContent() {
                   <span className="mr-2">⚡</span>
                   Launch on Your Domain in 24 Hours
                 </button>
+                <p className="text-sm text-slate-500 mt-2">
+                  $99/mo + $399 setup • 14-day money-back guarantee. Cancel anytime.
+                </p>
               </div>
             </div>
           </div>

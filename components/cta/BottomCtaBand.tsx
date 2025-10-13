@@ -26,8 +26,8 @@ export default function BottomCtaBand({
     ? 'Launch on Your Domain — $99/mo + $399 setup'
     : 'Launch on Your Domain in 24 Hours';
 
-  // Both report and home show the guarantee
-  const footerLine = '$99/mo + $399 setup • 14-day money-back guarantee';
+  // Show comparison for report variant
+  const comparisonLine = isReport ? 'Comparable tools cost $2,500+/mo.' : null;
 
   return (
     <section
@@ -56,9 +56,13 @@ export default function BottomCtaBand({
           </Link>
         </div>
 
-        {footerLine && (
-          <p className="mt-6 text-sm md:text-base opacity-90" data-testid="bottom-cta-footer">
-            {footerLine}
+        <p className="mt-4 text-sm text-white/90">
+          $99/mo + $399 setup • 14-day money-back guarantee. Cancel anytime.
+        </p>
+
+        {comparisonLine && (
+          <p className="mt-4 text-sm md:text-base opacity-90" data-testid="bottom-cta-footer">
+            {comparisonLine}
           </p>
         )}
       </div>

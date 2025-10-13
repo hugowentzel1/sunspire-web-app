@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
-import LegalFooter from "@/components/legal/LegalFooter";
+import Footer from "@/components/Footer";
 import Link from "next/link";
 
 export default function CRMGuidesPage() {
@@ -160,7 +160,7 @@ export default function CRMGuidesPage() {
         </motion.div>
       </main>
 
-      <LegalFooter brand={b.enabled ? b.brand : undefined} />
+      <Footer />
     </div>
   );
 }

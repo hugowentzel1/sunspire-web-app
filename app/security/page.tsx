@@ -2,7 +2,7 @@
 
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import { useSearchParams } from 'next/navigation';
-import LegalFooter from '@/components/legal/LegalFooter';
+import Footer from '@/components/Footer';
 import SharedNavigation from '@/components/SharedNavigation';
 
 export default function SecurityPage() {
@@ -186,10 +186,7 @@ export default function SecurityPage() {
         </div>
       </main>
 
-      <LegalFooter 
-        brand={b.enabled ? b.brand : searchParams?.get('company') || undefined} 
-        hideMarketingLinks={!searchParams?.get('demo')}
-      />
+      <Footer />
     </div>
   );
 }

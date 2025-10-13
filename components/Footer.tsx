@@ -122,6 +122,7 @@ export default function Footer() {
               <ul className="mt-4 space-y-3 text-sm text-slate-700 leading-relaxed">
                 <li><Link className="hover:underline underline-offset-2" href="/privacy">Privacy Policy</Link></li>
                 <li><Link className="hover:underline underline-offset-2" href="/terms">Terms of Service</Link></li>
+                <li><Link className="hover:underline underline-offset-2" href="/legal/refund">Refund Policy</Link></li>
                 <li><Link className="hover:underline underline-offset-2" href="/security">Security</Link></li>
                 <li><Link className="hover:underline underline-offset-2" href="/dpa">DPA</Link></li>
                 <li><Link className="hover:underline underline-offset-2" href="/do-not-sell">Do Not Sell My Data</Link></li>

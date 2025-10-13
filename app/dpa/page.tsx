@@ -2,7 +2,7 @@
 
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import { useSearchParams } from 'next/navigation';
-import LegalFooter from '@/components/legal/LegalFooter';
+import Footer from '@/components/Footer';
 
 export default function DPAPage() {
   const b = useBrandTakeover();
@@ -158,10 +158,7 @@ export default function DPAPage() {
           </div>
         </div>
       </main>
-      <LegalFooter 
-        brand={b.enabled ? b.brand : searchParams?.get('company') || undefined} 
-        hideMarketingLinks={!searchParams?.get('demo')}
-      />
+      <Footer />
     </div>
   );
 }

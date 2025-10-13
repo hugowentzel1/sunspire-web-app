@@ -1,7 +1,7 @@
 "use client";
 
 import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
-import LegalFooter from "@/components/legal/LegalFooter";
+import Footer from "@/components/Footer";
 
 export default function SalesforceCRMGuidePage() {
   const b = useBrandTakeover();
@@ -255,7 +255,7 @@ export default function SalesforceCRMGuidePage() {
           </div>
         </div>
       </main>
-      <LegalFooter brand={b.enabled ? b.brand : undefined} />
+      <Footer />
     </div>
   );
 }

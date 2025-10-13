@@ -64,7 +64,7 @@ export default function PricingPage() {
     },
     {
       q: 'Cancel & refund policy',
-      a: '14-day money-back guarantee. Cancel anytime after with 30 days notice. No lock-in.'
+      a: '14-day money-back guarantee. Cancel anytime. No lock-in.'
     },
     {
       q: 'Support',
@@ -119,7 +119,7 @@ export default function PricingPage() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-sm text-neutral-500 mt-6"
               >
-                <span className="text-gray-500 font-semibold">14-day money-back guarantee</span>.
+                <span className="text-gray-500 font-semibold">14-day money-back guarantee. Cancel anytime.</span>
               </motion.p>
 
               {/* Trust Row */}
@@ -247,7 +247,7 @@ export default function PricingPage() {
                             </>
                           ) : faq.a.includes('14-day') ? (
                             <>
-                              <span className="text-[var(--brand-primary)] font-semibold">14-day money-back guarantee</span>. Cancel anytime after with <span className="text-[var(--brand-primary)] font-semibold">30 days</span> notice. No lock-in.
+                              <span className="text-[var(--brand-primary)] font-semibold">14-day money-back guarantee. Cancel anytime.</span> No lock-in.
                             </>
                           ) : faq.a.includes('<24h') ? (
                             <>

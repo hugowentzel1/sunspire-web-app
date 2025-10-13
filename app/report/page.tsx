@@ -721,18 +721,19 @@ function ReportContent() {
           </div>
         )}
 
-        {/* Minimal demo banner - Only show in demo mode */}
+        {/* Report header - Only show in demo mode */}
         {demoMode && (
           <motion.div 
             initial={{ opacity: 0, y: -20 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ duration: 0.6 }} 
             className="text-center py-4 mb-8"
-            data-testid="demo-banner"
+            data-testid="report-header"
           >
-            <p className="text-lg text-gray-700">
-              Demo for <span className="font-semibold">{b.brand || 'Your Company'}</span> — Powered by <a href="/status" className="hover:underline font-semibold" style={{ color: b.primary }}>Sunspire</a>
-            </p>
+            <h1 className="text-2xl md:text-3xl font-semibold text-gray-900">
+              Your <span style={{ color: b.primary }}>{b.brand || 'Company'}</span> Solar Quote{' '}
+              <span className="text-gray-500 font-normal">(Live Preview)</span>
+            </h1>
           </motion.div>
         )}
 
