@@ -26,11 +26,8 @@ export default function BottomCtaBand({
     ? 'Launch on Your Domain — $99/mo + $399 setup'
     : 'Launch on Your Domain in 24 Hours';
 
-  // Home keeps the full price footer;
-  // Report replaces it with a comparison anchor only (no duplicate price).
-  const footerLine = isReport
-    ? 'Comparable tools cost $2,500+/mo.'
-    : '$99/mo + $399 setup • 14-day money-back guarantee';
+  // Both report and home show the guarantee
+  const footerLine = '$99/mo + $399 setup • 14-day money-back guarantee';
 
   return (
     <section

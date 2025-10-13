@@ -721,36 +721,21 @@ function ReportContent() {
           </div>
         )}
 
-        {/* Primary CTA section - Only show in demo mode */}
+        {/* Minimal demo banner - Only show in demo mode */}
         {demoMode && (
           <motion.div 
             initial={{ opacity: 0, y: -20 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ duration: 0.6 }} 
-            className="mb-8"
+            className="text-center py-4 border-b border-gray-200 mb-8"
+            data-testid="demo-banner"
           >
-            <div className="bg-white/80 backdrop-blur-sm rounded-3xl py-6 px-8 border border-gray-200/50 shadow-lg mx-auto max-w-2xl">
-              <div className="space-y-4 text-center" data-testid="demo-cta">
-                <h2 className="text-3xl font-bold text-gray-900">
-                  Demo for {b.brand || 'Your Company'} — Powered by <a href="/status" className="hover:underline" style={{ color: b.primary }}>Sunspire</a>
-                </h2>
-                <p className="text-lg text-gray-600">
-                  Your Logo. Your URL. Instant Solar Quotes — Live in 24 Hours
-                </p>
-                <button 
-                  onClick={handleCheckout}
-                  className="inline-flex items-center px-4 py-4 rounded-full text-sm font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer button-press" 
-                  style={{ backgroundColor: 'var(--brand-primary)' }}
-                  data-testid="report-hero-cta"
-                >
-                  <span className="mr-2">⚡</span>
-                  Launch on Your Domain in 24 Hours
-                </button>
-                <p className="text-sm text-gray-600">
-                  $99/mo + $399 setup • 14-day money-back guarantee
-                </p>
-              </div>
-            </div>
+            <p className="text-lg text-gray-700">
+              Demo for <span className="font-semibold">{b.brand || 'Your Company'}</span> — Powered by <a href="/status" className="hover:underline font-semibold" style={{ color: b.primary }}>Sunspire</a>
+            </p>
+            <p className="text-sm text-gray-500 mt-1">
+              See how instant solar quotes convert visitors. <a href="/pricing" className="hover:underline" style={{ color: b.primary }}>Launch your tool →</a>
+            </p>
           </motion.div>
         )}
 
