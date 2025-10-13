@@ -81,7 +81,7 @@ export default function EmbedPage() {
             )}
             <h2 className="text-lg font-semibold text-gray-900">
               {b.brand || 'Solar Calculator'}
-            </h1>
+            </h2>
           </div>
           <div className="text-sm text-gray-500">
             Powered by <span style={{ color: b.primary }}>Sunspire</span>

@@ -21,7 +21,7 @@ export default function CRMGuidesPage() {
               <div>
                 <h2 className="text-2xl font-black text-[var(--brand-primary)]">
                   {b.enabled ? b.brand : "Your Company"}
-                </h1>
+                </h2>
                 <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
                   Solar Intelligence
                 </p>
@@ -65,7 +65,7 @@ export default function CRMGuidesPage() {
           <div className="space-y-4">
             <h2 className="text-4xl md:text-5xl font-black text-gray-900">
               CRM Integration Guides
-            </h1>
+            </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Connect your solar intelligence tool with your favorite CRM
               platform

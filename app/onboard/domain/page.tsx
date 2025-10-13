@@ -71,7 +71,7 @@ export default function OnboardDomainPage() {
     <main className="mx-auto max-w-2xl p-6">
       <h2 className="text-2xl font-semibold mb-4">
         Connect your custom domain
-      </h1>
+      </h2>
       <p className="mb-2">We&apos;ll use a subdomain on your site:</p>
       <p className="font-mono mb-6">{fqdn || "quote.yourdomain.com"}</p>
       <ol className="list-decimal ml-6 space-y-2 mb-6">
