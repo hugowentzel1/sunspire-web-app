@@ -400,13 +400,24 @@ function HomeContent() {
               <div className="space-y-6">
                 {/* Address Input - Show for both demo and regular modes */}
                 <div className="w-full max-w-2xl mx-auto">
-                  <AddressAutocomplete 
-                    value={address}
-                    onChange={setAddress}
-                    onSelect={handleAddressSelect}
-                    placeholder={b.city && b.city !== 'undefined' ? `Start typing an address in ${b.city}...` : "Start typing your property address..."}
-                    className="w-full"
-                  />
+                  <div className="relative">
+                    <AddressAutocomplete 
+                      value={address}
+                      onChange={setAddress}
+                      onSelect={handleAddressSelect}
+                      data-testid="demo-address-input"
+                      placeholder={b.city && b.city !== 'undefined' ? `Start typing an address in ${b.city}...` : "Start typing your property address..."}
+                      className="w-full"
+                    />
+                    {isDemo && (
+                      <div 
+                        className="pointer-events-none absolute right-3 -bottom-5 text-[11px] text-gray-400"
+                        data-testid="demo-powered-by-google"
+                      >
+                        Powered by Google
+                      </div>
+                    )}
+                  </div>
                 </div>
 
                 {/* Generate Button - Now below the search bar */}

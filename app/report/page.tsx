@@ -730,9 +730,9 @@ function ReportContent() {
             className="mb-8"
           >
             <div className="text-center">
-              <p className="text-xl text-gray-700 leading-relaxed">
-                Your branded solar tool is ready to launch.
-              </p>
+              <h1 data-testid="demo-hero-title" className="text-3xl font-semibold text-gray-900">
+                Custom demo for {b.brand || 'your company'} — ready to launch.
+              </h1>
             </div>
           </motion.div>
         )}
@@ -1019,6 +1019,14 @@ function ReportContent() {
               className="mt-12"
             >
               <BottomCtaBand variant="report" data-testid="report-bottom-cta" />
+              
+              {/* Data Attribution Strip - Demo only */}
+              <div className="mt-16 pt-8 border-t border-gray-200 text-center">
+                <p className="text-xs text-gray-500" data-testid="demo-data-sources-line">
+                  <span className="font-medium">Data sources:</span>{" "}
+                  PVWatts® v8 (NREL) • U.S. EIA (average retail rates) • Google Maps (geocoding).
+                </p>
+              </div>
             </motion.div>
           )}
           {/* Paid-only consolidated CTA block */}
@@ -1035,8 +1043,8 @@ function ReportContent() {
               />
               
               {/* Data Attribution Strip - Paid only */}
-              <div className="mt-12 pt-6 border-t border-gray-200 text-center" data-testid="report-data-sources">
-                <p className="text-xs text-gray-500" data-testid="data-sources-line">
+              <div className="mt-16 pt-8 border-t border-gray-200 text-center" data-testid="report-data-sources">
+                <p className="text-xs text-gray-500 leading-relaxed" data-testid="data-sources-line">
                   <span className="font-medium">Data sources:</span>{" "}
                   PVWatts® v8 (NREL) • U.S. EIA (average retail rates) • Google Maps (geocoding).
                   {FEATURES.showLastValidated && (
@@ -1044,7 +1052,7 @@ function ReportContent() {
                   )}
                 </p>
                 {FEATURES.showEstimateDisclaimer && (
-                  <p className="mt-2 text-[11px] text-gray-500 text-center" data-testid="estimate-disclaimer">
+                  <p className="mt-3 text-[11px] text-gray-500 text-center leading-relaxed" data-testid="estimate-disclaimer">
                     Estimates are for planning only and not a guarantee; final results depend on site conditions and utility policies.
                   </p>
                 )}
