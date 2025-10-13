@@ -1,0 +1,117 @@
+# Page snapshot
+
+```yaml
+- generic:
+  - alert [ref=e1]
+  - dialog "Server Error" [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - navigation [ref=e8]:
+          - button "previous" [disabled] [ref=e9]:
+            - img "previous" [ref=e10]
+          - button "next" [disabled] [ref=e12]:
+            - img "next" [ref=e13]
+          - generic [ref=e15]:
+            - generic [ref=e16]: "1"
+            - text: of
+            - generic [ref=e17]: "1"
+            - text: unhandled error
+        - heading "Server Error" [level=1] [ref=e18]
+        - paragraph [ref=e19]: "Error: Cannot find module './6126.js' Require stack: - /Users/hugowentzel/sunspire-clean/.next/server/webpack-runtime.js - /Users/hugowentzel/sunspire-clean/.next/server/pages/_document.js - /Users/hugowentzel/sunspire-clean/node_modules/next/dist/server/require.js - /Users/hugowentzel/sunspire-clean/node_modules/next/dist/server/load-components.js - /Users/hugowentzel/sunspire-clean/node_modules/next/dist/build/utils.js - /Users/hugowentzel/sunspire-clean/node_modules/next/dist/server/dev/hot-middleware.js - /Users/hugowentzel/sunspire-clean/node_modules/next/dist/server/dev/hot-reloader-webpack.js - /Users/hugowentzel/sunspire-clean/node_modules/next/dist/server/lib/router-utils/setup-dev-bundler.js - /Users/hugowentzel/sunspire-clean/node_modules/next/dist/server/lib/router-server.js - /Users/hugowentzel/sunspire-clean/node_modules/next/dist/server/lib/start-server.js"
+        - generic [ref=e21]: This error happened while generating the page. Any console logs will be displayed in the terminal window.
+      - generic [ref=e22]:
+        - heading "Call Stack" [level=2] [ref=e23]
+        - generic [ref=e24]:
+          - heading "Function.<anonymous>" [level=3] [ref=e25]
+          - generic [ref=e27]: node:internal/modules/cjs/loader (1401:15)
+        - generic [ref=e28]:
+          - heading "<unknown>" [level=3] [ref=e29]
+          - generic [ref=e31]: file:///Users/hugowentzel/sunspire-clean/node_modules/next/dist/server/require-hook.js (54:36)
+        - generic [ref=e32]:
+          - heading "defaultResolveImpl" [level=3] [ref=e33]
+          - generic [ref=e35]: node:internal/modules/cjs/loader (1057:19)
+        - generic [ref=e36]:
+          - heading "resolveForCJSWithHooks" [level=3] [ref=e37]
+          - generic [ref=e39]: node:internal/modules/cjs/loader (1062:22)
+        - generic [ref=e40]:
+          - heading "Function._load" [level=3] [ref=e41]
+          - generic [ref=e43]: node:internal/modules/cjs/loader (1211:37)
+        - generic [ref=e44]:
+          - heading "TracingChannel.traceSync" [level=3] [ref=e45]
+          - generic [ref=e47]: node:diagnostics_channel (322:14)
+        - generic [ref=e48]:
+          - heading "wrapModuleLoad" [level=3] [ref=e49]
+          - generic [ref=e51]: node:internal/modules/cjs/loader (235:24)
+        - generic [ref=e52]:
+          - heading "Module.<anonymous>" [level=3] [ref=e53]
+          - generic [ref=e55]: node:internal/modules/cjs/loader (1487:12)
+        - generic [ref=e56]:
+          - heading "mod.require" [level=3] [ref=e57]
+          - generic [ref=e59]: file:///Users/hugowentzel/sunspire-clean/node_modules/next/dist/server/require-hook.js (64:28)
+        - generic [ref=e60]:
+          - heading "require" [level=3] [ref=e61]
+          - generic [ref=e63]: node:internal/modules/helpers (135:16)
+        - generic [ref=e64]:
+          - heading "__webpack_require__.f.require" [level=3] [ref=e65]
+          - generic [ref=e67]: file:///Users/hugowentzel/sunspire-clean/.next/server/webpack-runtime.js (198:28)
+        - generic [ref=e68]:
+          - heading "<unknown>" [level=3] [ref=e69]
+          - generic [ref=e71]: file:///Users/hugowentzel/sunspire-clean/.next/server/webpack-runtime.js (111:40)
+        - generic [ref=e72]:
+          - heading "Array.reduce" [level=3] [ref=e73]
+          - generic [ref=e75]: <anonymous>
+        - generic [ref=e76]:
+          - heading "__webpack_require__.e" [level=3] [ref=e77]
+          - generic [ref=e79]: file:///Users/hugowentzel/sunspire-clean/.next/server/webpack-runtime.js (110:67)
+        - generic [ref=e80]:
+          - heading "Array.map" [level=3] [ref=e81]
+          - generic [ref=e83]: <anonymous>
+        - generic [ref=e84]:
+          - heading "__webpack_require__.X" [level=3] [ref=e85]
+          - generic [ref=e87]: file:///Users/hugowentzel/sunspire-clean/.next/server/webpack-runtime.js (162:22)
+        - generic [ref=e88]:
+          - heading "<unknown>" [level=3] [ref=e89]
+          - generic [ref=e91]: file:///Users/hugowentzel/sunspire-clean/.next/server/app/report/page.js (1:50898)
+        - generic [ref=e92]:
+          - heading "Object.<anonymous>" [level=3] [ref=e93]
+          - generic [ref=e95]: file:///Users/hugowentzel/sunspire-clean/.next/server/app/report/page.js (1:51010)
+        - generic [ref=e96]:
+          - heading "Module._compile" [level=3] [ref=e97]
+          - generic [ref=e99]: node:internal/modules/cjs/loader (1730:14)
+        - generic [ref=e100]:
+          - heading "Object..js" [level=3] [ref=e101]
+          - generic [ref=e103]: node:internal/modules/cjs/loader (1895:10)
+        - generic [ref=e104]:
+          - heading "Module.load" [level=3] [ref=e105]
+          - generic [ref=e107]: node:internal/modules/cjs/loader (1465:32)
+        - generic [ref=e108]:
+          - heading "Function._load" [level=3] [ref=e109]
+          - generic [ref=e111]: node:internal/modules/cjs/loader (1282:12)
+        - generic [ref=e112]:
+          - heading "TracingChannel.traceSync" [level=3] [ref=e113]
+          - generic [ref=e115]: node:diagnostics_channel (322:14)
+        - generic [ref=e116]:
+          - heading "wrapModuleLoad" [level=3] [ref=e117]
+          - generic [ref=e119]: node:internal/modules/cjs/loader (235:24)
+        - generic [ref=e120]:
+          - heading "Module.<anonymous>" [level=3] [ref=e121]
+          - generic [ref=e123]: node:internal/modules/cjs/loader (1487:12)
+        - generic [ref=e124]:
+          - heading "mod.require" [level=3] [ref=e125]
+          - generic [ref=e127]: file:///Users/hugowentzel/sunspire-clean/node_modules/next/dist/server/require-hook.js (64:28)
+        - generic [ref=e128]:
+          - heading "require" [level=3] [ref=e129]
+          - generic [ref=e131]: node:internal/modules/helpers (135:16)
+        - generic [ref=e132]:
+          - heading "requirePage" [level=3] [ref=e133]
+          - generic [ref=e135]: file:///Users/hugowentzel/sunspire-clean/node_modules/next/dist/server/require.js (109:84)
+        - generic [ref=e136]:
+          - heading "<unknown>" [level=3] [ref=e137]
+          - generic [ref=e139]: file:///Users/hugowentzel/sunspire-clean/node_modules/next/dist/server/load-components.js (59:84)
+        - generic [ref=e140]:
+          - heading "async loadComponentsImpl" [level=3] [ref=e141]
+          - generic [ref=e143]: file:///Users/hugowentzel/sunspire-clean/node_modules/next/dist/server/load-components.js (59:26)
+        - generic [ref=e144]:
+          - heading "async DevServer.findPageComponentsImpl" [level=3] [ref=e145]
+          - generic [ref=e147]: file:///Users/hugowentzel/sunspire-clean/node_modules/next/dist/server/next-server.js (666:36)
+```

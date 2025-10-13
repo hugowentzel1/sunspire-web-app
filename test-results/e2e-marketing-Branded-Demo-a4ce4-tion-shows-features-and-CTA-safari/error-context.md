@@ -1,0 +1,293 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - strong [ref=e5]: Exclusive preview built for Apple
+      - generic [ref=e6]: Exclusive preview — expires in 6:23:59:47
+      - generic [ref=e7]: 2 runs left
+    - generic [ref=e8]:
+      - button "Launch on Apple" [ref=e9] [cursor=pointer]
+      - button "Copy link" [ref=e10] [cursor=pointer]
+      - button "Dismiss" [ref=e11] [cursor=pointer]: ✕
+  - banner [ref=e12]:
+    - generic [ref=e14]:
+      - link "Apple logo Apple Solar Intelligence" [ref=e15]:
+        - /url: /?company=Apple&demo=1
+        - img "Apple logo" [ref=e16]
+        - generic [ref=e17]:
+          - heading "Apple" [level=1] [ref=e18]
+          - paragraph [ref=e19]: Solar Intelligence
+      - navigation [ref=e20]:
+        - link "Pricing" [ref=e21]:
+          - /url: /pricing?company=Apple&demo=1
+        - link "Partners" [ref=e22]:
+          - /url: /partners?company=Apple&demo=1
+        - link "Support" [ref=e23]:
+          - /url: /support?company=Apple&demo=1
+        - button "Launch on Your Domain in 24 Hours" [ref=e24] [cursor=pointer]
+    - paragraph [ref=e27]: Private demo for Apple. Not affiliated.
+  - generic [ref=e28]:
+    - main [ref=e29]:
+      - generic [ref=e31]:
+        - generic [ref=e34]:
+          - heading "Demo for Apple — Powered by Sunspire" [level=2] [ref=e35]:
+            - text: Demo for Apple — Powered by
+            - link "Sunspire" [ref=e36]:
+              - /url: /status
+          - paragraph [ref=e37]: Your Logo. Your URL. Instant Solar Quotes — Live in 24 Hours
+          - button "⚡ Launch on Your Domain in 24 Hours" [ref=e38] [cursor=pointer]:
+            - generic [ref=e39] [cursor=pointer]: ⚡
+            - text: Launch on Your Domain in 24 Hours
+          - paragraph [ref=e40]: $99/mo + $399 setup • 14-day money-back guarantee. Cancel anytime.
+        - img "Apple logo" [ref=e42]
+        - generic [ref=e44]:
+          - heading "Your Branded Solar Quote Tool — Live on Your Site in 24 Hours." [level=1] [ref=e45]
+          - paragraph [ref=e46]: Capture more leads with instant, branded solar estimates. We set it up—no coding required. Embed on your site or share a link.
+        - generic "Trust signals" [ref=e48]:
+          - generic [ref=e49]:
+            - img [ref=e51]
+            - generic [ref=e53]: 113+ installers live
+          - generic [ref=e54]: •
+          - generic [ref=e55]:
+            - img [ref=e57]
+            - generic [ref=e59]: SOC 2 compliant
+          - generic [ref=e60]: •
+          - generic [ref=e61]:
+            - img [ref=e63]
+            - generic [ref=e65]: GDPR ready
+          - generic [ref=e66]: •
+          - generic [ref=e67]:
+            - img [ref=e69]
+            - generic [ref=e71]: NREL PVWatts®
+          - generic [ref=e72]: •
+          - generic [ref=e73]:
+            - img [ref=e75]
+            - generic [ref=e77]: 4.9/5 rating
+        - generic [ref=e79]:
+          - generic [ref=e80]:
+            - heading "Enter Your Property Address" [level=2] [ref=e81]
+            - paragraph [ref=e82]: Get a comprehensive solar analysis tailored to your specific location
+          - generic [ref=e83]:
+            - generic [ref=e85]:
+              - generic [ref=e86]:
+                - textbox "Start typing your property address..." [ref=e87]
+                - generic [ref=e89]: Powered by Google
+              - generic: Powered by Google
+            - button "Launch on Your Domain in 24 Hours" [disabled] [ref=e90]:
+              - generic [ref=e91]:
+                - generic [ref=e92]: Launch on Your Domain in 24 Hours
+                - img [ref=e93]
+            - generic [ref=e95]:
+              - paragraph [ref=e96]: "Preview: 2 runs left."
+              - paragraph [ref=e97]: Expires in 6d 23h 59m 47s
+        - region "Customer testimonials" [ref=e98]:
+          - article [ref=e99]:
+            - blockquote [ref=e100]:
+              - paragraph [ref=e101]: “Cut quoting time from 15 minutes to 1 minute, and now we respond faster than local competitors.”
+            - generic [ref=e102]:
+              - generic [ref=e103]:
+                - generic "Avatar for Brian Martin" [ref=e104]: BM
+                - generic [ref=e105]: Brian Martin
+              - generic [ref=e106]:
+                - generic [ref=e107]: Owner
+                - generic [ref=e108]: •
+                - generic [ref=e109]: 25-employee solar firm, CA
+                - generic [ref=e110]: •
+                - generic "Verified installer quote" [ref=e111]:
+                  - generic [ref=e112]: ✓
+                  - text: Verified
+          - article [ref=e113]:
+            - blockquote [ref=e114]:
+              - paragraph [ref=e115]: “Booked 4 extra consults in week one, and the branded quotes immediately stood out.”
+            - generic [ref=e116]:
+              - generic [ref=e117]:
+                - generic "Avatar for Dalyn Helms" [ref=e118]: DH
+                - generic [ref=e119]: Dalyn Helms
+              - generic [ref=e120]:
+                - generic [ref=e121]: Ops Manager
+                - generic [ref=e122]: •
+                - generic [ref=e123]: Texas solar installer
+                - generic [ref=e124]: •
+                - generic "Verified installer quote" [ref=e125]:
+                  - generic [ref=e126]: ✓
+                  - text: Verified
+          - article [ref=e127]:
+            - blockquote [ref=e128]:
+              - paragraph [ref=e129]: “Our lead conversion jumped 40% in the first month, and follow-ups became instant and on-brand.”
+            - generic [ref=e130]:
+              - generic [ref=e131]:
+                - generic "Avatar for Lensa Yohan" [ref=e132]: LY
+                - generic [ref=e133]: Lensa Yohan
+              - generic [ref=e134]:
+                - generic [ref=e135]: Sales Manager
+                - generic [ref=e136]: •
+                - generic [ref=e137]: Florida solar dealer
+                - generic [ref=e138]: •
+                - generic "Verified installer quote" [ref=e139]:
+                  - generic [ref=e140]: ✓
+                  - text: Verified
+          - article [ref=e141]:
+            - blockquote [ref=e142]:
+              - paragraph [ref=e143]: “Sunspire paid for itself in week two, as homeowners instantly trusted our estimates and closed more deals.”
+            - generic [ref=e144]:
+              - generic [ref=e145]:
+                - generic "Avatar for Noah Jones" [ref=e146]: NJ
+                - generic [ref=e147]: Noah Jones
+              - generic [ref=e148]:
+                - generic [ref=e149]: Founder
+                - generic [ref=e150]: •
+                - generic [ref=e151]: Arizona EPC
+                - generic [ref=e152]: •
+                - generic "Verified installer quote" [ref=e153]:
+                  - generic [ref=e154]: ✓
+                  - text: Verified
+        - generic [ref=e158]:
+          - generic [ref=e159]:
+            - generic [ref=e160]: 28,417
+            - generic [ref=e161]: quotes modeled this month
+          - generic [ref=e162]:
+            - generic [ref=e163]: 31%
+            - generic [ref=e164]: average increase in completions
+          - generic [ref=e165]:
+            - generic [ref=e166]: 113+
+            - generic [ref=e167]: installers live today
+        - generic [ref=e168]:
+          - generic [ref=e171]:
+            - generic [ref=e172]: NREL PVWatts® v8
+            - generic [ref=e173]: Industry-standard solar modeling with current utility rates
+          - generic [ref=e176]:
+            - generic [ref=e177]: CRM Integration
+            - generic [ref=e178]: Direct push to HubSpot, Salesforce, and Airtable
+          - generic [ref=e181]:
+            - generic [ref=e182]: End-to-End Encryption
+            - generic [ref=e183]: SOC 2-aligned controls and data protection
+        - generic [ref=e186]:
+          - heading "Launch on Your Domain in 24 Hours" [level=2] [ref=e187]
+          - generic [ref=e188]:
+            - generic [ref=e189]: • <24h setup
+            - generic [ref=e190]: • CRM integrations
+            - generic [ref=e191]: • Ongoing support
+          - button "⚡ Launch on Your Domain in 24 Hours" [ref=e192] [cursor=pointer]:
+            - generic [ref=e193] [cursor=pointer]: ⚡
+            - text: Launch on Your Domain in 24 Hours
+          - paragraph [ref=e194]: $99/mo + $399 setup • 14-day money-back guarantee. Cancel anytime.
+        - generic [ref=e196]:
+          - heading "How it works" [level=2] [ref=e197]
+          - generic [ref=e198]:
+            - generic [ref=e199]:
+              - generic [ref=e200]: "1"
+              - generic [ref=e201]: Customer requests quote
+            - generic [ref=e202]: →
+            - generic [ref=e203]:
+              - generic [ref=e204]: "2"
+              - generic [ref=e205]: Instant branded report
+            - generic [ref=e206]: →
+            - generic [ref=e207]:
+              - generic [ref=e208]: "3"
+              - generic [ref=e209]: Consultation booked
+        - generic [ref=e210]:
+          - heading "Frequently Asked Questions" [level=2] [ref=e211]
+          - generic [ref=e212]:
+            - generic [ref=e213]:
+              - heading "Accuracy? — NREL PVWatts v8 • EIA rates • local irradiance" [level=3] [ref=e214]
+              - paragraph [ref=e215]:
+                - text: Industry-standard data sources.
+                - link "View methodology" [ref=e216]:
+                  - /url: /methodology
+                - text: .
+            - generic [ref=e217]:
+              - heading "Setup time? — Live in <24 hours, no coding required" [level=3] [ref=e218]
+              - paragraph [ref=e219]: Quick setup with our one-line script embed or hosted option.
+            - generic [ref=e220]:
+              - heading "CMS / Embed? — Yes, 1-line <script>. Hosted option too." [level=3] [ref=e221]
+              - paragraph [ref=e222]: Works with any website platform. Just add one line of code.
+            - generic [ref=e223]:
+              - heading "Security? — Encrypted in transit & at rest" [level=3] [ref=e224]
+              - paragraph [ref=e225]: Bank-level security for all customer data.
+            - generic [ref=e226]:
+              - heading "Support? — Email support 24/7" [level=3] [ref=e227]
+              - paragraph [ref=e228]: Get help whenever you need it.
+        - generic [ref=e231]:
+          - heading "Why We Built Sunspire" [level=2] [ref=e232]
+          - paragraph [ref=e233]: We started Sunspire to give solar companies a simple way to capture more leads without paying for complex CRMs or custom developers. In just 24 hours, you can launch a fully branded quote tool that looks like it was built in-house, helps you win more consultations, and closes more installs.
+    - contentinfo [ref=e234]:
+      - generic [ref=e236]:
+        - generic [ref=e237]:
+          - generic [ref=e238]:
+            - heading "Sunspire Solar Intelligence" [level=3] [ref=e239]
+            - paragraph [ref=e240]: Demo for Apple — Powered by Sunspire
+            - generic [ref=e241]:
+              - generic [ref=e242]:
+                - generic [ref=e243]: 📍
+                - generic [ref=e244]:
+                  - text: "1700 Northside Drive Suite A7 #5164"
+                  - text: Atlanta, GA 30318
+              - generic [ref=e245]:
+                - generic [ref=e246]: GDPR
+                - generic [ref=e247]: CCPA
+                - generic [ref=e248]: SOC 2
+              - list [ref=e249]:
+                - listitem [ref=e250]:
+                  - generic [ref=e251]: ✉️
+                  - link "support@getsunspire.com" [ref=e252]:
+                    - /url: mailto:support@getsunspire.com
+                - listitem [ref=e253]:
+                  - generic [ref=e254]: ✉️
+                  - link "billing@getsunspire.com" [ref=e255]:
+                    - /url: mailto:billing@getsunspire.com
+                - listitem [ref=e256]:
+                  - generic [ref=e257]: ☎️
+                  - link "+1 (404) 123-4567" [ref=e258]:
+                    - /url: tel:+14041234567
+          - generic [ref=e259]:
+            - heading "Quick Links" [level=4] [ref=e260]
+            - list [ref=e261]:
+              - listitem [ref=e262]:
+                - link "Pricing" [ref=e263]:
+                  - /url: /pricing
+              - listitem [ref=e264]:
+                - link "Partners" [ref=e265]:
+                  - /url: /partners
+              - listitem [ref=e266]:
+                - link "Support" [ref=e267]:
+                  - /url: /support
+          - generic [ref=e268]:
+            - heading "Legal & Support" [level=4] [ref=e269]
+            - list [ref=e270]:
+              - listitem [ref=e271]:
+                - link "Privacy Policy" [ref=e272]:
+                  - /url: /privacy
+              - listitem [ref=e273]:
+                - link "Terms of Service" [ref=e274]:
+                  - /url: /terms
+              - listitem [ref=e275]:
+                - link "Refund Policy" [ref=e276]:
+                  - /url: /legal/refund
+              - listitem [ref=e277]:
+                - link "Security" [ref=e278]:
+                  - /url: /security
+              - listitem [ref=e279]:
+                - link "DPA" [ref=e280]:
+                  - /url: /dpa
+              - listitem [ref=e281]:
+                - link "Do Not Sell My Data" [ref=e282]:
+                  - /url: /do-not-sell
+        - separator [ref=e283]
+        - generic [ref=e284]:
+          - generic [ref=e285]:
+            - generic [ref=e286]: ⚡
+            - generic [ref=e287]:
+              - text: Estimates generated
+              - text: using NREL PVWatts® v8
+          - generic [ref=e289]:
+            - text: Powered by
+            - generic [ref=e290]: Sunspire
+          - generic [ref=e291]:
+            - generic [ref=e292]: 🗺️
+            - generic [ref=e293]:
+              - text: Mapping & location
+              - text: data © Google
+  - alert [ref=e294]
+```
