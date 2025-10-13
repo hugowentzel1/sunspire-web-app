@@ -2,7 +2,7 @@
 
 import Head from 'next/head';
 import { useSearchParams } from 'next/navigation';
-import LegalFooter from '@/components/legal/LegalFooter';
+import Footer from '@/components/Footer';
 import SharedNavigation from '@/components/SharedNavigation';
 
 export default function SignupPage() {
@@ -102,12 +102,7 @@ export default function SignupPage() {
         </div>
       </div>
 
-      <footer className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <LegalFooter 
-          brand={searchParams?.get('company') || undefined} 
-          hideMarketingLinks={!searchParams?.get('demo')}
-        />
-      </footer>
+      <Footer />
     </>
   );
 }

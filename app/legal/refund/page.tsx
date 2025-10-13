@@ -34,7 +34,7 @@ export default function RefundPolicyPage() {
               We offer a <strong>14-day money-back guarantee</strong> on your first subscription charge.
             </p>
             <p className="text-gray-600 mb-4">
-              If you're dissatisfied for any reason in the first 14 days after activation (first deployment on your domain), 
+              If you&apos;re dissatisfied for any reason in the first 14 days after activation (first deployment on your domain), 
               email <a href="mailto:support@getsunspire.com" className="text-[var(--brand-primary)] hover:underline">support@getsunspire.com</a> to request a refund.
             </p>
             <p className="text-gray-600 mb-6">
