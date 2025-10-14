@@ -401,7 +401,7 @@ function HomeContent() {
                     address.length > 0 &&
                     !address.includes("@") &&
                     address.split(" ").length < 2 && (
-                      <p className="text-sm text-amber-600 mt-1">
+                      <p className="text-sm text-amber-600 mt-4 mb-4 text-center">
                         Please enter a complete street address
                       </p>
                     )}
