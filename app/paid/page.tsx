@@ -371,12 +371,6 @@ function HomeContent() {
               <div className="space-y-6">
                 {/* Address Input - Show for both demo and regular modes */}
                 <div className="w-full max-w-2xl mx-auto">
-                  <label
-                    htmlFor="address-input"
-                    className="block text-sm font-medium text-gray-700 mb-2"
-                  >
-                    Property Address
-                  </label>
                   <div className="relative">
                     <AddressAutocomplete
                       id="address-input"
