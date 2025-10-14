@@ -144,7 +144,7 @@ export function DemoBanner() {
             transition: "all 0.15s ease"
           }}
         >
-          Launch on {b.domain || "your domain"}
+          Activate Your Demo
         </button>
         <button 
           className="btn" 
