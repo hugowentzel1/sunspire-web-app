@@ -455,7 +455,7 @@ function HomeContent() {
                 </div>
                 
                 {isDemo && (
-                  <div className="text-sm text-gray-500 text-center space-y-2 mt-4">
+                  <div className="text-sm text-gray-500 text-center space-y-2 flex items-center justify-center" style={{ minHeight: "80px", marginTop: "24px" }}>
                     {remaining > 0 ? (
                       <>
                         <p>Preview: {remaining} run{remaining===1?"":"s"} left.</p>
