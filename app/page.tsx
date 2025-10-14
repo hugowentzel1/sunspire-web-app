@@ -393,7 +393,7 @@ function HomeContent() {
           </div>
 
           {/* Address Input Section - Exact match to c548b88 */}
-          <div className="mx-auto w-full max-w-3xl rounded-3xl bg-white shadow-lg ring-1 ring-black/5 px-6 sm:px-8 pt-8 md:pt-10 pb-6 md:pb-7 flex flex-col section-spacing slide-up-fade">
+          <div className="mx-auto w-full max-w-3xl rounded-3xl bg-white shadow-lg ring-1 ring-black/5 px-6 sm:px-8 pt-8 md:pt-10 pb-7 md:pb-8 flex flex-col section-spacing slide-up-fade">
             {/* Top content stack */}
             <div className="space-y-6 md:space-y-7">
               {/* Title + subtitle */}
@@ -455,7 +455,7 @@ function HomeContent() {
 
             {/* Footer — fixed small height, vertically centers the gray text */}
             {isDemo && (
-           <div className="mt-4 md:mt-5 h-9 md:h-10 flex items-center justify-center">
+           <div className="mt-5 md:mt-6 h-9 md:h-10 flex items-center justify-center">
              {remaining > 0 ? (
                <div className="text-center text-sm text-gray-500">
                  <p>Preview: {remaining} run{remaining===1?"":"s"} left.</p>
