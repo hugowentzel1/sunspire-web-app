@@ -106,62 +106,76 @@ export default function ReportCTAFooter({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3, duration: 0.6 }}
-      aria-label="Next steps"
-      className="report-cta-footer mt-8 mb-8 rounded-2xl p-6 md:p-8 bg-gradient-to-br from-gray-50 to-white border border-gray-200 shadow-sm"
+      aria-label="Activate your branded version"
+      className="report-cta-footer mt-12 mb-8 rounded-2xl p-8 md:p-10 bg-gradient-to-br from-slate-50 via-white to-gray-50 border border-gray-200/80 shadow-lg"
       data-testid="report-cta-footer"
     >
-      {/* Primary and Secondary CTAs */}
-      <div className="cta-row flex flex-col sm:flex-row gap-3 justify-center items-center mb-4">
-        <motion.a
-          href="#"
-          onClick={handleBook}
-          className="btn-primary px-6 py-3 text-white rounded-xl font-semibold text-base hover:shadow-lg transition-all duration-200 w-full sm:w-auto"
-          style={{ backgroundColor: brandColor }}
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.98 }}
-          role="button"
-          aria-label="Book a Consultation"
-        >
-          📅 Book a Consultation
-        </motion.a>
-        
-        <motion.a
-          href="tel:+14041234567"
-          onClick={handleTalk}
-          className="px-6 py-3 bg-gray-100 text-gray-900 rounded-xl font-semibold text-base hover:bg-gray-200 transition-all duration-200 w-full sm:w-auto border border-gray-300"
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.98 }}
-          aria-label="Talk to a Specialist"
-        >
-          📞 Talk to a Specialist
-        </motion.a>
+      {/* Headline */}
+      <div className="text-center mb-6">
+        <h3 className="text-2xl md:text-3xl font-bold text-gray-900 mb-3">
+          Ready to activate your branded version?
+        </h3>
+        <p className="text-base text-gray-600 max-w-2xl mx-auto">
+          This demo is already customized for your company. Launch your own version in 24 hours.
+        </p>
       </div>
 
-      {/* Reassurance line */}
-      <p className="text-sm text-gray-600 text-center mb-4" data-testid="report-cta-subtext">
-        We&apos;ll confirm site details &amp; incentives — no obligation.
-      </p>
+      {/* Primary CTA */}
+      <div className="flex flex-col items-center gap-4 mb-6">
+        <motion.button
+          onClick={handleBook}
+          className="inline-flex items-center justify-center px-8 py-4 rounded-full text-lg font-semibold text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 w-full sm:w-auto sm:min-w-[400px]"
+          style={{ backgroundColor: brandColor }}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          aria-label="Start activation — demo expires soon"
+          data-testid="report-cta-primary"
+        >
+          <span className="mr-3">⚡</span>
+          <span>Start Activation — Demo Expires Soon</span>
+        </motion.button>
+        
+        <p className="text-sm text-gray-600" data-testid="report-cta-subtext">
+          $99/mo + $399 setup • Live on your site in 24 hours — setup fee refunded if not.
+        </p>
+      </div>
+
+      {/* Trust Indicators */}
+      <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-gray-500 mb-6">
+        <span className="flex items-center gap-1">
+          <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+            <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
+          </svg>
+          Secure Stripe checkout
+        </span>
+        <span>•</span>
+        <span>No hidden fees</span>
+        <span>•</span>
+        <span>Cancel anytime</span>
+      </div>
 
       {/* Utility actions row */}
-      <div className="utility-row flex flex-col sm:flex-row gap-2 justify-center items-center pt-7 border-t border-gray-200">
+      <div className="flex flex-col sm:flex-row gap-3 justify-center items-center pt-6 border-t border-gray-200">
         <motion.button
           onClick={handleDownload}
-          className="btn-tertiary px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-100 transition-all duration-200 border border-gray-300 w-full sm:w-auto"
+          className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition-all duration-200 border border-gray-300 w-full sm:w-auto"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           aria-label="Download PDF Report"
         >
-          📄 Download PDF
+          <span>📄</span>
+          <span>Download PDF</span>
         </motion.button>
         
         <motion.button
           onClick={handleCopy}
-          className="btn-tertiary px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-100 transition-all duration-200 border border-gray-300 w-full sm:w-auto"
+          className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-50 transition-all duration-200 border border-gray-300 w-full sm:w-auto"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           aria-label="Copy Share Link"
         >
-          🔗 Copy Share Link
+          <span>🔗</span>
+          <span>Share This Report</span>
         </motion.button>
       </div>
     </motion.section>
