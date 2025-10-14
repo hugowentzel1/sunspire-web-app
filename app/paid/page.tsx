@@ -393,6 +393,12 @@ function HomeContent() {
                       className="w-full"
                       aria-label="Enter Your Property Address"
                     />
+                    <div 
+                      className="pointer-events-none absolute right-3 -bottom-5 text-[11px] text-gray-400"
+                      data-testid="powered-by-google"
+                    >
+                      Powered by Google
+                    </div>
                   </div>
                   <p className="text-sm text-gray-500 mt-2">
                     We only use your address to estimate sun, rates, and savings. Nothing is shared.

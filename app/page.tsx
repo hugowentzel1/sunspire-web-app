@@ -400,7 +400,7 @@ function HomeContent() {
                 <p className="text-gray-600">Get a comprehensive solar analysis tailored to your specific location</p>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-6 mt-8">
                 {/* Address Input - Show for both demo and regular modes */}
                 <div className="w-full max-w-2xl mx-auto">
                   <div className="relative">
