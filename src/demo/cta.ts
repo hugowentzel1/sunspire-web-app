@@ -9,7 +9,7 @@ export function getCTA(
   const A = {
     primary: "Launch Your Solar Tool",
     footer: "Get This Live in 24 Hours",
-    inline: "Activate Lead Generator",
+    inline: "Launch Your Branded Version Now",
   };
   const B = {
     primary: `Add to ${benefit}`,

@@ -16,7 +16,7 @@ export default function BottomCtaBand({
   const isReport = variant === 'report';
 
   const title = isReport
-    ? 'Ready to Activate Your Branded, Customer-Facing Tool?'
+    ? 'Ready to Launch Your Branded, Customer-Facing Tool?'
     : 'Launch Your Branded Version Now';
 
   const subtext = isReport
@@ -24,7 +24,7 @@ export default function BottomCtaBand({
     : 'Go live in under 24 hours with branded solar quotes on your own domain.';
 
   const buttonLabel = isReport
-    ? 'Activate on Your Domain'
+    ? 'Launch Your Branded Version Now'
     : 'Launch Your Branded Version Now';
 
   // Show comparison for report variant

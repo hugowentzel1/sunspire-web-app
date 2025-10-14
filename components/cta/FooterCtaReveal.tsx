@@ -62,7 +62,7 @@ export default function FooterCtaReveal() {
         <button className="w-full inline-flex items-center justify-center rounded-xl bg-[#2F80ED] px-4 py-3 text-[14px] font-semibold text-white md:w-auto"
                 onClick={handleStripeCheckout}>
           <span className="mr-3">⚡</span>
-          <span>Start Activation — Demo Expires Soon</span>
+          <span>Launch Your Branded Version Now</span>
         </button>
       </div>
     </div>

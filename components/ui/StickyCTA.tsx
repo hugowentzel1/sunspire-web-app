@@ -77,10 +77,10 @@ export default function StickyCta() {
               className="w-full inline-flex items-center justify-center rounded-xl bg-[#2F80ED] px-4 py-3 text-[15px] font-semibold text-white"
               onClick={handleStripeCheckout}>
         <span className="mr-3">⚡</span>
-        <span>Start Activation — Demo Expires Soon</span>
+        <span>Launch Your Branded Version Now</span>
       </button>
       <p className="mt-2 text-center text-[12px] text-neutral-700">
-        $99/mo + $399 setup • Live on your site in 24 hours — setup fee refunded if not.
+        $99/mo + $399 setup • Live in 24 hours — or your setup fee is refunded.
       </p>
       <div className="mt-1 flex items-center justify-center gap-2 text-[11px] text-neutral-600">
         <span>SOC 2</span><span>•</span><span>GDPR</span><span>•</span><span>NREL PVWatts®</span>

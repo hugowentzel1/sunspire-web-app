@@ -91,13 +91,13 @@ export default function SignupPage() {
                 className="w-full inline-flex items-center justify-center bg-[var(--brand-primary)] text-white font-semibold py-4 px-6 rounded-lg hover:opacity-90 transition-opacity"
               >
                 <span className="mr-3">⚡</span>
-                <span>Start Activation — Demo Expires Soon</span>
+                <span>Launch Your Branded Version Now</span>
               </button>
             </form>
             
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-500">
-                $99/mo + $399 setup • Live on your site in 24 hours — setup fee refunded if not.
+                $99/mo + $399 setup • Live in 24 hours — or your setup fee is refunded.
               </p>
             </div>
           </div>

@@ -31,7 +31,7 @@ export function SidebarCta({ brandName, onCtaClick }: SidebarCtaProps) {
           className="sidebar-cta-button"
         >
           <span className="sidebar-cta-button-text">
-            ⚡ Start Activation — Demo Expires Soon
+            ⚡ Launch Your Branded Version Now
           </span>
         </button>
 

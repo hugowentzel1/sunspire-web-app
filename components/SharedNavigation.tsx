@@ -189,7 +189,7 @@ export default function SharedNavigation() {
                   className="btn-primary ml-12 inline-flex items-center justify-center"
                 >
                   <span className="mr-3">⚡</span>
-                  <span>Start Activation — Demo Expires Soon</span>
+                  <span>Launch Your Branded Version Now</span>
                 </button>
               </>
             ) : (

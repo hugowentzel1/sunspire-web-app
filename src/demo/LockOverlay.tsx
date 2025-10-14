@@ -350,7 +350,7 @@ export default function LockOverlay() {
             }}
           >
             <span style={{ marginRight: '12px' }}>⚡</span>
-            <span>Start Activation — Demo Expires Soon</span>
+            <span>Launch Your Branded Version Now</span>
           </button>
         </div>
 

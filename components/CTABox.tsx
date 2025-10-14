@@ -40,7 +40,7 @@ export default function CTABox({
         style={{ backgroundColor: 'var(--brand-primary)' }}
       >
         <span className="mr-3">⚡</span>
-        <span>Start Activation — Demo Expires Soon</span>
+        <span>Launch Your Branded Version Now</span>
       </button>
 
       {/* Microcopy */}
@@ -48,7 +48,7 @@ export default function CTABox({
         data-testid={`microcopy-${idSuffix}`}
         className={`${compact ? 'text-xs' : 'text-sm'} text-gray-600`}
       >
-        Live on your site in 24 hours — setup fee refunded if not.
+        Live in 24 hours — or your setup fee is refunded.
       </p>
 
       {/* Optional No Card Line */}
