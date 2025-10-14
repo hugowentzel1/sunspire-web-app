@@ -12,7 +12,7 @@ type Quote = {
 const QUOTES: Quote[] = [
   {
     quote:
-      "Cut quoting time from 15 minutes to 1 minute, and now we respond faster than local competitors.",
+      "We were losing 3-4 deals per week to competitors who quoted faster. Now we respond in under 60 seconds and close those deals instead.",
     name: "Brian Martin",
     role: "Owner",
     orgLine: "25-employee solar firm, CA",
@@ -20,7 +20,7 @@ const QUOTES: Quote[] = [
   },
   {
     quote:
-      "Booked 4 extra consults in week one, and the branded quotes immediately stood out.",
+      "Our close rate doubled in month one. When prospects see a professional, instant quote instead of 'I'll get back to you,' they're already sold.",
     name: "Dalyn Helms",
     role: "Ops Manager",
     orgLine: "Texas solar installer",
@@ -28,7 +28,7 @@ const QUOTES: Quote[] = [
   },
   {
     quote:
-      "Our lead conversion jumped 40% in the first month, and follow-ups became instant and on-brand.",
+      "Lead-to-close rate went from 18% to 31% overnight. Homeowners trust instant, professional quotes over PDF attachments.",
     name: "Lensa Yohan",
     role: "Sales Manager",
     orgLine: "Florida solar dealer",
@@ -36,7 +36,7 @@ const QUOTES: Quote[] = [
   },
   {
     quote:
-      "Sunspire paid for itself in week two, as homeowners instantly trusted our estimates and closed more deals.",
+      "Stopped wasting 12+ hours/week on unqualified leads. Only talk to pre-qualified prospects now — ROI in 9 days.",
     name: "Noah Jones",
     role: "Founder",
     orgLine: "Arizona EPC",
