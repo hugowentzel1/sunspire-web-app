@@ -36,7 +36,7 @@ const QUOTES: Quote[] = [
   },
   {
     quote:
-      "Sunspire paid for itself in 9 days, and we stopped wasting time on unqualified leads completely.",
+      "ROI in 9 days. Now we only talk to pre-qualified prospects — no more wasting hours on tire-kickers.",
     name: "Noah Jones",
     role: "Founder",
     orgLine: "Arizona EPC",
