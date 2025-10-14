@@ -434,15 +434,20 @@ function HomeContent() {
                 }`} 
               >
                 {isLoading ? (
-                  <>
+                  <div className="flex items-center justify-center space-x-4">
                     <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
                     <span>Analyzing Your Property...</span>
-                  </>
+                  </div>
                 ) : (
-                  <>
-                    <span>Generate Solar Report</span>
-                    <svg className="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-                  </>
+                  <div className="flex items-center justify-center space-x-4">
+                    <span>
+                      {b.enabled 
+                         ? `Generate Solar Report`
+                        : "Generate Solar Report"
+                      }
+                    </span>
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                  </div>
                 )}
               </button>
             </div>
@@ -450,7 +455,7 @@ function HomeContent() {
             {/* Footer zone: centers the helper text vertically between button & bottom */}
             {isDemo && (
               <div className="h-12 md:h-14 flex items-center justify-center">
-                <div className="text-center text-sm text-red-600/90">
+                <div className="text-center text-sm text-red-600 font-semibold">
                   {remaining > 0 ? (
                     <>
                       <p>Preview: {remaining} run{remaining===1?"":"s"} left.</p>
@@ -459,7 +464,7 @@ function HomeContent() {
                   ) : (
                     <p>
                       <span className="inline-flex items-center gap-2">
-                        <span aria-hidden>🚫</span> Demo limit reached
+                        <span aria-hidden>🚫</span> Demo limit reached.
                       </span>
                       <span className="sm:ml-2">Launch to get full access</span>
                     </p>
