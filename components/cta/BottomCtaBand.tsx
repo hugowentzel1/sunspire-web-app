@@ -17,7 +17,7 @@ export default function BottomCtaBand({
 
   const title = isReport
     ? 'Ready to Activate Your Branded, Customer-Facing Tool?'
-    : 'Start Activation — Demo Expires Soon';
+    : 'Launch Your Branded Version Now';
 
   const subtext = isReport
     ? 'Get the full paid version—customer-facing and under your brand—with complete projections, detailed assumptions, and unblurred savings charts.'
@@ -25,7 +25,7 @@ export default function BottomCtaBand({
 
   const buttonLabel = isReport
     ? 'Activate on Your Domain'
-    : 'Start Activation — Demo Expires Soon';
+    : 'Launch Your Branded Version Now';
 
   // Show comparison for report variant
   const comparisonLine = isReport ? 'Comparable tools cost $2,500+/mo.' : null;
@@ -58,7 +58,7 @@ export default function BottomCtaBand({
         </div>
 
         <p className="text-sm text-white/90 mb-5">
-          $99/mo + $399 setup • Live on your site in 24 hours — setup fee refunded if not.
+          $99/mo + $399 setup • Live in 24 hours — or your setup fee is refunded..
         </p>
 
         {comparisonLine && (

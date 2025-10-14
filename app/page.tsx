@@ -344,14 +344,14 @@ function HomeContent() {
          data-cta-button
          className="inline-flex items-center justify-center px-4 py-4 rounded-full text-sm font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer button-press mt-6" 
          style={{ backgroundColor: 'var(--brand-primary)' }}
-         aria-label="Start activation — demo expires soon"
+         aria-label="Launch Your Branded Version Now"
          data-testid="primary-cta-hero"
        >
          <span className="mr-3">⚡</span>
-         <span>Start Activation — Demo Expires Soon</span>
+         <span>Launch Your Branded Version Now</span>
        </button>
        <p className="text-sm text-gray-600 mt-6" data-testid="microcopy-hero">
-         $99/mo + $399 setup • Live on your site in 24 hours — setup fee refunded if not.
+         $99/mo + $399 setup • Live in 24 hours — or your setup fee is refunded..
        </p>
                 </div>
               </div>
@@ -443,8 +443,8 @@ function HomeContent() {
                     <div className="flex items-center justify-center space-x-4">
                       <span>
                         {b.enabled 
-                           ? `Start Activation — Demo Expires Soon`
-                          : "Generate Solar Intelligence Report"
+                           ? `Launch Your Branded Version Now`
+                          : "Launch Your Branded Version Now"
                         }
                       </span>
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
@@ -540,7 +540,7 @@ function HomeContent() {
           <div className="max-w-4xl mx-auto py-12 md:py-16">
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg">
               <div className="text-center space-y-8">
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Start Activation — Demo Expires Soon</h2>
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Launch Your Branded Version Now</h2>
                 <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
                   <span>• &lt;24h setup</span>
                   <span>• CRM integrations</span>
@@ -552,14 +552,14 @@ function HomeContent() {
          data-cta-button
          className="inline-flex items-center justify-center px-8 py-4 rounded-full text-lg font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer" 
          style={{ backgroundColor: 'var(--brand-primary)' }}
-         aria-label="Start activation — demo expires soon"
+         aria-label="Launch Your Branded Version Now"
          data-testid="primary-cta-bottom"
        >
          <span className="mr-3">⚡</span>
-         <span>Start Activation — Demo Expires Soon</span>
+         <span>Launch Your Branded Version Now</span>
        </button>
        <p className="text-sm text-slate-500 mt-2" data-testid="microcopy-bottom">
-         $99/mo + $399 setup • Live on your site in 24 hours — setup fee refunded if not.
+         $99/mo + $399 setup • Live in 24 hours — or your setup fee is refunded..
        </p>
               </div>
             </div>
@@ -721,7 +721,7 @@ function HomeContent() {
       <SmartStickyCTA />
       
       <StickyCtaBar
-         label="Start Activation — Demo Expires Soon"
+         label="Launch Your Branded Version Now"
         testId="sticky-demo-cta"
         className="sm:hidden"   // MOBILE-ONLY
       />

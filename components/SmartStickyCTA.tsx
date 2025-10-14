@@ -103,7 +103,7 @@ export default function SmartStickyCTA() {
         onClick={() => window.location.href = '/api/stripe/create-checkout-session'}
       >
         <span className="icon-rocket mr-3" aria-hidden="true">⚡</span>
-        <span>Start Activation — Demo Expires Soon</span>
+        <span>Launch Your Branded Version Now</span>
       </button>
     </div>
   );

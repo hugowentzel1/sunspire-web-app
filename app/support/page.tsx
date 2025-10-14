@@ -77,7 +77,7 @@ export default function SupportPage() {
     },
     {
       question: "How quickly can I get the tool live on my website?",
-      answer: "Standard setup takes 24-48 hours. Enterprise clients get priority setup within 12 hours."
+      answer: "Standard setup takes 24-48 hours. Priority setup available within 12 hours."
     },
     {
       question: "Can I customize the branding and colors?",
@@ -85,11 +85,11 @@ export default function SupportPage() {
     },
     {
       question: "What CRM integrations are available?",
-      answer: "We integrate with HubSpot, Salesforce, Pipedrive, and Zapier. Custom integrations available for enterprise clients."
+      answer: "We integrate with HubSpot, Salesforce, Pipedrive, and Zapier. Custom integrations available upon request."
     },
     {
       question: "Is there a free trial?",
-      answer: "Setup fee refunded if your branded site isn't live on your domain within 24 hours of purchase. Cancel anytime. See our Terms for details."
+      answer: "or your setup fee is refunded. if your branded site isn't live on your domain within 24 hours of purchase. Cancel anytime. See our Terms for details."
     }
   ];
 
@@ -127,7 +127,7 @@ export default function SupportPage() {
             {/* SLO Badge Row */}
             <div className="text-center py-4 border-y border-neutral-200/60">
               <p className="text-sm text-neutral-600">
-                Avg reply &lt;24h • High priority 4h • Urgent 1h • Enterprise 2h SLA
+                Avg reply &lt;24h • High priority 4h • Urgent 1h • Priority 2h SLA
               </p>
             </div>
 
@@ -395,7 +395,7 @@ export default function SupportPage() {
                       <span className="font-medium">&lt;1 hour</span>
                     </div>
                     <div className="flex justify-between">
-                      <span className="text-neutral-600">Enterprise SLA:</span>
+                      <span className="text-neutral-600">Priority SLA:</span>
                       <span className="font-medium">&lt;2 hours</span>
                     </div>
                   </div>

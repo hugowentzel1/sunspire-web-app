@@ -278,7 +278,7 @@ export async function findOrCreateMasterTenant() {
       {
         fields: {
           [TENANT_FIELDS.COMPANY_HANDLE]: "sunspire",
-          [TENANT_FIELDS.PLAN]: "Enterprise",
+          [TENANT_FIELDS.PLAN]: "Custom",
           [TENANT_FIELDS.API_KEY]:
             "master-key-" + Math.random().toString(36).substring(2, 15),
         },

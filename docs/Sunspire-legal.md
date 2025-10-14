@@ -129,7 +129,7 @@ Date: \***\*\*\*\*\***\_\_\_\***\*\*\*\*\***
 
 - [ ] Monthly License ($[AMOUNT]/month)
 - [ ] Annual License ($[AMOUNT]/year) - Save 20%
-- [ ] Custom Enterprise Plan
+- [ ] Custom Plan
 
 **Setup Services:**
 

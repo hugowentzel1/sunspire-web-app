@@ -120,7 +120,7 @@ export default function PricingPage() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-sm text-neutral-500 mt-6"
               >
-                Live on your site in 24 hours — setup fee refunded if not.
+                Live in 24 hours — or your setup fee is refunded..
               </motion.p>
 
               {/* Trust Row */}

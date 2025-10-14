@@ -119,10 +119,10 @@ export default function ReportCTAFooter({
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.98 }}
           role="button"
-          aria-label="Launch Your Branded Version"
+          aria-label="Launch Your Branded Version Now"
         >
           <span className="mr-2">⚡</span>
-          Launch Your Branded Version
+          Launch Your Branded Version Now
         </motion.button>
         
         <motion.a
@@ -139,7 +139,7 @@ export default function ReportCTAFooter({
 
       {/* Reassurance line */}
       <p className="text-sm text-gray-600 text-center mb-4" data-testid="report-cta-subtext">
-        $99/mo + $399 setup • Live on your site in 24 hours — setup fee refunded if not.
+        $99/mo + $399 setup • Live in 24 hours — or your setup fee is refunded..
       </p>
 
       {/* Utility actions row */}

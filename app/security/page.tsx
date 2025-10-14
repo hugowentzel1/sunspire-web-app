@@ -80,7 +80,7 @@ export default function SecurityPage() {
                   <span><strong>Privacy:</strong> Personal information protection</span>
                 </li>
               </ul>
-              <p className="mt-4 text-sm text-gray-600">SOC 2 reports are available to enterprise customers upon request.</p>
+              <p className="mt-4 text-sm text-gray-600">SOC 2 reports are available to customers upon request.</p>
             </div>
             </section>
 

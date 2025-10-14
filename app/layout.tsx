@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 import '@/components/ui/sunset-theme.css'
 import '@/src/styles/motion.css'
+import '@/styles/cta.css'
 
 // Optimize font loading to prevent CLS
 const inter = Inter({ 
