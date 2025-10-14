@@ -455,21 +455,21 @@ function HomeContent() {
             {/* Footer zone: centers the helper text vertically between button & bottom */}
             {isDemo && (
               <div className="h-12 md:h-14 flex items-center justify-center">
-                <div className="text-center text-sm text-red-600 font-semibold">
-                  {remaining > 0 ? (
-                    <>
-                      <p>Preview: {remaining} run{remaining===1?"":"s"} left.</p>
-                      <p>Expires in {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</p>
-                    </>
-                  ) : (
+                {remaining > 0 ? (
+                  <div className="text-center text-sm text-gray-500">
+                    <p>Preview: {remaining} run{remaining===1?"":"s"} left.</p>
+                    <p>Expires in {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</p>
+                  </div>
+                ) : (
+                  <div className="text-center text-sm text-red-600 font-semibold">
                     <p>
                       <span className="inline-flex items-center gap-2">
                         <span aria-hidden>🚫</span> Demo limit reached.
                       </span>
                       <span className="sm:ml-2">Launch to get full access</span>
                     </p>
-                  )}
-                </div>
+                  </div>
+                )}
               </div>
             )}
           </div>
