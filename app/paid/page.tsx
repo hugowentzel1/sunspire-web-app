@@ -400,7 +400,7 @@ function HomeContent() {
                       Powered by Google
                     </div>
                   </div>
-                  <p className="text-sm text-gray-500 mt-2">
+                  <p className="text-sm text-gray-500 mt-8">
                     We only use your address to estimate sun, rates, and savings. Nothing is shared.
                   </p>
                   {address &&
@@ -414,6 +414,7 @@ function HomeContent() {
                 </div>
 
                 {/* Generate Button - Now below the search bar */}
+                <div className="mt-14">
                 <button
                   onClick={
                     address && address.trim()
@@ -460,6 +461,7 @@ function HomeContent() {
                     </div>
                   )}
                 </button>
+                </div>
 
                 {isDemo && (
                   <div className="text-sm text-gray-500 text-center space-y-2">
