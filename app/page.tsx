@@ -424,6 +424,7 @@ function HomeContent() {
                 </div>
 
                 {/* Generate Button - Now below the search bar */}
+                <div className="mt-6">
                 <button 
                   onClick={address.trim() ? () => handleGenerateEstimate() : (b.enabled ? handleLaunchClick : () => handleGenerateEstimate())}
                   disabled={!address.trim() || isLoading} 
@@ -443,15 +444,15 @@ function HomeContent() {
                     <div className="flex items-center justify-center space-x-4">
                       <span>
                         {b.enabled 
-                           ? `Launch Your Branded Version Now`
-                          : "Launch Your Branded Version Now"
+                           ? `Generate Solar Report`
+                          : "Generate Solar Report"
                         }
                       </span>
                       <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
                     </div>
                   )}
                 </button>
-                
+                </div>
                 
                 {isDemo && (
                   <div className="text-sm text-gray-500 text-center space-y-2 mt-4">
@@ -463,7 +464,7 @@ function HomeContent() {
                     ) : (
                       <div className="text-red-600 font-semibold">
                         <p>🚫 Demo limit reached</p>
-                        <p>Contact us to get full access</p>
+                        <p>Launch to get full access</p>
                       </div>
                     )}
                   </div>

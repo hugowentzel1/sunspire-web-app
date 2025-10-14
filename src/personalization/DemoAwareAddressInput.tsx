@@ -52,7 +52,7 @@ export function DemoAwareAddressInput() {
           >
             {isDemo
               ? "Demo Mode - Address Disabled"
-              : "Generate Solar Intelligence Report"}
+              : "Generate Solar Report"}
           </button>
         </form>
 

@@ -90,28 +90,23 @@ export function DemoBanner() {
           display: "flex",
           alignItems: "center",
           gap: 8,
-          padding: "6px 12px",
-          background: "white",
+          padding: "8px 14px",
+          background: `color-mix(in srgb, var(--brand-primary, #2563eb) 8%, white)`,
           borderRadius: 8,
-          border: "1px solid #e5e7eb",
+          border: `1px solid color-mix(in srgb, var(--brand-primary, #2563eb) 20%, white)`,
         }}>
           <strong style={{ 
             whiteSpace: "nowrap", 
-            fontSize: 14,
-            color: "#111827",
-            fontWeight: 600
+            fontSize: 15,
+            color: "var(--brand-primary, #2563eb)",
+            fontWeight: 600,
+            fontVariantNumeric: "tabular-nums"
           }}>
-            Exclusive preview built for {b.brand}
+            Exclusive preview for {b.brand} — expires in {countdown.days}d {countdown.hours.toString().padStart(2, '0')}:{countdown.minutes.toString().padStart(2, '0')}:{countdown.seconds.toString().padStart(2, '0')}
           </strong>
         </div>
-        <ExpiryBadge
-          days={countdown.days}
-          hours={countdown.hours}
-          minutes={countdown.minutes}
-          seconds={countdown.seconds}
-        />
         <span style={{ 
-          fontSize: 13, 
+          fontSize: 15, 
           color: "#6B7280", 
           whiteSpace: "nowrap",
           fontWeight: 500
@@ -127,25 +122,6 @@ export function DemoBanner() {
       }}
       className="md:justify-end justify-center w-full md:w-auto"
       >
-        <button
-          className="btn"
-          onClick={open}
-          style={{ 
-            fontSize: 13,
-            padding: "8px 14px",
-            whiteSpace: "nowrap",
-            fontWeight: 600,
-            background: "linear-gradient(180deg, var(--brand-primary, #2563eb) 0%, color-mix(in srgb, var(--brand-primary, #2563eb) 90%, black 10%) 100%)",
-            color: "white",
-            border: "none",
-            borderRadius: 8,
-            cursor: "pointer",
-            boxShadow: "0 1px 2px rgba(0, 0, 0, 0.08)",
-            transition: "all 0.15s ease"
-          }}
-        >
-          Launch Your Branded Version Now
-        </button>
         <button 
           className="btn" 
           onClick={copy}
@@ -162,7 +138,7 @@ export function DemoBanner() {
             transition: "all 0.15s ease"
           }}
         >
-          Copy link
+          Copy demo link
         </button>
         <button 
           onClick={() => setClosed(true)} 
