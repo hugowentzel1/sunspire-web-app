@@ -542,7 +542,7 @@ function HomeContent() {
               <div className="text-center space-y-8">
                 <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Launch on Your Domain Now</h2>
                 <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
-                  <span>• Live on your domain in 24 hours</span>
+                  <span>• &lt;24h setup</span>
                   <span>• CRM integrations</span>
                   <span>• Ongoing support</span>
                 </div>
