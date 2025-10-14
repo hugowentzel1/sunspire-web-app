@@ -443,7 +443,7 @@ function HomeContent() {
                     <div className="flex items-center justify-center space-x-4">
                       <span>
                         {b.enabled 
-                           ? (address.trim() ? `Launch My Branded Tool` : `Start Activation — Demo Expires Soon`)
+                           ? `Start Activation — Demo Expires Soon`
                           : "Generate Solar Intelligence Report"
                         }
                       </span>
