@@ -16,7 +16,7 @@ export default function BottomCtaBand({
   const isReport = variant === 'report';
 
   const title = isReport
-    ? 'Ready to Launch Your Branded, Customer-Facing Tool?'
+    ? 'Ready to Activate Your Branded, Customer-Facing Tool?'
     : 'Start Activation — Demo Expires Soon';
 
   const subtext = isReport
@@ -24,7 +24,7 @@ export default function BottomCtaBand({
     : 'Go live in under 24 hours with branded solar quotes on your own domain.';
 
   const buttonLabel = isReport
-    ? 'Launch on Your Domain — $99/mo + $399 setup'
+    ? 'Activate on Your Domain'
     : 'Start Activation — Demo Expires Soon';
 
   // Show comparison for report variant
@@ -58,7 +58,7 @@ export default function BottomCtaBand({
         </div>
 
         <p className="text-sm text-white/90 mb-5">
-          Live on your site in 24 hours — setup fee refunded if not.
+          $99/mo + $399 setup • Live on your site in 24 hours — setup fee refunded if not.
         </p>
 
         {comparisonLine && (
