@@ -36,7 +36,7 @@ const QUOTES: Quote[] = [
   },
   {
     quote:
-      "Our sales team stopped chasing unqualified leads. Sunspire filters out tire-kickers before we waste a minute.",
+      "Every consultation we book now is with a serious buyer. Game-changer for how we spend our time.",
     name: "Noah Jones",
     role: "Founder",
     orgLine: "Arizona EPC",
