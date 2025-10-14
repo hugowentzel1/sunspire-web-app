@@ -24,7 +24,7 @@ export default function BottomCtaBand({
     : 'Go live in under 24 hours with branded solar quotes on your own domain.';
 
   const buttonLabel = isReport
-    ? 'Launch on Your Domain'
+    ? 'Launch on Your Domain — $99/mo + $399 setup'
     : 'Start Activation — Demo Expires Soon';
 
   // Show comparison for report variant
@@ -46,7 +46,7 @@ export default function BottomCtaBand({
         </h2>
         <p className="text-base md:text-lg opacity-90 mb-6">{subtext}</p>
 
-        <div className="mb-3">
+        <div className="mb-4">
           <Link
             href={onClickPath}
             aria-label={buttonLabel}
@@ -56,10 +56,6 @@ export default function BottomCtaBand({
             {buttonLabel}
           </Link>
         </div>
-
-       <p className="text-sm text-white/90 mb-3">
-         $99/mo + $399 setup • Live on your site in 24 hours — setup fee refunded if not.
-       </p>
 
         {comparisonLine && (
           <p className="text-sm md:text-base opacity-90" data-testid="bottom-cta-footer">
