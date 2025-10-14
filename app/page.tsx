@@ -400,7 +400,7 @@ function HomeContent() {
                 <p className="text-gray-600">Get a comprehensive solar analysis tailored to your specific location</p>
               </div>
 
-              <div className="space-y-6">
+              <div>
                 {/* Address Input - Show for both demo and regular modes */}
                 <div className="w-full max-w-2xl mx-auto">
                   <div className="relative">
@@ -424,7 +424,7 @@ function HomeContent() {
                 </div>
 
                 {/* Generate Button - Now below the search bar */}
-                <div className="mt-8">
+                <div className="mt-16">
                 <button 
                   onClick={address.trim() ? () => handleGenerateEstimate() : (b.enabled ? handleLaunchClick : () => handleGenerateEstimate())}
                   disabled={!address.trim() || isLoading} 
