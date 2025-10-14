@@ -396,10 +396,10 @@ function HomeContent() {
           <div className="mx-auto w-full max-w-3xl rounded-3xl bg-white shadow-lg ring-1 ring-black/5 px-6 sm:px-8 py-8 md:py-10 flex flex-col space-y-6 md:space-y-7 section-spacing slide-up-fade">
             {/* Title + subtitle */}
             <div className="text-center space-y-2">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+              <h2 className="text-2xl font-bold text-gray-900">
                 Enter Your Property Address
               </h2>
-              <p className="text-base md:text-lg text-muted-foreground">
+              <p className="text-gray-600">
                 Get a comprehensive solar analysis tailored to your specific location
               </p>
             </div>
