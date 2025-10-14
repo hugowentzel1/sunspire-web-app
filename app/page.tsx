@@ -427,10 +427,10 @@ function HomeContent() {
                 onClick={address.trim() ? () => handleGenerateEstimate() : (b.enabled ? handleLaunchClick : () => handleGenerateEstimate())}
                 disabled={!address.trim() || isLoading} 
                 data-cta-button
-                className={`w-full h-16 rounded-2xl px-6 text-lg font-semibold shadow-md flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white ${
+                className={`w-full inline-cta ${
                   !address.trim() || isLoading 
-                    ? 'opacity-50 cursor-not-allowed' 
-                    : 'cursor-pointer'
+                    ? 'btn-disabled' 
+                    : 'btn-cta'
                 }`} 
               >
                 {isLoading ? (
