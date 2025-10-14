@@ -22,7 +22,7 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      "Saved 14 hours/week on manual quotes. Now every lead gets an instant response — while competitors are still 'checking.'",
+      "We respond instantly now — competitors are still saying 'I'll check and get back to you.'",
     name: "Noah Jones",
     role: "Founder, Arizona EPC",
   },
