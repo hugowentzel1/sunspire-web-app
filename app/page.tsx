@@ -377,7 +377,7 @@ function HomeContent() {
             <div className="space-y-6">
               
               {/* SUNSPIRE: DEMO HERO copy (replace H1 + subhead) */}
-              <h1 className="text-5xl md:text-7xl font-black text-gray-900 leading-tight">
+              <h1 className="text-6xl md:text-8xl font-black text-gray-900 leading-tight">
                 Your Branded Solar Quote Tool — Live on Your Site in 24 Hours.
               </h1>
               
@@ -394,7 +394,7 @@ function HomeContent() {
 
           {/* Address Input Section - Exact match to c548b88 */}
           <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-3xl mx-auto section-spacing slide-up-fade">
-            <div className="space-y-6">
+            <div className="flex flex-col justify-center min-h-[400px]">
               <div className="text-center space-y-4">
                 <h2 className="text-2xl font-bold text-gray-900">Enter Your Property Address</h2>
                 <p className="text-gray-600">Get a comprehensive solar analysis tailored to your specific location</p>
@@ -455,7 +455,7 @@ function HomeContent() {
                 </div>
                 
                 {isDemo && (
-                  <div className="text-sm text-gray-500 text-center space-y-2 mt-4">
+                  <div className="text-sm text-gray-500 text-center space-y-2">
                     {remaining > 0 ? (
                       <>
                         <p>Preview: {remaining} run{remaining===1?"":"s"} left.</p>
