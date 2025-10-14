@@ -144,7 +144,7 @@ export function DemoBanner() {
             transition: "all 0.15s ease"
           }}
         >
-          Activate Your Demo
+          Activate on {b.brand || "your domain"}
         </button>
         <button 
           className="btn" 
