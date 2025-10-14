@@ -44,7 +44,7 @@ export default function BottomCtaBand({
         <h2 id="cta-band-title" className="text-2xl md:text-3xl font-extrabold tracking-[-0.02em] mb-4">
           {title}
         </h2>
-        <p className="text-base md:text-lg opacity-90 mb-6">{subtext}</p>
+        <p className="text-base md:text-lg opacity-90 mb-4">{subtext}</p>
 
         <div className="mb-4">
           <Link
