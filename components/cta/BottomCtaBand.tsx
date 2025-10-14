@@ -46,7 +46,7 @@ export default function BottomCtaBand({
         </h2>
         <p className="text-base md:text-lg opacity-90 mb-6">{subtext}</p>
 
-        <div className="mb-4">
+        <div className="mb-3">
           <Link
             href={onClickPath}
             aria-label={buttonLabel}
@@ -56,6 +56,10 @@ export default function BottomCtaBand({
             {buttonLabel}
           </Link>
         </div>
+
+        <p className="text-sm text-white/90 mb-3">
+          Live on your site in 24 hours — setup fee refunded if not.
+        </p>
 
         {comparisonLine && (
           <p className="text-sm md:text-base opacity-90" data-testid="bottom-cta-footer">
