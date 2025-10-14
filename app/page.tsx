@@ -455,14 +455,14 @@ function HomeContent() {
                 </div>
                 
                 {isDemo && (
-                  <div className="text-sm text-gray-500 text-center space-y-2 flex items-center justify-center" style={{ minHeight: "80px", marginTop: "24px" }}>
+                  <div className="text-sm text-gray-500 text-center mt-4">
                     {remaining > 0 ? (
-                      <>
+                      <div className="space-y-2">
                         <p>Preview: {remaining} run{remaining===1?"":"s"} left.</p>
                         <p>Expires in {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</p>
-                      </>
+                      </div>
                     ) : (
-                      <div className="text-red-600 font-semibold">
+                      <div className="text-red-600 font-semibold flex flex-col items-center justify-center" style={{ height: "60px" }}>
                         <p>🚫 Demo limit reached</p>
                         <p>Launch to get full access</p>
                       </div>
