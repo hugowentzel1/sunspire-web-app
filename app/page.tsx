@@ -393,84 +393,80 @@ function HomeContent() {
           </div>
 
           {/* Address Input Section - Exact match to c548b88 */}
-          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-3xl mx-auto section-spacing slide-up-fade">
-            <div className="space-y-6">
-              <div className="text-center space-y-4">
-                <h2 className="text-2xl font-bold text-gray-900">Enter Your Property Address</h2>
-                <p className="text-gray-600">Get a comprehensive solar analysis tailored to your specific location</p>
-              </div>
-
-              <div className="space-y-6">
-                {/* Address Input - Show for both demo and regular modes */}
-                <div className="w-full max-w-2xl mx-auto">
-                  <div className="relative">
-                    <AddressAutocomplete 
-                      value={address}
-                      onChange={setAddress}
-                      onSelect={handleAddressSelect}
-                      data-testid="demo-address-input"
-                      placeholder={b.city && b.city !== 'undefined' ? `Start typing an address in ${b.city}...` : "Start typing your property address..."}
-                      className="w-full"
-                    />
-                    {isDemo && (
-                      <div 
-                        className="pointer-events-none absolute right-3 -bottom-5 text-[11px] text-gray-400"
-                        data-testid="demo-powered-by-google"
-                      >
-                        Powered by Google
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                {/* Generate Button - Now below the search bar */}
-                <div style={{ marginTop: "24px" }}>
-                <button 
-                  onClick={address.trim() ? () => handleGenerateEstimate() : (b.enabled ? handleLaunchClick : () => handleGenerateEstimate())}
-                  disabled={!address.trim() || isLoading} 
-                  data-cta-button
-                  className={`w-full inline-cta ${
-                    !address.trim() || isLoading 
-                      ? 'btn-disabled' 
-                      : 'btn-cta'
-                  }`} 
-                >
-                  {isLoading ? (
-                    <div className="flex items-center justify-center space-x-4">
-                      <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                      <span>Analyzing Your Property...</span>
-                    </div>
-                  ) : (
-                    <div className="flex items-center justify-center space-x-4">
-                      <span>
-                        {b.enabled 
-                           ? `Generate Solar Report`
-                          : "Generate Solar Report"
-                        }
-                      </span>
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-                    </div>
-                  )}
-                </button>
-                </div>
-                
-                {isDemo && (
-                  <div className="text-sm text-gray-500 text-center space-y-2 mt-5">
-                    {remaining > 0 ? (
-                      <>
-                        <p>Preview: {remaining} run{remaining===1?"":"s"} left.</p>
-                        <p>Expires in {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</p>
-                      </>
-                    ) : (
-                      <div className="text-red-600 font-semibold">
-                        <p>🚫 Demo limit reached</p>
-                        <p>Launch to get full access</p>
-                      </div>
-                    )}
-                  </div>
-                )}
-              </div>
+          <div className="mx-auto w-full max-w-3xl rounded-3xl bg-white shadow-lg ring-1 ring-black/5 px-6 sm:px-8 py-8 md:py-10 flex flex-col space-y-6 md:space-y-7 section-spacing slide-up-fade">
+            {/* Title + subtitle */}
+            <div className="text-center space-y-2">
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+                Enter Your Property Address
+              </h2>
+              <p className="text-base md:text-lg text-muted-foreground">
+                Get a comprehensive solar analysis tailored to your specific location
+              </p>
             </div>
+
+            {/* Input + 'Powered by Google' */}
+            <div className="space-y-1.5">
+              <AddressAutocomplete 
+                value={address}
+                onChange={setAddress}
+                onSelect={handleAddressSelect}
+                data-testid="demo-address-input"
+                placeholder={b.city && b.city !== 'undefined' ? `Start typing an address in ${b.city}...` : "Start typing your property address..."}
+                className="w-full h-12 md:h-12"
+              />
+              {isDemo && (
+                <div className="flex justify-end">
+                  <span className="text-xs text-muted-foreground/80">Powered by Google</span>
+                </div>
+              )}
+            </div>
+
+            {/* CTA — nudged slightly down */}
+            <div className="mt-2 md:mt-3">
+              <button 
+                onClick={address.trim() ? () => handleGenerateEstimate() : (b.enabled ? handleLaunchClick : () => handleGenerateEstimate())}
+                disabled={!address.trim() || isLoading} 
+                data-cta-button
+                className={`w-full h-16 rounded-2xl px-6 text-lg font-semibold shadow-md flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white ${
+                  !address.trim() || isLoading 
+                    ? 'opacity-50 cursor-not-allowed' 
+                    : 'cursor-pointer'
+                }`} 
+              >
+                {isLoading ? (
+                  <>
+                    <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    <span>Analyzing Your Property...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Generate Solar Report</span>
+                    <svg className="size-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                  </>
+                )}
+              </button>
+            </div>
+
+            {/* Footer zone: centers the helper text vertically between button & bottom */}
+            {isDemo && (
+              <div className="h-12 md:h-14 flex items-center justify-center">
+                <div className="text-center text-sm text-red-600/90">
+                  {remaining > 0 ? (
+                    <>
+                      <p>Preview: {remaining} run{remaining===1?"":"s"} left.</p>
+                      <p>Expires in {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</p>
+                    </>
+                  ) : (
+                    <p>
+                      <span className="inline-flex items-center gap-2">
+                        <span aria-hidden>🚫</span> Demo limit reached
+                      </span>
+                      <span className="sm:ml-2">Launch to get full access</span>
+                    </p>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Quotes - Social Proof Grid */}
