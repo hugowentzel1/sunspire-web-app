@@ -393,7 +393,6 @@ function HomeContent() {
                       className="w-full"
                       aria-label="Enter Your Property Address"
                     />
-                    <div 
                   </div>
                   <p className="text-sm text-gray-500 mt-2">
                     We only use your address to estimate sun, rates, and savings. Nothing is shared.
