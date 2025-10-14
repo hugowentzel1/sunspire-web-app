@@ -36,7 +36,7 @@ const QUOTES: Quote[] = [
   },
   {
     quote:
-      "ROI in 9 days. Now we only talk to pre-qualified prospects — no more wasting hours on tire-kickers.",
+      "Paid for itself in 9 days. My sales team finally stopped wasting time on leads who were never going to buy.",
     name: "Noah Jones",
     role: "Founder",
     orgLine: "Arizona EPC",
