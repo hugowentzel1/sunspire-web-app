@@ -36,7 +36,7 @@ const QUOTES: Quote[] = [
   },
   {
     quote:
-      "We respond instantly now — competitors are still saying 'I'll check and get back to you.'",
+      "Our sales team stopped chasing unqualified leads. Sunspire filters out tire-kickers before we waste a minute.",
     name: "Noah Jones",
     role: "Founder",
     orgLine: "Arizona EPC",
