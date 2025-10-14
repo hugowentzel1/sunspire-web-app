@@ -22,7 +22,7 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      "Best $99/mo we've ever spent. Customers assume we're a multi-million dollar operation now.",
+      "Best $99/mo we've ever spent. Customers think we built this software in-house — looks that professional.",
     name: "Noah Jones",
     role: "Founder, Arizona EPC",
   },
