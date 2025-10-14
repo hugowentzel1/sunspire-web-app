@@ -22,7 +22,7 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      "Paid for itself in 9 days. My sales team finally stopped wasting time on leads who were never going to buy.",
+      "Saved 14 hours/week on manual quotes. Now every lead gets an instant response — while competitors are still 'checking.'",
     name: "Noah Jones",
     role: "Founder, Arizona EPC",
   },
