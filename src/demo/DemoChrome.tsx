@@ -144,7 +144,7 @@ export function DemoBanner() {
             transition: "all 0.15s ease"
           }}
         >
-          Launch For Your Customers
+          Activate for Your Customers
         </button>
         <button 
           className="btn" 
