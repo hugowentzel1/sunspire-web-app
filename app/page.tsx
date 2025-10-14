@@ -455,13 +455,13 @@ function HomeContent() {
 
             {/* Footer — fixed small height, vertically centers the gray text */}
             {isDemo && (
-              <div className="mt-2 md:mt-3 h-9 md:h-10 flex items-center justify-center">
-                {remaining > 0 ? (
-                  <div className="text-center text-sm text-gray-500">
-                    <p>Preview: {remaining} run{remaining===1?"":"s"} left.</p>
-                    <p>Expires in {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</p>
-                  </div>
-                ) : (
+           <div className="mt-4 md:mt-5 h-9 md:h-10 flex items-center justify-center">
+             {remaining > 0 ? (
+               <div className="text-center text-sm text-gray-500">
+                 <p>Preview: {remaining} run{remaining===1?"":"s"} left.</p>
+                 <p>Expires in {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</p>
+               </div>
+             ) : (
                   <div className="text-center text-sm text-red-600 font-semibold">
                     <p>
                       <span className="inline-flex items-center gap-2">
