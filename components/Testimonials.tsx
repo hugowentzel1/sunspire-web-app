@@ -58,12 +58,12 @@ export default function Testimonials() {
           data-testid="testimonial-card"
         >
           <blockquote>
-            <p className="text-gray-900 text-[17px] leading-snug mb-5 max-w-[62ch]">
+            <p className="text-gray-900 text-[17px] leading-snug mb-4 max-w-[62ch]">
               &ldquo;{q.quote}&rdquo;
             </p>
           </blockquote>
 
-          <figcaption className="flex flex-col items-center text-center gap-3">
+          <figcaption className="flex flex-col items-center text-center gap-2.5">
             <div className="flex items-center justify-center gap-3 w-full">
               <AvatarInitials name={q.name} size={40} variant="duo" />
               <div className="text-gray-900 font-semibold leading-5 flex items-center">
