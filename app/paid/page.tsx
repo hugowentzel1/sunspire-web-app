@@ -686,7 +686,7 @@ function HomeContent() {
                 </div>
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                    Cancel? — Yes, setup-fee refund if not live in 24 hours
+                    Cancel? — Yes, cancel anytime. Setup fee refunded if not live in 24 hours
                   </h3>
                   <p className="text-gray-600">
                     No long-term contracts. Cancel anytime.

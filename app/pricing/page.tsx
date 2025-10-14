@@ -65,7 +65,7 @@ export default function PricingPage() {
     },
     {
       q: 'Cancel & refund policy',
-      a: 'Live on your domain in 24 hours. Cancel anytime. No lock-in.'
+      a: 'Refund applies to the setup fee only if your branded site isn\'t live on your domain within 24 hours of purchase. Cancel anytime. No lock-in.'
     },
     {
       q: 'Support',
@@ -120,7 +120,7 @@ export default function PricingPage() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="text-sm text-neutral-500 mt-6"
               >
-                $99/mo + $399 setup • Live on your site in 24 hours or we refund the setup fee
+                Live on your site in 24 hours — setup fee refunded if not.
               </motion.p>
 
               {/* Trust Row */}

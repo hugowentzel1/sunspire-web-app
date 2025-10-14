@@ -7,7 +7,7 @@ test('demo hero copy updated (H1 + subhead) and single CTA present', async ({ pa
   await expect(page.locator('p').first()).toContainText('instant, fully-branded');
   // Single outcome-first CTA
   await expect(page.getByTestId('demo-cta-group')).toBeVisible();
-  await expect(page.getByTestId('demo-cta-activate')).toHaveText(/Launch on Your Domain/i);
+  await expect(page.getByTestId('demo-cta-activate')).toHaveText(/Start Activation.*Demo Expires Soon/i);
   // No secondary CTA expected
   const secondary = page.getByTestId('demo-cta-secondary');
   await expect(secondary).toHaveCount(0);

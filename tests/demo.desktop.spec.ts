@@ -14,7 +14,7 @@ test.describe("DEMO — desktop experience", () => {
     const ctaGroup = page.getByTestId("demo-cta-group");
     await expect(ctaGroup).toBeVisible();
     await expect(ctaGroup.getByRole("button")).toHaveCount(1);
-    await expect(page.getByTestId("demo-cta-activate")).toHaveText(/Launch on Your Domain in 24 Hours/i);
+    await expect(page.getByTestId("demo-cta-activate")).toHaveText(/Start Activation.*Demo Expires Soon/i);
 
     // Disclaimer includes company
     await expect(page.getByTestId("demo-disclaimer")).toContainText(/Private demo for google/i);

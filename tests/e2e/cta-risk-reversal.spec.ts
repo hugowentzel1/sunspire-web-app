@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 test("Home hero purchase CTA has risk-reversal", async ({ page }) => {
   await page.goto("/");
-  const cta = page.getByRole("button", { name: /Launch on Your Domain in 24 Hours/i });
+  const cta = page.getByRole("button", { name: /Start Activation.*Demo Expires Soon/i });
   await expect(cta).toBeVisible();
   const reassurance = page.locator("text=14-day money-back guarantee. Cancel anytime.");
   await expect(reassurance).toBeVisible();

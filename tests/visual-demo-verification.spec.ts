@@ -56,7 +56,7 @@ test.describe("Visual Demo Verification - Full Branding", () => {
     // 10. Verify CTA button is visible with correct text
     const ctaButton = page.getByTestId("demo-cta-activate");
     await expect(ctaButton).toBeVisible();
-    await expect(ctaButton).toContainText(/Launch on Your Domain/i);
+    await expect(ctaButton).toContainText(/Start Activation.*Demo Expires Soon/i);
 
     // 11. Take a screenshot for visual verification
     await page.screenshot({ path: 'test-results/google-demo-visual.png', fullPage: true });

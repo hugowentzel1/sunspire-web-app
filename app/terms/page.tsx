@@ -69,7 +69,7 @@ export default function TermsPage() {
             <section className="mb-8">
               <h2 id="refunds" className="text-2xl font-bold text-gray-900 mb-4">6. Refunds & Guarantee</h2>
         <p className="text-gray-600 mb-4" id="guarantee">
-          We guarantee your branded Sunspire site will be live on your domain within 24 hours of purchase. If it isn&apos;t, you may request a refund of the one-time setup fee within 7 days by emailing <strong>support@getsunspire.com</strong>. Subscription fees are cancel-anytime and non-refundable except where required by law.
+          We guarantee your branded Sunspire site will be live on your domain within 24 hours of purchase. If it isn&apos;t, you may request a <a href="/legal/refund" className="text-[var(--brand-primary)] hover:underline">refund of the one-time setup fee</a> within 7 days by emailing <strong>support@getsunspire.com</strong>. Subscription fees are cancel-anytime and non-refundable, except where required by law. Chargebacks or violations of these Terms void eligibility.
         </p>
         <p className="text-gray-600">
           For complete details, see our <a href="/legal/refund" className="text-[var(--brand-primary)] hover:underline">Refund Policy</a>.
