@@ -424,7 +424,7 @@ function HomeContent() {
                 </div>
 
                 {/* Generate Button - Now below the search bar */}
-                <div className="mt-6">
+                <div className="mt-8">
                 <button 
                   onClick={address.trim() ? () => handleGenerateEstimate() : (b.enabled ? handleLaunchClick : () => handleGenerateEstimate())}
                   disabled={!address.trim() || isLoading} 
