@@ -96,7 +96,7 @@ export default function SignupPage() {
             
             <div className="mt-6 text-center">
               <p className="text-sm text-gray-500">
-                $99/mo + $399 setup • Launch now — live on your domain in 24 hours.
+                $99/mo + $399 setup • Live on your site in 24 hours or we refund the setup fee
               </p>
             </div>
           </div>

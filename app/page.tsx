@@ -351,7 +351,7 @@ function HomeContent() {
          Launch on Your Domain Now
        </button>
        <p className="text-sm text-gray-600 mt-6">
-         $99/mo + $399 setup • Launch now — live on your domain in 24 hours.
+         $99/mo + $399 setup • Live on your site in 24 hours or we refund the setup fee
        </p>
                 </div>
               </div>
@@ -559,7 +559,7 @@ function HomeContent() {
          Launch on Your Domain Now
        </button>
        <p className="text-sm text-slate-500 mt-2">
-         $99/mo + $399 setup • Launch now — live on your domain in 24 hours.
+         $99/mo + $399 setup • Live on your site in 24 hours or we refund the setup fee
        </p>
               </div>
             </div>
