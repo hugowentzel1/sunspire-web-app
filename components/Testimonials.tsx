@@ -36,7 +36,7 @@ const QUOTES: Quote[] = [
   },
   {
     quote:
-      "Best $99/mo we've ever spent. Customers think we built this software in-house — looks that professional.",
+      "Best $99/mo we've spent. Customers think we built this ourselves — completely white-labeled and professional.",
     name: "Noah Jones",
     role: "Founder",
     orgLine: "Arizona EPC",
@@ -66,7 +66,7 @@ export default function Testimonials() {
           <figcaption className="flex flex-col items-center text-center gap-3">
             <div className="flex items-center justify-center gap-3 w-full">
               <AvatarInitials name={q.name} size={40} variant="duo" />
-              <div className="text-gray-900 font-semibold leading-5">
+              <div className="text-gray-900 font-semibold leading-5 flex items-center">
                 {q.name}
               </div>
             </div>

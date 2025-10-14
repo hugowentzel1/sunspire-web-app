@@ -146,7 +146,7 @@ export default function PricingPage() {
               className="text-center py-6 border-y border-neutral-200/60"
             >
               <p className="text-sm italic text-neutral-600">
-                &ldquo;Cut quoting time from 15 min to 1 min — we now respond faster than local competitors.&rdquo; — Brian Martin, Owner, 25-employee solar firm, CA
+                &ldquo;We were losing deals to faster competitors, now we respond in 60 seconds and win instead.&rdquo; — Brian Martin, Owner, 25-employee solar firm, CA
               </p>
             </motion.div>
 
