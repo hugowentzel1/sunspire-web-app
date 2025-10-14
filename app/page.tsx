@@ -453,7 +453,6 @@ function HomeContent() {
                   )}
                 </button>
                 </div>
-                </div>
                 
                 {isDemo && (
                   <div className="text-sm text-gray-500 text-center space-y-2 mt-5">
