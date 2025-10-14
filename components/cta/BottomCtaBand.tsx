@@ -41,12 +41,12 @@ export default function BottomCtaBand({
       data-testid="bottom-cta-band"
     >
       <div className="max-w-4xl mx-auto text-center">
-        <h2 id="cta-band-title" className="text-2xl md:text-3xl font-extrabold tracking-[-0.02em] mb-4">
+        <h2 id="cta-band-title" className="text-2xl md:text-3xl font-extrabold tracking-[-0.02em] mb-6">
           {title}
         </h2>
-        <p className="text-base md:text-lg opacity-90 mb-3">{subtext}</p>
+        <p className="text-base md:text-lg opacity-90 mb-6">{subtext}</p>
 
-        <div className="mb-4">
+        <div className="mb-5">
           <Link
             href={onClickPath}
             aria-label={buttonLabel}
@@ -57,7 +57,7 @@ export default function BottomCtaBand({
           </Link>
         </div>
 
-        <p className="text-sm text-white/90 mb-4">
+        <p className="text-sm text-white/90 mb-5">
           Live on your site in 24 hours — setup fee refunded if not.
         </p>
 
