@@ -377,7 +377,7 @@ function HomeContent() {
             <div className="space-y-6">
               
               {/* SUNSPIRE: DEMO HERO copy (replace H1 + subhead) */}
-              <h1 className="text-5xl md:text-7xl font-black text-gray-900 leading-tight">
+              <h1 className="text-4xl md:text-6xl font-bold text-gray-900 leading-tight">
                 Your Branded Solar Quote Tool — Live on Your Site in 24 Hours.
               </h1>
               

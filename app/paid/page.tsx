@@ -375,7 +375,7 @@ function HomeContent() {
                     htmlFor="address-input"
                     className="block text-sm font-medium text-gray-700 mb-2"
                   >
-                    Enter Your Property Address
+                    Property Address
                   </label>
                   <div className="relative">
                     <AddressAutocomplete
