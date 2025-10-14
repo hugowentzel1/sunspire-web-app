@@ -393,36 +393,37 @@ function HomeContent() {
           </div>
 
           {/* Address Input Section - Exact match to c548b88 */}
-          <div className="mx-auto w-full max-w-3xl rounded-3xl bg-white shadow-lg ring-1 ring-black/5 px-6 sm:px-8 py-8 md:py-10 flex flex-col space-y-6 md:space-y-7 section-spacing slide-up-fade">
-            {/* Title + subtitle */}
-            <div className="text-center space-y-2">
-              <h2 className="text-2xl font-bold text-gray-900">
-                Enter Your Property Address
-              </h2>
-              <p className="text-gray-600">
-                Get a comprehensive solar analysis tailored to your specific location
-              </p>
-            </div>
+          <div className="mx-auto w-full max-w-3xl rounded-3xl bg-white shadow-lg ring-1 ring-black/5 px-6 sm:px-8 pt-8 md:pt-10 pb-6 md:pb-7 flex flex-col section-spacing slide-up-fade">
+            {/* Top content stack */}
+            <div className="space-y-6 md:space-y-7">
+              {/* Title + subtitle */}
+              <div className="text-center space-y-2">
+                <h2 className="text-2xl font-bold text-gray-900">
+                  Enter Your Property Address
+                </h2>
+                <p className="text-gray-600">
+                  Get a comprehensive solar analysis tailored to your specific location
+                </p>
+              </div>
 
-            {/* Input + 'Powered by Google' */}
-            <div className="space-y-1.5">
-              <AddressAutocomplete 
-                value={address}
-                onChange={setAddress}
-                onSelect={handleAddressSelect}
-                data-testid="demo-address-input"
-                placeholder={b.city && b.city !== 'undefined' ? `Start typing an address in ${b.city}...` : "Start typing your property address..."}
-                className="w-full h-12 md:h-12"
-              />
-              {isDemo && (
-                <div className="flex justify-end">
-                  <span className="text-[11px] text-gray-400">Powered by Google</span>
-                </div>
-              )}
-            </div>
+              {/* Input + 'Powered by Google' */}
+              <div className="space-y-1.5">
+                <AddressAutocomplete 
+                  value={address}
+                  onChange={setAddress}
+                  onSelect={handleAddressSelect}
+                  data-testid="demo-address-input"
+                  placeholder={b.city && b.city !== 'undefined' ? `Start typing an address in ${b.city}...` : "Start typing your property address..."}
+                  className="w-full h-12 md:h-12"
+                />
+                {isDemo && (
+                  <div className="flex justify-end">
+                    <span className="text-[11px] text-gray-400">Powered by Google</span>
+                  </div>
+                )}
+              </div>
 
-            {/* CTA — nudged slightly down */}
-            <div className="mt-2 md:mt-3">
+              {/* CTA button */}
               <button 
                 onClick={address.trim() ? () => handleGenerateEstimate() : (b.enabled ? handleLaunchClick : () => handleGenerateEstimate())}
                 disabled={!address.trim() || isLoading} 
@@ -452,9 +453,9 @@ function HomeContent() {
               </button>
             </div>
 
-            {/* Footer zone: centers the helper text vertically between button & bottom */}
+            {/* Footer — fixed small height, vertically centers the gray text */}
             {isDemo && (
-              <div className="h-12 md:h-14 flex items-center justify-center">
+              <div className="mt-2 md:mt-3 h-9 md:h-10 flex items-center justify-center">
                 {remaining > 0 ? (
                   <div className="text-center text-sm text-gray-500">
                     <p>Preview: {remaining} run{remaining===1?"":"s"} left.</p>
