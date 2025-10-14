@@ -394,13 +394,13 @@ function HomeContent() {
 
           {/* Address Input Section - Exact match to c548b88 */}
           <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-3xl mx-auto section-spacing slide-up-fade">
-            <div className="flex flex-col justify-center min-h-[400px]">
+            <div className="space-y-6">
               <div className="text-center space-y-4">
                 <h2 className="text-2xl font-bold text-gray-900">Enter Your Property Address</h2>
                 <p className="text-gray-600">Get a comprehensive solar analysis tailored to your specific location</p>
               </div>
 
-              <div>
+              <div className="space-y-6">
                 {/* Address Input - Show for both demo and regular modes */}
                 <div className="w-full max-w-2xl mx-auto">
                   <div className="relative">
@@ -424,7 +424,6 @@ function HomeContent() {
                 </div>
 
                 {/* Generate Button - Now below the search bar */}
-                <div style={{ marginTop: "40px" }}>
                 <button 
                   onClick={address.trim() ? () => handleGenerateEstimate() : (b.enabled ? handleLaunchClick : () => handleGenerateEstimate())}
                   disabled={!address.trim() || isLoading} 
@@ -452,10 +451,10 @@ function HomeContent() {
                     </div>
                   )}
                 </button>
-                </div>
+                
                 
                 {isDemo && (
-                  <div className="text-sm text-gray-500 text-center space-y-2">
+                  <div className="text-sm text-gray-500 text-center space-y-2 mt-4">
                     {remaining > 0 ? (
                       <>
                         <p>Preview: {remaining} run{remaining===1?"":"s"} left.</p>
