@@ -22,7 +22,7 @@ const TESTIMONIALS = [
   },
   {
     quote:
-      "Every consultation we book now is with a serious buyer. Game-changer for how we spend our time.",
+      "Best $99/mo we've ever spent. Customers assume we're a multi-million dollar operation now.",
     name: "Noah Jones",
     role: "Founder, Arizona EPC",
   },
