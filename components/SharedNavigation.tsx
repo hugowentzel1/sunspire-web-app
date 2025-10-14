@@ -186,9 +186,10 @@ export default function SharedNavigation() {
                 <Link href={createUrlWithParams("/support")} className="text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium">Support</Link>
                 <button 
                   onClick={handleLaunchClick}
-                  className="btn-primary ml-12"
+                  className="btn-primary ml-12 inline-flex items-center justify-center"
                 >
-                  Launch on Your Domain Now
+                  <span className="mr-3">⚡</span>
+                  <span>Start Activation — Demo Expires Soon</span>
                 </button>
               </>
             ) : (

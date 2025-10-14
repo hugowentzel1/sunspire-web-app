@@ -342,16 +342,16 @@ function HomeContent() {
          data-cta="primary"
          onClick={handleLaunchClick}
          data-cta-button
-         className="inline-flex items-center px-4 py-4 rounded-full text-sm font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer button-press mt-6" 
+         className="inline-flex items-center justify-center px-4 py-4 rounded-full text-sm font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer button-press mt-6" 
          style={{ backgroundColor: 'var(--brand-primary)' }}
-         aria-label="Launch on your domain now"
+         aria-label="Start activation — demo expires soon"
          data-testid="primary-cta-hero"
        >
-         <span className="mr-2">⚡</span>
-         Launch on Your Domain Now
+         <span className="mr-3">⚡</span>
+         <span>Start Activation — Demo Expires Soon</span>
        </button>
-       <p className="text-sm text-gray-600 mt-6">
-         $99/mo + $399 setup • Live on your site in 24 hours or we refund the setup fee
+       <p className="text-sm text-gray-600 mt-6" data-testid="microcopy-hero">
+         $99/mo + $399 setup • Live on your site in 24 hours — setup fee refunded if not.
        </p>
                 </div>
               </div>
@@ -443,7 +443,7 @@ function HomeContent() {
                     <div className="flex items-center justify-center space-x-4">
                       <span>
                         {b.enabled 
-                          ? (address.trim() ? `Launch My Branded Tool` : `Launch on Your Domain Now`)
+                           ? (address.trim() ? `Launch My Branded Tool` : `Start Activation — Demo Expires Soon`)
                           : "Generate Solar Intelligence Report"
                         }
                       </span>
@@ -540,7 +540,7 @@ function HomeContent() {
           <div className="max-w-4xl mx-auto py-12 md:py-16">
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg">
               <div className="text-center space-y-8">
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Launch on Your Domain Now</h2>
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Start Activation — Demo Expires Soon</h2>
                 <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
                   <span>• &lt;24h setup</span>
                   <span>• CRM integrations</span>
@@ -550,16 +550,16 @@ function HomeContent() {
          onClick={handleLaunchClick}
          data-cta="primary"
          data-cta-button
-         className="inline-flex items-center px-8 py-4 rounded-full text-lg font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer" 
+         className="inline-flex items-center justify-center px-8 py-4 rounded-full text-lg font-medium text-white border border-transparent shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer" 
          style={{ backgroundColor: 'var(--brand-primary)' }}
-         aria-label="Launch on your domain now"
+         aria-label="Start activation — demo expires soon"
          data-testid="primary-cta-bottom"
        >
-         <span className="mr-2">⚡</span>
-         Launch on Your Domain Now
+         <span className="mr-3">⚡</span>
+         <span>Start Activation — Demo Expires Soon</span>
        </button>
-       <p className="text-sm text-slate-500 mt-2">
-         $99/mo + $399 setup • Live on your site in 24 hours or we refund the setup fee
+       <p className="text-sm text-slate-500 mt-2" data-testid="microcopy-bottom">
+         $99/mo + $399 setup • Live on your site in 24 hours — setup fee refunded if not.
        </p>
               </div>
             </div>
@@ -622,8 +622,8 @@ function HomeContent() {
                   <p className="text-gray-600">Industry-standard data sources. <a href="/methodology" className="text-[var(--brand-primary)] hover:text-[var(--brand-primary)]/80 hover:underline font-medium transition-colors duration-200">View methodology</a>.</p>
                 </div>
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
-                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Setup time? — Live on your domain in 24 hours, no coding required</h3>
-                  <p className="text-gray-600">Quick setup with our one-line script embed or hosted option.</p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">Setup time? — Live on your site within 24 hours, no coding required</h3>
+                  <p className="text-gray-600">We handle the setup.</p>
                 </div>
                 <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50">
                   <h3 className="text-lg font-semibold text-gray-900 mb-2">CMS / Embed? — Yes, 1-line &lt;script&gt;. Hosted option too.</h3>
@@ -721,7 +721,7 @@ function HomeContent() {
       <SmartStickyCTA />
       
       <StickyCtaBar
-        label="Launch on Your Domain Now"
+         label="Start Activation — Demo Expires Soon"
         testId="sticky-demo-cta"
         className="sm:hidden"   // MOBILE-ONLY
       />

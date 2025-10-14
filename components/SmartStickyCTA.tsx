@@ -102,8 +102,8 @@ export default function SmartStickyCTA() {
         style={{ background: brand?.primary || 'var(--brand-600)' }}
         onClick={() => window.location.href = '/api/stripe/create-checkout-session'}
       >
-        <span className="icon-rocket" aria-hidden="true">🚀</span>
-        <span>Activate in 24h</span>
+        <span className="icon-rocket mr-3" aria-hidden="true">⚡</span>
+        <span>Start Activation — Demo Expires Soon</span>
       </button>
     </div>
   );

@@ -334,6 +334,9 @@ export default function LockOverlay() {
               boxShadow: "0 8px 32px rgba(0, 0, 0, 0.15)",
               transition: "all 0.2s ease",
               minWidth: "200px",
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
             }}
             onMouseOver={(e) => {
               e.currentTarget.style.transform = "translateY(-2px)";
@@ -346,7 +349,8 @@ export default function LockOverlay() {
                 "0 8px 32px rgba(0, 0, 0, 0.15)";
             }}
           >
-            Launch on Your Domain in 24 Hours
+            <span style={{ marginRight: '12px' }}>⚡</span>
+            <span>Start Activation — Demo Expires Soon</span>
           </button>
         </div>
 

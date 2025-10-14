@@ -59,9 +59,10 @@ export default function FooterCtaReveal() {
         <p className="text-center text-[14px] text-neutral-800 md:text-left">
           Ready to launch branded quotes on your domain?
         </p>
-        <button className="w-full rounded-xl bg-[#2F80ED] px-4 py-3 text-[14px] font-semibold text-white md:w-auto"
+        <button className="w-full inline-flex items-center justify-center rounded-xl bg-[#2F80ED] px-4 py-3 text-[14px] font-semibold text-white md:w-auto"
                 onClick={handleStripeCheckout}>
-          Launch on Your Domain Now
+          <span className="mr-3">⚡</span>
+          <span>Start Activation — Demo Expires Soon</span>
         </button>
       </div>
     </div>
