@@ -416,7 +416,7 @@ function HomeContent() {
               />
               {isDemo && (
                 <div className="flex justify-end">
-                  <span className="text-xs text-muted-foreground/80">Powered by Google</span>
+                  <span className="text-[11px] text-gray-400">Powered by Google</span>
                 </div>
               )}
             </div>
