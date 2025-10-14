@@ -89,7 +89,7 @@ export default function SupportPage() {
     },
     {
       question: "Is there a free trial?",
-      answer: "or your setup fee is refunded. if your branded site isn't live on your domain within 24 hours of purchase. Cancel anytime. See our Terms for details."
+      answer: "Setup fee refunded if your branded site isn't live on your domain within 24 hours of purchase. Cancel anytime. See our Terms for details."
     }
   ];
 

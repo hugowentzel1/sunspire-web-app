@@ -91,7 +91,7 @@ export function StripeCheckoutButton({
           <span>Processing...</span>
         </div>
       ) : (
-        children || `Get Started - ${getPlanPrice(plan)}`
+        children || `⚡ Launch Your Branded Version Now`
       )}
     </button>
   );

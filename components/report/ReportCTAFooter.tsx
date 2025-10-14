@@ -139,7 +139,7 @@ export default function ReportCTAFooter({
 
       {/* Reassurance line */}
       <p className="text-sm text-gray-600 text-center mb-4" data-testid="report-cta-subtext">
-        $99/mo + $399 setup • Live in 24 hours — or your setup fee is refunded..
+        $99/mo + $399 setup • Live in 24 hours — or your setup fee is refunded.
       </p>
 
       {/* Utility actions row */}

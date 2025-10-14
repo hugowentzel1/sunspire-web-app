@@ -15,7 +15,7 @@ export default function HeroCTA() {
           href="mailto:sales@sunspire.app?subject=White-label%20Demo"
           className="btn-sunset inline-block"
         >
-          Get Your White-Label Demo Today →
+          ⚡ Launch Your Branded Version Now
         </a>
       </div>
       <div className="p">Join 50+ solar companies already using Sunspire.</div>

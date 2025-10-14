@@ -18,7 +18,7 @@ export function DemoAwareCTA() {
               className="px-6 py-3 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 transition-colors shadow-md border border-orange-600"
               onClick={() => setIsModalOpen(true)}
             >
-              Put this on our site
+              ⚡ Launch Your Branded Version Now
             </button>
             <button
               className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg font-semibold hover:bg-gray-50 transition-colors"
@@ -36,7 +36,7 @@ export function DemoAwareCTA() {
         </div>
       ) : (
         <button className="px-6 py-3 bg-orange-500 text-white rounded-lg font-semibold hover:bg-orange-600 transition-colors">
-          Generate Solar Intelligence Report
+          ⚡ Launch Your Branded Version Now
         </button>
       )}
 
