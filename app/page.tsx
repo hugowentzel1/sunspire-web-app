@@ -448,7 +448,7 @@ function HomeContent() {
                 </button>
                 
                 {isDemo && (
-                  <div className="mt-3 h-12 md:h-14 flex flex-col items-center justify-center space-y-1">
+                  <div className="mt-8 h-12 md:h-14 flex flex-col items-center justify-center space-y-1">
                     {remaining > 0 ? (
                       <>
                         <p className="text-center text-sm text-gray-500">
