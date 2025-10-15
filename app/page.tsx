@@ -448,7 +448,7 @@ function HomeContent() {
                 </button>
                 
                 {isDemo && (
-                  <div className="text-sm text-gray-500 text-center space-y-2 mt-10">
+                  <div className="text-sm text-gray-500 text-center space-y-2 mt-14">
                     {remaining > 0 ? (
                       <>
                         <p>Preview: {remaining} run{remaining===1?"":"s"} left.</p>
