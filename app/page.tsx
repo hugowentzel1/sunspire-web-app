@@ -402,7 +402,7 @@ function HomeContent() {
 
               <div className="space-y-6">
                 {/* Address Input - Show for both demo and regular modes */}
-                <div className="w-full max-w-2xl mx-auto">
+                <div className="w-full max-w-2xl mx-auto space-y-1.5">
                   <AddressAutocomplete 
                     value={address}
                     onChange={setAddress}
@@ -411,6 +411,11 @@ function HomeContent() {
                     placeholder={b.city && b.city !== 'undefined' ? `Start typing an address in ${b.city}...` : "Start typing your property address..."}
                     className="w-full"
                   />
+                  {isDemo && (
+                    <div className="flex justify-end">
+                      <span className="text-[11px] text-gray-400">Powered by Google</span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Generate Button - Now below the search bar */}
