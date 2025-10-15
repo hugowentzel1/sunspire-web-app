@@ -420,11 +420,11 @@ function HomeContent() {
 
                 {/* Generate Button - Now below the search bar */}
                 <button 
-                  onClick={address.trim() ? () => handleGenerateEstimate() : (b.enabled ? handleLaunchClick : () => handleGenerateEstimate())}
-                  disabled={!address.trim() || isLoading} 
+                  onClick={address?.trim() ? () => handleGenerateEstimate() : (b.enabled ? handleLaunchClick : () => handleGenerateEstimate())}
+                  disabled={!address?.trim() || isLoading} 
                   data-cta-button
                   className={`w-full inline-cta ${
-                    !address.trim() || isLoading 
+                    !address?.trim() || isLoading 
                       ? 'btn-disabled' 
                       : 'btn-cta'
                   }`} 
