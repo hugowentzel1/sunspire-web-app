@@ -513,69 +513,10 @@ function ReportContent() {
       lng = pick.lng;
     }
 
-    // For demo mode or when we have coordinates, create a fallback estimate immediately
-    if (isDemo || (address && Number.isFinite(lat) && Number.isFinite(lng))) {
-      const fallbackEstimate = {
-        id: Date.now().toString(),
-        address: address || '123 Solar Street, San Diego, CA',
-        coordinates: { lat: lat || 32.7157, lng: lng || -117.1611 },
-        date: new Date(),
-        systemSizeKW: 8.6,
-        tilt: 20,
-        azimuth: 180,
-        losses: 14,
-        annualProductionKWh: {
-          estimate: 11105,
-          low: 9995,
-          high: 12216
-        },
-        monthlyProduction: Array(12).fill(1000),
-        solarIrradiance: 4.5,
-        grossCost: 25800,
-        netCostAfterITC: 18060,
-        year1Savings: {
-          estimate: 2254,
-          low: 2029,
-          high: 2480
-        },
-        paybackYear: 8,
-        npv25Year: 73000,
-        co2OffsetPerYear: 10200,
-        utilityRate: 0.14,
-        utilityRateSource: isDemo ? 'Demo' : 'Static',
-        tariff: 'Pacific Gas & Electric - E-1',
-        dataSource: 'NREL PVWatts v8',
-        shadingAnalysis: {
-          method: 'remote',
-          accuracy: 'high',
-          shadingFactor: 0.90,
-          annualShadingLoss: 10.0,
-          confidence: 0.92
-        },
-        assumptions: {
-          itcPercentage: 0.30,
-          costPerWatt: 3.00,
-          degradationRate: 0.005,
-          oandmPerKWYear: 22,
-          electricityRateIncrease: 0.025,
-          discountRate: 0.07,
-        },
-        cashflowProjection: Array.from({ length: 25 }, (_, i) => ({
-          year: i + 1,
-          production: Math.round(12000 * Math.pow(0.995, i)),
-          savings: Math.round(12000 * Math.pow(0.995, i) * 0.14),
-          cumulativeSavings: Math.round(12000 * 0.14 * (i + 1)),
-          netCashflow: Math.round(12000 * 0.14 * (i + 1) - 18060),
-        })),
-      };
-      
-      setEstimate(fallbackEstimate);
-      setIsLoading(false);
-      
-      // Try to fetch real estimate in background if we have coordinates
-      if (address && Number.isFinite(lat) && Number.isFinite(lng)) {
-        fetchEstimate(address, lat, lng, placeId, state);
-      }
+    // Always fetch real data - no fallback
+    if (address && Number.isFinite(lat) && Number.isFinite(lng)) {
+      setIsLoading(true);
+      fetchEstimate(address, lat, lng, placeId, state);
     } else {
       setError('Missing address or coordinates.');
       setIsLoading(false);
@@ -591,11 +532,28 @@ function ReportContent() {
     }, [searchParams, pickDemoAddress]);
 
   if (tenantLoading || isLoading) {
+    const loadingAddress = searchParams?.get('address') || 'your location';
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-gray-100 font-inter flex items-center justify-center">
-        <div className="text-center space-y-6">
+        <div className="text-center space-y-6 max-w-md px-4">
           <div className="w-16 h-16 border-4 rounded-full animate-spin mx-auto" style={{ borderColor: `${b.primary} transparent ${b.primary} transparent` }}></div>
-          <p className="text-xl font-semibold text-gray-900">Generating your solar intelligence report...</p>
+          <div>
+            <p className="text-xl font-semibold text-gray-900 mb-2">Analyzing Solar Potential</p>
+            <p className="text-sm text-gray-600">{loadingAddress}</p>
+          </div>
+          <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
+            <span className="inline-flex items-center gap-1.5">
+              <span>⚡</span> NREL PVWatts
+            </span>
+            <span>•</span>
+            <span className="inline-flex items-center gap-1.5">
+              <span>☀️</span> Shading Analysis
+            </span>
+            <span>•</span>
+            <span className="inline-flex items-center gap-1.5">
+              <span>💰</span> Live Rates
+            </span>
+          </div>
         </div>
       </div>
     );
