@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import dynamic from "next/dynamic";
-import { PlaceResult } from "@/lib/calc";
+import { PlaceResult } from "@/lib/types";
 import CookieBanner from "@/components/CookieBanner";
 import DisclaimerBar from "@/components/DisclaimerBar";
 import { useBrandTakeover } from "@/src/brand/useBrandTakeover";

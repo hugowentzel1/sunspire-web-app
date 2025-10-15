@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import dynamic from 'next/dynamic';
-import { PlaceResult } from '@/lib/calc';
+import { PlaceResult } from '@/lib/types';
 import LegalFooter from '@/components/legal/LegalFooter';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import HeroBrand from '@/src/brand/HeroBrand';

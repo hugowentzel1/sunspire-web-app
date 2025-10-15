@@ -1,0 +1,233 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - alert [ref=e2]: blockbuster — Solar Intelligence
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - generic [ref=e9]: ☀️
+          - generic [ref=e10]:
+            - heading "Blockbuster" [level=1] [ref=e11]
+            - paragraph [ref=e12]: Solar Intelligence
+        - navigation [ref=e13]:
+          - link "Pricing" [ref=e14] [cursor=pointer]:
+            - /url: /pricing?address=1600+Amphitheatre+Parkway%2C+Mountain+View%2C+CA&lat=40.7128&lng=-74.0060&placeId=demo&company=blockbuster&demo=1
+          - link "Partners" [ref=e15] [cursor=pointer]:
+            - /url: /partners?address=1600+Amphitheatre+Parkway%2C+Mountain+View%2C+CA&lat=40.7128&lng=-74.0060&placeId=demo&company=blockbuster&demo=1
+          - link "Support" [ref=e16] [cursor=pointer]:
+            - /url: /support?address=1600+Amphitheatre+Parkway%2C+Mountain+View%2C+CA&lat=40.7128&lng=-74.0060&placeId=demo&company=blockbuster&demo=1
+          - button "New Analysis" [ref=e17] [cursor=pointer]
+    - main [ref=e18]:
+      - generic [ref=e19]:
+        - link "Back to Home" [ref=e21] [cursor=pointer]:
+          - /url: /?address=1600+Amphitheatre+Parkway%2C+Mountain+View%2C+CA&lat=40.7128&lng=-74.0060&placeId=demo&company=blockbuster&demo=1
+          - img [ref=e22] [cursor=pointer]
+          - text: Back to Home
+        - heading "Your blockbuster Solar Quote (Live Preview)" [level=1] [ref=e25]:
+          - text: Your
+          - generic [ref=e26]: blockbuster
+          - text: Solar Quote
+          - generic [ref=e27]: (Live Preview)
+        - generic [ref=e28]:
+          - generic [ref=e29]:
+            - generic [ref=e32]: ☀️
+            - generic [ref=e33]:
+              - heading "New Analysis" [level=2] [ref=e34]
+              - paragraph [ref=e35]: Comprehensive analysis for your property at 1600 Amphitheatre Parkway, Mountain View, CA
+              - generic [ref=e36]:
+                - paragraph [ref=e37]: Generated on 10/15/2025
+                - paragraph [ref=e38]: "Preview: 0 runs left."
+                - paragraph [ref=e39]: Expires in 6d 23h 59m 59s
+          - generic [ref=e40]:
+            - generic [ref=e42]:
+              - generic [ref=e44]: ⚡
+              - generic [ref=e45]: 7 kW
+              - generic [ref=e46]: System Size
+            - generic [ref=e48]:
+              - generic [ref=e50]: ☀️
+              - generic [ref=e51]: 9,121 kWh
+              - generic [ref=e52]: Annual Production
+            - generic [ref=e53]:
+              - generic [ref=e54]:
+                - generic [ref=e56]: 💰
+                - generic [ref=e57]: — — —
+                - generic [ref=e58]: Net Cost (After ITC)
+              - button "Unlock Full Report" [ref=e60] [cursor=pointer]
+            - generic [ref=e61]:
+              - generic [ref=e62]:
+                - generic [ref=e64]: 📈
+                - generic [ref=e65]: — — —
+                - generic [ref=e66]: Year 1 Savings
+              - button "Unlock Full Report" [ref=e68] [cursor=pointer]
+          - generic [ref=e75]:
+            - generic [ref=e76]:
+              - generic [ref=e77]:
+                - heading "Financial Analysis" [level=2] [ref=e78]
+                - generic [ref=e79]:
+                  - generic [ref=e80]:
+                    - generic [ref=e81]: Payback Period
+                    - generic [ref=e82]: — — —
+                  - generic [ref=e83]:
+                    - generic [ref=e84]: 25-Year NPV
+                    - generic [ref=e85]: — — —
+                  - generic [ref=e86]:
+                    - generic [ref=e87]: ROI
+                    - generic [ref=e88]: — — —
+                  - generic [ref=e89]:
+                    - generic [ref=e90]: Electricity Rate
+                    - generic [ref=e91]: $0.18/kWh (generic)
+              - button "Unlock Full Report" [ref=e93] [cursor=pointer]
+            - generic [ref=e94]:
+              - generic [ref=e95]:
+                - heading "Environmental Impact" [level=2] [ref=e96]
+                - generic [ref=e97]:
+                  - generic [ref=e98]:
+                    - generic [ref=e99]: CO₂ Offset/Year
+                    - generic [ref=e100]: 7,753 lbs
+                  - generic [ref=e101]:
+                    - generic [ref=e102]: Solar Irradiance
+                    - generic [ref=e103]: 4.2 kWh/m²/day
+                  - generic [ref=e104]:
+                    - generic [ref=e105]: System Tilt
+                    - generic [ref=e106]: 0°
+                  - generic [ref=e107]:
+                    - generic [ref=e108]: System Losses
+                    - generic [ref=e109]: 5%
+                  - generic [ref=e110]:
+                    - generic [ref=e111]: Shading Analysis
+                    - generic [ref=e112]: remote (high accuracy)
+                  - generic [ref=e113]:
+                    - generic [ref=e114]: Annual Shading Loss
+                    - generic [ref=e115]: 12%
+              - button "Unlock Full Report" [ref=e117] [cursor=pointer]
+            - generic [ref=e119]:
+              - heading "Calculation Details & Data Sources" [level=2] [ref=e120]
+              - generic [ref=e121]:
+                - heading "Calculation Assumptions" [level=3] [ref=e122]
+                - generic [ref=e123]:
+                  - generic [ref=e124]:
+                    - generic [ref=e125]: Federal Tax Credit (ITC)
+                    - generic [ref=e126]: 30%
+                  - generic [ref=e127]:
+                    - generic [ref=e128]: Cost per Watt
+                    - generic [ref=e129]: $3
+                  - generic [ref=e130]:
+                    - generic [ref=e131]: Panel Degradation
+                    - generic [ref=e132]: 0.5%/year
+                  - generic [ref=e133]:
+                    - generic [ref=e134]: O&M Cost
+                    - generic [ref=e135]: $22/kW/year
+                  - generic [ref=e136]:
+                    - generic [ref=e137]: Rate Increase
+                    - generic [ref=e138]: 2.5%/year
+                  - generic [ref=e139]:
+                    - generic [ref=e140]: Discount Rate
+                    - generic [ref=e141]: 7%
+          - generic [ref=e142]:
+            - generic [ref=e143]:
+              - paragraph [ref=e144]: Powered By Industry-Standard Data
+              - generic [ref=e145]:
+                - generic [ref=e146]:
+                  - generic [ref=e147]: ⚡
+                  - generic [ref=e148]: NREL PVWatts v8
+                - generic [ref=e149]: •
+                - generic [ref=e150]:
+                  - generic [ref=e151]: 💰
+                  - generic [ref=e152]: generic
+                - generic [ref=e153]: •
+                - generic [ref=e154]:
+                  - generic [ref=e155]: ☀️
+                  - generic [ref=e156]: LiDAR Shading
+            - generic [ref=e158]:
+              - paragraph [ref=e159]:
+                - generic [ref=e160]: "Important:"
+                - text: This is a modeled estimate, not a guarantee. Actual energy production and savings will vary based on your specific site conditions, equipment performance, installation quality, weather patterns, and utility tariff structure.
+              - paragraph [ref=e161]: "Analysis methodology: NREL PVWatts v8 with 2020 TMY climate data • OpenEI URDB utility rates (updated 2025-10-15) • High-resolution LiDAR-based shading analysis • Industry-standard financial assumptions (30% ITC, 0.5% annual degradation, $22/kW/year O&M)"
+          - region "Ready to Launch Your Branded, Customer-Facing Tool?" [ref=e163]:
+            - generic [ref=e164]:
+              - heading "Ready to Launch Your Branded, Customer-Facing Tool?" [level=2] [ref=e165]
+              - paragraph [ref=e166]: Get the full paid version—customer-facing and under your brand—with complete projections, detailed assumptions, and unblurred savings charts.
+              - link "Launch Your Branded Version Now" [ref=e168] [cursor=pointer]:
+                - /url: /api/stripe/create-checkout-session
+              - paragraph [ref=e169]: $99/mo + $399 setup • Live in 24 hours — or your setup fee is refunded..
+              - paragraph [ref=e170]: Comparable tools cost $2,500+/mo.
+    - contentinfo [ref=e171]:
+      - generic [ref=e173]:
+        - generic [ref=e174]:
+          - generic [ref=e175]:
+            - heading "Sunspire Solar Intelligence" [level=3] [ref=e176]
+            - paragraph [ref=e177]: Demo for blockbuster — Powered by Sunspire
+            - generic [ref=e178]:
+              - generic [ref=e179]:
+                - generic [ref=e180]: 📍
+                - generic [ref=e181]:
+                  - text: "1700 Northside Drive Suite A7 #5164"
+                  - text: Atlanta, GA 30318
+              - generic [ref=e182]:
+                - generic [ref=e183]: GDPR
+                - generic [ref=e184]: CCPA
+                - generic [ref=e185]: SOC 2
+              - list [ref=e186]:
+                - listitem [ref=e187]:
+                  - generic [ref=e188]: ✉️
+                  - link "support@getsunspire.com" [ref=e189] [cursor=pointer]:
+                    - /url: mailto:support@getsunspire.com
+                - listitem [ref=e190]:
+                  - generic [ref=e191]: ✉️
+                  - link "billing@getsunspire.com" [ref=e192] [cursor=pointer]:
+                    - /url: mailto:billing@getsunspire.com
+                - listitem [ref=e193]:
+                  - generic [ref=e194]: ☎️
+                  - link "+1 (404) 123-4567" [ref=e195] [cursor=pointer]:
+                    - /url: tel:+14041234567
+          - generic [ref=e196]:
+            - heading "Quick Links" [level=4] [ref=e197]
+            - list [ref=e198]:
+              - listitem [ref=e199]:
+                - link "Pricing" [ref=e200] [cursor=pointer]:
+                  - /url: /pricing
+              - listitem [ref=e201]:
+                - link "Partners" [ref=e202] [cursor=pointer]:
+                  - /url: /partners
+              - listitem [ref=e203]:
+                - link "Support" [ref=e204] [cursor=pointer]:
+                  - /url: /support
+          - generic [ref=e205]:
+            - heading "Legal & Support" [level=4] [ref=e206]
+            - list [ref=e207]:
+              - listitem [ref=e208]:
+                - link "Privacy Policy" [ref=e209] [cursor=pointer]:
+                  - /url: /privacy
+              - listitem [ref=e210]:
+                - link "Terms of Service" [ref=e211] [cursor=pointer]:
+                  - /url: /terms
+              - listitem [ref=e212]:
+                - link "Refund Policy" [ref=e213] [cursor=pointer]:
+                  - /url: /legal/refund
+              - listitem [ref=e214]:
+                - link "Security" [ref=e215] [cursor=pointer]:
+                  - /url: /security
+              - listitem [ref=e216]:
+                - link "DPA" [ref=e217] [cursor=pointer]:
+                  - /url: /dpa
+              - listitem [ref=e218]:
+                - link "Do Not Sell My Data" [ref=e219] [cursor=pointer]:
+                  - /url: /do-not-sell
+        - separator [ref=e220]
+        - generic [ref=e221]:
+          - generic [ref=e222]:
+            - generic [ref=e223]: ⚡
+            - generic [ref=e224]:
+              - text: Estimates generated
+              - text: using NREL PVWatts® v8
+          - generic [ref=e226]:
+            - text: Powered by
+            - generic [ref=e227]: Sunspire
+          - generic [ref=e228]:
+            - generic [ref=e229]: 🗺️
+            - generic [ref=e230]:
+              - text: Mapping & location
+              - text: data © Google
+```

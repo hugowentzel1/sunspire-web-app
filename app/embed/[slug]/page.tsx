@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import dynamic from 'next/dynamic';
-import { PlaceResult } from '@/lib/calc';
+import { PlaceResult } from '@/lib/types';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 
 const AddressAutocomplete = dynamic(() => import('@/components/AddressAutocomplete'), { 

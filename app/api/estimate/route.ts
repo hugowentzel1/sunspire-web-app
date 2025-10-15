@@ -156,8 +156,9 @@ export async function GET(req: NextRequest) {
       }
     });
   } catch (e: any) {
+    console.error("Estimate API error:", e);
     return NextResponse.json(
-      { error: e.message ?? "estimate failed" },
+      { error: e.message ?? "estimate failed", details: e.toString() },
       { status: 500 },
     );
   }
@@ -169,5 +170,5 @@ export async function POST(req: Request) {
     Object.entries(body).map(([k, v]) => [k, String(v)]),
   );
   const url = `http://dummy.local?${qs.toString()}`;
-  return GET(new Request(url));
+  return GET(new NextRequest(url));
 }
