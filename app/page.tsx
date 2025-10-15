@@ -448,7 +448,7 @@ function HomeContent() {
                 </button>
                 
                 {isDemo && (
-                  <div style={{ marginTop: '42px' }} className="h-12 md:h-14 flex flex-col items-center justify-end space-y-1">
+                  <div style={{ marginTop: '43px' }} className="h-12 md:h-14 flex flex-col items-center justify-end space-y-1">
                     {remaining > 0 ? (
                       <>
                         <p className="text-center text-sm text-gray-500">
