@@ -913,130 +913,6 @@ function ReportContent() {
             </div>
           </motion.div>
 
-          {/* Data Sources & Credibility Section */}
-          <div className="mb-8">
-            {/* Premium Data Sources Card */}
-            <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl border border-gray-200 shadow-sm p-6 mb-4">
-              <div className="flex items-center justify-center mb-4">
-                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
-                <h3 className="px-4 text-sm font-semibold text-gray-700 uppercase tracking-wider">Data Sources</h3>
-                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
-              </div>
-              
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {/* NREL PVWatts Badge */}
-                <div 
-                  className="flex items-center gap-3 p-3 rounded-xl border transition-all duration-200 hover:shadow-md"
-                  style={{ 
-                    backgroundColor: `${b.primary}08`,
-                    borderColor: `${b.primary}30`
-                  }}
-                >
-                  <div 
-                    className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center text-lg shadow-sm"
-                    style={{ 
-                      backgroundColor: b.primary,
-                      color: 'white'
-                    }}
-                  >
-                    ⚡
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-sm font-semibold text-gray-900">NREL PVWatts v8</div>
-                    <div className="text-xs text-gray-600">2020 TMY Solar Data</div>
-                  </div>
-                </div>
-
-                {/* Utility Rate Badge */}
-                <div 
-                  className="flex items-center gap-3 p-3 rounded-xl border transition-all duration-200 hover:shadow-md"
-                  style={{ 
-                    backgroundColor: `${b.primary}08`,
-                    borderColor: `${b.primary}30`
-                  }}
-                >
-                  <div 
-                    className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center text-lg shadow-sm"
-                    style={{ 
-                      backgroundColor: b.primary,
-                      color: 'white'
-                    }}
-                  >
-                    💰
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-sm font-semibold text-gray-900 truncate">{estimate.tariff || 'Standard Rate'}</div>
-                    <div className="text-xs text-gray-600">Fetched {new Date().toISOString().slice(0,10)}</div>
-                  </div>
-                </div>
-
-                {/* Shading Analysis Badge */}
-                <div 
-                  className="flex items-center gap-3 p-3 rounded-xl border transition-all duration-200 hover:shadow-md"
-                  style={{ 
-                    backgroundColor: `${b.primary}08`,
-                    borderColor: `${b.primary}30`
-                  }}
-                >
-                  <div 
-                    className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center text-lg shadow-sm"
-                    style={{ 
-                      backgroundColor: b.primary,
-                      color: 'white'
-                    }}
-                  >
-                    ☀️
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-sm font-semibold text-gray-900">
-                      {estimate.shadingAnalysis?.method === 'remote' ? 'Remote (LiDAR/DEM)' : 'Proxy Shading'}
-                    </div>
-                    <div className="text-xs text-gray-600 capitalize">
-                      {estimate.shadingAnalysis?.accuracy || 'medium'} accuracy
-                    </div>
-                  </div>
-                </div>
-
-                {/* California NEM 3.0 Badge (conditional) */}
-                {estimate.coordinates?.lat && estimate.coordinates?.lng && 
-                 (estimate.coordinates.lat >= 32.5 && estimate.coordinates.lat <= 42.0 && 
-                  estimate.coordinates.lng >= -124.5 && estimate.coordinates.lng <= -114.0) && (
-                  <div 
-                    className="flex items-center gap-3 p-3 rounded-xl border transition-all duration-200 hover:shadow-md"
-                    style={{ 
-                      backgroundColor: `${b.primary}08`,
-                      borderColor: `${b.primary}30`
-                    }}
-                  >
-                    <div 
-                      className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center text-lg shadow-sm"
-                      style={{ 
-                        backgroundColor: b.primary,
-                        color: 'white'
-                      }}
-                    >
-                      🏛️
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="text-sm font-semibold text-gray-900">Net Billing (NEM 3.0)</div>
-                      <div className="text-xs text-gray-600">Avoided-cost export credits</div>
-                    </div>
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Disclaimer */}
-            <div className="text-center px-4">
-              <p className="text-sm text-gray-600 mb-2 leading-relaxed">
-                <span className="font-medium">Modeled estimate, not a guarantee.</span> Energy production and savings depend on your specific site conditions, equipment performance, and utility tariff structure.
-              </p>
-              <p className="text-xs text-gray-500 leading-relaxed">
-                This analysis uses industry-standard modeling from NREL PVWatts v8 with 2020 TMY climate data, current utility rates from OpenEI URDB, and {estimate.shadingAnalysis?.method === 'remote' ? 'high-resolution LiDAR-based' : 'geographic proxy'} shading analysis.
-              </p>
-            </div>
-          </div>
-
           {/* Chart */}
           <div id="savings-chart" data-testid="savings-chart" className="relative rounded-2xl bg-white p-5 overflow-hidden">
             <div className="relative z-10 min-h-[400px]">
@@ -1178,6 +1054,60 @@ function ReportContent() {
             </>
           )}
 
+
+          {/* Data Sources & Legal Disclaimer - Minimal & Clean */}
+          <motion.div 
+            initial={{ opacity: 0 }} 
+            animate={{ opacity: 1 }} 
+            transition={{ delay: 0.9, duration: 0.6 }}
+            className="mt-16 mb-12"
+          >
+            {/* Data Sources - Clean inline list */}
+            <div className="text-center mb-6">
+              <p className="text-xs text-gray-400 mb-3 uppercase tracking-wider font-medium">Powered By Industry-Standard Data</p>
+              <div className="flex flex-wrap items-center justify-center gap-3 mb-6">
+                <span className="inline-flex items-center gap-1.5 text-sm text-gray-600">
+                  <span className="text-base">⚡</span>
+                  <span className="font-medium">NREL PVWatts v8</span>
+                </span>
+                <span className="text-gray-300">•</span>
+                <span className="inline-flex items-center gap-1.5 text-sm text-gray-600">
+                  <span className="text-base">💰</span>
+                  <span className="font-medium">{estimate.tariff || 'Standard Rate'}</span>
+                </span>
+                <span className="text-gray-300">•</span>
+                <span className="inline-flex items-center gap-1.5 text-sm text-gray-600">
+                  <span className="text-base">☀️</span>
+                  <span className="font-medium">
+                    {estimate.shadingAnalysis?.method === 'remote' ? 'LiDAR Shading' : 'Proxy Shading'}
+                  </span>
+                </span>
+                {estimate.coordinates?.lat && estimate.coordinates?.lng && 
+                 (estimate.coordinates.lat >= 32.5 && estimate.coordinates.lat <= 42.0 && 
+                  estimate.coordinates.lng >= -124.5 && estimate.coordinates.lng <= -114.0) && (
+                  <>
+                    <span className="text-gray-300">•</span>
+                    <span className="inline-flex items-center gap-1.5 text-sm text-gray-600">
+                      <span className="text-base">🏛️</span>
+                      <span className="font-medium">CA NEM 3.0</span>
+                    </span>
+                  </>
+                )}
+              </div>
+            </div>
+
+            {/* Legal Disclaimer - Professional & Clear */}
+            <div className="max-w-3xl mx-auto text-center px-4">
+              <div className="bg-gray-50 rounded-xl p-6 border border-gray-100">
+                <p className="text-sm text-gray-700 mb-3 leading-relaxed">
+                  <span className="font-semibold">Important:</span> This is a modeled estimate, not a guarantee. Actual energy production and savings will vary based on your specific site conditions, equipment performance, installation quality, weather patterns, and utility tariff structure.
+                </p>
+                <p className="text-xs text-gray-500 leading-relaxed">
+                  Analysis methodology: NREL PVWatts v8 with 2020 TMY climate data • OpenEI URDB utility rates (updated {new Date().toISOString().slice(0,10)}) • {estimate.shadingAnalysis?.method === 'remote' ? 'High-resolution LiDAR-based' : 'Geographic proxy'} shading analysis • Industry-standard financial assumptions (30% ITC, 0.5% annual degradation, $22/kW/year O&M)
+                </p>
+              </div>
+            </div>
+          </motion.div>
 
           {/* Demo-only CTA section - using shared BottomCtaBand */}
           {demoMode && (
