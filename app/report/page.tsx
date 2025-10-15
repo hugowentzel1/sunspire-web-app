@@ -436,13 +436,13 @@ function ReportContent() {
         utilityRate: 0.14,
         utilityRateSource: 'Static',
         tariff: 'Pacific Gas & Electric - E-1',
-        dataSource: 'NREL NSRDB',
+        dataSource: 'NREL PVWatts v8',
         shadingAnalysis: {
-          method: 'proxy',
-          accuracy: 'medium',
-          shadingFactor: 0.875,
-          annualShadingLoss: 8.5,
-          confidence: 0.7
+          method: 'remote',
+          accuracy: 'high',
+          shadingFactor: 0.90,
+          annualShadingLoss: 10.0,
+          confidence: 0.92
         },
         assumptions: {
           itcPercentage: 0.30,
@@ -531,13 +531,13 @@ function ReportContent() {
         utilityRate: 0.14,
         utilityRateSource: isDemo ? 'Demo' : 'Static',
         tariff: 'Pacific Gas & Electric - E-1',
-        dataSource: 'NREL NSRDB',
+        dataSource: 'NREL PVWatts v8',
         shadingAnalysis: {
-          method: 'proxy',
-          accuracy: 'medium',
-          shadingFactor: 0.875,
-          annualShadingLoss: 8.5,
-          confidence: 0.7
+          method: 'remote',
+          accuracy: 'high',
+          shadingFactor: 0.90,
+          annualShadingLoss: 10.0,
+          confidence: 0.92
         },
         assumptions: {
           itcPercentage: 0.30,

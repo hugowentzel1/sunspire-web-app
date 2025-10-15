@@ -1,7 +1,7 @@
 import incentives from "@/data/incentives.json" assert { type: "json" };
 import type { PvwattsOut } from "./pvwatts";
 import type { RateResult } from "./rates";
-import { analyzeShading, getHourlyShadingFactors, calculateAnnualShadingLoss } from "./shading";
+import { analyzeShading as analyzeUSGSShading, getUncertaintyBand } from "./usgs-shading";
 
 export interface SolarEstimate {
   id: string;
@@ -119,8 +119,13 @@ export function buildEstimate({
   const annualKWh = pv.annual_kwh;
   const monthlyKWh = pv.monthly_kwh.map((n) => Math.round(n));
 
-  // Add uncertainty ranges (±10% by default)
-  const uncertaintyBand = 0.10; // ±10%
+  // Get USGS-based shading analysis
+  const shadingAnalysis = analyzeUSGSShading(lat, lng, tilt, azimuth);
+  const annualShadingLoss = shadingAnalysis.annualShadingLoss;
+  
+  // Adjust uncertainty band based on data quality
+  // High accuracy remote sensing: ±7.5%, Medium accuracy proxy: ±10%
+  const uncertaintyBand = getUncertaintyBand(lat, lng);
   const productionLow = Math.round(annualKWh * (1 - uncertaintyBand));
   const productionHigh = Math.round(annualKWh * (1 + uncertaintyBand));
 
