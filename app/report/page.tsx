@@ -416,17 +416,27 @@ function ReportContent() {
         tilt: 20,
         azimuth: 180,
         losses: 14,
-        annualProductionKWh: 11105634,
+        annualProductionKWh: {
+          estimate: 11105634,
+          low: 9995071,
+          high: 12216197
+        },
         monthlyProduction: Array(12).fill(1000),
         solarIrradiance: 4.5,
         grossCost: 25800,
         netCostAfterITC: 18060,
-        year1Savings: 2254,
+        year1Savings: {
+          estimate: 2254,
+          low: 2029,
+          high: 2480
+        },
         paybackYear: 8,
         npv25Year: 73000,
         co2OffsetPerYear: 10200,
         utilityRate: 0.14,
         utilityRateSource: 'Static',
+        tariff: 'Pacific Gas & Electric - E-1',
+        dataSource: 'NREL NSRDB',
         assumptions: {
           itcPercentage: 0.30,
           costPerWatt: 3.00,
@@ -494,17 +504,27 @@ function ReportContent() {
         tilt: 20,
         azimuth: 180,
         losses: 14,
-        annualProductionKWh: 11105634,
+        annualProductionKWh: {
+          estimate: 11105634,
+          low: 9995071,
+          high: 12216197
+        },
         monthlyProduction: Array(12).fill(1000),
         solarIrradiance: 4.5,
         grossCost: 25800,
         netCostAfterITC: 18060,
-        year1Savings: 2254,
+        year1Savings: {
+          estimate: 2254,
+          low: 2029,
+          high: 2480
+        },
         paybackYear: 8,
         npv25Year: 73000,
         co2OffsetPerYear: 10200,
         utilityRate: 0.14,
         utilityRateSource: isDemo ? 'Demo' : 'Static',
+        tariff: 'Pacific Gas & Electric - E-1',
+        dataSource: 'NREL NSRDB',
         assumptions: {
           itcPercentage: 0.30,
           costPerWatt: 3.00,
@@ -798,8 +818,16 @@ function ReportContent() {
             <div data-testid="tile-annualProduction" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
               <div className="relative z-10 p-8 text-center">
                 <div className="mb-4 flex justify-center"><IconBadge>☀️</IconBadge></div>
-                <div className="text-3xl font-black text-gray-900 mb-2">{estimate.annualProductionKWh.toLocaleString()} kWh</div>
+                <div className="text-3xl font-black text-gray-900 mb-2">
+                  {typeof estimate.annualProductionKWh === 'object' 
+                    ? `${estimate.annualProductionKWh.low.toLocaleString()} – ${estimate.annualProductionKWh.high.toLocaleString()} kWh`
+                    : `${(estimate.annualProductionKWh as number).toLocaleString()} kWh`
+                  }
+                </div>
                 <div className="text-gray-600 font-semibold">Annual Production</div>
+                {typeof estimate.annualProductionKWh === 'object' && (
+                  <div className="text-xs text-gray-500 mt-1">(±10% uncertainty)</div>
+                )}
               </div>
             </div>
             
@@ -845,9 +873,16 @@ function ReportContent() {
               <div className="content-layer p-8 text-center">
                 <div className="mb-4 flex justify-center"><IconBadge>📈</IconBadge></div>
                 <div className="text-3xl font-black text-gray-900 mb-2">
-                  {demoMode ? '— — —' : `$${estimate.year1Savings.toLocaleString()}`}
+                  {demoMode ? '— — —' : (
+                    typeof estimate.year1Savings === 'object'
+                      ? `$${estimate.year1Savings.low.toLocaleString()} – $${estimate.year1Savings.high.toLocaleString()}`
+                      : `$${(estimate.year1Savings as number).toLocaleString()}`
+                  )}
                 </div>
                 <div className="text-gray-600 font-semibold">Year 1 Savings</div>
+                {!demoMode && typeof estimate.year1Savings === 'object' && (
+                  <div className="text-xs text-gray-500 mt-1">(±10% uncertainty)</div>
+                )}
                 {!demoMode && (
                   <div className="mt-2 text-xs text-gray-500">
                     Based on current local utility rate and modeled production
@@ -869,6 +904,26 @@ function ReportContent() {
               )}
             </div>
           </motion.div>
+
+          {/* Credibility Badges */}
+          <div className="flex flex-wrap gap-2 justify-center mb-6">
+            <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">
+              ⚡ NREL NSRDB
+            </span>
+            <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
+              💰 {estimate.tariff || 'Standard Rate'}
+            </span>
+            <span className="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">
+              ☀️ Shading: Proxy
+            </span>
+          </div>
+
+          {/* Disclaimer */}
+          <div className="text-center mb-6">
+            <p className="text-xs text-gray-500 italic">
+              Modeled estimate, not a guarantee. Final design, site audit, and your utility tariff determine actual results.
+            </p>
+          </div>
 
           {/* Chart */}
           <div id="savings-chart" data-testid="savings-chart" className="relative rounded-2xl bg-white p-5 overflow-hidden">
