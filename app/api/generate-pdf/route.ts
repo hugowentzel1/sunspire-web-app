@@ -19,12 +19,23 @@ Location: ${lat}, ${lng}
 Date: ${new Date().toLocaleDateString()}
 
 System Details:
-- Annual Production: ${estimate.annualProduction?.toLocaleString() || 'N/A'} kWh
-- System Size: ${estimate.systemSize || 'N/A'} kW
+- Annual Production: ${typeof estimate.annualProductionKWh === 'object' 
+  ? `${estimate.annualProductionKWh.low.toLocaleString()} – ${estimate.annualProductionKWh.high.toLocaleString()} kWh`
+  : `${estimate.annualProductionKWh?.toLocaleString() || 'N/A'} kWh`
+}
+- System Size: ${estimate.systemSizeKW || 'N/A'} kW
 - Net Cost: $${estimate.netCostAfterITC?.toLocaleString() || 'N/A'}
-- Year 1 Savings: $${estimate.year1Savings?.toLocaleString() || 'N/A'}
+- Year 1 Savings: ${typeof estimate.year1Savings === 'object'
+  ? `$${estimate.year1Savings.low.toLocaleString()} – $${estimate.year1Savings.high.toLocaleString()}`
+  : `$${estimate.year1Savings?.toLocaleString() || 'N/A'}`
+}
 - Payback Period: ${estimate.paybackYear || 'N/A'} years
 - 25-Year NPV: $${estimate.npv25Year?.toLocaleString() || 'N/A'}
+
+Data Sources:
+- Solar Data: ${estimate.dataSource || 'NREL NSRDB'}
+- Utility Rate: ${estimate.tariff || 'Standard Rate'}
+- Shading Analysis: Proxy (estimated)
 
 This is a sample PDF report. In production, this would be a properly formatted PDF.
     `;
