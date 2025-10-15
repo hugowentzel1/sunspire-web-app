@@ -143,6 +143,9 @@ export async function GET(req: NextRequest) {
       lossesPct: i.lossesPct,
     });
 
+    // Determine uncertainty band from shading analysis accuracy
+    const uncertaintyBand = estimate.shadingAnalysis.accuracy === 'high' ? 0.075 : 0.10;
+
     // IMPORTANT: keep the exact shape the UI expects (estimate inside top-level object)
     return NextResponse.json({ estimate }, { 
       status: 200,

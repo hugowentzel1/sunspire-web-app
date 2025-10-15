@@ -156,10 +156,20 @@ export function buildEstimate({
     cashflowProjection.find((p) => p.netCashflow >= 0)?.year ?? null;
   const co2Offset = Math.round(annualKWh * 0.85); // lbs CO2 avoided (Year 1)
 
-  // Perform shading analysis
-  const shadingAnalysis = analyzeShading(lat, lng, tilt, azimuth);
-  const hourlyShadingFactors = getHourlyShadingFactors(lat, lng, tilt, azimuth);
-  const annualShadingLoss = calculateAnnualShadingLoss(hourlyShadingFactors);
+  // California Net Billing (NEM 3.0) handling
+  const isCalifornia = stateCode === 'CA';
+  const nem3ExportRate = isCalifornia ? rate.rate * 0.25 : rate.rate; // Export credits at ~25% of retail
+  
+  // Calculate savings with proper export credits for CA
+  const calculateYear1Savings = (production: number) => {
+    if (isCalifornia) {
+      // NEM 3.0: 70% self-consumption at retail, 30% export at avoided cost
+      return Math.round(production * rate.rate * 0.7 + production * nem3ExportRate * 0.3 - oandm0);
+    } else {
+      // Standard net metering: 1:1 credit
+      return Math.round(production * rate.rate - oandm0);
+    }
+  };
 
   return {
     id: Date.now().toString(),
@@ -182,21 +192,6 @@ export function buildEstimate({
 
     grossCost: Math.round(capex),
     netCostAfterITC: Math.round(netCost),
-  // California Net Billing (NEM 3.0) handling
-  const isCalifornia = stateCode === 'CA';
-  const nem3ExportRate = isCalifornia ? rate.rate * 0.25 : rate.rate; // Export credits at ~25% of retail
-  
-  // Calculate savings with proper export credits for CA
-  const calculateYear1Savings = (production: number) => {
-    if (isCalifornia) {
-      // NEM 3.0: 70% self-consumption at retail, 30% export at avoided cost
-      return Math.round(production * rate.rate * 0.7 + production * nem3ExportRate * 0.3 - oandm0);
-    } else {
-      // Standard net metering: 1:1 credit
-      return Math.round(production * rate.rate - oandm0);
-    }
-  };
-
     year1Savings: {
       estimate: calculateYear1Savings(annualKWh),
       low: calculateYear1Savings(productionLow),
@@ -210,7 +205,7 @@ export function buildEstimate({
     utilityRate: round3(rate.rate),
     utilityRateSource: rate.source,
     tariff: rate.source || 'Standard Rate',
-    dataSource: 'NREL NSRDB',
+    dataSource: 'NREL PVWatts v8',
     
     shadingAnalysis: {
       method: shadingAnalysis.method,
