@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { pvwatts } from "@/lib/pvwatts";
 import { getRate } from "@/lib/rates";
 import { buildEstimate } from "@/lib/estimate";
+import { validateSolarInputs } from "@/lib/validation";
 
 type Inputs = {
   address: string;
@@ -76,6 +77,15 @@ export async function GET(req: Request) {
     const isDemo = !!demoFlag && demoFlag !== "0" && demoFlag !== "false";
 
     let i = parseInputsFromSearch(req.url);
+
+    // Validate inputs
+    const validation = validateSolarInputs(i);
+    if (!validation.valid) {
+      return NextResponse.json(
+        { error: `Invalid inputs: ${validation.errors.join(', ')}` },
+        { status: 400 }
+      );
+    }
 
     // If demo and some fields are missing, inject good defaults
     if (isDemo) {
