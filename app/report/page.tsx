@@ -532,28 +532,11 @@ function ReportContent() {
     }, [searchParams, pickDemoAddress]);
 
   if (tenantLoading || isLoading) {
-    const loadingAddress = searchParams?.get('address') || 'your location';
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-50 via-gray-50 to-gray-100 font-inter flex items-center justify-center">
-        <div className="text-center space-y-6 max-w-md px-4">
+        <div className="text-center space-y-6">
           <div className="w-16 h-16 border-4 rounded-full animate-spin mx-auto" style={{ borderColor: `${b.primary} transparent ${b.primary} transparent` }}></div>
-          <div>
-            <p className="text-xl font-semibold text-gray-900 mb-2">Analyzing Solar Potential</p>
-            <p className="text-sm text-gray-600">{loadingAddress}</p>
-          </div>
-          <div className="flex items-center justify-center gap-2 text-sm text-gray-500">
-            <span className="inline-flex items-center gap-1.5">
-              <span>⚡</span> NREL PVWatts
-            </span>
-            <span>•</span>
-            <span className="inline-flex items-center gap-1.5">
-              <span>☀️</span> Shading Analysis
-            </span>
-            <span>•</span>
-            <span className="inline-flex items-center gap-1.5">
-              <span>💰</span> Live Rates
-            </span>
-          </div>
+          <p className="text-xl font-semibold text-gray-900">Generating your solar intelligence report...</p>
         </div>
       </div>
     );
