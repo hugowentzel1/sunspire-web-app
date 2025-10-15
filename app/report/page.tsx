@@ -820,14 +820,11 @@ function ReportContent() {
                 <div className="mb-4 flex justify-center"><IconBadge>☀️</IconBadge></div>
                 <div className="text-3xl font-black text-gray-900 mb-2">
                   {typeof estimate.annualProductionKWh === 'object' 
-                    ? `${estimate.annualProductionKWh.low.toLocaleString()} – ${estimate.annualProductionKWh.high.toLocaleString()} kWh`
+                    ? `${estimate.annualProductionKWh.estimate.toLocaleString()} kWh`
                     : `${(estimate.annualProductionKWh as number).toLocaleString()} kWh`
                   }
                 </div>
                 <div className="text-gray-600 font-semibold">Annual Production</div>
-                {typeof estimate.annualProductionKWh === 'object' && (
-                  <div className="text-xs text-gray-500 mt-1">(±10% uncertainty)</div>
-                )}
               </div>
             </div>
             
@@ -875,14 +872,11 @@ function ReportContent() {
                 <div className="text-3xl font-black text-gray-900 mb-2">
                   {demoMode ? '— — —' : (
                     typeof estimate.year1Savings === 'object'
-                      ? `$${estimate.year1Savings.low.toLocaleString()} – $${estimate.year1Savings.high.toLocaleString()}`
+                      ? `$${estimate.year1Savings.estimate.toLocaleString()}`
                       : `$${(estimate.year1Savings as number).toLocaleString()}`
                   )}
                 </div>
                 <div className="text-gray-600 font-semibold">Year 1 Savings</div>
-                {!demoMode && typeof estimate.year1Savings === 'object' && (
-                  <div className="text-xs text-gray-500 mt-1">(±10% uncertainty)</div>
-                )}
                 {!demoMode && (
                   <div className="mt-2 text-xs text-gray-500">
                     Based on current local utility rate and modeled production

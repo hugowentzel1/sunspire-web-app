@@ -20,13 +20,13 @@ Date: ${new Date().toLocaleDateString()}
 
 System Details:
 - Annual Production: ${typeof estimate.annualProductionKWh === 'object' 
-  ? `${estimate.annualProductionKWh.low.toLocaleString()} – ${estimate.annualProductionKWh.high.toLocaleString()} kWh`
+  ? `${estimate.annualProductionKWh.estimate.toLocaleString()} kWh`
   : `${estimate.annualProductionKWh?.toLocaleString() || 'N/A'} kWh`
 }
 - System Size: ${estimate.systemSizeKW || 'N/A'} kW
 - Net Cost: $${estimate.netCostAfterITC?.toLocaleString() || 'N/A'}
 - Year 1 Savings: ${typeof estimate.year1Savings === 'object'
-  ? `$${estimate.year1Savings.low.toLocaleString()} – $${estimate.year1Savings.high.toLocaleString()}`
+  ? `$${estimate.year1Savings.estimate.toLocaleString()}`
   : `$${estimate.year1Savings?.toLocaleString() || 'N/A'}`
 }
 - Payback Period: ${estimate.paybackYear || 'N/A'} years
