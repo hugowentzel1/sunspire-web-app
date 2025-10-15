@@ -393,86 +393,72 @@ function HomeContent() {
           </div>
 
           {/* Address Input Section - Exact match to c548b88 */}
-          <div className="mx-auto w-full max-w-3xl rounded-3xl bg-white shadow-lg ring-1 ring-black/5 px-6 sm:px-8 pt-8 md:pt-10 pb-7 md:pb-8 flex flex-col section-spacing slide-up-fade">
-            {/* Top content stack */}
-            <div className="space-y-6 md:space-y-7">
-              {/* Title + subtitle */}
-              <div className="text-center space-y-2">
-                <h2 className="text-2xl font-bold text-gray-900">
-                  Enter Your Property Address
-                </h2>
-                <p className="text-gray-600">
-                  Get a comprehensive solar analysis tailored to your specific location
-                </p>
+          <div className="bg-white/80 backdrop-blur-xl rounded-3xl shadow-2xl border border-gray-200/30 p-8 md:p-12 max-w-3xl mx-auto section-spacing slide-up-fade">
+            <div className="space-y-6">
+              <div className="text-center space-y-4">
+                <h2 className="text-2xl font-bold text-gray-900">Enter Your Property Address</h2>
+                <p className="text-gray-600">Get a comprehensive solar analysis tailored to your specific location</p>
               </div>
 
-              {/* Input + 'Powered by Google' */}
-              <div className="space-y-1.5">
-                <AddressAutocomplete 
-                  value={address}
-                  onChange={setAddress}
-                  onSelect={handleAddressSelect}
-                  data-testid="demo-address-input"
-                  placeholder={b.city && b.city !== 'undefined' ? `Start typing an address in ${b.city}...` : "Start typing your property address..."}
-                  className="w-full h-12 md:h-12"
-                />
-                {isDemo && (
-                  <div className="flex justify-end">
-                    <span className="text-[11px] text-gray-400">Powered by Google</span>
-                  </div>
-                )}
-              </div>
+              <div className="space-y-6">
+                {/* Address Input - Show for both demo and regular modes */}
+                <div className="w-full max-w-2xl mx-auto">
+                  <AddressAutocomplete 
+                    value={address}
+                    onChange={setAddress}
+                    onSelect={handleAddressSelect}
+                    data-testid="demo-address-input"
+                    placeholder={b.city && b.city !== 'undefined' ? `Start typing an address in ${b.city}...` : "Start typing your property address..."}
+                    className="w-full"
+                  />
+                </div>
 
-              {/* CTA button */}
-              <button 
-                onClick={address.trim() ? () => handleGenerateEstimate() : (b.enabled ? handleLaunchClick : () => handleGenerateEstimate())}
-                disabled={!address.trim() || isLoading} 
-                data-cta-button
-                className={`w-full inline-cta ${
-                  !address.trim() || isLoading 
-                    ? 'btn-disabled' 
-                    : 'btn-cta'
-                }`} 
-              >
-                {isLoading ? (
-                  <div className="flex items-center justify-center space-x-4">
-                    <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                    <span>Analyzing Your Property...</span>
-                  </div>
-                ) : (
-                  <div className="flex items-center justify-center space-x-4">
-                    <span>
-                      {b.enabled 
-                         ? `Generate Solar Report`
-                        : "Generate Solar Report"
-                      }
-                    </span>
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
-                  </div>
-                )}
-              </button>
-            </div>
-
-            {/* Footer — fixed small height, vertically centers the gray text */}
-            {isDemo && (
-           <div className="mt-5 md:mt-6 h-9 md:h-10 flex items-center justify-center">
-             {remaining > 0 ? (
-               <div className="text-center text-sm text-gray-500">
-                 <p>Preview: {remaining} run{remaining===1?"":"s"} left.</p>
-                 <p>Expires in {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</p>
-               </div>
-             ) : (
-                  <div className="text-center text-sm text-red-600 font-semibold">
-                    <p>
-                      <span className="inline-flex items-center gap-2">
-                        <span aria-hidden>🚫</span> Demo limit reached.
+                {/* Generate Button - Now below the search bar */}
+                <button 
+                  onClick={address.trim() ? () => handleGenerateEstimate() : (b.enabled ? handleLaunchClick : () => handleGenerateEstimate())}
+                  disabled={!address.trim() || isLoading} 
+                  data-cta-button
+                  className={`w-full inline-cta ${
+                    !address.trim() || isLoading 
+                      ? 'btn-disabled' 
+                      : 'btn-cta'
+                  }`} 
+                >
+                  {isLoading ? (
+                    <div className="flex items-center justify-center space-x-4">
+                      <div className="w-6 h-6 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                      <span>Analyzing Your Property...</span>
+                    </div>
+                  ) : (
+                    <div className="flex items-center justify-center space-x-4">
+                      <span>
+                        {b.enabled 
+                          ? `Generate Solar Report`
+                          : "Generate Solar Report"
+                        }
                       </span>
-                      <span className="sm:ml-2">Launch to get full access</span>
-                    </p>
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
+                    </div>
+                  )}
+                </button>
+                
+                {isDemo && (
+                  <div className="text-sm text-gray-500 text-center space-y-2 mt-4">
+                    {remaining > 0 ? (
+                      <>
+                        <p>Preview: {remaining} run{remaining===1?"":"s"} left.</p>
+                        <p>Expires in {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</p>
+                      </>
+                    ) : (
+                      <div className="text-red-600 font-semibold">
+                        <p>🚫 Demo limit reached.</p>
+                        <p>Launch to get full access</p>
+                      </div>
+                    )}
                   </div>
                 )}
               </div>
-            )}
+            </div>
           </div>
 
           {/* Quotes - Social Proof Grid */}
