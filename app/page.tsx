@@ -448,14 +448,18 @@ function HomeContent() {
                 </button>
                 
                 {isDemo && (
-                  <div className="text-sm text-gray-500 text-center space-y-2 mt-24">
+                  <div className="mt-3 h-12 md:h-14 flex flex-col items-center justify-center space-y-1">
                     {remaining > 0 ? (
                       <>
-                        <p>Preview: {remaining} run{remaining===1?"":"s"} left.</p>
-                        <p>Expires in {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</p>
+                        <p className="text-center text-sm text-gray-500">
+                          Preview: {remaining} run{remaining===1?"":"s"} left.
+                        </p>
+                        <p className="text-center text-sm text-gray-500">
+                          Expires in {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s
+                        </p>
                       </>
                     ) : (
-                      <div className="text-red-600 font-semibold">
+                      <div className="text-center text-sm text-red-600 font-semibold space-y-1">
                         <p>🚫 Demo limit reached.</p>
                         <p>Launch to get full access</p>
                       </div>
