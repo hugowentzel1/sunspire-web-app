@@ -451,7 +451,7 @@ function HomeContent() {
                   <div className="mt-8 h-12 md:h-14 flex flex-col items-center justify-end space-y-1">
                     {remaining > 0 ? (
                       <>
-                        <p className="text-center text-sm text-gray-500 pt-2">
+                        <p className="text-center text-sm text-gray-500 pt-4">
                           Preview: {remaining} run{remaining===1?"":"s"} left.
                         </p>
                         <p className="text-center text-sm text-gray-500">
