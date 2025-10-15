@@ -144,7 +144,14 @@ export async function GET(req: NextRequest) {
     });
 
     // IMPORTANT: keep the exact shape the UI expects (estimate inside top-level object)
-    return NextResponse.json({ estimate }, { status: 200 });
+    return NextResponse.json({ estimate }, { 
+      status: 200,
+      headers: {
+        'Cache-Control': 'public, max-age=86400, stale-while-revalidate=86400',
+        'X-Data-Source': 'NREL PVWatts v8 + OpenEI URDB',
+        'X-Uncertainty-Band': uncertaintyBand === 0.075 ? '±7.5%' : '±10%'
+      }
+    });
   } catch (e: any) {
     return NextResponse.json(
       { error: e.message ?? "estimate failed" },

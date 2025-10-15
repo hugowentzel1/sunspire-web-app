@@ -13,7 +13,8 @@ export async function getTariffMeta(lat: number, lng: number) {
       utility: item.utility || 'Unknown Utility',
       name: item.name || 'Standard Rate',
       rate: item.energyratestructure?.[0]?.[0]?.rate || 0.15, // $/kWh
-      updated: item.startdate || new Date().toISOString().slice(0,10)
+      updated: item.startdate || new Date().toISOString().slice(0,10),
+      fetched: new Date().toISOString().slice(0,10) // Add fetch date
     };
   } catch (error) {
     console.error('URDB fetch failed:', error);

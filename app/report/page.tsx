@@ -919,16 +919,16 @@ function ReportContent() {
               ⚡ NREL PVWatts v8
             </span>
             <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
-              💰 {estimate.tariff || 'Standard Rate'}
+              💰 {estimate.tariff || 'Standard Rate'} (fetched {new Date().toISOString().slice(0,10)})
             </span>
             <span className="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">
-              ☀️ Shading: {estimate.shadingAnalysis?.method === 'proxy' ? 'Proxy' : 'Remote'} ({estimate.shadingAnalysis?.accuracy || 'medium'} accuracy)
+              ☀️ Shading: {estimate.shadingAnalysis?.method === 'remote' ? 'Remote (LiDAR/DEM)' : 'Proxy'} ({estimate.shadingAnalysis?.accuracy || 'medium'} accuracy)
             </span>
             {estimate.coordinates?.lat && estimate.coordinates?.lng && 
              (estimate.coordinates.lat >= 32.5 && estimate.coordinates.lat <= 42.0 && 
               estimate.coordinates.lng >= -124.5 && estimate.coordinates.lng <= -114.0) && (
               <span className="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium">
-                🏛️ Net Billing (NEM 3.0)
+                🏛️ Net Billing (NEM 3.0) — exports credited at avoided-cost rates
               </span>
             )}
           </div>
@@ -936,7 +936,10 @@ function ReportContent() {
           {/* Disclaimer */}
           <div className="text-center mb-6">
             <p className="text-xs text-gray-500 italic">
-              Modeled estimate, not a guarantee. Final design, site audit, and your utility tariff determine actual results.
+              Modeled estimate, not a guarantee. Energy and savings depend on your site, equipment, and utility tariff.
+            </p>
+            <p className="text-xs text-gray-400 mt-2">
+              Modeled with <strong>NREL PVWatts v8 (2020 TMY)</strong> • <strong>NSRDB 2020 TMY</strong> • <strong>Tariff: {estimate.tariff || 'Standard Rate'}</strong> • <strong>Shading: {estimate.shadingAnalysis?.method === 'remote' ? 'Remote (LiDAR/DEM)' : 'Proxy'}</strong>
             </p>
           </div>
 
