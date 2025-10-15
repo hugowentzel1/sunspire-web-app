@@ -388,7 +388,7 @@ function ReportContent() {
     return demoAddressesByState["AZ"]; // sunny default
   }, []);
 
-  const fetchEstimate = async (address: string, lat: number, lng: number, placeId?: string | null) => {
+  const fetchEstimate = async (address: string, lat: number, lng: number, placeId?: string | null, state?: string) => {
     try {
       // Consume quota when generating a NEW estimate (not on page load)
       if (isDemo && !quotaConsumed) {
@@ -399,11 +399,24 @@ function ReportContent() {
         setRemaining(currentQuota);
       }
       
-      const params = new URLSearchParams({ address, lat: String(lat), lng: String(lng), ...(placeId && { placeId }) });
+      const params = new URLSearchParams({ 
+        address, 
+        lat: String(lat), 
+        lng: String(lng), 
+        systemKw: '7',
+        ...(state && { state }),
+        ...(placeId && { placeId }) 
+      });
+      
+      console.log('🌍 Fetching real estimate for:', { address, lat, lng, state });
       const response = await fetch(`/api/estimate?${params}`);
       if (!response.ok) throw new Error(`Failed to fetch estimate: ${response.status}`);
       const data = await response.json();
       if (!data.estimate) throw new Error('No estimate data in response');
+      console.log('✅ Real estimate received:', { 
+        production: data.estimate.annualProductionKWh, 
+        savings: data.estimate.year1Savings 
+      });
       setEstimate(data.estimate);
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Unknown error');
@@ -561,7 +574,7 @@ function ReportContent() {
       
       // Try to fetch real estimate in background if we have coordinates
       if (address && Number.isFinite(lat) && Number.isFinite(lng)) {
-        fetchEstimate(address, lat, lng, placeId);
+        fetchEstimate(address, lat, lng, placeId, state);
       }
     } else {
       setError('Missing address or coordinates.');
