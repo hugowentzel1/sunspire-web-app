@@ -15,14 +15,22 @@ export interface SolarEstimate {
   losses: number;
 
   // production
-  annualProductionKWh: number;
+  annualProductionKWh: {
+    estimate: number;
+    low: number;
+    high: number;
+  };
   monthlyProduction: number[];
   solarIrradiance: number;
 
   // finance
   grossCost: number;
   netCostAfterITC: number;
-  year1Savings: number;
+  year1Savings: {
+    estimate: number;
+    low: number;
+    high: number;
+  };
   paybackYear: number | null;
   npv25Year: number;
 
@@ -32,6 +40,8 @@ export interface SolarEstimate {
   // utility
   utilityRate: number;
   utilityRateSource: string;
+  tariff: string;
+  dataSource: string;
 
   // assumptions shown in UI
   assumptions: {
@@ -99,6 +109,11 @@ export function buildEstimate({
   const annualKWh = pv.annual_kwh;
   const monthlyKWh = pv.monthly_kwh.map((n) => Math.round(n));
 
+  // Add uncertainty ranges (±10% by default)
+  const uncertaintyBand = 0.10; // ±10%
+  const productionLow = Math.round(annualKWh * (1 - uncertaintyBand));
+  const productionHigh = Math.round(annualKWh * (1 + uncertaintyBand));
+
   // Cashflow 25 years
   const oandm0 = oandmPerKW * systemKw;
   let cumulative = -netCost;
@@ -137,13 +152,21 @@ export function buildEstimate({
     azimuth,
     losses: lossesPct,
 
-    annualProductionKWh: Math.round(annualKWh),
+    annualProductionKWh: {
+      estimate: Math.round(annualKWh),
+      low: productionLow,
+      high: productionHigh
+    },
     monthlyProduction: monthlyKWh,
     solarIrradiance: round2(pv.solrad_kwh_m2_day), // kWh/m²/day
 
     grossCost: Math.round(capex),
     netCostAfterITC: Math.round(netCost),
-    year1Savings: Math.round(annualKWh * rate.rate - oandm0),
+    year1Savings: {
+      estimate: Math.round(annualKWh * rate.rate - oandm0),
+      low: Math.round(productionLow * rate.rate - oandm0),
+      high: Math.round(productionHigh * rate.rate - oandm0)
+    },
     paybackYear,
     npv25Year: Math.round(npv),
 
@@ -151,6 +174,8 @@ export function buildEstimate({
 
     utilityRate: round3(rate.rate),
     utilityRateSource: rate.source,
+    tariff: rate.source || 'Standard Rate',
+    dataSource: 'NREL NSRDB',
 
     assumptions: {
       itcPercentage: itcPct,

@@ -1,9 +1,20 @@
+import { getSolarIrradiance } from './nsrdb';
+import { getTariffMeta } from './urdb';
+
 export interface SolarEstimate {
   id: string;
   systemSizeKW: number;
-  annualProductionKWh: number;
+  annualProductionKWh: {
+    estimate: number;
+    low: number;
+    high: number;
+  };
   estimatedCost: number;
-  estimatedSavings: number;
+  estimatedSavings: {
+    estimate: number;
+    low: number;
+    high: number;
+  };
   paybackPeriodYears: number;
   address: string;
   coordinates?: { lat: number; lng: number };
@@ -14,6 +25,8 @@ export interface SolarEstimate {
   npv25Year: number;
   co2OffsetPerYear: number;
   confidenceRange: string;
+  tariff: string;
+  dataSource: string;
 }
 
 export interface PlaceResult {
@@ -25,10 +38,10 @@ export interface PlaceResult {
 }
 
 // Enhanced solar calculation with methodology
-export function calculateSolarEstimate(
+export async function calculateSolarEstimate(
   coordinates: { lat: number; lng: number },
   address: string,
-): SolarEstimate {
+): Promise<SolarEstimate> {
   // Get configurable parameters from environment variables with defaults
   const costPerWatt = parseFloat(process.env.DEFAULT_COST_PER_WATT || "3.00");
   const lossesPercentage = parseFloat(process.env.DEFAULT_LOSSES_PCT || "14");
@@ -86,10 +99,14 @@ export function calculateSolarEstimate(
     return "US"; // Default
   };
 
-  // Calculate solar potential
-  const solarIrradiance = getSolarIrradiance(coordinates.lat);
+  // Calculate solar potential using NREL NSRDB API
+  const solarData = await getSolarIrradiance(coordinates.lat, coordinates.lng);
+  const solarIrradiance = solarData.avgGHI;
   const region = getRegion(coordinates.lat, coordinates.lng);
-  const electricityRate = electricityRates[region] || 0.14;
+  
+  // Get utility rate from OpenEI API
+  const tariff = await getTariffMeta(coordinates.lat, coordinates.lng);
+  const electricityRate = tariff?.rate || electricityRates[region] || 0.14;
   const installationCost = installationCosts[region] || costPerWatt;
 
   // Average home electricity usage (kWh/year) - EIA residential data
@@ -109,6 +126,11 @@ export function calculateSolarEstimate(
     systemSizeKW * solarIrradiance * 365 * efficiencyFactor,
   );
 
+  // Add uncertainty ranges (±10% by default)
+  const uncertaintyBand = 0.10; // ±10%
+  const productionLow = Math.round(annualProductionKWh * (1 - uncertaintyBand));
+  const productionHigh = Math.round(annualProductionKWh * (1 + uncertaintyBand));
+
   // Cost calculations
   const estimatedCost = Math.round(systemSizeKW * 1000 * installationCost);
 
@@ -117,6 +139,11 @@ export function calculateSolarEstimate(
   const estimatedSavings = Math.round(
     annualProductionKWh * electricityRate - annualOandMCost,
   );
+  
+  // Add savings uncertainty ranges
+  const savingsLow = Math.round(productionLow * electricityRate - annualOandMCost);
+  const savingsHigh = Math.round(productionHigh * electricityRate - annualOandMCost);
+  
   const paybackPeriodYears =
     Math.round((estimatedCost / estimatedSavings) * 10) / 10;
 
@@ -154,9 +181,17 @@ export function calculateSolarEstimate(
   return {
     id: Date.now().toString(),
     systemSizeKW,
-    annualProductionKWh,
+    annualProductionKWh: {
+      estimate: annualProductionKWh,
+      low: productionLow,
+      high: productionHigh
+    },
     estimatedCost,
-    estimatedSavings,
+    estimatedSavings: {
+      estimate: estimatedSavings,
+      low: savingsLow,
+      high: savingsHigh
+    },
     paybackPeriodYears,
     address,
     coordinates,
@@ -167,6 +202,8 @@ export function calculateSolarEstimate(
     npv25Year: calculateNPV25Year(),
     co2OffsetPerYear,
     confidenceRange,
+    tariff: tariff ? `${tariff.utility} - ${tariff.name}` : 'Standard Rate',
+    dataSource: 'NREL NSRDB',
   };
 }
 
