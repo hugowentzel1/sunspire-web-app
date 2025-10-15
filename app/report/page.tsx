@@ -417,9 +417,9 @@ function ReportContent() {
         azimuth: 180,
         losses: 14,
         annualProductionKWh: {
-          estimate: 11105634,
-          low: 9995071,
-          high: 12216197
+          estimate: 11105,
+          low: 9995,
+          high: 12216
         },
         monthlyProduction: Array(12).fill(1000),
         solarIrradiance: 4.5,
@@ -512,9 +512,9 @@ function ReportContent() {
         azimuth: 180,
         losses: 14,
         annualProductionKWh: {
-          estimate: 11105634,
-          low: 9995071,
-          high: 12216197
+          estimate: 11105,
+          low: 9995,
+          high: 12216
         },
         monthlyProduction: Array(12).fill(1000),
         solarIrradiance: 4.5,
@@ -916,7 +916,7 @@ function ReportContent() {
           {/* Credibility Badges */}
           <div className="flex flex-wrap gap-2 justify-center mb-6">
             <span className="px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm font-medium">
-              ⚡ NREL NSRDB
+              ⚡ NREL PVWatts v8
             </span>
             <span className="px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-sm font-medium">
               💰 {estimate.tariff || 'Standard Rate'}
@@ -924,6 +924,13 @@ function ReportContent() {
             <span className="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">
               ☀️ Shading: {estimate.shadingAnalysis?.method === 'proxy' ? 'Proxy' : 'Remote'} ({estimate.shadingAnalysis?.accuracy || 'medium'} accuracy)
             </span>
+            {estimate.coordinates?.lat && estimate.coordinates?.lng && 
+             (estimate.coordinates.lat >= 32.5 && estimate.coordinates.lat <= 42.0 && 
+              estimate.coordinates.lng >= -124.5 && estimate.coordinates.lng <= -114.0) && (
+              <span className="px-3 py-1 bg-orange-100 text-orange-800 rounded-full text-sm font-medium">
+                🏛️ Net Billing (NEM 3.0)
+              </span>
+            )}
           </div>
 
           {/* Disclaimer */}

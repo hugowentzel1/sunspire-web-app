@@ -177,10 +177,25 @@ export function buildEstimate({
 
     grossCost: Math.round(capex),
     netCostAfterITC: Math.round(netCost),
+  // California Net Billing (NEM 3.0) handling
+  const isCalifornia = stateCode === 'CA';
+  const nem3ExportRate = isCalifornia ? rate.rate * 0.25 : rate.rate; // Export credits at ~25% of retail
+  
+  // Calculate savings with proper export credits for CA
+  const calculateYear1Savings = (production: number) => {
+    if (isCalifornia) {
+      // NEM 3.0: 70% self-consumption at retail, 30% export at avoided cost
+      return Math.round(production * rate.rate * 0.7 + production * nem3ExportRate * 0.3 - oandm0);
+    } else {
+      // Standard net metering: 1:1 credit
+      return Math.round(production * rate.rate - oandm0);
+    }
+  };
+
     year1Savings: {
-      estimate: Math.round(annualKWh * rate.rate - oandm0),
-      low: Math.round(productionLow * rate.rate - oandm0),
-      high: Math.round(productionHigh * rate.rate - oandm0)
+      estimate: calculateYear1Savings(annualKWh),
+      low: calculateYear1Savings(productionLow),
+      high: calculateYear1Savings(productionHigh)
     },
     paybackYear,
     npv25Year: Math.round(npv),

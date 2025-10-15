@@ -3,7 +3,7 @@ export async function getTariffMeta(lat: number, lng: number) {
   const url = `https://api.openei.org/utility_rates?version=latest&format=json&api_key=${key}&lat=${lat}&lon=${lng}`;
   
   try {
-    const r = await fetch(url, { next: { revalidate: 86400 } }); // Cache 24h
+        const r = await fetch(url, { next: { revalidate: 86400 } }); // Cache 24h - daily refresh
     const j = await r.json();
     const item = j.items?.[0];
     

@@ -3,6 +3,8 @@ import { pvwatts } from "@/lib/pvwatts";
 import { getRate } from "@/lib/rates";
 import { buildEstimate } from "@/lib/estimate";
 import { validateSolarInputs } from "@/lib/validation";
+import { rateLimit } from "@/lib/rate-limit";
+import { NextRequest } from "next/server";
 
 type Inputs = {
   address: string;
@@ -70,8 +72,27 @@ function parseInputsFromSearch(url: string): Inputs {
   };
 }
 
-export async function GET(req: Request) {
+export async function GET(req: NextRequest) {
   try {
+    // Rate limiting (1000 requests per hour per IP)
+    const rateLimitResult = rateLimit(req, 1000, 60 * 60 * 1000);
+    if (!rateLimitResult.success) {
+      return NextResponse.json(
+        { 
+          error: "Rate limit exceeded. Please try again later.",
+          remaining: rateLimitResult.remaining,
+          resetTime: rateLimitResult.resetTime
+        },
+        { 
+          status: 429,
+          headers: {
+            'X-RateLimit-Limit': '1000',
+            'X-RateLimit-Remaining': rateLimitResult.remaining.toString(),
+            'X-RateLimit-Reset': rateLimitResult.resetTime.toString()
+          }
+        }
+      );
+    }
     const sp = new URL(req.url).searchParams;
     const demoFlag = sp.get("demo");
     const isDemo = !!demoFlag && demoFlag !== "0" && demoFlag !== "false";
