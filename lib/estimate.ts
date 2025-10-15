@@ -1,6 +1,7 @@
 import incentives from "@/data/incentives.json" assert { type: "json" };
 import type { PvwattsOut } from "./pvwatts";
 import type { RateResult } from "./rates";
+import { analyzeShading, getHourlyShadingFactors, calculateAnnualShadingLoss } from "./shading";
 
 export interface SolarEstimate {
   id: string;
@@ -42,6 +43,15 @@ export interface SolarEstimate {
   utilityRateSource: string;
   tariff: string;
   dataSource: string;
+  
+  // shading analysis
+  shadingAnalysis: {
+    method: string;
+    accuracy: string;
+    shadingFactor: number;
+    annualShadingLoss: number;
+    confidence: number;
+  };
 
   // assumptions shown in UI
   assumptions: {
@@ -141,6 +151,11 @@ export function buildEstimate({
     cashflowProjection.find((p) => p.netCashflow >= 0)?.year ?? null;
   const co2Offset = Math.round(annualKWh * 0.85); // lbs CO2 avoided (Year 1)
 
+  // Perform shading analysis
+  const shadingAnalysis = analyzeShading(lat, lng, tilt, azimuth);
+  const hourlyShadingFactors = getHourlyShadingFactors(lat, lng, tilt, azimuth);
+  const annualShadingLoss = calculateAnnualShadingLoss(hourlyShadingFactors);
+
   return {
     id: Date.now().toString(),
     address,
@@ -176,6 +191,14 @@ export function buildEstimate({
     utilityRateSource: rate.source,
     tariff: rate.source || 'Standard Rate',
     dataSource: 'NREL NSRDB',
+    
+    shadingAnalysis: {
+      method: shadingAnalysis.method,
+      accuracy: shadingAnalysis.accuracy,
+      shadingFactor: Math.round(shadingAnalysis.shadingFactor * 1000) / 1000,
+      annualShadingLoss,
+      confidence: Math.round(shadingAnalysis.confidence * 100) / 100
+    },
 
     assumptions: {
       itcPercentage: itcPct,

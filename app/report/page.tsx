@@ -437,6 +437,13 @@ function ReportContent() {
         utilityRateSource: 'Static',
         tariff: 'Pacific Gas & Electric - E-1',
         dataSource: 'NREL NSRDB',
+        shadingAnalysis: {
+          method: 'proxy',
+          accuracy: 'medium',
+          shadingFactor: 0.875,
+          annualShadingLoss: 8.5,
+          confidence: 0.7
+        },
         assumptions: {
           itcPercentage: 0.30,
           costPerWatt: 3.00,
@@ -525,6 +532,13 @@ function ReportContent() {
         utilityRateSource: isDemo ? 'Demo' : 'Static',
         tariff: 'Pacific Gas & Electric - E-1',
         dataSource: 'NREL NSRDB',
+        shadingAnalysis: {
+          method: 'proxy',
+          accuracy: 'medium',
+          shadingFactor: 0.875,
+          annualShadingLoss: 8.5,
+          confidence: 0.7
+        },
         assumptions: {
           itcPercentage: 0.30,
           costPerWatt: 3.00,
@@ -908,7 +922,7 @@ function ReportContent() {
               💰 {estimate.tariff || 'Standard Rate'}
             </span>
             <span className="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">
-              ☀️ Shading: Proxy
+              ☀️ Shading: {estimate.shadingAnalysis?.method === 'proxy' ? 'Proxy' : 'Remote'} ({estimate.shadingAnalysis?.accuracy || 'medium'} accuracy)
             </span>
           </div>
 
@@ -974,7 +988,9 @@ function ReportContent() {
                   <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">CO₂ Offset/Year</span><span className="font-bold text-gray-900">{estimate.co2OffsetPerYear.toLocaleString()} lbs</span></div>
                   <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Solar Irradiance</span><span className="text-gray-900">{estimate.solarIrradiance} kWh/m²/day</span></div>
                   <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">System Tilt</span><span className="text-gray-900">{estimate.tilt}°</span></div>
-                  <div className="flex justify-between items-center py-4"><span className="text-gray-600">System Losses</span><span className="font-bold text-gray-900">{estimate.losses}%</span></div>
+                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">System Losses</span><span className="font-bold text-gray-900">{estimate.losses}%</span></div>
+                  <div className="flex justify-between items-center py-4 border-b border-gray-200"><span className="text-gray-600">Shading Analysis</span><span className="text-gray-900">{estimate.shadingAnalysis?.method || 'Proxy'} ({estimate.shadingAnalysis?.accuracy || 'medium'} accuracy)</span></div>
+                  <div className="flex justify-between items-center py-4"><span className="text-gray-600">Annual Shading Loss</span><span className="font-bold text-gray-900">{estimate.shadingAnalysis?.annualShadingLoss || '8.5'}%</span></div>
                 </div>
               </div>
 
