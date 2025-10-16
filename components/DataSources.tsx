@@ -22,14 +22,26 @@ export default function DataSources({
   const b = useBrandTakeover();
   const [variant, setVariant] = useState(1);
   
-  // Rotate variants every 30 seconds (localhost only)
+  // Keyboard navigation (localhost only)
   useEffect(() => {
     if (typeof window !== 'undefined' && window.location.hostname === 'localhost') {
-      const interval = setInterval(() => {
-        setVariant((prev) => (prev === 5 ? 1 : prev + 1));
-      }, 30000); // 30 seconds
+      const handleKeyPress = (e: KeyboardEvent) => {
+        // Type 'next' or just 'n' to go to next variant
+        if (e.key === 'n' || e.key === 'N') {
+          setVariant((prev) => (prev === 5 ? 1 : prev + 1));
+        }
+        // Type 'prev' or 'p' to go to previous variant
+        if (e.key === 'p' || e.key === 'P') {
+          setVariant((prev) => (prev === 1 ? 5 : prev - 1));
+        }
+        // Type number 1-5 to jump to that variant
+        if (e.key >= '1' && e.key <= '5') {
+          setVariant(parseInt(e.key));
+        }
+      };
       
-      return () => clearInterval(interval);
+      window.addEventListener('keydown', handleKeyPress);
+      return () => window.removeEventListener('keydown', handleKeyPress);
     }
   }, []);
   
@@ -40,10 +52,17 @@ export default function DataSources({
     >
       {/* Variant indicator (localhost only) */}
       {typeof window !== 'undefined' && window.location.hostname === 'localhost' && (
-        <div className="mb-4 text-center">
-          <span className="inline-block px-3 py-1 text-xs font-bold text-white bg-blue-600 rounded-full">
-            VARIANT {variant} / 5 (rotates every 30s)
-          </span>
+        <div className="mb-4 text-center space-y-2">
+          <div>
+            <span className="inline-block px-3 py-1 text-xs font-bold text-white bg-blue-600 rounded-full">
+              VARIANT {variant} / 5
+            </span>
+          </div>
+          <p className="text-xs text-gray-500">
+            Press <kbd className="px-2 py-1 bg-gray-100 border border-gray-300 rounded text-gray-900 font-mono">N</kbd> for next · 
+            <kbd className="px-2 py-1 bg-gray-100 border border-gray-300 rounded text-gray-900 font-mono mx-1">P</kbd> for previous · 
+            <kbd className="px-2 py-1 bg-gray-100 border border-gray-300 rounded text-gray-900 font-mono">1-5</kbd> to jump
+          </p>
         </div>
       )}
       
