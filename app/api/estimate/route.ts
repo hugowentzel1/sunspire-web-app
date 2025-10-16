@@ -174,7 +174,7 @@ export async function GET(req: NextRequest) {
       headers: {
         'Cache-Control': 'public, max-age=86400, stale-while-revalidate=86400',
         'X-Data-Source': 'NREL PVWatts v8 + OpenEI URDB',
-        'X-Uncertainty-Band': uncertaintyBand === 0.075 ? '±7.5%' : '±10%'
+        'X-Uncertainty-Band': uncertaintyBand === 0.075 ? '7.5%' : '10%' // Removed ± symbol (non-ASCII)
       }
     });
   } catch (e: any) {
