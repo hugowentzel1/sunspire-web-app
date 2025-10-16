@@ -27,13 +27,6 @@ export function rateLimit(
   return { success: true, remaining: limit - record.count, resetTime: record.resetTime };
 }
 
-// Clean up expired entries periodically
-setInterval(() => {
-  const now = Date.now();
-  const entries = Array.from(rateLimitMap.entries());
-  for (const [ip, record] of entries) {
-    if (now > record.resetTime) {
-      rateLimitMap.delete(ip);
-    }
-  }
-}, 5 * 60 * 1000); // Clean every 5 minutes
+// Clean up expired entries on-demand (serverless compatible)
+// setInterval is incompatible with Vercel's serverless functions
+// Cleanup happens automatically when records are accessed and found to be expired

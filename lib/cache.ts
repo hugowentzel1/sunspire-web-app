@@ -45,7 +45,5 @@ class SimpleCache {
 
 export const cache = new SimpleCache();
 
-// Cleanup every hour
-setInterval(() => {
-  cache.cleanup();
-}, 60 * 60 * 1000);
+// Cleanup on-demand instead of setInterval (serverless compatible)
+// setInterval is incompatible with Vercel's serverless functions
