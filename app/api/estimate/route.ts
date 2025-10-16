@@ -1,3 +1,5 @@
+console.log('[estimate] route module loaded');
+
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
 
@@ -73,14 +75,22 @@ function parseInputsFromSearch(url: string): Inputs {
 
 export async function GET(req: NextRequest) {
   try {
-    // Lazy load server-only libs to catch import errors
-    const [{ pvwatts }, { getRate }, { buildEstimate }, { validateSolarInputs }, { rateLimit }] = await Promise.all([
-      import('@/lib/pvwatts'),
-      import('@/lib/rates'),
-      import('@/lib/estimate'),
-      import('@/lib/validation'),
-      import('@/lib/rate-limit'),
-    ]);
+    console.log('[estimate] marker A - handler started');
+    
+    console.log('[estimate] marker B - importing pvwatts');
+    const { pvwatts } = await import('@/lib/pvwatts');
+    
+    console.log('[estimate] marker C - importing rates');
+    const { getRate } = await import('@/lib/rates');
+    
+    console.log('[estimate] marker D - importing estimate');
+    const { buildEstimate } = await import('@/lib/estimate');
+    
+    console.log('[estimate] marker E - importing validation');
+    const { validateSolarInputs } = await import('@/lib/validation');
+    
+    console.log('[estimate] marker F - importing rate-limit');
+    const { rateLimit } = await import('@/lib/rate-limit');
 
     // Rate limiting (1000 requests per hour per IP)
     const rateLimitResult = rateLimit(req, 1000, 60 * 60 * 1000);
@@ -124,6 +134,7 @@ export async function GET(req: NextRequest) {
       if (!Number.isFinite(i.lossesPct)) i.lossesPct = 14;
     }
 
+    console.log('[estimate] marker G - calling pvwatts');
     const pv = await pvwatts({
       lat: i.lat,
       lon: i.lng,
@@ -137,7 +148,10 @@ export async function GET(req: NextRequest) {
       inv_eff: 96,
     });
 
+    console.log('[estimate] marker H - calling getRate');
     const rate = await getRate(i.state);
+    
+    console.log('[estimate] marker I - calling buildEstimate');
     const estimate = buildEstimate({
       address: i.address,
       lat: i.lat,
