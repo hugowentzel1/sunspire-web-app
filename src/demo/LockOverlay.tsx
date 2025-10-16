@@ -311,11 +311,15 @@ export default function LockOverlay() {
           </div>
         </div>
 
-        {/* CTA Section - Matches Report Page exactly */}
+        {/* CTA Section - Matches Report Page exactly with brand color box */}
         <div
           style={{
-            textAlign: "center",
+            background: "var(--brand-primary)",
+            borderRadius: "24px",
+            padding: "48px 40px",
             marginTop: "48px",
+            boxShadow: "0 10px 30px rgba(0, 0, 0, 0.07)",
+            textAlign: "center",
           }}
         >
           {/* Title */}
@@ -323,7 +327,7 @@ export default function LockOverlay() {
             style={{
               fontSize: "28px",
               fontWeight: "800",
-              color: "#111827",
+              color: "#ffffff",
               marginBottom: "24px",
               lineHeight: "1.3",
               letterSpacing: "-0.02em",
@@ -336,11 +340,11 @@ export default function LockOverlay() {
           <p
             style={{
               fontSize: "18px",
-              color: "#4B5563",
-              marginBottom: "24px",
+              color: "rgba(255, 255, 255, 0.95)",
+              marginBottom: "32px",
               lineHeight: "1.6",
               maxWidth: "700px",
-              margin: "0 auto 24px",
+              margin: "0 auto 32px",
             }}
           >
             Get the full paid version—customer-facing and under your brand—with
@@ -359,8 +363,8 @@ export default function LockOverlay() {
                 alignItems: "center",
                 justifyContent: "center",
                 padding: "16px 32px",
-                background: "var(--brand-primary)",
-                color: "#fff",
+                background: "#ffffff",
+                color: "var(--brand-primary)",
                 border: "none",
                 borderRadius: "16px",
                 fontWeight: "600",
@@ -371,11 +375,13 @@ export default function LockOverlay() {
               }}
               onMouseOver={(e) => {
                 e.currentTarget.style.transform = "scale(1.03)";
+                e.currentTarget.style.background = "rgba(255, 255, 255, 0.95)";
                 e.currentTarget.style.boxShadow =
                   "0 8px 24px rgba(0, 0, 0, 0.15)";
               }}
               onMouseOut={(e) => {
                 e.currentTarget.style.transform = "scale(1)";
+                e.currentTarget.style.background = "#ffffff";
                 e.currentTarget.style.boxShadow =
                   "0 4px 12px rgba(0, 0, 0, 0.1)";
               }}
@@ -389,7 +395,7 @@ export default function LockOverlay() {
           <p
             style={{
               fontSize: "14px",
-              color: "#6B7280",
+              color: "rgba(255, 255, 255, 0.9)",
               marginBottom: "16px",
             }}
           >
@@ -401,7 +407,7 @@ export default function LockOverlay() {
           <p
             style={{
               fontSize: "15px",
-              color: "#6B7280",
+              color: "rgba(255, 255, 255, 0.85)",
             }}
           >
             Comparable tools cost $2,500+/mo.
