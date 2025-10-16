@@ -1,7 +1,7 @@
 // lib/pvwatts.ts
+import 'server-only';
 import { cache } from './cache';
 import { retryPVWatts } from './retry';
-import { createHash } from 'node:crypto';
 
 export type PvwattsParams = {
   lat: number;
@@ -78,7 +78,8 @@ function getLocationIrradiance(lat: number, lon: number): number {
   return 3.5; // Northern states
 }
 
-function getPVWattsCacheKey(params: PvwattsParams): string {
+async function getPVWattsCacheKey(params: PvwattsParams): Promise<string> {
+  const { createHash } = await import('node:crypto');
   const hash = createHash('sha1');
   hash.update(JSON.stringify({
     lat: params.lat,
@@ -95,13 +96,14 @@ export async function pvwatts(p: PvwattsParams): Promise<PvwattsOut> {
   console.log("PVWatts called with params:", p);
   
   // Check cache first
-  const cacheKey = getPVWattsCacheKey(p);
+  const cacheKey = await getPVWattsCacheKey(p);
   const cached = cache.get(cacheKey);
   if (cached) {
     return cached;
   }
 
-  const key = process.env.NREL_API_KEY;
+  const { ENV } = await import('./env');
+  const key = ENV.NREL_API_KEY;
   if (!key) {
     // Fallback for local development - return location-specific mock data
     console.warn("NREL_API_KEY not set, using location-specific fallback data for local development");

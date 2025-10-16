@@ -1,9 +1,4 @@
 import { NextResponse } from "next/server";
-import { pvwatts } from "@/lib/pvwatts";
-import { getRate } from "@/lib/rates";
-import { buildEstimate } from "@/lib/estimate";
-import { validateSolarInputs } from "@/lib/validation";
-import { rateLimit } from "@/lib/rate-limit";
 import { NextRequest } from "next/server";
 
 // Force Node runtime (not Edge) for crypto and full Node.js API support
@@ -78,6 +73,15 @@ function parseInputsFromSearch(url: string): Inputs {
 
 export async function GET(req: NextRequest) {
   try {
+    // Lazy load server-only libs to catch import errors
+    const [{ pvwatts }, { getRate }, { buildEstimate }, { validateSolarInputs }, { rateLimit }] = await Promise.all([
+      import('@/lib/pvwatts'),
+      import('@/lib/rates'),
+      import('@/lib/estimate'),
+      import('@/lib/validation'),
+      import('@/lib/rate-limit'),
+    ]);
+
     // Rate limiting (1000 requests per hour per IP)
     const rateLimitResult = rateLimit(req, 1000, 60 * 60 * 1000);
     if (!rateLimitResult.success) {

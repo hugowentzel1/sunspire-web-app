@@ -1,3 +1,4 @@
+import 'server-only';
 import incentives from "@/data/incentives.json";
 import type { PvwattsOut } from "./pvwatts";
 import type { RateResult } from "./rates";

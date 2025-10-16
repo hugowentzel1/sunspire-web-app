@@ -1,6 +1,6 @@
+import 'server-only';
 import { cache } from './cache';
 import { retryEIA } from './retry';
-import { createHash } from 'node:crypto';
 
 export type RateResult = {
   rate: number;
@@ -63,7 +63,8 @@ const STATE_FALLBACK: Record<string, number> = {
   WY: 0.12,
 };
 
-function getEIACacheKey(state: string): string {
+async function getEIACacheKey(state: string): Promise<string> {
+  const { createHash } = await import('node:crypto');
   const hash = createHash('sha1');
   hash.update(state);
   return `eia:${hash.digest('hex')}`;
@@ -73,13 +74,14 @@ export async function getRate(state?: string): Promise<RateResult> {
   if (!state) return { rate: 0.18, source: "generic" };
 
   // Check cache first
-  const cacheKey = getEIACacheKey(state);
+  const cacheKey = await getEIACacheKey(state);
   const cached = cache.get(cacheKey);
   if (cached) {
     return cached;
   }
 
-  const key = process.env.EIA_API_KEY;
+  const { ENV } = await import('./env');
+  const key = ENV.EIA_API_KEY;
   if (key) {
     try {
       const result = await retryEIA(async () => {
