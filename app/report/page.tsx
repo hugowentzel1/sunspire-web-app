@@ -405,13 +405,14 @@ function ReportContent() {
         address, 
         lat: String(lat), 
         lng: String(lng), 
-        systemKw: '7',
+        systemKw: '7.2',
         ...(state && { state }),
-        ...(placeId && { placeId }) 
+        ...(placeId && { placeId }),
+        _t: Date.now().toString() // Cache busting
       });
       
       console.log('🌍 Fetching real estimate for:', { address, lat, lng, state });
-      const response = await fetch(`/api/estimate?${params}`);
+      const response = await fetch(`/api/estimate?${params}`, { cache: 'no-store' });
       if (!response.ok) throw new Error(`Failed to fetch estimate: ${response.status}`);
       const data = await response.json();
       if (!data.estimate) throw new Error('No estimate data in response');

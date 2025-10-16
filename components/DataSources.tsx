@@ -1,11 +1,10 @@
 // components/DataSources.tsx
-// Tailwind only (works great with shadcn/ui tokens).
-// Pass the utility label and your last-updated date.
+// Premium, luxurious styling that fits cohesively with the site
 
 type Props = {
-  utilityLabel?: string;          // e.g., "Pacific Gas & Electric — E-1"
-  lastUpdated?: string;           // e.g., "2025-10-15"
-  showLidar?: boolean;            // toggle if LiDAR isn't available everywhere
+  utilityLabel?: string;
+  lastUpdated?: string;
+  showLidar?: boolean;
 };
 
 export default function DataSources({
@@ -16,46 +15,47 @@ export default function DataSources({
   return (
     <section
       aria-label="Data sources and methodology"
-      className="mx-auto mt-10 w-full max-w-5xl rounded-2xl border border-border/70 bg-muted/20 p-6 backdrop-blur"
+      className="mx-auto mt-16 mb-12 w-full max-w-4xl"
     >
-      {/* Title */}
-      <div className="mb-4 text-center text-sm font-medium tracking-tight text-foreground">
-        Powered by Verified Industry Data
+      {/* Title - Elegant and Minimal */}
+      <div className="mb-6 text-center">
+        <p className="text-sm font-semibold tracking-wide text-gray-700 uppercase">
+          Powered by Verified Industry Data
+        </p>
       </div>
 
-      {/* Pill row */}
-      <div className="mb-4 flex flex-wrap items-center justify-center gap-2">
-        <span className="inline-flex items-center gap-1 rounded-full border border-border/60 bg-background px-2.5 py-1 text-xs text-foreground/80">
-          <span aria-hidden>⚡</span>
-          NREL PVWatts® v8
+      {/* Pill row - Premium styling with better spacing */}
+      <div className="mb-6 flex flex-wrap items-center justify-center gap-3">
+        <span className="inline-flex items-center gap-2 rounded-full bg-white border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 shadow-sm">
+          <span aria-hidden className="text-base">⚡</span>
+          <span>NREL PVWatts® v8</span>
         </span>
-        <span className="inline-flex items-center gap-1 rounded-full border border-border/60 bg-background px-2.5 py-1 text-xs text-foreground/80">
-          <span aria-hidden>💰</span>
-          {utilityLabel}
+        <span className="inline-flex items-center gap-2 rounded-full bg-white border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 shadow-sm">
+          <span aria-hidden className="text-base">💰</span>
+          <span>{utilityLabel}</span>
         </span>
         {showLidar && (
-          <span className="inline-flex items-center gap-1 rounded-full border border-border/60 bg-background px-2.5 py-1 text-xs text-foreground/80">
-            <span aria-hidden>☀️</span>
-            LiDAR Roof Shading
+          <span className="inline-flex items-center gap-2 rounded-full bg-white border border-gray-200 px-4 py-2 text-sm font-medium text-gray-700 shadow-sm">
+            <span aria-hidden className="text-base">☀️</span>
+            <span>LiDAR Roof Shading</span>
           </span>
         )}
       </div>
 
-      {/* Calm disclaimer */}
-      <p className="mx-auto max-w-3xl text-center text-xs leading-relaxed text-muted-foreground">
-        Modeled estimate — not a performance guarantee. Actual production and savings depend on site
-        conditions, equipment, installation quality, weather, and utility tariffs.
-      </p>
+      {/* Disclaimer - Professional and Clear */}
+      <div className="bg-gradient-to-br from-gray-50 to-white rounded-2xl border border-gray-200 p-8 shadow-sm">
+        <p className="mx-auto max-w-3xl text-center text-sm leading-relaxed text-gray-700 mb-4">
+          <span className="font-semibold">Modeled estimate</span> — not a performance guarantee. Actual production and savings depend on site conditions, equipment, installation quality, weather, and utility tariffs.
+        </p>
 
-      {/* Divider */}
-      <div className="mx-auto my-4 h-px w-24 bg-border/70" />
+        {/* Subtle divider */}
+        <div className="mx-auto my-5 h-px w-16 bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
 
-      {/* Methodology (complete but compact) */}
-      <p className="mx-auto max-w-4xl text-center text-[11px] leading-relaxed text-muted-foreground">
-        Methodology: NREL PVWatts® v8 (2020 TMY climate data) • OpenEI URDB / EIA utility rates
-        (updated {lastUpdated}){showLidar ? " • High-resolution LiDAR shading analysis" : ""} •
-        Financial assumptions: 30% ITC, 0.5%/yr panel degradation, $22/kW/yr O&amp;M.
-      </p>
+        {/* Methodology - Complete but elegant */}
+        <p className="mx-auto max-w-4xl text-center text-xs leading-relaxed text-gray-600">
+          <span className="font-medium">Methodology:</span> NREL PVWatts® v8 (2020 TMY climate data) • OpenEI URDB / EIA utility rates (updated {lastUpdated}){showLidar ? " • High-resolution LiDAR shading analysis" : ""} • Financial assumptions: 30% ITC, 0.5%/yr panel degradation, $22/kW/yr O&amp;M
+        </p>
+      </div>
     </section>
   );
 }

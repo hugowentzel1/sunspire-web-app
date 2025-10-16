@@ -38,8 +38,8 @@
               - paragraph [ref=e33]: Comprehensive analysis for your property at 350 5th Ave, New York, NY
               - generic [ref=e34]:
                 - paragraph [ref=e35]: Generated on 10/15/2025
-                - paragraph [ref=e36]: "Preview: 0 runs left."
-                - paragraph [ref=e37]: Expires in 6d 23h 59m 58s
+                - paragraph [ref=e36]: "Preview: 1 run left."
+                - paragraph [ref=e37]: Expires in 6d 23h 59m 57s
           - generic [ref=e38]:
             - generic [ref=e40]:
               - generic [ref=e42]: ⚡
