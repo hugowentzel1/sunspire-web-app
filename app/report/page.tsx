@@ -412,7 +412,16 @@ function ReportContent() {
       });
       
       console.log('🌍 Fetching real estimate for:', { address, lat, lng, state });
-      const response = await fetch(`/api/estimate?${params}`, { cache: 'no-store' });
+      
+      // Add timeout to prevent infinite loading
+      const controller = new AbortController();
+      const timeoutId = setTimeout(() => controller.abort(), 10000); // 10 second timeout
+      
+      const response = await fetch(`/api/estimate?${params}`, { 
+        cache: 'no-store',
+        signal: controller.signal 
+      }).finally(() => clearTimeout(timeoutId));
+      
       if (!response.ok) throw new Error(`Failed to fetch estimate: ${response.status}`);
       const data = await response.json();
       if (!data.estimate) throw new Error('No estimate data in response');
