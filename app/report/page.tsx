@@ -777,13 +777,13 @@ function ReportContent() {
             </motion.div>
             <p className="text-lg md:text-xl font-semibold text-gray-900 max-w-2xl mx-auto text-center">Comprehensive analysis for your property at {estimate.address}</p>
             {demoMode ? (
-              <div className="mx-auto mt-2 grid grid-cols-[1fr,auto,1fr] items-center gap-8 text-sm text-gray-600" style={{ fontFeatureSettings: '"tnum"', letterSpacing: '0.01em' }}>
+              <div className="mx-auto mt-2 grid grid-cols-[1fr,auto,1fr] items-center gap-8 text-sm text-gray-500" style={{ fontFeatureSettings: '"tnum"', letterSpacing: '0.01em' }}>
                 <div className="justify-self-end text-right">Generated {formatDateSafe(estimate.date)}</div>
-                <div className="justify-self-center text-center font-medium text-gray-800">Runs {remaining}</div>
+                <div className="justify-self-center text-center" style={{ transform: 'translateX(0.5px)' }}>Runs {remaining}</div>
                 <div className="justify-self-start text-left">Expires {countdown.days}d {countdown.hours}h</div>
               </div>
             ) : (
-              <div className="mx-auto mt-2 text-sm text-gray-600 text-center" style={{ fontFeatureSettings: '"tnum"', letterSpacing: '0.01em' }}>
+              <div className="mx-auto mt-2 text-sm text-gray-500 text-center" style={{ fontFeatureSettings: '"tnum"', letterSpacing: '0.01em' }}>
                 Generated {formatDateSafe(estimate.date)}
               </div>
             )}
