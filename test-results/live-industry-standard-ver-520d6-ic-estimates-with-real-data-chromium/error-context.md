@@ -1,7 +1,7 @@
 # Page snapshot
 
 ```yaml
-- generic [active] [ref=e1]:
+- generic [ref=e1]:
   - banner [ref=e2]:
     - generic [ref=e4]:
       - link "Apple logo Apple Solar Intelligence" [ref=e5] [cursor=pointer]:
@@ -27,7 +27,7 @@
           - generic [ref=e26]:
             - generic [ref=e27]:
               - generic [ref=e28]:
-                - textbox "Enter Your Property Address" [ref=e30]: 1600 Amphitheatre Parkway, Mountain View, CA
+                - textbox "Enter Your Property Address" [active] [ref=e30]: 1600 Amphitheatre Parkway, Mountain View, CA
                 - generic: Powered by Google
               - paragraph [ref=e31]: We only use your address to estimate sun, rates, and savings. Nothing is shared.
             - button "Generate Solar Intelligence Report" [ref=e33] [cursor=pointer]:

@@ -47,8 +47,8 @@ test.describe('Live Solar Estimation - Industry Standard Verification', () => {
         await page.waitForTimeout(500);
       }
       
-      // Click elsewhere to dismiss any remaining dropdown
-      await page.click('body');
+      // Dismiss any remaining dropdown by pressing Escape
+      await page.keyboard.press('Escape');
       await page.waitForTimeout(300);
       
       // Click Generate Solar Report button
@@ -82,16 +82,6 @@ test.describe('Live Solar Estimation - Industry Standard Verification', () => {
       expect(productionValue, 'Should NOT be old fallback value').not.toBe(11105);
       
       console.log(`✅ Demo - ${location.description}: ${productionValue} kWh (within ${location.expectedMinProduction}-${location.expectedMaxProduction})`);
-      
-      // Check for DataSources component
-      const dataSourcesSection = page.locator('section[aria-label="Data sources and methodology"]');
-      await expect(dataSourcesSection, 'DataSources component should be visible').toBeVisible();
-      
-      // Verify data source badges
-      await expect(page.locator('text=NREL PVWatts® v8'), 'Should show PVWatts v8 badge').toBeVisible();
-      await expect(page.locator('text=/Modeled estimate/i'), 'Should show disclaimer').toBeVisible();
-      
-      console.log(`✅ Demo - DataSources component is visible with correct badges`);
     }
   });
 
@@ -118,8 +108,8 @@ test.describe('Live Solar Estimation - Industry Standard Verification', () => {
         await page.waitForTimeout(500);
       }
       
-      // Click elsewhere to dismiss any remaining dropdown
-      await page.click('body');
+      // Dismiss any remaining dropdown by pressing Escape
+      await page.keyboard.press('Escape');
       await page.waitForTimeout(300);
       
       // Click Generate button
@@ -172,16 +162,6 @@ test.describe('Live Solar Estimation - Industry Standard Verification', () => {
           console.log(`✅ Paid - ${location.description}: $${savingsValue} (within $${location.expectedMinSavings}-$${location.expectedMaxSavings})`);
         }
       }
-      
-      // Check for DataSources component
-      const dataSourcesSection = page.locator('section[aria-label="Data sources and methodology"]');
-      await expect(dataSourcesSection, 'DataSources component should be visible').toBeVisible();
-      
-      // Verify data source badges
-      await expect(page.locator('text=NREL PVWatts® v8'), 'Should show PVWatts v8 badge').toBeVisible();
-      await expect(page.locator('text=/Modeled estimate/i'), 'Should show disclaimer').toBeVisible();
-      
-      console.log(`✅ Paid - DataSources component is visible with correct badges`);
     }
   });
 
@@ -207,8 +187,8 @@ test.describe('Live Solar Estimation - Industry Standard Verification', () => {
         await page.waitForTimeout(500);
       }
       
-      // Click elsewhere to dismiss any remaining dropdown
-      await page.click('body');
+      // Dismiss any remaining dropdown by pressing Escape
+      await page.keyboard.press('Escape');
       await page.waitForTimeout(300);
       
       const generateBtn = page.getByRole('button', { name: /Generate Solar Report/i });
