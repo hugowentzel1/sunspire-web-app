@@ -25,53 +25,61 @@ export default function DataSources({
       aria-label="Data sources and methodology"
       className="mx-auto mt-16 mb-12 w-full max-w-4xl px-6"
     >
-      {/* Clean professional container */}
-      <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200/80 shadow-md p-10">
+      {/* Premium container with consistent styling */}
+      <div className="bg-white/80 backdrop-blur-sm rounded-2xl border border-gray-200 shadow-md overflow-hidden">
         
-        {/* Title */}
-        <div className="text-center mb-8">
-          <h3 className="text-sm font-bold tracking-wider text-gray-900 uppercase mb-2">
+        {/* Header */}
+        <div className="bg-gradient-to-br from-gray-50 to-white border-b border-gray-100 py-6 px-8">
+          <h3 className="text-center text-sm font-bold tracking-wider text-gray-900 uppercase">
             Powered by Verified Industry Data
           </h3>
-          <div className="mx-auto h-px w-12 bg-gray-300 mt-3" />
         </div>
 
-        {/* Data Sources - Perfectly centered with even spacing */}
-        <div className="flex flex-col items-center gap-2 mb-8">
-          <span className="text-sm font-semibold text-gray-800">NREL PVWatts® v8</span>
-          <span className="text-xs text-gray-400">•</span>
-          <span className="text-sm font-semibold text-gray-800">{utilityLabel}</span>
-          {showLidar && (
-            <>
-              <span className="text-xs text-gray-400">•</span>
-              <span className="text-sm font-semibold text-gray-800">{shadingLabel}</span>
-            </>
-          )}
-        </div>
+        {/* Content */}
+        <div className="px-10 py-8">
+          
+          {/* Data Source Badges - Premium pill design with icons */}
+          <div className="flex flex-wrap items-center justify-center gap-3 mb-8">
+            <div className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-br from-blue-50 to-blue-100/50 border border-blue-200/50 px-4 py-2.5 shadow-sm">
+              <span className="text-lg">⚡</span>
+              <span className="text-sm font-semibold text-gray-900">NREL PVWatts® v8</span>
+            </div>
+            <div className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-br from-green-50 to-green-100/50 border border-green-200/50 px-4 py-2.5 shadow-sm">
+              <span className="text-lg">💰</span>
+              <span className="text-sm font-semibold text-gray-900">{utilityLabel}</span>
+            </div>
+            {showLidar && (
+              <div className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-br from-amber-50 to-amber-100/50 border border-amber-200/50 px-4 py-2.5 shadow-sm">
+                <span className="text-lg">☀️</span>
+                <span className="text-sm font-semibold text-gray-900">{shadingLabel}</span>
+              </div>
+            )}
+          </div>
 
-        {/* Main Divider */}
-        <div className="mx-auto my-8 h-px w-full max-w-md bg-gradient-to-r from-transparent via-gray-200 to-transparent" />
+          {/* Elegant divider */}
+          <div className="mx-auto my-8 h-px w-32 bg-gradient-to-r from-transparent via-gray-300 to-transparent" />
 
-        {/* Disclaimer */}
-        <p className="text-center text-sm leading-7 text-gray-700 mb-8 max-w-3xl mx-auto">
-          <span className="font-bold text-gray-900">Modeled estimate</span> — not a performance guarantee. 
-          Actual production and savings depend on site conditions, equipment, installation quality, weather, and utility tariffs.
-        </p>
-
-        {/* Methodology Section */}
-        <div className="text-center pt-6 border-t border-gray-100">
-          <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">
-            Methodology
+          {/* Disclaimer - Clear and professional */}
+          <p className="text-center text-sm leading-relaxed text-gray-800 mb-8 max-w-3xl mx-auto">
+            <span className="font-bold text-gray-900">Modeled estimate</span> — not a performance guarantee. 
+            Actual production and savings depend on site conditions, equipment, installation quality, weather, and utility tariffs.
           </p>
-          <p className="text-xs leading-6 text-gray-600 max-w-3xl mx-auto">
-            <span className="font-semibold">NREL PVWatts® v8</span> (2020 TMY climate data)
-            <span className="mx-2">•</span>
-            <span className="font-semibold">OpenEI URDB / EIA</span> utility rates (updated {lastUpdated})
-            <span className="mx-2">•</span>
-            <span className="font-semibold">{shadingMethod === 'remote' ? 'High-resolution LiDAR' : 'Geographic proxy'}</span> shading analysis
-            <span className="mx-2">•</span>
-            <span className="font-semibold">Financial assumptions:</span> 30% ITC, 0.5%/yr panel degradation, $22/kW/yr O&amp;M
-          </p>
+
+          {/* Methodology - Complete and professional */}
+          <div className="bg-gray-50/50 rounded-lg border border-gray-100 p-6">
+            <p className="text-xs font-bold text-gray-500 uppercase tracking-wider mb-3 text-center">
+              Analysis Methodology
+            </p>
+            <p className="text-xs leading-relaxed text-gray-700 text-center max-w-3xl mx-auto">
+              <span className="font-semibold text-gray-900">NREL PVWatts® v8</span> <span className="text-gray-600">(2020 TMY climate data)</span>
+              <span className="mx-2 text-gray-400">•</span>
+              <span className="font-semibold text-gray-900">OpenEI URDB / EIA</span> <span className="text-gray-600">utility rates (updated {lastUpdated})</span>
+              <span className="mx-2 text-gray-400">•</span>
+              <span className="font-semibold text-gray-900">{shadingMethod === 'remote' ? 'High-resolution LiDAR' : 'Geographic proxy'}</span> <span className="text-gray-600">shading analysis</span>
+              <span className="mx-2 text-gray-400">•</span>
+              <span className="font-semibold text-gray-900">Financial assumptions:</span> <span className="text-gray-600">30% ITC, 0.5%/yr degradation, $22/kW/yr O&amp;M</span>
+            </p>
+          </div>
         </div>
       </div>
     </section>
