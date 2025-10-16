@@ -50,21 +50,6 @@ export default function DataSources({
       aria-label="Data sources and methodology"
       className="mx-auto mt-16 mb-12 w-full max-w-4xl px-6"
     >
-      {/* Variant indicator (localhost only) */}
-      {typeof window !== 'undefined' && window.location.hostname === 'localhost' && (
-        <div className="mb-4 text-center space-y-2">
-          <div>
-            <span className="inline-block px-3 py-1 text-xs font-bold text-white bg-blue-600 rounded-full">
-              VARIANT {variant} / 5
-            </span>
-          </div>
-          <p className="text-xs text-gray-500">
-            Press <kbd className="px-2 py-1 bg-gray-100 border border-gray-300 rounded text-gray-900 font-mono">N</kbd> for next · 
-            <kbd className="px-2 py-1 bg-gray-100 border border-gray-300 rounded text-gray-900 font-mono mx-1">P</kbd> for previous · 
-            <kbd className="px-2 py-1 bg-gray-100 border border-gray-300 rounded text-gray-900 font-mono">1-5</kbd> to jump
-          </p>
-        </div>
-      )}
       
       {/* OPTION 1: Authority-First (Current) */}
       {variant === 1 && (
