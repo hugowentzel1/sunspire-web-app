@@ -775,12 +775,12 @@ function ReportContent() {
                 </div>
               )}
             </motion.div>
-            <p className="text-lg md:text-xl font-semibold text-gray-900 max-w-2xl mx-auto text-center">Comprehensive analysis for your property at {estimate.address}</p>
+            <p className="text-lg md:text-xl font-semibold text-gray-900 max-w-2xl mx-auto text-center" style={{ textWrap: 'balance' as any }}>Comprehensive analysis for your property at {estimate.address}</p>
             {demoMode ? (
-              <div className="mx-auto mt-2 grid grid-cols-[1fr,auto,1fr] items-center gap-8 text-sm text-gray-500" style={{ fontFeatureSettings: '"tnum"', letterSpacing: '0.01em' }}>
-                <div className="justify-self-end text-right">Generated {formatDateSafe(estimate.date)}</div>
-                <div className="justify-self-center text-center" style={{ transform: 'translateX(0.5px)' }}>Runs {remaining}</div>
-                <div className="justify-self-start text-left">Expires {countdown.days}d {countdown.hours}h</div>
+              <div className="mx-auto mt-2 grid grid-cols-[1fr,auto,1fr] items-center gap-8 text-sm text-gray-500" style={{ maxWidth: '64ch', fontFeatureSettings: '"tnum"', letterSpacing: '0.01em' }}>
+                <span className="justify-self-end text-right inline-block min-w-[14ch]">Generated {formatDateSafe(estimate.date)}</span>
+                <span className="justify-self-center text-center inline-block" style={{ transform: 'translateX(0.5px)' }}>Runs −{remaining}</span>
+                <span className="justify-self-start text-left inline-block min-w-[14ch]">Expires {countdown.days}d {countdown.hours}h</span>
               </div>
             ) : (
               <div className="mx-auto mt-2 text-sm text-gray-500 text-center" style={{ fontFeatureSettings: '"tnum"', letterSpacing: '0.01em' }}>
