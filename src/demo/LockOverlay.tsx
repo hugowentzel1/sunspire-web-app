@@ -92,12 +92,14 @@ export default function LockOverlay() {
       <div
         style={{
           background: "#fff",
-          borderRadius: "24px",
-          padding: "56px 48px",
-          maxWidth: "1000px",
+          borderRadius: "32px",
+          padding: "64px 56px",
+          maxWidth: "1200px",
           width: "100%",
           textAlign: "center",
           boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
+          maxHeight: "90vh",
+          overflowY: "auto",
         }}
       >
         {/* Brand Logo/Name - Using 4-8px increment spacing */}
@@ -218,17 +220,17 @@ export default function LockOverlay() {
             </div>
             <div
               style={{
-                height: "140px",
+                height: "180px",
                 background: "#FEF2F2",
                 border: "3px dashed #FCA5A5",
-                borderRadius: "16px",
+                borderRadius: "20px",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
                 color: "#DC2626",
                 fontWeight: "600",
-                fontSize: "16px",
+                fontSize: "18px",
                 position: "relative",
               }}
             >
@@ -238,7 +240,7 @@ export default function LockOverlay() {
                   top: "50%",
                   left: "50%",
                   transform: "translate(-50%, -50%)",
-                  fontSize: "48px",
+                  fontSize: "64px",
                   opacity: "0.3",
                 }}
               >
@@ -279,17 +281,17 @@ export default function LockOverlay() {
             </div>
             <div
               style={{
-                height: "140px",
+                height: "180px",
                 background: "#ECFDF5",
                 border: "3px solid #10B981",
-                borderRadius: "16px",
+                borderRadius: "20px",
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
                 color: "#059669",
                 fontWeight: "700",
-                fontSize: "16px",
+                fontSize: "18px",
                 position: "relative",
                 boxShadow: "0 4px 12px rgba(16, 185, 129, 0.15)",
               }}
@@ -300,7 +302,7 @@ export default function LockOverlay() {
                   top: "50%",
                   left: "50%",
                   transform: "translate(-50%, -50%)",
-                  fontSize: "48px",
+                  fontSize: "64px",
                   opacity: "0.3",
                 }}
               >
@@ -315,9 +317,9 @@ export default function LockOverlay() {
         <div
           style={{
             background: "var(--brand-primary)",
-            borderRadius: "24px",
-            padding: "48px 40px",
-            marginTop: "48px",
+            borderRadius: "28px",
+            padding: "56px 48px",
+            marginTop: "56px",
             boxShadow: "0 10px 30px rgba(0, 0, 0, 0.07)",
             textAlign: "center",
           }}
@@ -325,10 +327,10 @@ export default function LockOverlay() {
           {/* Title */}
           <h2
             style={{
-              fontSize: "28px",
+              fontSize: "32px",
               fontWeight: "800",
               color: "#ffffff",
-              marginBottom: "24px",
+              marginBottom: "28px",
               lineHeight: "1.3",
               letterSpacing: "-0.02em",
             }}
@@ -339,12 +341,12 @@ export default function LockOverlay() {
           {/* Subtext */}
           <p
             style={{
-              fontSize: "18px",
+              fontSize: "20px",
               color: "rgba(255, 255, 255, 0.95)",
-              marginBottom: "32px",
+              marginBottom: "40px",
               lineHeight: "1.6",
-              maxWidth: "700px",
-              margin: "0 auto 32px",
+              maxWidth: "800px",
+              margin: "0 auto 40px",
             }}
           >
             Get the full paid version—customer-facing and under your brand—with
@@ -353,7 +355,7 @@ export default function LockOverlay() {
           </p>
 
           {/* CTA Button */}
-          <div style={{ marginBottom: "20px" }}>
+          <div style={{ marginBottom: "24px" }}>
             <button
               onClick={openStripeCheckout}
               data-cta="primary"
@@ -362,31 +364,31 @@ export default function LockOverlay() {
                 display: "inline-flex",
                 alignItems: "center",
                 justifyContent: "center",
-                padding: "16px 32px",
+                padding: "20px 48px",
                 background: "#ffffff",
                 color: "var(--brand-primary)",
                 border: "none",
                 borderRadius: "16px",
-                fontWeight: "600",
-                fontSize: "18px",
+                fontWeight: "700",
+                fontSize: "20px",
                 cursor: "pointer",
-                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
                 transition: "all 0.2s ease",
               }}
               onMouseOver={(e) => {
                 e.currentTarget.style.transform = "scale(1.03)";
                 e.currentTarget.style.background = "rgba(255, 255, 255, 0.95)";
                 e.currentTarget.style.boxShadow =
-                  "0 8px 24px rgba(0, 0, 0, 0.15)";
+                  "0 8px 24px rgba(0, 0, 0, 0.2)";
               }}
               onMouseOut={(e) => {
                 e.currentTarget.style.transform = "scale(1)";
                 e.currentTarget.style.background = "#ffffff";
                 e.currentTarget.style.boxShadow =
-                  "0 4px 12px rgba(0, 0, 0, 0.1)";
+                  "0 4px 12px rgba(0, 0, 0, 0.15)";
               }}
             >
-              <span style={{ marginRight: "8px" }}>⚡</span>
+              <span style={{ marginRight: "10px", fontSize: "22px" }}>⚡</span>
               <span>Launch Your Branded Version Now</span>
             </button>
           </div>
@@ -394,9 +396,10 @@ export default function LockOverlay() {
           {/* Pricing Line */}
           <p
             style={{
-              fontSize: "14px",
+              fontSize: "16px",
               color: "rgba(255, 255, 255, 0.9)",
               marginBottom: "16px",
+              fontWeight: "500",
             }}
           >
             $99/mo + $399 setup • Live in 24 hours — or your setup fee is
@@ -406,8 +409,9 @@ export default function LockOverlay() {
           {/* Comparison Line */}
           <p
             style={{
-              fontSize: "15px",
+              fontSize: "16px",
               color: "rgba(255, 255, 255, 0.85)",
+              fontWeight: "500",
             }}
           >
             Comparable tools cost $2,500+/mo.
