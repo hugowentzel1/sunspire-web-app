@@ -1020,7 +1020,7 @@ function ReportContent() {
 
           {/* Trust Signals - Testimonial and Metrics */}
           {trustData && (
-            <>
+            <div className="mt-12 mb-12">
               {trustData.testimonial && (
                 <Testimonial 
                   quote={trustData.testimonial.quote}
@@ -1031,7 +1031,7 @@ function ReportContent() {
                   avatarSrc={trustData.testimonial.avatarSrc}
                 />
               )}
-            </>
+            </div>
           )}
 
 
