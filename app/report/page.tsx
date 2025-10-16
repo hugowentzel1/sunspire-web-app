@@ -1049,7 +1049,8 @@ function ReportContent() {
                   : estimate.tariff || 'Current Local Utility Tariff'
               }
               lastUpdated={new Date().toISOString().slice(0,10)}
-              showLidar={estimate.shadingAnalysis?.method === 'remote'}
+              showLidar={true}
+              shadingMethod={estimate.shadingAnalysis?.method || 'proxy'}
             />
           </motion.div>
 
