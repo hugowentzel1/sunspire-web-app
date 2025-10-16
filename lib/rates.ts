@@ -1,6 +1,6 @@
 import { cache } from './cache';
 import { retryEIA } from './retry';
-import { createHash } from 'crypto';
+import { createHash } from 'node:crypto';
 
 export type RateResult = {
   rate: number;

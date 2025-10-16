@@ -6,6 +6,10 @@ import { validateSolarInputs } from "@/lib/validation";
 import { rateLimit } from "@/lib/rate-limit";
 import { NextRequest } from "next/server";
 
+// Force Node runtime (not Edge) for crypto and full Node.js API support
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
 type Inputs = {
   address: string;
   lat: number;
@@ -156,9 +160,14 @@ export async function GET(req: NextRequest) {
       }
     });
   } catch (e: any) {
-    console.error("Estimate API error:", e);
+    console.error('[estimate-api] Error:', e);
+    console.error('[estimate-api] Stack:', e.stack);
     return NextResponse.json(
-      { error: e.message ?? "estimate failed", details: e.toString() },
+      { 
+        error: 'ESTIMATE_FAILED', 
+        message: e.message ?? 'Unknown error',
+        details: e.toString()
+      },
       { status: 500 },
     );
   }

@@ -1,4 +1,4 @@
-import incentives from "@/data/incentives.json" assert { type: "json" };
+import incentives from "@/data/incentives.json";
 import type { PvwattsOut } from "./pvwatts";
 import type { RateResult } from "./rates";
 import { analyzeShading as analyzeUSGSShading, getUncertaintyBand } from "./usgs-shading";

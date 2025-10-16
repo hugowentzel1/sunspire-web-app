@@ -1,7 +1,7 @@
 // lib/pvwatts.ts
 import { cache } from './cache';
 import { retryPVWatts } from './retry';
-import { createHash } from 'crypto';
+import { createHash } from 'node:crypto';
 
 export type PvwattsParams = {
   lat: number;
