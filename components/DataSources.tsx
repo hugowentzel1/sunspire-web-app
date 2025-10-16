@@ -35,26 +35,14 @@ export default function DataSources({
 
         {/* Simple methodology list */}
         <div className="pt-6 border-t border-gray-100">
-          <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs text-gray-600">
-            <span className="flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: b.primary || '#d97706' }}></span>
-              <span className="font-semibold text-gray-900">NREL PVWatts® v8</span>
-            </span>
-            <span className="text-gray-400">•</span>
-            <span className="flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: b.primary || '#d97706' }}></span>
-              <span className="font-semibold text-gray-900">OpenEI URDB</span>
-            </span>
-            <span className="text-gray-400">•</span>
-            <span className="flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: b.primary || '#d97706' }}></span>
-              <span className="font-semibold text-gray-900">{shadingMethod === 'remote' ? 'LiDAR Shading' : 'Geographic Shading'}</span>
-            </span>
-            <span className="text-gray-400">•</span>
-            <span className="flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: b.primary || '#d97706' }}></span>
-              <span className="font-semibold text-gray-900">30% Federal ITC</span>
-            </span>
+          <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs">
+            <span className="font-semibold text-gray-900">NREL PVWatts® v8</span>
+            <span className="text-gray-300">•</span>
+            <span className="font-semibold text-gray-900">OpenEI URDB</span>
+            <span className="text-gray-300">•</span>
+            <span className="font-semibold text-gray-900">{shadingMethod === 'remote' ? 'LiDAR Shading' : 'Geographic Shading'}</span>
+            <span className="text-gray-300">•</span>
+            <span className="font-semibold text-gray-900">30% Federal ITC</span>
           </div>
         </div>
       </div>
