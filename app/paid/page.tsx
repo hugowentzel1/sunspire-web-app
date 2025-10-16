@@ -437,7 +437,7 @@ function HomeContent() {
                           ? address && address.trim()
                             ? `Generate Solar Report`
                             : `Launch Tool`
-                          : "Generate Solar Intelligence Report"}
+                          : "Generate Solar Report"}
                       </span>
                       <svg
                         className="w-6 h-6"
