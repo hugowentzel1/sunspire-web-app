@@ -775,7 +775,7 @@ function ReportContent() {
                 </div>
               )}
             </motion.div>
-            <p className="text-lg md:text-xl font-semibold text-gray-900 max-w-2xl mx-auto text-center mb-1" style={{ textWrap: 'balance' as any }}>Comprehensive analysis for your property at {estimate.address}</p>
+            <p className="text-lg md:text-xl font-semibold text-gray-900 max-w-3xl mx-auto text-center mb-1" style={{ textWrap: 'balance' as any }}>Comprehensive analysis for your property at {estimate.address}</p>
             {demoMode ? (
               <div className="mx-auto -mt-1 space-y-2 text-sm text-gray-500 text-center">
                 <p>Generated on {formatDateSafe(estimate.date)}</p>
