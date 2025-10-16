@@ -778,15 +778,17 @@ function ReportContent() {
               )}
             </motion.div>
             <p className="text-lg md:text-xl font-semibold text-gray-900 max-w-2xl mx-auto text-center">Comprehensive analysis for your property at {estimate.address}</p>
-            <div className="flex justify-center items-center gap-4 text-sm text-gray-500 max-w-xl mx-auto w-full" style={{ fontFeatureSettings: '"tnum"' }}>
-              <span className="flex-1 text-center">Generated {formatDateSafe(estimate.date)}</span>
-              {demoMode && (
-                <>
-                  <span className="flex-1 text-center">Runs {remaining}</span>
-                  <span className="flex-1 text-center">Expires {countdown.days}d {countdown.hours}h</span>
-                </>
-              )}
-            </div>
+            {demoMode ? (
+              <div className="mx-auto mt-2 grid grid-cols-[1fr,auto,1fr] items-center gap-8 text-sm text-gray-600" style={{ fontFeatureSettings: '"tnum"', letterSpacing: '0.01em' }}>
+                <div className="justify-self-end text-right">Generated {formatDateSafe(estimate.date)}</div>
+                <div className="justify-self-center text-center font-medium text-gray-800">Runs {remaining}</div>
+                <div className="justify-self-start text-left">Expires {countdown.days}d {countdown.hours}h</div>
+              </div>
+            ) : (
+              <div className="mx-auto mt-2 text-sm text-gray-600 text-center" style={{ fontFeatureSettings: '"tnum"', letterSpacing: '0.01em' }}>
+                Generated {formatDateSafe(estimate.date)}
+              </div>
+            )}
           </div>
 
           {/* Metric Tiles */}
