@@ -735,21 +735,19 @@ function ReportContent() {
           </div>
         )}
 
-        {/* Report header - Only show in demo mode */}
-        {demoMode && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }} 
-            animate={{ opacity: 1, y: 0 }} 
-            transition={{ duration: 0.6 }} 
-            className="text-center py-3 mb-6"
-            data-testid="report-header"
-          >
-            <h1 className="text-2xl md:text-3xl font-semibold text-gray-900">
-              Your <span style={{ color: b.primary }}>{b.brand || 'Company'}</span> Solar Quote{' '}
-              <span className="text-gray-500 font-normal">(Live Preview)</span>
-            </h1>
-          </motion.div>
-        )}
+        {/* Report header */}
+        <motion.div 
+          initial={{ opacity: 0, y: -20 }} 
+          animate={{ opacity: 1, y: 0 }} 
+          transition={{ duration: 0.6 }} 
+          className="text-center py-3 mb-6"
+          data-testid="report-header"
+        >
+          <h1 className="text-2xl md:text-3xl font-semibold text-gray-900">
+            Your <span style={{ color: b.primary }}>{b.brand || 'Company'}</span> Solar Quote
+            {demoMode && <span className="text-gray-500 font-normal"> (Live Preview)</span>}
+          </h1>
+        </motion.div>
 
         {/* Theme probe for testing */}
         <div data-testid="theme-probe" style={{ color: 'var(--brand)' }} className="hidden" />
