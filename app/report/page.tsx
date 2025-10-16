@@ -29,6 +29,7 @@ import StickySidebar from '@/components/StickySidebar';
 import { SidebarCta } from '@/src/components/SidebarCta';
 import { PlaceResult } from '@/lib/types';
 import DataSources from '@/components/DataSources';
+import MethodologyModal from '@/components/MethodologyModal';
 import QuoteCard from '@/components/QuoteCard';
 import { getTrustData } from '@/lib/trust';
 import Container from '@/components/layout/Container';
