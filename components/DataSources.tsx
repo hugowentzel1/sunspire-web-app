@@ -35,13 +35,13 @@ export default function DataSources({
 
         {/* Simple methodology list */}
         <div className="pt-6 border-t border-gray-100">
-          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs">
+          <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs">
             <span className="font-semibold text-gray-900">NREL PVWatts® v8</span>
-            <span className="h-3 w-px bg-gray-200"></span>
+            <span className="text-gray-300">•</span>
             <span className="font-semibold text-gray-900">OpenEI URDB</span>
-            <span className="h-3 w-px bg-gray-200"></span>
+            <span className="text-gray-300">•</span>
             <span className="font-semibold text-gray-900">{shadingMethod === 'remote' ? 'LiDAR Shading' : 'Geographic Shading'}</span>
-            <span className="h-3 w-px bg-gray-200"></span>
+            <span className="text-gray-300">•</span>
             <span className="font-semibold text-gray-900">30% Federal ITC</span>
           </div>
         </div>
