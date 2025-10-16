@@ -741,7 +741,7 @@ function ReportContent() {
             initial={{ opacity: 0, y: -20 }} 
             animate={{ opacity: 1, y: 0 }} 
             transition={{ duration: 0.6 }} 
-            className="text-center py-4 mb-8"
+            className="text-center py-3 mb-6"
             data-testid="report-header"
           >
             <h1 className="text-2xl md:text-3xl font-semibold text-gray-900">
@@ -756,7 +756,7 @@ function ReportContent() {
         {/* Brand theme CSS variable */}
         <style>{`:root{--brand:${getBrandTheme(searchParams?.get('company') || undefined)};--brand-primary:${b.primary};}`}</style>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="space-y-8">
-          <div className="text-center space-y-6">
+          <div className="text-center space-y-4">
             <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="w-24 h-24 mx-auto">
               {(b.logo || getDefaultLogo(b.brand)) ? (
                 <Image 
@@ -777,18 +777,15 @@ function ReportContent() {
                 </div>
               )}
             </motion.div>
-            <div className="space-y-4">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900">New Analysis</h2>
-              <p className="text-base md:text-lg text-slate-700 max-w-2xl mx-auto">Comprehensive analysis for your property at {estimate.address}</p>
-              <div className="text-sm text-gray-500 text-center space-y-2">
-                <p>Generated on {formatDateSafe(estimate.date)}</p>
-                {/* Demo quota counter - only show in demo mode */}
-                {demoMode && (
-                  <>
-                    <p>Preview: {remaining} run{remaining === 1 ? "" : "s"} left.</p>
-                    <p>Expires in {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</p>
-                  </>
-                )}
+            <div className="space-y-3">
+              <p className="text-lg md:text-xl font-semibold text-gray-900 max-w-2xl mx-auto">Comprehensive analysis for your property at {estimate.address}</p>
+              <div className="text-sm text-gray-500 text-center">
+                <p>
+                  Generated {formatDateSafe(estimate.date)}
+                  {demoMode && (
+                    <> • Preview: {remaining} run{remaining === 1 ? "" : "s"} • Expires {countdown.days}d {countdown.hours}h</>
+                  )}
+                </p>
               </div>
             </div>
 
