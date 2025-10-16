@@ -789,7 +789,7 @@ function ReportContent() {
             )}
           </div>
 
-          {/* Spacer for equal spacing */}
+          {/* Spacer for equal spacing - push trigger */}
           <div className="mt-1"></div>
 
           {/* Metric Tiles */}
