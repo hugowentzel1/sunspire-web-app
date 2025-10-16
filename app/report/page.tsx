@@ -775,15 +775,15 @@ function ReportContent() {
                 </div>
               )}
             </motion.div>
-            <p className="text-lg md:text-xl font-semibold text-gray-900 max-w-2xl mx-auto text-center" style={{ textWrap: 'balance' as any }}>Comprehensive analysis for your property at {estimate.address}</p>
+            <p className="text-lg md:text-xl font-semibold text-gray-900 max-w-2xl mx-auto text-center mb-4" style={{ textWrap: 'balance' as any }}>Comprehensive analysis for your property at {estimate.address}</p>
             {demoMode ? (
-              <div className="mx-auto mt-4 space-y-4 text-sm text-gray-500 text-center">
+              <div className="mx-auto space-y-4 text-sm text-gray-500 text-center">
                 <p>Generated on {formatDateSafe(estimate.date)}</p>
                 <p>Preview: {remaining < 0 ? '-' : ''}{Math.abs(remaining)} runs left.</p>
                 <p>Expires in {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</p>
               </div>
             ) : (
-              <div className="mx-auto mt-4 text-sm text-gray-500 text-center">
+              <div className="mx-auto text-sm text-gray-500 text-center">
                 Generated on {formatDateSafe(estimate.date)}
               </div>
             )}
