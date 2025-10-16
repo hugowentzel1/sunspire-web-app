@@ -16,20 +16,13 @@ export default function DataSources({
   lastUpdated = "2025-10-15",
   showLidar = true,
 }: Props) {
-  const b = useBrandTakeover();
-  const brandColor = b.primary || '#2563eb';
-  
   return (
     <section
       aria-label="Data sources and methodology"
       className="mx-auto mt-20 mb-16 w-full max-w-5xl px-4"
     >
-      {/* Title - Premium with brand color accent */}
+      {/* Title - Clean and Professional */}
       <div className="mb-8 text-center">
-        <div 
-          className="inline-block mb-2 h-1 w-12 rounded-full"
-          style={{ backgroundColor: brandColor }}
-        />
         <h3 className="text-base font-bold tracking-wide text-gray-800 uppercase mb-2">
           Powered by Verified Industry Data
         </h3>
@@ -56,34 +49,19 @@ export default function DataSources({
         )}
       </div>
 
-      {/* Disclaimer Container - Luxurious gradient background with brand color accent */}
-      <div 
-        className="relative bg-gradient-to-br from-white via-gray-50 to-white rounded-2xl border shadow-lg overflow-hidden"
-        style={{ borderColor: `${brandColor}20` }}
-      >
-        {/* Subtle top accent line with brand color */}
-        <div 
-          className="absolute top-0 left-0 right-0 h-1"
-          style={{ 
-            background: `linear-gradient(90deg, transparent, ${brandColor}, transparent)`,
-            opacity: 0.3
-          }}
-        />
-        
+      {/* Disclaimer Container - Clean professional styling */}
+      <div className="bg-gradient-to-br from-white via-gray-50 to-white rounded-2xl border border-gray-200 shadow-lg">
         <div className="p-10">
           {/* Main Disclaimer - Clear and Professional */}
           <p className="mx-auto max-w-3xl text-center text-base leading-relaxed text-gray-800 mb-6">
-            <span className="font-bold" style={{ color: brandColor }}>Modeled estimate</span> — not a performance guarantee. 
+            <span className="font-bold text-gray-900">Modeled estimate</span> — not a performance guarantee. 
             <span className="text-gray-700"> Actual production and savings depend on site conditions, equipment, installation quality, weather, and utility tariffs.</span>
           </p>
 
-          {/* Elegant divider with brand color */}
+          {/* Elegant divider */}
           <div className="flex items-center justify-center my-6">
             <div className="h-px w-8 bg-gray-300" />
-            <div 
-              className="mx-3 h-1.5 w-1.5 rounded-full"
-              style={{ backgroundColor: brandColor }}
-            />
+            <div className="mx-3 h-1.5 w-1.5 rounded-full bg-gray-400" />
             <div className="h-px w-8 bg-gray-300" />
           </div>
 
