@@ -26,9 +26,10 @@ export default function DataSources({
       className="mx-auto w-full max-w-4xl px-6"
     >
       <div className="py-2">
-        <p className="text-center text-sm text-gray-700">
-          <span className="font-bold text-gray-900">Modeled estimate</span> — not a performance guarantee. 
-          Actual results vary with site conditions, equipment, installation quality, weather, and utility tariffs. 
+        <p className="text-center text-sm text-gray-900 font-semibold">
+          Modeled estimate — not a performance guarantee. Actual results vary with site conditions, equipment, installation quality, weather, and utility tariffs.
+        </p>
+        <p className="text-center text-xs text-gray-600 mt-2">
           Data & modeling: NREL PVWatts® v8 • Utility rates from OpenEI URDB / EIA • Shading: {shadingMethod === 'remote' ? 'LiDAR (where available)' : 'Geographic proxy'}.
         </p>
       </div>
