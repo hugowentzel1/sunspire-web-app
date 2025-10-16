@@ -779,7 +779,7 @@ function ReportContent() {
             {demoMode ? (
               <div className="mx-auto mt-2 grid grid-cols-[1fr,auto,1fr] items-center gap-8 text-sm text-gray-500" style={{ maxWidth: '64ch', fontFeatureSettings: '"tnum"', letterSpacing: '0.01em' }}>
                 <span className="justify-self-end text-right inline-block min-w-[14ch]">Generated {formatDateSafe(estimate.date)}</span>
-                <span className="justify-self-center text-center inline-block" style={{ transform: 'translateX(0.5px)' }}>Runs −{remaining}</span>
+                <span className="justify-self-center text-center inline-block">Runs: {Math.abs(remaining)}</span>
                 <span className="justify-self-start text-left inline-block min-w-[14ch]">Expires {countdown.days}d {countdown.hours}h</span>
               </div>
             ) : (
