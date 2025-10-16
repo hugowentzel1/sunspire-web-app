@@ -88,6 +88,10 @@ export default function TermsPage() {
               <p className="text-gray-600 mb-4">
                 The service and its original content, features, and functionality are owned by Sunspire and are protected by international copyright, trademark, patent, trade secret, and other intellectual property laws.
               </p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3 mt-6">Third-Party Trademarks</h3>
+              <p className="text-gray-600 mb-4">
+                PVWatts® is a registered trademark of the Alliance for Sustainable Energy, LLC, the operator of the National Renewable Energy Laboratory (NREL). We use PVWatts® data and modeling under NREL's terms of use. NREL and the U.S. Department of Energy do not endorse Sunspire or any of its products or services.
+              </p>
             </section>
 
             <section className="mb-8">
