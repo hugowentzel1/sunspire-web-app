@@ -755,41 +755,40 @@ function ReportContent() {
         <div data-testid="theme-probe" style={{ color: 'var(--brand)' }} className="hidden" />
         {/* Brand theme CSS variable */}
         <style>{`:root{--brand:${getBrandTheme(searchParams?.get('company') || undefined)};--brand-primary:${b.primary};}`}</style>
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="space-y-8">
-          <div className="text-center space-y-4">
-            <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="w-24 h-24 mx-auto">
-              {(b.logo || getDefaultLogo(b.brand)) ? (
-                <Image 
-                  src={b.logo || getDefaultLogo(b.brand) || ''} 
-                  alt={`${b.brand} logo`} 
-                  width={96} 
-                  height={96} 
-                  className="rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,.08)]"
-                  style={{ 
-                    objectFit: "contain",
-                    width: "96px",
-                    height: "96px"
-                  }}
-                />
-              ) : (
-                <div className="brand-gradient text-white rounded-full w-24 h-24 grid place-items-center shadow-[0_8px_30px_rgba(0,0,0,.08)]">
-                  <span className="text-4xl">☀️</span>
-                </div>
-              )}
-            </motion.div>
-            <div className="space-y-3">
-              <p className="text-lg md:text-xl font-semibold text-gray-900 max-w-2xl mx-auto">Comprehensive analysis for your property at {estimate.address}</p>
-              <div className="text-sm text-gray-500 text-center">
-                <p>
-                  Generated {formatDateSafe(estimate.date)}
-                  {demoMode && (
-                    <> • Preview: {remaining} run{remaining === 1 ? "" : "s"} • Expires {countdown.days}d {countdown.hours}h</>
-                  )}
-                </p>
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="space-y-10">
+          <div className="flex flex-col items-center gap-6">
+            <div className="flex flex-col items-center gap-4">
+              <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="w-24 h-24">
+                {(b.logo || getDefaultLogo(b.brand)) ? (
+                  <Image 
+                    src={b.logo || getDefaultLogo(b.brand) || ''} 
+                    alt={`${b.brand} logo`} 
+                    width={96} 
+                    height={96} 
+                    className="rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,.08)]"
+                    style={{ 
+                      objectFit: "contain",
+                      width: "96px",
+                      height: "96px"
+                    }}
+                  />
+                ) : (
+                  <div className="brand-gradient text-white rounded-full w-24 h-24 grid place-items-center shadow-[0_8px_30px_rgba(0,0,0,.08)]">
+                    <span className="text-4xl">☀️</span>
+                  </div>
+                )}
+              </motion.div>
+              <div className="flex justify-center items-center gap-4 text-sm text-gray-500 max-w-xl mx-auto" style={{ fontFeatureSettings: '"tnum"' }}>
+                <span className="flex-1 text-center">Generated {formatDateSafe(estimate.date)}</span>
+                {demoMode && (
+                  <>
+                    <span className="flex-1 text-center">Runs {remaining}</span>
+                    <span className="flex-1 text-center">Expires {countdown.days}d {countdown.hours}h</span>
+                  </>
+                )}
               </div>
             </div>
-
-
+            <p className="text-lg md:text-xl font-semibold text-gray-900 max-w-2xl mx-auto text-center">Comprehensive analysis for your property at {estimate.address}</p>
           </div>
 
           {/* Metric Tiles */}
