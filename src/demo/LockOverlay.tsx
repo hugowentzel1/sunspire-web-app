@@ -92,14 +92,12 @@ export default function LockOverlay() {
       <div
         style={{
           background: "#fff",
-          borderRadius: "32px",
-          padding: "64px 56px",
-          maxWidth: "1200px",
+          borderRadius: "24px",
+          padding: "48px",
+          maxWidth: "900px",
           width: "100%",
           textAlign: "center",
           boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
-          maxHeight: "90vh",
-          overflowY: "auto",
         }}
       >
         {/* Brand Logo/Name - Using 4-8px increment spacing */}
@@ -317,9 +315,9 @@ export default function LockOverlay() {
         <div
           style={{
             background: "var(--brand-primary)",
-            borderRadius: "28px",
-            padding: "56px 48px",
-            marginTop: "56px",
+            borderRadius: "24px",
+            padding: "40px 32px",
+            marginTop: "40px",
             boxShadow: "0 10px 30px rgba(0, 0, 0, 0.07)",
             textAlign: "center",
           }}
@@ -327,10 +325,10 @@ export default function LockOverlay() {
           {/* Title */}
           <h2
             style={{
-              fontSize: "32px",
+              fontSize: "26px",
               fontWeight: "800",
               color: "#ffffff",
-              marginBottom: "28px",
+              marginBottom: "20px",
               lineHeight: "1.3",
               letterSpacing: "-0.02em",
             }}
@@ -341,12 +339,12 @@ export default function LockOverlay() {
           {/* Subtext */}
           <p
             style={{
-              fontSize: "20px",
+              fontSize: "16px",
               color: "rgba(255, 255, 255, 0.95)",
-              marginBottom: "40px",
+              marginBottom: "28px",
               lineHeight: "1.6",
-              maxWidth: "800px",
-              margin: "0 auto 40px",
+              maxWidth: "600px",
+              margin: "0 auto 28px",
             }}
           >
             Get the full paid version—customer-facing and under your brand—with
@@ -355,7 +353,7 @@ export default function LockOverlay() {
           </p>
 
           {/* CTA Button */}
-          <div style={{ marginBottom: "24px" }}>
+          <div style={{ marginBottom: "16px" }}>
             <button
               onClick={openStripeCheckout}
               data-cta="primary"
@@ -364,13 +362,13 @@ export default function LockOverlay() {
                 display: "inline-flex",
                 alignItems: "center",
                 justifyContent: "center",
-                padding: "20px 48px",
+                padding: "16px 32px",
                 background: "#ffffff",
                 color: "var(--brand-primary)",
                 border: "none",
                 borderRadius: "16px",
                 fontWeight: "700",
-                fontSize: "20px",
+                fontSize: "18px",
                 cursor: "pointer",
                 boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
                 transition: "all 0.2s ease",
@@ -388,7 +386,7 @@ export default function LockOverlay() {
                   "0 4px 12px rgba(0, 0, 0, 0.15)";
               }}
             >
-              <span style={{ marginRight: "10px", fontSize: "22px" }}>⚡</span>
+              <span style={{ marginRight: "8px" }}>⚡</span>
               <span>Launch Your Branded Version Now</span>
             </button>
           </div>
@@ -396,9 +394,9 @@ export default function LockOverlay() {
           {/* Pricing Line */}
           <p
             style={{
-              fontSize: "16px",
+              fontSize: "14px",
               color: "rgba(255, 255, 255, 0.9)",
-              marginBottom: "16px",
+              marginBottom: "12px",
               fontWeight: "500",
             }}
           >
@@ -409,7 +407,7 @@ export default function LockOverlay() {
           {/* Comparison Line */}
           <p
             style={{
-              fontSize: "16px",
+              fontSize: "14px",
               color: "rgba(255, 255, 255, 0.85)",
               fontWeight: "500",
             }}
