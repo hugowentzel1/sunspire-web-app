@@ -93,8 +93,8 @@ export default function LockOverlay() {
         style={{
           background: "#fff",
           borderRadius: "24px",
-          padding: "48px",
-          maxWidth: "900px",
+          padding: "56px 48px",
+          maxWidth: "1000px",
           width: "100%",
           textAlign: "center",
           boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
@@ -311,72 +311,101 @@ export default function LockOverlay() {
           </div>
         </div>
 
-        {/* CTA - Matches ReportCTAFooter visual style exactly */}
+        {/* CTA Section - Matches Report Page exactly */}
         <div
           style={{
-            display: "flex",
-            justifyContent: "center",
-            marginBottom: "32px",
+            textAlign: "center",
+            marginTop: "48px",
           }}
         >
-          <button
-            onClick={openStripeCheckout}
-            data-cta="primary"
-            data-testid="primary-cta-lock"
+          {/* Title */}
+          <h2
             style={{
-              display: "inline-flex",
-              flexDirection: "column",
-              alignItems: "center",
-              justifyContent: "center",
-              padding: "16px 24px",
-              background: "var(--brand-primary)",
-              color: "#fff",
-              border: "none",
-              borderRadius: "12px",
-              fontWeight: "600",
-              fontSize: "16px",
-              cursor: "pointer",
-              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
-              transition: "all 0.2s ease",
-              width: "100%",
-              maxWidth: "400px",
-            }}
-            onMouseOver={(e) => {
-              e.currentTarget.style.transform = "scale(1.03)";
-              e.currentTarget.style.boxShadow =
-                "0 8px 24px rgba(0, 0, 0, 0.15)";
-            }}
-            onMouseOut={(e) => {
-              e.currentTarget.style.transform = "scale(1)";
-              e.currentTarget.style.boxShadow =
-                "0 4px 12px rgba(0, 0, 0, 0.1)";
+              fontSize: "28px",
+              fontWeight: "800",
+              color: "#111827",
+              marginBottom: "24px",
+              lineHeight: "1.3",
+              letterSpacing: "-0.02em",
             }}
           >
-            <div style={{ display: "flex", alignItems: "center" }}>
+            Ready to Launch Your Branded, Customer-Facing Tool?
+          </h2>
+
+          {/* Subtext */}
+          <p
+            style={{
+              fontSize: "18px",
+              color: "#4B5563",
+              marginBottom: "24px",
+              lineHeight: "1.6",
+              maxWidth: "700px",
+              margin: "0 auto 24px",
+            }}
+          >
+            Get the full paid version—customer-facing and under your brand—with
+            complete projections, detailed assumptions, and unblurred savings
+            charts.
+          </p>
+
+          {/* CTA Button */}
+          <div style={{ marginBottom: "20px" }}>
+            <button
+              onClick={openStripeCheckout}
+              data-cta="primary"
+              data-testid="primary-cta-lock"
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+                padding: "16px 32px",
+                background: "var(--brand-primary)",
+                color: "#fff",
+                border: "none",
+                borderRadius: "16px",
+                fontWeight: "600",
+                fontSize: "18px",
+                cursor: "pointer",
+                boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
+                transition: "all 0.2s ease",
+              }}
+              onMouseOver={(e) => {
+                e.currentTarget.style.transform = "scale(1.03)";
+                e.currentTarget.style.boxShadow =
+                  "0 8px 24px rgba(0, 0, 0, 0.15)";
+              }}
+              onMouseOut={(e) => {
+                e.currentTarget.style.transform = "scale(1)";
+                e.currentTarget.style.boxShadow =
+                  "0 4px 12px rgba(0, 0, 0, 0.1)";
+              }}
+            >
               <span style={{ marginRight: "8px" }}>⚡</span>
-              <span>Unlock Full Report</span>
-            </div>
-            <div
-              style={{
-                fontSize: "14px",
-                fontWeight: "400",
-                marginTop: "4px",
-                opacity: "0.9",
-              }}
-            >
-              Full version from just $99/mo + $399 setup
-            </div>
-            <div
-              style={{
-                fontSize: "12px",
-                fontWeight: "400",
-                marginTop: "4px",
-                opacity: "0.75",
-              }}
-            >
-              Most tools cost $2,500+/mo. Cancel anytime. No long-term contracts.
-            </div>
-          </button>
+              <span>Launch Your Branded Version Now</span>
+            </button>
+          </div>
+
+          {/* Pricing Line */}
+          <p
+            style={{
+              fontSize: "14px",
+              color: "#6B7280",
+              marginBottom: "16px",
+            }}
+          >
+            $99/mo + $399 setup • Live in 24 hours — or your setup fee is
+            refunded..
+          </p>
+
+          {/* Comparison Line */}
+          <p
+            style={{
+              fontSize: "15px",
+              color: "#6B7280",
+            }}
+          >
+            Comparable tools cost $2,500+/mo.
+          </p>
         </div>
       </div>
     </div>
