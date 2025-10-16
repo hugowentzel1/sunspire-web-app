@@ -33,11 +33,11 @@ export default function DataSources({
         <div className="pt-3 border-t border-gray-100">
           <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-xs">
             <span className="font-semibold text-gray-900">NREL PVWatts® v8</span>
-            <span className="text-gray-900 mx-3">|</span>
+            <span className="text-gray-400 mx-3">|</span>
             <span className="font-semibold text-gray-900">OpenEI URDB</span>
-            <span className="text-gray-900 mx-3">|</span>
+            <span className="text-gray-400 mx-3">|</span>
             <span className="font-semibold text-gray-900">{shadingMethod === 'remote' ? 'LiDAR Shading' : 'Geographic Shading'}</span>
-            <span className="text-gray-900 mx-3">|</span>
+            <span className="text-gray-400 mx-3">|</span>
             <span className="font-semibold text-gray-900">30% Federal ITC</span>
           </div>
         </div>
