@@ -25,10 +25,12 @@ export default function DataSources({
       aria-label="Data sources and methodology"
       className="mx-auto w-full max-w-4xl px-6"
     >
-      <div className="py-3">
-        <p className="text-center text-xs text-gray-500">
-          Modeled estimate — not a performance guarantee. 
-          Data from NREL PVWatts® v8, OpenEI URDB / EIA, and {shadingMethod === 'remote' ? 'LiDAR shading' : 'geographic shading proxy'}.
+      <div className="py-2">
+        <p className="text-center text-sm text-gray-900 font-semibold">
+          Modeled estimate — not a performance guarantee. Actual results vary with site conditions, equipment, installation quality, weather, and utility tariffs.
+        </p>
+        <p className="text-center text-xs text-gray-600 mt-2">
+          Data & modeling: NREL PVWatts® v8 • Utility rates from OpenEI URDB / EIA • Shading: {shadingMethod === 'remote' ? 'LiDAR (where available)' : 'Geographic proxy'}.
         </p>
       </div>
     </section>
