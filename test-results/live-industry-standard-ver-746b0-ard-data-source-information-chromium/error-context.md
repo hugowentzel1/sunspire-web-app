@@ -39,15 +39,15 @@
               - generic [ref=e34]:
                 - paragraph [ref=e35]: Generated on 10/15/2025
                 - paragraph [ref=e36]: "Preview: 1 run left."
-                - paragraph [ref=e37]: Expires in 6d 23h 59m 58s
+                - paragraph [ref=e37]: Expires in 6d 23h 59m 57s
           - generic [ref=e38]:
             - generic [ref=e40]:
               - generic [ref=e42]: ⚡
-              - generic [ref=e43]: 8.6 kW
+              - generic [ref=e43]: 7 kW
               - generic [ref=e44]: System Size
             - generic [ref=e46]:
               - generic [ref=e48]: ☀️
-              - generic [ref=e49]: 11,105 kWh
+              - generic [ref=e49]: 9,121 kWh
               - generic [ref=e50]: Annual Production
             - generic [ref=e51]:
               - generic [ref=e52]:
@@ -87,17 +87,17 @@
                 - generic [ref=e123]: Total Savings
             - generic [ref=e135]:
               - generic [ref=e136]:
-                - generic [ref=e138]: $18k
+                - generic [ref=e138]: $15k
                 - generic [ref=e139]: Investment
               - generic [ref=e140]:
-                - generic [ref=e142]: 11 years
+                - generic [ref=e142]: 10 years
                 - generic [ref=e143]: Payback Time
               - generic [ref=e144]:
-                - generic [ref=e146]: $42k
+                - generic [ref=e146]: $48k
                 - generic [ref=e147]: 25-Year Savings
             - paragraph [ref=e149]:
               - generic [ref=e150]: "How to read this:"
-              - text: The blue area shows your total savings growing over time. After 11 years, you'll have saved enough to cover your initial investment. By year 25, you'll have saved $42k total.
+              - text: The blue area shows your total savings growing over time. After 10 years, you'll have saved enough to cover your initial investment. By year 25, you'll have saved $48k total.
             - img
           - generic [ref=e151]:
             - generic [ref=e152]:
@@ -115,7 +115,7 @@
                     - generic [ref=e164]: — — —
                   - generic [ref=e165]:
                     - generic [ref=e166]: Electricity Rate
-                    - generic [ref=e167]: $0.14/kWh (Static)
+                    - generic [ref=e167]: $0.18/kWh (generic)
               - button "Unlock Full Report" [ref=e169] [cursor=pointer]
             - generic [ref=e170]:
               - generic [ref=e171]:
@@ -123,19 +123,19 @@
                 - generic [ref=e173]:
                   - generic [ref=e174]:
                     - generic [ref=e175]: CO₂ Offset/Year
-                    - generic [ref=e176]: 10,200 lbs
+                    - generic [ref=e176]: 7,753 lbs
                   - generic [ref=e177]:
                     - generic [ref=e178]: Solar Irradiance
-                    - generic [ref=e179]: 4.5 kWh/m²/day
+                    - generic [ref=e179]: 4.2 kWh/m²/day
                   - generic [ref=e180]:
                     - generic [ref=e181]: System Tilt
-                    - generic [ref=e182]: 20°
+                    - generic [ref=e182]: 0°
                   - generic [ref=e183]:
                     - generic [ref=e184]: System Losses
-                    - generic [ref=e185]: 14%
+                    - generic [ref=e185]: 5%
                   - generic [ref=e186]:
                     - generic [ref=e187]: Shading Analysis
-                    - generic [ref=e188]: remote (high accuracy)
+                    - generic [ref=e188]: proxy (medium accuracy)
                   - generic [ref=e189]:
                     - generic [ref=e190]: Annual Shading Loss
                     - generic [ref=e191]: 10%
@@ -171,96 +171,93 @@
                 - text: NREL PVWatts® v8
               - generic [ref=e224]:
                 - generic [ref=e225]: 💰
-                - text: Pacific Gas & Electric - E-1
-              - generic [ref=e226]:
-                - generic [ref=e227]: ☀️
-                - text: LiDAR Roof Shading
-            - paragraph [ref=e228]: Modeled estimate — not a performance guarantee. Actual production and savings depend on site conditions, equipment, installation quality, weather, and utility tariffs.
-            - paragraph [ref=e230]: "Methodology: NREL PVWatts® v8 (2020 TMY climate data) • OpenEI URDB / EIA utility rates (updated 2025-10-16) • High-resolution LiDAR shading analysis • Financial assumptions: 30% ITC, 0.5%/yr panel degradation, $22/kW/yr O&M."
-          - region "Ready to Launch Your Branded, Customer-Facing Tool?" [ref=e232]:
-            - generic [ref=e233]:
-              - heading "Ready to Launch Your Branded, Customer-Facing Tool?" [level=2] [ref=e234]
-              - paragraph [ref=e235]: Get the full paid version—customer-facing and under your brand—with complete projections, detailed assumptions, and unblurred savings charts.
-              - link "Launch Your Branded Version Now" [ref=e237] [cursor=pointer]:
+                - text: generic
+            - paragraph [ref=e226]: Modeled estimate — not a performance guarantee. Actual production and savings depend on site conditions, equipment, installation quality, weather, and utility tariffs.
+            - paragraph [ref=e228]: "Methodology: NREL PVWatts® v8 (2020 TMY climate data) • OpenEI URDB / EIA utility rates (updated 2025-10-16) • Financial assumptions: 30% ITC, 0.5%/yr panel degradation, $22/kW/yr O&M."
+          - region "Ready to Launch Your Branded, Customer-Facing Tool?" [ref=e230]:
+            - generic [ref=e231]:
+              - heading "Ready to Launch Your Branded, Customer-Facing Tool?" [level=2] [ref=e232]
+              - paragraph [ref=e233]: Get the full paid version—customer-facing and under your brand—with complete projections, detailed assumptions, and unblurred savings charts.
+              - link "Launch Your Branded Version Now" [ref=e235] [cursor=pointer]:
                 - /url: /api/stripe/create-checkout-session
-              - paragraph [ref=e238]: $99/mo + $399 setup • Live in 24 hours — or your setup fee is refunded..
-              - paragraph [ref=e239]: Comparable tools cost $2,500+/mo.
-    - contentinfo [ref=e240]:
-      - generic [ref=e242]:
-        - generic [ref=e243]:
-          - generic [ref=e244]:
-            - heading "Sunspire Solar Intelligence" [level=3] [ref=e245]
-            - paragraph [ref=e246]: Demo for google — Powered by Sunspire
-            - generic [ref=e247]:
-              - generic [ref=e248]:
-                - generic [ref=e249]: 📍
-                - generic [ref=e250]:
+              - paragraph [ref=e236]: $99/mo + $399 setup • Live in 24 hours — or your setup fee is refunded..
+              - paragraph [ref=e237]: Comparable tools cost $2,500+/mo.
+    - contentinfo [ref=e238]:
+      - generic [ref=e240]:
+        - generic [ref=e241]:
+          - generic [ref=e242]:
+            - heading "Sunspire Solar Intelligence" [level=3] [ref=e243]
+            - paragraph [ref=e244]: Demo for google — Powered by Sunspire
+            - generic [ref=e245]:
+              - generic [ref=e246]:
+                - generic [ref=e247]: 📍
+                - generic [ref=e248]:
                   - text: "1700 Northside Drive Suite A7 #5164"
                   - text: Atlanta, GA 30318
-              - generic [ref=e251]:
-                - generic [ref=e252]: GDPR
-                - generic [ref=e253]: CCPA
-                - generic [ref=e254]: SOC 2
-              - list [ref=e255]:
-                - listitem [ref=e256]:
-                  - generic [ref=e257]: ✉️
-                  - link "support@getsunspire.com" [ref=e258] [cursor=pointer]:
+              - generic [ref=e249]:
+                - generic [ref=e250]: GDPR
+                - generic [ref=e251]: CCPA
+                - generic [ref=e252]: SOC 2
+              - list [ref=e253]:
+                - listitem [ref=e254]:
+                  - generic [ref=e255]: ✉️
+                  - link "support@getsunspire.com" [ref=e256] [cursor=pointer]:
                     - /url: mailto:support@getsunspire.com
-                - listitem [ref=e259]:
-                  - generic [ref=e260]: ✉️
-                  - link "billing@getsunspire.com" [ref=e261] [cursor=pointer]:
+                - listitem [ref=e257]:
+                  - generic [ref=e258]: ✉️
+                  - link "billing@getsunspire.com" [ref=e259] [cursor=pointer]:
                     - /url: mailto:billing@getsunspire.com
-                - listitem [ref=e262]:
-                  - generic [ref=e263]: ☎️
-                  - link "+1 (404) 123-4567" [ref=e264] [cursor=pointer]:
+                - listitem [ref=e260]:
+                  - generic [ref=e261]: ☎️
+                  - link "+1 (404) 123-4567" [ref=e262] [cursor=pointer]:
                     - /url: tel:+14041234567
-          - generic [ref=e265]:
-            - heading "Quick Links" [level=4] [ref=e266]
-            - list [ref=e267]:
-              - listitem [ref=e268]:
-                - link "Pricing" [ref=e269] [cursor=pointer]:
+          - generic [ref=e263]:
+            - heading "Quick Links" [level=4] [ref=e264]
+            - list [ref=e265]:
+              - listitem [ref=e266]:
+                - link "Pricing" [ref=e267] [cursor=pointer]:
                   - /url: /pricing
-              - listitem [ref=e270]:
-                - link "Partners" [ref=e271] [cursor=pointer]:
+              - listitem [ref=e268]:
+                - link "Partners" [ref=e269] [cursor=pointer]:
                   - /url: /partners
-              - listitem [ref=e272]:
-                - link "Support" [ref=e273] [cursor=pointer]:
+              - listitem [ref=e270]:
+                - link "Support" [ref=e271] [cursor=pointer]:
                   - /url: /support
-          - generic [ref=e274]:
-            - heading "Legal & Support" [level=4] [ref=e275]
-            - list [ref=e276]:
-              - listitem [ref=e277]:
-                - link "Privacy Policy" [ref=e278] [cursor=pointer]:
+          - generic [ref=e272]:
+            - heading "Legal & Support" [level=4] [ref=e273]
+            - list [ref=e274]:
+              - listitem [ref=e275]:
+                - link "Privacy Policy" [ref=e276] [cursor=pointer]:
                   - /url: /privacy
-              - listitem [ref=e279]:
-                - link "Terms of Service" [ref=e280] [cursor=pointer]:
+              - listitem [ref=e277]:
+                - link "Terms of Service" [ref=e278] [cursor=pointer]:
                   - /url: /terms
-              - listitem [ref=e281]:
-                - link "Refund Policy" [ref=e282] [cursor=pointer]:
+              - listitem [ref=e279]:
+                - link "Refund Policy" [ref=e280] [cursor=pointer]:
                   - /url: /legal/refund
-              - listitem [ref=e283]:
-                - link "Security" [ref=e284] [cursor=pointer]:
+              - listitem [ref=e281]:
+                - link "Security" [ref=e282] [cursor=pointer]:
                   - /url: /security
-              - listitem [ref=e285]:
-                - link "DPA" [ref=e286] [cursor=pointer]:
+              - listitem [ref=e283]:
+                - link "DPA" [ref=e284] [cursor=pointer]:
                   - /url: /dpa
-              - listitem [ref=e287]:
-                - link "Do Not Sell My Data" [ref=e288] [cursor=pointer]:
+              - listitem [ref=e285]:
+                - link "Do Not Sell My Data" [ref=e286] [cursor=pointer]:
                   - /url: /do-not-sell
-        - separator [ref=e289]
-        - generic [ref=e290]:
-          - generic [ref=e291]:
-            - generic [ref=e292]: ⚡
-            - generic [ref=e293]:
+        - separator [ref=e287]
+        - generic [ref=e288]:
+          - generic [ref=e289]:
+            - generic [ref=e290]: ⚡
+            - generic [ref=e291]:
               - text: Estimates generated
               - text: using NREL PVWatts® v8
-          - generic [ref=e295]:
+          - generic [ref=e293]:
             - text: Powered by
-            - generic [ref=e296]: Sunspire
-          - generic [ref=e297]:
-            - generic [ref=e298]: 🗺️
-            - generic [ref=e299]:
+            - generic [ref=e294]: Sunspire
+          - generic [ref=e295]:
+            - generic [ref=e296]: 🗺️
+            - generic [ref=e297]:
               - text: Mapping & location
               - text: data © Google
-  - generic [ref=e300]: $0k
+  - generic [ref=e298]: $0k
 ```

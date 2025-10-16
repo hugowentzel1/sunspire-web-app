@@ -1,0 +1,204 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - alert [ref=e2]: Apple — Solar Intelligence
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - img "Apple logo" [ref=e8]
+          - generic [ref=e9]:
+            - heading "Apple" [level=1] [ref=e10]
+            - paragraph [ref=e11]: Solar Intelligence
+        - navigation [ref=e12]:
+          - button "New Analysis" [ref=e13] [cursor=pointer]
+    - main [ref=e14]:
+      - generic [ref=e15]:
+        - link "Back to Home" [ref=e17] [cursor=pointer]:
+          - /url: /?address=1600+Amphitheatre+Parkway%2C+Mountain+View%2C+CA&lat=40.7128&lng=-74.0060&placeId=demo&company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com
+          - img [ref=e18] [cursor=pointer]
+          - text: Back to Home
+        - generic [ref=e20]:
+          - generic [ref=e21]:
+            - img "Apple logo" [ref=e23]
+            - generic [ref=e24]:
+              - heading "New Analysis" [level=2] [ref=e25]
+              - paragraph [ref=e26]: Comprehensive analysis for your property at 1600 Amphitheatre Parkway, Mountain View, CA
+              - paragraph [ref=e28]: Generated on 10/15/2025
+          - generic [ref=e29]:
+            - generic [ref=e31]:
+              - generic [ref=e33]: ⚡
+              - generic [ref=e34]: 7 kW
+              - generic [ref=e35]: System Size
+            - generic [ref=e37]:
+              - generic [ref=e39]: ☀️
+              - generic [ref=e40]: 9,121 kWh
+              - generic [ref=e41]: Annual Production
+            - generic [ref=e43]:
+              - generic [ref=e45]: 💰
+              - generic [ref=e46]: $14,700
+              - generic [ref=e47]: Net Cost (After ITC)
+              - generic [ref=e48]: Includes 30% federal investment tax credit (ITC)
+            - generic [ref=e50]:
+              - generic [ref=e52]: 📈
+              - generic [ref=e53]: $1,488
+              - generic [ref=e54]: Year 1 Savings
+              - generic [ref=e55]: Based on current local utility rate and modeled production
+          - generic [ref=e58]:
+            - generic [ref=e60]:
+              - generic [ref=e61]:
+                - heading "Your Solar Savings Over Time" [level=3] [ref=e62]
+                - paragraph [ref=e63]: Simple view of how your solar investment pays off over 25 years
+              - button "View Methodology" [ref=e64] [cursor=pointer]
+            - application [ref=e68]:
+              - generic [ref=e72]:
+                - generic [ref=e73]:
+                  - generic [ref=e76]: "1"
+                  - generic [ref=e79]: "5"
+                  - generic [ref=e82]: "10"
+                  - generic [ref=e85]: "15"
+                  - generic [ref=e88]: "20"
+                  - generic [ref=e91]: "25"
+                - generic [ref=e93]: Years
+              - generic [ref=e94]:
+                - generic [ref=e95]:
+                  - generic [ref=e98]: $0k
+                  - generic [ref=e101]: $15k
+                  - generic [ref=e104]: $30k
+                  - generic [ref=e107]: $45k
+                  - generic [ref=e110]: $60k
+                - generic [ref=e112]: Total Savings
+            - generic [ref=e124]:
+              - generic [ref=e125]:
+                - generic [ref=e127]: $15k
+                - generic [ref=e128]: Investment
+              - generic [ref=e129]:
+                - generic [ref=e131]: 10 years
+                - generic [ref=e132]: Payback Time
+              - generic [ref=e133]:
+                - generic [ref=e135]: $48k
+                - generic [ref=e136]: 25-Year Savings
+            - paragraph [ref=e138]:
+              - generic [ref=e139]: "How to read this:"
+              - text: The red area shows your total savings growing over time. After 10 years, you'll have saved enough to cover your initial investment. By year 25, you'll have saved $48k total.
+            - img
+          - generic [ref=e140]:
+            - generic [ref=e142]:
+              - heading "Financial Analysis" [level=2] [ref=e143]
+              - generic [ref=e144]:
+                - generic [ref=e145]:
+                  - generic [ref=e146]: Payback Period
+                  - generic [ref=e147]: 10 years
+                - generic [ref=e148]:
+                  - generic [ref=e149]: 25-Year NPV
+                  - generic [ref=e150]: $6,034
+                - generic [ref=e151]:
+                  - generic [ref=e152]: ROI
+                  - generic [ref=e153]: 141%
+                - generic [ref=e154]:
+                  - generic [ref=e155]: Electricity Rate
+                  - generic [ref=e156]: $0.18/kWh (generic)
+            - generic [ref=e158]:
+              - heading "Environmental Impact" [level=2] [ref=e159]
+              - generic [ref=e160]:
+                - generic [ref=e161]:
+                  - generic [ref=e162]: CO₂ Offset/Year
+                  - generic [ref=e163]: 7,753 lbs
+                - generic [ref=e164]:
+                  - generic [ref=e165]: Solar Irradiance
+                  - generic [ref=e166]: 4.2 kWh/m²/day
+                - generic [ref=e167]:
+                  - generic [ref=e168]: System Tilt
+                  - generic [ref=e169]: 0°
+                - generic [ref=e170]:
+                  - generic [ref=e171]: System Losses
+                  - generic [ref=e172]: 5%
+                - generic [ref=e173]:
+                  - generic [ref=e174]: Shading Analysis
+                  - generic [ref=e175]: proxy (medium accuracy)
+                - generic [ref=e176]:
+                  - generic [ref=e177]: Annual Shading Loss
+                  - generic [ref=e178]: 10%
+            - generic [ref=e180]:
+              - heading "Calculation Details & Data Sources" [level=2] [ref=e181]
+              - generic [ref=e182]:
+                - heading "Calculation Assumptions" [level=3] [ref=e183]
+                - generic [ref=e184]:
+                  - generic [ref=e185]:
+                    - generic [ref=e186]: Federal Tax Credit (ITC)
+                    - generic [ref=e187]: 30%
+                  - generic [ref=e188]:
+                    - generic [ref=e189]: Cost per Watt
+                    - generic [ref=e190]: $3
+                  - generic [ref=e191]:
+                    - generic [ref=e192]: Panel Degradation
+                    - generic [ref=e193]: 0.5%/year
+                  - generic [ref=e194]:
+                    - generic [ref=e195]: O&M Cost
+                    - generic [ref=e196]: $22/kW/year
+                  - generic [ref=e197]:
+                    - generic [ref=e198]: Rate Increase
+                    - generic [ref=e199]: 2.5%/year
+                  - generic [ref=e200]:
+                    - generic [ref=e201]: Discount Rate
+                    - generic [ref=e202]: 7%
+              - generic [ref=e203]:
+                - heading "Data Sources" [level=3] [ref=e204]
+                - generic [ref=e205]:
+                  - generic [ref=e208]: Solar irradiance data from industry-standard models
+                  - generic [ref=e211]: Utility rates from local utility databases
+                  - generic [ref=e214]: Financial calculations based on current federal and state incentives
+                - generic [ref=e215]:
+                  - paragraph
+                  - paragraph [ref=e216]: Last updated 10/15/2025
+          - region "Data sources and methodology" [ref=e218]:
+            - generic [ref=e219]: Powered by Verified Industry Data
+            - generic [ref=e220]:
+              - generic [ref=e221]:
+                - generic [ref=e222]: ⚡
+                - text: NREL PVWatts® v8
+              - generic [ref=e223]:
+                - generic [ref=e224]: 💰
+                - text: generic
+            - paragraph [ref=e225]: Modeled estimate — not a performance guarantee. Actual production and savings depend on site conditions, equipment, installation quality, weather, and utility tariffs.
+            - paragraph [ref=e227]: "Methodology: NREL PVWatts® v8 (2020 TMY climate data) • OpenEI URDB / EIA utility rates (updated 2025-10-16) • Financial assumptions: 30% ITC, 0.5%/yr panel degradation, $22/kW/yr O&M."
+          - region "Next steps" [ref=e229]:
+            - generic [ref=e230]:
+              - button "Launch Your Branded Version Now" [ref=e231] [cursor=pointer]:
+                - generic [ref=e232] [cursor=pointer]: ⚡
+                - text: Launch Your Branded Version Now
+              - link "Talk to a Specialist" [ref=e233] [cursor=pointer]:
+                - /url: tel:+14041234567
+                - text: 📞 Talk to a Specialist
+            - paragraph [ref=e234]: $99/mo + $399 setup • Live in 24 hours — or your setup fee is refunded.
+            - generic [ref=e235]:
+              - button "Download PDF Report" [ref=e236] [cursor=pointer]: 📄 Download PDF
+              - button "Copy Share Link" [ref=e237] [cursor=pointer]: 🔗 Copy Share Link
+    - contentinfo [ref=e238]:
+      - generic [ref=e239]:
+        - generic [ref=e240]:
+          - img "Apple logo" [ref=e241]
+          - generic [ref=e242]: Apple
+        - navigation "Legal and support" [ref=e243]:
+          - list [ref=e244]:
+            - listitem [ref=e245]:
+              - link "Privacy Policy" [ref=e246] [cursor=pointer]:
+                - /url: /legal/privacy
+              - generic [ref=e247]: •
+            - listitem [ref=e248]:
+              - link "Terms of Service" [ref=e249] [cursor=pointer]:
+                - /url: /legal/terms
+            - listitem [ref=e250]:
+              - link "Accessibility" [ref=e251] [cursor=pointer]:
+                - /url: /legal/accessibility
+              - generic [ref=e252]: •
+            - listitem [ref=e253]:
+              - link "Contact" [ref=e254] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=e256]:
+          - text: Powered by
+          - link "Sunspire" [ref=e257] [cursor=pointer]:
+            - /url: https://getsunspire.com
+  - generic [ref=e258]: $0k
+```
