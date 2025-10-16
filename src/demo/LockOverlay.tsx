@@ -100,8 +100,8 @@ export default function LockOverlay() {
           boxShadow: "0 25px 50px -12px rgba(0, 0, 0, 0.25)",
         }}
       >
-        {/* Brand Logo/Name */}
-        <div style={{ marginBottom: "40px" }}>
+        {/* Brand Logo/Name - Using 4-8px increment spacing */}
+        <div style={{ marginBottom: "32px" }}>
           {b.logo ? (
             <Image
               src={b.logo}
@@ -109,16 +109,16 @@ export default function LockOverlay() {
               width={100}
               height={100}
               unoptimized
-              className="mx-auto mb-6"
+              className="mx-auto"
               sizes="100vw"
-              style={{ height: "auto", width: "auto" }}
+              style={{ height: "auto", width: "auto", marginBottom: "24px" }}
             />
           ) : (
             <div
               style={{
                 width: "100px",
                 height: "100px",
-                borderRadius: "24px",
+                borderRadius: "20px",
                 background: "var(--brand-primary)",
                 color: "#ffffff",
                 display: "grid",
@@ -152,7 +152,7 @@ export default function LockOverlay() {
             style={{
               fontSize: "18px",
               color: "#6B7280",
-              margin: "0 0 16px 0",
+              margin: "0 0 12px 0",
             }}
           >
             Upgrade to continue
@@ -163,10 +163,10 @@ export default function LockOverlay() {
             style={{
               background: "var(--brand-primary)",
               color: "#fff",
-              padding: "12px 24px",
+              padding: "8px 20px",
               borderRadius: "12px",
               display: "inline-block",
-              fontSize: "16px",
+              fontSize: "14px",
               fontWeight: "600",
               boxShadow: "0 4px 12px rgba(0, 0, 0, 0.15)",
             }}
@@ -177,13 +177,13 @@ export default function LockOverlay() {
           </div>
         </div>
 
-        {/* Side-by-side comparison */}
+        {/* Side-by-side comparison - Using 4-8px increment spacing */}
         <div
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
-            gap: "32px",
-            marginBottom: "48px",
+            gap: "24px",
+            marginBottom: "32px",
             alignItems: "start",
           }}
         >
@@ -193,7 +193,7 @@ export default function LockOverlay() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                marginBottom: "16px",
+                marginBottom: "12px",
               }}
             >
               <div
@@ -254,7 +254,7 @@ export default function LockOverlay() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                marginBottom: "16px",
+                marginBottom: "12px",
               }}
             >
               <div
@@ -311,7 +311,7 @@ export default function LockOverlay() {
           </div>
         </div>
 
-        {/* CTA */}
+        {/* CTA - Matches ReportCTAFooter visual style exactly */}
         <div
           style={{
             display: "flex",
@@ -322,66 +322,61 @@ export default function LockOverlay() {
           <button
             onClick={openStripeCheckout}
             data-cta="primary"
+            data-testid="primary-cta-lock"
             style={{
-              padding: "18px 36px",
+              display: "inline-flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "16px 24px",
               background: "var(--brand-primary)",
               color: "#fff",
               border: "none",
-              borderRadius: "16px",
-              fontSize: "18px",
-              fontWeight: "700",
+              borderRadius: "12px",
+              fontWeight: "600",
+              fontSize: "16px",
               cursor: "pointer",
-              boxShadow: "0 8px 32px rgba(0, 0, 0, 0.15)",
+              boxShadow: "0 4px 12px rgba(0, 0, 0, 0.1)",
               transition: "all 0.2s ease",
-              minWidth: "200px",
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
+              width: "100%",
+              maxWidth: "400px",
             }}
             onMouseOver={(e) => {
-              e.currentTarget.style.transform = "translateY(-2px)";
+              e.currentTarget.style.transform = "scale(1.03)";
               e.currentTarget.style.boxShadow =
-                "0 12px 40px rgba(0, 0, 0, 0.25)";
+                "0 8px 24px rgba(0, 0, 0, 0.15)";
             }}
             onMouseOut={(e) => {
-              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.transform = "scale(1)";
               e.currentTarget.style.boxShadow =
-                "0 8px 32px rgba(0, 0, 0, 0.15)";
+                "0 4px 12px rgba(0, 0, 0, 0.1)";
             }}
           >
-            <span style={{ marginRight: '12px' }}>⚡</span>
-            <span>Launch Your Branded Version Now</span>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <span style={{ marginRight: "8px" }}>⚡</span>
+              <span>Unlock Full Report</span>
+            </div>
+            <div
+              style={{
+                fontSize: "14px",
+                fontWeight: "400",
+                marginTop: "4px",
+                opacity: "0.9",
+              }}
+            >
+              Full version from just $99/mo + $399 setup
+            </div>
+            <div
+              style={{
+                fontSize: "12px",
+                fontWeight: "400",
+                marginTop: "4px",
+                opacity: "0.75",
+              }}
+            >
+              Most tools cost $2,500+/mo. Cancel anytime. No long-term contracts.
+            </div>
           </button>
-        </div>
-
-        {/* Pricing Info */}
-        <div
-          style={{
-            background: "#F8FAFC",
-            borderRadius: "12px",
-            padding: "20px",
-            marginBottom: "24px",
-          }}
-        >
-          <p
-            style={{
-              fontSize: "16px",
-              fontWeight: "600",
-              color: "#374151",
-              margin: "0 0 8px 0",
-            }}
-          >
-            Full version from just $99/mo + $399 setup
-          </p>
-          <p
-            style={{
-              fontSize: "14px",
-              color: "#6B7280",
-              margin: "0",
-            }}
-          >
-            Most tools cost $2,500+/mo. Cancel anytime. No long-term contracts.
-          </p>
         </div>
       </div>
     </div>
