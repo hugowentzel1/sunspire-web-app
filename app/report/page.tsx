@@ -777,20 +777,20 @@ function ReportContent() {
             </motion.div>
             <p className="text-lg md:text-xl font-semibold text-gray-900 max-w-2xl mx-auto text-center" style={{ textWrap: 'balance' as any }}>Comprehensive analysis for your property at {estimate.address}</p>
             {demoMode ? (
-              <div className="mx-auto mt-3 space-y-3 text-sm text-gray-500 text-center">
+              <div className="mx-auto mt-4 space-y-4 text-sm text-gray-500 text-center">
                 <p>Generated on {formatDateSafe(estimate.date)}</p>
                 <p>Preview: {remaining < 0 ? '-' : ''}{Math.abs(remaining)} runs left.</p>
                 <p>Expires in {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</p>
               </div>
             ) : (
-              <div className="mx-auto mt-3 text-sm text-gray-500 text-center">
+              <div className="mx-auto mt-4 text-sm text-gray-500 text-center">
                 Generated on {formatDateSafe(estimate.date)}
               </div>
             )}
           </div>
 
           {/* Spacer for equal spacing */}
-          <div className="mt-3"></div>
+          <div className="mt-4"></div>
 
           {/* Metric Tiles */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
