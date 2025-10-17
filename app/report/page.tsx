@@ -743,69 +743,90 @@ function ReportContent() {
         <style>{`:root{--brand:${getBrandTheme(searchParams?.get('company') || undefined)};--brand-primary:${b.primary};}`}</style>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="space-y-10">
           <div className="flex flex-col items-center gap-6">
-            <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="w-24 h-24">
-              {(b.logo || getDefaultLogo(b.brand)) ? (
-                <Image 
-                  src={b.logo || getDefaultLogo(b.brand) || ''} 
-                  alt={`${b.brand} logo`} 
-                  width={96} 
-                  height={96} 
-                  className="rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,.08)]"
-                  style={{ 
-                    objectFit: "contain",
-                    width: "96px",
-                    height: "96px"
-                  }}
-                />
-              ) : (
-                <div className="brand-gradient text-white rounded-full w-24 h-24 grid place-items-center shadow-[0_8px_30px_rgba(0,0,0,.08)]">
-                  <span className="text-4xl">☀️</span>
-                </div>
-              )}
-            </motion.div>
-            {/* H1 (bold) — Pixel-perfect hierarchy */}
-            <h1 data-testid="hdr-h1" className="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 text-center">
-              Your <span className="text-blue-600">{b.brand || 'Company'}</span> Solar Quote <span className="text-slate-500">(Live Preview)</span>
+            {/* H1 — before the logo */}
+            <h1
+              data-testid="hdr-h1"
+              className="text-[clamp(30px,5vw,42px)] md:text-[42px] font-semibold text-slate-900 text-center tracking-tight"
+            >
+              Your <span className="text-blue-600">{b.brand || 'Company'}</span> Solar Quote
+              <span className="text-slate-500"> (Live Preview)</span>
             </h1>
 
-            {/* Subheadline (bold) — mt-2 for scan stripe */}
-            <p data-testid="hdr-sub" className="mt-2 text-lg md:text-xl font-semibold text-slate-800 text-center">
+            {/* Logo just under H1 */}
+            <div data-testid="hdr-logo" className="mt-6 flex justify-center">
+              <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="w-24 h-24">
+                {(b.logo || getDefaultLogo(b.brand)) ? (
+                  <Image 
+                    src={b.logo || getDefaultLogo(b.brand) || ''} 
+                    alt={`${b.brand} logo`} 
+                    width={96} 
+                    height={96} 
+                    className="rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,.08)]"
+                    style={{ 
+                      objectFit: "contain",
+                      width: "96px",
+                      height: "96px"
+                    }}
+                  />
+                ) : (
+                  <div className="brand-gradient text-white rounded-full w-24 h-24 grid place-items-center shadow-[0_8px_30px_rgba(0,0,0,.08)]">
+                    <span className="text-4xl">☀️</span>
+                  </div>
+                )}
+              </motion.div>
+            </div>
+
+            {/* Subheadline */}
+            <p
+              data-testid="hdr-sub"
+              className="mt-4 text-[20px] md:text-[20px] font-semibold text-slate-800 text-center"
+            >
               Comprehensive analysis for your property at
             </p>
 
-            {/* Address (not bold) — mt-1, 65ch optimal, balanced wrap */}
+            {/* Address — not bold, balanced, ≤2 lines */}
             <p
               data-testid="hdr-address"
-              className="mx-auto mt-1 max-w-[65ch] text-center text-base text-slate-600 leading-snug whitespace-normal break-words line-clamp-2"
+              className="mt-2 mx-auto max-w-[65ch] text-center text-[18px] text-slate-600
+                         leading-snug whitespace-normal break-words line-clamp-2"
               style={{ textWrap: 'balance' } as any}
             >
-              <span data-testid="hdr-address-span">{softWrapAddress(estimate.address)}</span>
+              {softWrapAddress(estimate.address)}
             </p>
 
-            {/* Meta (not bold; values darker tone) — mt-2, tabular-nums on timer */}
+            {/* Meta — 3 rows; values + unit same tone; tabular digits */}
             {demoMode ? (
-              <div data-testid="hdr-meta" className="mx-auto mt-2 w-full max-w-sm text-center">
-                <div data-testid="meta-generated" className="py-1 text-sm text-slate-500">
+              <div data-testid="hdr-meta" className="mt-4 mx-auto w-full max-w-sm text-center">
+                <div data-testid="meta-generated" className="py-1 text-[15px] text-slate-600">
                   Generated on <span className="text-slate-700">{formatDateSafe(estimate.date)}</span>
                 </div>
-                <div data-testid="meta-runs" className="py-1 text-sm text-slate-500">
-                  Preview: <span className="text-slate-700">{remaining < 0 ? '-' : ''}{Math.abs(remaining)}</span> run{Math.abs(remaining) === 1 ? '' : 's'} left
+
+                {/* NOTE: value + unit together so it doesn't look two-tone */}
+                <div data-testid="meta-runs" className="py-1 text-[15px] text-slate-600">
+                  Preview: <span className="text-slate-700">
+                    {remaining < 0 ? '-' : ''}{Math.abs(remaining)} run{Math.abs(remaining) === 1 ? '' : 's'} left
+                  </span>
                 </div>
-                <div data-testid="meta-expires" className="py-1 text-sm text-slate-500 tabular-nums" style={{ fontVariantNumeric: 'tabular-nums' }}>
+
+                <div
+                  data-testid="meta-expires"
+                  className="py-1 text-[15px] text-slate-600 tabular-nums"
+                  style={{ fontVariantNumeric: 'tabular-nums' }}
+                >
                   Expires in <span className="text-slate-700">{countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</span>
                 </div>
               </div>
             ) : (
-              <div data-testid="hdr-meta" className="mx-auto mt-2 w-full max-w-sm text-center">
-                <div data-testid="meta-generated" className="py-1 text-sm text-slate-500">
+              <div data-testid="hdr-meta" className="mt-4 mx-auto w-full max-w-sm text-center">
+                <div data-testid="meta-generated" className="py-1 text-[15px] text-slate-600">
                   Generated on <span className="text-slate-700">{formatDateSafe(estimate.date)}</span>
                 </div>
               </div>
             )}
           </div>
 
-          {/* Spacing to cards — mt-6 for scan pattern optimization */}
-          <div className="mt-6"></div>
+          {/* Spacing to cards — mt-10 for industry-standard polish */}
+          <div className="mt-10"></div>
 
           {/* Metric Tiles */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">

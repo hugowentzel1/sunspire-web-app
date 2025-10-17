@@ -97,6 +97,15 @@ export default function BrandProvider({
         : `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><circle cx='8' cy='8' r='8' fill='${encodeURIComponent(b.primary)}'/></svg>`,
     );
     document.head.appendChild(link);
+    return () => {
+      try {
+        if (link.parentNode) {
+          document.head.removeChild(link);
+        }
+      } catch (e) {
+        // Element may have already been removed
+      }
+    };
   }, [b.enabled, b.logo, b.primary]);
 
   // Title + robots
@@ -108,7 +117,13 @@ export default function BrandProvider({
     meta.content = "noindex,nofollow";
     document.head.appendChild(meta);
     return () => {
-      document.head.removeChild(meta);
+      try {
+        if (meta.parentNode) {
+          document.head.removeChild(meta);
+        }
+      } catch (e) {
+        // Element may have already been removed
+      }
     };
   }, [b.enabled, b.brand]);
 
