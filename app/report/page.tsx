@@ -763,8 +763,8 @@ function ReportContent() {
               <span className="text-slate-500"> (Live Preview)</span>
             </h1>
 
-            {/* Logo below H1 - mt-4 (16px) */}
-            <div data-testid="hdr-logo" className="mt-4 flex justify-center">
+            {/* Logo below H1 */}
+            <div data-testid="hdr-logo" className="mt-6 flex justify-center">
               <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="w-24 h-24">
                 {(b.logo || getDefaultLogo(b.brand)) ? (
                   <Image 
@@ -787,47 +787,51 @@ function ReportContent() {
               </motion.div>
             </div>
 
-            {/* Subheadline - mt-6 (24px) */}
+            {/* Subheadline */}
             <p
               data-testid="hdr-sub"
-              className="mt-6 text-[clamp(18px,2.4vw,20px)] font-semibold text-slate-800"
+              className="mt-4 text-[clamp(18px,2.4vw,20px)] font-semibold text-slate-800"
             >
               Comprehensive analysis for your property at
             </p>
 
-            {/* Address - mt-2 (8px) */}
+            {/* Address */}
             <p
               data-testid="hdr-address"
-              className="mt-2 max-w-[60ch] text-[clamp(17px,2.3vw,18px)] text-slate-600 leading-snug text-balance whitespace-normal break-words line-clamp-2"
+              className="mt-2 mx-auto max-w-[65ch] text-[clamp(17px,2.3vw,18px)] text-slate-600 leading-snug whitespace-normal break-words line-clamp-2"
               style={{ textWrap: 'balance' } as any}
             >
               {softWrapAddress(estimate.address)}
             </p>
 
-            {/* Meta rows - mt-5 (20px) */}
+            {/* Meta rows */}
             <div
               data-testid="hdr-meta"
-              className="mt-5 space-y-1 text-[15px] leading-relaxed text-slate-600"
+              className="mt-4 mx-auto w-full max-w-sm text-center text-[14px] md:text-[15px]"
             >
-              <div>
+              <div className="py-1 text-slate-600">
                 Generated on <span className="text-slate-700">{formatDateSafe(estimate.date)}</span>
               </div>
               {demoMode && (
                 <>
-                  <div>
-                    Preview: <span className="text-slate-700">
+                  <div className="py-1 text-slate-600">
+                    Preview:{' '}
+                    <span className="text-slate-700">
                       {remaining < 0 ? '-' : ''}{Math.abs(remaining)} run{Math.abs(remaining) === 1 ? '' : 's'} left
                     </span>
                   </div>
-                  <div className="tabular-nums">
+                  <div
+                    className="py-1 text-slate-600 tabular-nums"
+                    style={{ fontVariantNumeric: 'tabular-nums' }}
+                  >
                     Expires in <span className="text-slate-700">{countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</span>
                   </div>
                 </>
               )}
             </div>
 
-            {/* Cards below - mt-8 (32px) */}
-            <div className="mt-8" />
+            {/* leave cards as-is, but keep this spacer for rhythm */}
+            <div className="mt-10" />
           </section>
 
           {/* Metric Tiles */}

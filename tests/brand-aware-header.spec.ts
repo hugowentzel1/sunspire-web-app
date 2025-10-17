@@ -60,7 +60,7 @@ test.describe('Brand-aware header with automatic contrast safety', () => {
     // spacing spot checks (approx):
     const logo = page.getByTestId('hdr-logo');
     const rect = async (el: any) => (await el.boundingBox())!.y;
-    expect((await rect(logo)) - (await rect(h1))).toBeGreaterThanOrEqual(14); // mt-4 (16px)
+    expect((await rect(logo)) - (await rect(h1))).toBeGreaterThanOrEqual(20); // mt-6 (24px)
   });
 
   test('Brand color contrast safety with light colors', async ({ page }) => {
@@ -121,7 +121,7 @@ test.describe('Brand-aware header with automatic contrast safety', () => {
     await page.waitForSelector('[data-testid="hdr-meta"]');
     
     const meta = page.locator('[data-testid="hdr-meta"]');
-    await expect(meta.locator('div')).toHaveCount(3);
+    await expect(meta.locator('div.py-1')).toHaveCount(3);
 
     const runs = page.locator('[data-testid="hdr-meta"] div').nth(1);
     // Check that "X runs left" is wrapped as a single span (same tone)
@@ -156,7 +156,7 @@ test.describe('Brand-aware header with automatic contrast safety', () => {
     await page.waitForSelector('[data-testid="hdr-meta"]');
     
     const meta = page.locator('[data-testid="hdr-meta"]');
-    await expect(meta.locator('div')).toHaveCount(1);
+    await expect(meta.locator('div.py-1')).toHaveCount(1);
     await expect(page.locator('[data-testid="hdr-meta"] div').first()).toBeVisible();
   });
 });
