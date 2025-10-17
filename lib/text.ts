@@ -13,3 +13,5 @@ export function formatAddressForWrap(address: string): string {
   return address.replace(/,/g, ",\u200B");
 }
 
+export const softWrapAddress = (s: string) => s.replace(/,/g, ",\u200B"); // allow breaks after commas
+
