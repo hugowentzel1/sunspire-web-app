@@ -777,38 +777,32 @@ function ReportContent() {
               )}
             </motion.div>
             <div className="mx-auto max-w-[65ch] text-center">
-              {/* Subheadline (unchanged tone) */}
-              <p className="mt-2 text-lg md:text-xl font-semibold text-slate-800 text-center">
+              <p className="text-lg md:text-xl font-semibold text-gray-900" style={{ textWrap: 'balance' as any }}>
                 Comprehensive analysis for your property at
               </p>
-
-              {/* Address — NOT bold, balanced, 2 lines max */}
-              <p
-                data-testid="report-address"
-                className="mx-auto mt-2 max-w-[65ch] text-center text-base text-slate-600
-                           whitespace-normal break-words leading-snug"
+              <p 
+                className="mt-2 text-lg text-gray-900 whitespace-normal break-words leading-snug line-clamp-2 text-center"
                 style={{ textWrap: 'balance' } as any}
               >
                 <span className="line-clamp-2">{softWrapAddress(estimate.address)}</span>
               </p>
             </div>
             {demoMode ? (
-              <div data-testid="report-meta" className="mx-auto mt-2 w-full max-w-sm text-center">
-                <div className="py-1 text-sm text-slate-500" data-testid="meta-generated">
-                  Generated on <span className="font-medium text-slate-700">{formatDateSafe(estimate.date)}</span>
+              <div className="mx-auto mt-2 w-full max-w-sm text-center">
+                <div className="py-1 text-sm text-slate-500">
+                  Generated on <span className="font-semibold text-gray-900">{formatDateSafe(estimate.date)}</span>
                 </div>
-                <div className="py-1 text-sm text-slate-500" data-testid="meta-runs">
-                  Preview: <span className="font-medium text-slate-700">{remaining < 0 ? '-' : ''}{Math.abs(remaining)}</span> runs left
+                <div className="py-1 text-sm text-slate-500">
+                  Preview: <span className="font-semibold text-gray-900">{remaining < 0 ? '-' : ''}{Math.abs(remaining)}</span> <span className="font-medium text-slate-600">runs left</span>
                 </div>
-                <div className="py-1 text-sm text-slate-500 tabular-nums" data-testid="meta-expires"
-                     style={{ fontVariantNumeric: 'tabular-nums' }}>
-                  Expires <span className="font-medium text-slate-700">{countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</span>
+                <div className="py-1 text-sm text-slate-500 tabular-nums">
+                  Expires <span className="font-semibold text-gray-900">{countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</span>
                 </div>
               </div>
             ) : (
-              <div data-testid="report-meta" className="mx-auto mt-2 w-full max-w-sm text-center">
-                <div className="py-1 text-sm text-slate-500" data-testid="meta-generated">
-                  Generated on <span className="font-medium text-slate-700">{formatDateSafe(estimate.date)}</span>
+              <div className="mx-auto mt-2 w-full max-w-sm text-center">
+                <div className="py-1 text-sm text-slate-500">
+                  Generated on <span className="font-semibold text-gray-900">{formatDateSafe(estimate.date)}</span>
                 </div>
               </div>
             )}

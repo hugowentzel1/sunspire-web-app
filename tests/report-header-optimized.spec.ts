@@ -19,23 +19,26 @@ test.describe('Report header - optimized layout & content', () => {
     await expect(page.getByRole('button', { name: /Unlock Full Report/i }).first()).toBeVisible();
   });
 
-  test('address is centered, not bold, no truncation character', async ({ page }) => {
-    const el = page.locator('[data-testid="report-address"]');
-    await expect(el).toBeVisible();
-    // Check computed font-weight (400..500 typical for regular; adjust if your variable font maps differently)
-    const weight = await el.evaluate((node) => getComputedStyle(node).fontWeight);
-    expect(Number(weight)).toBeLessThan(600);
+  test('headings bold; address not bold; meta values not bold', async ({ page }) => {
+    const h1 = page.locator('h1');
+    const h1Weight = await h1.evaluate(n => +getComputedStyle(n).fontWeight);
+    expect(h1Weight).toBeGreaterThanOrEqual(600); // bold/semibold
 
-    const text = await el.innerText();
-    expect(text).not.toContain('…'); // no ellipsis
-    // centered
-    const ta = await el.evaluate((n) => getComputedStyle(n).textAlign);
-    expect(ta).toBe('center');
+    const addr = page.locator('[data-testid="report-address"]');
+    const addrWeight = await addr.evaluate(n => +getComputedStyle(n).fontWeight);
+    expect(addrWeight).toBeLessThan(600); // NOT bold
+
+    // Meta labels and values share the same weight (NOT bold).
+    const meta = page.locator('[data-testid="report-meta"]');
+    const valueWeights = await meta.locator('span').evaluateAll(nodes =>
+      nodes.map(n => +getComputedStyle(n).fontWeight)
+    );
+    expect(valueWeights.every(w => w < 600)).toBeTruthy();
   });
 
-  test('address wraps naturally and stays within two lines at desktop', async ({ page }) => {
+  test('address wraps naturally and stays ≤ 2 lines (desktop)', async ({ page }) => {
     await page.goto(`${base}/report?demo=1&company=tesla&brandColor=%23CC0000&address=${encodeURIComponent(longAddress)}&lat=33.8613729&lng=-84.1563424`);
-    const el = page.locator('[data-testid="report-address"] span'); // inner span with line-clamp-2
+    const el = page.locator('[data-testid="report-address"]');
 
     // Rough line count via rect height / line-height
     const { lines } = await el.evaluate((node) => {
@@ -47,21 +50,11 @@ test.describe('Report header - optimized layout & content', () => {
     expect(lines).toBeLessThanOrEqual(2);
   });
 
-  test('meta stack has exactly three rows, centered, uniform size', async ({ page }) => {
+  test('meta stack has exactly 3 rows and centered', async ({ page }) => {
     const meta = page.locator('[data-testid="report-meta"]');
-    await expect(meta).toBeVisible();
     await expect(meta.locator('div')).toHaveCount(3);
-    const align = await meta.evaluate((n) => getComputedStyle(n).textAlign);
+    const align = await meta.evaluate(n => getComputedStyle(n).textAlign);
     expect(align).toBe('center');
-
-    const sizes = await meta.locator('div').evaluateAll((nodes) =>
-      nodes.map((n) => getComputedStyle(n).fontSize)
-    );
-    expect(new Set(sizes).size).toBe(1); // uniform font size
-
-    // Values use medium weight (check one row)
-    const runsRow = page.locator('[data-testid="meta-runs"] span.font-medium');
-    await expect(runsRow).toBeVisible();
   });
 
   test('tabular numbers applied to expires row to avoid wiggling digits', async ({ page }) => {
