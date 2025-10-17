@@ -1052,7 +1052,7 @@ function ReportContent() {
               }
               lastUpdated={new Date().toISOString().slice(0,10)}
               showLidar={true}
-              shadingMethod={estimate.shadingAnalysis?.method || 'proxy'}
+              shadingMethod={(estimate.shadingAnalysis?.method as "remote" | "proxy") || 'proxy'}
             />
           </motion.div>
 
