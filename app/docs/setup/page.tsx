@@ -9,10 +9,10 @@ export default function SetupGuidePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter">
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* Back to Support Button */}
+        {/* Back to Home Button */}
         <div className="mb-8">
           <a
-            href="/support"
+            href="/"
             className="inline-flex items-center text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
           >
             <svg
@@ -28,7 +28,7 @@ export default function SetupGuidePage() {
                 d="M15 19l-7-7 7-7"
               />
             </svg>
-            ← Back to Support
+            Back to Home
           </a>
         </div>
 
@@ -387,6 +387,16 @@ export default function SetupGuidePage() {
                 </div>
               </div>
             </section>
+          </div>
+          
+          {/* Back to Support */}
+          <div className="mt-12 text-center">
+            <a
+              href="/support"
+              className="inline-flex items-center px-6 py-3 text-neutral-600 hover:text-neutral-900 transition-colors"
+            >
+              ← Back to Support
+            </a>
           </div>
         </div>
       </main>
