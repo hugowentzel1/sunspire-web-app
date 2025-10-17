@@ -722,13 +722,13 @@ function HomeContent() {
 
       <Footer />
       
-      {/* Smart Sticky CTA */}
+      {/* Sticky CTA - Simple and consistent on mobile, Smart on desktop */}
       <SmartStickyCTA />
       
       <StickyCtaBar
          label="Launch Your Branded Version Now"
         testId="sticky-demo-cta"
-        className="sm:hidden"   // MOBILE-ONLY
+        className="md:hidden"   // MOBILE-ONLY - always visible
       />
 
       {/* Lock Overlay - Show when demo limit reached */}

@@ -121,24 +121,28 @@ export default function LegalFooter({
 
         {/* Bottom Section - Mobile centered, Desktop 3-column */}
         <div className="border-t border-gray-200 pt-10">
-          <div className="flex flex-col md:grid md:grid-cols-3 gap-4 md:gap-8 text-center items-center">
+          <div className="flex flex-col md:grid md:grid-cols-3 gap-4 md:gap-8 items-center">
             {/* NREL Disclaimer - Centered on mobile, left on desktop */}
-            <div className="flex items-center justify-center md:justify-start text-xs md:text-sm text-gray-500">
-              <span className="text-base mr-1.5">⚡</span>
-              <span className="leading-tight">Estimates generated using NREL PVWatts® v8</span>
+            <div className="w-full text-center md:text-left">
+              <div className="flex items-center justify-center md:justify-start text-xs md:text-sm text-gray-500">
+                <span className="text-base mr-1.5">⚡</span>
+                <span className="leading-tight">Estimates generated using NREL PVWatts® v8</span>
+              </div>
             </div>
 
             {/* Powered By - ALWAYS CENTERED */}
-            <div className="text-center">
+            <div className="w-full text-center">
               <p className="text-gray-600 text-xs md:text-sm">
                 Powered by <span className="font-medium" style={{ color: brandColor }}>Sunspire</span>
               </p>
             </div>
 
             {/* Google Disclaimer - Centered on mobile, right on desktop */}
-            <div className="flex items-center justify-center md:justify-end text-xs md:text-sm text-gray-500">
-              <span className="text-base mr-1.5">🗺️</span>
-              <span className="leading-tight">Mapping & location data © Google</span>
+            <div className="w-full text-center md:text-right">
+              <div className="flex items-center justify-center md:justify-end text-xs md:text-sm text-gray-500">
+                <span className="text-base mr-1.5">🗺️</span>
+                <span className="leading-tight">Mapping & location data © Google</span>
+              </div>
             </div>
           </div>
         </div>
