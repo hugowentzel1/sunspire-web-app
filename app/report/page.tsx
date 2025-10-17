@@ -776,40 +776,48 @@ function ReportContent() {
                 </div>
               )}
             </motion.div>
-            <div className="mx-auto max-w-[65ch] text-center">
-              <p className="text-lg md:text-xl font-semibold text-gray-900" style={{ textWrap: 'balance' as any }}>
-                Comprehensive analysis for your property at
-              </p>
-              <p 
-                className="mt-2 text-lg text-gray-900 whitespace-normal break-words leading-snug line-clamp-2 text-center"
-                style={{ textWrap: 'balance' } as any}
-              >
-                <span className="line-clamp-2">{softWrapAddress(estimate.address)}</span>
-              </p>
-            </div>
+            {/* H1 (bold) — Research-backed hierarchy */}
+            <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 text-center">
+              Your <span className="text-blue-600">{b.brand || 'Company'}</span> Solar Quote <span className="text-slate-500">(Live Preview)</span>
+            </h1>
+
+            {/* Subheadline (bold) — mt-2 for scan stripe */}
+            <p className="mt-2 text-lg md:text-xl font-semibold text-slate-800 text-center">
+              Comprehensive analysis for your property at
+            </p>
+
+            {/* Address (not bold) — mt-1, 65ch optimal, balanced wrap */}
+            <p
+              className="mt-1 mx-auto max-w-[65ch] text-center text-base text-slate-600 leading-snug break-words line-clamp-2"
+              style={{ textWrap: 'balance' } as any}
+            >
+              {softWrapAddress(estimate.address)}
+            </p>
+
+            {/* Meta (not bold; values darker tone) — mt-2, tabular-nums on timer */}
             {demoMode ? (
               <div className="mx-auto mt-2 w-full max-w-sm text-center">
                 <div className="py-1 text-sm text-slate-500">
-                  Generated on <span className="font-semibold text-gray-900">{formatDateSafe(estimate.date)}</span>
+                  Generated on <span className="text-slate-700">{formatDateSafe(estimate.date)}</span>
                 </div>
                 <div className="py-1 text-sm text-slate-500">
-                  Preview: <span className="font-semibold text-gray-900">{remaining < 0 ? '-' : ''}{Math.abs(remaining)}</span> <span className="font-medium text-slate-600">runs left</span>
+                  Preview: <span className="text-slate-700">{remaining < 0 ? '-' : ''}{Math.abs(remaining)}</span> runs left
                 </div>
-                <div className="py-1 text-sm text-slate-500 tabular-nums">
-                  Expires <span className="font-semibold text-gray-900">{countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</span>
+                <div className="py-1 text-sm text-slate-500" style={{ fontVariantNumeric: 'tabular-nums' }}>
+                  Expires <span className="text-slate-700">{countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</span>
                 </div>
               </div>
             ) : (
               <div className="mx-auto mt-2 w-full max-w-sm text-center">
                 <div className="py-1 text-sm text-slate-500">
-                  Generated on <span className="font-semibold text-gray-900">{formatDateSafe(estimate.date)}</span>
+                  Generated on <span className="text-slate-700">{formatDateSafe(estimate.date)}</span>
                 </div>
               </div>
             )}
           </div>
 
-          {/* Spacer for equal visual spacing - reduced one step for tighter header */}
-          <div className="mt-2"></div>
+          {/* Spacing to cards — mt-6 for scan pattern optimization */}
+          <div className="mt-6"></div>
 
           {/* Metric Tiles */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
