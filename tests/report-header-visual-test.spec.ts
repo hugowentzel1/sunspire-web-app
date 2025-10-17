@@ -18,19 +18,14 @@ test.describe('Report Header Visual Test', () => {
     expect(addressText).toContain('Mountain View');
     expect(addressText).not.toContain('...');
     
-    // Check that meta info is stacked (not inline)
-    const metaContainer = page.locator('div:has-text("Generated on")').first();
-    await expect(metaContainer).toBeVisible();
-    
     // Verify all three meta lines are visible in demo mode
     await expect(page.locator('text=Generated on')).toBeVisible();
     await expect(page.locator('text=Preview:')).toBeVisible();
     await expect(page.locator('text=Expires')).toBeVisible();
     
-    // Check that icons are consistent size (h-4 w-4)
-    const icons = page.locator('.h-4.w-4.shrink-0');
-    const iconCount = await icons.count();
-    expect(iconCount).toBeGreaterThanOrEqual(3); // At least 3 icons in demo mode
+    // Verify meta info is centered by checking parent container has text-center
+    const metaCentered = page.locator('div.text-center:has-text("Generated on")').first();
+    await expect(metaCentered).toBeVisible();
   });
 
   test('Report header in PAID mode shows only one meta line', async ({ page }) => {

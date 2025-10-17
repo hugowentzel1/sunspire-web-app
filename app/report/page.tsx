@@ -781,32 +781,28 @@ function ReportContent() {
                 Comprehensive analysis for your property at
               </p>
               <p 
-                className="mt-2 text-base text-slate-600 whitespace-normal break-words leading-snug line-clamp-2"
+                className="mt-2 text-base text-slate-600 whitespace-normal break-words leading-snug line-clamp-2 text-center"
                 style={{ textWrap: 'balance' } as any}
               >
-                {formatAddressForWrap(estimate.address)}
+                <span className="line-clamp-2">{formatAddressForWrap(estimate.address)}</span>
               </p>
             </div>
             {demoMode ? (
-              <div className="mx-auto mt-2 w-full max-w-sm">
-                <div className="flex items-center gap-2 py-1 text-sm text-slate-500">
-                  <span className="h-4 w-4 shrink-0 flex items-center justify-center">📅</span>
-                  <span>Generated on <span className="font-medium text-slate-700">{formatDateSafe(estimate.date)}</span></span>
+              <div className="mx-auto mt-2 w-full max-w-sm text-center">
+                <div className="py-1 text-sm text-slate-500">
+                  Generated on <span className="font-medium text-slate-700">{formatDateSafe(estimate.date)}</span>
                 </div>
-                <div className="flex items-center gap-2 py-1 text-sm text-slate-500">
-                  <span className="h-4 w-4 shrink-0 flex items-center justify-center">⚡</span>
-                  <span>Preview: <span className="font-medium text-slate-700">{remaining < 0 ? '-' : ''}{Math.abs(remaining)} runs left</span></span>
+                <div className="py-1 text-sm text-slate-500">
+                  Preview: <span className="font-medium text-slate-700">{remaining < 0 ? '-' : ''}{Math.abs(remaining)} runs left</span>
                 </div>
-                <div className="flex items-center gap-2 py-1 text-sm text-slate-500">
-                  <span className="h-4 w-4 shrink-0 flex items-center justify-center">⏰</span>
-                  <span>Expires <span className="font-medium text-slate-700">{countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</span></span>
+                <div className="py-1 text-sm text-slate-500 tabular-nums">
+                  Expires <span className="font-medium text-slate-700">{countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</span>
                 </div>
               </div>
             ) : (
-              <div className="mx-auto mt-2 w-full max-w-sm">
-                <div className="flex items-center gap-2 py-1 text-sm text-slate-500">
-                  <span className="h-4 w-4 shrink-0 flex items-center justify-center">📅</span>
-                  <span>Generated on <span className="font-medium text-slate-700">{formatDateSafe(estimate.date)}</span></span>
+              <div className="mx-auto mt-2 w-full max-w-sm text-center">
+                <div className="py-1 text-sm text-slate-500">
+                  Generated on <span className="font-medium text-slate-700">{formatDateSafe(estimate.date)}</span>
                 </div>
               </div>
             )}
