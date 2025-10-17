@@ -743,10 +743,10 @@ function ReportContent() {
         {/* Brand theme CSS variable */}
         <style>{`:root{--brand:${getBrandTheme(searchParams?.get('company') || undefined)};--brand-primary:${b.primary};}`}</style>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="space-y-10">
-          {/* Brand-aware header with automatic contrast safety */}
+          {/* Brand-aware header with perfect spacing rhythm */}
           <section
             aria-labelledby="report-title"
-            className="pt-6 pb-2 flex flex-col items-center text-center"
+            className="pt-4 pb-0 flex flex-col items-center text-center"
             style={{ ['--brand-ink' as any]: ensureReadableBrandInk(b.primary || '#2563EB') }}
           >
             {/* H1 ABOVE logo */}
@@ -756,15 +756,15 @@ function ReportContent() {
               className="text-[clamp(30px,5vw,42px)] font-semibold tracking-tight text-slate-900"
             >
               Your{' '}
-              <span className="font-semibold [color:var(--brand-ink)]">
+              <span className="[color:var(--brand-ink)]">
                 {b.brand || 'Company'}
               </span>{' '}
               Solar Quote
               <span className="text-slate-500"> (Live Preview)</span>
             </h1>
 
-            {/* Logo below H1 */}
-            <div data-testid="hdr-logo" className="mt-6 flex justify-center">
+            {/* Logo below H1 - mt-4 (16px) */}
+            <div data-testid="hdr-logo" className="mt-4 flex justify-center">
               <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="w-24 h-24">
                 {(b.logo || getDefaultLogo(b.brand)) ? (
                   <Image 
@@ -787,51 +787,47 @@ function ReportContent() {
               </motion.div>
             </div>
 
-            {/* Subheadline */}
+            {/* Subheadline - mt-6 (24px) */}
             <p
               data-testid="hdr-sub"
-              className="mt-4 text-[clamp(18px,2.4vw,20px)] font-semibold text-slate-800"
+              className="mt-6 text-[clamp(18px,2.4vw,20px)] font-semibold text-slate-800"
             >
               Comprehensive analysis for your property at
             </p>
 
-            {/* Address (balanced, ≤2 lines, not bold) */}
+            {/* Address - mt-2 (8px) */}
             <p
               data-testid="hdr-address"
-              className="mt-2 mx-auto max-w-[60ch] text-[clamp(17px,2.3vw,18px)] text-slate-600 leading-snug whitespace-normal break-words line-clamp-2"
+              className="mt-2 max-w-[60ch] text-[clamp(17px,2.3vw,18px)] text-slate-600 leading-snug text-balance whitespace-normal break-words line-clamp-2"
               style={{ textWrap: 'balance' } as any}
             >
               {softWrapAddress(estimate.address)}
             </p>
 
-            {/* Meta (uniform tone; value + unit same color) */}
+            {/* Meta rows - mt-5 (20px) */}
             <div
               data-testid="hdr-meta"
-              className="mt-4 mx-auto w-full max-w-sm text-center text-[14px] md:text-[15px]"
+              className="mt-5 space-y-1 text-[15px] leading-relaxed text-slate-600"
             >
-              <div className="py-1 text-slate-600">
+              <div>
                 Generated on <span className="text-slate-700">{formatDateSafe(estimate.date)}</span>
               </div>
               {demoMode && (
                 <>
-                  <div className="py-1 text-slate-600">
-                    Preview:{' '}
-                    <span className="text-slate-700">
+                  <div>
+                    Preview: <span className="text-slate-700">
                       {remaining < 0 ? '-' : ''}{Math.abs(remaining)} run{Math.abs(remaining) === 1 ? '' : 's'} left
                     </span>
                   </div>
-                  <div
-                    className="py-1 text-slate-600 tabular-nums"
-                    style={{ fontVariantNumeric: 'tabular-nums' }}
-                  >
+                  <div className="tabular-nums">
                     Expires in <span className="text-slate-700">{countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</span>
                   </div>
                 </>
               )}
             </div>
 
-            {/* leave cards as-is, but keep this spacer for rhythm */}
-            <div className="mt-10" />
+            {/* Cards below - mt-8 (32px) */}
+            <div className="mt-8" />
           </section>
 
           {/* Metric Tiles */}
