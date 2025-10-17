@@ -1,5 +1,5 @@
 import { test, expect } from '@playwright/test';
-const base = process.env.BASE_URL ?? 'http://localhost:3001';
+const base = process.env.BASE_URL ?? 'http://localhost:3000';
 
 const shortAddr = '1232 Virginia Ct, Atlanta, GA 30306, USA';
 const longAddr  = '12345 Sassafras Lane Southwest, Mountain Park, GA 30047, United States of America';
@@ -76,22 +76,33 @@ test.describe('Brand-aware header with automatic contrast safety', () => {
     expect(Math.max(...nums)).toBeLessThan(250); // Not pure bright yellow
   });
 
-  test('Logo styling matches production spec', async ({ page }) => {
+  test('Logo styling matches original spec', async ({ page }) => {
     await page.goto(`${base}/report?demo=1&company=tesla&brandColor=%23CC0000&address=${encodeURIComponent(shortAddr)}&lat=33.8613729&lng=-84.1563424`);
     await page.waitForSelector('[data-testid="hdr-logo"]');
 
     const logo = page.getByTestId('hdr-logo');
     
-    // Check logo container styling
+    // Check logo container styling (original 96px)
     const logoBox = await logo.boundingBox();
-    expect(logoBox!.width).toBeCloseTo(72, 5); // 72px width
-    expect(logoBox!.height).toBeCloseTo(72, 5); // 72px height
+    expect(logoBox!.width).toBeCloseTo(96, 5); // 96px width
+    expect(logoBox!.height).toBeCloseTo(96, 5); // 96px height
     
-    // Check for proper styling classes
-    const className = await logo.evaluate(n => n.className);
-    expect(className).toContain('rounded-full');
-    expect(className).toContain('bg-white');
-    expect(className).toContain('shadow-sm');
+    // Check for proper styling classes on the actual image or fallback div
+    const imageElement = logo.locator('img').first();
+    const fallbackElement = logo.locator('div.brand-gradient').first();
+    
+    // Check if image exists and has correct styling
+    const imageCount = await imageElement.count();
+    if (imageCount > 0) {
+      const className = await imageElement.evaluate(n => n.className);
+      expect(className).toContain('rounded-2xl');
+      expect(className).toContain('shadow-[0_8px_30px_rgba(0,0,0,.08)]');
+    } else {
+      // Check fallback div styling
+      const className = await fallbackElement.evaluate(n => n.className);
+      expect(className).toContain('rounded-full');
+      expect(className).toContain('shadow-[0_8px_30px_rgba(0,0,0,.08)]');
+    }
   });
 
   test('Address wrapping and balance maintained', async ({ page }) => {

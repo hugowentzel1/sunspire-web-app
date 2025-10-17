@@ -764,28 +764,24 @@ function ReportContent() {
             </h1>
 
             {/* Logo below H1 */}
-            <div
-              data-testid="hdr-logo"
-              className="mt-6 flex h-[72px] w-[72px] items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-slate-200"
-              aria-hidden="true"
-            >
-              <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }}>
+            <div data-testid="hdr-logo" className="mt-6 flex justify-center">
+              <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="w-24 h-24">
                 {(b.logo || getDefaultLogo(b.brand)) ? (
                   <Image 
                     src={b.logo || getDefaultLogo(b.brand) || ''} 
                     alt={`${b.brand} logo`} 
-                    width={64} 
-                    height={64} 
-                    className="rounded-full"
+                    width={96} 
+                    height={96} 
+                    className="rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,.08)]"
                     style={{ 
                       objectFit: "contain",
-                      width: "64px",
-                      height: "64px"
+                      width: "96px",
+                      height: "96px"
                     }}
                   />
                 ) : (
-                  <div className="brand-gradient text-white rounded-full w-16 h-16 grid place-items-center">
-                    <span className="text-2xl">☀️</span>
+                  <div className="brand-gradient text-white rounded-full w-24 h-24 grid place-items-center shadow-[0_8px_30px_rgba(0,0,0,.08)]">
+                    <span className="text-4xl">☀️</span>
                   </div>
                 )}
               </motion.div>
