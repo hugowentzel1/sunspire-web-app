@@ -98,7 +98,7 @@ export default function CRMGuidesPage() {
           <Stack>
             {/* Back Button */}
             <div className="mb-8">
-              <a 
+              <Link 
                 href={searchParams?.get('demo') ? `/?${searchParams?.toString()}` : `/paid?${searchParams?.toString()}`} 
                 className="inline-flex items-center text-neutral-500 hover:text-neutral-900 transition-colors font-medium"
               >
@@ -106,7 +106,7 @@ export default function CRMGuidesPage() {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
                 Back to Home
-              </a>
+              </Link>
             </div>
 
             {/* Hero Block */}

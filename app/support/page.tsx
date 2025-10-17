@@ -229,10 +229,10 @@ export default function SupportPage() {
                 <div className="mt-12">
                   <h3 className="text-xl font-semibold text-neutral-900 mb-6">Helpful Resources</h3>
                   <div className="space-y-3">
-                    <a href="/docs/setup" className="block font-medium text-brand-600 hover:underline">Setup Guide</a>
-                    <a href="/docs/crm" className="block font-medium text-brand-600 hover:underline">CRM Integration Tutorial</a>
-                    <a href="/docs/branding" className="block font-medium text-brand-600 hover:underline">Branding Customization</a>
-                    <a href="/docs/api" className="block font-medium text-brand-600 hover:underline">API Documentation</a>
+                    <Link href={searchParams?.toString() ? `/docs/setup?${searchParams.toString()}` : '/docs/setup'} className="block font-medium text-brand-600 hover:underline">Setup Guide</Link>
+                    <Link href={searchParams?.toString() ? `/docs/crm?${searchParams.toString()}` : '/docs/crm'} className="block font-medium text-brand-600 hover:underline">CRM Integration Tutorial</Link>
+                    <Link href={searchParams?.toString() ? `/docs/branding?${searchParams.toString()}` : '/docs/branding'} className="block font-medium text-brand-600 hover:underline">Branding Customization</Link>
+                    <Link href={searchParams?.toString() ? `/docs/api?${searchParams.toString()}` : '/docs/api'} className="block font-medium text-brand-600 hover:underline">API Documentation</Link>
                   </div>
                 </div>
               </div>

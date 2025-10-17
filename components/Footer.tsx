@@ -117,9 +117,9 @@ export default function Footer() {
             <div className="min-w-0 md:max-w-xs flex flex-col items-center text-center">
               <h4 className="text-xl font-semibold text-slate-900">Quick Links</h4>
               <ul className="mt-4 space-y-3 text-sm text-slate-700 leading-relaxed">
-                <li><Link className="hover:underline underline-offset-2" href="/pricing">Pricing</Link></li>
-                <li><Link className="hover:underline underline-offset-2" href="/partners">Partners</Link></li>
-                <li><Link className="hover:underline underline-offset-2" href="/support">Support</Link></li>
+                <li><Link className="hover:underline underline-offset-2" href={getUrlWithParams("/pricing")}>Pricing</Link></li>
+                <li><Link className="hover:underline underline-offset-2" href={getUrlWithParams("/partners")}>Partners</Link></li>
+                <li><Link className="hover:underline underline-offset-2" href={getUrlWithParams("/support")}>Support</Link></li>
               </ul>
             </div>
 

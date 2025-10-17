@@ -96,8 +96,11 @@ test.describe('Click Navigation - Full Parameter Preservation', () => {
     const demoUrl = '/docs/crm?demo=1&company=testcompany&brandColor=%23FF0000';
     await page.goto(demoUrl);
     
-    // Click Back to Support
-    await page.click('a:has-text("Back to Support")');
+    // Click Back to Support and wait for navigation
+    await Promise.all([
+      page.waitForURL(/\/support/),
+      page.click('a:has-text("Back to Support")')
+    ]);
     
     // Verify we're on support page with all parameters
     await expect(page).toHaveURL(/\/support\?demo=1&company=testcompany&brandColor=%23FF0000/);
