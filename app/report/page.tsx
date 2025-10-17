@@ -69,7 +69,8 @@ import LockOverlay from '@/src/demo/LockOverlay';
 import { usePreviewQuota } from '@/src/demo/usePreviewQuota';
 import { useCountdown } from '@/src/demo/useCountdown';
 import Image from 'next/image';
-import { formatAddressForWrap, softWrapAddress } from '@/lib/text';
+import { softWrapAddress } from '@/lib/text';
+import { ensureReadableBrandInk } from '@/utils/brandColor';
 
 // Demo addresses for different states
 const demoAddressesByState: Record<string, {address:string, lat:number, lng:number}> = {
@@ -742,35 +743,49 @@ function ReportContent() {
         {/* Brand theme CSS variable */}
         <style>{`:root{--brand:${getBrandTheme(searchParams?.get('company') || undefined)};--brand-primary:${b.primary};}`}</style>
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="space-y-10">
-          <div className="flex flex-col items-center gap-6">
-            {/* H1 — before the logo */}
+          {/* Brand-aware header with automatic contrast safety */}
+          <section
+            aria-labelledby="report-title"
+            className="pt-6 pb-2 flex flex-col items-center text-center"
+            style={{ ['--brand-ink' as any]: ensureReadableBrandInk(b.primary || '#2563EB') }}
+          >
+            {/* H1 ABOVE logo */}
             <h1
+              id="report-title"
               data-testid="hdr-h1"
-              className="text-[clamp(30px,5vw,42px)] md:text-[42px] font-semibold text-slate-900 text-center tracking-tight"
+              className="text-[clamp(30px,5vw,42px)] font-semibold tracking-tight text-slate-900"
             >
-              Your <span className="text-blue-600">{b.brand || 'Company'}</span> Solar Quote
+              Your{' '}
+              <span className="font-semibold [color:var(--brand-ink)]">
+                {b.brand || 'Company'}
+              </span>{' '}
+              Solar Quote
               <span className="text-slate-500"> (Live Preview)</span>
             </h1>
 
-            {/* Logo just under H1 */}
-            <div data-testid="hdr-logo" className="mt-6 flex justify-center">
-              <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="w-24 h-24">
+            {/* Logo below H1 */}
+            <div
+              data-testid="hdr-logo"
+              className="mt-6 flex h-[72px] w-[72px] items-center justify-center rounded-full bg-white shadow-sm ring-1 ring-slate-200"
+              aria-hidden="true"
+            >
+              <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }}>
                 {(b.logo || getDefaultLogo(b.brand)) ? (
                   <Image 
                     src={b.logo || getDefaultLogo(b.brand) || ''} 
                     alt={`${b.brand} logo`} 
-                    width={96} 
-                    height={96} 
-                    className="rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,.08)]"
+                    width={64} 
+                    height={64} 
+                    className="rounded-full"
                     style={{ 
                       objectFit: "contain",
-                      width: "96px",
-                      height: "96px"
+                      width: "64px",
+                      height: "64px"
                     }}
                   />
                 ) : (
-                  <div className="brand-gradient text-white rounded-full w-24 h-24 grid place-items-center shadow-[0_8px_30px_rgba(0,0,0,.08)]">
-                    <span className="text-4xl">☀️</span>
+                  <div className="brand-gradient text-white rounded-full w-16 h-16 grid place-items-center">
+                    <span className="text-2xl">☀️</span>
                   </div>
                 )}
               </motion.div>
@@ -779,54 +794,49 @@ function ReportContent() {
             {/* Subheadline */}
             <p
               data-testid="hdr-sub"
-              className="mt-4 text-[20px] md:text-[20px] font-semibold text-slate-800 text-center"
+              className="mt-4 text-[clamp(18px,2.4vw,20px)] font-semibold text-slate-800"
             >
               Comprehensive analysis for your property at
             </p>
 
-            {/* Address — not bold, balanced, ≤2 lines */}
+            {/* Address (balanced, ≤2 lines, not bold) */}
             <p
               data-testid="hdr-address"
-              className="mt-2 mx-auto max-w-[65ch] text-center text-[18px] text-slate-600
-                         leading-snug whitespace-normal break-words line-clamp-2"
+              className="mt-2 mx-auto max-w-[60ch] text-[clamp(17px,2.3vw,18px)] text-slate-600 leading-snug whitespace-normal break-words line-clamp-2"
               style={{ textWrap: 'balance' } as any}
             >
               {softWrapAddress(estimate.address)}
             </p>
 
-            {/* Meta — 3 rows; values + unit same tone; tabular digits */}
-            {demoMode ? (
-              <div data-testid="hdr-meta" className="mt-4 mx-auto w-full max-w-sm text-center">
-                <div data-testid="meta-generated" className="py-1 text-[15px] text-slate-600">
-                  Generated on <span className="text-slate-700">{formatDateSafe(estimate.date)}</span>
-                </div>
-
-                {/* NOTE: value + unit together so it doesn't look two-tone */}
-                <div data-testid="meta-runs" className="py-1 text-[15px] text-slate-600">
-                  Preview: <span className="text-slate-700">
-                    {remaining < 0 ? '-' : ''}{Math.abs(remaining)} run{Math.abs(remaining) === 1 ? '' : 's'} left
-                  </span>
-                </div>
-
-                <div
-                  data-testid="meta-expires"
-                  className="py-1 text-[15px] text-slate-600 tabular-nums"
-                  style={{ fontVariantNumeric: 'tabular-nums' }}
-                >
-                  Expires in <span className="text-slate-700">{countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</span>
-                </div>
+            {/* Meta (uniform tone; value + unit same color) */}
+            <div
+              data-testid="hdr-meta"
+              className="mt-4 mx-auto w-full max-w-sm text-center text-[14px] md:text-[15px]"
+            >
+              <div className="py-1 text-slate-600">
+                Generated on <span className="text-slate-700">{formatDateSafe(estimate.date)}</span>
               </div>
-            ) : (
-              <div data-testid="hdr-meta" className="mt-4 mx-auto w-full max-w-sm text-center">
-                <div data-testid="meta-generated" className="py-1 text-[15px] text-slate-600">
-                  Generated on <span className="text-slate-700">{formatDateSafe(estimate.date)}</span>
-                </div>
-              </div>
-            )}
-          </div>
+              {demoMode && (
+                <>
+                  <div className="py-1 text-slate-600">
+                    Preview:{' '}
+                    <span className="text-slate-700">
+                      {remaining < 0 ? '-' : ''}{Math.abs(remaining)} run{Math.abs(remaining) === 1 ? '' : 's'} left
+                    </span>
+                  </div>
+                  <div
+                    className="py-1 text-slate-600 tabular-nums"
+                    style={{ fontVariantNumeric: 'tabular-nums' }}
+                  >
+                    Expires in <span className="text-slate-700">{countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</span>
+                  </div>
+                </>
+              )}
+            </div>
 
-          {/* Spacing to cards — mt-10 for industry-standard polish */}
-          <div className="mt-10"></div>
+            {/* leave cards as-is, but keep this spacer for rhythm */}
+            <div className="mt-10" />
+          </section>
 
           {/* Metric Tiles */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
