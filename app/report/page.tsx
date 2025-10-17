@@ -69,6 +69,7 @@ import LockOverlay from '@/src/demo/LockOverlay';
 import { usePreviewQuota } from '@/src/demo/usePreviewQuota';
 import { useCountdown } from '@/src/demo/useCountdown';
 import Image from 'next/image';
+import { formatAddressForWrap } from '@/lib/text';
 
 // Demo addresses for different states
 const demoAddressesByState: Record<string, {address:string, lat:number, lng:number}> = {
@@ -775,29 +776,44 @@ function ReportContent() {
                 </div>
               )}
             </motion.div>
-            <div className="mx-auto max-w-[62ch] text-center mb-0">
+            <div className="mx-auto max-w-[65ch] text-center">
               <p className="text-lg md:text-xl font-semibold text-gray-900" style={{ textWrap: 'balance' as any }}>
                 Comprehensive analysis for your property at
               </p>
-              <p className="mt-1 text-lg md:text-xl font-semibold text-gray-900" style={{ textWrap: 'pretty' as any }}>
-                {estimate.address}
+              <p 
+                className="mt-2 text-base text-slate-600 whitespace-normal break-words leading-snug line-clamp-2"
+                style={{ textWrap: 'balance' } as any}
+              >
+                {formatAddressForWrap(estimate.address)}
               </p>
             </div>
             {demoMode ? (
-              <div className="mx-auto -mt-1 space-y-3 text-sm text-gray-500 text-center">
-                <p>Generated on {formatDateSafe(estimate.date)}</p>
-                <p>Preview: {remaining < 0 ? '-' : ''}{Math.abs(remaining)} runs left.</p>
-                <p>Expires in {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</p>
+              <div className="mx-auto mt-2 w-full max-w-sm">
+                <div className="flex items-center gap-2 py-1 text-sm text-slate-500">
+                  <span className="h-4 w-4 shrink-0 flex items-center justify-center">📅</span>
+                  <span>Generated on <span className="font-medium text-slate-700">{formatDateSafe(estimate.date)}</span></span>
+                </div>
+                <div className="flex items-center gap-2 py-1 text-sm text-slate-500">
+                  <span className="h-4 w-4 shrink-0 flex items-center justify-center">⚡</span>
+                  <span>Preview: <span className="font-medium text-slate-700">{remaining < 0 ? '-' : ''}{Math.abs(remaining)} runs left</span></span>
+                </div>
+                <div className="flex items-center gap-2 py-1 text-sm text-slate-500">
+                  <span className="h-4 w-4 shrink-0 flex items-center justify-center">⏰</span>
+                  <span>Expires <span className="font-medium text-slate-700">{countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</span></span>
+                </div>
               </div>
             ) : (
-              <div className="mx-auto -mt-1 text-sm text-gray-500 text-center">
-                Generated on {formatDateSafe(estimate.date)}
+              <div className="mx-auto mt-2 w-full max-w-sm">
+                <div className="flex items-center gap-2 py-1 text-sm text-slate-500">
+                  <span className="h-4 w-4 shrink-0 flex items-center justify-center">📅</span>
+                  <span>Generated on <span className="font-medium text-slate-700">{formatDateSafe(estimate.date)}</span></span>
+                </div>
               </div>
             )}
           </div>
 
-          {/* Spacer for equal visual spacing - compensates for text size differences */}
-          <div className="mt-4"></div>
+          {/* Spacer for equal visual spacing - reduced one step for tighter header */}
+          <div className="mt-2"></div>
 
           {/* Metric Tiles */}
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
