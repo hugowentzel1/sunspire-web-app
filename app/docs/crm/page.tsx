@@ -228,34 +228,41 @@ export default function CRMGuidesPage() {
 
             {/* Custom Integration Section */}
             <Card className="mt-12">
-              <div className="text-center space-y-6">
-                <div className="flex items-center justify-center mb-4">
-                  <span className="text-4xl">🔧</span>
+              <div className="text-center space-y-8">
+                <div className="space-y-4">
+                  <div className="flex items-center justify-center mb-4">
+                    <span className="text-4xl">🔧</span>
+                  </div>
+                  <h2 className="text-2xl font-bold text-neutral-900">
+                    Custom Integration
+                  </h2>
+                  <p className="text-neutral-600 max-w-2xl mx-auto text-lg">
+                    Need a specific CRM or custom solution? We can build it for you.
+                  </p>
                 </div>
-                <h2 className="text-2xl font-bold text-neutral-900">
-                  Custom Integration
-                </h2>
-                <p className="text-neutral-600 max-w-2xl mx-auto">
-                  Need a specific CRM or custom solution? We can build it for you.
-                </p>
-                <div className="space-y-2 max-w-md mx-auto text-left">
-                  <div className="flex items-center text-sm text-neutral-600">
-                    <span className="text-neutral-500 mr-3 w-4">•</span>
-                    <span>Custom Development</span>
-                  </div>
-                  <div className="flex items-center text-sm text-neutral-600">
-                    <span className="text-neutral-500 mr-3 w-4">•</span>
-                    <span>API Integration</span>
-                  </div>
-                  <div className="flex items-center text-sm text-neutral-600">
-                    <span className="text-neutral-500 mr-3 w-4">•</span>
-                    <span>Data Migration</span>
-                  </div>
-                  <div className="flex items-center text-sm text-neutral-600">
-                    <span className="text-neutral-500 mr-3 w-4">•</span>
-                    <span>Ongoing Support</span>
+                
+                <div className="bg-neutral-50 rounded-xl p-6 max-w-lg mx-auto">
+                  <h3 className="text-lg font-semibold text-neutral-900 mb-4">What We Offer</h3>
+                  <div className="space-y-3 text-left">
+                    <div className="flex items-center text-sm text-neutral-600">
+                      <span className="text-neutral-400 mr-3 w-4">•</span>
+                      <span>Custom Development</span>
+                    </div>
+                    <div className="flex items-center text-sm text-neutral-600">
+                      <span className="text-neutral-400 mr-3 w-4">•</span>
+                      <span>API Integration</span>
+                    </div>
+                    <div className="flex items-center text-sm text-neutral-600">
+                      <span className="text-neutral-400 mr-3 w-4">•</span>
+                      <span>Data Migration</span>
+                    </div>
+                    <div className="flex items-center text-sm text-neutral-600">
+                      <span className="text-neutral-400 mr-3 w-4">•</span>
+                      <span>Ongoing Support</span>
+                    </div>
                   </div>
                 </div>
+                
                 <div className="text-center">
                   <a
                     href="mailto:support@getsunspire.com?subject=Custom CRM Integration Request"
