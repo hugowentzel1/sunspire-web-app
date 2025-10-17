@@ -137,7 +137,7 @@ export default function CRMGuidesPage() {
                     <div className="space-y-2">
                       {integration.features.map((feature, index) => (
                         <div key={index} className="flex items-center text-xs text-neutral-500">
-                          <span className="text-[var(--brand-primary)] mr-2">•</span>
+                          <span className="text-neutral-400 mr-2">•</span>
                           <span>{feature}</span>
                         </div>
                       ))}
@@ -199,7 +199,7 @@ export default function CRMGuidesPage() {
                         <div className="space-y-1">
                           {integration.features.map((feature, index) => (
                             <div key={index} className="flex items-center text-xs text-neutral-500">
-                              <span className="text-[var(--brand-primary)] mr-2">•</span>
+                              <span className="text-neutral-400 mr-2">•</span>
                               <span>{feature}</span>
                             </div>
                           ))}
@@ -238,21 +238,21 @@ export default function CRMGuidesPage() {
                 <p className="text-neutral-600 max-w-2xl mx-auto">
                   Need a specific CRM or custom solution? We can build it for you.
                 </p>
-                <div className="space-y-2 max-w-md mx-auto">
+                <div className="space-y-2 max-w-md mx-auto text-left">
                   <div className="flex items-center text-sm text-neutral-600">
-                    <span className="text-[var(--brand-primary)] mr-2">•</span>
+                    <span className="text-neutral-500 mr-3 w-4">•</span>
                     <span>Custom Development</span>
                   </div>
                   <div className="flex items-center text-sm text-neutral-600">
-                    <span className="text-[var(--brand-primary)] mr-2">•</span>
+                    <span className="text-neutral-500 mr-3 w-4">•</span>
                     <span>API Integration</span>
                   </div>
                   <div className="flex items-center text-sm text-neutral-600">
-                    <span className="text-[var(--brand-primary)] mr-2">•</span>
+                    <span className="text-neutral-500 mr-3 w-4">•</span>
                     <span>Data Migration</span>
                   </div>
                   <div className="flex items-center text-sm text-neutral-600">
-                    <span className="text-[var(--brand-primary)] mr-2">•</span>
+                    <span className="text-neutral-500 mr-3 w-4">•</span>
                     <span>Ongoing Support</span>
                   </div>
                 </div>
