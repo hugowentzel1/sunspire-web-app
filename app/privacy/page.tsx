@@ -36,14 +36,41 @@ export default function PrivacyPage() {
               <p className="text-gray-600 mb-4">
                 Sunspire (&ldquo;we,&rdquo; &ldquo;our,&rdquo; or &ldquo;us&rdquo;) is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our solar intelligence platform.
               </p>
+              
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Information You Provide Directly</h3>
               <p className="text-gray-600 mb-4">
                 We collect information you provide directly to us, such as when you create an account, submit a solar analysis request, or contact our support team. This may include:
               </p>
               <ul className="list-disc pl-6 space-y-2 text-gray-600">
-                <li className="text-[var(--brand-primary)]">Name and contact information</li>
-                <li className="text-[var(--brand-primary)]">Property address and details</li>
-                <li className="text-[var(--brand-primary)]">Company information</li>
-                <li className="text-[var(--brand-primary)]">Payment information</li>
+                <li className="text-[var(--brand-primary)]">Name and contact information (email, phone, address)</li>
+                <li className="text-[var(--brand-primary)]">Property address and details for solar analysis</li>
+                <li className="text-[var(--brand-primary)]">Company information and business details</li>
+                <li className="text-[var(--brand-primary)]">Payment and billing information</li>
+                <li className="text-[var(--brand-primary)]">Communications with our support team</li>
+                <li className="text-[var(--brand-primary)]">Account preferences and settings</li>
+              </ul>
+
+              <h3 className="text-xl font-semibold text-gray-900 mb-3 mt-6">Information We Collect Automatically</h3>
+              <p className="text-gray-600 mb-4">
+                When you use our service, we automatically collect certain information, including:
+              </p>
+              <ul className="list-disc pl-6 space-y-2 text-gray-600">
+                <li className="text-[var(--brand-primary)]">Usage data (pages visited, features used, time spent)</li>
+                <li className="text-[var(--brand-primary)]">Device information (IP address, browser type, operating system)</li>
+                <li className="text-[var(--brand-primary)]">Location data (derived from IP address for solar analysis)</li>
+                <li className="text-[var(--brand-primary)]">Cookies and similar tracking technologies</li>
+                <li className="text-[var(--brand-primary)]">Log files and analytics data</li>
+              </ul>
+
+              <h3 className="text-xl font-semibold text-gray-900 mb-3 mt-6">Third-Party Data Sources</h3>
+              <p className="text-gray-600 mb-4">
+                We may obtain information from third-party sources to enhance our solar analysis, including:
+              </p>
+              <ul className="list-disc pl-6 space-y-2 text-gray-600">
+                <li className="text-[var(--brand-primary)]">NREL PVWatts v8 for solar irradiance data</li>
+                <li className="text-[var(--brand-primary)]">EIA for electricity rate information</li>
+                <li className="text-[var(--brand-primary)]">Google Maps for property and location data</li>
+                <li className="text-[var(--brand-primary)]">Weather services for climate data</li>
               </ul>
             </section>
               

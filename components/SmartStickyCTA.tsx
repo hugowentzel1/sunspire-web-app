@@ -95,7 +95,7 @@ export default function SmartStickyCTA() {
     <div 
       ref={stickyRef}
       id="stickyCta" 
-      className="sticky-cta hidden md:block"
+      className="sticky-cta !hidden md:!block"
     >
       <button 
         className="sticky-cta__button"

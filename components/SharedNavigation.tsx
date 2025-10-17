@@ -167,11 +167,11 @@ export default function SharedNavigation() {
                 <span className="text-white text-lg font-bold">☀️</span>
               </div>
             )}
-            <div>
-              <h1 className="text-2xl font-black text-[var(--brand-primary)]">
+            <div className="flex flex-col gap-0">
+              <h1 className="text-2xl font-black text-[var(--brand-primary)] leading-tight">
                 {b.enabled ? b.brand : 'Your Company'}
               </h1>
-              <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
+              <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase leading-tight -mt-0.5">
                 Solar Intelligence
               </p>
             </div>

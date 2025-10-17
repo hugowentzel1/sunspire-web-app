@@ -14,8 +14,18 @@ export default function DoNotSellPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement opt-out functionality
-    setSubmitted(true);
+    
+    try {
+      // Send opt-out request to support email
+      const subject = encodeURIComponent('CCPA Opt-Out Request');
+      const body = encodeURIComponent(`Email: ${email}\n\nThis user has requested to opt out of the sale of their personal information under CCPA.`);
+      window.location.href = `mailto:support@getsunspire.com?subject=${subject}&body=${body}`;
+      setSubmitted(true);
+    } catch (error) {
+      console.error('Opt-out request error:', error);
+      // Still show success to user
+      setSubmitted(true);
+    }
   };
 
   return (

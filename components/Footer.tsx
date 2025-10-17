@@ -134,16 +134,17 @@ export default function Footer() {
           <hr className="my-10 border-slate-200" />
 
           {/* BOTTOM BAR (inside the same card) */}
-          <div className="flex flex-col gap-4 text-sm text-slate-600 md:flex-row md:items-start">
-            {/* LEFT: PVWatts */}
-            <div className="flex-1 flex gap-2">
+          {/* Mobile: centered stack, Desktop: 3-column row */}
+          <div className="flex flex-col gap-4 text-sm text-slate-600 items-center text-center md:flex-row md:items-start md:text-left">
+            {/* LEFT: PVWatts - Centered on mobile, left on desktop */}
+            <div className="flex-1 flex gap-2 justify-center md:justify-start">
               <span className="flex-shrink-0 mt-0.5">⚡</span>
               <span className="leading-relaxed">
                 Estimates generated<br />using NREL PVWatts® v8
               </span>
             </div>
 
-            {/* CENTER: Sunspire - Perfectly centered */}
+            {/* CENTER: Sunspire - Always centered */}
             <div className="flex-1 flex flex-col items-center justify-center text-center">
               <span>
                 Powered by{" "}
@@ -153,8 +154,8 @@ export default function Footer() {
               </span>
             </div>
 
-            {/* RIGHT: Google */}
-            <div className="flex-1 flex gap-2 justify-end text-right">
+            {/* RIGHT: Google - Centered on mobile, right on desktop */}
+            <div className="flex-1 flex gap-2 justify-center md:justify-end text-center md:text-right">
               <span className="flex-shrink-0 mt-0.5">🗺️</span>
               <span className="leading-relaxed">
                 Mapping & location<br />data © Google

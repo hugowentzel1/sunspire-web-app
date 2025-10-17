@@ -229,10 +229,10 @@ export default function SupportPage() {
                 <div className="mt-12">
                   <h3 className="text-xl font-semibold text-neutral-900 mb-6">Helpful Resources</h3>
                   <div className="space-y-3">
-                    <a href="#" className="block font-medium text-brand-600">Setup Guide</a>
-                    <a href="#" className="block font-medium text-brand-600">CRM Integration Tutorial</a>
-                    <a href="#" className="block font-medium text-brand-600">Branding Customization</a>
-                    <a href="#" className="block font-medium text-brand-600">API Documentation</a>
+                    <a href="/docs/setup" className="block font-medium text-brand-600 hover:underline">Setup Guide</a>
+                    <a href="/docs/crm" className="block font-medium text-brand-600 hover:underline">CRM Integration Tutorial</a>
+                    <a href="/docs/branding" className="block font-medium text-brand-600 hover:underline">Branding Customization</a>
+                    <a href="/docs/api" className="block font-medium text-brand-600 hover:underline">API Documentation</a>
                   </div>
                 </div>
               </div>

@@ -119,30 +119,37 @@ export default function LegalFooter({
           </div>
         </div>
 
-        {/* Bottom Section - Mobile centered, Desktop 3-column */}
+        {/* Bottom Section - Mobile: centered stack, Desktop: 3-column grid */}
         <div className="border-t border-gray-200 pt-10">
-          <div className="flex flex-col md:grid md:grid-cols-3 gap-4 md:gap-8 items-center">
-            {/* NREL Disclaimer - Centered on mobile, left on desktop */}
-            <div className="w-full text-center md:text-left">
-              <div className="flex items-center justify-center md:justify-start text-xs md:text-sm text-gray-500">
-                <span className="text-base mr-1.5">⚡</span>
-                <span className="leading-tight">Estimates generated using NREL PVWatts® v8</span>
-              </div>
-            </div>
+          {/* Mobile layout - simple centered stack */}
+          <div className="flex flex-col md:hidden gap-3 text-center">
+            <p className="flex items-center justify-center text-xs text-gray-500">
+              <span className="mr-1.5">⚡</span>
+              <span>Estimates generated using NREL PVWatts® v8</span>
+            </p>
+            <p className="text-gray-600 text-xs">
+              Powered by <span className="font-medium" style={{ color: brandColor }}>Sunspire</span>
+            </p>
+            <p className="flex items-center justify-center text-xs text-gray-500">
+              <span className="mr-1.5">🗺️</span>
+              <span>Mapping & location data © Google</span>
+            </p>
+          </div>
 
-            {/* Powered By - ALWAYS CENTERED */}
-            <div className="w-full text-center">
-              <p className="text-gray-600 text-xs md:text-sm">
+          {/* Desktop layout - 3-column grid */}
+          <div className="hidden md:grid md:grid-cols-3 gap-8 items-center">
+            <div className="flex items-center justify-start text-sm text-gray-500">
+              <span className="text-base mr-1.5">⚡</span>
+              <span className="leading-tight">Estimates generated using NREL PVWatts® v8</span>
+            </div>
+            <div className="text-center">
+              <p className="text-gray-600 text-sm">
                 Powered by <span className="font-medium" style={{ color: brandColor }}>Sunspire</span>
               </p>
             </div>
-
-            {/* Google Disclaimer - Centered on mobile, right on desktop */}
-            <div className="w-full text-center md:text-right">
-              <div className="flex items-center justify-center md:justify-end text-xs md:text-sm text-gray-500">
-                <span className="text-base mr-1.5">🗺️</span>
-                <span className="leading-tight">Mapping & location data © Google</span>
-              </div>
+            <div className="flex items-center justify-end text-sm text-gray-500">
+              <span className="text-base mr-1.5">🗺️</span>
+              <span className="leading-tight">Mapping & location data © Google</span>
             </div>
           </div>
         </div>
