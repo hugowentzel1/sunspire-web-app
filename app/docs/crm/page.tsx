@@ -21,7 +21,7 @@ export default function CRMGuidesPage() {
       name: "HubSpot",
       description: "Connect your solar tool with HubSpot CRM for seamless lead management and automation.",
       icon: "H",
-      color: "bg-orange-100",
+      brandColor: "#FF7A59",
       href: "/docs/crm/hubspot",
       features: ["Contact Management", "Deal Tracking", "Email Automation", "Lead Scoring"]
     },
@@ -30,7 +30,7 @@ export default function CRMGuidesPage() {
       name: "Salesforce",
       description: "Integrate with Salesforce CRM to track leads, opportunities, and customer data.",
       icon: "S",
-      color: "bg-blue-100",
+      brandColor: "#00A1E0",
       href: "/docs/crm/salesforce",
       features: ["Lead Management", "Opportunity Tracking", "Custom Objects", "Workflow Automation"]
     },
@@ -39,7 +39,7 @@ export default function CRMGuidesPage() {
       name: "Airtable",
       description: "Connect with Airtable for flexible database management and custom workflows.",
       icon: "A",
-      color: "bg-purple-100",
+      brandColor: "#18BFFF",
       href: "/docs/crm/airtable",
       features: ["Custom Databases", "Workflow Automation", "API Integration", "Team Collaboration"]
     }
@@ -50,40 +50,40 @@ export default function CRMGuidesPage() {
       id: "pipedrive",
       name: "Pipedrive",
       description: "Visual sales pipeline management with automated follow-ups and deal tracking.",
-      icon: "🟢",
-      color: "bg-green-100",
+      icon: "P",
+      brandColor: "#FF7A59",
       features: ["Sales Pipeline", "Activity Tracking", "Email Integration", "Reporting"]
     },
     {
       id: "zapier",
       name: "Zapier",
       description: "Connect with 5000+ apps through Zapier for unlimited integration possibilities.",
-      icon: "⚡",
-      color: "bg-yellow-100",
+      icon: "Z",
+      brandColor: "#FF4A00",
       features: ["5000+ Apps", "Automated Workflows", "Custom Triggers", "Multi-step Zaps"]
     },
     {
       id: "monday",
       name: "Monday.com",
       description: "Project management and CRM in one platform with customizable workflows.",
-      icon: "📅",
-      color: "bg-indigo-100",
+      icon: "M",
+      brandColor: "#FF3D71",
       features: ["Project Management", "CRM Boards", "Automation", "Team Collaboration"]
     },
     {
       id: "notion",
       name: "Notion",
       description: "All-in-one workspace with CRM capabilities and database management.",
-      icon: "📝",
-      color: "bg-gray-100",
+      icon: "N",
+      brandColor: "#000000",
       features: ["Database Management", "Team Workspace", "Templates", "API Access"]
     },
     {
       id: "custom",
       name: "Custom Integration",
       description: "Need a specific CRM or custom solution? We can build it for you.",
-      icon: "🔧",
-      color: "bg-slate-100",
+      icon: "C",
+      brandColor: "#6B7280",
       features: ["Custom Development", "API Integration", "Data Migration", "Ongoing Support"]
     }
   ];
@@ -125,8 +125,18 @@ export default function CRMGuidesPage() {
               {primaryIntegrations.map((integration) => (
                 <Card key={integration.id} className="hover:shadow-xl transition-all duration-300 flex flex-col">
                   <div className="text-center space-y-4 flex-1 flex flex-col">
-                    <div className={`w-16 h-16 ${integration.color} rounded-2xl flex items-center justify-center mx-auto`}>
-                      <span className="text-2xl font-bold text-white">{integration.icon}</span>
+                    <div 
+                      className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto"
+                      style={{
+                        background: `linear-gradient(135deg, white 0%, ${integration.brandColor} 100%)`
+                      }}
+                    >
+                      <span 
+                        className="text-2xl font-bold"
+                        style={{ color: integration.brandColor }}
+                      >
+                        {integration.icon}
+                      </span>
                     </div>
                     <h3 className="text-xl font-bold text-neutral-900">
                       {integration.name}
@@ -184,8 +194,18 @@ export default function CRMGuidesPage() {
                     <Card key={integration.id} className="hover:shadow-lg transition-all duration-300">
                       <div className="space-y-4">
                         <div className="flex items-center space-x-3">
-                          <div className={`w-12 h-12 ${integration.color} rounded-xl flex items-center justify-center`}>
-                            <span className="text-xl">{integration.icon}</span>
+                          <div 
+                            className="w-12 h-12 rounded-xl flex items-center justify-center"
+                            style={{
+                              background: `linear-gradient(135deg, white 0%, ${integration.brandColor} 100%)`
+                            }}
+                          >
+                            <span 
+                              className="text-xl font-bold"
+                              style={{ color: integration.brandColor }}
+                            >
+                              {integration.icon}
+                            </span>
                           </div>
                           <div>
                             <h3 className="text-lg font-semibold text-neutral-900">
@@ -238,44 +258,30 @@ export default function CRMGuidesPage() {
                 <p className="text-neutral-600 max-w-2xl mx-auto">
                   Need a specific CRM or custom solution? We can build it for you.
                 </p>
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-2xl mx-auto">
-                  <div className="text-center space-y-2">
-                    <div className="w-12 h-12 bg-[var(--brand-primary)] bg-opacity-10 rounded-lg flex items-center justify-center mx-auto">
-                      <span className="text-[var(--brand-primary)] text-lg">⚙️</span>
-                    </div>
-                    <p className="text-sm font-medium text-neutral-700">Custom Development</p>
+                <div className="space-y-2 max-w-md mx-auto">
+                  <div className="flex items-center text-sm text-neutral-600">
+                    <span className="text-[var(--brand-primary)] mr-2">•</span>
+                    <span>Custom Development</span>
                   </div>
-                  <div className="text-center space-y-2">
-                    <div className="w-12 h-12 bg-[var(--brand-primary)] bg-opacity-10 rounded-lg flex items-center justify-center mx-auto">
-                      <span className="text-[var(--brand-primary)] text-lg">🔗</span>
-                    </div>
-                    <p className="text-sm font-medium text-neutral-700">API Integration</p>
+                  <div className="flex items-center text-sm text-neutral-600">
+                    <span className="text-[var(--brand-primary)] mr-2">•</span>
+                    <span>API Integration</span>
                   </div>
-                  <div className="text-center space-y-2">
-                    <div className="w-12 h-12 bg-[var(--brand-primary)] bg-opacity-10 rounded-lg flex items-center justify-center mx-auto">
-                      <span className="text-[var(--brand-primary)] text-lg">📊</span>
-                    </div>
-                    <p className="text-sm font-medium text-neutral-700">Data Migration</p>
+                  <div className="flex items-center text-sm text-neutral-600">
+                    <span className="text-[var(--brand-primary)] mr-2">•</span>
+                    <span>Data Migration</span>
                   </div>
-                  <div className="text-center space-y-2">
-                    <div className="w-12 h-12 bg-[var(--brand-primary)] bg-opacity-10 rounded-lg flex items-center justify-center mx-auto">
-                      <span className="text-[var(--brand-primary)] text-lg">🛠️</span>
-                    </div>
-                    <p className="text-sm font-medium text-neutral-700">Ongoing Support</p>
+                  <div className="flex items-center text-sm text-neutral-600">
+                    <span className="text-[var(--brand-primary)] mr-2">•</span>
+                    <span>Ongoing Support</span>
                   </div>
                 </div>
-                <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <div className="text-center">
                   <a
                     href="mailto:support@getsunspire.com?subject=Custom CRM Integration Request"
                     className="inline-flex items-center px-6 py-3 bg-[var(--brand-primary)] text-white rounded-lg font-semibold hover:opacity-90 transition-colors"
                   >
                     Request Custom Integration
-                  </a>
-                  <a
-                    href="/support"
-                    className="inline-flex items-center px-6 py-3 border border-neutral-300 text-neutral-700 rounded-lg font-semibold hover:bg-neutral-50 transition-colors"
-                  >
-                    Contact Support
                   </a>
                 </div>
               </div>
