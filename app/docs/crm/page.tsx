@@ -125,18 +125,8 @@ export default function CRMGuidesPage() {
               {primaryIntegrations.map((integration) => (
                 <Card key={integration.id} className="hover:shadow-xl transition-all duration-300 flex flex-col">
                   <div className="text-center space-y-4 flex-1 flex flex-col">
-                    <div 
-                      className="w-16 h-16 rounded-2xl flex items-center justify-center mx-auto"
-                      style={{
-                        background: `linear-gradient(135deg, white 0%, ${integration.brandColor} 100%)`
-                      }}
-                    >
-                      <span 
-                        className="text-2xl font-bold"
-                        style={{ color: integration.brandColor }}
-                      >
-                        {integration.icon}
-                      </span>
+                    <div className="w-16 h-16 bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-2xl flex items-center justify-center mx-auto">
+                      <span className="text-neutral-900 font-bold text-2xl">{integration.icon}</span>
                     </div>
                     <h3 className="text-xl font-bold text-neutral-900">
                       {integration.name}
@@ -194,18 +184,8 @@ export default function CRMGuidesPage() {
                     <Card key={integration.id} className="hover:shadow-lg transition-all duration-300">
                       <div className="space-y-4">
                         <div className="flex items-center space-x-3">
-                          <div 
-                            className="w-12 h-12 rounded-xl flex items-center justify-center"
-                            style={{
-                              background: `linear-gradient(135deg, white 0%, ${integration.brandColor} 100%)`
-                            }}
-                          >
-                            <span 
-                              className="text-xl font-bold"
-                              style={{ color: integration.brandColor }}
-                            >
-                              {integration.icon}
-                            </span>
+                          <div className="w-12 h-12 bg-gradient-to-br from-[var(--brand-primary)] to-white rounded-xl flex items-center justify-center">
+                            <span className="text-neutral-900 font-bold text-xl">{integration.icon}</span>
                           </div>
                           <div>
                             <h3 className="text-lg font-semibold text-neutral-900">
@@ -279,7 +259,7 @@ export default function CRMGuidesPage() {
                 <div className="text-center">
                   <a
                     href="mailto:support@getsunspire.com?subject=Custom CRM Integration Request"
-                    className="inline-flex items-center px-6 py-3 bg-[var(--brand-primary)] text-white rounded-lg font-semibold hover:opacity-90 transition-colors"
+                    className="inline-flex items-center px-8 py-4 bg-[var(--brand-primary)] text-white rounded-lg font-semibold hover:opacity-90 transition-colors text-lg min-w-[280px]"
                   >
                     Request Custom Integration
                   </a>
