@@ -266,7 +266,7 @@ export default function CRMGuidesPage() {
                 <div className="text-center">
                   <a
                     href="mailto:support@getsunspire.com?subject=Custom CRM Integration Request"
-                    className="inline-flex items-center px-8 py-4 bg-[var(--brand-primary)] text-white rounded-lg font-semibold hover:opacity-90 transition-colors text-lg w-full max-w-2xl"
+                    className="inline-flex items-center justify-center px-8 py-4 bg-[var(--brand-primary)] text-white rounded-lg font-semibold hover:opacity-90 transition-colors text-lg"
                   >
                     Request Custom Integration
                   </a>
