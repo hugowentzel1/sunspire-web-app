@@ -646,9 +646,9 @@ function ReportContent() {
                 </div>
               )}
               <div>
-                <h1 className="text-2xl font-black text-[var(--brand-primary)]">
+                <h2 className="text-2xl font-black text-[var(--brand-primary)]">
                   {capitalizeCompanyName(b.brand)}
-                </h1>
+                </h2>
                 <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
                   Solar Intelligence
                 </p>
@@ -737,19 +737,6 @@ function ReportContent() {
         )}
 
         {/* Report header */}
-        <motion.div 
-          initial={{ opacity: 0, y: -20 }} 
-          animate={{ opacity: 1, y: 0 }} 
-          transition={{ duration: 0.6 }} 
-          className="text-center py-3 mb-6"
-          data-testid="report-header"
-        >
-          <h1 className="text-2xl md:text-3xl font-semibold text-gray-900">
-            Your <span style={{ color: b.primary }}>{b.brand || 'Company'}</span> Solar Quote
-            {demoMode && <span className="text-gray-500 font-normal"> (Live Preview)</span>}
-          </h1>
-        </motion.div>
-
         {/* Theme probe for testing */}
         <div data-testid="theme-probe" style={{ color: 'var(--brand)' }} className="hidden" />
         {/* Brand theme CSS variable */}
@@ -776,40 +763,41 @@ function ReportContent() {
                 </div>
               )}
             </motion.div>
-            {/* H1 (bold) — Research-backed hierarchy */}
-            <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 text-center">
+            {/* H1 (bold) — Pixel-perfect hierarchy */}
+            <h1 data-testid="hdr-h1" className="text-3xl md:text-4xl font-semibold tracking-tight text-slate-900 text-center">
               Your <span className="text-blue-600">{b.brand || 'Company'}</span> Solar Quote <span className="text-slate-500">(Live Preview)</span>
             </h1>
 
             {/* Subheadline (bold) — mt-2 for scan stripe */}
-            <p className="mt-2 text-lg md:text-xl font-semibold text-slate-800 text-center">
+            <p data-testid="hdr-sub" className="mt-2 text-lg md:text-xl font-semibold text-slate-800 text-center">
               Comprehensive analysis for your property at
             </p>
 
             {/* Address (not bold) — mt-1, 65ch optimal, balanced wrap */}
             <p
-              className="mt-1 mx-auto max-w-[65ch] text-center text-base text-slate-600 leading-snug break-words line-clamp-2"
+              data-testid="hdr-address"
+              className="mx-auto mt-1 max-w-[65ch] text-center text-base text-slate-600 leading-snug whitespace-normal break-words line-clamp-2"
               style={{ textWrap: 'balance' } as any}
             >
-              {softWrapAddress(estimate.address)}
+              <span data-testid="hdr-address-span">{softWrapAddress(estimate.address)}</span>
             </p>
 
             {/* Meta (not bold; values darker tone) — mt-2, tabular-nums on timer */}
             {demoMode ? (
-              <div className="mx-auto mt-2 w-full max-w-sm text-center">
-                <div className="py-1 text-sm text-slate-500">
+              <div data-testid="hdr-meta" className="mx-auto mt-2 w-full max-w-sm text-center">
+                <div data-testid="meta-generated" className="py-1 text-sm text-slate-500">
                   Generated on <span className="text-slate-700">{formatDateSafe(estimate.date)}</span>
                 </div>
-                <div className="py-1 text-sm text-slate-500">
-                  Preview: <span className="text-slate-700">{remaining < 0 ? '-' : ''}{Math.abs(remaining)}</span> runs left
+                <div data-testid="meta-runs" className="py-1 text-sm text-slate-500">
+                  Preview: <span className="text-slate-700">{remaining < 0 ? '-' : ''}{Math.abs(remaining)}</span> run{Math.abs(remaining) === 1 ? '' : 's'} left
                 </div>
-                <div className="py-1 text-sm text-slate-500" style={{ fontVariantNumeric: 'tabular-nums' }}>
-                  Expires <span className="text-slate-700">{countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</span>
+                <div data-testid="meta-expires" className="py-1 text-sm text-slate-500 tabular-nums" style={{ fontVariantNumeric: 'tabular-nums' }}>
+                  Expires in <span className="text-slate-700">{countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</span>
                 </div>
               </div>
             ) : (
-              <div className="mx-auto mt-2 w-full max-w-sm text-center">
-                <div className="py-1 text-sm text-slate-500">
+              <div data-testid="hdr-meta" className="mx-auto mt-2 w-full max-w-sm text-center">
+                <div data-testid="meta-generated" className="py-1 text-sm text-slate-500">
                   Generated on <span className="text-slate-700">{formatDateSafe(estimate.date)}</span>
                 </div>
               </div>
