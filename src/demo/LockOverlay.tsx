@@ -341,10 +341,10 @@ export default function LockOverlay() {
             style={{
               fontSize: "16px",
               color: "rgba(255, 255, 255, 0.95)",
-              marginBottom: "28px",
+              marginBottom: "24px",
               lineHeight: "1.6",
               maxWidth: "600px",
-              margin: "0 auto 28px",
+              margin: "0 auto 24px",
             }}
           >
             Get the full paid version—customer-facing and under your brand—with
@@ -353,7 +353,7 @@ export default function LockOverlay() {
           </p>
 
           {/* CTA Button */}
-          <div style={{ marginBottom: "28px" }}>
+          <div style={{ marginBottom: "20px" }}>
             <button
               onClick={openStripeCheckout}
               data-cta="primary"
@@ -396,7 +396,7 @@ export default function LockOverlay() {
             style={{
               fontSize: "14px",
               color: "rgba(255, 255, 255, 0.9)",
-              marginBottom: "8px",
+              marginBottom: "20px",
               fontWeight: "500",
             }}
           >
