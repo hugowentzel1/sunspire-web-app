@@ -18,6 +18,7 @@ import { getTrustData } from '@/lib/trust';
 import { usePreviewQuota } from '@/src/demo/usePreviewQuota';
 import SmartStickyCTA from '@/components/SmartStickyCTA';
 import { useCountdown } from '@/src/demo/useCountdown';
+import LockOverlay from '@/src/demo/LockOverlay';
 import { useIsDemo } from '@/src/lib/isDemo';
 import React from 'react';
 import { attachCheckoutHandlers } from '@/src/lib/checkout';
@@ -45,6 +46,7 @@ function HomeContent() {
   const [showSampleReportModal, setShowSampleReportModal] = useState(false);
   const [sampleReportSubmitted, setSampleReportSubmitted] = useState(false);
   const [trustData, setTrustData] = useState<any>(null);
+  const [showLockScreen, setShowLockScreen] = useState(false);
   const router = useRouter();
   const searchParams = useSearchParams(); // Use useSearchParams for client-side access
 
@@ -192,13 +194,18 @@ function HomeContent() {
     console.log('Generating estimate for address:', currentAddress);
     console.log('Selected place:', currentPlace);
     
-    // Check quota (don't consume here - report page will consume)
+    // Check quota and block if 0 runs left
     if (b.enabled) {
       const currentQuota = read();
       console.log('🔒 Homepage quota check - currentQuota:', currentQuota);
       
-      // Just check quota, don't consume yet - report page will handle consumption
-      // This allows: 2 runs → use 1st (2→1) → use 2nd (1→0) → try 3rd (0, shows lock)
+      // If quota is 0 or negative, show lock overlay instead of navigating
+      if (currentQuota <= 0) {
+        console.log('🚫 Demo limit reached - triggering lock overlay');
+        setShowLockScreen(true);
+        return;
+      }
+      
       console.log('🔒 Homepage - quota available:', currentQuota);
     }
     
@@ -723,6 +730,9 @@ function HomeContent() {
         testId="sticky-demo-cta"
         className="sm:hidden"   // MOBILE-ONLY
       />
+
+      {/* Lock Overlay - Show when demo limit reached */}
+      {showLockScreen && <LockOverlay />}
 
     </div>
   );
