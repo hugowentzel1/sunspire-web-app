@@ -119,29 +119,25 @@ export default function LegalFooter({
           </div>
         </div>
 
-        {/* Bottom Section */}
+        {/* Bottom Section - Mobile centered, Desktop 3-column */}
         <div className="border-t border-gray-200 pt-10">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center items-center">
+          <div className="flex flex-col md:grid md:grid-cols-3 gap-4 md:gap-8 text-center items-center">
             {/* NREL Disclaimer - Centered on mobile, left on desktop */}
-            <div className="flex items-center justify-center md:justify-start text-sm text-gray-500">
-              <svg className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0 align-middle" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z"/>
-              </svg>
+            <div className="flex items-center justify-center md:justify-start text-xs md:text-sm text-gray-500">
+              <span className="text-base mr-1.5">⚡</span>
               <span className="leading-tight">Estimates generated using NREL PVWatts® v8</span>
             </div>
 
             {/* Powered By - ALWAYS CENTERED */}
             <div className="text-center">
-              <p className="text-gray-600 text-sm">
+              <p className="text-gray-600 text-xs md:text-sm">
                 Powered by <span className="font-medium" style={{ color: brandColor }}>Sunspire</span>
               </p>
             </div>
 
             {/* Google Disclaimer - Centered on mobile, right on desktop */}
-            <div className="flex items-center justify-center md:justify-end text-sm text-gray-500">
-              <svg className="w-4 h-4 mr-2 text-gray-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 4m0 13V4m0 0L9 7"/>
-              </svg>
+            <div className="flex items-center justify-center md:justify-end text-xs md:text-sm text-gray-500">
+              <span className="text-base mr-1.5">🗺️</span>
               <span className="leading-tight">Mapping & location data © Google</span>
             </div>
           </div>

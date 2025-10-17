@@ -64,18 +64,58 @@ export function DemoBanner() {
         position: "sticky",
         top: 0,
         zIndex: 1000,
-        display: "flex",
-        flexWrap: "wrap",
-        gap: 16,
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: "14px 20px",
         background: "linear-gradient(180deg, #ffffff 0%, #fafbfc 100%)",
         borderBottom: "1px solid #e5e7eb",
         boxShadow: "0 1px 3px rgba(0, 0, 0, 0.04)",
       }}
-      className="justify-between"
     >
+      {/* Mobile-optimized layout - clean and centered */}
+      <div className="block md:hidden px-3 py-2.5">
+        <div className="flex flex-col gap-1.5 items-center text-center">
+          {/* Company badge */}
+          <div style={{
+            display: "inline-flex",
+            alignItems: "center",
+            padding: "4px 10px",
+            background: `color-mix(in srgb, var(--brand-primary, #2563eb) 10%, white)`,
+            borderRadius: 6,
+            fontSize: 12,
+            fontWeight: 600,
+            color: "var(--brand-primary, #2563eb)",
+            letterSpacing: "-0.01em"
+          }}>
+            {b.brand} Demo
+          </div>
+          
+          {/* Runs and expiration */}
+          <div style={{ 
+            display: "flex", 
+            alignItems: "center", 
+            gap: 6,
+            fontSize: 11,
+            color: "#6B7280",
+            fontWeight: 500
+          }}>
+            <span>{remaining} {remaining === 1 ? 'run' : 'runs'}</span>
+            <span style={{ color: "#D1D5DB" }}>•</span>
+            <span style={{ fontVariantNumeric: "tabular-nums" }}>
+              Expires {countdown.days}d {countdown.hours}h
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Desktop layout - unchanged */}
+      <div 
+        className="hidden md:flex"
+        style={{
+          flexWrap: "wrap",
+          gap: 16,
+          justifyContent: "space-between",
+          alignItems: "center",
+          padding: "14px 20px",
+        }}
+      >
       <div style={{ 
         display: "flex", 
         flexWrap: "wrap",
@@ -165,6 +205,8 @@ export function DemoBanner() {
           ✕
         </button>
       </div>
+      </div>
+      {/* End desktop layout */}
     </div>
   );
 }
