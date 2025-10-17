@@ -245,19 +245,19 @@ export default function CRMGuidesPage() {
                   <h3 className="text-lg font-semibold text-neutral-900 mb-4 text-center">What We Offer</h3>
                   <div className="space-y-3">
                     <div className="flex items-center text-sm text-neutral-600">
-                      <span className="text-[var(--brand-primary)] mr-3 w-4">•</span>
+                      <span className="text-neutral-400 mr-3 w-4">•</span>
                       <span>Custom Development</span>
                     </div>
                     <div className="flex items-center text-sm text-neutral-600">
-                      <span className="text-[var(--brand-primary)] mr-3 w-4">•</span>
+                      <span className="text-neutral-400 mr-3 w-4">•</span>
                       <span>API Integration</span>
                     </div>
                     <div className="flex items-center text-sm text-neutral-600">
-                      <span className="text-[var(--brand-primary)] mr-3 w-4">•</span>
+                      <span className="text-neutral-400 mr-3 w-4">•</span>
                       <span>Data Migration</span>
                     </div>
                     <div className="flex items-center text-sm text-neutral-600">
-                      <span className="text-[var(--brand-primary)] mr-3 w-4">•</span>
+                      <span className="text-neutral-400 mr-3 w-4">•</span>
                       <span>Ongoing Support</span>
                     </div>
                   </div>
