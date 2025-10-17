@@ -10,6 +10,6 @@
  */
 export function formatAddressForWrap(address: string): string {
   // Allow natural line breaks right after commas (no visible change)
-  return address.replaceAll(",", ",\u200B");
+  return address.replace(/,/g, ",\u200B");
 }
 

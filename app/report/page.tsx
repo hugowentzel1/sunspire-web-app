@@ -781,7 +781,7 @@ function ReportContent() {
                 Comprehensive analysis for your property at
               </p>
               <p 
-                className="mt-2 text-base text-slate-600 whitespace-normal break-words leading-snug line-clamp-2 text-center"
+                className="mt-2 text-lg font-semibold text-gray-900 whitespace-normal break-words leading-snug line-clamp-2 text-center"
                 style={{ textWrap: 'balance' } as any}
               >
                 <span className="line-clamp-2">{formatAddressForWrap(estimate.address)}</span>
@@ -790,19 +790,19 @@ function ReportContent() {
             {demoMode ? (
               <div className="mx-auto mt-2 w-full max-w-sm text-center">
                 <div className="py-1 text-sm text-slate-500">
-                  Generated on <span className="font-medium text-slate-700">{formatDateSafe(estimate.date)}</span>
+                  Generated on <span className="font-semibold text-gray-900">{formatDateSafe(estimate.date)}</span>
                 </div>
                 <div className="py-1 text-sm text-slate-500">
-                  Preview: <span className="font-medium text-slate-700">{remaining < 0 ? '-' : ''}{Math.abs(remaining)} runs left</span>
+                  Preview: <span className="font-semibold text-gray-900">{remaining < 0 ? '-' : ''}{Math.abs(remaining)}</span> <span className="font-medium text-slate-600">runs left</span>
                 </div>
                 <div className="py-1 text-sm text-slate-500 tabular-nums">
-                  Expires <span className="font-medium text-slate-700">{countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</span>
+                  Expires <span className="font-semibold text-gray-900">{countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</span>
                 </div>
               </div>
             ) : (
               <div className="mx-auto mt-2 w-full max-w-sm text-center">
                 <div className="py-1 text-sm text-slate-500">
-                  Generated on <span className="font-medium text-slate-700">{formatDateSafe(estimate.date)}</span>
+                  Generated on <span className="font-semibold text-gray-900">{formatDateSafe(estimate.date)}</span>
                 </div>
               </div>
             )}

@@ -214,7 +214,7 @@ export default function APIDocumentationPage() {
                 API Documentation
               </h1>
               <p className="text-lg md:text-xl text-neutral-700 max-w-3xl mx-auto">
-                Complete API reference for integrating Sunspire's solar intelligence platform 
+                Complete API reference for integrating Sunspire&apos;s solar intelligence platform 
                 into your applications and workflows.
               </p>
             </div>

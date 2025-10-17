@@ -18,6 +18,12 @@ test.describe('Report Header Visual Test', () => {
     expect(addressText).toContain('Mountain View');
     expect(addressText).not.toContain('...');
     
+    // Verify address uses consistent styling (text-lg font-semibold text-gray-900)
+    const addressClasses = await addressElement.evaluate(el => el.className);
+    expect(addressClasses).toContain('text-lg');
+    expect(addressClasses).toContain('font-semibold');
+    expect(addressClasses).toContain('text-gray-900');
+    
     // Verify all three meta lines are visible in demo mode
     await expect(page.locator('text=Generated on')).toBeVisible();
     await expect(page.locator('text=Preview:')).toBeVisible();
