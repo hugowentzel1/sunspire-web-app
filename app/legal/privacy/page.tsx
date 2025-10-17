@@ -3,14 +3,29 @@
 import Footer from '@/components/Footer';
 import PaidFooter from '@/components/PaidFooter';
 import { useIsDemo } from '@/src/lib/isDemo';
+import { useSearchParams } from 'next/navigation';
 
 export default function PrivacyPage() {
   const isDemo = useIsDemo();
+  const searchParams = useSearchParams();
   
   return (
     <div className="min-h-screen flex flex-col">
       <main className="flex-1 py-16 px-4">
         <div className="max-w-4xl mx-auto">
+          {/* Back to Home Button */}
+          <div className="mb-8">
+            <a 
+              href={searchParams?.get('demo') ? `/?${searchParams?.toString()}` : `/paid?${searchParams?.toString()}`}
+              className="inline-flex items-center text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
+            >
+              <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+              Back to Home
+            </a>
+          </div>
+          
           <h1 className="text-4xl font-bold mb-6 text-center md:text-left">Privacy Policy</h1>
           <div className="prose prose-gray max-w-none">
             <p className="text-lg text-gray-600 mb-6">

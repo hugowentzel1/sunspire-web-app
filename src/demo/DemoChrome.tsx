@@ -60,6 +60,7 @@ export function DemoBanner() {
 
   return (
     <div
+      data-testid="demo-banner"
       style={{
         position: "sticky",
         top: 0,

@@ -3,6 +3,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import Container from '@/components/layout/Container';
 import { useIsDemo } from '@/src/lib/isDemo';
@@ -33,6 +34,12 @@ const getDefaultLogo = (brand: string) => {
 export default function Footer() {
   const b = useBrandTakeover();
   const isDemo = useIsDemo();
+  const searchParams = useSearchParams();
+  
+  const getUrlWithParams = (path: string) => {
+    const params = searchParams?.toString();
+    return params ? `${path}?${params}` : path;
+  };
   const logoUrl = b.logo || getDefaultLogo(b.brand);
   
   return (
@@ -120,12 +127,12 @@ export default function Footer() {
             <div className="min-w-0 md:max-w-xs text-center md:text-right">
               <h4 className="text-xl font-semibold text-slate-900">Legal &amp; Support</h4>
               <ul className="mt-4 space-y-3 text-sm text-slate-700 leading-relaxed">
-                <li><Link className="hover:underline underline-offset-2" href="/privacy">Privacy Policy</Link></li>
-                <li><Link className="hover:underline underline-offset-2" href="/terms">Terms of Service</Link></li>
-                <li><Link className="hover:underline underline-offset-2" href="/legal/refund">Refund Policy</Link></li>
-                <li><Link className="hover:underline underline-offset-2" href="/security">Security</Link></li>
-                <li><Link className="hover:underline underline-offset-2" href="/dpa">DPA</Link></li>
-                <li><Link className="hover:underline underline-offset-2" href="/do-not-sell">Do Not Sell My Data</Link></li>
+                <li><Link className="hover:underline underline-offset-2" href={getUrlWithParams("/privacy")}>Privacy Policy</Link></li>
+                <li><Link className="hover:underline underline-offset-2" href={getUrlWithParams("/terms")}>Terms of Service</Link></li>
+                <li><Link className="hover:underline underline-offset-2" href={getUrlWithParams("/legal/refund")}>Refund Policy</Link></li>
+                <li><Link className="hover:underline underline-offset-2" href={getUrlWithParams("/security")}>Security</Link></li>
+                <li><Link className="hover:underline underline-offset-2" href={getUrlWithParams("/dpa")}>DPA</Link></li>
+                <li><Link className="hover:underline underline-offset-2" href={getUrlWithParams("/do-not-sell")}>Do Not Sell My Data</Link></li>
               </ul>
             </div>
           </div>

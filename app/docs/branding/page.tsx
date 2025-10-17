@@ -22,16 +22,16 @@ export default function BrandingCustomizationPage() {
       <Section>
         <Container>
           <Stack>
-            {/* Back Button */}
+            {/* Back to Support Button */}
             <div className="mb-8">
               <a 
-                href={searchParams?.get('demo') ? `/?${searchParams?.toString()}` : `/paid?${searchParams?.toString()}`} 
+                href="/support"
                 className="inline-flex items-center text-neutral-500 hover:text-neutral-900 transition-colors font-medium"
               >
                 <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
-                Back to Home
+                ← Back to Support
               </a>
             </div>
 

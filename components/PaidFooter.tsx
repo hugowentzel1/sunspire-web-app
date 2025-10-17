@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
+import { useSearchParams } from 'next/navigation';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import { FEATURES } from '@/src/lib/compliance';
 
@@ -22,9 +23,15 @@ const getDefaultLogo = (brand: string) => {
 
 export default function PaidFooter() {
   const b = useBrandTakeover();
+  const searchParams = useSearchParams();
   const logoUrl = b.logo || getDefaultLogo(b.brand);
   const brandName = b.brand || 'Your Company';
   const brandColor = b.primary || '#FF6B35';
+  
+  const getUrlWithParams = (path: string) => {
+    const params = searchParams?.toString();
+    return params ? `${path}?${params}` : path;
+  };
 
   // Handler for cookie preferences
   const handleCookiePreferences = (e: React.MouseEvent) => {
@@ -68,7 +75,7 @@ export default function PaidFooter() {
           <ul className="flex flex-wrap items-center justify-center gap-x-3 gap-y-3 text-sm">
             <li className="flex items-center gap-3">
               <Link
-                href="/legal/privacy"
+                href={getUrlWithParams("/legal/privacy")}
                 className="text-slate-600 hover:text-slate-900 transition-colors underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded"
                 style={{ 
                   '--tw-ring-color': brandColor 

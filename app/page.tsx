@@ -16,6 +16,7 @@ import AboutBlock from '@/components/trust/AboutBlock';
 import TrustFooterLine from '@/components/trust/TrustFooterLine';
 import { getTrustData } from '@/lib/trust';
 import { usePreviewQuota } from '@/src/demo/usePreviewQuota';
+import { DemoBanner } from '@/src/demo/DemoChrome';
 import SmartStickyCTA from '@/components/SmartStickyCTA';
 import { useCountdown } from '@/src/demo/useCountdown';
 import LockOverlay from '@/src/demo/LockOverlay';
@@ -321,6 +322,7 @@ function HomeContent() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter" data-demo={isDemo}>
       <ReadingProgressBar />
+      <DemoBanner />
       <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 hero">
         {/* Ensure hero text container is below header but above any background media */}
         <section className="relative z-10">
