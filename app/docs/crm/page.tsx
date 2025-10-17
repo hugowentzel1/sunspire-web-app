@@ -277,7 +277,7 @@ export default function CRMGuidesPage() {
             {/* Back to Support */}
             <div className="mt-12 text-center">
               <Link
-                href="/support"
+                href={searchParams?.toString() ? `/support?${searchParams.toString()}` : '/support'}
                 className="inline-flex items-center px-6 py-3 text-neutral-600 hover:text-neutral-900 transition-colors"
               >
                 ← Back to Support

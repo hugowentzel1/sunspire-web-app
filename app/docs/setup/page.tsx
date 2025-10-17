@@ -1,10 +1,12 @@
 "use client";
 
 import { useBrandTakeover } from "@/src/brand/useBrandTakeover";
+import { useSearchParams } from "next/navigation";
 import Footer from "@/components/Footer";
 
 export default function SetupGuidePage() {
   const b = useBrandTakeover();
+  const searchParams = useSearchParams();
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 font-inter">
@@ -12,7 +14,7 @@ export default function SetupGuidePage() {
         {/* Back to Home Button */}
         <div className="mb-8">
           <a
-            href="/"
+            href={searchParams?.get('demo') ? `/?${searchParams?.toString()}` : `/paid?${searchParams?.toString()}`}
             className="inline-flex items-center text-gray-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
           >
             <svg
@@ -392,7 +394,7 @@ export default function SetupGuidePage() {
           {/* Back to Support */}
           <div className="mt-12 text-center">
             <a
-              href="/support"
+              href={searchParams?.toString() ? `/support?${searchParams.toString()}` : '/support'}
               className="inline-flex items-center px-6 py-3 text-neutral-600 hover:text-neutral-900 transition-colors"
             >
               ← Back to Support
