@@ -241,23 +241,23 @@ export default function CRMGuidesPage() {
                   </p>
                 </div>
                 
-                <div className="bg-neutral-50 rounded-xl p-6 max-w-lg mx-auto">
-                  <h3 className="text-lg font-semibold text-neutral-900 mb-4">What We Offer</h3>
-                  <div className="space-y-3 text-left">
+                <div className="space-y-3 max-w-lg mx-auto text-left">
+                  <h3 className="text-lg font-semibold text-neutral-900 mb-4 text-center">What We Offer</h3>
+                  <div className="space-y-3">
                     <div className="flex items-center text-sm text-neutral-600">
-                      <span className="text-neutral-400 mr-3 w-4">•</span>
+                      <span className="text-[var(--brand-primary)] mr-3 w-4">•</span>
                       <span>Custom Development</span>
                     </div>
                     <div className="flex items-center text-sm text-neutral-600">
-                      <span className="text-neutral-400 mr-3 w-4">•</span>
+                      <span className="text-[var(--brand-primary)] mr-3 w-4">•</span>
                       <span>API Integration</span>
                     </div>
                     <div className="flex items-center text-sm text-neutral-600">
-                      <span className="text-neutral-400 mr-3 w-4">•</span>
+                      <span className="text-[var(--brand-primary)] mr-3 w-4">•</span>
                       <span>Data Migration</span>
                     </div>
                     <div className="flex items-center text-sm text-neutral-600">
-                      <span className="text-neutral-400 mr-3 w-4">•</span>
+                      <span className="text-[var(--brand-primary)] mr-3 w-4">•</span>
                       <span>Ongoing Support</span>
                     </div>
                   </div>
@@ -266,7 +266,7 @@ export default function CRMGuidesPage() {
                 <div className="text-center">
                   <a
                     href="mailto:support@getsunspire.com?subject=Custom CRM Integration Request"
-                    className="inline-flex items-center px-8 py-4 bg-[var(--brand-primary)] text-white rounded-lg font-semibold hover:opacity-90 transition-colors text-lg min-w-[280px]"
+                    className="inline-flex items-center px-8 py-4 bg-[var(--brand-primary)] text-white rounded-lg font-semibold hover:opacity-90 transition-colors text-lg w-full max-w-2xl"
                   >
                     Request Custom Integration
                   </a>
