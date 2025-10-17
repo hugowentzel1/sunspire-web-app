@@ -159,7 +159,7 @@ export default function CRMGuidesPage() {
             <div className="text-center mt-8">
               <button
                 onClick={() => setShowAllIntegrations(!showAllIntegrations)}
-                className="inline-flex items-center px-6 py-3 text-neutral-600 hover:text-[var(--brand-primary)] transition-colors font-medium"
+                className="inline-flex items-center px-6 py-3 text-neutral-600 hover:text-neutral-900 transition-colors font-medium"
               >
                 {showAllIntegrations ? 'Show Less' : 'Show More Integrations'}
                 <svg 
@@ -245,19 +245,19 @@ export default function CRMGuidesPage() {
                   <h3 className="text-lg font-semibold text-neutral-900 mb-4 text-center">What We Offer</h3>
                   <div className="space-y-3">
                     <div className="flex items-center text-sm text-neutral-600">
-                      <span className="text-[var(--brand-primary)] mr-3 w-4">•</span>
+                      <span className="text-neutral-400 mr-3 w-4">•</span>
                       <span>Custom Development</span>
                     </div>
                     <div className="flex items-center text-sm text-neutral-600">
-                      <span className="text-[var(--brand-primary)] mr-3 w-4">•</span>
+                      <span className="text-neutral-400 mr-3 w-4">•</span>
                       <span>API Integration</span>
                     </div>
                     <div className="flex items-center text-sm text-neutral-600">
-                      <span className="text-[var(--brand-primary)] mr-3 w-4">•</span>
+                      <span className="text-neutral-400 mr-3 w-4">•</span>
                       <span>Data Migration</span>
                     </div>
                     <div className="flex items-center text-sm text-neutral-600">
-                      <span className="text-[var(--brand-primary)] mr-3 w-4">•</span>
+                      <span className="text-neutral-400 mr-3 w-4">•</span>
                       <span>Ongoing Support</span>
                     </div>
                   </div>
@@ -278,7 +278,7 @@ export default function CRMGuidesPage() {
             <div className="mt-12 text-center">
               <Link
                 href="/support"
-                className="inline-flex items-center px-6 py-3 text-neutral-600 hover:text-[var(--brand-primary)] transition-colors"
+                className="inline-flex items-center px-6 py-3 text-neutral-600 hover:text-neutral-900 transition-colors"
               >
                 ← Back to Support
               </Link>
