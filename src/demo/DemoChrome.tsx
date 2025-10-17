@@ -69,36 +69,45 @@ export function DemoBanner() {
         boxShadow: "0 1px 3px rgba(0, 0, 0, 0.04)",
       }}
     >
-      {/* Mobile-optimized layout - clean and centered */}
-      <div className="block md:hidden px-3 py-2.5">
-        <div className="flex flex-col gap-1.5 items-center text-center">
-          {/* Company badge */}
+      {/* Mobile-optimized layout - clean and centered, industry-standard spacing */}
+      <div className="block md:hidden px-4 py-3">
+        <div className="flex flex-col gap-2.5 items-center text-center">
+          {/* Company badge - clear visual hierarchy */}
           <div style={{
             display: "inline-flex",
             alignItems: "center",
-            padding: "4px 10px",
+            padding: "5px 12px",
             background: `color-mix(in srgb, var(--brand-primary, #2563eb) 10%, white)`,
             borderRadius: 6,
-            fontSize: 12,
+            fontSize: 13,
             fontWeight: 600,
             color: "var(--brand-primary, #2563eb)",
-            letterSpacing: "-0.01em"
+            letterSpacing: "-0.01em",
+            lineHeight: "1.4"
           }}>
-            {b.brand} Demo
+            {b.brand} Preview
           </div>
           
-          {/* Runs and expiration */}
+          {/* Status row - runs and expiration with breathing room */}
           <div style={{ 
             display: "flex", 
             alignItems: "center", 
-            gap: 6,
-            fontSize: 11,
+            justifyContent: "center",
+            gap: 8,
+            fontSize: 12,
             color: "#6B7280",
-            fontWeight: 500
+            fontWeight: 500,
+            lineHeight: "1.5",
+            flexWrap: "wrap"
           }}>
-            <span>{remaining} {remaining === 1 ? 'run' : 'runs'}</span>
-            <span style={{ color: "#D1D5DB" }}>•</span>
-            <span style={{ fontVariantNumeric: "tabular-nums" }}>
+            <span style={{ whiteSpace: "nowrap" }}>
+              {remaining} {remaining === 1 ? 'run' : 'runs'} left
+            </span>
+            <span style={{ color: "#D1D5DB", fontSize: 10 }}>•</span>
+            <span style={{ 
+              fontVariantNumeric: "tabular-nums",
+              whiteSpace: "nowrap"
+            }}>
               Expires {countdown.days}d {countdown.hours}h
             </span>
           </div>
