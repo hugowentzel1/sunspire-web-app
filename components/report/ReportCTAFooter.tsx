@@ -107,57 +107,63 @@ export default function ReportCTAFooter({
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3, duration: 0.6 }}
       aria-label="Next steps"
-      className="report-cta-footer mt-8 mb-8 rounded-2xl p-6 md:p-8 bg-gradient-to-br from-gray-50 to-white border border-gray-200 shadow-sm"
+      className="report-cta-footer mt-8 mb-8 rounded-2xl p-6 md:p-8 bg-gradient-to-br from-gray-50 to-white border border-gray-200 shadow-sm grid grid-rows-[1fr_auto_1fr]"
       data-testid="report-cta-footer"
     >
-      {/* Primary CTA */}
-      <div className="cta-row flex flex-col sm:flex-row gap-3 justify-center items-center mb-4" style={{ marginLeft: '-68px', height: '60px', paddingTop: '5px', paddingBottom: '5px' }}>
-        <motion.button
-          onClick={handleBook}
-          className="inline-flex items-center justify-center px-6 py-3 text-white rounded-xl font-semibold text-base hover:shadow-lg transition-all duration-200 w-full sm:w-auto"
-          style={{ backgroundColor: brandColor }}
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.98 }}
-          role="button"
-          aria-label="Book a Consultation"
-        >
-          📅 Book a Consultation
-        </motion.button>
-        
-        <motion.a
-          href="tel:+14041234567"
-          onClick={handleTalk}
-          className="inline-flex items-center justify-center px-6 py-3 bg-gray-100 text-gray-900 rounded-xl font-semibold text-base hover:bg-gray-200 transition-all duration-200 w-full sm:w-auto border border-gray-300"
-          whileHover={{ scale: 1.03 }}
-          whileTap={{ scale: 0.98 }}
-          aria-label="Talk to a Specialist"
-        >
-          📞 Talk to a Specialist
-        </motion.a>
+      {/* TOP HALF — keep your current top-row flex with all its classes/margins */}
+      <div className="h-full grid place-content-center">
+        <div className="cta-row flex flex-col sm:flex-row gap-3 justify-center items-center mb-0" style={{ marginLeft: '-68px' }}>
+          <motion.button
+            onClick={handleBook}
+            className="inline-flex items-center justify-center px-6 py-3 text-white rounded-xl font-semibold text-base hover:shadow-lg transition-all duration-200 w-full sm:w-auto"
+            style={{ backgroundColor: brandColor }}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+            role="button"
+            aria-label="Book a Consultation"
+          >
+            📅 Book a Consultation
+          </motion.button>
+          
+          <motion.a
+            href="tel:+14041234567"
+            onClick={handleTalk}
+            className="inline-flex items-center justify-center px-6 py-3 bg-gray-100 text-gray-900 rounded-xl font-semibold text-base hover:bg-gray-200 transition-all duration-200 w-full sm:w-auto border border-gray-300"
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.98 }}
+            aria-label="Talk to a Specialist"
+          >
+            📞 Talk to a Specialist
+          </motion.a>
+        </div>
       </div>
 
+      {/* DIVIDER — stays auto height */}
+      <div className="h-px bg-gray-200 my-4 md:my-5" />
 
-      {/* Utility actions row */}
-      <div className="utility-row flex flex-col sm:flex-row gap-3 justify-center items-center border-t border-gray-200" style={{ marginLeft: '-58px', height: '60px', paddingTop: '11px', paddingBottom: '11px' }}>
-        <motion.button
-          onClick={handleDownload}
-          className="btn-tertiary px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-100 transition-all duration-200 border border-gray-300 w-full sm:w-auto"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          aria-label="Download PDF Report"
-        >
-          📄 Download PDF
-        </motion.button>
-        
-        <motion.button
-          onClick={handleCopy}
-          className="btn-tertiary px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-100 transition-all duration-200 border border-gray-300 w-full sm:w-auto"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          aria-label="Copy Share Link"
-        >
-          🔗 Copy Share Link
-        </motion.button>
+      {/* BOTTOM HALF — keep your current bottom-row flex with all its classes/margins */}
+      <div className="h-full grid place-content-center">
+        <div className="utility-row flex flex-col sm:flex-row gap-3 justify-center items-center pt-0 border-t-0" style={{ marginLeft: '-58px' }}>
+          <motion.button
+            onClick={handleDownload}
+            className="btn-tertiary px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-100 transition-all duration-200 border border-gray-300 w-full sm:w-auto"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            aria-label="Download PDF Report"
+          >
+            📄 Download PDF
+          </motion.button>
+          
+          <motion.button
+            onClick={handleCopy}
+            className="btn-tertiary px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-100 transition-all duration-200 border border-gray-300 w-full sm:w-auto"
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            aria-label="Copy Share Link"
+          >
+            🔗 Copy Share Link
+          </motion.button>
+        </div>
       </div>
     </motion.section>
   );
