@@ -833,7 +833,7 @@ function ReportContent() {
           </section>
 
           {/* Metric Tiles */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }} className="mt-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch" style={{ marginTop: '-4px' }}>
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }} className="mt-0 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch" style={{ marginTop: '24px' }}>
             {/* System Size - NO BLUR, ALWAYS VISIBLE */}
             <div data-testid="tile-systemSize" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
               <div className="relative z-10 p-8 text-center">
