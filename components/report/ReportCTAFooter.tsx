@@ -111,57 +111,53 @@ export default function ReportCTAFooter({
       data-testid="report-cta-footer"
     >
       {/* Primary CTA */}
-      <div className="cta-row mb-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto">
-          <motion.button
-            onClick={handleBook}
-            className="inline-flex items-center justify-center px-6 py-3 text-white rounded-xl font-semibold text-base hover:shadow-lg transition-all duration-200 w-full"
-            style={{ backgroundColor: brandColor }}
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
-            role="button"
-            aria-label="Book a Consultation"
-          >
-            📅 Book a Consultation
-          </motion.button>
-          
-          <motion.a
-            href="tel:+14041234567"
-            onClick={handleTalk}
-            className="inline-flex items-center justify-center px-6 py-3 bg-gray-100 text-gray-900 rounded-xl font-semibold text-base hover:bg-gray-200 transition-all duration-200 w-full border border-gray-300"
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
-            aria-label="Talk to a Specialist"
-          >
-            📞 Talk to a Specialist
-          </motion.a>
-        </div>
+      <div className="cta-row flex flex-col sm:flex-row gap-3 justify-center items-center mb-4">
+        <motion.button
+          onClick={handleBook}
+          className="inline-flex items-center justify-center px-6 py-3 text-white rounded-xl font-semibold text-base hover:shadow-lg transition-all duration-200 w-full sm:w-auto"
+          style={{ backgroundColor: brandColor }}
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.98 }}
+          role="button"
+          aria-label="Book a Consultation"
+        >
+          📅 Book a Consultation
+        </motion.button>
+        
+        <motion.a
+          href="tel:+14041234567"
+          onClick={handleTalk}
+          className="inline-flex items-center justify-center px-6 py-3 bg-gray-100 text-gray-900 rounded-xl font-semibold text-base hover:bg-gray-200 transition-all duration-200 w-full sm:w-auto border border-gray-300"
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.98 }}
+          aria-label="Talk to a Specialist"
+        >
+          📞 Talk to a Specialist
+        </motion.a>
       </div>
 
 
       {/* Utility actions row */}
-      <div className="utility-row pt-6 border-t border-gray-200">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 max-w-2xl mx-auto">
-          <motion.button
-            onClick={handleDownload}
-            className="btn-tertiary px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-100 transition-all duration-200 border border-gray-300 w-full"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            aria-label="Download PDF Report"
-          >
-            📄 Download PDF
-          </motion.button>
-          
-          <motion.button
-            onClick={handleCopy}
-            className="btn-tertiary px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-100 transition-all duration-200 border border-gray-300 w-full"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            aria-label="Copy Share Link"
-          >
-            🔗 Copy Share Link
-          </motion.button>
-        </div>
+      <div className="utility-row flex flex-col sm:flex-row gap-3 justify-center items-center pt-6 border-t border-gray-200">
+        <motion.button
+          onClick={handleDownload}
+          className="btn-tertiary px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-100 transition-all duration-200 border border-gray-300 w-full sm:w-auto"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          aria-label="Download PDF Report"
+        >
+          📄 Download PDF
+        </motion.button>
+        
+        <motion.button
+          onClick={handleCopy}
+          className="btn-tertiary px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-100 transition-all duration-200 border border-gray-300 w-full sm:w-auto"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          aria-label="Copy Share Link"
+        >
+          🔗 Copy Share Link
+        </motion.button>
       </div>
     </motion.section>
   );
