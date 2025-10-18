@@ -831,7 +831,7 @@ function ReportContent() {
             </div>
 
             {/* Spacer for equal visual spacing - compensates for text size differences */}
-            <div className="mt-12"></div>
+            <div className="mt-4"></div>
           </section>
 
           {/* Metric Tiles */}
