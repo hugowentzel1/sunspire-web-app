@@ -119,10 +119,9 @@ export default function ReportCTAFooter({
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.98 }}
           role="button"
-          aria-label="Start Activation — Demo Expires Soon"
+          aria-label="Book a Consultation"
         >
-          <span className="mr-2">⚡</span>
-          Start Activation — Demo Expires Soon
+          📅 Book a Consultation
         </motion.button>
         
         <motion.a
