@@ -787,24 +787,51 @@ function ReportContent() {
               </motion.div>
             </div>
 
-            {/* Content below logo - matching last night's structure exactly */}
-            <div className="flex flex-col items-center gap-6">
-              <p className="text-lg md:text-xl font-semibold text-gray-900 max-w-4xl mx-auto text-center mb-3" style={{ textWrap: 'balance' as any }}>Comprehensive analysis for your property at {estimate.address}</p>
-              {demoMode ? (
-                <div className="mx-auto mt-1 space-y-3 text-sm text-gray-500 text-center">
-                  <p>Generated on {formatDateSafe(estimate.date)}</p>
-                  <p>Preview: {remaining < 0 ? '-' : ''}{Math.abs(remaining)} runs left.</p>
-                  <p>Expires in {countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</p>
-                </div>
-              ) : (
-                <div className="mx-auto mt-1 text-sm text-gray-500 text-center">
-                  Generated on {formatDateSafe(estimate.date)}
-                </div>
+            {/* Subheadline */}
+            <p
+              data-testid="hdr-sub"
+              className="mt-6 text-[clamp(18px,2.4vw,20px)] font-semibold text-slate-800"
+            >
+              Comprehensive analysis for your property at
+            </p>
+
+            {/* Address (balanced, ≤2 lines, not bold) */}
+            <p
+              data-testid="hdr-address"
+              className="mt-3 mx-auto max-w-[60ch] text-[clamp(17px,2.3vw,18px)] text-slate-600 leading-snug whitespace-normal break-words line-clamp-2"
+              style={{ textWrap: 'balance' } as any}
+            >
+              {softWrapAddress(estimate.address)}
+            </p>
+
+            {/* Meta (uniform tone; value + unit same color) */}
+            <div
+              data-testid="hdr-meta"
+              className="mt-6 mx-auto w-full max-w-sm text-center text-[14px] md:text-[15px]"
+            >
+              <div className="py-1 text-slate-600">
+                Generated on <span className="text-slate-700">{formatDateSafe(estimate.date)}</span>
+              </div>
+              {demoMode && (
+                <>
+                  <div className="py-1 text-slate-600">
+                    Preview:{' '}
+                    <span className="text-slate-700">
+                      {remaining < 0 ? '-' : ''}{Math.abs(remaining)} run{Math.abs(remaining) === 1 ? '' : 's'} left
+                    </span>
+                  </div>
+                  <div
+                    className="py-1 text-slate-600 tabular-nums"
+                    style={{ fontVariantNumeric: 'tabular-nums' }}
+                  >
+                    Expires in <span className="text-slate-700">{countdown.days}d {countdown.hours}h {countdown.minutes}m {countdown.seconds}s</span>
+                  </div>
+                </>
               )}
             </div>
 
             {/* Spacer for equal visual spacing - compensates for text size differences */}
-            <div className="mt-4"></div>
+            <div className="mt-12"></div>
           </section>
 
           {/* Metric Tiles */}
