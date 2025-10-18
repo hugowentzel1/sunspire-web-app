@@ -715,7 +715,7 @@ function ReportContent() {
         <Container>
 
         {/* Back Button */}
-        <div className="mb-6">
+        <div className="mb-8">
           <a
             href={`/?${searchParams?.toString()}`}
             data-testid="back-home-link"
