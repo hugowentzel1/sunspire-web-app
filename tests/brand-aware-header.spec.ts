@@ -60,7 +60,7 @@ test.describe('Brand-aware header with automatic contrast safety', () => {
     // spacing spot checks (approx):
     const logo = page.getByTestId('hdr-logo');
     const rect = async (el: any) => (await el.boundingBox())!.y;
-    expect((await rect(logo)) - (await rect(h1))).toBeGreaterThanOrEqual(20);
+    expect((await rect(logo)) - (await rect(h1))).toBeGreaterThanOrEqual(20); // mt-6 (24px)
   });
 
   test('Brand color contrast safety with light colors', async ({ page }) => {
