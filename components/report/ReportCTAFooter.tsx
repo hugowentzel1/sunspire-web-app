@@ -112,7 +112,7 @@ export default function ReportCTAFooter({
     >
       {/* TOP HALF — keep your current top-row flex with all its classes/margins */}
       <div className="h-full grid place-content-center">
-        <div className="cta-row flex flex-col sm:flex-row gap-3 justify-center items-center mb-0" style={{ marginLeft: '-68px' }}>
+        <div className="cta-row flex flex-col sm:flex-row gap-3 justify-center items-center mb-0" style={{ marginLeft: '-12px', transform: 'translateY(-6.25px)' }}>
           <motion.button
             onClick={handleBook}
             className="inline-flex items-center justify-center px-6 py-3 text-white rounded-xl font-semibold text-base hover:shadow-lg transition-all duration-200 w-full sm:w-auto"
@@ -143,7 +143,7 @@ export default function ReportCTAFooter({
 
       {/* BOTTOM HALF — keep your current bottom-row flex with all its classes/margins */}
       <div className="h-full grid place-content-center">
-        <div className="utility-row flex flex-col sm:flex-row gap-3 justify-center items-center pt-0 border-t-0" style={{ marginLeft: '-58px' }}>
+        <div className="utility-row flex flex-col sm:flex-row gap-3 justify-center items-center pt-0 border-t-0" style={{ marginLeft: '9px', transform: 'translateY(6.25px)' }}>
           <motion.button
             onClick={handleDownload}
             className="btn-tertiary px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-100 transition-all duration-200 border border-gray-300 w-full sm:w-auto"
