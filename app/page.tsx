@@ -588,7 +588,7 @@ function HomeContent() {
           )}
 
           {/* How It Works Section - Centered */}
-          <div className="max-w-4xl mx-auto py-12 md:py-16 px-4">
+          <div className="max-w-4xl mx-auto py-6 md:py-8 px-4">
             <div className="text-center space-y-8">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900">How it works</h2>
               <div className="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-8">

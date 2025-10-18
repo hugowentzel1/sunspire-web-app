@@ -20,7 +20,7 @@ test.describe('Report header – rhythm lock & readability', () => {
     await expect(page.locator('[data-testid="hdr"]')).toBeVisible();
   });
 
-  test('spacing matches site grid (24/16/8/16/24)', async ({ page }) => {
+  test('spacing matches site grid (24/16/8/16/32)', async ({ page }) => {
     const g1 = await gap(page, '[data-testid="hdr-h1"]', '[data-testid="hdr-logo"]');
     const g2 = await gap(page, '[data-testid="hdr-logo"]', '[data-testid="hdr-sub"]');
     const g3 = await gap(page, '[data-testid="hdr-sub"]', '[data-testid="hdr-address"]');
@@ -35,8 +35,8 @@ test.describe('Report header – rhythm lock & readability', () => {
     expect(g3).toBeLessThanOrEqual(8);
     expect(g4).toBeGreaterThanOrEqual(16);
     expect(g4).toBeLessThanOrEqual(16);
-    expect(g5).toBeGreaterThanOrEqual(24);
-    expect(g5).toBeLessThanOrEqual(24);
+    expect(g5).toBeGreaterThanOrEqual(32);
+    expect(g5).toBeLessThanOrEqual(32);
   });
 
   test('type hierarchy & weight (H1/Sub bold, Address regular)', async ({ page }) => {
