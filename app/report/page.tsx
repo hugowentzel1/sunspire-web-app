@@ -764,7 +764,7 @@ function ReportContent() {
             </h1>
 
             {/* Logo below H1 */}
-            <div data-testid="hdr-logo" className="mt-12 flex justify-center">
+            <div data-testid="hdr-logo" className="mt-10 flex justify-center">
               <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="w-24 h-24">
                 {(b.logo || getDefaultLogo(b.brand)) ? (
                   <Image 
@@ -833,7 +833,7 @@ function ReportContent() {
           </section>
 
           {/* Metric Tiles */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }} className="mt-2 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4, duration: 0.8 }} className="-mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
             {/* System Size - NO BLUR, ALWAYS VISIBLE */}
             <div data-testid="tile-systemSize" className="relative rounded-2xl overflow-hidden bg-white border border-gray-200/50 hover:shadow-xl transition-all duration-300">
               <div className="relative z-10 p-8 text-center">
