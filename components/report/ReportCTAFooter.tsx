@@ -114,23 +114,15 @@ export default function ReportCTAFooter({
       <div className="cta-row flex flex-col sm:flex-row gap-3 justify-center items-center mb-4">
         <motion.button
           onClick={handleBook}
-          className="inline-flex flex-col items-center justify-center px-6 py-4 text-white rounded-xl font-semibold text-base hover:shadow-lg transition-all duration-200 w-full sm:w-auto"
+          className="inline-flex items-center justify-center px-6 py-3 text-white rounded-xl font-semibold text-base hover:shadow-lg transition-all duration-200 w-full sm:w-auto"
           style={{ backgroundColor: brandColor }}
           whileHover={{ scale: 1.03 }}
           whileTap={{ scale: 0.98 }}
           role="button"
-          aria-label="Launch Your Branded Version Now"
+          aria-label="Start Activation — Demo Expires Soon"
         >
-          <div className="flex items-center">
-            <span className="mr-2">⚡</span>
-            Launch Your Branded Version Now
-          </div>
-          <div className="text-sm font-normal mt-1 opacity-90">
-            Full version from just $99/mo + $399 setup
-          </div>
-          <div className="text-xs font-normal mt-1 opacity-75">
-            Most tools cost $2,500+/mo. Cancel anytime. No long-term contracts.
-          </div>
+          <span className="mr-2">⚡</span>
+          Start Activation — Demo Expires Soon
         </motion.button>
         
         <motion.a
