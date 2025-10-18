@@ -30,20 +30,6 @@ import { SidebarCta } from '@/src/components/SidebarCta';
 import { PlaceResult } from '@/lib/types';
 import DataSources from '@/components/DataSources';
 import MethodologyModal from '@/components/MethodologyModal';
-
-// Helper function to get state name from coordinates
-function getStateFromCoordinates(lat: number, lng: number): string {
-  // California
-  if (lat >= 32.5 && lat <= 42.0 && lng >= -124.5 && lng <= -114.0) return 'California';
-  // New York
-  if (lat >= 40.5 && lat <= 45.0 && lng >= -80.0 && lng <= -71.8) return 'New York';
-  // Texas
-  if (lat >= 25.8 && lat <= 36.5 && lng >= -106.6 && lng <= -93.5) return 'Texas';
-  // Florida
-  if (lat >= 24.4 && lat <= 31.0 && lng >= -87.6 && lng <= -80.0) return 'Florida';
-  // Default
-  return 'Local';
-}
 import QuoteCard from '@/components/QuoteCard';
 import { getTrustData } from '@/lib/trust';
 import Container from '@/components/layout/Container';
@@ -51,12 +37,10 @@ import BottomCtaBand from '@/components/cta/BottomCtaBand';
 import ReportCTAFooter from '@/components/report/ReportCTAFooter';
 import StickyCTA from '@/components/report/StickyCTA';
 import StickyCtaBar from '@/components/StickyCtaBar';
-
 import { ensureBlurSupport } from '@/src/lib/ensureBlur';
 import { isDemoFromSearchParams } from '@/src/lib/isDemo';
 import { tid } from '@/src/lib/testids';
 import { FEATURES, lastValidatedLabel } from '@/src/lib/compliance';
-
 import { getBrandTheme } from '@/lib/brandTheme';
 // import StickyBuyBar from '@/src/demo/StickyBuyBar';
 // import InstallSheet from '@/src/demo/InstallSheet';
@@ -71,6 +55,20 @@ import { useCountdown } from '@/src/demo/useCountdown';
 import Image from 'next/image';
 import { softWrapAddress } from '@/lib/text';
 import { ensureReadableBrandInk } from '@/utils/brandColor';
+
+// Helper function to get state name from coordinates
+function getStateFromCoordinates(lat: number, lng: number): string {
+  // California
+  if (lat >= 32.5 && lat <= 42.0 && lng >= -124.5 && lng <= -114.0) return 'California';
+  // New York
+  if (lat >= 40.5 && lat <= 45.0 && lng >= -80.0 && lng <= -71.8) return 'New York';
+  // Texas
+  if (lat >= 25.8 && lat <= 36.5 && lng >= -106.6 && lng <= -93.5) return 'Texas';
+  // Florida
+  if (lat >= 24.4 && lat <= 31.0 && lng >= -87.6 && lng <= -80.0) return 'Florida';
+  // Default
+  return 'Local';
+}
 
 // Demo addresses for different states
 const demoAddressesByState: Record<string, {address:string, lat:number, lng:number}> = {
