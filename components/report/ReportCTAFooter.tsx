@@ -111,7 +111,7 @@ export default function ReportCTAFooter({
       data-testid="report-cta-footer"
     >
       {/* Primary CTA */}
-      <div className="cta-row flex flex-col sm:flex-row gap-3 justify-center items-center mb-4" style={{ marginLeft: '-68px', paddingTop: '6px', paddingBottom: '6px' }}>
+      <div className="cta-row flex flex-col sm:flex-row gap-3 justify-center items-center mb-4" style={{ marginLeft: '-68px' }}>
         <motion.button
           onClick={handleBook}
           className="inline-flex items-center justify-center px-6 py-3 text-white rounded-xl font-semibold text-base hover:shadow-lg transition-all duration-200 w-full sm:w-auto"
@@ -138,7 +138,7 @@ export default function ReportCTAFooter({
 
 
       {/* Utility actions row */}
-      <div className="utility-row flex flex-col sm:flex-row gap-3 justify-center items-center pt-6 border-t border-gray-200" style={{ marginLeft: '-58px', paddingTop: '6px', paddingBottom: '6px' }}>
+      <div className="utility-row flex flex-col sm:flex-row gap-3 justify-center items-center pt-6 border-t border-gray-200" style={{ marginLeft: '-58px' }}>
         <motion.button
           onClick={handleDownload}
           className="btn-tertiary px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-100 transition-all duration-200 border border-gray-300 w-full sm:w-auto"
