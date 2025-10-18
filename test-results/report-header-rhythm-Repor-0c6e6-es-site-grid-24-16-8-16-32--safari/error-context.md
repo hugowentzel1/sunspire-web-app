@@ -1,0 +1,259 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e5]:
+        - generic [ref=e6]:
+          - generic [ref=e8]: ☀️
+          - generic [ref=e9]:
+            - heading "Your company" [level=2] [ref=e10]
+            - paragraph [ref=e11]: Solar Intelligence
+        - navigation [ref=e12]:
+          - link "Pricing" [ref=e13]:
+            - /url: /pricing?address=123+Absalom+Rd%2C+Mauldin%2C+SC+29680%2C+USA&runsLeft=0&demo=1
+          - link "Partners" [ref=e14]:
+            - /url: /partners?address=123+Absalom+Rd%2C+Mauldin%2C+SC+29680%2C+USA&runsLeft=0&demo=1
+          - link "Support" [ref=e15]:
+            - /url: /support?address=123+Absalom+Rd%2C+Mauldin%2C+SC+29680%2C+USA&runsLeft=0&demo=1
+          - button "New Analysis" [ref=e16] [cursor=pointer]
+    - main [ref=e17]:
+      - generic [ref=e18]:
+        - link "Back to Home" [ref=e20]:
+          - /url: /?address=123+Absalom+Rd%2C+Mauldin%2C+SC+29680%2C+USA&runsLeft=0&demo=1
+          - img [ref=e21]
+          - text: Back to Home
+        - generic [ref=e23]:
+          - region "Your Your Company Solar Quote (Live Preview)" [ref=e24]:
+            - heading "Your Your Company Solar Quote (Live Preview)" [level=1] [ref=e25]:
+              - text: Your
+              - generic [ref=e26]: Your Company
+              - text: Solar Quote
+              - generic [ref=e27]: (Live Preview)
+            - generic [ref=e31]: ☀️
+            - paragraph [ref=e32]: Comprehensive analysis for your property at
+            - paragraph [ref=e33]: 123 N Central Ave, Phoenix, AZ
+            - generic [ref=e34]:
+              - generic [ref=e35]:
+                - text: Generated on
+                - generic [ref=e36]: 10/18/2025
+              - generic [ref=e37]:
+                - text: "Preview:"
+                - generic [ref=e38]: 0 runs left
+              - generic [ref=e39]:
+                - text: Expires in
+                - generic [ref=e40]: 6d 23h 59m 58s
+          - generic [ref=e41]:
+            - generic [ref=e43]:
+              - generic [ref=e45]: ⚡
+              - generic [ref=e46]: 7.2 kW
+              - generic [ref=e47]: System Size
+            - generic [ref=e49]:
+              - generic [ref=e51]: ☀️
+              - generic [ref=e52]: 12,956 kWh
+              - generic [ref=e53]: Annual Production
+            - generic [ref=e54]:
+              - generic [ref=e55]:
+                - generic [ref=e57]: 💰
+                - generic [ref=e58]: — — —
+                - generic [ref=e59]: Net Cost (After ITC)
+              - button "Unlock Full Report" [ref=e61] [cursor=pointer]
+            - generic [ref=e62]:
+              - generic [ref=e63]:
+                - generic [ref=e65]: 📈
+                - generic [ref=e66]: — — —
+                - generic [ref=e67]: Year 1 Savings
+              - button "Unlock Full Report" [ref=e69] [cursor=pointer]
+          - generic [ref=e72]:
+            - generic [ref=e74]:
+              - generic [ref=e75]:
+                - heading "Your Solar Savings Over Time" [level=3] [ref=e76]
+                - paragraph [ref=e77]: Simple view of how your solar investment pays off over 25 years
+              - button "View Methodology" [ref=e78] [cursor=pointer]
+            - application [ref=e82]:
+              - generic [ref=e87]:
+                - generic [ref=e88]:
+                  - generic [ref=e91]: "1"
+                  - generic [ref=e94]: "5"
+                  - generic [ref=e97]: "10"
+                  - generic [ref=e100]: "15"
+                  - generic [ref=e103]: "20"
+                  - generic [ref=e106]: "25"
+                - generic [ref=e108]: Years
+              - generic [ref=e109]:
+                - generic [ref=e110]:
+                  - generic [ref=e113]: $0k
+                  - generic [ref=e116]: $20k
+                  - generic [ref=e119]: $40k
+                  - generic [ref=e122]: $60k
+                  - generic [ref=e125]: $80k
+                - generic [ref=e127]: Total Savings
+            - generic [ref=e142]:
+              - generic [ref=e143]:
+                - generic [ref=e145]: $15k
+                - generic [ref=e146]: Investment
+              - generic [ref=e147]:
+                - generic [ref=e149]: 7 years
+                - generic [ref=e150]: Payback Time
+              - generic [ref=e151]:
+                - generic [ref=e153]: $70k
+                - generic [ref=e154]: 25-Year Savings
+            - paragraph [ref=e156]:
+              - generic [ref=e157]: "How to read this:"
+              - text: The colored area shows your total savings growing over time. After 7 years, you'll have saved enough to cover your initial investment. By year 25, you'll have saved $70k total.
+            - img
+          - generic [ref=e158]:
+            - generic [ref=e159]:
+              - generic [ref=e160]:
+                - heading "Financial Analysis" [level=2] [ref=e161]
+                - generic [ref=e162]:
+                  - generic [ref=e163]:
+                    - generic [ref=e164]: Payback Period
+                    - generic [ref=e165]: — — —
+                  - generic [ref=e166]:
+                    - generic [ref=e167]: 25-Year NPV
+                    - generic [ref=e168]: — — —
+                  - generic [ref=e169]:
+                    - generic [ref=e170]: ROI
+                    - generic [ref=e171]: — — —
+                  - generic [ref=e172]:
+                    - generic [ref=e173]: Electricity Rate
+                    - generic [ref=e174]: $0.18/kWh (generic)
+              - button "Unlock Full Report" [ref=e176] [cursor=pointer]
+            - generic [ref=e177]:
+              - generic [ref=e178]:
+                - heading "Environmental Impact" [level=2] [ref=e179]
+                - generic [ref=e180]:
+                  - generic [ref=e181]:
+                    - generic [ref=e182]: CO₂ Offset/Year
+                    - generic [ref=e183]: 11,013 lbs
+                  - generic [ref=e184]:
+                    - generic [ref=e185]: Solar Irradiance
+                    - generic [ref=e186]: 5.8 kWh/m²/day
+                  - generic [ref=e187]:
+                    - generic [ref=e188]: System Tilt
+                    - generic [ref=e189]: 0°
+                  - generic [ref=e190]:
+                    - generic [ref=e191]: System Losses
+                    - generic [ref=e192]: 5%
+                  - generic [ref=e193]:
+                    - generic [ref=e194]: Shading Analysis
+                    - generic [ref=e195]: proxy (medium accuracy)
+                  - generic [ref=e196]:
+                    - generic [ref=e197]: Annual Shading Loss
+                    - generic [ref=e198]: 10%
+              - button "Unlock Full Report" [ref=e200] [cursor=pointer]
+            - generic [ref=e202]:
+              - heading "Calculation Details & Data Sources" [level=2] [ref=e203]
+              - generic [ref=e204]:
+                - heading "Calculation Assumptions" [level=3] [ref=e205]
+                - generic [ref=e206]:
+                  - generic [ref=e207]:
+                    - generic [ref=e208]: Federal Tax Credit (ITC)
+                    - generic [ref=e209]: 30%
+                  - generic [ref=e210]:
+                    - generic [ref=e211]: Cost per Watt
+                    - generic [ref=e212]: $3
+                  - generic [ref=e213]:
+                    - generic [ref=e214]: Panel Degradation
+                    - generic [ref=e215]: 0.5%/year
+                  - generic [ref=e216]:
+                    - generic [ref=e217]: O&M Cost
+                    - generic [ref=e218]: $22/kW/year
+                  - generic [ref=e219]:
+                    - generic [ref=e220]: Rate Increase
+                    - generic [ref=e221]: 2.5%/year
+                  - generic [ref=e222]:
+                    - generic [ref=e223]: Discount Rate
+                    - generic [ref=e224]: 7%
+          - region "Data sources and methodology" [ref=e226]:
+            - paragraph [ref=e228]: Modeled estimate — not a performance guarantee. Data from NREL PVWatts® v8, OpenEI URDB / EIA, and geographic shading proxy.
+          - region "Ready to Launch Your Branded, Customer-Facing Tool?" [ref=e230]:
+            - generic [ref=e231]:
+              - heading "Ready to Launch Your Branded, Customer-Facing Tool?" [level=2] [ref=e232]
+              - paragraph [ref=e233]: Get the full paid version—customer-facing and under your brand—with complete projections, detailed assumptions, and unblurred savings charts.
+              - link "Launch Your Branded Version Now" [ref=e235]:
+                - /url: /api/stripe/create-checkout-session
+              - paragraph [ref=e236]: $99/mo + $399 setup • Live in 24 hours — or your setup fee is refunded..
+              - paragraph [ref=e237]: Comparable tools cost $2,500+/mo.
+    - contentinfo [ref=e238]:
+      - generic [ref=e240]:
+        - generic [ref=e241]:
+          - generic [ref=e242]:
+            - heading "Sunspire Solar Intelligence" [level=3] [ref=e243]
+            - paragraph [ref=e244]: Demo for Your Company — Powered by Sunspire
+            - generic [ref=e245]:
+              - generic [ref=e246]:
+                - generic [ref=e247]: 📍
+                - generic [ref=e248]:
+                  - text: "1700 Northside Drive Suite A7 #5164"
+                  - text: Atlanta, GA 30318
+              - generic [ref=e249]:
+                - generic [ref=e250]: GDPR
+                - generic [ref=e251]: CCPA
+                - generic [ref=e252]: SOC 2
+              - list [ref=e253]:
+                - listitem [ref=e254]:
+                  - generic [ref=e255]: ✉️
+                  - link "support@getsunspire.com" [ref=e256]:
+                    - /url: mailto:support@getsunspire.com
+                - listitem [ref=e257]:
+                  - generic [ref=e258]: ✉️
+                  - link "billing@getsunspire.com" [ref=e259]:
+                    - /url: mailto:billing@getsunspire.com
+                - listitem [ref=e260]:
+                  - generic [ref=e261]: ☎️
+                  - link "+1 (404) 123-4567" [ref=e262]:
+                    - /url: tel:+14041234567
+          - generic [ref=e263]:
+            - heading "Quick Links" [level=4] [ref=e264]
+            - list [ref=e265]:
+              - listitem [ref=e266]:
+                - link "Pricing" [ref=e267]:
+                  - /url: /pricing?address=123+Absalom+Rd%2C+Mauldin%2C+SC+29680%2C+USA&runsLeft=0&demo=1
+              - listitem [ref=e268]:
+                - link "Partners" [ref=e269]:
+                  - /url: /partners?address=123+Absalom+Rd%2C+Mauldin%2C+SC+29680%2C+USA&runsLeft=0&demo=1
+              - listitem [ref=e270]:
+                - link "Support" [ref=e271]:
+                  - /url: /support?address=123+Absalom+Rd%2C+Mauldin%2C+SC+29680%2C+USA&runsLeft=0&demo=1
+          - generic [ref=e272]:
+            - heading "Legal & Support" [level=4] [ref=e273]
+            - list [ref=e274]:
+              - listitem [ref=e275]:
+                - link "Privacy Policy" [ref=e276]:
+                  - /url: /privacy?address=123+Absalom+Rd%2C+Mauldin%2C+SC+29680%2C+USA&runsLeft=0&demo=1
+              - listitem [ref=e277]:
+                - link "Terms of Service" [ref=e278]:
+                  - /url: /terms?address=123+Absalom+Rd%2C+Mauldin%2C+SC+29680%2C+USA&runsLeft=0&demo=1
+              - listitem [ref=e279]:
+                - link "Refund Policy" [ref=e280]:
+                  - /url: /legal/refund?address=123+Absalom+Rd%2C+Mauldin%2C+SC+29680%2C+USA&runsLeft=0&demo=1
+              - listitem [ref=e281]:
+                - link "Security" [ref=e282]:
+                  - /url: /security?address=123+Absalom+Rd%2C+Mauldin%2C+SC+29680%2C+USA&runsLeft=0&demo=1
+              - listitem [ref=e283]:
+                - link "DPA" [ref=e284]:
+                  - /url: /dpa?address=123+Absalom+Rd%2C+Mauldin%2C+SC+29680%2C+USA&runsLeft=0&demo=1
+              - listitem [ref=e285]:
+                - link "Do Not Sell My Data" [ref=e286]:
+                  - /url: /do-not-sell?address=123+Absalom+Rd%2C+Mauldin%2C+SC+29680%2C+USA&runsLeft=0&demo=1
+        - separator [ref=e287]
+        - generic [ref=e288]:
+          - generic [ref=e289]:
+            - generic [ref=e290]: ⚡
+            - generic [ref=e291]:
+              - text: Estimates generated
+              - text: using NREL PVWatts® v8
+          - generic [ref=e293]:
+            - text: Powered by
+            - generic [ref=e294]: Sunspire
+          - generic [ref=e295]:
+            - generic [ref=e296]: 🗺️
+            - generic [ref=e297]:
+              - text: Mapping & location
+              - text: data © Google
+  - alert [ref=e298]
+  - generic [ref=e299]: $0k
+```
