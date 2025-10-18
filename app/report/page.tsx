@@ -717,7 +717,7 @@ function ReportContent() {
         <Container>
 
         {/* Back Button */}
-        <div className="mb-8">
+        <div className="mb-6">
           <a
             href={`/?${searchParams?.toString()}`}
             data-testid="back-home-link"
@@ -746,7 +746,7 @@ function ReportContent() {
           {/* Brand-aware header with automatic contrast safety */}
           <section
             aria-labelledby="report-title"
-            className="pt-6 pb-2 flex flex-col items-center text-center"
+            className="pt-4 pb-2 flex flex-col items-center text-center"
             style={{ ['--brand-ink' as any]: ensureReadableBrandInk(b.primary || '#2563EB') }}
           >
             {/* H1 ABOVE logo */}
@@ -764,7 +764,7 @@ function ReportContent() {
             </h1>
 
             {/* Logo below H1 */}
-            <div data-testid="hdr-logo" className="mt-6 flex justify-center">
+            <div data-testid="hdr-logo" className="mt-8 flex justify-center">
               <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="w-24 h-24">
                 {(b.logo || getDefaultLogo(b.brand)) ? (
                   <Image 
