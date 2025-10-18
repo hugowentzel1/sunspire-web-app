@@ -715,7 +715,7 @@ function ReportContent() {
         <Container>
 
         {/* Back Button */}
-        <div className="mb-3">
+        <div className="mb-2">
           <a
             href={`/?${searchParams?.toString()}`}
             data-testid="back-home-link"
@@ -744,7 +744,7 @@ function ReportContent() {
           {/* Brand-aware header with automatic contrast safety */}
           <section
             aria-labelledby="report-title"
-            className="pt-4 pb-2 flex flex-col items-center text-center"
+            className="pt-3 pb-2 flex flex-col items-center text-center"
             style={{ ['--brand-ink' as any]: ensureReadableBrandInk(b.primary || '#2563EB') }}
           >
             {/* H1 ABOVE logo */}
