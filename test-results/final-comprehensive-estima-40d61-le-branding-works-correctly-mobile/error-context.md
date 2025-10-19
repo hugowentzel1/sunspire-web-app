@@ -1,0 +1,189 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - alert [ref=e2]: Google — Solar Intelligence
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e7]:
+        - img "Google logo" [ref=e8]
+        - generic [ref=e9]:
+          - heading "Google" [level=2] [ref=e10]
+          - paragraph [ref=e11]: Solar Intelligence
+    - main [ref=e12]:
+      - generic [ref=e13]:
+        - link "Back to Home" [ref=e15] [cursor=pointer]:
+          - /url: /?address=123+S+Central+Ave%2C+Phoenix%2C+AZ+85004%2C+USA&lat=33.4465083&lng=-112.0735555&placeId=ChIJ560oTSASK4cRSTaNIe1Cbvo&company=Google&brandColor=%234285F4&logo=https%3A%2F%2Flogo.clearbit.com%2Fgoogle.com
+          - img [ref=e16]
+          - text: Back to Home
+        - generic [ref=e18]:
+          - region "Your Google Solar Quote (Live Preview)" [ref=e19]:
+            - heading "Your Google Solar Quote (Live Preview)" [level=1] [ref=e20]
+            - img "Google logo" [ref=e23]
+            - paragraph [ref=e24]: Comprehensive analysis for your property at
+            - paragraph [ref=e25]: 123 S Central Ave, Phoenix, AZ 85004, USA
+            - generic [ref=e27]: Generated on 10/19/2025
+          - generic [ref=e28]:
+            - generic [ref=e30]:
+              - generic [ref=e32]: ⚡
+              - generic [ref=e33]: 7.2 kW
+              - generic [ref=e34]: System Size
+            - generic [ref=e36]:
+              - generic [ref=e38]: ☀️
+              - generic [ref=e39]: 12,956 kWh
+              - generic [ref=e40]: Annual Production
+            - generic [ref=e42]:
+              - generic [ref=e44]: 💰
+              - generic [ref=e45]: $15,120
+              - generic [ref=e46]: Net Cost (After ITC)
+              - generic [ref=e47]: Includes 30% federal investment tax credit (ITC)
+            - generic [ref=e49]:
+              - generic [ref=e51]: 📈
+              - generic [ref=e52]: $2,174
+              - generic [ref=e53]: Year 1 Savings
+              - generic [ref=e54]: Based on current local utility rate and modeled production
+          - generic [ref=e57]:
+            - generic [ref=e59]:
+              - generic [ref=e60]:
+                - heading "Your Solar Savings Over Time" [level=3] [ref=e61]
+                - paragraph [ref=e62]: Simple view of how your solar investment pays off over 25 years
+              - button "View Methodology" [ref=e63] [cursor=pointer]
+            - application [ref=e67]:
+              - generic [ref=e71]:
+                - generic [ref=e72]:
+                  - generic [ref=e74]: "1"
+                  - generic [ref=e76]: "5"
+                  - generic [ref=e78]: "10"
+                  - generic [ref=e80]: "15"
+                  - generic [ref=e82]: "20"
+                  - generic [ref=e84]: "25"
+                - generic [ref=e85]: Years
+              - generic [ref=e86]:
+                - generic [ref=e87]:
+                  - generic [ref=e89]: $0k
+                  - generic [ref=e91]: $20k
+                  - generic [ref=e93]: $40k
+                  - generic [ref=e95]: $60k
+                  - generic [ref=e97]: $80k
+                - generic [ref=e98]: Total Savings
+            - generic [ref=e110]:
+              - generic [ref=e111]:
+                - generic [ref=e113]: $15k
+                - generic [ref=e114]: Investment
+              - generic [ref=e115]:
+                - generic [ref=e117]: 7 years
+                - generic [ref=e118]: Payback Time
+              - generic [ref=e119]:
+                - generic [ref=e121]: $70k
+                - generic [ref=e122]: 25-Year Savings
+            - paragraph [ref=e124]: "How to read this: The blue area shows your total savings growing over time. After 7 years, you'll have saved enough to cover your initial investment. By year 25, you'll have saved $70k total."
+            - img
+          - generic [ref=e125]:
+            - generic [ref=e127]:
+              - heading "Financial Analysis" [level=2] [ref=e128]
+              - generic [ref=e129]:
+                - generic [ref=e130]:
+                  - generic [ref=e131]: Payback Period
+                  - generic [ref=e132]: 7 years
+                - generic [ref=e133]:
+                  - generic [ref=e134]: 25-Year NPV
+                  - generic [ref=e135]: $15,174
+                - generic [ref=e136]:
+                  - generic [ref=e137]: ROI
+                  - generic [ref=e138]: 200%
+                - generic [ref=e139]:
+                  - generic [ref=e140]: Electricity Rate
+                  - generic [ref=e141]: $0.18/kWh (generic)
+            - generic [ref=e143]:
+              - heading "Environmental Impact" [level=2] [ref=e144]
+              - generic [ref=e145]:
+                - generic [ref=e146]:
+                  - generic [ref=e147]: CO₂ Offset/Year
+                  - generic [ref=e148]: 11,013 lbs
+                - generic [ref=e149]:
+                  - generic [ref=e150]: Solar Irradiance
+                  - generic [ref=e151]: 5.8 kWh/m²/day
+                - generic [ref=e152]:
+                  - generic [ref=e153]: System Tilt
+                  - generic [ref=e154]: 0°
+                - generic [ref=e155]:
+                  - generic [ref=e156]: System Losses
+                  - generic [ref=e157]: 5%
+                - generic [ref=e158]:
+                  - generic [ref=e159]: Shading Analysis
+                  - generic [ref=e160]: proxy (medium accuracy)
+                - generic [ref=e161]:
+                  - generic [ref=e162]: Annual Shading Loss
+                  - generic [ref=e163]: 10%
+            - generic [ref=e165]:
+              - heading "Calculation Details & Data Sources" [level=2] [ref=e166]
+              - generic [ref=e167]:
+                - heading "Calculation Assumptions" [level=3] [ref=e168]
+                - generic [ref=e169]:
+                  - generic [ref=e170]:
+                    - generic [ref=e171]: Federal Tax Credit (ITC)
+                    - generic [ref=e172]: 30%
+                  - generic [ref=e173]:
+                    - generic [ref=e174]: Cost per Watt
+                    - generic [ref=e175]: $3
+                  - generic [ref=e176]:
+                    - generic [ref=e177]: Panel Degradation
+                    - generic [ref=e178]: 0.5%/year
+                  - generic [ref=e179]:
+                    - generic [ref=e180]: O&M Cost
+                    - generic [ref=e181]: $22/kW/year
+                  - generic [ref=e182]:
+                    - generic [ref=e183]: Rate Increase
+                    - generic [ref=e184]: 2.5%/year
+                  - generic [ref=e185]:
+                    - generic [ref=e186]: Discount Rate
+                    - generic [ref=e187]: 7%
+              - generic [ref=e188]:
+                - heading "Data Sources" [level=3] [ref=e189]
+                - generic [ref=e190]:
+                  - generic [ref=e193]: Solar irradiance data from industry-standard models
+                  - generic [ref=e196]: Utility rates from local utility databases
+                  - generic [ref=e199]: Financial calculations based on current federal and state incentives
+                - generic [ref=e200]:
+                  - paragraph
+                  - paragraph [ref=e201]: Last updated 10/19/2025
+          - region "Data sources and methodology" [ref=e203]:
+            - paragraph [ref=e205]: Modeled estimate — not a performance guarantee. Data from NREL PVWatts® v8, OpenEI URDB / EIA, and geographic shading proxy.
+          - region "Next steps" [ref=e207]:
+            - generic [ref=e209]:
+              - button "Book a Consultation" [ref=e210] [cursor=pointer]: 📅 Book a Consultation
+              - link "Talk to a Specialist" [ref=e211] [cursor=pointer]:
+                - /url: tel:+14041234567
+                - text: 📞 Talk to a Specialist
+            - generic [ref=e214]:
+              - button "Download PDF Report" [ref=e215] [cursor=pointer]: 📄 Download PDF
+              - button "Copy Share Link" [ref=e216] [cursor=pointer]: 🔗 Copy Share Link
+    - region "Sticky action" [ref=e217]:
+      - button "Book a Free Consultation" [ref=e219] [cursor=pointer]
+    - contentinfo [ref=e220]:
+      - generic [ref=e221]:
+        - generic [ref=e222]:
+          - img "Google logo" [ref=e223]
+          - generic [ref=e224]: Google
+        - navigation "Legal and support" [ref=e225]:
+          - list [ref=e226]:
+            - listitem [ref=e227]:
+              - link "Privacy Policy" [ref=e228] [cursor=pointer]:
+                - /url: /legal/privacy?address=123+S+Central+Ave%2C+Phoenix%2C+AZ+85004%2C+USA&lat=33.4465083&lng=-112.0735555&placeId=ChIJ560oTSASK4cRSTaNIe1Cbvo&company=Google&brandColor=%234285F4&logo=https%3A%2F%2Flogo.clearbit.com%2Fgoogle.com
+              - generic [ref=e229]: •
+            - listitem [ref=e230]:
+              - link "Terms of Service" [ref=e231] [cursor=pointer]:
+                - /url: /legal/terms
+            - listitem [ref=e232]:
+              - link "Accessibility" [ref=e233] [cursor=pointer]:
+                - /url: /legal/accessibility
+              - generic [ref=e234]: •
+            - listitem [ref=e235]:
+              - link "Contact" [ref=e236] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=e238]:
+          - text: Powered by
+          - link "Sunspire" [ref=e239] [cursor=pointer]:
+            - /url: https://getsunspire.com
+  - generic [ref=e240]: $0k
+```

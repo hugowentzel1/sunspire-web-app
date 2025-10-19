@@ -760,7 +760,7 @@ function ReportContent() {
                 {b.brand || 'Company'}
               </span>{' '}
               Solar Quote
-              <span className="text-slate-500"> (Live Preview)</span>
+              {demoMode && <span className="text-slate-500"> (Live Preview)</span>}
             </h1>
 
             {/* H1 → Logo = 24px */}
