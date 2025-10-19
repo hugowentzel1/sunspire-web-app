@@ -37,7 +37,7 @@
                 - generic [ref=e33]: "-4 runs left"
               - generic [ref=e34]:
                 - text: Expires in
-                - generic [ref=e35]: 6d 23h 59m 53s
+                - generic [ref=e35]: 6d 23h 59m 54s
           - generic [ref=e36]:
             - generic [ref=e38]:
               - generic [ref=e40]: ⚡
