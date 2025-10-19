@@ -764,7 +764,7 @@ function ReportContent() {
             </h1>
 
             {/* H1 → Logo = 24px */}
-            <div data-testid="hdr-logo" className="mt-[24px] flex justify-center">
+            <div data-testid="hdr-logo" className="mt-[25px] flex justify-center">
               <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="w-24 h-24">
                 {(b.logo || getDefaultLogo(b.brand)) ? (
                   <Image 
@@ -790,7 +790,7 @@ function ReportContent() {
             {/* Logo → Subheadline = 16px */}
             <p
               data-testid="hdr-sub"
-              className="mt-4 text-[clamp(18px,2.4vw,20px)] font-semibold text-slate-800"
+              className="mt-[16px] text-[clamp(18px,2.4vw,20px)] font-semibold text-slate-800"
             >
               Comprehensive analysis for your property at
             </p>

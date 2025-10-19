@@ -643,3 +643,44 @@ Checking Support page...
   ✓   146 [chromium] › tests/comprehensive-e2e.spec.ts:302:9 › 🚀 COMPREHENSIVE SUNSPIRE E2E TESTS › 6. Mobile & Responsive Design › should work on mobile (375px) (1.4s)
   ✓   147 [chromium] › tests/comprehensive-e2e.spec.ts:324:9 › 🚀 COMPREHENSIVE SUNSPIRE E2E TESTS › 6. Mobile & Responsive Design › should work on tablet (768px) (3.3s)
   ✓   148 [chromium] › tests/comprehensive-e2e.spec.ts:332:9 › 🚀 COMPREHENSIVE SUNSPIRE E2E TESTS › 6. Mobile & Responsive Design › should work on desktop (1920px) (11.9s)
+  ✘   149 [chromium] › tests/comprehensive-e2e.spec.ts:347:9 › 🚀 COMPREHENSIVE SUNSPIRE E2E TESTS › 7. All Buttons & CTAs › should have working CTA buttons in demo footer (15.2s)
+(node:58796) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:58796) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   150 [chromium] › tests/comprehensive-e2e.spec.ts:355:9 › 🚀 COMPREHENSIVE SUNSPIRE E2E TESTS › 7. All Buttons & CTAs › should have working CTA buttons in paid footer (1.1s)
+  ✓   151 [chromium] › tests/comprehensive-e2e.spec.ts:372:9 › 🚀 COMPREHENSIVE SUNSPIRE E2E TESTS › 7. All Buttons & CTAs › should have working download PDF button (1.1s)
+  ✓   152 [chromium] › tests/comprehensive-e2e.spec.ts:382:9 › 🚀 COMPREHENSIVE SUNSPIRE E2E TESTS › 7. All Buttons & CTAs › should have working copy link button (2.9s)
+  ✓   153 [chromium] › tests/comprehensive-e2e.spec.ts:400:9 › 🚀 COMPREHENSIVE SUNSPIRE E2E TESTS › 8. Performance & Loading › should load homepage in under 3 seconds (2.4s)
+  ✓   154 [chromium] › tests/comprehensive-e2e.spec.ts:409:9 › 🚀 COMPREHENSIVE SUNSPIRE E2E TESTS › 8. Performance & Loading › should load report page in under 3 seconds (2.7s)
+  ✓   155 [chromium] › tests/comprehensive-e2e.spec.ts:418:9 › 🚀 COMPREHENSIVE SUNSPIRE E2E TESTS › 8. Performance & Loading › should not have console errors (3.0s)
+  ✘   156 [chromium] › tests/comprehensive-e2e.spec.ts:446:9 › 🚀 COMPREHENSIVE SUNSPIRE E2E TESTS › 9. Header Spacing - Final Verification › should have perfect 8px grid spacing (999ms)
+(node:58983) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:58983) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   141 [chromium] › tests/comprehensive-paid-audit.spec.ts:20:7 › 🔍 COMPREHENSIVE PAID VERSION AUDIT › ✅ REMOVE/HIDE: Activation/pricing copy ($99/mo, $399, etc) (3.3m)
+(node:59660) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59660) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   157 [chromium] › tests/comprehensive-site-test.spec.ts:4:7 › Comprehensive Site Test › All legal pages have proper structure and content (3.3m)
+(node:60775) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:60775) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   158 [chromium] › tests/comprehensive-paid-audit.spec.ts:32:7 › 🔍 COMPREHENSIVE PAID VERSION AUDIT › ✅ REMOVE/HIDE: Demo ribbon (3.3m)
+(node:61445) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:61445) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   159 [chromium] › tests/comprehensive-site-test.spec.ts:33:7 › Comprehensive Site Test › Documentation pages exist and are properly linked (3.3m)
+(node:62567) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62567) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   160 [chromium] › tests/comprehensive-paid-audit.spec.ts:41:7 › 🔍 COMPREHENSIVE PAID VERSION AUDIT › ✅ REMOVE/HIDE: Unlock/blur gates on report (3.5m)
+(node:63389) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:63389) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
