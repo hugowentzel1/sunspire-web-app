@@ -764,7 +764,7 @@ function ReportContent() {
             </h1>
 
             {/* H1 → Logo = 24px */}
-            <div data-testid="hdr-logo" className="mt-[25px] flex justify-center">
+            <div data-testid="hdr-logo" className="mt-[24px] flex justify-center">
               <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="w-24 h-24">
                 {(b.logo || getDefaultLogo(b.brand)) ? (
                   <Image 
@@ -834,7 +834,7 @@ function ReportContent() {
               <div className="relative z-10 p-8 text-center">
                 <div className="mb-4 flex justify-center"><IconBadge>⚡</IconBadge></div>
                 <div className="text-3xl font-black text-gray-900 mb-2">{estimate.systemSizeKW} kW</div>
-                <div className="text-gray-600 font-semibold">System Size</div>
+                <div className="text-gray-700 font-semibold">System Size</div>
               </div>
             </div>
             
@@ -848,7 +848,7 @@ function ReportContent() {
                     : `${(estimate.annualProductionKWh as number).toLocaleString()} kWh`
                   }
                 </div>
-                <div className="text-gray-600 font-semibold">Annual Production</div>
+                <div className="text-gray-700 font-semibold">Annual Production</div>
               </div>
             </div>
             
@@ -863,7 +863,7 @@ function ReportContent() {
                 <div className="text-3xl font-black text-gray-900 mb-2">
                   {demoMode ? '— — —' : `$${estimate.netCostAfterITC.toLocaleString()}`}
                 </div>
-                <div className="text-gray-600 font-semibold">Net Cost (After ITC)</div>
+                <div className="text-gray-700 font-semibold">Net Cost (After ITC)</div>
                 {!demoMode && (
                   <div className="mt-2 text-xs text-gray-500">
                     Includes 30% federal investment tax credit (ITC)
@@ -900,7 +900,7 @@ function ReportContent() {
                       : `$${(estimate.year1Savings as number).toLocaleString()}`
                   )}
                 </div>
-                <div className="text-gray-600 font-semibold">Year 1 Savings</div>
+                <div className="text-gray-700 font-semibold">Year 1 Savings</div>
                 {!demoMode && (
                   <div className="mt-2 text-xs text-gray-500">
                     Based on current local utility rate and modeled production
@@ -1007,12 +1007,12 @@ function ReportContent() {
                 <div className="mb-8">
                   <h3 className="text-lg font-semibold text-gray-800 mb-4">Calculation Assumptions</h3>
                   <div className="space-y-4">
-                    <div className="flex justify-between items-center py-3 border-b border-gray-200"><span className="text-gray-600">Federal Tax Credit (ITC)</span><span className="text-gray-900 font-bold">{(estimate.assumptions.itcPercentage * 100).toFixed(0)}%</span></div>
-                    <div className="flex justify-between items-center py-3 border-b border-gray-200"><span className="text-gray-600">Cost per Watt</span><span className="text-gray-900 font-bold">${estimate.assumptions.costPerWatt}</span></div>
-                    <div className="flex justify-between items-center py-3 border-b border-gray-200"><span className="text-gray-600">Panel Degradation</span><span className="text-gray-900 font-bold">{(estimate.assumptions.degradationRate * 100).toFixed(1)}%/year</span></div>
-                    <div className="flex justify-between items-center py-3 border-b border-gray-200"><span className="text-gray-600">O&M Cost</span><span className="text-gray-900 font-bold">${estimate.assumptions.oandmPerKWYear}/kW/year</span></div>
-                    <div className="flex justify-between items-center py-3 border-b border-gray-200"><span className="text-gray-600">Rate Increase</span><span className="text-gray-900 font-bold">{(estimate.assumptions.electricityRateIncrease * 100).toFixed(1)}%/year</span></div>
-                    <div className="flex justify-between items-center py-3"><span className="text-gray-600">Discount Rate</span><span className="text-gray-900 font-bold">{(estimate.assumptions.discountRate * 100).toFixed(0)}%</span></div>
+                    <div className="flex justify-between items-center py-3 border-b border-gray-200"><span className="text-gray-700">Federal Tax Credit (ITC)</span><span className="text-gray-900 font-bold">{(estimate.assumptions.itcPercentage * 100).toFixed(0)}%</span></div>
+                    <div className="flex justify-between items-center py-3 border-b border-gray-200"><span className="text-gray-700">Cost per Watt</span><span className="text-gray-900 font-bold">${estimate.assumptions.costPerWatt}</span></div>
+                    <div className="flex justify-between items-center py-3 border-b border-gray-200"><span className="text-gray-700">Panel Degradation</span><span className="text-gray-900 font-bold">{(estimate.assumptions.degradationRate * 100).toFixed(1)}%/year</span></div>
+                    <div className="flex justify-between items-center py-3 border-b border-gray-200"><span className="text-gray-700">O&M Cost</span><span className="text-gray-900 font-bold">${estimate.assumptions.oandmPerKWYear}/kW/year</span></div>
+                    <div className="flex justify-between items-center py-3 border-b border-gray-200"><span className="text-gray-700">Rate Increase</span><span className="text-gray-900 font-bold">{(estimate.assumptions.electricityRateIncrease * 100).toFixed(1)}%/year</span></div>
+                    <div className="flex justify-between items-center py-3"><span className="text-gray-700">Discount Rate</span><span className="text-gray-900 font-bold">{(estimate.assumptions.discountRate * 100).toFixed(0)}%</span></div>
                   </div>
                 </div>
 

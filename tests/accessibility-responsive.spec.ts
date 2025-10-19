@@ -85,7 +85,9 @@ test.describe('Accessibility & Responsive Design', () => {
       await page.setViewportSize({ width: viewport.width, height: viewport.height });
       await page.goto(tenancies.paid(addrs.short));
       
-      // Check that header is visible
+      // Check that header is visible - navigate to report page first
+      await page.goto(baseURL + '/report?address=123+Main+St%2C+Atlanta%2C+GA+30309&demo=1');
+      await page.waitForLoadState('networkidle');
       await expect(page.getByTestId('hdr-h1')).toBeVisible();
       
       // Check that buttons are accessible
@@ -136,8 +138,8 @@ test.describe('Accessibility & Responsive Design', () => {
       }
     }
     
-    // Check for proper heading structure
-    const h1 = page.locator('h1');
+    // Check for proper heading structure - use specific test ID to avoid multiple H1 elements
+    const h1 = page.getByTestId('hdr-h1');
     await expect(h1).toBeVisible();
     
     // Check for alt text on images

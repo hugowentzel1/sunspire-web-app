@@ -4,7 +4,18 @@ import { addrs, tenancies, lineCount, gap } from './_utils';
 test.describe('Header & theming', () => {
   for (const mode of ['demo', 'paid'] as const) {
     test(`H1 before logo; brand color; spacing — ${mode}`, async ({ page, baseURL }) => {
-      await page.goto((baseURL ?? '') + (mode === 'demo' ? tenancies.demo(addrs.short) : tenancies.paid(addrs.short)));
+      // Navigate to homepage first
+      await page.goto(baseURL ?? '');
+      await page.waitForLoadState('networkidle');
+      
+      // Enter address and navigate to report page
+      const addressInput = page.getByPlaceholder(/Start typing your property address/i);
+      await addressInput.fill('123 Main St, Atlanta, GA');
+      await page.waitForTimeout(1000);
+      await page.getByText('123 Main St, Atlanta, GA').first().click();
+      await page.waitForURL(/\/report\?/);
+      await page.waitForLoadState('networkidle');
+      await page.waitForTimeout(2000);
 
       const h1 = page.getByTestId('hdr-h1');
       const logo = page.getByTestId('hdr-logo');
@@ -51,7 +62,18 @@ test.describe('Header & theming', () => {
     });
 
     test(`Header spacing matches 8px rhythm — ${mode}`, async ({ page, baseURL }) => {
-      await page.goto((baseURL ?? '') + (mode === 'demo' ? tenancies.demo(addrs.short) : tenancies.paid(addrs.short)));
+      // Navigate to homepage first
+      await page.goto(baseURL ?? '');
+      await page.waitForLoadState('networkidle');
+      
+      // Enter address and navigate to report page
+      const addressInput = page.getByPlaceholder(/Start typing your property address/i);
+      await addressInput.fill('123 Main St, Atlanta, GA');
+      await page.waitForTimeout(1000);
+      await page.getByText('123 Main St, Atlanta, GA').first().click();
+      await page.waitForURL(/\/report\?/);
+      await page.waitForLoadState('networkidle');
+      await page.waitForTimeout(2000);
 
       // Check key spacing relationships
       const h1 = page.getByTestId('hdr-h1');

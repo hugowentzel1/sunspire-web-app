@@ -684,3 +684,13 @@ Checking Support page...
 (Use `node --trace-warnings ...` to show where the warning was created)
 (node:63389) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
 (Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   161 [chromium] › tests/comprehensive-site-test.spec.ts:57:7 › Comprehensive Site Test › Support page links work correctly (3.3m)
+(node:64521) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:64521) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘   162 [chromium] › tests/comprehensive-paid-audit.spec.ts:50:7 › 🔍 COMPREHENSIVE PAID VERSION AUDIT › ✅ REMOVE/HIDE: Sunspire support/billing emails (paid footer) (3.3m)
+(node:65377) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:65377) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
