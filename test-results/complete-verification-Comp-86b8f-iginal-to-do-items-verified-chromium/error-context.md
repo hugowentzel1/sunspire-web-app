@@ -1,0 +1,292 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - generic [ref=e4]:
+      - strong [ref=e6]: Exclusive preview for Apple — expires in 6d 23:59:57
+      - generic [ref=e7]: 2 runs left
+    - generic [ref=e8]:
+      - button "Copy demo link" [ref=e9] [cursor=pointer]
+      - button "Dismiss" [ref=e10] [cursor=pointer]: ✕
+  - banner [ref=e11]:
+    - generic [ref=e13]:
+      - link "Apple logo Apple Solar Intelligence" [ref=e14] [cursor=pointer]:
+        - /url: /?company=Apple&demo=1
+        - img "Apple logo" [ref=e15]
+        - generic [ref=e16]:
+          - heading "Apple" [level=1] [ref=e17]
+          - paragraph [ref=e18]: Solar Intelligence
+      - navigation [ref=e19]:
+        - link "Pricing" [ref=e20] [cursor=pointer]:
+          - /url: /pricing?company=Apple&demo=1
+        - link "Partners" [ref=e21] [cursor=pointer]:
+          - /url: /partners?company=Apple&demo=1
+        - link "Support" [ref=e22] [cursor=pointer]:
+          - /url: /support?company=Apple&demo=1
+        - button "⚡ Launch Your Branded Version Now" [ref=e23] [cursor=pointer]:
+          - generic [ref=e24]: ⚡
+          - generic [ref=e25]: Launch Your Branded Version Now
+    - paragraph [ref=e28]: Private demo for Apple. Not affiliated.
+  - generic [ref=e29]:
+    - main [ref=e30]:
+      - generic [ref=e32]:
+        - generic [ref=e35]:
+          - heading "Demo for Apple — Powered by Sunspire" [level=2] [ref=e36]:
+            - text: Demo for Apple — Powered by
+            - link "Sunspire" [ref=e37] [cursor=pointer]:
+              - /url: /status
+          - paragraph [ref=e38]: Your Logo. Your URL. Instant Solar Quotes — Live in 24 Hours
+          - button "Launch Your Branded Version Now" [ref=e39] [cursor=pointer]:
+            - generic [ref=e40]: ⚡
+            - generic [ref=e41]: Launch Your Branded Version Now
+          - paragraph [ref=e42]: $99/mo + $399 setup • Live in 24 hours — or your setup fee is refunded..
+        - img "Apple logo" [ref=e44]
+        - generic [ref=e46]:
+          - heading "Your Branded Solar Quote Tool — Live on Your Site in 24 Hours." [level=1] [ref=e47]
+          - paragraph [ref=e48]: Capture more leads with instant, branded solar estimates. We set it up—no coding required. Embed on your site or share a link.
+        - generic "Trust signals" [ref=e50]:
+          - generic [ref=e51]:
+            - img [ref=e53]
+            - generic [ref=e55]: 113+ installers live
+          - generic [ref=e56]: •
+          - generic [ref=e57]:
+            - img [ref=e59]
+            - generic [ref=e61]: SOC 2 compliant
+          - generic [ref=e62]: •
+          - generic [ref=e63]:
+            - img [ref=e65]
+            - generic [ref=e67]: GDPR ready
+          - generic [ref=e68]: •
+          - generic [ref=e69]:
+            - img [ref=e71]
+            - generic [ref=e73]: NREL PVWatts®
+          - generic [ref=e74]: •
+          - generic [ref=e75]:
+            - img [ref=e77]
+            - generic [ref=e79]: 4.9/5 rating
+        - generic [ref=e81]:
+          - generic [ref=e82]:
+            - heading "Enter Your Property Address" [level=2] [ref=e83]
+            - paragraph [ref=e84]: Get a comprehensive solar analysis tailored to your specific location
+          - generic [ref=e85]:
+            - generic [ref=e86]:
+              - textbox "Start typing your property address..." [ref=e88]
+              - generic [ref=e90]: Powered by Google
+            - button "Generate Solar Report" [disabled] [ref=e91]:
+              - generic [ref=e92]:
+                - generic [ref=e93]: Generate Solar Report
+                - img [ref=e94]
+            - generic [ref=e96]:
+              - paragraph [ref=e97]: "Preview: 2 runs left."
+              - paragraph [ref=e98]: Expires in 6d 23h 59m 57s
+        - region "Customer testimonials" [ref=e99]:
+          - article [ref=e100]:
+            - blockquote [ref=e101]:
+              - paragraph [ref=e102]: “We were losing deals to faster competitors, now we respond in 60 seconds and win instead.”
+            - generic [ref=e103]:
+              - generic [ref=e104]:
+                - generic "Avatar for Brian Martin" [ref=e105]: BM
+                - generic [ref=e106]: Brian Martin
+              - generic [ref=e107]:
+                - generic [ref=e108]: Owner
+                - generic [ref=e109]: •
+                - generic [ref=e110]: 25-employee solar firm, CA
+                - generic [ref=e111]: •
+                - generic "Verified installer quote" [ref=e112]:
+                  - generic [ref=e113]: ✓
+                  - text: Verified
+          - article [ref=e114]:
+            - blockquote [ref=e115]:
+              - paragraph [ref=e116]: “Close rate doubled in month one with instant quotes, and prospects are sold before we even call.”
+            - generic [ref=e117]:
+              - generic [ref=e118]:
+                - generic "Avatar for Dalyn Helms" [ref=e119]: DH
+                - generic [ref=e120]: Dalyn Helms
+              - generic [ref=e121]:
+                - generic [ref=e122]: Ops Manager
+                - generic [ref=e123]: •
+                - generic [ref=e124]: Texas solar installer
+                - generic [ref=e125]: •
+                - generic "Verified installer quote" [ref=e126]:
+                  - generic [ref=e127]: ✓
+                  - text: Verified
+          - article [ref=e128]:
+            - blockquote [ref=e129]:
+              - paragraph [ref=e130]: “Our lead conversion jumped from 18% to 31% in the first month with professional, instant quotes.”
+            - generic [ref=e131]:
+              - generic [ref=e132]:
+                - generic "Avatar for Lensa Yohan" [ref=e133]: LY
+                - generic [ref=e134]: Lensa Yohan
+              - generic [ref=e135]:
+                - generic [ref=e136]: Sales Manager
+                - generic [ref=e137]: •
+                - generic [ref=e138]: Florida solar dealer
+                - generic [ref=e139]: •
+                - generic "Verified installer quote" [ref=e140]:
+                  - generic [ref=e141]: ✓
+                  - text: Verified
+          - article [ref=e142]:
+            - blockquote [ref=e143]:
+              - paragraph [ref=e144]: “Best $99/mo we've spent. Customers think we built this ourselves — completely white-labeled and professional.”
+            - generic [ref=e145]:
+              - generic [ref=e146]:
+                - generic "Avatar for Noah Jones" [ref=e147]: NJ
+                - generic [ref=e148]: Noah Jones
+              - generic [ref=e149]:
+                - generic [ref=e150]: Founder
+                - generic [ref=e151]: •
+                - generic [ref=e152]: Arizona EPC
+                - generic [ref=e153]: •
+                - generic "Verified installer quote" [ref=e154]:
+                  - generic [ref=e155]: ✓
+                  - text: Verified
+        - generic [ref=e159]:
+          - generic [ref=e160]:
+            - generic [ref=e161]: 28,417
+            - generic [ref=e162]: quotes modeled this month
+          - generic [ref=e163]:
+            - generic [ref=e164]: 31%
+            - generic [ref=e165]: average increase in completions
+          - generic [ref=e166]:
+            - generic [ref=e167]: 113+
+            - generic [ref=e168]: installers live today
+        - generic [ref=e169]:
+          - generic [ref=e172]:
+            - generic [ref=e173]: NREL PVWatts® v8
+            - generic [ref=e174]: Industry-standard solar modeling with current utility rates
+          - generic [ref=e177]:
+            - generic [ref=e178]: CRM Integration
+            - generic [ref=e179]: Direct push to HubSpot, Salesforce, and Airtable
+          - generic [ref=e182]:
+            - generic [ref=e183]: End-to-End Encryption
+            - generic [ref=e184]: SOC 2-aligned controls and data protection
+        - generic [ref=e187]:
+          - heading "Launch Your Branded Version Now" [level=2] [ref=e188]
+          - generic [ref=e189]:
+            - generic [ref=e190]: • <24h setup
+            - generic [ref=e191]: • CRM integrations
+            - generic [ref=e192]: • Ongoing support
+          - button "Launch Your Branded Version Now" [ref=e193] [cursor=pointer]:
+            - generic [ref=e194]: ⚡
+            - generic [ref=e195]: Launch Your Branded Version Now
+          - paragraph [ref=e196]: $99/mo + $399 setup • Live in 24 hours — or your setup fee is refunded..
+        - generic [ref=e198]:
+          - heading "How it works" [level=2] [ref=e199]
+          - generic [ref=e200]:
+            - generic [ref=e201]:
+              - generic [ref=e202]: "1"
+              - generic [ref=e203]: Customer requests quote
+            - generic [ref=e204]: →
+            - generic [ref=e205]:
+              - generic [ref=e206]: "2"
+              - generic [ref=e207]: Instant branded report
+            - generic [ref=e208]: →
+            - generic [ref=e209]:
+              - generic [ref=e210]: "3"
+              - generic [ref=e211]: Consultation booked
+        - generic [ref=e212]:
+          - heading "Frequently Asked Questions" [level=2] [ref=e213]
+          - generic [ref=e214]:
+            - generic [ref=e215]:
+              - heading "Accuracy? — NREL PVWatts v8 • EIA rates • local irradiance" [level=3] [ref=e216]
+              - paragraph [ref=e217]:
+                - text: Industry-standard data sources.
+                - link "View methodology" [ref=e218] [cursor=pointer]:
+                  - /url: /methodology
+                - text: .
+            - generic [ref=e219]:
+              - heading "Setup time? — Live on your site within 24 hours, no coding required" [level=3] [ref=e220]
+              - paragraph [ref=e221]: We handle the setup.
+            - generic [ref=e222]:
+              - heading "CMS / Embed? — Yes, 1-line <script>. Hosted option too." [level=3] [ref=e223]
+              - paragraph [ref=e224]: Works with any website platform. Just add one line of code.
+            - generic [ref=e225]:
+              - heading "Security? — Encrypted in transit & at rest" [level=3] [ref=e226]
+              - paragraph [ref=e227]: Bank-level security for all customer data.
+            - generic [ref=e228]:
+              - heading "Support? — Email support 24/7" [level=3] [ref=e229]
+              - paragraph [ref=e230]: Get help whenever you need it.
+        - generic [ref=e233]:
+          - heading "Why We Built Sunspire" [level=2] [ref=e234]
+          - paragraph [ref=e235]: We started Sunspire to give solar companies a simple way to capture more leads without paying for complex CRMs or custom developers. In just 24 hours, you can launch a fully branded quote tool that looks like it was built in-house, helps you win more consultations, and closes more installs.
+    - contentinfo [ref=e236]:
+      - generic [ref=e238]:
+        - generic [ref=e239]:
+          - generic [ref=e240]:
+            - heading "Sunspire Solar Intelligence" [level=3] [ref=e241]
+            - paragraph [ref=e242]: Demo for Apple — Powered by Sunspire
+            - generic [ref=e243]:
+              - generic [ref=e244]:
+                - generic [ref=e245]: 📍
+                - generic [ref=e246]:
+                  - text: "1700 Northside Drive Suite A7 #5164"
+                  - text: Atlanta, GA 30318
+              - generic [ref=e247]:
+                - generic [ref=e248]: GDPR
+                - generic [ref=e249]: CCPA
+                - generic [ref=e250]: SOC 2
+              - list [ref=e251]:
+                - listitem [ref=e252]:
+                  - generic [ref=e253]: ✉️
+                  - link "support@getsunspire.com" [ref=e254] [cursor=pointer]:
+                    - /url: mailto:support@getsunspire.com
+                - listitem [ref=e255]:
+                  - generic [ref=e256]: ✉️
+                  - link "billing@getsunspire.com" [ref=e257] [cursor=pointer]:
+                    - /url: mailto:billing@getsunspire.com
+                - listitem [ref=e258]:
+                  - generic [ref=e259]: ☎️
+                  - link "+1 (404) 123-4567" [ref=e260] [cursor=pointer]:
+                    - /url: tel:+14041234567
+          - generic [ref=e261]:
+            - heading "Quick Links" [level=4] [ref=e262]
+            - list [ref=e263]:
+              - listitem [ref=e264]:
+                - link "Pricing" [ref=e265] [cursor=pointer]:
+                  - /url: /pricing?company=Apple&demo=1
+              - listitem [ref=e266]:
+                - link "Partners" [ref=e267] [cursor=pointer]:
+                  - /url: /partners?company=Apple&demo=1
+              - listitem [ref=e268]:
+                - link "Support" [ref=e269] [cursor=pointer]:
+                  - /url: /support?company=Apple&demo=1
+          - generic [ref=e270]:
+            - heading "Legal & Support" [level=4] [ref=e271]
+            - list [ref=e272]:
+              - listitem [ref=e273]:
+                - link "Privacy Policy" [ref=e274] [cursor=pointer]:
+                  - /url: /privacy?company=Apple&demo=1
+              - listitem [ref=e275]:
+                - link "Terms of Service" [ref=e276] [cursor=pointer]:
+                  - /url: /terms?company=Apple&demo=1
+              - listitem [ref=e277]:
+                - link "Refund Policy" [ref=e278] [cursor=pointer]:
+                  - /url: /legal/refund?company=Apple&demo=1
+              - listitem [ref=e279]:
+                - link "Security" [ref=e280] [cursor=pointer]:
+                  - /url: /security?company=Apple&demo=1
+              - listitem [ref=e281]:
+                - link "DPA" [ref=e282] [cursor=pointer]:
+                  - /url: /dpa?company=Apple&demo=1
+              - listitem [ref=e283]:
+                - link "Do Not Sell My Data" [ref=e284] [cursor=pointer]:
+                  - /url: /do-not-sell?company=Apple&demo=1
+        - separator [ref=e285]
+        - generic [ref=e286]:
+          - generic [ref=e287]:
+            - generic [ref=e288]: ⚡
+            - generic [ref=e289]:
+              - text: Estimates generated
+              - text: using NREL PVWatts® v8
+          - generic [ref=e291]: Powered by Sunspire
+          - generic [ref=e292]:
+            - generic [ref=e293]: 🗺️
+            - generic [ref=e294]:
+              - text: Mapping & location
+              - text: data © Google
+    - button "Launch Your Branded Version Now" [ref=e296] [cursor=pointer]:
+      - generic [ref=e297]: ⚡
+      - generic [ref=e298]: Launch Your Branded Version Now
+  - alert [ref=e299]
+```

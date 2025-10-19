@@ -1,0 +1,84 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e4]:
+      - link "TestCorp logo TestCorp Solar Intelligence" [ref=e5] [cursor=pointer]:
+        - /url: /?company=TestCorp&brandColor=%23FF6B35&logo=https%3A%2F%2Flogo.clearbit.com%2Fgoogle.com
+        - img "TestCorp logo" [ref=e6]
+        - generic [ref=e7]:
+          - heading "TestCorp" [level=1] [ref=e8]
+          - paragraph [ref=e9]: Solar Intelligence
+      - navigation
+  - generic [ref=e10]:
+    - main [ref=e11]:
+      - generic [ref=e12]:
+        - img "TestCorp logo" [ref=e14]
+        - generic [ref=e15]:
+          - generic [ref=e17]: ✓
+          - generic [ref=e18]:
+            - heading "Instant Solar Analysis for Your Home" [level=1] [ref=e19]
+            - paragraph [ref=e20]: Enter your address to see solar production, savings, and payback—instantly.
+        - generic [ref=e22]:
+          - generic [ref=e23]:
+            - heading "Enter Your Property Address" [level=2] [ref=e24]
+            - paragraph [ref=e25]: Get a comprehensive solar analysis tailored to your specific location
+          - generic [ref=e26]:
+            - generic [ref=e27]:
+              - generic [ref=e28]:
+                - textbox "Enter Your Property Address" [ref=e30]:
+                  - /placeholder: Start typing your property address...
+                - generic: Powered by Google
+              - paragraph [ref=e31]: We only use your address to estimate sun, rates, and savings. Nothing is shared.
+            - button "Generate Solar Report" [disabled] [ref=e33]:
+              - generic [ref=e34]:
+                - generic [ref=e35]: Generate Solar Report
+                - img [ref=e36]
+        - generic [ref=e38]:
+          - generic [ref=e39]:
+            - generic [ref=e40]:
+              - generic [ref=e41]: NREL v8
+              - generic [ref=e42]: Accurate Modeling
+            - generic [ref=e43]:
+              - generic [ref=e44]: Current Rates
+              - generic [ref=e45]: Local Utility Data
+            - generic [ref=e46]:
+              - generic [ref=e47]: Private
+              - generic [ref=e48]: Encrypted
+          - generic [ref=e50]:
+            - generic [ref=e51]:
+              - img [ref=e53]
+              - generic [ref=e55]: NREL PVWatts® v8
+              - generic [ref=e56]: Industry-standard solar modeling with current utility rates
+            - generic [ref=e57]:
+              - img [ref=e59]
+              - generic [ref=e61]: End-to-End Encryption
+              - generic [ref=e62]: Secure data protection
+    - contentinfo [ref=e63]:
+      - generic [ref=e64]:
+        - generic [ref=e65]:
+          - img "TestCorp logo" [ref=e66]
+          - generic [ref=e67]: TestCorp
+        - navigation "Legal and support" [ref=e68]:
+          - list [ref=e69]:
+            - listitem [ref=e70]:
+              - link "Privacy Policy" [ref=e71] [cursor=pointer]:
+                - /url: /legal/privacy?company=TestCorp&brandColor=%23FF6B35&logo=https%3A%2F%2Flogo.clearbit.com%2Fgoogle.com
+              - generic [ref=e72]: •
+            - listitem [ref=e73]:
+              - link "Terms of Service" [ref=e74] [cursor=pointer]:
+                - /url: /legal/terms
+            - listitem [ref=e75]:
+              - link "Accessibility" [ref=e76] [cursor=pointer]:
+                - /url: /legal/accessibility
+              - generic [ref=e77]: •
+            - listitem [ref=e78]:
+              - link "Contact" [ref=e79] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=e81]:
+          - text: Powered by
+          - link "Sunspire" [ref=e82] [cursor=pointer]:
+            - /url: https://getsunspire.com
+  - alert [ref=e83]
+```
