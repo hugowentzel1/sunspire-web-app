@@ -723,12 +723,13 @@ function HomeContent() {
       <Footer />
       
       {/* Sticky CTA - Simple and consistent on mobile, Smart on desktop */}
-      <SmartStickyCTA />
+      <SmartStickyCTA onClick={handleLaunchClick} />
       
       <StickyCtaBar
          label="Launch Your Branded Version Now"
         testId="sticky-demo-cta"
         className="md:hidden"   // MOBILE-ONLY - always visible
+        onClick={handleLaunchClick}
       />
 
       {/* Lock Overlay - Show when demo limit reached */}

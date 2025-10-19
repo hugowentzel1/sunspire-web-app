@@ -80,7 +80,10 @@ export default function SavingsChart({
               </div>
               <div className="flex-1 bg-gray-200 rounded-full h-4 overflow-hidden">
                 <motion.div
-                  className="h-full bg-gradient-to-r from-green-400 to-green-600 rounded-full"
+                  className="h-full rounded-full"
+                  style={{ 
+                    background: `linear-gradient(to right, ${b.primary || '#10B981'}, ${b.primary || '#059669'})`
+                  }}
                   initial={{ width: 0 }}
                   animate={{ width: `${percentage}%` }}
                   transition={{ duration: 0.8, delay: index * 0.1 }}

@@ -13,7 +13,7 @@ import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
  * - Never overlaps cookie banner
  * - Disabled on Report page by default (opt-in via data-allow-report-sticky="1")
  */
-export default function SmartStickyCTA() {
+export default function SmartStickyCTA({ onClick }: { onClick?: () => void }) {
   const stickyRef = useRef<HTMLDivElement>(null);
   const brand = useBrandTakeover();
 
@@ -100,7 +100,9 @@ export default function SmartStickyCTA() {
       <button 
         className="sticky-cta__button"
         style={{ background: brand?.primary || 'var(--brand-600)' }}
-        onClick={() => window.location.href = '/api/stripe/create-checkout-session'}
+        onClick={onClick}
+        data-cta="primary"
+        data-cta-button
       >
         <span className="icon-rocket mr-3" aria-hidden="true">⚡</span>
         <span>Launch Your Branded Version Now</span>
