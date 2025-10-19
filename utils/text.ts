@@ -1,1 +1,1 @@
-export const softWrapCommas = (s: string) => s.replaceAll(",", ",\u200B"); // allows balanced wraps
+export const softWrapCommas = (s: string) => s.replace(/,/g, ",\u200B"); // allows balanced wraps
