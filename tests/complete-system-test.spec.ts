@@ -32,14 +32,20 @@ test.describe('Complete System Verification @smoke', () => {
     console.log('🚀 Testing activate page with domain setup...');
     
     await page.goto('http://localhost:3000/activate?session_id=cs_test_123&company=Netflix', { waitUntil: 'networkidle' });
+    await page.waitForTimeout(2000);
     
     // Verify activate page elements
     await expect(page.locator('text=Your Solar Tool is Ready!')).toBeVisible();
     
-    // Check for domain setup UI
+    // Check for domain setup UI tabs
     await expect(page.locator('button').filter({ hasText: 'Instant URL' })).toBeVisible();
-    await expect(page.locator('button').filter({ hasText: 'Custom Domain' })).toBeVisible();
+    const customDomainTab = page.locator('button').filter({ hasText: 'Custom Domain' });
+    await expect(customDomainTab).toBeVisible();
     await expect(page.locator('button').filter({ hasText: 'Embed Code' })).toBeVisible();
+    
+    // Click Custom Domain tab to reveal quote.yourcompany.com
+    await customDomainTab.click();
+    await page.waitForTimeout(500);
     
     // Verify "quote.yourcompany.com" is mentioned
     await expect(page.locator('text=/quote\\..*\\.com/')).toBeVisible();
