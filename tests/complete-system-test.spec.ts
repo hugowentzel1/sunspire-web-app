@@ -184,7 +184,7 @@ test.describe('Complete System Verification @smoke', () => {
         console.log(`✅ Report ${i} loaded successfully`);
       } else {
         // For third run, verify lock screen
-        await expect(page.locator('text=Demo limit reached')).toBeVisible({ timeout: 5000 });
+        await expect(page.locator('text=Demo limit reached').first()).toBeVisible({ timeout: 5000 });
         console.log('✅ Lock screen appeared on third run');
       }
     }
