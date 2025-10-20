@@ -83,15 +83,15 @@ test.describe('Accessibility & Responsive Design', () => {
 
     for (const viewport of viewports) {
       await page.setViewportSize({ width: viewport.width, height: viewport.height });
-      await page.goto(tenancies.paid(addrs.short));
       
-      // Check that header is visible - navigate to report page first
-      await page.goto((baseURL || 'http://localhost:3000') + '/report?address=123+Main+St%2C+Atlanta%2C+GA+30309&demo=1');
+      // Navigate to PAID report page with all params
+      await page.goto((baseURL || 'http://localhost:3000') + '/report?address=123+Main+St%2C+Atlanta%2C+GA&lat=33.7490&lng=-84.3880&placeId=test&company=TestCorp');
       await page.waitForLoadState('networkidle');
+      await page.waitForTimeout(2000);
       await expect(page.getByTestId('hdr-h1')).toBeVisible();
       
-      // Check that buttons are accessible
-      const bookButton = page.getByRole('button', { name: /Book a Consultation/i });
+      // Check that buttons are accessible (scoped to report-cta-footer for paid mode)
+      const bookButton = page.locator('[data-testid="report-cta-footer"]').getByRole('button', { name: /Book a Consultation/i });
       await expect(bookButton).toBeVisible();
       
       // Check that content doesn't overflow horizontally
