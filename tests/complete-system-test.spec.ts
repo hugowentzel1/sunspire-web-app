@@ -54,7 +54,7 @@ test.describe('Complete System Verification @smoke', () => {
     console.log('✅ quote.yourcompany.com mentioned');
   });
 
-  test.skip('3. Demo quota system: 2 runs then lock screen with green/red comparison', async ({ page }) => {
+      test('3. Demo quota system: 2 runs then lock screen with green/red comparison', async ({ page }) => {
     console.log('🚀 Testing demo quota and lock screen...');
     
     // Clear localStorage and start fresh

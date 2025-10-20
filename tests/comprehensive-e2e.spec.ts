@@ -97,10 +97,11 @@ test.describe('🚀 COMPREHENSIVE SUNSPIRE E2E TESTS', () => {
     test('should show blurred/locked cards in demo', async ({ page }) => {
       await page.goto(demoUrl);
       
-      // Check for blur overlays or lock icons
-      const lockedCards = page.locator('[data-testid^="tile-"]:has(.blur, [data-testid*="lock"])');
-      const count = await lockedCards.count();
+      // Check for locked tiles (lifetimeSavings and large have blur-layer)
+      const blurLayers = page.locator('.blur-layer');
+      const count = await blurLayers.count();
       expect(count).toBeGreaterThan(0); // At least some cards should be locked
+      console.log(`✅ Found ${count} blurred tiles in demo mode`);
     });
     
     test('should display demo CTA footer', async ({ page }) => {
