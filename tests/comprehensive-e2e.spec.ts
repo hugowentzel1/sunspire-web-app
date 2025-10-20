@@ -86,11 +86,11 @@ test.describe('🚀 COMPREHENSIVE SUNSPIRE E2E TESTS', () => {
       await expect(page.locator('[data-testid="tile-systemSize"]')).toBeVisible();
       await expect(page.locator('[data-testid="tile-annualProduction"]')).toBeVisible();
       
-      // Check that locked tiles exist (may be blurred)
-      const savingsTile = page.locator('[data-testid="tile-monthlySavings"]');
-      const paybackTile = page.locator('[data-testid="tile-paybackPeriod"]');
+      // Check that locked tiles exist (correct tile names)
+      const savingsTile = page.locator('[data-testid="tile-lifetimeSavings"]');
+      const largeTile = page.locator('[data-testid="tile-large"]');
       expect(await savingsTile.count()).toBeGreaterThan(0);
-      expect(await paybackTile.count()).toBeGreaterThan(0);
+      expect(await largeTile.count()).toBeGreaterThan(0);
       console.log('✅ All 4 tiles present (2 visible, 2 locked in demo)');
     });
     
@@ -207,8 +207,8 @@ test.describe('🚀 COMPREHENSIVE SUNSPIRE E2E TESTS', () => {
       // All cards should be visible and not blurred in paid mode
       await expect(page.locator('[data-testid="tile-systemSize"]')).toBeVisible();
       await expect(page.locator('[data-testid="tile-annualProduction"]')).toBeVisible();
-      await expect(page.locator('[data-testid="tile-monthlySavings"]')).toBeVisible();
-      await expect(page.locator('[data-testid="tile-paybackPeriod"]')).toBeVisible();
+      await expect(page.locator('[data-testid="tile-lifetimeSavings"]')).toBeVisible();
+      await expect(page.locator('[data-testid="tile-large"]')).toBeVisible();
       
       // Should not have blur overlays
       const blurredCards = page.locator('[data-testid^="tile-"].blur-sm, [data-testid^="tile-"] .blur-sm');
