@@ -73,7 +73,7 @@ test.describe('Accessibility & Responsive Design', () => {
     }
   });
 
-  test('Responsive design works on different screen sizes', async ({ page }) => {
+  test('Responsive design works on different screen sizes', async ({ page, baseURL }) => {
     const viewports = [
       { width: 360, height: 740, name: 'Mobile' },
       { width: 768, height: 1024, name: 'Tablet' },
@@ -86,7 +86,7 @@ test.describe('Accessibility & Responsive Design', () => {
       await page.goto(tenancies.paid(addrs.short));
       
       // Check that header is visible - navigate to report page first
-      await page.goto(baseURL + '/report?address=123+Main+St%2C+Atlanta%2C+GA+30309&demo=1');
+      await page.goto((baseURL || 'http://localhost:3000') + '/report?address=123+Main+St%2C+Atlanta%2C+GA+30309&demo=1');
       await page.waitForLoadState('networkidle');
       await expect(page.getByTestId('hdr-h1')).toBeVisible();
       
