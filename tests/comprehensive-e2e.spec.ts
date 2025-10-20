@@ -221,8 +221,8 @@ test.describe('🚀 COMPREHENSIVE SUNSPIRE E2E TESTS', () => {
       await page.waitForTimeout(3000);
       
       await expect(page.locator('[data-testid="report-cta-footer"]')).toBeVisible();
-      await expect(page.locator('text=/Book.*Consultation/i')).toBeVisible();
-      await expect(page.locator('text=/Talk.*Specialist/i')).toBeVisible();
+      await expect(page.locator('[data-testid="report-cta-footer"]').locator('text=/Book.*Consultation/i').first()).toBeVisible();
+      await expect(page.locator('[data-testid="report-cta-footer"]').locator('text=/Talk.*Specialist/i').first()).toBeVisible();
     });
     
   });

@@ -1,0 +1,240 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e6]:
+        - generic [ref=e8]: ☀️
+        - generic [ref=e9]:
+          - heading "Your company" [level=2] [ref=e10]
+          - paragraph [ref=e11]: Solar Intelligence
+    - main [ref=e12]:
+      - generic [ref=e13]:
+        - link "Back to Home" [ref=e15] [cursor=pointer]:
+          - /url: /?address=12345+Sassafras+Lane+Southwest%2C+Mountain+Park%2C+GA+30047%2C+United+States+of+America&runsLeft=0&demo=1
+          - img [ref=e16]
+          - text: Back to Home
+        - generic [ref=e18]:
+          - region "Your Your Company Solar Quote (Live Preview)" [ref=e19]:
+            - heading "Your Your Company Solar Quote (Live Preview)" [level=1] [ref=e20]
+            - generic [ref=e24]: ☀️
+            - paragraph [ref=e25]: Comprehensive analysis for your property at
+            - paragraph [ref=e26]: 123 N Central Ave, Phoenix, AZ
+            - generic [ref=e27]:
+              - generic [ref=e28]: Generated on 10/19/2025
+              - generic [ref=e29]:
+                - text: "Preview:"
+                - generic [ref=e30]: 0 runs left
+              - generic [ref=e31]:
+                - text: Expires in
+                - generic [ref=e32]: 6d 23h 59m 58s
+          - generic [ref=e33]:
+            - generic [ref=e35]:
+              - generic [ref=e37]: ⚡
+              - generic [ref=e38]: 7.2 kW
+              - generic [ref=e39]: System Size
+            - generic [ref=e41]:
+              - generic [ref=e43]: ☀️
+              - generic [ref=e44]: 12,956 kWh
+              - generic [ref=e45]: Annual Production
+            - generic [ref=e46]:
+              - generic [ref=e47]:
+                - generic [ref=e49]: 💰
+                - generic [ref=e50]: — — —
+                - generic [ref=e51]: Net Cost (After ITC)
+              - button "Unlock Full Report" [ref=e53] [cursor=pointer]
+            - generic [ref=e54]:
+              - generic [ref=e55]:
+                - generic [ref=e57]: 📈
+                - generic [ref=e58]: — — —
+                - generic [ref=e59]: Year 1 Savings
+              - button "Unlock Full Report" [ref=e61] [cursor=pointer]
+          - generic [ref=e64]:
+            - generic [ref=e66]:
+              - generic [ref=e67]:
+                - heading "Your Solar Savings Over Time" [level=3] [ref=e68]
+                - paragraph [ref=e69]: Simple view of how your solar investment pays off over 25 years
+              - button "View Methodology" [ref=e70] [cursor=pointer]
+            - application [ref=e74]:
+              - generic [ref=e78]:
+                - generic [ref=e79]:
+                  - generic [ref=e81]: "1"
+                  - generic [ref=e83]: "5"
+                  - generic [ref=e85]: "10"
+                  - generic [ref=e87]: "15"
+                  - generic [ref=e89]: "20"
+                  - generic [ref=e91]: "25"
+                - generic [ref=e92]: Years
+              - generic [ref=e93]:
+                - generic [ref=e94]:
+                  - generic [ref=e96]: $0k
+                  - generic [ref=e98]: $20k
+                  - generic [ref=e100]: $40k
+                  - generic [ref=e102]: $60k
+                  - generic [ref=e104]: $80k
+                - generic [ref=e105]: Total Savings
+            - generic [ref=e117]:
+              - generic [ref=e118]:
+                - generic [ref=e120]: $15k
+                - generic [ref=e121]: Investment
+              - generic [ref=e122]:
+                - generic [ref=e124]: 7 years
+                - generic [ref=e125]: Payback Time
+              - generic [ref=e126]:
+                - generic [ref=e128]: $70k
+                - generic [ref=e129]: 25-Year Savings
+            - paragraph [ref=e131]: "How to read this: The colored area shows your total savings growing over time. After 7 years, you'll have saved enough to cover your initial investment. By year 25, you'll have saved $70k total."
+            - img
+          - generic [ref=e132]:
+            - generic [ref=e133]:
+              - generic [ref=e134]:
+                - heading "Financial Analysis" [level=2] [ref=e135]
+                - generic [ref=e136]:
+                  - generic [ref=e137]:
+                    - generic [ref=e138]: Payback Period
+                    - generic [ref=e139]: — — —
+                  - generic [ref=e140]:
+                    - generic [ref=e141]: 25-Year NPV
+                    - generic [ref=e142]: — — —
+                  - generic [ref=e143]:
+                    - generic [ref=e144]: ROI
+                    - generic [ref=e145]: — — —
+                  - generic [ref=e146]:
+                    - generic [ref=e147]: Electricity Rate
+                    - generic [ref=e148]: $0.18/kWh (generic)
+              - button "Unlock Full Report" [ref=e150] [cursor=pointer]
+            - generic [ref=e151]:
+              - generic [ref=e152]:
+                - heading "Environmental Impact" [level=2] [ref=e153]
+                - generic [ref=e154]:
+                  - generic [ref=e155]:
+                    - generic [ref=e156]: CO₂ Offset/Year
+                    - generic [ref=e157]: 11,013 lbs
+                  - generic [ref=e158]:
+                    - generic [ref=e159]: Solar Irradiance
+                    - generic [ref=e160]: 5.8 kWh/m²/day
+                  - generic [ref=e161]:
+                    - generic [ref=e162]: System Tilt
+                    - generic [ref=e163]: 0°
+                  - generic [ref=e164]:
+                    - generic [ref=e165]: System Losses
+                    - generic [ref=e166]: 5%
+                  - generic [ref=e167]:
+                    - generic [ref=e168]: Shading Analysis
+                    - generic [ref=e169]: proxy (medium accuracy)
+                  - generic [ref=e170]:
+                    - generic [ref=e171]: Annual Shading Loss
+                    - generic [ref=e172]: 10%
+              - button "Unlock Full Report" [ref=e174] [cursor=pointer]
+            - generic [ref=e176]:
+              - heading "Calculation Details & Data Sources" [level=2] [ref=e177]
+              - generic [ref=e178]:
+                - heading "Calculation Assumptions" [level=3] [ref=e179]
+                - generic [ref=e180]:
+                  - generic [ref=e181]:
+                    - generic [ref=e182]: Federal Tax Credit (ITC)
+                    - generic [ref=e183]: 30%
+                  - generic [ref=e184]:
+                    - generic [ref=e185]: Cost per Watt
+                    - generic [ref=e186]: $3
+                  - generic [ref=e187]:
+                    - generic [ref=e188]: Panel Degradation
+                    - generic [ref=e189]: 0.5%/year
+                  - generic [ref=e190]:
+                    - generic [ref=e191]: O&M Cost
+                    - generic [ref=e192]: $22/kW/year
+                  - generic [ref=e193]:
+                    - generic [ref=e194]: Rate Increase
+                    - generic [ref=e195]: 2.5%/year
+                  - generic [ref=e196]:
+                    - generic [ref=e197]: Discount Rate
+                    - generic [ref=e198]: 7%
+          - region "Data sources and methodology" [ref=e200]:
+            - paragraph [ref=e202]: Modeled estimate — not a performance guarantee. Data from NREL PVWatts® v8, OpenEI URDB / EIA, and geographic shading proxy.
+          - region "Ready to Launch Your Branded, Customer-Facing Tool?" [ref=e204]:
+            - generic [ref=e205]:
+              - heading "Ready to Launch Your Branded, Customer-Facing Tool?" [level=2] [ref=e206]
+              - paragraph [ref=e207]: Get the full paid version—customer-facing and under your brand—with complete projections, detailed assumptions, and unblurred savings charts.
+              - link "Launch Your Branded Version Now" [ref=e209] [cursor=pointer]:
+                - /url: /api/stripe/create-checkout-session
+              - paragraph [ref=e210]: $99/mo + $399 setup • Live in 24 hours — or your setup fee is refunded..
+              - paragraph [ref=e211]: Comparable tools cost $2,500+/mo.
+    - region "Sticky action" [ref=e212]:
+      - button "Book a Free Consultation" [ref=e214] [cursor=pointer]
+    - contentinfo [ref=e215]:
+      - generic [ref=e217]:
+        - generic [ref=e218]:
+          - generic [ref=e219]:
+            - heading "Sunspire Solar Intelligence" [level=3] [ref=e220]
+            - paragraph [ref=e221]: Demo for Your Company — Powered by Sunspire
+            - generic [ref=e222]:
+              - generic [ref=e223]:
+                - generic [ref=e224]: 📍
+                - generic [ref=e225]: "1700 Northside Drive Suite A7 #5164 Atlanta, GA 30318"
+              - generic [ref=e226]:
+                - generic [ref=e227]: GDPR
+                - generic [ref=e228]: CCPA
+                - generic [ref=e229]: SOC 2
+              - list [ref=e230]:
+                - listitem [ref=e231]:
+                  - generic [ref=e232]: ✉️
+                  - link "support@getsunspire.com" [ref=e233] [cursor=pointer]:
+                    - /url: mailto:support@getsunspire.com
+                - listitem [ref=e234]:
+                  - generic [ref=e235]: ✉️
+                  - link "billing@getsunspire.com" [ref=e236] [cursor=pointer]:
+                    - /url: mailto:billing@getsunspire.com
+                - listitem [ref=e237]:
+                  - generic [ref=e238]: ☎️
+                  - link "+1 (404) 123-4567" [ref=e239] [cursor=pointer]:
+                    - /url: tel:+14041234567
+          - generic [ref=e240]:
+            - heading "Quick Links" [level=4] [ref=e241]
+            - list [ref=e242]:
+              - listitem [ref=e243]:
+                - link "Pricing" [ref=e244] [cursor=pointer]:
+                  - /url: /pricing?address=12345+Sassafras+Lane+Southwest%2C+Mountain+Park%2C+GA+30047%2C+United+States+of+America&runsLeft=0&demo=1
+              - listitem [ref=e245]:
+                - link "Partners" [ref=e246] [cursor=pointer]:
+                  - /url: /partners?address=12345+Sassafras+Lane+Southwest%2C+Mountain+Park%2C+GA+30047%2C+United+States+of+America&runsLeft=0&demo=1
+              - listitem [ref=e247]:
+                - link "Support" [ref=e248] [cursor=pointer]:
+                  - /url: /support?address=12345+Sassafras+Lane+Southwest%2C+Mountain+Park%2C+GA+30047%2C+United+States+of+America&runsLeft=0&demo=1
+          - generic [ref=e249]:
+            - heading "Legal & Support" [level=4] [ref=e250]
+            - list [ref=e251]:
+              - listitem [ref=e252]:
+                - link "Privacy Policy" [ref=e253] [cursor=pointer]:
+                  - /url: /privacy?address=12345+Sassafras+Lane+Southwest%2C+Mountain+Park%2C+GA+30047%2C+United+States+of+America&runsLeft=0&demo=1
+              - listitem [ref=e254]:
+                - link "Terms of Service" [ref=e255] [cursor=pointer]:
+                  - /url: /terms?address=12345+Sassafras+Lane+Southwest%2C+Mountain+Park%2C+GA+30047%2C+United+States+of+America&runsLeft=0&demo=1
+              - listitem [ref=e256]:
+                - link "Refund Policy" [ref=e257] [cursor=pointer]:
+                  - /url: /legal/refund?address=12345+Sassafras+Lane+Southwest%2C+Mountain+Park%2C+GA+30047%2C+United+States+of+America&runsLeft=0&demo=1
+              - listitem [ref=e258]:
+                - link "Security" [ref=e259] [cursor=pointer]:
+                  - /url: /security?address=12345+Sassafras+Lane+Southwest%2C+Mountain+Park%2C+GA+30047%2C+United+States+of+America&runsLeft=0&demo=1
+              - listitem [ref=e260]:
+                - link "DPA" [ref=e261] [cursor=pointer]:
+                  - /url: /dpa?address=12345+Sassafras+Lane+Southwest%2C+Mountain+Park%2C+GA+30047%2C+United+States+of+America&runsLeft=0&demo=1
+              - listitem [ref=e262]:
+                - link "Do Not Sell My Data" [ref=e263] [cursor=pointer]:
+                  - /url: /do-not-sell?address=12345+Sassafras+Lane+Southwest%2C+Mountain+Park%2C+GA+30047%2C+United+States+of+America&runsLeft=0&demo=1
+        - separator [ref=e264]
+        - generic [ref=e265]:
+          - generic [ref=e266]:
+            - generic [ref=e267]: ⚡
+            - generic [ref=e268]:
+              - text: Estimates generated
+              - text: using NREL PVWatts® v8
+          - generic [ref=e270]: Powered by Sunspire
+          - generic [ref=e271]:
+            - generic [ref=e272]: 🗺️
+            - generic [ref=e273]:
+              - text: Mapping & location
+              - text: data © Google
+  - alert [ref=e274]
+  - generic [ref=e275]: $0k
+```

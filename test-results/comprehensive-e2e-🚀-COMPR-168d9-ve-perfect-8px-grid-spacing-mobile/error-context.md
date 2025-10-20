@@ -1,0 +1,203 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e6]:
+        - img "Apple logo" [ref=e7]
+        - generic [ref=e8]:
+          - heading "Apple" [level=2] [ref=e9]
+          - paragraph [ref=e10]: Solar Intelligence
+    - main [ref=e11]:
+      - generic [ref=e12]:
+        - link "Back to Home" [ref=e14] [cursor=pointer]:
+          - /url: /?address=123+Main+St&demo=1&company=Apple
+          - img [ref=e15]
+          - text: Back to Home
+        - generic [ref=e17]:
+          - region "Your Apple Solar Quote (Live Preview)" [ref=e18]:
+            - heading "Your Apple Solar Quote (Live Preview)" [level=1] [ref=e19]
+            - img "Apple logo" [ref=e22]
+            - paragraph [ref=e23]: Comprehensive analysis for your property at
+            - paragraph [ref=e24]: 123 N Central Ave, Phoenix, AZ
+            - generic [ref=e25]:
+              - generic [ref=e26]: Generated on 10/19/2025
+              - generic [ref=e27]:
+                - text: "Preview:"
+                - generic [ref=e28]: 0 runs left
+              - generic [ref=e29]:
+                - text: Expires in
+                - generic [ref=e30]: 6d 23h 59m 59s
+          - generic [ref=e31]:
+            - generic [ref=e33]:
+              - generic [ref=e35]: ⚡
+              - generic [ref=e36]: 7.2 kW
+              - generic [ref=e37]: System Size
+            - generic [ref=e39]:
+              - generic [ref=e41]: ☀️
+              - generic [ref=e42]: 12,956 kWh
+              - generic [ref=e43]: Annual Production
+            - generic [ref=e44]:
+              - generic [ref=e45]:
+                - generic [ref=e47]: 💰
+                - generic [ref=e48]: — — —
+                - generic [ref=e49]: Net Cost (After ITC)
+              - button "Unlock Full Report" [ref=e51] [cursor=pointer]
+            - generic [ref=e52]:
+              - generic [ref=e53]:
+                - generic [ref=e55]: 📈
+                - generic [ref=e56]: — — —
+                - generic [ref=e57]: Year 1 Savings
+              - button "Unlock Full Report" [ref=e59] [cursor=pointer]
+          - generic [ref=e66]:
+            - generic [ref=e67]:
+              - generic [ref=e68]:
+                - heading "Financial Analysis" [level=2] [ref=e69]
+                - generic [ref=e70]:
+                  - generic [ref=e71]:
+                    - generic [ref=e72]: Payback Period
+                    - generic [ref=e73]: — — —
+                  - generic [ref=e74]:
+                    - generic [ref=e75]: 25-Year NPV
+                    - generic [ref=e76]: — — —
+                  - generic [ref=e77]:
+                    - generic [ref=e78]: ROI
+                    - generic [ref=e79]: — — —
+                  - generic [ref=e80]:
+                    - generic [ref=e81]: Electricity Rate
+                    - generic [ref=e82]: $0.18/kWh (generic)
+              - button "Unlock Full Report" [ref=e84] [cursor=pointer]
+            - generic [ref=e85]:
+              - generic [ref=e86]:
+                - heading "Environmental Impact" [level=2] [ref=e87]
+                - generic [ref=e88]:
+                  - generic [ref=e89]:
+                    - generic [ref=e90]: CO₂ Offset/Year
+                    - generic [ref=e91]: 11,013 lbs
+                  - generic [ref=e92]:
+                    - generic [ref=e93]: Solar Irradiance
+                    - generic [ref=e94]: 5.8 kWh/m²/day
+                  - generic [ref=e95]:
+                    - generic [ref=e96]: System Tilt
+                    - generic [ref=e97]: 0°
+                  - generic [ref=e98]:
+                    - generic [ref=e99]: System Losses
+                    - generic [ref=e100]: 5%
+                  - generic [ref=e101]:
+                    - generic [ref=e102]: Shading Analysis
+                    - generic [ref=e103]: proxy (medium accuracy)
+                  - generic [ref=e104]:
+                    - generic [ref=e105]: Annual Shading Loss
+                    - generic [ref=e106]: 10%
+              - button "Unlock Full Report" [ref=e108] [cursor=pointer]
+            - generic [ref=e110]:
+              - heading "Calculation Details & Data Sources" [level=2] [ref=e111]
+              - generic [ref=e112]:
+                - heading "Calculation Assumptions" [level=3] [ref=e113]
+                - generic [ref=e114]:
+                  - generic [ref=e115]:
+                    - generic [ref=e116]: Federal Tax Credit (ITC)
+                    - generic [ref=e117]: 30%
+                  - generic [ref=e118]:
+                    - generic [ref=e119]: Cost per Watt
+                    - generic [ref=e120]: $3
+                  - generic [ref=e121]:
+                    - generic [ref=e122]: Panel Degradation
+                    - generic [ref=e123]: 0.5%/year
+                  - generic [ref=e124]:
+                    - generic [ref=e125]: O&M Cost
+                    - generic [ref=e126]: $22/kW/year
+                  - generic [ref=e127]:
+                    - generic [ref=e128]: Rate Increase
+                    - generic [ref=e129]: 2.5%/year
+                  - generic [ref=e130]:
+                    - generic [ref=e131]: Discount Rate
+                    - generic [ref=e132]: 7%
+          - region "Data sources and methodology" [ref=e134]:
+            - paragraph [ref=e136]: Modeled estimate — not a performance guarantee. Data from NREL PVWatts® v8, OpenEI URDB / EIA, and geographic shading proxy.
+          - region "Ready to Launch Your Branded, Customer-Facing Tool?" [ref=e138]:
+            - generic [ref=e139]:
+              - heading "Ready to Launch Your Branded, Customer-Facing Tool?" [level=2] [ref=e140]
+              - paragraph [ref=e141]: Get the full paid version—customer-facing and under your brand—with complete projections, detailed assumptions, and unblurred savings charts.
+              - link "Launch Your Branded Version Now" [ref=e143] [cursor=pointer]:
+                - /url: /api/stripe/create-checkout-session
+              - paragraph [ref=e144]: $99/mo + $399 setup • Live in 24 hours — or your setup fee is refunded..
+              - paragraph [ref=e145]: Comparable tools cost $2,500+/mo.
+    - region "Sticky action" [ref=e146]:
+      - button "Book a Free Consultation" [ref=e148] [cursor=pointer]
+    - contentinfo [ref=e149]:
+      - generic [ref=e151]:
+        - generic [ref=e152]:
+          - generic [ref=e153]:
+            - heading "Sunspire Solar Intelligence" [level=3] [ref=e154]
+            - paragraph [ref=e155]: Demo for Apple — Powered by Sunspire
+            - generic [ref=e156]:
+              - generic [ref=e157]:
+                - generic [ref=e158]: 📍
+                - generic [ref=e159]: "1700 Northside Drive Suite A7 #5164 Atlanta, GA 30318"
+              - generic [ref=e160]:
+                - generic [ref=e161]: GDPR
+                - generic [ref=e162]: CCPA
+                - generic [ref=e163]: SOC 2
+              - list [ref=e164]:
+                - listitem [ref=e165]:
+                  - generic [ref=e166]: ✉️
+                  - link "support@getsunspire.com" [ref=e167] [cursor=pointer]:
+                    - /url: mailto:support@getsunspire.com
+                - listitem [ref=e168]:
+                  - generic [ref=e169]: ✉️
+                  - link "billing@getsunspire.com" [ref=e170] [cursor=pointer]:
+                    - /url: mailto:billing@getsunspire.com
+                - listitem [ref=e171]:
+                  - generic [ref=e172]: ☎️
+                  - link "+1 (404) 123-4567" [ref=e173] [cursor=pointer]:
+                    - /url: tel:+14041234567
+          - generic [ref=e174]:
+            - heading "Quick Links" [level=4] [ref=e175]
+            - list [ref=e176]:
+              - listitem [ref=e177]:
+                - link "Pricing" [ref=e178] [cursor=pointer]:
+                  - /url: /pricing?address=123+Main+St&demo=1&company=Apple
+              - listitem [ref=e179]:
+                - link "Partners" [ref=e180] [cursor=pointer]:
+                  - /url: /partners?address=123+Main+St&demo=1&company=Apple
+              - listitem [ref=e181]:
+                - link "Support" [ref=e182] [cursor=pointer]:
+                  - /url: /support?address=123+Main+St&demo=1&company=Apple
+          - generic [ref=e183]:
+            - heading "Legal & Support" [level=4] [ref=e184]
+            - list [ref=e185]:
+              - listitem [ref=e186]:
+                - link "Privacy Policy" [ref=e187] [cursor=pointer]:
+                  - /url: /privacy?address=123+Main+St&demo=1&company=Apple
+              - listitem [ref=e188]:
+                - link "Terms of Service" [ref=e189] [cursor=pointer]:
+                  - /url: /terms?address=123+Main+St&demo=1&company=Apple
+              - listitem [ref=e190]:
+                - link "Refund Policy" [ref=e191] [cursor=pointer]:
+                  - /url: /legal/refund?address=123+Main+St&demo=1&company=Apple
+              - listitem [ref=e192]:
+                - link "Security" [ref=e193] [cursor=pointer]:
+                  - /url: /security?address=123+Main+St&demo=1&company=Apple
+              - listitem [ref=e194]:
+                - link "DPA" [ref=e195] [cursor=pointer]:
+                  - /url: /dpa?address=123+Main+St&demo=1&company=Apple
+              - listitem [ref=e196]:
+                - link "Do Not Sell My Data" [ref=e197] [cursor=pointer]:
+                  - /url: /do-not-sell?address=123+Main+St&demo=1&company=Apple
+        - separator [ref=e198]
+        - generic [ref=e199]:
+          - generic [ref=e200]:
+            - generic [ref=e201]: ⚡
+            - generic [ref=e202]:
+              - text: Estimates generated
+              - text: using NREL PVWatts® v8
+          - generic [ref=e204]: Powered by Sunspire
+          - generic [ref=e205]:
+            - generic [ref=e206]: 🗺️
+            - generic [ref=e207]:
+              - text: Mapping & location
+              - text: data © Google
+  - alert [ref=e208]
+```

@@ -1,0 +1,240 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e6]:
+        - generic [ref=e8]: ☀️
+        - generic [ref=e9]:
+          - heading "Testco" [level=2] [ref=e10]
+          - paragraph [ref=e11]: Solar Intelligence
+    - main [ref=e12]:
+      - generic [ref=e13]:
+        - link "Back to Home" [ref=e15] [cursor=pointer]:
+          - /url: /?address=123+Main+St%2C+Atlanta%2C+GA+30301&demo=1&company=TestCo&runsLeft=5
+          - img [ref=e16]
+          - text: Back to Home
+        - generic [ref=e18]:
+          - region "Your TestCo Solar Quote (Live Preview)" [ref=e19]:
+            - heading "Your TestCo Solar Quote (Live Preview)" [level=1] [ref=e20]
+            - generic [ref=e24]: ☀️
+            - paragraph [ref=e25]: Comprehensive analysis for your property at
+            - paragraph [ref=e26]: 123 N Central Ave, Phoenix, AZ
+            - generic [ref=e27]:
+              - generic [ref=e28]: Generated on 10/19/2025
+              - generic [ref=e29]:
+                - text: "Preview:"
+                - generic [ref=e30]: 0 runs left
+              - generic [ref=e31]:
+                - text: Expires in
+                - generic [ref=e32]: 6d 23h 59m 59s
+          - generic [ref=e33]:
+            - generic [ref=e35]:
+              - generic [ref=e37]: ⚡
+              - generic [ref=e38]: 7.2 kW
+              - generic [ref=e39]: System Size
+            - generic [ref=e41]:
+              - generic [ref=e43]: ☀️
+              - generic [ref=e44]: 12,956 kWh
+              - generic [ref=e45]: Annual Production
+            - generic [ref=e46]:
+              - generic [ref=e47]:
+                - generic [ref=e49]: 💰
+                - generic [ref=e50]: — — —
+                - generic [ref=e51]: Net Cost (After ITC)
+              - button "Unlock Full Report" [ref=e53] [cursor=pointer]
+            - generic [ref=e54]:
+              - generic [ref=e55]:
+                - generic [ref=e57]: 📈
+                - generic [ref=e58]: — — —
+                - generic [ref=e59]: Year 1 Savings
+              - button "Unlock Full Report" [ref=e61] [cursor=pointer]
+          - generic [ref=e64]:
+            - generic [ref=e66]:
+              - generic [ref=e67]:
+                - heading "Your Solar Savings Over Time" [level=3] [ref=e68]
+                - paragraph [ref=e69]: Simple view of how your solar investment pays off over 25 years
+              - button "View Methodology" [ref=e70] [cursor=pointer]
+            - application [ref=e74]:
+              - generic [ref=e78]:
+                - generic [ref=e79]:
+                  - generic [ref=e81]: "1"
+                  - generic [ref=e83]: "5"
+                  - generic [ref=e85]: "10"
+                  - generic [ref=e87]: "15"
+                  - generic [ref=e89]: "20"
+                  - generic [ref=e91]: "25"
+                - generic [ref=e92]: Years
+              - generic [ref=e93]:
+                - generic [ref=e94]:
+                  - generic [ref=e96]: $0k
+                  - generic [ref=e98]: $20k
+                  - generic [ref=e100]: $40k
+                  - generic [ref=e102]: $60k
+                  - generic [ref=e104]: $80k
+                - generic [ref=e105]: Total Savings
+            - generic [ref=e119]:
+              - generic [ref=e120]:
+                - generic [ref=e122]: $15k
+                - generic [ref=e123]: Investment
+              - generic [ref=e124]:
+                - generic [ref=e126]: 7 years
+                - generic [ref=e127]: Payback Time
+              - generic [ref=e128]:
+                - generic [ref=e130]: $70k
+                - generic [ref=e131]: 25-Year Savings
+            - paragraph [ref=e133]: "How to read this: The colored area shows your total savings growing over time. After 7 years, you'll have saved enough to cover your initial investment. By year 25, you'll have saved $70k total."
+            - img
+          - generic [ref=e134]:
+            - generic [ref=e135]:
+              - generic [ref=e136]:
+                - heading "Financial Analysis" [level=2] [ref=e137]
+                - generic [ref=e138]:
+                  - generic [ref=e139]:
+                    - generic [ref=e140]: Payback Period
+                    - generic [ref=e141]: — — —
+                  - generic [ref=e142]:
+                    - generic [ref=e143]: 25-Year NPV
+                    - generic [ref=e144]: — — —
+                  - generic [ref=e145]:
+                    - generic [ref=e146]: ROI
+                    - generic [ref=e147]: — — —
+                  - generic [ref=e148]:
+                    - generic [ref=e149]: Electricity Rate
+                    - generic [ref=e150]: $0.18/kWh (generic)
+              - button "Unlock Full Report" [ref=e152] [cursor=pointer]
+            - generic [ref=e153]:
+              - generic [ref=e154]:
+                - heading "Environmental Impact" [level=2] [ref=e155]
+                - generic [ref=e156]:
+                  - generic [ref=e157]:
+                    - generic [ref=e158]: CO₂ Offset/Year
+                    - generic [ref=e159]: 11,013 lbs
+                  - generic [ref=e160]:
+                    - generic [ref=e161]: Solar Irradiance
+                    - generic [ref=e162]: 5.8 kWh/m²/day
+                  - generic [ref=e163]:
+                    - generic [ref=e164]: System Tilt
+                    - generic [ref=e165]: 0°
+                  - generic [ref=e166]:
+                    - generic [ref=e167]: System Losses
+                    - generic [ref=e168]: 5%
+                  - generic [ref=e169]:
+                    - generic [ref=e170]: Shading Analysis
+                    - generic [ref=e171]: proxy (medium accuracy)
+                  - generic [ref=e172]:
+                    - generic [ref=e173]: Annual Shading Loss
+                    - generic [ref=e174]: 10%
+              - button "Unlock Full Report" [ref=e176] [cursor=pointer]
+            - generic [ref=e178]:
+              - heading "Calculation Details & Data Sources" [level=2] [ref=e179]
+              - generic [ref=e180]:
+                - heading "Calculation Assumptions" [level=3] [ref=e181]
+                - generic [ref=e182]:
+                  - generic [ref=e183]:
+                    - generic [ref=e184]: Federal Tax Credit (ITC)
+                    - generic [ref=e185]: 30%
+                  - generic [ref=e186]:
+                    - generic [ref=e187]: Cost per Watt
+                    - generic [ref=e188]: $3
+                  - generic [ref=e189]:
+                    - generic [ref=e190]: Panel Degradation
+                    - generic [ref=e191]: 0.5%/year
+                  - generic [ref=e192]:
+                    - generic [ref=e193]: O&M Cost
+                    - generic [ref=e194]: $22/kW/year
+                  - generic [ref=e195]:
+                    - generic [ref=e196]: Rate Increase
+                    - generic [ref=e197]: 2.5%/year
+                  - generic [ref=e198]:
+                    - generic [ref=e199]: Discount Rate
+                    - generic [ref=e200]: 7%
+          - region "Data sources and methodology" [ref=e202]:
+            - paragraph [ref=e204]: Modeled estimate — not a performance guarantee. Data from NREL PVWatts® v8, OpenEI URDB / EIA, and geographic shading proxy.
+          - region "Ready to Launch Your Branded, Customer-Facing Tool?" [ref=e206]:
+            - generic [ref=e207]:
+              - heading "Ready to Launch Your Branded, Customer-Facing Tool?" [level=2] [ref=e208]
+              - paragraph [ref=e209]: Get the full paid version—customer-facing and under your brand—with complete projections, detailed assumptions, and unblurred savings charts.
+              - link "Launch Your Branded Version Now" [ref=e211] [cursor=pointer]:
+                - /url: /api/stripe/create-checkout-session
+              - paragraph [ref=e212]: $99/mo + $399 setup • Live in 24 hours — or your setup fee is refunded..
+              - paragraph [ref=e213]: Comparable tools cost $2,500+/mo.
+    - region "Sticky action" [ref=e214]:
+      - button "Book a Free Consultation" [ref=e216] [cursor=pointer]
+    - contentinfo [ref=e217]:
+      - generic [ref=e219]:
+        - generic [ref=e220]:
+          - generic [ref=e221]:
+            - heading "Sunspire Solar Intelligence" [level=3] [ref=e222]
+            - paragraph [ref=e223]: Demo for TestCo — Powered by Sunspire
+            - generic [ref=e224]:
+              - generic [ref=e225]:
+                - generic [ref=e226]: 📍
+                - generic [ref=e227]: "1700 Northside Drive Suite A7 #5164 Atlanta, GA 30318"
+              - generic [ref=e228]:
+                - generic [ref=e229]: GDPR
+                - generic [ref=e230]: CCPA
+                - generic [ref=e231]: SOC 2
+              - list [ref=e232]:
+                - listitem [ref=e233]:
+                  - generic [ref=e234]: ✉️
+                  - link "support@getsunspire.com" [ref=e235] [cursor=pointer]:
+                    - /url: mailto:support@getsunspire.com
+                - listitem [ref=e236]:
+                  - generic [ref=e237]: ✉️
+                  - link "billing@getsunspire.com" [ref=e238] [cursor=pointer]:
+                    - /url: mailto:billing@getsunspire.com
+                - listitem [ref=e239]:
+                  - generic [ref=e240]: ☎️
+                  - link "+1 (404) 123-4567" [ref=e241] [cursor=pointer]:
+                    - /url: tel:+14041234567
+          - generic [ref=e242]:
+            - heading "Quick Links" [level=4] [ref=e243]
+            - list [ref=e244]:
+              - listitem [ref=e245]:
+                - link "Pricing" [ref=e246] [cursor=pointer]:
+                  - /url: /pricing?address=123+Main+St%2C+Atlanta%2C+GA+30301&demo=1&company=TestCo&runsLeft=5
+              - listitem [ref=e247]:
+                - link "Partners" [ref=e248] [cursor=pointer]:
+                  - /url: /partners?address=123+Main+St%2C+Atlanta%2C+GA+30301&demo=1&company=TestCo&runsLeft=5
+              - listitem [ref=e249]:
+                - link "Support" [ref=e250] [cursor=pointer]:
+                  - /url: /support?address=123+Main+St%2C+Atlanta%2C+GA+30301&demo=1&company=TestCo&runsLeft=5
+          - generic [ref=e251]:
+            - heading "Legal & Support" [level=4] [ref=e252]
+            - list [ref=e253]:
+              - listitem [ref=e254]:
+                - link "Privacy Policy" [ref=e255] [cursor=pointer]:
+                  - /url: /privacy?address=123+Main+St%2C+Atlanta%2C+GA+30301&demo=1&company=TestCo&runsLeft=5
+              - listitem [ref=e256]:
+                - link "Terms of Service" [ref=e257] [cursor=pointer]:
+                  - /url: /terms?address=123+Main+St%2C+Atlanta%2C+GA+30301&demo=1&company=TestCo&runsLeft=5
+              - listitem [ref=e258]:
+                - link "Refund Policy" [ref=e259] [cursor=pointer]:
+                  - /url: /legal/refund?address=123+Main+St%2C+Atlanta%2C+GA+30301&demo=1&company=TestCo&runsLeft=5
+              - listitem [ref=e260]:
+                - link "Security" [ref=e261] [cursor=pointer]:
+                  - /url: /security?address=123+Main+St%2C+Atlanta%2C+GA+30301&demo=1&company=TestCo&runsLeft=5
+              - listitem [ref=e262]:
+                - link "DPA" [ref=e263] [cursor=pointer]:
+                  - /url: /dpa?address=123+Main+St%2C+Atlanta%2C+GA+30301&demo=1&company=TestCo&runsLeft=5
+              - listitem [ref=e264]:
+                - link "Do Not Sell My Data" [ref=e265] [cursor=pointer]:
+                  - /url: /do-not-sell?address=123+Main+St%2C+Atlanta%2C+GA+30301&demo=1&company=TestCo&runsLeft=5
+        - separator [ref=e266]
+        - generic [ref=e267]:
+          - generic [ref=e268]:
+            - generic [ref=e269]: ⚡
+            - generic [ref=e270]:
+              - text: Estimates generated
+              - text: using NREL PVWatts® v8
+          - generic [ref=e272]: Powered by Sunspire
+          - generic [ref=e273]:
+            - generic [ref=e274]: 🗺️
+            - generic [ref=e275]:
+              - text: Mapping & location
+              - text: data © Google
+  - alert [ref=e276]
+  - generic [ref=e277]: $0k
+```

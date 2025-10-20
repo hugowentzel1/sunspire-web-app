@@ -1,0 +1,187 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e6]:
+        - generic [ref=e8]: ☀️
+        - generic [ref=e9]:
+          - heading "Testcorp" [level=2] [ref=e10]
+          - paragraph [ref=e11]: Solar Intelligence
+    - main [ref=e12]:
+      - generic [ref=e13]:
+        - link "Back to Home" [ref=e15] [cursor=pointer]:
+          - /url: /?address=123+Main+St%2C+Atlanta%2C+GA&lat=33.7490&lng=-84.3880&placeId=test&company=TestCorp
+          - img [ref=e16]
+          - text: Back to Home
+        - generic [ref=e18]:
+          - region "Your TestCorp Solar Quote" [ref=e19]:
+            - heading "Your TestCorp Solar Quote" [level=1] [ref=e20]
+            - generic [ref=e24]: ☀️
+            - paragraph [ref=e25]: Comprehensive analysis for your property at
+            - paragraph [ref=e26]: 123 Main St, Atlanta, GA
+            - generic [ref=e28]: Generated on 10/19/2025
+          - generic [ref=e29]:
+            - generic [ref=e31]:
+              - generic [ref=e33]: ⚡
+              - generic [ref=e34]: 7.2 kW
+              - generic [ref=e35]: System Size
+            - generic [ref=e37]:
+              - generic [ref=e39]: ☀️
+              - generic [ref=e40]: 10,052 kWh
+              - generic [ref=e41]: Annual Production
+            - generic [ref=e43]:
+              - generic [ref=e45]: 💰
+              - generic [ref=e46]: $15,120
+              - generic [ref=e47]: Net Cost (After ITC)
+              - generic [ref=e48]: Includes 30% federal investment tax credit (ITC)
+            - generic [ref=e50]:
+              - generic [ref=e52]: 📈
+              - generic [ref=e53]: $1,651
+              - generic [ref=e54]: Year 1 Savings
+              - generic [ref=e55]: Based on current local utility rate and modeled production
+          - generic [ref=e58]:
+            - generic [ref=e60]:
+              - generic [ref=e61]:
+                - heading "Your Solar Savings Over Time" [level=3] [ref=e62]
+                - paragraph [ref=e63]: Simple view of how your solar investment pays off over 25 years
+              - button "View Methodology" [ref=e64] [cursor=pointer]
+            - application [ref=e68]:
+              - generic [ref=e72]:
+                - generic [ref=e73]:
+                  - generic [ref=e75]: "1"
+                  - generic [ref=e77]: "5"
+                  - generic [ref=e79]: "10"
+                  - generic [ref=e81]: "15"
+                  - generic [ref=e83]: "20"
+                  - generic [ref=e85]: "25"
+                - generic [ref=e86]: Years
+              - generic [ref=e87]:
+                - generic [ref=e88]:
+                  - generic [ref=e90]: $0k
+                  - generic [ref=e92]: $15k
+                  - generic [ref=e94]: $30k
+                  - generic [ref=e96]: $45k
+                  - generic [ref=e98]: $60k
+                - generic [ref=e99]: Total Savings
+            - generic [ref=e111]:
+              - generic [ref=e112]:
+                - generic [ref=e114]: $15k
+                - generic [ref=e115]: Investment
+              - generic [ref=e116]:
+                - generic [ref=e118]: 9 years
+                - generic [ref=e119]: Payback Time
+              - generic [ref=e120]:
+                - generic [ref=e122]: $53k
+                - generic [ref=e123]: 25-Year Savings
+            - paragraph [ref=e125]: "How to read this: The colored area shows your total savings growing over time. After 9 years, you'll have saved enough to cover your initial investment. By year 25, you'll have saved $53k total."
+            - img
+          - generic [ref=e126]:
+            - generic [ref=e128]:
+              - heading "Financial Analysis" [level=2] [ref=e129]
+              - generic [ref=e130]:
+                - generic [ref=e131]:
+                  - generic [ref=e132]: Payback Period
+                  - generic [ref=e133]: 9 years
+                - generic [ref=e134]:
+                  - generic [ref=e135]: 25-Year NPV
+                  - generic [ref=e136]: $7,889
+                - generic [ref=e137]:
+                  - generic [ref=e138]: ROI
+                  - generic [ref=e139]: 152%
+                - generic [ref=e140]:
+                  - generic [ref=e141]: Electricity Rate
+                  - generic [ref=e142]: $0.18/kWh (generic)
+            - generic [ref=e144]:
+              - heading "Environmental Impact" [level=2] [ref=e145]
+              - generic [ref=e146]:
+                - generic [ref=e147]:
+                  - generic [ref=e148]: CO₂ Offset/Year
+                  - generic [ref=e149]: 8,544 lbs
+                - generic [ref=e150]:
+                  - generic [ref=e151]: Solar Irradiance
+                  - generic [ref=e152]: 4.5 kWh/m²/day
+                - generic [ref=e153]:
+                  - generic [ref=e154]: System Tilt
+                  - generic [ref=e155]: 0°
+                - generic [ref=e156]:
+                  - generic [ref=e157]: System Losses
+                  - generic [ref=e158]: 5%
+                - generic [ref=e159]:
+                  - generic [ref=e160]: Shading Analysis
+                  - generic [ref=e161]: proxy (medium accuracy)
+                - generic [ref=e162]:
+                  - generic [ref=e163]: Annual Shading Loss
+                  - generic [ref=e164]: 10%
+            - generic [ref=e166]:
+              - heading "Calculation Details & Data Sources" [level=2] [ref=e167]
+              - generic [ref=e168]:
+                - heading "Calculation Assumptions" [level=3] [ref=e169]
+                - generic [ref=e170]:
+                  - generic [ref=e171]:
+                    - generic [ref=e172]: Federal Tax Credit (ITC)
+                    - generic [ref=e173]: 30%
+                  - generic [ref=e174]:
+                    - generic [ref=e175]: Cost per Watt
+                    - generic [ref=e176]: $3
+                  - generic [ref=e177]:
+                    - generic [ref=e178]: Panel Degradation
+                    - generic [ref=e179]: 0.5%/year
+                  - generic [ref=e180]:
+                    - generic [ref=e181]: O&M Cost
+                    - generic [ref=e182]: $22/kW/year
+                  - generic [ref=e183]:
+                    - generic [ref=e184]: Rate Increase
+                    - generic [ref=e185]: 2.5%/year
+                  - generic [ref=e186]:
+                    - generic [ref=e187]: Discount Rate
+                    - generic [ref=e188]: 7%
+              - generic [ref=e189]:
+                - heading "Data Sources" [level=3] [ref=e190]
+                - generic [ref=e191]:
+                  - generic [ref=e194]: Solar irradiance data from industry-standard models
+                  - generic [ref=e197]: Utility rates from local utility databases
+                  - generic [ref=e200]: Financial calculations based on current federal and state incentives
+                - generic [ref=e201]:
+                  - paragraph
+                  - paragraph [ref=e202]: Last updated 10/19/2025
+          - region "Data sources and methodology" [ref=e204]:
+            - paragraph [ref=e206]: Modeled estimate — not a performance guarantee. Data from NREL PVWatts® v8, OpenEI URDB / EIA, and geographic shading proxy.
+          - region "Next steps" [ref=e208]:
+            - generic [ref=e210]:
+              - button "Book a Consultation" [ref=e211] [cursor=pointer]: 📅 Book a Consultation
+              - link "Talk to a Specialist" [ref=e212] [cursor=pointer]:
+                - /url: tel:+14041234567
+                - text: 📞 Talk to a Specialist
+            - generic [ref=e215]:
+              - button "Download PDF Report" [ref=e216] [cursor=pointer]: 📄 Download PDF
+              - button "Copy Share Link" [ref=e217] [cursor=pointer]: 🔗 Copy Share Link
+    - region "Sticky action" [ref=e218]:
+      - button "Book a Free Consultation" [ref=e220] [cursor=pointer]
+    - contentinfo [ref=e221]:
+      - generic [ref=e222]:
+        - generic [ref=e224]: TestCorp
+        - navigation "Legal and support" [ref=e225]:
+          - list [ref=e226]:
+            - listitem [ref=e227]:
+              - link "Privacy Policy" [ref=e228] [cursor=pointer]:
+                - /url: /legal/privacy?address=123+Main+St%2C+Atlanta%2C+GA&lat=33.7490&lng=-84.3880&placeId=test&company=TestCorp
+              - generic [ref=e229]: •
+            - listitem [ref=e230]:
+              - link "Terms of Service" [ref=e231] [cursor=pointer]:
+                - /url: /legal/terms
+            - listitem [ref=e232]:
+              - link "Accessibility" [ref=e233] [cursor=pointer]:
+                - /url: /legal/accessibility
+              - generic [ref=e234]: •
+            - listitem [ref=e235]:
+              - link "Contact" [ref=e236] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=e238]:
+          - text: Powered by
+          - link "Sunspire" [ref=e239] [cursor=pointer]:
+            - /url: https://getsunspire.com
+  - alert [ref=e240]
+  - generic [ref=e241]: $0k
+```

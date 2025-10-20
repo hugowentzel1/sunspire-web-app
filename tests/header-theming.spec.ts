@@ -41,7 +41,8 @@ test.describe('Header & theming', () => {
       expect(await toPx(addr)).toBeGreaterThanOrEqual(17);
 
       // Address: balanced wrap, ≤ 2 lines, no ellipsis
-      await expect(addr).toContainText(/,\s+(AZ|GA)/);
+      const addressText = await addr.textContent();
+      expect(addressText).toMatch(/, (AZ|GA)/);
       expect(await addr.innerText()).not.toContain('…');
       expect(await lineCount(addr)).toBeLessThanOrEqual(2);
 

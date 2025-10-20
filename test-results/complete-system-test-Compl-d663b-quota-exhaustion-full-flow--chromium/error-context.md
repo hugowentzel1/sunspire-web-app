@@ -1,0 +1,249 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - banner [ref=e3]:
+      - generic [ref=e5]:
+        - generic [ref=e6]:
+          - img "Netflix logo" [ref=e7]
+          - generic [ref=e8]:
+            - heading "Netflix" [level=2] [ref=e9]
+            - paragraph [ref=e10]: Solar Intelligence
+        - navigation [ref=e11]:
+          - link "Pricing" [ref=e12] [cursor=pointer]:
+            - /url: /pricing?company=Netflix&demo=1&address=Test3&lat=34.0537&lng=-118.2428&placeId=test3
+          - link "Partners" [ref=e13] [cursor=pointer]:
+            - /url: /partners?company=Netflix&demo=1&address=Test3&lat=34.0537&lng=-118.2428&placeId=test3
+          - link "Support" [ref=e14] [cursor=pointer]:
+            - /url: /support?company=Netflix&demo=1&address=Test3&lat=34.0537&lng=-118.2428&placeId=test3
+          - button "New Analysis" [ref=e15] [cursor=pointer]
+    - main [ref=e16]:
+      - generic [ref=e17]:
+        - link "Back to Home" [ref=e19] [cursor=pointer]:
+          - /url: /?company=Netflix&demo=1&address=Test3&lat=34.0537&lng=-118.2428&placeId=test3
+          - img [ref=e20]
+          - text: Back to Home
+        - generic [ref=e22]:
+          - region "Your Netflix Solar Quote (Live Preview)" [ref=e23]:
+            - heading "Your Netflix Solar Quote (Live Preview)" [level=1] [ref=e24]
+            - img "Netflix logo" [ref=e27]
+            - paragraph [ref=e28]: Comprehensive analysis for your property at
+            - paragraph [ref=e29]: Test3
+            - generic [ref=e30]:
+              - generic [ref=e31]: Generated on 10/19/2025
+              - generic [ref=e32]:
+                - text: "Preview:"
+                - generic [ref=e33]: "-4 runs left"
+              - generic [ref=e34]:
+                - text: Expires in
+                - generic [ref=e35]: 6d 23h 59m 54s
+          - generic [ref=e36]:
+            - generic [ref=e38]:
+              - generic [ref=e40]: ⚡
+              - generic [ref=e41]: 7.2 kW
+              - generic [ref=e42]: System Size
+            - generic [ref=e44]:
+              - generic [ref=e46]: ☀️
+              - generic [ref=e47]: 12,286 kWh
+              - generic [ref=e48]: Annual Production
+            - generic [ref=e49]:
+              - generic [ref=e50]:
+                - generic [ref=e52]: 💰
+                - generic [ref=e53]: — — —
+                - generic [ref=e54]: Net Cost (After ITC)
+              - button "Unlock Full Report" [ref=e56] [cursor=pointer]
+            - generic [ref=e57]:
+              - generic [ref=e58]:
+                - generic [ref=e60]: 📈
+                - generic [ref=e61]: — — —
+                - generic [ref=e62]: Year 1 Savings
+              - button "Unlock Full Report" [ref=e64] [cursor=pointer]
+          - generic [ref=e67]:
+            - generic [ref=e69]:
+              - generic [ref=e70]:
+                - heading "Your Solar Savings Over Time" [level=3] [ref=e71]
+                - paragraph [ref=e72]: Simple view of how your solar investment pays off over 25 years
+              - button "View Methodology" [ref=e73] [cursor=pointer]
+            - application [ref=e77]:
+              - generic [ref=e81]:
+                - generic [ref=e82]:
+                  - generic [ref=e84]: "1"
+                  - generic [ref=e86]: "5"
+                  - generic [ref=e88]: "10"
+                  - generic [ref=e90]: "15"
+                  - generic [ref=e92]: "20"
+                  - generic [ref=e94]: "25"
+                - generic [ref=e95]: Years
+              - generic [ref=e96]:
+                - generic [ref=e97]:
+                  - generic [ref=e99]: $0k
+                  - generic [ref=e101]: $20k
+                  - generic [ref=e103]: $40k
+                  - generic [ref=e105]: $60k
+                  - generic [ref=e107]: $80k
+                - generic [ref=e108]: Total Savings
+            - generic [ref=e120]:
+              - generic [ref=e121]:
+                - generic [ref=e123]: $15k
+                - generic [ref=e124]: Investment
+              - generic [ref=e125]:
+                - generic [ref=e127]: 7 years
+                - generic [ref=e128]: Payback Time
+              - generic [ref=e129]:
+                - generic [ref=e131]: $66k
+                - generic [ref=e132]: 25-Year Savings
+            - paragraph [ref=e134]: "How to read this: The red area shows your total savings growing over time. After 7 years, you'll have saved enough to cover your initial investment. By year 25, you'll have saved $66k total."
+            - img
+          - generic [ref=e135]:
+            - generic [ref=e136]:
+              - generic [ref=e137]:
+                - heading "Financial Analysis" [level=2] [ref=e138]
+                - generic [ref=e139]:
+                  - generic [ref=e140]:
+                    - generic [ref=e141]: Payback Period
+                    - generic [ref=e142]: — — —
+                  - generic [ref=e143]:
+                    - generic [ref=e144]: 25-Year NPV
+                    - generic [ref=e145]: — — —
+                  - generic [ref=e146]:
+                    - generic [ref=e147]: ROI
+                    - generic [ref=e148]: — — —
+                  - generic [ref=e149]:
+                    - generic [ref=e150]: Electricity Rate
+                    - generic [ref=e151]: $0.18/kWh (generic)
+              - button "Unlock Full Report" [ref=e153] [cursor=pointer]
+            - generic [ref=e154]:
+              - generic [ref=e155]:
+                - heading "Environmental Impact" [level=2] [ref=e156]
+                - generic [ref=e157]:
+                  - generic [ref=e158]:
+                    - generic [ref=e159]: CO₂ Offset/Year
+                    - generic [ref=e160]: 10,443 lbs
+                  - generic [ref=e161]:
+                    - generic [ref=e162]: Solar Irradiance
+                    - generic [ref=e163]: 5.5 kWh/m²/day
+                  - generic [ref=e164]:
+                    - generic [ref=e165]: System Tilt
+                    - generic [ref=e166]: 0°
+                  - generic [ref=e167]:
+                    - generic [ref=e168]: System Losses
+                    - generic [ref=e169]: 5%
+                  - generic [ref=e170]:
+                    - generic [ref=e171]: Shading Analysis
+                    - generic [ref=e172]: proxy (medium accuracy)
+                  - generic [ref=e173]:
+                    - generic [ref=e174]: Annual Shading Loss
+                    - generic [ref=e175]: 10%
+              - button "Unlock Full Report" [ref=e177] [cursor=pointer]
+            - generic [ref=e179]:
+              - heading "Calculation Details & Data Sources" [level=2] [ref=e180]
+              - generic [ref=e181]:
+                - heading "Calculation Assumptions" [level=3] [ref=e182]
+                - generic [ref=e183]:
+                  - generic [ref=e184]:
+                    - generic [ref=e185]: Federal Tax Credit (ITC)
+                    - generic [ref=e186]: 30%
+                  - generic [ref=e187]:
+                    - generic [ref=e188]: Cost per Watt
+                    - generic [ref=e189]: $3
+                  - generic [ref=e190]:
+                    - generic [ref=e191]: Panel Degradation
+                    - generic [ref=e192]: 0.5%/year
+                  - generic [ref=e193]:
+                    - generic [ref=e194]: O&M Cost
+                    - generic [ref=e195]: $22/kW/year
+                  - generic [ref=e196]:
+                    - generic [ref=e197]: Rate Increase
+                    - generic [ref=e198]: 2.5%/year
+                  - generic [ref=e199]:
+                    - generic [ref=e200]: Discount Rate
+                    - generic [ref=e201]: 7%
+          - region "Data sources and methodology" [ref=e203]:
+            - paragraph [ref=e205]: Modeled estimate — not a performance guarantee. Data from NREL PVWatts® v8, OpenEI URDB / EIA, and geographic shading proxy.
+          - region "Ready to Launch Your Branded, Customer-Facing Tool?" [ref=e207]:
+            - generic [ref=e208]:
+              - heading "Ready to Launch Your Branded, Customer-Facing Tool?" [level=2] [ref=e209]
+              - paragraph [ref=e210]: Get the full paid version—customer-facing and under your brand—with complete projections, detailed assumptions, and unblurred savings charts.
+              - link "Launch Your Branded Version Now" [ref=e212] [cursor=pointer]:
+                - /url: /api/stripe/create-checkout-session
+              - paragraph [ref=e213]: $99/mo + $399 setup • Live in 24 hours — or your setup fee is refunded..
+              - paragraph [ref=e214]: Comparable tools cost $2,500+/mo.
+    - contentinfo [ref=e215]:
+      - generic [ref=e217]:
+        - generic [ref=e218]:
+          - generic [ref=e219]:
+            - heading "Sunspire Solar Intelligence" [level=3] [ref=e220]
+            - paragraph [ref=e221]: Demo for Netflix — Powered by Sunspire
+            - generic [ref=e222]:
+              - generic [ref=e223]:
+                - generic [ref=e224]: 📍
+                - generic [ref=e225]:
+                  - text: "1700 Northside Drive Suite A7 #5164"
+                  - text: Atlanta, GA 30318
+              - generic [ref=e226]:
+                - generic [ref=e227]: GDPR
+                - generic [ref=e228]: CCPA
+                - generic [ref=e229]: SOC 2
+              - list [ref=e230]:
+                - listitem [ref=e231]:
+                  - generic [ref=e232]: ✉️
+                  - link "support@getsunspire.com" [ref=e233] [cursor=pointer]:
+                    - /url: mailto:support@getsunspire.com
+                - listitem [ref=e234]:
+                  - generic [ref=e235]: ✉️
+                  - link "billing@getsunspire.com" [ref=e236] [cursor=pointer]:
+                    - /url: mailto:billing@getsunspire.com
+                - listitem [ref=e237]:
+                  - generic [ref=e238]: ☎️
+                  - link "+1 (404) 123-4567" [ref=e239] [cursor=pointer]:
+                    - /url: tel:+14041234567
+          - generic [ref=e240]:
+            - heading "Quick Links" [level=4] [ref=e241]
+            - list [ref=e242]:
+              - listitem [ref=e243]:
+                - link "Pricing" [ref=e244] [cursor=pointer]:
+                  - /url: /pricing?company=Netflix&demo=1&address=Test3&lat=34.0537&lng=-118.2428&placeId=test3
+              - listitem [ref=e245]:
+                - link "Partners" [ref=e246] [cursor=pointer]:
+                  - /url: /partners?company=Netflix&demo=1&address=Test3&lat=34.0537&lng=-118.2428&placeId=test3
+              - listitem [ref=e247]:
+                - link "Support" [ref=e248] [cursor=pointer]:
+                  - /url: /support?company=Netflix&demo=1&address=Test3&lat=34.0537&lng=-118.2428&placeId=test3
+          - generic [ref=e249]:
+            - heading "Legal & Support" [level=4] [ref=e250]
+            - list [ref=e251]:
+              - listitem [ref=e252]:
+                - link "Privacy Policy" [ref=e253] [cursor=pointer]:
+                  - /url: /privacy?company=Netflix&demo=1&address=Test3&lat=34.0537&lng=-118.2428&placeId=test3
+              - listitem [ref=e254]:
+                - link "Terms of Service" [ref=e255] [cursor=pointer]:
+                  - /url: /terms?company=Netflix&demo=1&address=Test3&lat=34.0537&lng=-118.2428&placeId=test3
+              - listitem [ref=e256]:
+                - link "Refund Policy" [ref=e257] [cursor=pointer]:
+                  - /url: /legal/refund?company=Netflix&demo=1&address=Test3&lat=34.0537&lng=-118.2428&placeId=test3
+              - listitem [ref=e258]:
+                - link "Security" [ref=e259] [cursor=pointer]:
+                  - /url: /security?company=Netflix&demo=1&address=Test3&lat=34.0537&lng=-118.2428&placeId=test3
+              - listitem [ref=e260]:
+                - link "DPA" [ref=e261] [cursor=pointer]:
+                  - /url: /dpa?company=Netflix&demo=1&address=Test3&lat=34.0537&lng=-118.2428&placeId=test3
+              - listitem [ref=e262]:
+                - link "Do Not Sell My Data" [ref=e263] [cursor=pointer]:
+                  - /url: /do-not-sell?company=Netflix&demo=1&address=Test3&lat=34.0537&lng=-118.2428&placeId=test3
+        - separator [ref=e264]
+        - generic [ref=e265]:
+          - generic [ref=e266]:
+            - generic [ref=e267]: ⚡
+            - generic [ref=e268]:
+              - text: Estimates generated
+              - text: using NREL PVWatts® v8
+          - generic [ref=e270]: Powered by Sunspire
+          - generic [ref=e271]:
+            - generic [ref=e272]: 🗺️
+            - generic [ref=e273]:
+              - text: Mapping & location
+              - text: data © Google
+  - alert [ref=e274]
+  - generic [ref=e275]: $0k
+```
