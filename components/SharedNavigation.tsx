@@ -111,6 +111,9 @@ export default function SharedNavigation() {
         const utm_source = urlParams.get('utm_source');
         const utm_campaign = urlParams.get('utm_campaign');
         
+        // Capture current page URL for cancel redirect
+        const cancel_url = window.location.href;
+        
         // Start checkout
         const response = await fetch('/api/stripe/create-checkout-session', {
           method: 'POST',
@@ -120,7 +123,8 @@ export default function SharedNavigation() {
             token,
             company,
             utm_source,
-            utm_campaign
+            utm_campaign,
+            cancel_url
           })
         });
         
@@ -167,11 +171,11 @@ export default function SharedNavigation() {
                 <span className="text-white text-lg font-bold">☀️</span>
               </div>
             )}
-            <div className="flex flex-col gap-0">
-              <h1 className="text-2xl font-black text-[var(--brand-primary)] leading-tight">
+            <div>
+              <h1 className="text-2xl font-black text-[var(--brand-primary)]">
                 {b.enabled ? b.brand : 'Your Company'}
               </h1>
-              <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase leading-tight -mt-0.5">
+              <p className="text-xs font-semibold text-gray-500 tracking-widest uppercase">
                 Solar Intelligence
               </p>
             </div>

@@ -56,8 +56,8 @@ function HomeContent() {
   // Demo mode detection - use brand state instead of separate hook
   const isDemo = b.isDemo;
   
-  // Add loading state to wait for brand takeover to complete
-  const [isBrandLoaded, setIsBrandLoaded] = useState(false);
+  // Remove the loading state check - brand always has a default value
+  // const [isBrandLoaded, setIsBrandLoaded] = useState(false);
   
   // Debug logging for brand state
   useEffect(() => {
@@ -65,16 +65,6 @@ function HomeContent() {
     console.log('Main page localStorage:', localStorage.getItem('sunspire-brand-takeover'));
     console.log('Main page isDemo:', isDemo);
   }, [b, isDemo]);
-
-  // Wait for brand takeover to complete - use a timeout to ensure state has time to update
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      console.log('Brand loading check:', { brand: b.brand, isDemo, enabled: b.enabled });
-      setIsBrandLoaded(true);
-    }, 100); // Small delay to allow brand state to update
-
-    return () => clearTimeout(timer);
-  }, [b.brand, isDemo, b.enabled]);
   
   // Brand colors from URL
   useBrandColors();
@@ -128,16 +118,8 @@ function HomeContent() {
   }, [isDemo, searchParams]);
 
   // Show loading state while brand is being initialized
-  if (!isBrandLoaded) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100">
-        <div className="text-center">
-          <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 animate-pulse"></div>
-          <p className="text-gray-600">Loading...</p>
-        </div>
-      </div>
-    );
-  }
+  // Brand always has a default value, no need to wait for it to load
+  // Removed: if (!isBrandLoaded) check
 
   // Early return for paid versions to prevent demo content from rendering
   // Only redirect if: NOT in demo mode, has company, NO demo param
@@ -261,6 +243,9 @@ function HomeContent() {
         const utm_source = searchParams?.get('utm_source');
         const utm_campaign = searchParams?.get('utm_campaign');
         
+        // Capture current page URL for cancel redirect
+        const cancel_url = window.location.href;
+        
         // Show optimistic loading state with micro-feedback
         const button = document.querySelector('[data-cta-button]') as HTMLButtonElement;
         if (button) {
@@ -284,7 +269,8 @@ function HomeContent() {
               token,
               company,
               utm_source,
-              utm_campaign
+              utm_campaign,
+              cancel_url
             })
           });
           
@@ -327,7 +313,7 @@ function HomeContent() {
         <div className="hero text-center space-y-6">
           
           {/* Live confirmation bar for paid mode */}
-          {isBrandLoaded && !isDemo && (
+          {!isDemo && (
             <div className="mx-auto max-w-3xl mt-4 rounded-lg bg-emerald-50 text-emerald-900 text-sm px-4 py-2 border border-emerald-200 flex items-center justify-center gap-6" {...tid('live-bar')}>
               <span className="flex-shrink-0 mr-2">✅</span>
               <span>Live for <b>{b.brand || 'Your Company'}</b>. Leads now save to your CRM.</span>
@@ -366,7 +352,7 @@ function HomeContent() {
           )}
           
           {/* HERO ICON: render only one (fix double) */}
-          {!isBrandLoaded ? (
+          {false ? (
             <div className="w-32 h-32 mx-auto rounded-full flex items-center justify-center shadow-2xl relative overflow-hidden animate-pulse" style={{ background: `linear-gradient(135deg, #e5e7eb, #d1d5db)` }}>
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
               <div className="w-12 h-12 bg-gray-300 rounded-lg"></div>
