@@ -27,6 +27,9 @@ export default function PricingPage() {
       const utm_source = searchParams?.get('utm_source');
       const utm_campaign = searchParams?.get('utm_campaign');
       
+      // Capture current page URL for cancel redirect
+      const currentUrl = window.location.href;
+      
       const response = await fetch('/api/stripe/create-checkout-session', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -35,7 +38,8 @@ export default function PricingPage() {
           token,
           company,
           utm_source,
-          utm_campaign
+          utm_campaign,
+          cancel_url: currentUrl
         })
       });
       

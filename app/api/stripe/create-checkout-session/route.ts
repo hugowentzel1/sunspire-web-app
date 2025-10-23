@@ -51,6 +51,7 @@ export async function POST(req: NextRequest) {
       utm_source,
       utm_campaign,
       tenant_handle,
+      cancel_url,
     } = body;
 
     console.log("🔍 Creating Stripe checkout session...");
@@ -62,6 +63,7 @@ export async function POST(req: NextRequest) {
       utm_source,
       utm_campaign,
       tenant_handle,
+      cancel_url,
     });
 
     // Build URLs
@@ -99,7 +101,7 @@ export async function POST(req: NextRequest) {
         utm_campaign: utm_campaign || "",
       },
       success_url: `${base}/activate?session_id={CHECKOUT_SESSION_ID}&company=${encodeURIComponent(company || '')}&plan=${plan}`,
-      cancel_url: `${base}/?canceled=1&company=${encodeURIComponent(company || '')}`,
+      cancel_url: cancel_url || `${base}/?canceled=1&company=${encodeURIComponent(company || '')}`,
       customer_email: email || undefined,
       allow_promotion_codes: true,
       automatic_tax: { enabled: true },
@@ -202,7 +204,7 @@ export async function GET(req: NextRequest) {
         utm_campaign: utm_campaign || "",
       },
       success_url: `${base}/activate?session_id={CHECKOUT_SESSION_ID}&company=${encodeURIComponent(company || '')}&plan=${plan}`,
-      cancel_url: `${base}/?canceled=1&company=${encodeURIComponent(company || '')}`,
+      cancel_url: cancel_url || `${base}/?canceled=1&company=${encodeURIComponent(company || '')}`,
       customer_email: email || undefined,
       allow_promotion_codes: true,
       automatic_tax: { enabled: true },

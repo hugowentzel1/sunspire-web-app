@@ -40,6 +40,7 @@ export function StripeCheckoutButton({
         token: params.get("token") || undefined,
         utm_source: params.get("utm_source") || undefined,
         utm_campaign: params.get("utm_campaign") || undefined,
+        cancel_url: window.location.href, // Capture current page for cancel redirect
       };
 
       const response = await fetch("/api/stripe/create-checkout-session", {
@@ -121,6 +122,7 @@ export function SimpleCheckoutButton({
         token: params.get("token") || undefined,
         utm_source: params.get("utm_source") || undefined,
         utm_campaign: params.get("utm_campaign") || undefined,
+        cancel_url: window.location.href, // Capture current page for cancel redirect
       };
 
       const response = await fetch("/api/stripe/create-checkout-session", {

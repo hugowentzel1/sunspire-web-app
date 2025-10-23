@@ -12,6 +12,10 @@ export async function startCheckout(explicit?: {
     const sp = new URLSearchParams(
       typeof window !== "undefined" ? window.location.search : "",
     );
+    
+    // Capture the current page URL for cancel redirect
+    const currentUrl = typeof window !== "undefined" ? window.location.href : "";
+    
     const body = {
       plan: explicit?.plan ?? "starter",
       company: explicit?.company ?? sp.get("company"),
@@ -19,6 +23,7 @@ export async function startCheckout(explicit?: {
       utm_source: explicit?.utm_source ?? sp.get("utm_source"),
       utm_campaign: explicit?.utm_campaign ?? sp.get("utm_campaign"),
       email: explicit?.email ?? null,
+      cancel_url: currentUrl, // Pass current URL for cancel redirect
     };
 
     const res = await fetch("/api/stripe/create-checkout-session", {
