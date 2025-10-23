@@ -5,7 +5,8 @@ import { useParams, useSearchParams } from 'next/navigation';
 // Verify magic link token (client-side version)
 function verifyMagicLink(token: string): { email: string; company: string } | null {
   try {
-    const decoded = JSON.parse(Buffer.from(token, 'base64url').toString());
+    // Use atob for browser-compatible base64 decoding
+    const decoded = JSON.parse(atob(token.replace(/-/g, '+').replace(/_/g, '/')));
     
     // Check if token is less than 7 days old
     const age = Date.now() - decoded.timestamp;
