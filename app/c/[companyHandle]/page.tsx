@@ -34,11 +34,13 @@ export default function CompanyDashboard() {
   const [copiedItem, setCopiedItem] = useState<string | null>(null);
 
   const fetchTenantData = useCallback(async () => {
+    console.log('🔧 fetchTenantData called for:', companyHandle);
     try {
       // In production, this would fetch from Airtable via API
       // For now, generate the data based on company handle
-      const baseUrl = window.location.origin;
+      const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
       
+      console.log('🔧 Setting tenant data...');
       setTenantData({
         company: companyHandle,
         instantUrl: `${baseUrl}/${companyHandle}`,
@@ -53,6 +55,7 @@ export default function CompanyDashboard() {
         apiKey: 'sk_' + Math.random().toString(36).substring(2, 50),
         status: 'active'
       });
+      console.log('🔧 Setting isLoading to false...');
       setIsLoading(false);
     } catch (error) {
       console.error('Error fetching tenant data:', error);
