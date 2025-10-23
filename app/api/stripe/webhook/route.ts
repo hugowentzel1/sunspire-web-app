@@ -1,4 +1,4 @@
-// Test redeploy - Stripe webhook integration ready for testing
+// Stripe webhook with idempotency and email notifications
 import { NextRequest, NextResponse } from "next/server";
 import { getStripe } from "@/src/lib/stripe";
 import { headers } from "next/headers";
@@ -15,6 +15,8 @@ import {
   buildFixedQuoteDomain,
   extractCompanyWebsite,
 } from "@/src/lib/domainRoot";
+import { withIdempotency } from "@/lib/webhook-idempotency";
+import { sendOnboardingEmail, generateMagicLink } from "@/lib/email-service";
 
 export async function POST(req: NextRequest) {
   try {
@@ -31,27 +33,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Webhook idempotency check
+    // Parse event ID for idempotency
     const eventId = JSON.parse(body).id;
-    const seenKey = `stripe:${eventId}`;
-
-    // In a real implementation, you would use KV storage here
-    // For now, we'll use a simple in-memory check (not production-ready)
-    if ((globalThis as any).seenEvents?.has(seenKey)) {
-      console.log(`Event ${eventId} already processed, skipping`);
-      return NextResponse.json({ ok: true });
-    }
-
-    // Mark event as seen (in production, use KV with TTL)
-    if (!(globalThis as any).seenEvents) (globalThis as any).seenEvents = new Set();
-    (globalThis as any).seenEvents.add(seenKey);
-
-    // Clean up old events (keep last 1000)
-    if ((globalThis as any).seenEvents.size > 1000) {
-      const eventsArray = Array.from((globalThis as any).seenEvents);
-      (globalThis as any).seenEvents = new Set(eventsArray.slice(-500));
-    }
-
+    
     let event: Stripe.Event;
 
     try {
@@ -66,12 +50,14 @@ export async function POST(req: NextRequest) {
     }
 
     try {
-      switch (event.type) {
-        case "checkout.session.completed":
-          await handleCheckoutCompleted(
-            event.data.object as Stripe.Checkout.Session,
-          );
-          break;
+      // Use idempotency wrapper to prevent duplicate processing
+      await withIdempotency(eventId, async () => {
+        switch (event.type) {
+          case "checkout.session.completed":
+            await handleCheckoutCompleted(
+              event.data.object as Stripe.Checkout.Session,
+            );
+            break;
 
         case "payment_intent.succeeded":
           await handlePaymentSucceeded(
@@ -103,7 +89,10 @@ export async function POST(req: NextRequest) {
 
         default:
           console.log(`Unhandled event type: ${event.type}`);
-      }
+        }
+        
+        return { received: true };
+      });
 
       return NextResponse.json({ received: true });
     } catch (error) {
@@ -180,11 +169,12 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
     console.log("✅ Tenant created/updated:", tenant.id);
 
     // Set up custom domain if company website is available
+    let requestedDomain: string | null = null;
     const companyWebsite = extractCompanyWebsite(company);
     if (companyWebsite) {
       const root = getRootDomain(companyWebsite);
       if (root) {
-        const requestedDomain = buildFixedQuoteDomain(root);
+        requestedDomain = buildFixedQuoteDomain(root);
         if (requestedDomain) {
           await setRequestedDomain(company, requestedDomain);
           await setTenantDomainStatus(company, "proposed");
@@ -204,7 +194,35 @@ async function handleCheckoutCompleted(session: Stripe.Checkout.Session) {
 
     console.log(`✅ Tenant provisioned successfully: ${company}`);
 
-    // TODO: Send onboarding email with loginUrl, apiKey, captureUrl
+    // Send onboarding email with all access details
+    if (session.customer_email) {
+      const instantUrl = `${baseUrl}/${company}`;
+      const customDomain = requestedDomain || `quote.${company}.com`;
+      const embedCode = `<iframe 
+  src="${instantUrl}" 
+  width="100%" 
+  height="600" 
+  frameborder="0"
+  title="${company} Solar Calculator">
+</iframe>`;
+      const dashboardUrl = `${baseUrl}/c/${company}`;
+      const magicLinkUrl = generateMagicLink(session.customer_email, company);
+
+      await sendOnboardingEmail({
+        toEmail: session.customer_email,
+        company,
+        instantUrl,
+        customDomain,
+        embedCode,
+        apiKey,
+        dashboardUrl,
+        magicLinkUrl,
+      });
+
+      console.log(`✅ Onboarding email sent to: ${session.customer_email}`);
+    } else {
+      console.warn('⚠️  No customer email - skipping onboarding email');
+    }
   } catch (err: unknown) {
     console.error("❌ Failed to provision tenant:", err);
     const meta =
