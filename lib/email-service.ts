@@ -6,7 +6,7 @@
 import nodemailer from 'nodemailer';
 
 // Create transporter (using Gmail SMTP for now - should use Resend/SendGrid in production)
-const transporter = nodemailer.createTransporter({
+const transporter = nodemailer.createTransport({
   host: process.env.SMTP_HOST || 'smtp.gmail.com',
   port: parseInt(process.env.SMTP_PORT || '587'),
   secure: false,
