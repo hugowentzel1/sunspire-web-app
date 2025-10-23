@@ -87,7 +87,8 @@ export default function CompanyDashboard() {
 
     // Fetch tenant data
     fetchTenantData();
-  }, [token, companyHandle, fetchTenantData]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [token, companyHandle]);
 
   const copyToClipboard = (text: string, itemName: string) => {
     navigator.clipboard.writeText(text);
