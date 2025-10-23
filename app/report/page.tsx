@@ -165,7 +165,10 @@ function ReportContent() {
       const utm_source = urlParams.get('utm_source');
       const utm_campaign = urlParams.get('utm_campaign');
       
-      console.log('🛒 Starting checkout with params:', { token, company, utm_source, utm_campaign });
+      // Capture current page URL for cancel redirect
+      const cancel_url = window.location.href;
+      
+      console.log('🛒 Starting checkout with params:', { token, company, utm_source, utm_campaign, cancel_url });
       
       // Start checkout
       const response = await fetch('/api/stripe/create-checkout-session', {
@@ -176,7 +179,8 @@ function ReportContent() {
           token,
           company,
           utm_source,
-          utm_campaign
+          utm_campaign,
+          cancel_url
         })
       });
       
@@ -756,7 +760,7 @@ function ReportContent() {
               className="text-[clamp(28px,4.5vw,40px)] font-semibold tracking-tight text-slate-900"
             >
               Your{' '}
-              <span className="font-semibold [color:var(--brand-ink)]">
+              <span className="font-semibold" style={{ color: b.primary || 'var(--brand-primary)' }}>
                 {b.brand || 'Company'}
               </span>{' '}
               Solar Quote

@@ -43,6 +43,9 @@ export default function LockOverlay() {
       const utm_source = urlParams.get("utm_source");
       const utm_campaign = urlParams.get("utm_campaign");
 
+      // Capture current page URL for cancel redirect
+      const cancel_url = window.location.href;
+
       // Start checkout
       const response = await fetch("/api/stripe/create-checkout-session", {
         method: "POST",
@@ -53,6 +56,7 @@ export default function LockOverlay() {
           company,
           utm_source,
           utm_campaign,
+          cancel_url,
         }),
       });
 
