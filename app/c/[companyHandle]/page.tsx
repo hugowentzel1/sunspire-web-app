@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams, useSearchParams } from 'next/navigation';
 // Verify magic link token (client-side version)
 function verifyMagicLink(token: string): { email: string; company: string } | null {
@@ -33,6 +33,34 @@ export default function CompanyDashboard() {
   const [error, setError] = useState<string | null>(null);
   const [copiedItem, setCopiedItem] = useState<string | null>(null);
 
+  const fetchTenantData = useCallback(async () => {
+    try {
+      // In production, this would fetch from Airtable via API
+      // For now, generate the data based on company handle
+      const baseUrl = window.location.origin;
+      
+      setTenantData({
+        company: companyHandle,
+        instantUrl: `${baseUrl}/${companyHandle}`,
+        customDomain: `quote.${companyHandle}.com`,
+        embedCode: `<iframe 
+  src="${baseUrl}/${companyHandle}" 
+  width="100%" 
+  height="600" 
+  frameborder="0"
+  title="${companyHandle} Solar Calculator">
+</iframe>`,
+        apiKey: 'sk_' + Math.random().toString(36).substring(2, 50),
+        status: 'active'
+      });
+      setIsLoading(false);
+    } catch (error) {
+      console.error('Error fetching tenant data:', error);
+      setError('Failed to load tenant data');
+      setIsLoading(false);
+    }
+  }, [companyHandle]);
+
   useEffect(() => {
     // Verify magic link token
     if (token) {
@@ -59,37 +87,7 @@ export default function CompanyDashboard() {
 
     // Fetch tenant data
     fetchTenantData();
-  }, [token, companyHandle]);
-
-  const fetchTenantData = async () => {
-    try {
-      // In production, this would fetch from Airtable via API
-      // For now, generate the data based on company handle
-      const baseUrl = window.location.origin;
-      
-      setTenantData({
-        company: companyHandle,
-        instantUrl: `${baseUrl}/${companyHandle}`,
-        customDomain: `quote.${companyHandle}.com`,
-        embedCode: `<iframe 
-  src="${baseUrl}/${companyHandle}" 
-  width="100%" 
-  height="600" 
-  frameborder="0"
-  title="${companyHandle} Solar Calculator">
-</iframe>`,
-        apiKey: 'sk_' + Math.random().toString(36).substring(2, 50),
-        plan: 'Starter',
-        status: 'Active',
-        domainStatus: 'Pending Setup',
-      });
-      
-      setIsLoading(false);
-    } catch (err) {
-      setError('Failed to load dashboard');
-      setIsLoading(false);
-    }
-  };
+  }, [token, companyHandle, fetchTenantData]);
 
   const copyToClipboard = (text: string, itemName: string) => {
     navigator.clipboard.writeText(text);
