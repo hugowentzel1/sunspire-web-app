@@ -157,6 +157,7 @@ export async function GET(req: NextRequest) {
     const utm_source = url.searchParams.get("utm_source");
     const utm_campaign = url.searchParams.get("utm_campaign");
     const tenant_handle = url.searchParams.get("tenant_handle");
+    const cancel_url = url.searchParams.get("cancel_url");
 
     console.log("🔍 Creating Stripe checkout session from GET...");
     console.log("🔍 Request data:", {
@@ -167,6 +168,7 @@ export async function GET(req: NextRequest) {
       utm_source,
       utm_campaign,
       tenant_handle,
+      cancel_url,
     });
 
     // Build URLs
