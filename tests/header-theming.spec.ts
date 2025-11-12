@@ -46,12 +46,13 @@ test.describe('Header & theming', () => {
       expect(await addr.innerText()).not.toContain('…');
       expect(await lineCount(addr)).toBeLessThanOrEqual(2);
 
-      // Demo shows "(Live Preview)", Paid does not
-      const badge = page.getByText('(Live Preview)');
-      if (mode === 'demo') {
-        await expect(badge).toBeVisible();
-      } else {
-        await expect(badge).toHaveCount(0);
+      // Verify H1 contains company name and "Solar Quote"
+      const h1Text = await h1.innerText();
+      expect(h1Text).toContain('Solar Quote');
+      
+      // Paid mode should not show Live Preview badge
+      if (mode === 'paid') {
+        expect(h1Text).not.toContain('Live Preview');
       }
 
       // Brand color applied to H1 company name

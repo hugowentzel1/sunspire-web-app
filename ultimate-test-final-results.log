@@ -1,0 +1,1709 @@
+
+Running 75 tests using 1 worker
+
+(node:59595) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59595) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+💰 [1/75] Testing homepage lead capture...
+✅ [1/75] Homepage lead capture works
+  ✓   1 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:40:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [1/75] Homepage loads and captures initial interest (2.8s)
+💰 [2/75] Testing address search...
+✅ [2/75] Address search works
+  ✓   2 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:53:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [2/75] Address search and validation works (2.3s)
+💰 [3/75] Testing solar report generation...
+  ✘   3 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:68:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [3/75] Report generation with real solar data (10.5s)
+(node:59791) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59791) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+💰 [4/75] Testing primary CTA visibility...
+  ✘   4 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:83:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [4/75] Primary CTA button is visible and functional (8.5s)
+(node:59895) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59895) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+💰 [5/75] Testing CTA to Stripe routing...
+  ✘   5 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:96:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [5/75] CTA click routes to Stripe checkout (2.0m)
+(node:61150) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:61150) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+💰 [6/75] Testing Stripe session metadata...
+✅ [6/75] Stripe session creation works
+  ✓   6 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:114:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [6/75] Stripe checkout session creation with metadata (1.0s)
+💰 [7/75] Testing Stripe webhook processing...
+  ✘   7 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:134:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [7/75] Stripe webhook processing for successful payment (412ms)
+(node:61184) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:61184) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+💰 [8/75] Testing activation page...
+✅ [8/75] Activation page loads correctly
+  ✓   8 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:163:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [8/75] Post-purchase activation page loads (2.7s)
+💰 [9/75] Testing customer dashboard...
+  ✘   9 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:178:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [9/75] Customer dashboard access works (7.6s)
+(node:61301) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:61301) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+💰 [10/75] Testing email notifications...
+  ✘  10 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:192:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [10/75] Email notification system works (306ms)
+(node:61321) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:61321) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+💰 [11/75] Testing demo quota limits...
+  ✘  11 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:210:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [11/75] Demo quota system enforces limits (783ms)
+(node:61334) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:61334) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+💰 [12/75] Testing paywall trigger...
+  ✘  12 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:222:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [12/75] Paywall triggers after quota exceeded (795ms)
+(node:61356) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:61356) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+💰 [13/75] Testing revenue tracking...
+  ✘  13 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:237:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [13/75] Revenue tracking and analytics (764ms)
+(node:61389) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:61389) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+💰 [14/75] Testing lead qualification...
+  ✘  14 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:249:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [14/75] Lead scoring and qualification (3.5s)
+(node:61428) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:61428) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+💰 [15/75] Testing complete revenue funnel...
+  ✘  15 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:271:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [15/75] Complete revenue funnel from demo to purchase (2.0m)
+(node:62741) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62741) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🎨 [16/75] Testing SunRun branding...
+  ✘  16 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:300:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [16/75] SunRun branding applies correctly (1.1s)
+(node:62764) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62764) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🎨 [17/75] Testing Tesla branding...
+  ✘  17 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:312:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [17/75] Tesla branding applies correctly (1.0s)
+(node:62787) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62787) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🎨 [18/75] Testing custom colors...
+  ✘  18 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:324:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [18/75] Custom colors apply correctly (774ms)
+(node:62809) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62809) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🎨 [19/75] Testing custom logos...
+  ✘  19 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:336:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [19/75] Custom logos display correctly (902ms)
+(node:62829) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62829) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🎨 [20/75] Testing multi-tenant isolation...
+  ✘  20 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:348:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [20/75] Multi-tenant isolation works (709ms)
+(node:62846) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62846) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🎨 [21/75] Testing custom domain setup...
+✅ [21/75] Custom domain setup works
+  ✓  21 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:362:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [21/75] Custom domain setup works (1.8s)
+🎨 [22/75] Testing embed code generation...
+✅ [22/75] Embed code generation works
+  ✓  22 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:377:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [22/75] Embed code generation works (1.7s)
+🎨 [23/75] Testing instant URL generation...
+  ✘  23 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:393:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [23/75] Instant URL generation works (6.3s)
+(node:62961) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62961) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🎨 [24/75] Testing brand consistency...
+  ✘  24 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:408:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [24/75] Brand consistency across all pages (806ms)
+(node:62981) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:62981) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🎨 [25/75] Testing footer customization...
+  ✘  25 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:424:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [25/75] White-label footer customization (5.4s)
+(node:63038) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:63038) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🎨 [26/75] Testing subdomain architecture...
+✅ [26/75] Subdomain architecture works
+  ✓  26 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:435:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [26/75] Subdomain-per-tenant architecture (712ms)
+🎨 [27/75] Testing brand theme inheritance...
+  ✘  27 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:451:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [27/75] Brand theme inheritance (758ms)
+(node:63060) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:63060) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🎨 [28/75] Testing logo fallback...
+  ✘  28 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:463:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [28/75] Logo fallback handling (802ms)
+(node:63080) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:63080) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🎨 [29/75] Testing brand metadata...
+✅ [29/75] Brand metadata works
+  ✓  29 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:475:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [29/75] Brand metadata propagation (732ms)
+🎨 [30/75] Testing complete white-label experience...
+  ✘  30 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:496:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [30/75] Complete white-label experience (836ms)
+(node:63109) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:63109) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🌞 [31/75] Testing NREL API integration...
+✅ [31/75] NREL API integration works
+  ✓  31 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:520:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🌞 DATA ACCURACY & SOLAR CALCULATIONS › [31/75] NREL API integration works (5.6s)
+🌞 [32/75] Testing solar production calculations...
+✅ [32/75] Solar production calculations work
+  ✓  32 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:533:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🌞 DATA ACCURACY & SOLAR CALCULATIONS › [32/75] Solar production calculations are realistic (5.4s)
+🌞 [33/75] Testing Phoenix solar estimates...
+  ✘  33 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:550:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🌞 DATA ACCURACY & SOLAR CALCULATIONS › [33/75] Phoenix solar estimates are accurate (5.4s)
+(node:63270) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:63270) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🌞 [34/75] Testing location-based solar potential...
+✅ [34/75] Location-based solar potential works
+  ✓  34 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:566:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🌞 DATA ACCURACY & SOLAR CALCULATIONS › [34/75] Different locations show different solar potential (10.5s)
+🌞 [35/75] Testing energy rate calculations...
+  ✘  35 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:588:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🌞 DATA ACCURACY & SOLAR CALCULATIONS › [35/75] Energy rate calculations are accurate (10.4s)
+(node:63532) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:63532) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🌞 [36/75] Testing system size recommendations...
+✅ [35/75] System size recommendations work
+  ✓  36 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:602:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🌞 DATA ACCURACY & SOLAR CALCULATIONS › [36/75] System size recommendations are realistic (5.4s)
+🌞 [37/75] Testing payback period calculations...
+✅ [37/75] Payback period calculations work
+  ✓  37 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:618:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🌞 DATA ACCURACY & SOLAR CALCULATIONS › [37/75] Payback period calculations are reasonable (5.5s)
+🌞 [38/75] Testing environmental impact...
+  ✘  38 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:631:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🌞 DATA ACCURACY & SOLAR CALCULATIONS › [38/75] Environmental impact calculations (5.5s)
+(node:63743) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:63743) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🌞 [39/75] Testing data validation...
+✅ [39/75] Data validation works
+  ✓  39 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:644:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🌞 DATA ACCURACY & SOLAR CALCULATIONS › [39/75] Data validation and error handling (3.5s)
+🌞 [40/75] Testing API fallback...
+✅ [40/75] API fallback mechanisms work
+  ✓  40 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:657:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🌞 DATA ACCURACY & SOLAR CALCULATIONS › [40/75] API fallback mechanisms work (5.3s)
+🌞 [41/75] Testing real-time data updates...
+✅ [41/75] Real-time data updates work
+  ✓  41 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:670:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🌞 DATA ACCURACY & SOLAR CALCULATIONS › [41/75] Real-time data updates (5.4s)
+🌞 [42/75] Testing data accuracy across system sizes...
+✅ [42/75] Data accuracy across system sizes works
+  ✓  42 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:683:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🌞 DATA ACCURACY & SOLAR CALCULATIONS › [42/75] Data accuracy across different system sizes (5.6s)
+🌞 [43/75] Testing historical data integration...
+✅ [43/75] Historical data integration works
+  ✓  43 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:699:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🌞 DATA ACCURACY & SOLAR CALCULATIONS › [43/75] Historical data integration (5.4s)
+🌞 [44/75] Testing data export...
+  ✘  44 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:712:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🌞 DATA ACCURACY & SOLAR CALCULATIONS › [44/75] Data export and sharing functionality (5.4s)
+(node:64111) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:64111) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🌞 [45/75] Testing complete solar data accuracy...
+  ✘  45 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:725:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🌞 DATA ACCURACY & SOLAR CALCULATIONS › [45/75] Complete solar data accuracy validation (10.6s)
+(node:64226) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:64226) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+⚡ [46/75] Testing page load performance...
+✅ [46/75] Page load performance is optimal
+  ✓  46 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:755:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › ⚡ PERFORMANCE & SCALABILITY › [46/75] Page load performance is optimal (731ms)
+⚡ [47/75] Testing report generation performance...
+✅ [47/75] Report generation performance is optimal
+  ✓  47 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:768:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › ⚡ PERFORMANCE & SCALABILITY › [47/75] Report generation performance (5.3s)
+⚡ [48/75] Testing concurrent user handling...
+  ✘  48 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:782:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › ⚡ PERFORMANCE & SCALABILITY › [48/75] Concurrent user handling (278ms)
+(node:64293) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:64293) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+⚡ [49/75] Testing memory usage optimization...
+✅ [49/75] Memory usage optimization works
+  ✓  49 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:801:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › ⚡ PERFORMANCE & SCALABILITY › [49/75] Memory usage optimization (605ms)
+⚡ [50/75] Testing API response times...
+✅ [50/75] API response times are acceptable
+  ✓  50 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:815:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › ⚡ PERFORMANCE & SCALABILITY › [50/75] API response times are acceptable (648ms)
+⚡ [51/75] Testing large dataset handling...
+✅ [51/75] Large dataset handling works
+  ✓  51 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:831:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › ⚡ PERFORMANCE & SCALABILITY › [51/75] Large dataset handling (5.3s)
+⚡ [52/75] Testing caching mechanisms...
+✅ [52/75] Caching mechanisms work
+  ✓  52 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:845:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › ⚡ PERFORMANCE & SCALABILITY › [52/75] Caching mechanisms work (895ms)
+⚡ [53/75] Testing network resilience...
+  ✘  53 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:864:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › ⚡ PERFORMANCE & SCALABILITY › [53/75] Network resilience (748ms)
+(node:64393) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:64393) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+⚡ [54/75] Testing resource optimization...
+✅ [54/75] Resource optimization works
+  ✓  54 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:876:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › ⚡ PERFORMANCE & SCALABILITY › [54/75] Resource optimization (728ms)
+⚡ [55/75] Testing database query optimization...
+  ✘  55 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:892:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › ⚡ PERFORMANCE & SCALABILITY › [55/75] Database query optimization (260ms)
+(node:64416) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:64416) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+⚡ [56/75] Testing CDN and asset delivery...
+  ✘  56 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:911:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › ⚡ PERFORMANCE & SCALABILITY › [56/75] CDN and asset delivery (766ms)
+(node:64437) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:64437) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+⚡ [57/75] Testing load balancing compatibility...
+✅ [57/75] Load balancing compatibility works
+  ✓  57 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:923:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › ⚡ PERFORMANCE & SCALABILITY › [57/75] Load balancing compatibility (287ms)
+⚡ [58/75] Testing error recovery...
+✅ [58/75] Error recovery mechanisms work
+  ✓  58 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:944:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › ⚡ PERFORMANCE & SCALABILITY › [58/75] Error recovery and retry mechanisms (681ms)
+⚡ [59/75] Testing session management...
+✅ [59/75] Session management scalability works
+  ✓  59 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:956:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › ⚡ PERFORMANCE & SCALABILITY › [59/75] Session management scalability (1.2s)
+⚡ [60/75] Testing complete performance validation...
+  ✘  60 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:969:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › ⚡ PERFORMANCE & SCALABILITY › [60/75] Complete performance validation (2.0m)
+(node:65752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:65752) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🔒 [61/75] Testing input validation...
+  ✘  61 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:1000:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🔒 SECURITY & RELIABILITY › [61/75] Input validation and sanitization (950ms)
+(node:65783) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:65783) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🔒 [62/75] Testing XSS protection...
+✅ [62/75] XSS protection works
+  ✓  62 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:1012:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🔒 SECURITY & RELIABILITY › [62/75] XSS protection (721ms)
+🔒 [63/75] Testing CSRF protection...
+✅ [63/75] CSRF protection works
+  ✓  63 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:1024:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🔒 SECURITY & RELIABILITY › [63/75] CSRF protection (651ms)
+🔒 [64/75] Testing rate limiting...
+✅ [64/75] Rate limiting works
+  ✓  64 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:1038:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🔒 SECURITY & RELIABILITY › [64/75] Rate limiting (1.5s)
+🔒 [65/75] Testing data encryption...
+✅ [65/75] Data encryption works
+  ✓  65 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:1061:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🔒 SECURITY & RELIABILITY › [65/75] Data encryption and privacy (714ms)
+🔒 [66/75] Testing authentication security...
+✅ [66/75] Authentication security works
+  ✓  66 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:1073:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🔒 SECURITY & RELIABILITY › [66/75] Authentication security (696ms)
+🔒 [67/75] Testing webhook security...
+✅ [67/75] Webhook security works
+  ✓  67 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:1085:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🔒 SECURITY & RELIABILITY › [67/75] Webhook security validation (339ms)
+🔒 [68/75] Testing API endpoint security...
+✅ [68/75] API endpoint security works
+  ✓  68 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:1100:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🔒 SECURITY & RELIABILITY › [68/75] API endpoint security (673ms)
+🔒 [69/75] Testing error handling...
+✅ [69/75] Error handling works
+  ✓  69 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:1114:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🔒 SECURITY & RELIABILITY › [69/75] Error handling and logging (718ms)
+🔒 [70/75] Testing data backup and recovery...
+  ✘  70 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:1126:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🔒 SECURITY & RELIABILITY › [70/75] Data backup and recovery (736ms)
+(node:65868) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:65868) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🔒 [71/75] Testing session security...
+✅ [71/75] Session security works
+  ✓  71 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:1139:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🔒 SECURITY & RELIABILITY › [71/75] Session security (682ms)
+🔒 [72/75] Testing third-party integration security...
+✅ [72/75] Third-party integration security works
+  ✓  72 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:1152:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🔒 SECURITY & RELIABILITY › [72/75] Third-party integration security (729ms)
+🔒 [73/75] Testing Content Security Policy...
+✅ [73/75] Content Security Policy works
+  ✓  73 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:1166:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🔒 SECURITY & RELIABILITY › [73/75] Content Security Policy (689ms)
+🔒 [74/75] Testing data integrity...
+✅ [74/75] Data integrity works
+  ✓  74 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:1181:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🔒 SECURITY & RELIABILITY › [74/75] Data integrity validation (5.3s)
+🔒 [75/75] Testing complete security validation...
+  ✘  75 [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:1194:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🔒 SECURITY & RELIABILITY › [75/75] Complete security validation (714ms)
+
+
+  1) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:68:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [3/75] Report generation with real solar data 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByTestId('tile-savings')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByTestId('tile-savings')[22m
+
+
+      76 |       await expect(page.getByTestId('tile-systemSize')).toBeVisible();
+      77 |       await expect(page.getByTestId('tile-annualProduction')).toBeVisible();
+    > 78 |       await expect(page.getByTestId('tile-savings')).toBeVisible();
+         |                                                      ^
+      79 |       
+      80 |       console.log('✅ [3/75] Solar report generation works');
+      81 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:78:54
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--4438b-ration-with-real-solar-data-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--4438b-ration-with-real-solar-data-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--4438b-ration-with-real-solar-data-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--4438b-ration-with-real-solar-data-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--4438b-ration-with-real-solar-data-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:83:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [4/75] Primary CTA button is visible and functional 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator:  locator('button[data-cta="primary"]')
+    Expected: visible
+    Received: hidden
+    Timeout:  5000ms
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('button[data-cta="primary"]')[22m
+    [2m    9 × locator resolved to <button data-cta="primary" data-cta-button="true" class="w-full h-12 rounded-xl px-5 text-white font-semibold hover:opacity-90 transition-all active:scale-[0.98]">Book a Free Consultation</button>[22m
+    [2m      - unexpected value "hidden"[22m
+
+
+      89 |       // Verify CTA button is present
+      90 |       const ctaButton = page.locator('button[data-cta="primary"]');
+    > 91 |       await expect(ctaButton).toBeVisible();
+         |                               ^
+      92 |       
+      93 |       console.log('✅ [4/75] Primary CTA button works');
+      94 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:91:31
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--13950-n-is-visible-and-functional-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--13950-n-is-visible-and-functional-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--13950-n-is-visible-and-functional-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--13950-n-is-visible-and-functional-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--13950-n-is-visible-and-functional-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:96:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [5/75] CTA click routes to Stripe checkout 
+
+    [31mTest timeout of 120000ms exceeded.[39m
+
+    Error: page.waitForRequest: Test timeout of 120000ms exceeded.
+
+      102 |       // Click CTA and verify Stripe request
+      103 |       const [request] = await Promise.all([
+    > 104 |         page.waitForRequest(req => req.url().includes('api/stripe/create-checkout-session') && req.method() === 'POST'),
+          |              ^
+      105 |         page.locator('button[data-cta="primary"]').first().click(),
+      106 |       ]);
+      107 |       
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:104:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--d0b5e-k-routes-to-Stripe-checkout-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--d0b5e-k-routes-to-Stripe-checkout-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--d0b5e-k-routes-to-Stripe-checkout-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--d0b5e-k-routes-to-Stripe-checkout-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--d0b5e-k-routes-to-Stripe-checkout-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:134:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [7/75] Stripe webhook processing for successful payment 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m200[39m
+    Received: [31m400[39m
+
+      156 |       
+      157 |       // Should return 200 (even if processing fails, webhook should acknowledge)
+    > 158 |       expect(webhookResponse.status()).toBe(200);
+          |                                        ^
+      159 |       
+      160 |       console.log('✅ [7/75] Stripe webhook processing works');
+      161 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:158:40
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--87cdb-sing-for-successful-payment-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--87cdb-sing-for-successful-payment-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--87cdb-sing-for-successful-payment-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--87cdb-sing-for-successful-payment-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:178:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [9/75] Customer dashboard access works 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text=SunRun')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('text=SunRun')[22m
+
+
+      183 |       
+      184 |       // Verify dashboard elements (should work even without auth in demo mode)
+    > 185 |       await expect(page.locator('text=SunRun')).toBeVisible();
+          |                                                 ^
+      186 |       await expect(page.locator('text=Instant URL')).toBeVisible();
+      187 |       await expect(page.locator('text=Embed Code')).toBeVisible();
+      188 |       
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:185:49
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--b760a-omer-dashboard-access-works-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--b760a-omer-dashboard-access-works-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--b760a-omer-dashboard-access-works-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--b760a-omer-dashboard-access-works-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--b760a-omer-dashboard-access-works-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:192:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [10/75] Email notification system works 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoContain[2m([22m[32mexpected[39m[2m) // indexOf[22m
+
+    Expected value: [32m405[39m
+    Received array: [31m[200, 400, 500][39m
+
+      203 |       
+      204 |       // Should return success or handle gracefully
+    > 205 |       expect([200, 400, 500]).toContain(emailResponse.status());
+          |                               ^
+      206 |       
+      207 |       console.log('✅ [10/75] Email notification system works');
+      208 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:205:31
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--b827b-l-notification-system-works-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--b827b-l-notification-system-works-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--b827b-l-notification-system-works-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--b827b-l-notification-system-works-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:210:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [11/75] Demo quota system enforces limits 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeTruthy[2m()[22m
+
+    Received: [31mnull[39m
+
+      215 |       // Check if quota is tracked in localStorage
+      216 |       const quota = await page.evaluate(() => localStorage.getItem('demoQuota'));
+    > 217 |       expect(quota).toBeTruthy();
+          |                     ^
+      218 |       
+      219 |       console.log('✅ [11/75] Demo quota system works');
+      220 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:217:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--96637-uota-system-enforces-limits-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--96637-uota-system-enforces-limits-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--96637-uota-system-enforces-limits-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--96637-uota-system-enforces-limits-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--96637-uota-system-enforces-limits-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:222:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [12/75] Paywall triggers after quota exceeded 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      230 |       // Should show paywall or upgrade prompt
+      231 |       const paywallElements = await page.locator('text=Upgrade').count();
+    > 232 |       expect(paywallElements).toBeGreaterThan(0);
+          |                               ^
+      233 |       
+      234 |       console.log('✅ [12/75] Paywall triggers correctly');
+      235 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:232:31
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--cc139-iggers-after-quota-exceeded-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--cc139-iggers-after-quota-exceeded-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--cc139-iggers-after-quota-exceeded-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--cc139-iggers-after-quota-exceeded-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--cc139-iggers-after-quota-exceeded-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  9) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:237:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [13/75] Revenue tracking and analytics 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      242 |       // Check for analytics tracking
+      243 |       const analyticsElements = await page.locator('[data-analytics]').count();
+    > 244 |       expect(analyticsElements).toBeGreaterThan(0);
+          |                                 ^
+      245 |       
+      246 |       console.log('✅ [13/75] Revenue tracking works');
+      247 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:244:33
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--4ad4d-enue-tracking-and-analytics-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--4ad4d-enue-tracking-and-analytics-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--4ad4d-enue-tracking-and-analytics-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--4ad4d-enue-tracking-and-analytics-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--4ad4d-enue-tracking-and-analytics-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  10) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:249:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [14/75] Lead scoring and qualification 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32mtrue[39m
+    Received: [31mfalse[39m
+
+      264 |       expect(leadData.hasAddress).toBe(true);
+      265 |       expect(leadData.hasSolarData).toBe(true);
+    > 266 |       expect(leadData.hasSavings).toBe(true);
+          |                                   ^
+      267 |       
+      268 |       console.log('✅ [14/75] Lead qualification works');
+      269 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:266:35
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--2dba9-d-scoring-and-qualification-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--2dba9-d-scoring-and-qualification-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--2dba9-d-scoring-and-qualification-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--2dba9-d-scoring-and-qualification-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--2dba9-d-scoring-and-qualification-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  11) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:271:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [15/75] Complete revenue funnel from demo to purchase 
+
+    [31mTest timeout of 120000ms exceeded.[39m
+
+    Error: page.waitForRequest: Test timeout of 120000ms exceeded.
+
+      282 |       // Step 3: Click CTA (should trigger Stripe)
+      283 |       const [request] = await Promise.all([
+    > 284 |         page.waitForRequest(req => req.url().includes('api/stripe/create-checkout-session')),
+          |              ^
+      285 |         page.locator('button[data-cta="primary"]').first().click(),
+      286 |       ]);
+      287 |       
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:284:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--3e271-unnel-from-demo-to-purchase-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--3e271-unnel-from-demo-to-purchase-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--3e271-unnel-from-demo-to-purchase-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--3e271-unnel-from-demo-to-purchase-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--3e271-unnel-from-demo-to-purchase-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  12) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:300:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [16/75] SunRun branding applies correctly 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h1')
+    Expected substring: [32m"SunRun"[39m
+    Error: strict mode violation: locator('h1') resolved to 2 elements:
+        1) <h1 class="text-2xl font-black text-[var(--brand-primary)]">SunRun</h1> aka getByRole('link', { name: 'SunRun logo SunRun Solar' })
+        2) <h1 class="text-6xl md:text-7xl font-black text-gray-900 leading-tight">Your Branded Solar Quote Tool — Live on Your Site…</h1> aka getByRole('heading', { name: 'Your Branded Solar Quote Tool' })
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h1')[22m
+
+
+      304 |       
+      305 |       // Verify SunRun branding
+    > 306 |       await expect(page.locator('h1')).toContainText('SunRun');
+          |                                        ^
+      307 |       await expect(page.locator('text=Powered by Sunspire for SunRun')).toBeVisible();
+      308 |       
+      309 |       console.log('✅ [16/75] SunRun branding works');
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:306:40
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--bb3ce--branding-applies-correctly-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--bb3ce--branding-applies-correctly-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--bb3ce--branding-applies-correctly-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--bb3ce--branding-applies-correctly-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--bb3ce--branding-applies-correctly-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  13) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:312:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [17/75] Tesla branding applies correctly 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h1')
+    Expected substring: [32m"Tesla"[39m
+    Error: strict mode violation: locator('h1') resolved to 2 elements:
+        1) <h1 class="text-2xl font-black text-[var(--brand-primary)]">Tesla</h1> aka getByRole('link', { name: 'Tesla logo Tesla Solar' })
+        2) <h1 class="text-6xl md:text-7xl font-black text-gray-900 leading-tight">Your Branded Solar Quote Tool — Live on Your Site…</h1> aka getByRole('heading', { name: 'Your Branded Solar Quote Tool' })
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h1')[22m
+
+
+      316 |       
+      317 |       // Verify Tesla branding
+    > 318 |       await expect(page.locator('h1')).toContainText('Tesla');
+          |                                        ^
+      319 |       await expect(page.locator('text=Powered by Sunspire for Tesla')).toBeVisible();
+      320 |       
+      321 |       console.log('✅ [17/75] Tesla branding works');
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:318:40
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--0d9fe--branding-applies-correctly-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--0d9fe--branding-applies-correctly-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--0d9fe--branding-applies-correctly-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--0d9fe--branding-applies-correctly-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--0d9fe--branding-applies-correctly-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  14) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:324:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [18/75] Custom colors apply correctly 
+
+    Error: locator.evaluate: Error: strict mode violation: locator('h1') resolved to 2 elements:
+        1) <h1 class="text-2xl font-black text-[var(--brand-primary)]">Spotify</h1> aka getByRole('link', { name: 'Spotify logo Spotify Solar' })
+        2) <h1 class="text-6xl md:text-7xl font-black text-gray-900 leading-tight">Your Branded Solar Quote Tool — Live on Your Site…</h1> aka getByRole('heading', { name: 'Your Branded Solar Quote Tool' })
+
+    Call log:
+    [2m  - waiting for locator('h1')[22m
+
+
+      328 |       
+      329 |       // Verify Spotify green color is applied
+    > 330 |       const headerColor = await page.locator('h1').evaluate(el => getComputedStyle(el).color);
+          |                                                    ^
+      331 |       expect(headerColor).toBeTruthy();
+      332 |       
+      333 |       console.log('✅ [18/75] Custom colors work');
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:330:52
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--57d2d-stom-colors-apply-correctly-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--57d2d-stom-colors-apply-correctly-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--57d2d-stom-colors-apply-correctly-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--57d2d-stom-colors-apply-correctly-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--57d2d-stom-colors-apply-correctly-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  15) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:336:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [19/75] Custom logos display correctly 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('img[src*="logo.clearbit.com"]')
+    Expected: visible
+    Error: strict mode violation: locator('img[src*="logo.clearbit.com"]') resolved to 2 elements:
+        1) <img width="48" height="48" data-nimg="1" loading="lazy" alt="Apple logo" decoding="async" class="rounded-lg" src="https://logo.clearbit.com/apple.com"/> aka getByRole('link', { name: 'Apple logo Apple Solar' })
+        2) <img width="72" height="72" data-nimg="1" loading="lazy" alt="Apple logo" decoding="async" src="https://logo.clearbit.com/apple.com"/> aka getByRole('main').getByRole('img', { name: 'Apple logo' })
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('img[src*="logo.clearbit.com"]')[22m
+
+
+      341 |       // Verify logo is displayed
+      342 |       const logoElement = page.locator('img[src*="logo.clearbit.com"]');
+    > 343 |       await expect(logoElement).toBeVisible();
+          |                                 ^
+      344 |       
+      345 |       console.log('✅ [19/75] Custom logos work');
+      346 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:343:33
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--08e74-tom-logos-display-correctly-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--08e74-tom-logos-display-correctly-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--08e74-tom-logos-display-correctly-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--08e74-tom-logos-display-correctly-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--08e74-tom-logos-display-correctly-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  16) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:348:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [20/75] Multi-tenant isolation works 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h1')
+    Expected substring: [32m"CompanyA"[39m
+    Error: strict mode violation: locator('h1') resolved to 2 elements:
+        1) <h1 class="text-2xl font-black text-[var(--brand-primary)]">Your Company</h1> aka getByRole('link', { name: '☀️ Your Company Solar' })
+        2) <h1 class="text-6xl md:text-7xl font-black text-gray-900 leading-tight">Your Branded Solar Quote Tool — Live on Your Site…</h1> aka getByRole('heading', { name: 'Your Branded Solar Quote Tool' })
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h1')[22m
+
+
+      351 |       // Test Company A
+      352 |       await page.goto(`${BASE_URL}/?company=CompanyA&demo=1`, { waitUntil: 'domcontentloaded' });
+    > 353 |       await expect(page.locator('h1')).toContainText('CompanyA');
+          |                                        ^
+      354 |       
+      355 |       // Test Company B
+      356 |       await page.goto(`${BASE_URL}/?company=CompanyB&demo=1`, { waitUntil: 'domcontentloaded' });
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:353:40
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--988d0-ulti-tenant-isolation-works-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--988d0-ulti-tenant-isolation-works-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--988d0-ulti-tenant-isolation-works-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--988d0-ulti-tenant-isolation-works-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--988d0-ulti-tenant-isolation-works-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  17) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:393:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [23/75] Instant URL generation works 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text=sunspire-web-app.vercel.app')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('text=sunspire-web-app.vercel.app')[22m
+
+
+      401 |       
+      402 |       // Verify instant URL is displayed
+    > 403 |       await expect(page.locator('text=sunspire-web-app.vercel.app')).toBeVisible();
+          |                                                                      ^
+      404 |       
+      405 |       console.log('✅ [23/75] Instant URL generation works');
+      406 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:403:70
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--ec157-nstant-URL-generation-works-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--ec157-nstant-URL-generation-works-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--ec157-nstant-URL-generation-works-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--ec157-nstant-URL-generation-works-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--ec157-nstant-URL-generation-works-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  18) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:408:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [24/75] Brand consistency across all pages 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h1')
+    Expected substring: [32m"SunRun"[39m
+    Error: strict mode violation: locator('h1') resolved to 2 elements:
+        1) <h1 class="text-2xl font-black text-[var(--brand-primary)]">Your Company</h1> aka getByRole('link', { name: '☀️ Your Company Solar' })
+        2) <h1 class="text-6xl md:text-7xl font-black text-gray-900 leading-tight">Your Branded Solar Quote Tool — Live on Your Site…</h1> aka getByRole('heading', { name: 'Your Branded Solar Quote Tool' })
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h1')[22m
+
+
+      413 |       // Test homepage
+      414 |       await page.goto(`${BASE_URL}/?company=${company}&demo=1`, { waitUntil: 'domcontentloaded' });
+    > 415 |       await expect(page.locator('h1')).toContainText(company);
+          |                                        ^
+      416 |       
+      417 |       // Test report page
+      418 |       await page.goto(`${BASE_URL}/report?company=${company}&demo=1&address=123%20Main%20St%2C%20Phoenix%2C%20AZ&lat=33.4484&lng=-112.0740&placeId=test`, { waitUntil: 'domcontentloaded' });
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:415:40
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--f514a-onsistency-across-all-pages-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--f514a-onsistency-across-all-pages-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--f514a-onsistency-across-all-pages-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--f514a-onsistency-across-all-pages-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--f514a-onsistency-across-all-pages-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  19) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:424:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [25/75] White-label footer customization 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text=Powered by Sunspire for SunRun')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('text=Powered by Sunspire for SunRun')[22m
+
+
+      428 |       
+      429 |       // Verify footer shows company branding
+    > 430 |       await expect(page.locator('text=Powered by Sunspire for SunRun')).toBeVisible();
+          |                                                                         ^
+      431 |       
+      432 |       console.log('✅ [25/75] Footer customization works');
+      433 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:430:73
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--43017--label-footer-customization-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--43017--label-footer-customization-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--43017--label-footer-customization-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--43017--label-footer-customization-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--43017--label-footer-customization-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  20) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:451:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [27/75] Brand theme inheritance 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      456 |       // Check that brand color is applied to multiple elements
+      457 |       const elements = await page.locator('[style*="--brand-primary"]').count();
+    > 458 |       expect(elements).toBeGreaterThan(0);
+          |                        ^
+      459 |       
+      460 |       console.log('✅ [27/75] Brand theme inheritance works');
+      461 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:458:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--258cb--75-Brand-theme-inheritance-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--258cb--75-Brand-theme-inheritance-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--258cb--75-Brand-theme-inheritance-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--258cb--75-Brand-theme-inheritance-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--258cb--75-Brand-theme-inheritance-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  21) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:463:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [28/75] Logo fallback handling 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h1')
+    Expected substring: [32m"TestCompany"[39m
+    Error: strict mode violation: locator('h1') resolved to 2 elements:
+        1) <h1 class="text-2xl font-black text-[var(--brand-primary)]">TestCompany</h1> aka getByRole('link', { name: '☀️ TestCompany Solar' })
+        2) <h1 class="text-6xl md:text-7xl font-black text-gray-900 leading-tight">Your Branded Solar Quote Tool — Live on Your Site…</h1> aka getByRole('heading', { name: 'Your Branded Solar Quote Tool' })
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h1')[22m
+
+
+      468 |       
+      469 |       // Should still load without crashing
+    > 470 |       await expect(page.locator('h1')).toContainText('TestCompany');
+          |                                        ^
+      471 |       
+      472 |       console.log('✅ [28/75] Logo fallback works');
+      473 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:470:40
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--bb1e6-8-75-Logo-fallback-handling-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--bb1e6-8-75-Logo-fallback-handling-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--bb1e6-8-75-Logo-fallback-handling-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--bb1e6-8-75-Logo-fallback-handling-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--bb1e6-8-75-Logo-fallback-handling-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  22) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:496:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [30/75] Complete white-label experience 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h1')
+    Expected substring: [32m"SunRun"[39m
+    Error: strict mode violation: locator('h1') resolved to 2 elements:
+        1) <h1 class="text-2xl font-black text-[var(--brand-primary)]">SunRun</h1> aka getByRole('link', { name: 'SunRun logo SunRun Solar' })
+        2) <h1 class="text-6xl md:text-7xl font-black text-gray-900 leading-tight">Your Branded Solar Quote Tool — Live on Your Site…</h1> aka getByRole('heading', { name: 'Your Branded Solar Quote Tool' })
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h1')[22m
+
+
+      501 |       
+      502 |       // Verify all branding elements
+    > 503 |       await expect(page.locator('h1')).toContainText('SunRun');
+          |                                        ^
+      504 |       await expect(page.locator('text=Powered by Sunspire for SunRun')).toBeVisible();
+      505 |       
+      506 |       // Test report page maintains branding
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:503:40
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--517f7-lete-white-label-experience-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--517f7-lete-white-label-experience-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--517f7-lete-white-label-experience-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--517f7-lete-white-label-experience-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--517f7-lete-white-label-experience-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  23) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:550:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🌞 DATA ACCURACY & SOLAR CALCULATIONS › [33/75] Phoenix solar estimates are accurate 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m1500[39m
+    Received:   [31m12[39m
+
+      559 |       
+      560 |       // Phoenix should produce at least 1500 kWh/kW annually
+    > 561 |       expect(productionValue).toBeGreaterThan(1500);
+          |                               ^
+      562 |       
+      563 |       console.log('✅ [33/75] Phoenix solar estimates are accurate');
+      564 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:561:31
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--84f13-olar-estimates-are-accurate-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--84f13-olar-estimates-are-accurate-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--84f13-olar-estimates-are-accurate-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--84f13-olar-estimates-are-accurate-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--84f13-olar-estimates-are-accurate-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  24) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:588:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🌞 DATA ACCURACY & SOLAR CALCULATIONS › [35/75] Energy rate calculations are accurate 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByTestId('tile-savings')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByTestId('tile-savings')[22m
+
+
+      593 |       
+      594 |       // Verify savings calculations
+    > 595 |       await expect(page.getByTestId('tile-savings')).toBeVisible();
+          |                                                      ^
+      596 |       const savings = await page.getByTestId('tile-savings').textContent();
+      597 |       expect(savings).toContain('$');
+      598 |       
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:595:54
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--b0910-e-calculations-are-accurate-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--b0910-e-calculations-are-accurate-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--b0910-e-calculations-are-accurate-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--b0910-e-calculations-are-accurate-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--b0910-e-calculations-are-accurate-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  25) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:631:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🌞 DATA ACCURACY & SOLAR CALCULATIONS › [38/75] Environmental impact calculations 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      637 |       // Look for environmental impact data
+      638 |       const envImpact = await page.locator('text=/CO2|carbon|environmental|trees/').count();
+    > 639 |       expect(envImpact).toBeGreaterThan(0);
+          |                         ^
+      640 |       
+      641 |       console.log('✅ [38/75] Environmental impact calculations work');
+      642 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:639:25
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--20141-nmental-impact-calculations-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--20141-nmental-impact-calculations-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--20141-nmental-impact-calculations-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--20141-nmental-impact-calculations-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--20141-nmental-impact-calculations-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  26) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:712:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🌞 DATA ACCURACY & SOLAR CALCULATIONS › [44/75] Data export and sharing functionality 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      718 |       // Look for share/export functionality
+      719 |       const shareButtons = await page.locator('button').filter({ hasText: /share|export|download/ }).count();
+    > 720 |       expect(shareButtons).toBeGreaterThan(0);
+          |                            ^
+      721 |       
+      722 |       console.log('✅ [44/75] Data export functionality works');
+      723 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:720:28
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--2f4ee-t-and-sharing-functionality-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--2f4ee-t-and-sharing-functionality-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--2f4ee-t-and-sharing-functionality-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--2f4ee-t-and-sharing-functionality-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--2f4ee-t-and-sharing-functionality-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  27) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:725:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🌞 DATA ACCURACY & SOLAR CALCULATIONS › [45/75] Complete solar data accuracy validation 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByTestId('tile-savings')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByTestId('tile-savings')[22m
+
+
+      732 |       await expect(page.getByTestId('tile-systemSize')).toBeVisible();
+      733 |       await expect(page.getByTestId('tile-annualProduction')).toBeVisible();
+    > 734 |       await expect(page.getByTestId('tile-savings')).toBeVisible();
+          |                                                      ^
+      735 |       
+      736 |       // Verify data is realistic
+      737 |       const systemSize = await page.getByTestId('tile-systemSize').textContent();
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:734:54
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--a9b7c-ar-data-accuracy-validation-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--a9b7c-ar-data-accuracy-validation-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--a9b7c-ar-data-accuracy-validation-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--a9b7c-ar-data-accuracy-validation-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--a9b7c-ar-data-accuracy-validation-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  28) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:782:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › ⚡ PERFORMANCE & SCALABILITY › [48/75] Concurrent user handling 
+
+    Error: page.goto: net::ERR_ABORTED at https://sunspire-web-app.vercel.app/?company=Company0&demo=1
+    Call log:
+    [2m  - navigating to "https://sunspire-web-app.vercel.app/?company=Company0&demo=1", waiting until "domcontentloaded"[22m
+
+
+      787 |       for (let i = 0; i < 5; i++) {
+      788 |         promises.push(
+    > 789 |           page.goto(`${BASE_URL}/?company=Company${i}&demo=1`, { waitUntil: 'domcontentloaded' })
+          |                ^
+      790 |         );
+      791 |       }
+      792 |       
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:789:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--15470-75-Concurrent-user-handling-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--15470-75-Concurrent-user-handling-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--15470-75-Concurrent-user-handling-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--15470-75-Concurrent-user-handling-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  29) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:864:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › ⚡ PERFORMANCE & SCALABILITY › [53/75] Network resilience 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('h1')
+    Expected: visible
+    Error: strict mode violation: locator('h1') resolved to 2 elements:
+        1) <h1 class="text-2xl font-black text-[var(--brand-primary)]">Your Company</h1> aka getByRole('link', { name: '☀️ Your Company Solar' })
+        2) <h1 class="text-6xl md:text-7xl font-black text-gray-900 leading-tight">Your Branded Solar Quote Tool — Live on Your Site…</h1> aka getByRole('heading', { name: 'Your Branded Solar Quote Tool' })
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('h1')[22m
+
+
+      869 |       
+      870 |       // Should handle network issues gracefully
+    > 871 |       await expect(page.locator('h1')).toBeVisible();
+          |                                        ^
+      872 |       
+      873 |       console.log('✅ [53/75] Network resilience works');
+      874 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:871:40
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--8651a-TY-53-75-Network-resilience-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--8651a-TY-53-75-Network-resilience-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--8651a-TY-53-75-Network-resilience-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--8651a-TY-53-75-Network-resilience-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--8651a-TY-53-75-Network-resilience-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  30) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:892:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › ⚡ PERFORMANCE & SCALABILITY › [55/75] Database query optimization 
+
+    Error: page.goto: net::ERR_ABORTED at https://sunspire-web-app.vercel.app/report?company=Company0&demo=1&address=Phoenix%2C%20AZ&lat=33.4484&lng=-112.0740&placeId=test
+    Call log:
+    [2m  - navigating to "https://sunspire-web-app.vercel.app/report?company=Company0&demo=1&address=Phoenix%2C%20AZ&lat=33.4484&lng=-112.0740&placeId=test", waiting until "domcontentloaded"[22m
+
+
+      897 |       for (let i = 0; i < 3; i++) {
+      898 |         promises.push(
+    > 899 |           page.goto(`${BASE_URL}/report?company=Company${i}&demo=1&address=Phoenix%2C%20AZ&lat=33.4484&lng=-112.0740&placeId=test`, { waitUntil: 'domcontentloaded' })
+          |                ^
+      900 |         );
+      901 |       }
+      902 |       
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:899:16
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--90446-Database-query-optimization-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--90446-Database-query-optimization-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--90446-Database-query-optimization-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--90446-Database-query-optimization-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  31) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:911:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › ⚡ PERFORMANCE & SCALABILITY › [56/75] CDN and asset delivery 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBeGreaterThan[2m([22m[32mexpected[39m[2m)[22m
+
+    Expected: > [32m0[39m
+    Received:   [31m0[39m
+
+      916 |       // Check for CDN-delivered assets
+      917 |       const images = await page.locator('img').count();
+    > 918 |       expect(images).toBeGreaterThan(0);
+          |                      ^
+      919 |       
+      920 |       console.log('✅ [56/75] CDN and asset delivery works');
+      921 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:918:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--2fec5-6-75-CDN-and-asset-delivery-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--2fec5-6-75-CDN-and-asset-delivery-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--2fec5-6-75-CDN-and-asset-delivery-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--2fec5-6-75-CDN-and-asset-delivery-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--2fec5-6-75-CDN-and-asset-delivery-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  32) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:969:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › ⚡ PERFORMANCE & SCALABILITY › [60/75] Complete performance validation 
+
+    [31mTest timeout of 120000ms exceeded.[39m
+
+    Error: locator.click: Test timeout of 120000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('button[data-cta="primary"]').first()[22m
+    [2m    - locator resolved to <button data-cta="primary" data-cta-button="true" class="w-full h-12 rounded-xl px-5 text-white font-semibold hover:opacity-90 transition-all active:scale-[0.98]">Book a Free Consultation</button>[22m
+    [2m  - attempting click action[22m
+    [2m    2 × waiting for element to be visible, enabled and stable[22m
+    [2m      - element is not visible[22m
+    [2m    - retrying click action[22m
+    [2m    - waiting 20ms[22m
+    [2m    2 × waiting for element to be visible, enabled and stable[22m
+    [2m      - element is not visible[22m
+    [2m    - retrying click action[22m
+    [2m      - waiting 100ms[22m
+    [2m    215 × waiting for element to be visible, enabled and stable[22m
+    [2m        - element is not visible[22m
+    [2m      - retrying click action[22m
+    [2m        - waiting 500ms[22m
+
+
+      981 |       
+      982 |       // CTA click
+    > 983 |       await page.locator('button[data-cta="primary"]').first().click();
+          |                                                                ^
+      984 |       
+      985 |       const totalTime = Date.now() - startTime;
+      986 |       
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:983:64
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--28ad0-lete-performance-validation-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--28ad0-lete-performance-validation-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--28ad0-lete-performance-validation-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--28ad0-lete-performance-validation-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--28ad0-lete-performance-validation-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  33) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:1000:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🔒 SECURITY & RELIABILITY › [61/75] Input validation and sanitization 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('h1')
+    Expected: visible
+    Error: strict mode violation: locator('h1') resolved to 2 elements:
+        1) <h1 class="text-2xl font-black text-[var(--brand-primary)]">Your Company</h1> aka getByRole('link', { name: '☀️ Your Company Solar' })
+        2) <h1 class="text-6xl md:text-7xl font-black text-gray-900 leading-tight">Your Branded Solar Quote Tool — Live on Your Site…</h1> aka getByRole('heading', { name: 'Your Branded Solar Quote Tool' })
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('h1')[22m
+
+
+      1005 |       
+      1006 |       // Should sanitize input and not execute scripts
+    > 1007 |       await expect(page.locator('h1')).toBeVisible();
+           |                                        ^
+      1008 |       
+      1009 |       console.log('✅ [61/75] Input validation works');
+      1010 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:1007:40
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--3fe75-validation-and-sanitization-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--3fe75-validation-and-sanitization-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--3fe75-validation-and-sanitization-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--3fe75-validation-and-sanitization-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--3fe75-validation-and-sanitization-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  34) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:1126:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🔒 SECURITY & RELIABILITY › [70/75] Data backup and recovery 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: locator('h1')
+    Expected substring: [32m"SunRun"[39m
+    Error: strict mode violation: locator('h1') resolved to 2 elements:
+        1) <h1 class="text-2xl font-black text-[var(--brand-primary)]">SunRun</h1> aka getByRole('link', { name: 'SunRun logo SunRun Solar' })
+        2) <h1 class="text-6xl md:text-7xl font-black text-gray-900 leading-tight">Your Branded Solar Quote Tool — Live on Your Site…</h1> aka getByRole('heading', { name: 'Your Branded Solar Quote Tool' })
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for locator('h1')[22m
+
+
+      1132 |       
+      1133 |       // Data should persist
+    > 1134 |       await expect(page.locator('h1')).toContainText('SunRun');
+           |                                        ^
+      1135 |       
+      1136 |       console.log('✅ [70/75] Data backup and recovery works');
+      1137 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:1134:40
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--3cea4-75-Data-backup-and-recovery-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--3cea4-75-Data-backup-and-recovery-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--3cea4-75-Data-backup-and-recovery-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--3cea4-75-Data-backup-and-recovery-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--3cea4-75-Data-backup-and-recovery-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  35) [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:1194:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🔒 SECURITY & RELIABILITY › [75/75] Complete security validation 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('h1')
+    Expected: visible
+    Error: strict mode violation: locator('h1') resolved to 2 elements:
+        1) <h1 class="text-2xl font-black text-[var(--brand-primary)]">Your Company</h1> aka getByRole('link', { name: '☀️ Your Company Solar' })
+        2) <h1 class="text-6xl md:text-7xl font-black text-gray-900 leading-tight">Your Branded Solar Quote Tool — Live on Your Site…</h1> aka getByRole('heading', { name: 'Your Branded Solar Quote Tool' })
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('h1')[22m
+
+
+      1199 |       
+      1200 |       // Verify all security measures are in place
+    > 1201 |       await expect(page.locator('h1')).toBeVisible();
+           |                                        ^
+      1202 |       await expect(page.locator('body')).toBeVisible();
+      1203 |       
+      1204 |       // Test API security
+        at /Users/hugowentzel/sunspire-clean/tests/ULTIMATE-ENTERPRISE-READY.spec.ts:1201:40
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--6448b-omplete-security-validation-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--6448b-omplete-security-validation-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/ULTIMATE-ENTERPRISE-READY--6448b-omplete-security-validation-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/ULTIMATE-ENTERPRISE-READY--6448b-omplete-security-validation-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/ULTIMATE-ENTERPRISE-READY--6448b-omplete-security-validation-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  35 failed
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:68:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [3/75] Report generation with real solar data 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:83:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [4/75] Primary CTA button is visible and functional 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:96:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [5/75] CTA click routes to Stripe checkout 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:134:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [7/75] Stripe webhook processing for successful payment 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:178:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [9/75] Customer dashboard access works 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:192:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [10/75] Email notification system works 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:210:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [11/75] Demo quota system enforces limits 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:222:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [12/75] Paywall triggers after quota exceeded 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:237:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [13/75] Revenue tracking and analytics 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:249:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [14/75] Lead scoring and qualification 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:271:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 💰 REVENUE GENERATION & LEAD CAPTURE › [15/75] Complete revenue funnel from demo to purchase 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:300:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [16/75] SunRun branding applies correctly 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:312:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [17/75] Tesla branding applies correctly 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:324:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [18/75] Custom colors apply correctly 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:336:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [19/75] Custom logos display correctly 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:348:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [20/75] Multi-tenant isolation works 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:393:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [23/75] Instant URL generation works 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:408:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [24/75] Brand consistency across all pages 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:424:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [25/75] White-label footer customization 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:451:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [27/75] Brand theme inheritance 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:463:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [28/75] Logo fallback handling 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:496:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🎨 WHITE-LABEL BRANDING & MULTI-TENANT › [30/75] Complete white-label experience 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:550:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🌞 DATA ACCURACY & SOLAR CALCULATIONS › [33/75] Phoenix solar estimates are accurate 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:588:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🌞 DATA ACCURACY & SOLAR CALCULATIONS › [35/75] Energy rate calculations are accurate 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:631:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🌞 DATA ACCURACY & SOLAR CALCULATIONS › [38/75] Environmental impact calculations 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:712:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🌞 DATA ACCURACY & SOLAR CALCULATIONS › [44/75] Data export and sharing functionality 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:725:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🌞 DATA ACCURACY & SOLAR CALCULATIONS › [45/75] Complete solar data accuracy validation 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:782:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › ⚡ PERFORMANCE & SCALABILITY › [48/75] Concurrent user handling 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:864:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › ⚡ PERFORMANCE & SCALABILITY › [53/75] Network resilience 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:892:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › ⚡ PERFORMANCE & SCALABILITY › [55/75] Database query optimization 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:911:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › ⚡ PERFORMANCE & SCALABILITY › [56/75] CDN and asset delivery 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:969:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › ⚡ PERFORMANCE & SCALABILITY › [60/75] Complete performance validation 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:1000:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🔒 SECURITY & RELIABILITY › [61/75] Input validation and sanitization 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:1126:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🔒 SECURITY & RELIABILITY › [70/75] Data backup and recovery 
+    [chromium] › tests/ULTIMATE-ENTERPRISE-READY.spec.ts:1194:9 › ⭐⭐⭐ ULTIMATE ENTERPRISE-READY TEST SUITE ⭐⭐⭐ › 🔒 SECURITY & RELIABILITY › [75/75] Complete security validation 
+  40 passed (9.7m)

@@ -1,0 +1,51 @@
+
+Running 50 tests using 1 worker
+
+(node:2367) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:2367) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+💰 [1/50] Testing complete revenue generation...
+  ✘   1 [chromium] › tests/100-percent-enterprise-ready.spec.ts:84:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 💰 REVENUE FLOW - Complete User Journey › [1/50] Complete revenue flow: visitor → lead → payment → activation (2.2m)
+(node:3965) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:3965) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+💰 [2/50] Testing Stripe metadata...
+  ✘   2 [chromium] › tests/100-percent-enterprise-ready.spec.ts:117:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 💰 REVENUE FLOW - Complete User Journey › [2/50] Stripe metadata includes company and plan (2.1m)
+(node:7098) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:7098) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+💰 [3/50] Testing UTM tracking...
+  ✘   3 [chromium] › tests/100-percent-enterprise-ready.spec.ts:136:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 💰 REVENUE FLOW - Complete User Journey › [3/50] UTM parameters tracked through payment (2.2m)
+(node:8713) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:8713) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🎨 [4/50] Testing Spotify branding...
+  ✘   4 [chromium] › tests/100-percent-enterprise-ready.spec.ts:162:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎨 WHITE-LABEL - Multi-Tenant Branding › [4/50] Spotify gets green brand (#1DB954) (2.3m)
+(node:10354) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:10354) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🎨 [5/50] Testing Apple branding...
+  ✘   5 [chromium] › tests/100-percent-enterprise-ready.spec.ts:176:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎨 WHITE-LABEL - Multi-Tenant Branding › [5/50] Apple gets blue brand (#0071E3) (18.7s)
+(node:10619) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:10619) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🎨 [6/50] Testing Tesla branding...
+  ✘   6 [chromium] › tests/100-percent-enterprise-ready.spec.ts:190:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎨 WHITE-LABEL - Multi-Tenant Branding › [6/50] Tesla gets red brand (2.3m)
+(node:12357) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:12357) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🎨 [7/50] Testing Netflix branding...
+  ✘   7 [chromium] › tests/100-percent-enterprise-ready.spec.ts:201:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎨 WHITE-LABEL - Multi-Tenant Branding › [7/50] Netflix gets red brand (#E50914) (2.1m)
+(node:15541) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:15541) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🎨 [8/50] Testing parameter persistence...
+  ✘   8 [chromium] › tests/100-percent-enterprise-ready.spec.ts:215:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎨 WHITE-LABEL - Multi-Tenant Branding › [8/50] Company parameters persist across ALL pages (19.6s)

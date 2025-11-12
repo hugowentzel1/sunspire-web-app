@@ -1,0 +1,260 @@
+
+Running 20 tests using 1 worker
+
+(node:82110) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:82110) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🧪 [1/20] Testing first demo run...
+📊 Quota after first run: [33m1[39m
+✅ [1/20] First demo run works - 1 run remaining
+  ✓   1 [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:7:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [1/20] Demo mode - First run shows full report with 2 runs remaining (10.3s)
+🧪 [2/20] Testing second demo run...
+📊 Quota after second run: [33m0[39m
+✅ [2/20] Second demo run works - 0 runs remaining
+  ✓   2 [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:44:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [2/20] Demo mode - Second run shows report with 0 runs remaining (9.8s)
+🧪 [3/20] Testing quota exhaustion...
+✅ [3/20] Lock overlay appears when quota exhausted
+  ✓   3 [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:84:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [3/20] Demo mode - Third run triggers lock overlay (quota exhausted) (10.2s)
+🧪 [4/20] Testing timer countdown...
+✅ Timer countdown is visible
+✅ [4/20] Timer/lock overlay system works
+  ✓   4 [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:120:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [4/20] Demo mode - Timer countdown is visible (9.8s)
+🧪 [5/20] Testing lock overlay CTA...
+  ✘   5 [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:161:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [5/20] Lock overlay CTA routes to Stripe checkout (40.3s)
+(node:82859) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:82859) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🧪 [6/20] Testing homepage CTA...
+✅ [6/20] Homepage CTA works with cancel_url: https://sunspire-web-app.vercel.app/?company=SunRun&demo=1
+  ✓   6 [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:201:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [6/20] Homepage CTA routes to Stripe checkout (4.3s)
+🧪 [7/20] Testing pricing page CTA...
+  ✘   7 [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:225:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [7/20] Pricing page CTA routes to Stripe checkout (2.0m)
+(node:84172) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:84172) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🧪 [8/20] Testing company branding...
+✅ [8/20] Company name displays correctly
+  ✓   8 [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:249:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [8/20] White-label branding - Company name displays (2.7s)
+🧪 [9/20] Testing custom brand color...
+📊 Brand color: #FF0000
+✅ [9/20] Custom brand color applies
+  ✓   9 [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:261:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [9/20] White-label branding - Custom brand color applies (3.6s)
+🧪 [10/20] Testing solar calculations...
+📊 System size: ⚡7.2 kWSystem Size
+📊 Annual production: ☀️12,956 kWhAnnual Production
+✅ [10/20] Solar calculations display correctly
+  ✓  10 [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:278:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [10/20] Solar calculations - NREL PVWatts data accuracy (5.5s)
+🧪 [11/20] Testing paid version has no restrictions...
+✅ [11/20] Paid version has no restrictions
+  ✓  11 [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:299:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [11/20] Paid version - No demo restrictions (3.6s)
+🧪 [12/20] Testing Stripe checkout metadata...
+✅ [12/20] Stripe metadata includes tracking params
+  ✓  12 [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:319:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [12/20] Stripe checkout - Metadata includes tracking params (3.7s)
+🧪 [13/20] Testing back button fix on homepage...
+✅ [13/20] Back button will return to homepage
+  ✓  13 [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:341:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [13/20] Back button fix - Homepage preserves URL (3.7s)
+🧪 [14/20] Testing back button fix on report page...
+⚠️  CTA not visible on report page, skipping test
+  ✓  14 [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:360:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [14/20] Back button fix - Report page preserves state (5.6s)
+🧪 [15/20] Testing back button fix on pricing page...
+  ✘  15 [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:389:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [15/20] Back button fix - Pricing page preserves URL (2.0m)
+(node:85777) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:85777) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🧪 [16/20] Testing webhook endpoint...
+✅ [16/20] Webhook endpoint exists
+  ✓  16 [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:409:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [16/20] Stripe webhook endpoint exists (391ms)
+🧪 [17/20] Testing customer dashboard...
+  ✘  17 [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:423:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [17/20] Customer dashboard page exists (3.7s)
+(node:85841) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:85841) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🧪 [18/20] Testing NREL attribution...
+✅ [18/20] NREL attribution is visible
+  ✓  18 [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:440:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [18/20] NREL PVWatts attribution is visible (5.6s)
+🧪 [19/20] Testing brand persistence...
+✅ [19/20] Branding persists across all pages
+  ✓  19 [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:453:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [19/20] Multi-page consistency - Branding persists across pages (9.9s)
+🧪 [20/20] Testing complete flow...
+✅ Step 1: Landed on branded demo
+✅ Step 2: Generated solar report
+✅ Step 3: Quota tracked (1 run left)
+✅ Step 4: Second report generated (0 runs left)
+✅ Step 5: Lock overlay appears after quota exhausted
+  ✘  20 [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:477:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [20/20] Complete demo-to-purchase flow simulation (57.3s)
+
+
+  1) [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:161:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [5/20] Lock overlay CTA routes to Stripe checkout 
+
+    TimeoutError: page.waitForRequest: Timeout 30000ms exceeded while waiting for event "request"
+
+      183 |     // Click unlock CTA and verify Stripe checkout
+      184 |     const [request] = await Promise.all([
+    > 185 |       page.waitForRequest(req => req.url().includes('api/stripe/create-checkout-session') && req.method() === 'POST', { timeout: 30000 }),
+          |            ^
+      186 |       page.locator('button[data-cta="primary"]').filter({ hasText: /Activate|Unlock|Launch/ }).first().click(),
+      187 |     ]);
+      188 |     
+        at /Users/hugowentzel/sunspire-clean/tests/REALISTIC-ENTERPRISE-READY.spec.ts:185:12
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/REALISTIC-ENTERPRISE-READY-a3250-A-routes-to-Stripe-checkout-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/REALISTIC-ENTERPRISE-READY-a3250-A-routes-to-Stripe-checkout-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/REALISTIC-ENTERPRISE-READY-a3250-A-routes-to-Stripe-checkout-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/REALISTIC-ENTERPRISE-READY-a3250-A-routes-to-Stripe-checkout-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/REALISTIC-ENTERPRISE-READY-a3250-A-routes-to-Stripe-checkout-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:225:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [7/20] Pricing page CTA routes to Stripe checkout 
+
+    [31mTest timeout of 120000ms exceeded.[39m
+
+    Error: page.waitForRequest: Test timeout of 120000ms exceeded.
+
+      231 |     // Click Start Setup button
+      232 |     const [request] = await Promise.all([
+    > 233 |       page.waitForRequest(req => req.url().includes('api/stripe/create-checkout-session') && req.method() === 'POST'),
+          |            ^
+      234 |       page.locator('button').filter({ hasText: /Start Setup|Get Started/ }).first().click(),
+      235 |     ]);
+      236 |     
+        at /Users/hugowentzel/sunspire-clean/tests/REALISTIC-ENTERPRISE-READY.spec.ts:233:12
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/REALISTIC-ENTERPRISE-READY-621f6-A-routes-to-Stripe-checkout-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/REALISTIC-ENTERPRISE-READY-621f6-A-routes-to-Stripe-checkout-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/REALISTIC-ENTERPRISE-READY-621f6-A-routes-to-Stripe-checkout-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/REALISTIC-ENTERPRISE-READY-621f6-A-routes-to-Stripe-checkout-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/REALISTIC-ENTERPRISE-READY-621f6-A-routes-to-Stripe-checkout-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:389:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [15/20] Back button fix - Pricing page preserves URL 
+
+    [31mTest timeout of 120000ms exceeded.[39m
+
+    Error: page.waitForRequest: Test timeout of 120000ms exceeded.
+
+      394 |     
+      395 |     const [request] = await Promise.all([
+    > 396 |       page.waitForRequest(req => req.url().includes('api/stripe/create-checkout-session') && req.method() === 'POST'),
+          |            ^
+      397 |       page.locator('button').filter({ hasText: /Start Setup|Get Started/ }).first().click(),
+      398 |     ]);
+      399 |     
+        at /Users/hugowentzel/sunspire-clean/tests/REALISTIC-ENTERPRISE-READY.spec.ts:396:12
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/REALISTIC-ENTERPRISE-READY-4b28a--Pricing-page-preserves-URL-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/REALISTIC-ENTERPRISE-READY-4b28a--Pricing-page-preserves-URL-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/REALISTIC-ENTERPRISE-READY-4b28a--Pricing-page-preserves-URL-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/REALISTIC-ENTERPRISE-READY-4b28a--Pricing-page-preserves-URL-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/REALISTIC-ENTERPRISE-READY-4b28a--Pricing-page-preserves-URL-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:423:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [17/20] Customer dashboard page exists 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32mtrue[39m
+    Received: [31mfalse[39m
+
+      433 |     
+      434 |     // Either shows content or requires auth
+    > 435 |     expect(hasAccessRequired || hasDashboard).toBe(true);
+          |                                               ^
+      436 |     
+      437 |     console.log('✅ [17/20] Dashboard page exists');
+      438 |   });
+        at /Users/hugowentzel/sunspire-clean/tests/REALISTIC-ENTERPRISE-READY.spec.ts:435:47
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/REALISTIC-ENTERPRISE-READY-c6847-tomer-dashboard-page-exists-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/REALISTIC-ENTERPRISE-READY-c6847-tomer-dashboard-page-exists-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/REALISTIC-ENTERPRISE-READY-c6847-tomer-dashboard-page-exists-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/REALISTIC-ENTERPRISE-READY-c6847-tomer-dashboard-page-exists-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/REALISTIC-ENTERPRISE-READY-c6847-tomer-dashboard-page-exists-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:477:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [20/20] Complete demo-to-purchase flow simulation 
+
+    TimeoutError: page.waitForRequest: Timeout 30000ms exceeded while waiting for event "request"
+
+      548 |     // 7. Click unlock and verify Stripe checkout
+      549 |     const [request] = await Promise.all([
+    > 550 |       page.waitForRequest(req => req.url().includes('api/stripe/create-checkout-session') && req.method() === 'POST', { timeout: 30000 }),
+          |            ^
+      551 |       page.locator('button[data-cta="primary"]').filter({ hasText: /Activate|Unlock|Launch/ }).first().click(),
+      552 |     ]);
+      553 |     
+        at /Users/hugowentzel/sunspire-clean/tests/REALISTIC-ENTERPRISE-READY.spec.ts:550:12
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/REALISTIC-ENTERPRISE-READY-4eb06-to-purchase-flow-simulation-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/REALISTIC-ENTERPRISE-READY-4eb06-to-purchase-flow-simulation-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/REALISTIC-ENTERPRISE-READY-4eb06-to-purchase-flow-simulation-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/REALISTIC-ENTERPRISE-READY-4eb06-to-purchase-flow-simulation-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/REALISTIC-ENTERPRISE-READY-4eb06-to-purchase-flow-simulation-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5 failed
+    [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:161:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [5/20] Lock overlay CTA routes to Stripe checkout 
+    [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:225:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [7/20] Pricing page CTA routes to Stripe checkout 
+    [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:389:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [15/20] Back button fix - Pricing page preserves URL 
+    [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:423:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [17/20] Customer dashboard page exists 
+    [chromium] › tests/REALISTIC-ENTERPRISE-READY.spec.ts:477:7 › 🌞 REALISTIC ENTERPRISE-READY TEST - What Sunspire Actually Does › [20/20] Complete demo-to-purchase flow simulation 
+  15 passed (7.3m)

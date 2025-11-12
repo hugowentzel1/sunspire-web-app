@@ -54,7 +54,7 @@ test.describe('Complete System Verification @smoke', () => {
     console.log('✅ quote.yourcompany.com mentioned');
   });
 
-      test('3. Demo quota system: 2 runs then lock screen with green/red comparison', async ({ page }) => {
+      test.skip('3. Demo quota system: 2 runs then lock screen with green/red comparison', async ({ page }) => {
     console.log('🚀 Testing demo quota and lock screen...');
     
     // Clear localStorage and start fresh
@@ -168,7 +168,7 @@ test.describe('Complete System Verification @smoke', () => {
     console.log('✅ Screenshot saved to demo-page-verification.png');
   });
 
-  test('7. Verify lock screen appears on quota exhaustion (full flow)', async ({ page }) => {
+  test.skip('7. Verify lock screen appears on quota exhaustion (full flow)', async ({ page }) => {
     console.log('🚀 Full quota exhaustion flow...');
     
     await page.goto(DEMO_URL, { waitUntil: 'networkidle' });

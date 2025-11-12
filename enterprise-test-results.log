@@ -1,0 +1,1384 @@
+
+Running 50 tests using 1 worker
+
+(node:48448) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:48448) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+💰 [1/50] Testing complete revenue generation...
+  ✘   1 [chromium] › tests/100-percent-enterprise-ready.spec.ts:84:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 💰 REVENUE FLOW - Complete User Journey › [1/50] Complete revenue flow: visitor → lead → payment → activation (17.6s)
+(node:48684) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:48684) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+💰 [2/50] Testing Stripe metadata...
+  ✘   2 [chromium] › tests/100-percent-enterprise-ready.spec.ts:117:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 💰 REVENUE FLOW - Complete User Journey › [2/50] Stripe metadata includes company and plan (1.0m)
+(node:49393) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:49393) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+💰 [3/50] Testing UTM tracking...
+  ✘   3 [chromium] › tests/100-percent-enterprise-ready.spec.ts:136:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 💰 REVENUE FLOW - Complete User Journey › [3/50] UTM parameters tracked through payment (1.0m)
+(node:50107) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:50107) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🎨 [4/50] Testing Spotify branding...
+  ✘   4 [chromium] › tests/100-percent-enterprise-ready.spec.ts:162:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎨 WHITE-LABEL - Multi-Tenant Branding › [4/50] Spotify gets green brand (#1DB954) (1.0m)
+(node:50826) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:50826) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🎨 [5/50] Testing Apple branding...
+  ✘   5 [chromium] › tests/100-percent-enterprise-ready.spec.ts:176:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎨 WHITE-LABEL - Multi-Tenant Branding › [5/50] Apple gets blue brand (#0071E3) (1.0m)
+(node:51533) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:51533) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🎨 [6/50] Testing Tesla branding...
+  ✘   6 [chromium] › tests/100-percent-enterprise-ready.spec.ts:190:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎨 WHITE-LABEL - Multi-Tenant Branding › [6/50] Tesla gets red brand (8.3s)
+(node:51656) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:51656) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🎨 [7/50] Testing Netflix branding...
+  ✘   7 [chromium] › tests/100-percent-enterprise-ready.spec.ts:201:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎨 WHITE-LABEL - Multi-Tenant Branding › [7/50] Netflix gets red brand (#E50914) (1.0m)
+(node:52376) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:52376) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🎨 [8/50] Testing parameter persistence...
+✅ [8/50] Parameters persist everywhere
+  ✓   8 [chromium] › tests/100-percent-enterprise-ready.spec.ts:215:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎨 WHITE-LABEL - Multi-Tenant Branding › [8/50] Company parameters persist across ALL pages (5.7s)
+🎨 [9/50] Testing custom domain setup...
+  ✘   9 [chromium] › tests/100-percent-enterprise-ready.spec.ts:231:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎨 WHITE-LABEL - Multi-Tenant Branding › [9/50] Custom domain setup shows quote.yourcompany.com (1.0m)
+(node:53183) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:53183) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+☀️ [10/50] Testing Phoenix solar estimates...
+  ✘  10 [chromium] › tests/100-percent-enterprise-ready.spec.ts:253:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ☀️ SOLAR DATA - Accuracy & NREL Integration › [10/50] Phoenix, AZ generates realistic estimates (1.0m)
+(node:53884) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:53884) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+☀️ [11/50] Testing LA solar estimates...
+  ✘  11 [chromium] › tests/100-percent-enterprise-ready.spec.ts:280:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ☀️ SOLAR DATA - Accuracy & NREL Integration › [11/50] Los Angeles, CA generates realistic estimates (1.0m)
+(node:54595) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:54595) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+☀️ [12/50] Testing Seattle solar estimates...
+  ✘  12 [chromium] › tests/100-percent-enterprise-ready.spec.ts:296:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ☀️ SOLAR DATA - Accuracy & NREL Integration › [12/50] Seattle, WA generates realistic estimates (1.0m)
+(node:55297) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:55297) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+☀️ [13/50] Testing geographic variance...
+  ✘  13 [chromium] › tests/100-percent-enterprise-ready.spec.ts:313:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ☀️ SOLAR DATA - Accuracy & NREL Integration › [13/50] Phoenix produces MORE than Seattle (geographic variance) (1.0m)
+(node:56002) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:56002) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+☀️ [14/50] Verifying real NREL API data...
+  ✘  14 [chromium] › tests/100-percent-enterprise-ready.spec.ts:333:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ☀️ SOLAR DATA - Accuracy & NREL Integration › [14/50] System size has decimals (real NREL data, not fallback) (1.0m)
+(node:56719) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:56719) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🔒 [15/50] Testing demo quota...
+  ✘  15 [chromium] › tests/100-percent-enterprise-ready.spec.ts:355:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🔒 BUSINESS MODEL - Demo vs Paid Enforcement › [15/50] Demo quota initializes to 2 reports (2.3s)
+(node:56786) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:56786) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🔒 [16/50] Testing timer...
+  ✘  16 [chromium] › tests/100-percent-enterprise-ready.spec.ts:372:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🔒 BUSINESS MODEL - Demo vs Paid Enforcement › [16/50] Timer countdown visible in demo mode (5.2s)
+(node:56871) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:56871) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🔒 [17/50] Testing demo tile rendering...
+  ✘  17 [chromium] › tests/100-percent-enterprise-ready.spec.ts:385:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🔒 BUSINESS MODEL - Demo vs Paid Enforcement › [17/50] All 4 tiles render in demo mode (9.3s)
+(node:57015) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:57015) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🔒 [18/50] Testing paid mode unlock...
+  ✘  18 [chromium] › tests/100-percent-enterprise-ready.spec.ts:400:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🔒 BUSINESS MODEL - Demo vs Paid Enforcement › [18/50] All 4 tiles UNLOCKED in paid mode (8.4s)
+(node:57146) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:57146) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🔒 [19/50] Testing lock screen...
+✅ [19/50] Lock screen test completed (visible: false)
+  ✓  19 [chromium] › tests/100-percent-enterprise-ready.spec.ts:418:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🔒 BUSINESS MODEL - Demo vs Paid Enforcement › [19/50] Lock screen appears when quota exhausted (4.0s)
+📱 [20/50] Testing iPhone SE...
+  ✘  20 [chromium] › tests/100-percent-enterprise-ready.spec.ts:453:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 📱 RESPONSIVE - All Device Sizes › [20/50] iPhone SE (375px) - No horizontal scroll (8.7s)
+(node:57320) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:57320) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+📱 [21/50] Testing iPad...
+  ✘  21 [chromium] › tests/100-percent-enterprise-ready.spec.ts:469:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 📱 RESPONSIVE - All Device Sizes › [21/50] iPad (768px) works correctly (9.3s)
+(node:57459) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:57459) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+📱 [22/50] Testing Desktop...
+  ✘  22 [chromium] › tests/100-percent-enterprise-ready.spec.ts:482:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 📱 RESPONSIVE - All Device Sizes › [22/50] Desktop (1920px) works correctly (9.2s)
+(node:57606) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:57606) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+📱 [23/50] Testing 4K display...
+  ✘  23 [chromium] › tests/100-percent-enterprise-ready.spec.ts:495:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 📱 RESPONSIVE - All Device Sizes › [23/50] 4K Display (2560px) works correctly (8.3s)
+(node:57725) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:57725) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🔌 [24/50] Testing estimate API...
+✅ [24/50] Estimate API working
+  ✓  24 [chromium] › tests/100-percent-enterprise-ready.spec.ts:515:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🔌 API ENDPOINTS - Backend Integration › [24/50] /api/estimate returns valid solar data (3.0s)
+🔌 [25/50] Testing Stripe API...
+✅ [25/50] Stripe API working
+  ✓  25 [chromium] › tests/100-percent-enterprise-ready.spec.ts:534:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🔌 API ENDPOINTS - Backend Integration › [25/50] /api/stripe/create-checkout-session works (2.0s)
+🔌 [26/50] Testing health check...
+✅ [26/50] Health check OK
+  ✓  26 [chromium] › tests/100-percent-enterprise-ready.spec.ts:551:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🔌 API ENDPOINTS - Backend Integration › [26/50] /api/health returns OK status (779ms)
+⚠️ [27/50] Testing missing address...
+✅ [27/50] Handles missing address
+  ✓  27 [chromium] › tests/100-percent-enterprise-ready.spec.ts:567:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ⚠️ ERROR HANDLING - Edge Cases › [27/50] Missing address parameter handled gracefully (1.9s)
+⚠️ [28/50] Testing invalid coordinates...
+✅ [28/50] Handles invalid coords
+  ✓  28 [chromium] › tests/100-percent-enterprise-ready.spec.ts:581:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ⚠️ ERROR HANDLING - Edge Cases › [28/50] Invalid coordinates handled gracefully (2.8s)
+⚠️ [29/50] Testing empty company...
+  ✘  29 [chromium] › tests/100-percent-enterprise-ready.spec.ts:595:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ⚠️ ERROR HANDLING - Edge Cases › [29/50] Empty company parameter handled (7.9s)
+(node:57973) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:57973) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+⚡ [30/50] Testing load performance...
+✅ [30/50] Loaded in 478ms
+  ✓  30 [chromium] › tests/100-percent-enterprise-ready.spec.ts:615:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ⚡ PERFORMANCE - Speed & Efficiency › [30/50] Report page loads in under 10 seconds (1.1s)
+⚡ [31/50] Testing design consistency...
+  ✘  31 [chromium] › tests/100-percent-enterprise-ready.spec.ts:628:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ⚡ PERFORMANCE - Speed & Efficiency › [31/50] Design system maintains 32px spacing (1.0m)
+(node:58690) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:58690) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+⚖️ [32/50] Testing privacy policy...
+✅ [32/50] Privacy policy accessible
+  ✓  32 [chromium] › tests/100-percent-enterprise-ready.spec.ts:653:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ⚖️ COMPLIANCE - Legal Pages Required for Enterprise › [32/50] Privacy policy accessible (4.9s)
+⚖️ [33/50] Testing terms...
+✅ [33/50] Terms accessible
+  ✓  33 [chromium] › tests/100-percent-enterprise-ready.spec.ts:666:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ⚖️ COMPLIANCE - Legal Pages Required for Enterprise › [33/50] Terms of service accessible (2.5s)
+⚖️ [34/50] Testing refund policy...
+✅ [34/50] Refund policy accessible
+  ✓  34 [chromium] › tests/100-percent-enterprise-ready.spec.ts:679:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ⚖️ COMPLIANCE - Legal Pages Required for Enterprise › [34/50] Refund policy accessible (3.0s)
+⚖️ [35/50] Testing DPA...
+✅ [35/50] DPA accessible
+  ✓  35 [chromium] › tests/100-percent-enterprise-ready.spec.ts:692:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ⚖️ COMPLIANCE - Legal Pages Required for Enterprise › [35/50] DPA (Data Processing Agreement) accessible (2.7s)
+📄 [36/50] Testing homepage...
+  ✘  36 [chromium] › tests/100-percent-enterprise-ready.spec.ts:712:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 📄 CRITICAL PAGES - Core Functionality › [36/50] Homepage displays and address input works (7.9s)
+(node:58970) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:58970) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+📄 [37/50] Testing report header...
+  ✘  37 [chromium] › tests/100-percent-enterprise-ready.spec.ts:725:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 📄 CRITICAL PAGES - Core Functionality › [37/50] Report page header shows company name correctly (8.8s)
+(node:59131) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59131) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+📄 [38/50] Testing pricing page...
+✅ [38/50] Pricing page loads
+  ✓  38 [chromium] › tests/100-percent-enterprise-ready.spec.ts:739:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 📄 CRITICAL PAGES - Core Functionality › [38/50] Pricing page loads (4.0s)
+📄 [39/50] Testing support page...
+✅ [39/50] Support page loads
+  ✓  39 [chromium] › tests/100-percent-enterprise-ready.spec.ts:752:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 📄 CRITICAL PAGES - Core Functionality › [39/50] Support page loads (2.7s)
+📄 [40/50] Testing partners page...
+✅ [40/50] Partners page loads
+  ✓  40 [chromium] › tests/100-percent-enterprise-ready.spec.ts:765:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 📄 CRITICAL PAGES - Core Functionality › [40/50] Partners page loads (2.6s)
+📚 [41/50] Testing CRM docs...
+✅ [41/50] CRM docs accessible
+  ✓  41 [chromium] › tests/100-percent-enterprise-ready.spec.ts:785:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 📚 DOCUMENTATION - Setup & Integration Guides › [41/50] CRM integration docs accessible (3.3s)
+📚 [42/50] Testing setup docs...
+✅ [42/50] Setup docs accessible
+  ✓  42 [chromium] › tests/100-percent-enterprise-ready.spec.ts:798:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 📚 DOCUMENTATION - Setup & Integration Guides › [42/50] Setup documentation accessible (3.0s)
+🔒 [43/50] Testing API key security...
+✅ [43/50] No exposed API keys
+  ✓  43 [chromium] › tests/100-percent-enterprise-ready.spec.ts:818:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🔒 SECURITY - Data Protection › [43/50] No API keys exposed in client-side code (802ms)
+🔒 [44/50] Testing XSS protection...
+✅ [44/50] XSS protection working
+  ✓  44 [chromium] › tests/100-percent-enterprise-ready.spec.ts:832:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🔒 SECURITY - Data Protection › [44/50] Address input sanitized (no XSS) (1.7s)
+🔗 [45/50] Testing Google Places...
+  ✘  45 [chromium] › tests/100-percent-enterprise-ready.spec.ts:854:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🔗 INTEGRATIONS - Third-Party Services › [45/50] Google Places autocomplete configured (7.5s)
+(node:59469) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:59469) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🔗 [46/50] Testing Stripe session creation...
+  ✘  46 [chromium] › tests/100-percent-enterprise-ready.spec.ts:875:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🔗 INTEGRATIONS - Third-Party Services › [46/50] Stripe checkout session created with metadata (1.0m)
+(node:60175) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:60175) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+💾 [47/50] Testing data persistence...
+  ✘  47 [chromium] › tests/100-percent-enterprise-ready.spec.ts:900:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 💾 DATA INTEGRITY - State Management › [47/50] Demo quota persists in localStorage (1.5s)
+(node:60245) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:60245) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+💾 [48/50] Testing tenant isolation...
+✅ [48/50] No tenant data leakage
+  ✓  48 [chromium] › tests/100-percent-enterprise-ready.spec.ts:929:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 💾 DATA INTEGRITY - State Management › [48/50] Company parameter doesn't leak between sessions (3.6s)
+🎉 [49/50] Testing activation page...
+  ✘  49 [chromium] › tests/100-percent-enterprise-ready.spec.ts:957:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎉 ACTIVATION - Post-Purchase Success › [49/50] Activation page shows all deployment options (7.4s)
+(node:60391) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:60391) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+🎉 [50/50] FINAL VERIFICATION TEST...
+  ✘  50 [chromium] › tests/100-percent-enterprise-ready.spec.ts:976:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎉 ACTIVATION - Post-Purchase Success › [50/50] All critical flows verified - ENTERPRISE READY (9.4s)
+
+
+  1) [chromium] › tests/100-percent-enterprise-ready.spec.ts:84:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 💰 REVENUE FLOW - Complete User Journey › [1/50] Complete revenue flow: visitor → lead → payment → activation 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByTestId('tile-systemSize')
+    Expected: visible
+    Timeout: 10000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 10000ms[22m
+    [2m  - waiting for getByTestId('tile-systemSize')[22m
+
+
+      91 |       
+      92 |       // Verify solar report generated
+    > 93 |       await expect(page.getByTestId('tile-systemSize')).toBeVisible({ timeout: 10000 });
+         |                                                         ^
+      94 |       console.log('  ✅ Step 1: Solar report generated (lead captured)');
+      95 |       
+      96 |       // Click CTA to initiate payment
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:93:57
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-a902d-lead-→-payment-→-activation-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-a902d-lead-→-payment-→-activation-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-a902d-lead-→-payment-→-activation-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-a902d-lead-→-payment-→-activation-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  2) [chromium] › tests/100-percent-enterprise-ready.spec.ts:117:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 💰 REVENUE FLOW - Complete User Journey › [2/50] Stripe metadata includes company and plan 
+
+    [31mTest timeout of 60000ms exceeded.[39m
+
+    Error: page.waitForRequest: Test timeout of 60000ms exceeded.
+
+      123 |       
+      124 |       const [request] = await Promise.all([
+    > 125 |         page.waitForRequest(req => req.url().includes('api/stripe/create-checkout-session')),
+          |              ^
+      126 |         page.locator('button[data-cta="primary"]').first().click(),
+      127 |       ]);
+      128 |       
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:125:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-3c993-a-includes-company-and-plan-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-3c993-a-includes-company-and-plan-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-3c993-a-includes-company-and-plan-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-3c993-a-includes-company-and-plan-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  3) [chromium] › tests/100-percent-enterprise-ready.spec.ts:136:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 💰 REVENUE FLOW - Complete User Journey › [3/50] UTM parameters tracked through payment 
+
+    [31mTest timeout of 60000ms exceeded.[39m
+
+    Error: page.waitForRequest: Test timeout of 60000ms exceeded.
+
+      142 |       
+      143 |       const [request] = await Promise.all([
+    > 144 |         page.waitForRequest(req => req.url().includes('api/stripe/create-checkout-session')),
+          |              ^
+      145 |         page.locator('button[data-cta="primary"]').first().click(),
+      146 |       ]);
+      147 |       
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:144:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-96eab-ers-tracked-through-payment-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-96eab-ers-tracked-through-payment-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-96eab-ers-tracked-through-payment-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-96eab-ers-tracked-through-payment-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  4) [chromium] › tests/100-percent-enterprise-ready.spec.ts:162:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎨 WHITE-LABEL - Multi-Tenant Branding › [4/50] Spotify gets green brand (#1DB954) 
+
+    [31mTest timeout of 60000ms exceeded.[39m
+
+    Error: locator.evaluate: Test timeout of 60000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('h1[data-testid="hdr-h1"] span').first()[22m
+
+
+      168 |       
+      169 |       const companyName = page.locator('h1[data-testid="hdr-h1"] span').first();
+    > 170 |       const color = await companyName.evaluate((el: HTMLElement) => window.getComputedStyle(el).color);
+          |                                       ^
+      171 |       expect(color).toContain('29'); // rgb(29, 185, 84)
+      172 |       
+      173 |       console.log(`✅ [4/50] Spotify: ${color}`);
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:170:39
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-9af0a-fy-gets-green-brand-1DB954--chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-9af0a-fy-gets-green-brand-1DB954--chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-9af0a-fy-gets-green-brand-1DB954--chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-9af0a-fy-gets-green-brand-1DB954--chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  5) [chromium] › tests/100-percent-enterprise-ready.spec.ts:176:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎨 WHITE-LABEL - Multi-Tenant Branding › [5/50] Apple gets blue brand (#0071E3) 
+
+    [31mTest timeout of 60000ms exceeded.[39m
+
+    Error: locator.evaluate: Test timeout of 60000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('h1[data-testid="hdr-h1"] span').first()[22m
+
+
+      182 |       
+      183 |       const companyName = page.locator('h1[data-testid="hdr-h1"] span').first();
+    > 184 |       const color = await companyName.evaluate((el: HTMLElement) => window.getComputedStyle(el).color);
+          |                                       ^
+      185 |       expect(color).toContain('113'); // rgb(0, 113, 227)
+      186 |       
+      187 |       console.log(`✅ [5/50] Apple: ${color}`);
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:184:39
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-cb527-ple-gets-blue-brand-0071E3--chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-cb527-ple-gets-blue-brand-0071E3--chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-cb527-ple-gets-blue-brand-0071E3--chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-cb527-ple-gets-blue-brand-0071E3--chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  6) [chromium] › tests/100-percent-enterprise-ready.spec.ts:190:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎨 WHITE-LABEL - Multi-Tenant Branding › [6/50] Tesla gets red brand 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: getByTestId('hdr-h1')
+    Expected substring: [32m"Tesla"[39m
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for getByTestId('hdr-h1')[22m
+
+
+      195 |       await page.waitForTimeout(2000);
+      196 |       
+    > 197 |       await expect(page.getByTestId('hdr-h1')).toContainText('Tesla');
+          |                                                ^
+      198 |       console.log('✅ [6/50] Tesla branding applied');
+      199 |     });
+      200 |     
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:197:48
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-12a5a-g-6-50-Tesla-gets-red-brand-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-12a5a-g-6-50-Tesla-gets-red-brand-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-12a5a-g-6-50-Tesla-gets-red-brand-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-12a5a-g-6-50-Tesla-gets-red-brand-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  7) [chromium] › tests/100-percent-enterprise-ready.spec.ts:201:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎨 WHITE-LABEL - Multi-Tenant Branding › [7/50] Netflix gets red brand (#E50914) 
+
+    [31mTest timeout of 60000ms exceeded.[39m
+
+    Error: locator.evaluate: Test timeout of 60000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('h1[data-testid="hdr-h1"] span').first()[22m
+
+
+      207 |       
+      208 |       const companyName = page.locator('h1[data-testid="hdr-h1"] span').first();
+    > 209 |       const color = await companyName.evaluate((el: HTMLElement) => window.getComputedStyle(el).color);
+          |                                       ^
+      210 |       expect(color).toContain('229'); // rgb(229, 9, 20)
+      211 |       
+      212 |       console.log(`✅ [7/50] Netflix: ${color}`);
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:209:39
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-ba52b-flix-gets-red-brand-E50914--chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-ba52b-flix-gets-red-brand-E50914--chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-ba52b-flix-gets-red-brand-E50914--chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-ba52b-flix-gets-red-brand-E50914--chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  8) [chromium] › tests/100-percent-enterprise-ready.spec.ts:231:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎨 WHITE-LABEL - Multi-Tenant Branding › [9/50] Custom domain setup shows quote.yourcompany.com 
+
+    [31mTest timeout of 60000ms exceeded.[39m
+
+    Error: locator.click: Test timeout of 60000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('button').filter({ hasText: 'Custom Domain' })[22m
+
+
+      237 |       
+      238 |       const customDomainTab = page.locator('button').filter({ hasText: 'Custom Domain' });
+    > 239 |       await customDomainTab.click();
+          |                             ^
+      240 |       await page.waitForTimeout(500);
+      241 |       
+      242 |       await expect(page.locator('text=/quote\\..*\\.com/i')).toBeVisible();
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:239:29
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-f5233-shows-quote-yourcompany-com-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-f5233-shows-quote-yourcompany-com-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-f5233-shows-quote-yourcompany-com-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-f5233-shows-quote-yourcompany-com-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  9) [chromium] › tests/100-percent-enterprise-ready.spec.ts:253:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ☀️ SOLAR DATA - Accuracy & NREL Integration › [10/50] Phoenix, AZ generates realistic estimates 
+
+    [31mTest timeout of 60000ms exceeded.[39m
+
+    Error: locator.innerText: Test timeout of 60000ms exceeded.
+    Call log:
+    [2m  - waiting for getByTestId('tile-systemSize')[22m
+
+
+      258 |       await page.waitForTimeout(3000);
+      259 |       
+    > 260 |       const systemSizeText = await page.getByTestId('tile-systemSize').innerText();
+          |                                                                        ^
+      261 |       const systemSize = parseFloat(systemSizeText.replace(/[^0-9.]/g, ''));
+      262 |       
+      263 |       const productionText = await page.getByTestId('tile-annualProduction').innerText();
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:260:72
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-398fc-nerates-realistic-estimates-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-398fc-nerates-realistic-estimates-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/100-percent-enterprise-rea-398fc-nerates-realistic-estimates-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-398fc-nerates-realistic-estimates-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-398fc-nerates-realistic-estimates-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  10) [chromium] › tests/100-percent-enterprise-ready.spec.ts:280:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ☀️ SOLAR DATA - Accuracy & NREL Integration › [11/50] Los Angeles, CA generates realistic estimates 
+
+    [31mTest timeout of 60000ms exceeded.[39m
+
+    Error: locator.innerText: Test timeout of 60000ms exceeded.
+    Call log:
+    [2m  - waiting for getByTestId('tile-systemSize')[22m
+
+
+      285 |       await page.waitForTimeout(3000);
+      286 |       
+    > 287 |       const systemSizeText = await page.getByTestId('tile-systemSize').innerText();
+          |                                                                        ^
+      288 |       const systemSize = parseFloat(systemSizeText.replace(/[^0-9.]/g, ''));
+      289 |       
+      290 |       expect(systemSize).toBeGreaterThan(5);
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:287:72
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-65d66-nerates-realistic-estimates-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-65d66-nerates-realistic-estimates-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/100-percent-enterprise-rea-65d66-nerates-realistic-estimates-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-65d66-nerates-realistic-estimates-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-65d66-nerates-realistic-estimates-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  11) [chromium] › tests/100-percent-enterprise-ready.spec.ts:296:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ☀️ SOLAR DATA - Accuracy & NREL Integration › [12/50] Seattle, WA generates realistic estimates 
+
+    [31mTest timeout of 60000ms exceeded.[39m
+
+    Error: locator.innerText: Test timeout of 60000ms exceeded.
+    Call log:
+    [2m  - waiting for getByTestId('tile-annualProduction')[22m
+
+
+      301 |       await page.waitForTimeout(3000);
+      302 |       
+    > 303 |       const productionText = await page.getByTestId('tile-annualProduction').innerText();
+          |                                                                              ^
+      304 |       const production = parseFloat(productionText.replace(/[^0-9]/g, ''));
+      305 |       
+      306 |       // Seattle should have lower production
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:303:78
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-2d015-nerates-realistic-estimates-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-2d015-nerates-realistic-estimates-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/100-percent-enterprise-rea-2d015-nerates-realistic-estimates-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-2d015-nerates-realistic-estimates-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-2d015-nerates-realistic-estimates-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  12) [chromium] › tests/100-percent-enterprise-ready.spec.ts:313:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ☀️ SOLAR DATA - Accuracy & NREL Integration › [13/50] Phoenix produces MORE than Seattle (geographic variance) 
+
+    [31mTest timeout of 60000ms exceeded.[39m
+
+    Error: locator.innerText: Test timeout of 60000ms exceeded.
+    Call log:
+    [2m  - waiting for getByTestId('tile-annualProduction')[22m
+
+
+      318 |       await page.waitForLoadState('domcontentloaded');
+      319 |       await page.waitForTimeout(3000);
+    > 320 |       const phoenixProd = parseFloat((await page.getByTestId('tile-annualProduction').innerText()).replace(/[^0-9]/g, ''));
+          |                                                                                       ^
+      321 |       
+      322 |       // Seattle
+      323 |       await page.goto(`${BASE_URL}/report?address=Seattle&lat=47.6062&lng=-122.3321&placeId=test`);
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:320:87
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-ef31d-eattle-geographic-variance--chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-ef31d-eattle-geographic-variance--chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/100-percent-enterprise-rea-ef31d-eattle-geographic-variance--chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-ef31d-eattle-geographic-variance--chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-ef31d-eattle-geographic-variance--chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  13) [chromium] › tests/100-percent-enterprise-ready.spec.ts:333:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ☀️ SOLAR DATA - Accuracy & NREL Integration › [14/50] System size has decimals (real NREL data, not fallback) 
+
+    [31mTest timeout of 60000ms exceeded.[39m
+
+    Error: locator.innerText: Test timeout of 60000ms exceeded.
+    Call log:
+    [2m  - waiting for getByTestId('tile-systemSize')[22m
+
+
+      338 |       await page.waitForTimeout(3000);
+      339 |       
+    > 340 |       const systemSizeText = await page.getByTestId('tile-systemSize').innerText();
+          |                                                                        ^
+      341 |       const systemSize = parseFloat(systemSizeText.replace(/[^0-9.]/g, ''));
+      342 |       
+      343 |       expect(systemSize % 1).not.toBe(0); // Must have decimals = real API
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:340:72
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-629a9-eal-NREL-data-not-fallback--chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-629a9-eal-NREL-data-not-fallback--chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/100-percent-enterprise-rea-629a9-eal-NREL-data-not-fallback--chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-629a9-eal-NREL-data-not-fallback--chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-629a9-eal-NREL-data-not-fallback--chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  14) [chromium] › tests/100-percent-enterprise-ready.spec.ts:355:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🔒 BUSINESS MODEL - Demo vs Paid Enforcement › [15/50] Demo quota initializes to 2 reports 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m2[39m
+    Received: [31mundefined[39m
+
+      366 |       });
+      367 |       
+    > 368 |       expect(quota).toBe(2);
+          |                     ^
+      369 |       console.log('✅ [15/50] Demo quota = 2');
+      370 |     });
+      371 |     
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:368:21
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-3060e-ta-initializes-to-2-reports-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-3060e-ta-initializes-to-2-reports-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-3060e-ta-initializes-to-2-reports-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-3060e-ta-initializes-to-2-reports-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  15) [chromium] › tests/100-percent-enterprise-ready.spec.ts:372:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🔒 BUSINESS MODEL - Demo vs Paid Enforcement › [16/50] Timer countdown visible in demo mode 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32mtrue[39m
+    Received: [31mfalse[39m
+
+      378 |       
+      379 |       const timer = page.locator('text=/\\d+[dhms]/');
+    > 380 |       expect(await timer.first().isVisible()).toBe(true);
+          |                                               ^
+      381 |       
+      382 |       console.log('✅ [16/50] Timer visible');
+      383 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:380:47
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-8685a-ntdown-visible-in-demo-mode-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-8685a-ntdown-visible-in-demo-mode-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/100-percent-enterprise-rea-8685a-ntdown-visible-in-demo-mode-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-8685a-ntdown-visible-in-demo-mode-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-8685a-ntdown-visible-in-demo-mode-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  16) [chromium] › tests/100-percent-enterprise-ready.spec.ts:385:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🔒 BUSINESS MODEL - Demo vs Paid Enforcement › [17/50] All 4 tiles render in demo mode 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('[data-testid="tile-systemSize"]')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('[data-testid="tile-systemSize"]')[22m
+
+
+      390 |       await page.waitForTimeout(2000);
+      391 |       
+    > 392 |       await expect(page.locator('[data-testid="tile-systemSize"]')).toBeVisible();
+          |                                                                     ^
+      393 |       await expect(page.locator('[data-testid="tile-annualProduction"]')).toBeVisible();
+      394 |       await expect(page.locator('[data-testid="tile-lifetimeSavings"]')).toBeVisible();
+      395 |       await expect(page.locator('[data-testid="tile-large"]')).toBeVisible();
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:392:69
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-6175e-4-tiles-render-in-demo-mode-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-6175e-4-tiles-render-in-demo-mode-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/100-percent-enterprise-rea-6175e-4-tiles-render-in-demo-mode-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-6175e-4-tiles-render-in-demo-mode-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-6175e-4-tiles-render-in-demo-mode-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  17) [chromium] › tests/100-percent-enterprise-ready.spec.ts:400:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🔒 BUSINESS MODEL - Demo vs Paid Enforcement › [18/50] All 4 tiles UNLOCKED in paid mode 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('[data-testid="tile-systemSize"]')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('[data-testid="tile-systemSize"]')[22m
+
+
+      405 |       await page.waitForTimeout(2000);
+      406 |       
+    > 407 |       await expect(page.locator('[data-testid="tile-systemSize"]')).toBeVisible();
+          |                                                                     ^
+      408 |       await expect(page.locator('[data-testid="tile-annualProduction"]')).toBeVisible();
+      409 |       await expect(page.locator('[data-testid="tile-lifetimeSavings"]')).toBeVisible();
+      410 |       await expect(page.locator('[data-testid="tile-large"]')).toBeVisible();
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:407:69
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-8749d-tiles-UNLOCKED-in-paid-mode-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-8749d-tiles-UNLOCKED-in-paid-mode-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/100-percent-enterprise-rea-8749d-tiles-UNLOCKED-in-paid-mode-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-8749d-tiles-UNLOCKED-in-paid-mode-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-8749d-tiles-UNLOCKED-in-paid-mode-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  18) [chromium] › tests/100-percent-enterprise-ready.spec.ts:453:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 📱 RESPONSIVE - All Device Sizes › [20/50] iPhone SE (375px) - No horizontal scroll 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByTestId('hdr-h1')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByTestId('hdr-h1')[22m
+
+
+      462 |       expect(bodyWidth).toBeLessThanOrEqual(400);
+      463 |       
+    > 464 |       await expect(page.getByTestId('hdr-h1')).toBeVisible();
+          |                                                ^
+      465 |       
+      466 |       console.log('✅ [20/50] iPhone SE perfect');
+      467 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:464:48
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-3fedb-75px---No-horizontal-scroll-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-3fedb-75px---No-horizontal-scroll-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/100-percent-enterprise-rea-3fedb-75px---No-horizontal-scroll-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-3fedb-75px---No-horizontal-scroll-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-3fedb-75px---No-horizontal-scroll-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  19) [chromium] › tests/100-percent-enterprise-ready.spec.ts:469:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 📱 RESPONSIVE - All Device Sizes › [21/50] iPad (768px) works correctly 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByTestId('hdr-h1')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByTestId('hdr-h1')[22m
+
+
+      475 |       await page.waitForTimeout(2000);
+      476 |       
+    > 477 |       await expect(page.getByTestId('hdr-h1')).toBeVisible();
+          |                                                ^
+      478 |       
+      479 |       console.log('✅ [21/50] iPad perfect');
+      480 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:477:48
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-e6f83--iPad-768px-works-correctly-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-e6f83--iPad-768px-works-correctly-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/100-percent-enterprise-rea-e6f83--iPad-768px-works-correctly-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-e6f83--iPad-768px-works-correctly-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-e6f83--iPad-768px-works-correctly-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  20) [chromium] › tests/100-percent-enterprise-ready.spec.ts:482:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 📱 RESPONSIVE - All Device Sizes › [22/50] Desktop (1920px) works correctly 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByTestId('hdr-h1')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByTestId('hdr-h1')[22m
+
+
+      488 |       await page.waitForTimeout(2000);
+      489 |       
+    > 490 |       await expect(page.getByTestId('hdr-h1')).toBeVisible();
+          |                                                ^
+      491 |       
+      492 |       console.log('✅ [22/50] Desktop perfect');
+      493 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:490:48
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-f9123-ktop-1920px-works-correctly-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-f9123-ktop-1920px-works-correctly-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/100-percent-enterprise-rea-f9123-ktop-1920px-works-correctly-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-f9123-ktop-1920px-works-correctly-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-f9123-ktop-1920px-works-correctly-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  21) [chromium] › tests/100-percent-enterprise-ready.spec.ts:495:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 📱 RESPONSIVE - All Device Sizes › [23/50] 4K Display (2560px) works correctly 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByTestId('hdr-h1')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByTestId('hdr-h1')[22m
+
+
+      501 |       await page.waitForTimeout(2000);
+      502 |       
+    > 503 |       await expect(page.getByTestId('hdr-h1')).toBeVisible();
+          |                                                ^
+      504 |       
+      505 |       console.log('✅ [23/50] 4K display perfect');
+      506 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:503:48
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-b8c8d-play-2560px-works-correctly-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-b8c8d-play-2560px-works-correctly-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/100-percent-enterprise-rea-b8c8d-play-2560px-works-correctly-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-b8c8d-play-2560px-works-correctly-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-b8c8d-play-2560px-works-correctly-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  22) [chromium] › tests/100-percent-enterprise-ready.spec.ts:595:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ⚠️ ERROR HANDLING - Edge Cases › [29/50] Empty company parameter handled 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByTestId('hdr-h1')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByTestId('hdr-h1')[22m
+
+
+      601 |       
+      602 |       // Should load with default branding
+    > 603 |       await expect(page.getByTestId('hdr-h1')).toBeVisible();
+          |                                                ^
+      604 |       
+      605 |       console.log('✅ [29/50] Handles empty company');
+      606 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:603:48
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-2747d-y-company-parameter-handled-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-2747d-y-company-parameter-handled-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/100-percent-enterprise-rea-2747d-y-company-parameter-handled-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-2747d-y-company-parameter-handled-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-2747d-y-company-parameter-handled-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  23) [chromium] › tests/100-percent-enterprise-ready.spec.ts:628:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ⚡ PERFORMANCE - Speed & Efficiency › [31/50] Design system maintains 32px spacing 
+
+    [31mTest timeout of 60000ms exceeded.[39m
+
+    Error: locator.evaluate: Test timeout of 60000ms exceeded.
+    Call log:
+    [2m  - waiting for locator('.grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4.gap-4').first()[22m
+
+
+      634 |       
+      635 |       const metaCards = page.locator('.grid.grid-cols-1.md\\:grid-cols-2.lg\\:grid-cols-4.gap-4').first();
+    > 636 |       const marginTop = await metaCards.evaluate((el: HTMLElement) => {
+          |                                         ^
+      637 |         return parseInt(window.getComputedStyle(el).marginTop);
+      638 |       });
+      639 |       
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:636:41
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-3dfa0-stem-maintains-32px-spacing-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-3dfa0-stem-maintains-32px-spacing-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/100-percent-enterprise-rea-3dfa0-stem-maintains-32px-spacing-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-3dfa0-stem-maintains-32px-spacing-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-3dfa0-stem-maintains-32px-spacing-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  24) [chromium] › tests/100-percent-enterprise-ready.spec.ts:712:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 📄 CRITICAL PAGES - Core Functionality › [36/50] Homepage displays and address input works 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByPlaceholder(/Start typing/i)
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByPlaceholder(/Start typing/i)[22m
+
+
+      718 |       
+      719 |       const addressInput = page.getByPlaceholder(/Start typing/i);
+    > 720 |       await expect(addressInput).toBeVisible();
+          |                                  ^
+      721 |       
+      722 |       console.log('✅ [36/50] Homepage working');
+      723 |     });
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:720:34
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-bb321-ays-and-address-input-works-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-bb321-ays-and-address-input-works-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-bb321-ays-and-address-input-works-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-bb321-ays-and-address-input-works-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  25) [chromium] › tests/100-percent-enterprise-ready.spec.ts:725:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 📄 CRITICAL PAGES - Core Functionality › [37/50] Report page header shows company name correctly 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoContainText[2m([22m[32mexpected[39m[2m)[22m failed
+
+    Locator: getByTestId('hdr-h1')
+    Expected substring: [32m"SunRun"[39m
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toContainText" with timeout 5000ms[22m
+    [2m  - waiting for getByTestId('hdr-h1')[22m
+
+
+      731 |       
+      732 |       const h1 = page.getByTestId('hdr-h1');
+    > 733 |       await expect(h1).toContainText('SunRun');
+          |                        ^
+      734 |       await expect(h1).toContainText('Solar Quote');
+      735 |       
+      736 |       console.log('✅ [37/50] Report header correct');
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:733:24
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-37544-hows-company-name-correctly-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-37544-hows-company-name-correctly-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/100-percent-enterprise-rea-37544-hows-company-name-correctly-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-37544-hows-company-name-correctly-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-37544-hows-company-name-correctly-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  26) [chromium] › tests/100-percent-enterprise-ready.spec.ts:854:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🔗 INTEGRATIONS - Third-Party Services › [45/50] Google Places autocomplete configured 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByPlaceholder(/Start typing/i)
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByPlaceholder(/Start typing/i)[22m
+
+
+      860 |       
+      861 |       const addressInput = page.getByPlaceholder(/Start typing/i);
+    > 862 |       await expect(addressInput).toBeVisible();
+          |                                  ^
+      863 |       
+      864 |       // Type to trigger autocomplete
+      865 |       await addressInput.fill('123 Main St, Phoenix');
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:862:34
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-6b91c-ces-autocomplete-configured-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-6b91c-ces-autocomplete-configured-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-6b91c-ces-autocomplete-configured-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-6b91c-ces-autocomplete-configured-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  27) [chromium] › tests/100-percent-enterprise-ready.spec.ts:875:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🔗 INTEGRATIONS - Third-Party Services › [46/50] Stripe checkout session created with metadata 
+
+    [31mTest timeout of 60000ms exceeded.[39m
+
+    Error: page.waitForRequest: Test timeout of 60000ms exceeded.
+
+      881 |       
+      882 |       const [request] = await Promise.all([
+    > 883 |         page.waitForRequest(req => req.url().includes('api/stripe/create-checkout-session')),
+          |              ^
+      884 |         page.locator('button[data-cta="primary"]').first().click(),
+      885 |       ]);
+      886 |       
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:883:14
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-ed990-ssion-created-with-metadata-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-ed990-ssion-created-with-metadata-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-ed990-ssion-created-with-metadata-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-ed990-ssion-created-with-metadata-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  28) [chromium] › tests/100-percent-enterprise-ready.spec.ts:900:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 💾 DATA INTEGRITY - State Management › [47/50] Demo quota persists in localStorage 
+
+    Error: [2mexpect([22m[31mreceived[39m[2m).[22mtoBe[2m([22m[32mexpected[39m[2m) // Object.is equality[22m
+
+    Expected: [32m2[39m
+    Received: [31mundefined[39m
+
+      911 |       });
+      912 |       
+    > 913 |       expect(quota1).toBe(2);
+          |                      ^
+      914 |       
+      915 |       // Reload and verify persistence
+      916 |       await page.reload();
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:913:22
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-fc8e4-ta-persists-in-localStorage-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-fc8e4-ta-persists-in-localStorage-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-fc8e4-ta-persists-in-localStorage-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-fc8e4-ta-persists-in-localStorage-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  29) [chromium] › tests/100-percent-enterprise-ready.spec.ts:957:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎉 ACTIVATION - Post-Purchase Success › [49/50] Activation page shows all deployment options 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: locator('text=/Your Solar Tool is Ready/i')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for locator('text=/Your Solar Tool is Ready/i')[22m
+
+
+      962 |       await page.waitForTimeout(1500);
+      963 |       
+    > 964 |       await expect(page.locator('text=/Your Solar Tool is Ready/i')).toBeVisible();
+          |                                                                      ^
+      965 |       
+      966 |       const customDomainTab = page.locator('button').filter({ hasText: 'Custom Domain' });
+      967 |       await expect(customDomainTab).toBeVisible();
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:964:70
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-60b79-hows-all-deployment-options-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-60b79-hows-all-deployment-options-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-60b79-hows-all-deployment-options-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-60b79-hows-all-deployment-options-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  30) [chromium] › tests/100-percent-enterprise-ready.spec.ts:976:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎉 ACTIVATION - Post-Purchase Success › [50/50] All critical flows verified - ENTERPRISE READY 
+
+    Error: [2mexpect([22m[31mlocator[39m[2m).[22mtoBeVisible[2m([22m[2m)[22m failed
+
+    Locator: getByTestId('hdr-h1')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+    [2m  - Expect "toBeVisible" with timeout 5000ms[22m
+    [2m  - waiting for getByTestId('hdr-h1')[22m
+
+
+      983 |       
+      984 |       // Verify all critical elements
+    > 985 |       await expect(page.getByTestId('hdr-h1')).toBeVisible();
+          |                                                ^
+      986 |       await expect(page.getByTestId('tile-systemSize')).toBeVisible();
+      987 |       await expect(page.getByTestId('tile-annualProduction')).toBeVisible();
+      988 |       await expect(page.getByTestId('tile-lifetimeSavings')).toBeVisible();
+        at /Users/hugowentzel/sunspire-clean/tests/100-percent-enterprise-ready.spec.ts:985:48
+
+    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-f3db1-verified---ENTERPRISE-READY-chromium/test-failed-1.png
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    attachment #2: video (video/webm) ──────────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-f3db1-verified---ENTERPRISE-READY-chromium/video.webm
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+    Error Context: test-results/100-percent-enterprise-rea-f3db1-verified---ENTERPRISE-READY-chromium/error-context.md
+
+    attachment #4: trace (application/zip) ─────────────────────────────────────────────────────────
+    test-results/100-percent-enterprise-rea-f3db1-verified---ENTERPRISE-READY-chromium/trace.zip
+    Usage:
+
+        npx playwright show-trace test-results/100-percent-enterprise-rea-f3db1-verified---ENTERPRISE-READY-chromium/trace.zip
+
+    ────────────────────────────────────────────────────────────────────────────────────────────────
+
+  30 failed
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:84:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 💰 REVENUE FLOW - Complete User Journey › [1/50] Complete revenue flow: visitor → lead → payment → activation 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:117:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 💰 REVENUE FLOW - Complete User Journey › [2/50] Stripe metadata includes company and plan 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:136:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 💰 REVENUE FLOW - Complete User Journey › [3/50] UTM parameters tracked through payment 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:162:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎨 WHITE-LABEL - Multi-Tenant Branding › [4/50] Spotify gets green brand (#1DB954) 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:176:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎨 WHITE-LABEL - Multi-Tenant Branding › [5/50] Apple gets blue brand (#0071E3) 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:190:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎨 WHITE-LABEL - Multi-Tenant Branding › [6/50] Tesla gets red brand 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:201:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎨 WHITE-LABEL - Multi-Tenant Branding › [7/50] Netflix gets red brand (#E50914) 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:231:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎨 WHITE-LABEL - Multi-Tenant Branding › [9/50] Custom domain setup shows quote.yourcompany.com 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:253:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ☀️ SOLAR DATA - Accuracy & NREL Integration › [10/50] Phoenix, AZ generates realistic estimates 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:280:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ☀️ SOLAR DATA - Accuracy & NREL Integration › [11/50] Los Angeles, CA generates realistic estimates 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:296:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ☀️ SOLAR DATA - Accuracy & NREL Integration › [12/50] Seattle, WA generates realistic estimates 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:313:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ☀️ SOLAR DATA - Accuracy & NREL Integration › [13/50] Phoenix produces MORE than Seattle (geographic variance) 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:333:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ☀️ SOLAR DATA - Accuracy & NREL Integration › [14/50] System size has decimals (real NREL data, not fallback) 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:355:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🔒 BUSINESS MODEL - Demo vs Paid Enforcement › [15/50] Demo quota initializes to 2 reports 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:372:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🔒 BUSINESS MODEL - Demo vs Paid Enforcement › [16/50] Timer countdown visible in demo mode 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:385:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🔒 BUSINESS MODEL - Demo vs Paid Enforcement › [17/50] All 4 tiles render in demo mode 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:400:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🔒 BUSINESS MODEL - Demo vs Paid Enforcement › [18/50] All 4 tiles UNLOCKED in paid mode 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:453:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 📱 RESPONSIVE - All Device Sizes › [20/50] iPhone SE (375px) - No horizontal scroll 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:469:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 📱 RESPONSIVE - All Device Sizes › [21/50] iPad (768px) works correctly 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:482:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 📱 RESPONSIVE - All Device Sizes › [22/50] Desktop (1920px) works correctly 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:495:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 📱 RESPONSIVE - All Device Sizes › [23/50] 4K Display (2560px) works correctly 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:595:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ⚠️ ERROR HANDLING - Edge Cases › [29/50] Empty company parameter handled 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:628:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › ⚡ PERFORMANCE - Speed & Efficiency › [31/50] Design system maintains 32px spacing 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:712:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 📄 CRITICAL PAGES - Core Functionality › [36/50] Homepage displays and address input works 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:725:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 📄 CRITICAL PAGES - Core Functionality › [37/50] Report page header shows company name correctly 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:854:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🔗 INTEGRATIONS - Third-Party Services › [45/50] Google Places autocomplete configured 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:875:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🔗 INTEGRATIONS - Third-Party Services › [46/50] Stripe checkout session created with metadata 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:900:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 💾 DATA INTEGRITY - State Management › [47/50] Demo quota persists in localStorage 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:957:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎉 ACTIVATION - Post-Purchase Success › [49/50] Activation page shows all deployment options 
+    [chromium] › tests/100-percent-enterprise-ready.spec.ts:976:9 › ⭐ 100% ENTERPRISE-READY TEST SUITE › 🎉 ACTIVATION - Post-Purchase Success › [50/50] All critical flows verified - ENTERPRISE READY 
+  20 passed (17.5m)
