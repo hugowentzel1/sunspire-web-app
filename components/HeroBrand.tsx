@@ -129,6 +129,22 @@ export default function HeroBrand({
   };
 
   const logoUrl = b.logo || getDefaultLogo(b.brand);
+  
+  // Use proxy endpoint for external logos to bypass CORS/403 issues
+  const getProxiedLogoUrl = (url: string | null) => {
+    if (!url) return null;
+    try {
+      const urlObj = new URL(url);
+      if (urlObj.protocol === 'http:' || urlObj.protocol === 'https:') {
+        return `/api/logo-proxy?url=${encodeURIComponent(url)}`;
+      }
+      return url;
+    } catch {
+      return url;
+    }
+  };
+  
+  const proxiedLogoUrl = logoUrl ? getProxiedLogoUrl(logoUrl) : null;
 
   const sizeClasses = {
     sm: "w-16 h-16", // 64px mobile
@@ -136,7 +152,7 @@ export default function HeroBrand({
     lg: "w-24 h-24", // 96px desktop
   };
 
-  if (!logoUrl) {
+  if (!proxiedLogoUrl) {
     return (
       <div
         className={`${sizeClasses[size]} rounded-2xl bg-gradient-to-br from-[var(--brand)] to-[var(--brand-600)] flex items-center justify-center shadow-lg ${className}`}
@@ -153,10 +169,11 @@ export default function HeroBrand({
       data-hero-logo
     >
       <Image
-        src={logoUrl}
+        src={proxiedLogoUrl}
         alt={`${b.brand} logo`}
         width={size === "sm" ? 48 : size === "md" ? 64 : 72}
         height={size === "sm" ? 48 : size === "md" ? 64 : 72}
+        unoptimized
         className="object-contain mix-blend-multiply"
         style={{
           objectFit: "contain",

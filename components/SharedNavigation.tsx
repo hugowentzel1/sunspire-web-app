@@ -99,6 +99,19 @@ export default function SharedNavigation() {
   };
 
   const logoUrl = b.logo || getDefaultLogo(b.brand);
+  const getProxiedLogoUrl = (url: string | null) => {
+    if (!url) return null;
+    try {
+      const urlObj = new URL(url);
+      if (urlObj.protocol === 'http:' || urlObj.protocol === 'https:') {
+        return `/api/logo-proxy?url=${encodeURIComponent(url)}`;
+      }
+      return url;
+    } catch {
+      return url;
+    }
+  };
+  const proxiedLogoUrl = logoUrl ? getProxiedLogoUrl(logoUrl) : null;
 
   const handleLaunchClick = async () => {
     if (b.enabled) {
@@ -149,9 +162,10 @@ export default function SharedNavigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-center md:justify-between items-center h-20">
           <Link href={createUrlWithParams("/")} className="flex items-center space-x-4 hover:opacity-80 transition-opacity">
-            {b.enabled && logoUrl ? (
-              <Image 
-                src={logoUrl} 
+            {b.enabled && proxiedLogoUrl ? (
+              <Image
+                src={proxiedLogoUrl}
+                unoptimized
                 alt={`${b.brand} logo`} 
                 width={48} 
                 height={48} 

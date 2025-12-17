@@ -23,6 +23,19 @@ export default function LegalFooter({
   const companyName = brand || (b.enabled && b.brand ? b.brand : (urlCompany || 'Sunspire'));
   const brandColor = urlBrandColor ? `#${urlBrandColor.replace('#', '')}` : (b.enabled && b.primary ? b.primary : '#d97706');
   const logoUrl = b.logo || urlLogo;
+  const getProxiedLogoUrl = (url: string | null) => {
+    if (!url) return null;
+    try {
+      const urlObj = new URL(url);
+      if (urlObj.protocol === 'http:' || urlObj.protocol === 'https:') {
+        return `/api/logo-proxy?url=${encodeURIComponent(url)}`;
+      }
+      return url;
+    } catch {
+      return url;
+    }
+  };
+  const proxiedLogoUrl = logoUrl ? getProxiedLogoUrl(logoUrl) : null;
   
   // Check if this is demo mode
   const isDemo = searchParams?.get('demo') === '1' || searchParams?.get('demo') === 'true';
@@ -49,9 +62,9 @@ export default function LegalFooter({
             <h3 className="text-lg font-semibold text-gray-900 mb-4">
               {isDemo ? 'Sunspire Solar Intelligence' : (companyName || 'Your Company')}
             </h3>
-            {!isDemo && logoUrl && (
+            {!isDemo && proxiedLogoUrl && (
               <img
-                src={logoUrl}
+                src={proxiedLogoUrl}
                 alt={`${companyName || 'Your Company'} logo`}
                 className="h-12 w-12 rounded-lg object-contain"
               />

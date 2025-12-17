@@ -41,6 +41,19 @@ export default function Footer() {
     return params ? `${path}?${params}` : path;
   };
   const logoUrl = b.logo || getDefaultLogo(b.brand);
+  const getProxiedLogoUrl = (url: string | null) => {
+    if (!url) return null;
+    try {
+      const urlObj = new URL(url);
+      if (urlObj.protocol === 'http:' || urlObj.protocol === 'https:') {
+        return `/api/logo-proxy?url=${encodeURIComponent(url)}`;
+      }
+      return url;
+    } catch {
+      return url;
+    }
+  };
+  const proxiedLogoUrl = logoUrl ? getProxiedLogoUrl(logoUrl) : null;
   
   return (
     <footer className="bg-slate-100/60 py-10" data-testid="footer">
@@ -52,10 +65,11 @@ export default function Footer() {
             {/* LEFT - Mobile: centered, Desktop: left-aligned */}
             <div className="min-w-0 md:max-w-sm text-center md:text-left">
               {/* Company Logo (paid mode only) */}
-              {!isDemo && logoUrl && (
+              {!isDemo && proxiedLogoUrl && (
                 <div className="flex justify-center md:justify-start mb-4">
                   <Image
-                    src={logoUrl}
+                    src={proxiedLogoUrl}
+                    unoptimized
                     alt={`${b.brand} logo`}
                     width={48}
                     height={48}

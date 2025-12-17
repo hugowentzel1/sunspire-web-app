@@ -25,6 +25,19 @@ export default function PaidFooter() {
   const b = useBrandTakeover();
   const searchParams = useSearchParams();
   const logoUrl = b.logo || getDefaultLogo(b.brand);
+  const getProxiedLogoUrl = (url: string | null) => {
+    if (!url) return null;
+    try {
+      const urlObj = new URL(url);
+      if (urlObj.protocol === 'http:' || urlObj.protocol === 'https:') {
+        return `/api/logo-proxy?url=${encodeURIComponent(url)}`;
+      }
+      return url;
+    } catch {
+      return url;
+    }
+  };
+  const proxiedLogoUrl = logoUrl ? getProxiedLogoUrl(logoUrl) : null;
   const brandName = b.brand || 'Your Company';
   const brandColor = b.primary || '#FF6B35';
   
@@ -54,9 +67,10 @@ export default function PaidFooter() {
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         {/* Row 1: Brand (centered) */}
         <div data-testid="footer-brand" className="flex flex-col items-center gap-4 mb-8">
-          {logoUrl && (
+          {proxiedLogoUrl && (
             <Image
-              src={logoUrl}
+              src={proxiedLogoUrl}
+              unoptimized
               alt={`${brandName} logo`}
               width={32}
               height={32}

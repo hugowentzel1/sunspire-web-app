@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 import { useBrandTakeover } from "./useBrandTakeover";
 
 function initials(name: string) {
@@ -20,9 +21,24 @@ interface HeroBrandProps {
 
 export default function HeroBrand({ size = "md", className = "" }: HeroBrandProps = {}) {
   const b = useBrandTakeover();
+  const [imageError, setImageError] = useState(false);
+  
+  // Debug logging
+  useEffect(() => {
+    console.log('HeroBrand render state:', {
+      enabled: b.enabled,
+      brand: b.brand,
+      logo: b.logo,
+      isDemo: b.isDemo
+    });
+  }, [b]);
+  
   // Show in both demo and paid modes when brand is enabled
   // Also show if we have company branding even if not explicitly enabled
-  if (!b.enabled && !b.brand) return null;
+  if (!b.enabled && !b.brand) {
+    console.warn('HeroBrand: Returning null - enabled:', b.enabled, 'brand:', b.brand);
+    return null;
+  }
 
   // Generate a default logo URL for common companies when no logo is provided
   const getDefaultLogo = (brand: string) => {
@@ -129,6 +145,39 @@ export default function HeroBrand({ size = "md", className = "" }: HeroBrandProp
   };
 
   const logoUrl = b.logo || getDefaultLogo(b.brand);
+  
+  // Use proxy endpoint for external logos to bypass CORS/403 issues
+  const getProxiedLogoUrl = (url: string | null) => {
+    if (!url) return null;
+    try {
+      const urlObj = new URL(url);
+      // Only proxy external HTTP/HTTPS URLs
+      if (urlObj.protocol === 'http:' || urlObj.protocol === 'https:') {
+        // Always use proxy for external URLs
+        const proxied = `/api/logo-proxy?url=${encodeURIComponent(url)}`;
+        console.log('HeroBrand: Proxying logo URL:', url, '->', proxied);
+        return proxied;
+      }
+      return url;
+    } catch (e) {
+      console.warn('HeroBrand: Failed to parse logo URL:', url, e);
+      return url;
+    }
+  };
+  
+  const proxiedLogoUrl = logoUrl ? getProxiedLogoUrl(logoUrl) : null;
+  const showImage = proxiedLogoUrl && !imageError;
+  
+  // Debug logging
+  useEffect(() => {
+    console.log('HeroBrand render:', {
+      logoUrl,
+      proxiedLogoUrl,
+      showImage,
+      imageError,
+      brand: b.brand
+    });
+  }, [logoUrl, proxiedLogoUrl, showImage, imageError, b.brand]);
 
   const sizeClasses = {
     sm: "w-16 h-16", // 64px
@@ -151,12 +200,25 @@ export default function HeroBrand({ size = "md", className = "" }: HeroBrandProp
       style={{ display: "grid", placeItems: "center" }}
       data-hero-logo
     >
-      {logoUrl ? (
+      {showImage ? (
         <Image
-          src={logoUrl}
+          src={proxiedLogoUrl}
           alt={`${b.brand} logo`}
           width={currentSize}
           height={currentSize}
+          unoptimized
+          onError={(e) => {
+            console.warn('HeroBrand: Failed to load logo image:', proxiedLogoUrl);
+            setImageError(true);
+            // Hide broken image immediately
+            if (e.target) {
+              (e.target as HTMLImageElement).style.display = 'none';
+            }
+          }}
+          onLoad={() => {
+            console.log('HeroBrand: Logo image loaded successfully:', proxiedLogoUrl);
+            setImageError(false);
+          }}
           style={{
             objectFit: "contain",
             borderRadius: 8,
@@ -166,9 +228,11 @@ export default function HeroBrand({ size = "md", className = "" }: HeroBrandProp
             minHeight: `${currentSize}px`,
             maxWidth: `${currentSize}px`,
             maxHeight: `${currentSize}px`,
+            display: imageError ? 'none' : 'block',
           }}
         />
-      ) : (
+      ) : null}
+      {(!showImage || imageError) && (
         <div
           className={currentSizeClass}
           style={{

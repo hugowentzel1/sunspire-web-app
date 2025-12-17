@@ -770,24 +770,42 @@ function ReportContent() {
             {/* H1 → Logo = 24px */}
             <div data-testid="hdr-logo" className="mt-[24px] flex justify-center">
               <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.2, duration: 0.8 }} className="w-24 h-24">
-                {(b.logo || getDefaultLogo(b.brand)) ? (
-                  <Image 
-                    src={b.logo || getDefaultLogo(b.brand) || ''} 
-                    alt={`${b.brand} logo`} 
-                    width={96} 
-                    height={96} 
-                    className="rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,.08)]"
-                    style={{ 
-                      objectFit: "contain",
-                      width: "96px",
-                      height: "96px"
-                    }}
-                  />
-                ) : (
-                  <div className="brand-gradient text-white rounded-full w-24 h-24 grid place-items-center shadow-[0_8px_30px_rgba(0,0,0,.08)]">
-                    <span className="text-4xl">☀️</span>
-                  </div>
-                )}
+                {(() => {
+                  const logoUrl = b.logo || getDefaultLogo(b.brand);
+                  const getProxiedLogoUrl = (url: string | null) => {
+                    if (!url) return null;
+                    try {
+                      const urlObj = new URL(url);
+                      if (urlObj.protocol === 'http:' || urlObj.protocol === 'https:') {
+                        return `/api/logo-proxy?url=${encodeURIComponent(url)}`;
+                      }
+                      return url;
+                    } catch {
+                      return url;
+                    }
+                  };
+                  const proxiedUrl = logoUrl ? getProxiedLogoUrl(logoUrl) : null;
+                  
+                  return proxiedUrl ? (
+                    <Image 
+                      src={proxiedUrl} 
+                      alt={`${b.brand} logo`} 
+                      width={96} 
+                      height={96} 
+                      unoptimized
+                      className="rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,.08)]"
+                      style={{ 
+                        objectFit: "contain",
+                        width: "96px",
+                        height: "96px"
+                      }}
+                    />
+                  ) : (
+                    <div className="brand-gradient text-white rounded-full w-24 h-24 grid place-items-center shadow-[0_8px_30px_rgba(0,0,0,.08)]">
+                      <span className="text-4xl">☀️</span>
+                    </div>
+                  );
+                })()}
               </motion.div>
             </div>
 
