@@ -23,23 +23,6 @@ export default function HeroBrand({ size = "md", className = "" }: HeroBrandProp
   const b = useBrandTakeover();
   const [imageError, setImageError] = useState(false);
   
-  // Debug logging
-  useEffect(() => {
-    console.log('HeroBrand render state:', {
-      enabled: b.enabled,
-      brand: b.brand,
-      logo: b.logo,
-      isDemo: b.isDemo
-    });
-  }, [b]);
-  
-  // Show in both demo and paid modes when brand is enabled
-  // Also show if we have company branding even if not explicitly enabled
-  if (!b.enabled && !b.brand) {
-    console.warn('HeroBrand: Returning null - enabled:', b.enabled, 'brand:', b.brand);
-    return null;
-  }
-
   // Generate a default logo URL for common companies when no logo is provided
   const getDefaultLogo = (brand: string) => {
     const brandLower = brand.toLowerCase();
@@ -168,16 +151,35 @@ export default function HeroBrand({ size = "md", className = "" }: HeroBrandProp
   const proxiedLogoUrl = logoUrl ? getProxiedLogoUrl(logoUrl) : null;
   const showImage = proxiedLogoUrl && !imageError;
   
+  // ALL HOOKS MUST BE BEFORE ANY EARLY RETURNS
   // Debug logging
   useEffect(() => {
-    console.log('HeroBrand render:', {
-      logoUrl,
-      proxiedLogoUrl,
-      showImage,
-      imageError,
-      brand: b.brand
+    console.log('HeroBrand render state:', {
+      enabled: b.enabled,
+      brand: b.brand,
+      logo: b.logo,
+      isDemo: b.isDemo
     });
-  }, [logoUrl, proxiedLogoUrl, showImage, imageError, b.brand]);
+  }, [b]);
+  
+  useEffect(() => {
+    if (b.enabled || b.brand) {
+      console.log('HeroBrand render:', {
+        logoUrl,
+        proxiedLogoUrl,
+        showImage,
+        imageError,
+        brand: b.brand
+      });
+    }
+  }, [logoUrl, proxiedLogoUrl, showImage, imageError, b.brand, b.enabled]);
+  
+  // Show in both demo and paid modes when brand is enabled
+  // Also show if we have company branding even if not explicitly enabled
+  if (!b.enabled && !b.brand) {
+    console.warn('HeroBrand: Returning null - enabled:', b.enabled, 'brand:', b.brand);
+    return null;
+  }
 
   const sizeClasses = {
     sm: "w-16 h-16", // 64px

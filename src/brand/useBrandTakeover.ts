@@ -23,11 +23,23 @@ function hex(h: string | null, fallback="#FFA63D") {
 function allowLogo(urlStr: string | null) {
   if (!urlStr) return null;
   try {
-    const u = new URL(urlStr);
+    // Decode URL-encoded string if needed (handles cases where URL is double-encoded)
+    let decodedUrl = urlStr;
+    try {
+      decodedUrl = decodeURIComponent(urlStr);
+    } catch {
+      // If decoding fails, use original string
+      decodedUrl = urlStr;
+    }
+    
+    const u = new URL(decodedUrl);
     if (u.protocol !== "https:") return null;
     if (!ALLOWED.has(u.hostname)) return null;
     return u.toString();
-  } catch { return null; }
+  } catch { 
+    console.warn('allowLogo: Failed to validate logo URL:', urlStr);
+    return null; 
+  }
 }
 
 export type BrandState = {
@@ -87,11 +99,19 @@ export function useBrandTakeover(): BrandState {
           }
         }
         
+        const rawLogoUrl = sp?.get("logo") || null;
+        const validatedLogo = allowLogo(rawLogoUrl);
+        
+        // Debug logging for logo processing
+        if (rawLogoUrl && !validatedLogo) {
+          console.warn('Logo URL rejected by validation:', rawLogoUrl);
+        }
+        
         const brandState: BrandState = {
           enabled: urlEnabled, // Enable for both demo and company branding
           brand: companyName,
           primary: themeColor,
-          logo: allowLogo(sp?.get("logo") || null),
+          logo: validatedLogo,
           domain: sp?.get("domain") || sp?.get("company") || null,
           city: sp?.get("city") || null,
           rep: sp?.get("rep") || null,

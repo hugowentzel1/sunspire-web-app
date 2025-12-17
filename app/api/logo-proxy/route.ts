@@ -105,9 +105,15 @@ export async function GET(req: NextRequest) {
         },
       }
     );
+  }
 
-    const imageBuffer = await response.arrayBuffer();
-    const contentType = response.headers.get('content-type') || 'image/png';
+  // response is guaranteed to be non-null here because we checked response.ok above
+  if (!response) {
+    throw new Error('Unexpected: response is null');
+  }
+
+  const imageBuffer = await response.arrayBuffer();
+  const contentType = response.headers.get('content-type') || 'image/png';
 
     return new NextResponse(imageBuffer, {
       status: 200,

@@ -72,7 +72,16 @@ function HomeContent() {
       localStorage.getItem("sunspire-brand-takeover"),
     );
     console.log("Paid page isDemo:", isDemo);
-  }, [b, isDemo]);
+    console.log("Paid page b.enabled:", b.enabled);
+    console.log("Paid page b.brand:", b.brand);
+    console.log("Paid page b.logo:", b.logo);
+    console.log("Paid page searchParams:", {
+      company: searchParams?.get("company"),
+      brandColor: searchParams?.get("brandColor"),
+      logo: searchParams?.get("logo"),
+      demo: searchParams?.get("demo")
+    });
+  }, [b, isDemo, searchParams]);
 
   // Brand colors from URL
   useBrandColors();
