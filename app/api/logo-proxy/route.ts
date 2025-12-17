@@ -105,24 +105,6 @@ export async function GET(req: NextRequest) {
         },
       }
     );
-  }
-
-  // response is guaranteed to be non-null here because we checked response.ok above
-  if (!response) {
-    throw new Error('Unexpected: response is null');
-  }
-
-  const imageBuffer = await response.arrayBuffer();
-  const contentType = response.headers.get('content-type') || 'image/png';
-
-    return new NextResponse(imageBuffer, {
-      status: 200,
-      headers: {
-        'Content-Type': contentType,
-        'Cache-Control': 'public, max-age=86400, stale-while-revalidate=86400',
-        'Access-Control-Allow-Origin': '*',
-      },
-    });
   } catch (error) {
     console.error('Logo proxy error:', error);
     // Return transparent 1x1 PNG on error
@@ -138,4 +120,3 @@ export async function GET(req: NextRequest) {
     );
   }
 }
-
