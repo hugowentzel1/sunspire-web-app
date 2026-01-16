@@ -176,6 +176,7 @@ export default function HeroBrand({ size = "md", className = "" }: HeroBrandProp
   
   // Show in both demo and paid modes when brand is enabled
   // Also show if we have company branding even if not explicitly enabled
+  // Early return AFTER all hooks
   if (!b.enabled && !b.brand) {
     console.warn('HeroBrand: Returning null - enabled:', b.enabled, 'brand:', b.brand);
     return null;
