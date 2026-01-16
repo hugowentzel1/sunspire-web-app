@@ -503,7 +503,7 @@ function HomeContent() {
           {trustData && <LogoWall logos={trustData.logos} />}
 
           {/* Features - Single row of 3 cards with company color gradient shading */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto section-spacing">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto py-8 md:py-10">
             <div className="relative bg-gradient-to-br from-white via-white to-[var(--brand-primary)]/15 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-2xl hover:scale-105 transition-all duration-500 flex flex-col items-center justify-center group stagger-item hover-lift">
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/40 to-[var(--brand-primary)]/25 rounded-3xl opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10">
@@ -528,7 +528,7 @@ function HomeContent() {
           </div>
 
           {/* Final CTA Section */}
-          <div className="max-w-4xl mx-auto py-12 md:py-16">
+          <div className="max-w-4xl mx-auto py-8 md:py-10">
             <div className="bg-white/80 backdrop-blur-sm rounded-3xl p-8 border border-gray-200/50 shadow-lg">
               <div className="text-center space-y-8">
                 <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Launch Your Branded Version Now</h2>
@@ -574,7 +574,7 @@ function HomeContent() {
           )}
 
           {/* How It Works Section - Centered */}
-          <div className="max-w-4xl mx-auto pt-10 pb-10 md:pt-12 md:pb-12 px-4">
+          <div className="max-w-4xl mx-auto py-8 md:py-10 px-4">
             <div className="text-center space-y-8">
               <h2 className="text-2xl md:text-3xl font-bold text-gray-900">How it works</h2>
               <div className="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-8">
@@ -604,7 +604,7 @@ function HomeContent() {
 
           {/* FAQ Section - Demo only */}
           {isDemo && (
-            <div className="max-w-4xl mx-auto section-spacing" {...tid('pricing-section')}>
+            <div className="max-w-4xl mx-auto py-8 md:py-10 px-4" {...tid('pricing-section')}>
               <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">Frequently Asked Questions</h2>
               {/* SUNSPIRE: DEMO FAQ order */}
               <div className="space-y-6">
