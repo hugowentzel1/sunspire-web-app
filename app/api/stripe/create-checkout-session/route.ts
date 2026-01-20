@@ -23,7 +23,7 @@ export async function POST(req: NextRequest) {
     const stripeClient = getStripe();
     console.log("🔍 Stripe checkout request received");
 
-    // Get price IDs from environment
+    // Get price IDs from environment - hard fail on missing
     const monthlyPrice =
       process.env.STRIPE_PRICE_STARTER || 
       process.env.STRIPE_PRICE_MONTHLY ||
@@ -31,15 +31,27 @@ export async function POST(req: NextRequest) {
     
     const setupPrice = process.env.STRIPE_PRICE_SETUP_399;
     
-    if (!monthlyPrice) {
-      console.error("❌ Missing STRIPE monthly price env");
-      return NextResponse.json({ error: "Stripe monthly price configuration missing" }, { status: 500 });
+    // Hard fail with clear error
+    if (!monthlyPrice || monthlyPrice.trim() === '') {
+      const errorMsg = "Stripe monthly price ID is missing or empty. Set STRIPE_PRICE_STARTER, STRIPE_PRICE_MONTHLY, or STRIPE_PRICE_MONTHLY_99";
+      console.error(`❌ ${errorMsg}`);
+      return NextResponse.json({ 
+        error: errorMsg,
+        required: ["STRIPE_PRICE_STARTER | STRIPE_PRICE_MONTHLY | STRIPE_PRICE_MONTHLY_99"]
+      }, { status: 500 });
     }
     
-    if (!setupPrice) {
-      console.error("❌ Missing STRIPE setup price env");
-      return NextResponse.json({ error: "Stripe setup price configuration missing" }, { status: 500 });
+    if (!setupPrice || setupPrice.trim() === '') {
+      const errorMsg = "Stripe setup price ID is missing or empty. Set STRIPE_PRICE_SETUP_399";
+      console.error(`❌ ${errorMsg}`);
+      return NextResponse.json({ 
+        error: errorMsg,
+        required: ["STRIPE_PRICE_SETUP_399"]
+      }, { status: 500 });
     }
+
+    // Log which price IDs are being used (safe to log)
+    console.log(`[Checkout] Using price IDs - Monthly: ${monthlyPrice.substring(0, 8)}..., Setup: ${setupPrice.substring(0, 8)}...`);
 
     // Read params from POST JSON
     const body = await req.json();
@@ -107,10 +119,14 @@ export async function POST(req: NextRequest) {
       automatic_tax: { enabled: true },
     });
 
-    console.log("✅ Stripe checkout session created:", checkoutSession.id);
-    console.log("✅ Checkout URL:", checkoutSession.url);
+    console.log(`✅ Stripe checkout session created: ${checkoutSession.id} (mode: ${checkoutSession.livemode ? 'live' : 'test'})`);
+    console.log(`✅ Checkout URL: ${checkoutSession.url}`);
     
-    return NextResponse.json({ url: checkoutSession.url });
+    return NextResponse.json({ 
+      url: checkoutSession.url,
+      sessionId: checkoutSession.id,
+      livemode: checkoutSession.livemode
+    });
   } catch (err: unknown) {
     const errorMessage = err instanceof Error ? err.message : String(err);
     console.error("Stripe checkout error:", err);
@@ -130,7 +146,7 @@ export async function GET(req: NextRequest) {
     const stripeClient = getStripe();
     console.log("🔍 Stripe checkout GET request received");
 
-    // Get price IDs from environment
+    // Get price IDs from environment - hard fail on missing
     const monthlyPrice =
       process.env.STRIPE_PRICE_STARTER || 
       process.env.STRIPE_PRICE_MONTHLY ||
@@ -138,15 +154,27 @@ export async function GET(req: NextRequest) {
     
     const setupPrice = process.env.STRIPE_PRICE_SETUP_399;
     
-    if (!monthlyPrice) {
-      console.error("❌ Missing STRIPE monthly price env");
-      return NextResponse.json({ error: "Stripe monthly price configuration missing" }, { status: 500 });
+    // Hard fail with clear error
+    if (!monthlyPrice || monthlyPrice.trim() === '') {
+      const errorMsg = "Stripe monthly price ID is missing or empty. Set STRIPE_PRICE_STARTER, STRIPE_PRICE_MONTHLY, or STRIPE_PRICE_MONTHLY_99";
+      console.error(`❌ ${errorMsg}`);
+      return NextResponse.json({ 
+        error: errorMsg,
+        required: ["STRIPE_PRICE_STARTER | STRIPE_PRICE_MONTHLY | STRIPE_PRICE_MONTHLY_99"]
+      }, { status: 500 });
     }
     
-    if (!setupPrice) {
-      console.error("❌ Missing STRIPE setup price env");
-      return NextResponse.json({ error: "Stripe setup price configuration missing" }, { status: 500 });
+    if (!setupPrice || setupPrice.trim() === '') {
+      const errorMsg = "Stripe setup price ID is missing or empty. Set STRIPE_PRICE_SETUP_399";
+      console.error(`❌ ${errorMsg}`);
+      return NextResponse.json({ 
+        error: errorMsg,
+        required: ["STRIPE_PRICE_SETUP_399"]
+      }, { status: 500 });
     }
+
+    // Log which price IDs are being used (safe to log)
+    console.log(`[Checkout] Using price IDs - Monthly: ${monthlyPrice.substring(0, 8)}..., Setup: ${setupPrice.substring(0, 8)}...`);
 
     // Read params from URL query string
     const url = new URL(req.url);
@@ -212,10 +240,14 @@ export async function GET(req: NextRequest) {
       automatic_tax: { enabled: true },
     });
 
-    console.log("✅ Stripe checkout session created:", checkoutSession.id);
-    console.log("✅ Checkout URL:", checkoutSession.url);
-
-    return NextResponse.json({ url: checkoutSession.url });
+    console.log(`✅ Stripe checkout session created: ${checkoutSession.id} (mode: ${checkoutSession.livemode ? 'live' : 'test'})`);
+    console.log(`✅ Checkout URL: ${checkoutSession.url}`);
+    
+    return NextResponse.json({ 
+      url: checkoutSession.url,
+      sessionId: checkoutSession.id,
+      livemode: checkoutSession.livemode
+    });
   } catch (err: unknown) {
     const errorMessage = err instanceof Error ? err.message : String(err);
     console.error("Stripe checkout GET error:", err);

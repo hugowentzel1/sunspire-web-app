@@ -213,20 +213,31 @@ export async function upsertTenantByHandle(
   handle: string,
   fields: Record<string, any>,
 ) {
+  // Log Airtable base presence (safe - no secrets)
+  const baseId = ENV.AIRTABLE_BASE_ID;
+  console.log(`[Airtable] Upserting tenant: "${handle}" in base: ${baseId ? baseId.substring(0, 8) + '...' : 'MISSING'}`);
+  
   try {
     const existing = await findTenantByHandle(handle);
 
     if (existing && existing.id) {
+      console.log(`[Airtable] Tenant "${handle}" exists (ID: ${existing.id}), updating...`);
       const updated = await getBase()(TABLES.TENANTS).update([
         { id: existing.id, fields },
       ]);
+      console.log(`[Airtable] ✅ Tenant "${handle}" updated successfully`);
       return updated[0];
     } else {
+      console.log(`[Airtable] Tenant "${handle}" not found, creating new record...`);
       const created = await getBase()(TABLES.TENANTS).create([{ fields }]);
+      console.log(`[Airtable] ✅ Tenant "${handle}" created successfully (ID: ${created[0].id})`);
       return created[0];
     }
   } catch (error) {
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    console.error(`[Airtable] ❌ Error upserting tenant "${handle}": ${errorMsg}`);
     logger.error("Error upserting tenant:", error);
+    // Bubble error so webhook can return 500 and Stripe will retry
     throw error;
   }
 }
