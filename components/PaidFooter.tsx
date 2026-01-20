@@ -101,7 +101,7 @@ export default function PaidFooter() {
             </li>
             <li className="flex items-center gap-3">
               <Link
-                href="/legal/terms"
+                href={getUrlWithParams("/legal/terms")}
                 className="text-slate-600 hover:text-slate-900 transition-colors underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded"
                 style={{ 
                   '--tw-ring-color': brandColor 
@@ -109,9 +109,7 @@ export default function PaidFooter() {
               >
                 Terms of Service
               </Link>
-              {(FEATURES.cookiePreferences || FEATURES.cpraDoNotSell) && (
-                <span aria-hidden="true" className="text-slate-400">•</span>
-              )}
+              <span aria-hidden="true" className="text-slate-400">•</span>
             </li>
             {FEATURES.cookiePreferences && (
               <li className="flex items-center gap-3">
@@ -145,7 +143,7 @@ export default function PaidFooter() {
             )}
             <li className="flex items-center gap-3">
               <Link
-                href="/legal/accessibility"
+                href={getUrlWithParams("/legal/accessibility")}
                 className="text-slate-600 hover:text-slate-900 transition-colors underline-offset-4 hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 rounded"
                 style={{ 
                   '--tw-ring-color': brandColor 
