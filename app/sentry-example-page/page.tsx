@@ -1,8 +1,36 @@
 "use client";
 
-import * as Sentry from "@sentry/nextjs";
+import { useState, useEffect } from "react";
 
 export default function SentryExamplePage() {
+  const [sentryLoaded, setSentryLoaded] = useState(false);
+  const [sentryInfo, setSentryInfo] = useState<string>("");
+
+  useEffect(() => {
+    // Check if Sentry is available (only runs on client)
+    if (typeof window !== "undefined") {
+      import("@sentry/nextjs")
+        .then((Sentry) => {
+          setSentryLoaded(true);
+          const dsn = process.env.NEXT_PUBLIC_SENTRY_DSN;
+          const isEnabled = process.env.NODE_ENV === "production" || process.env.NEXT_PUBLIC_SENTRY_ENABLE === "1";
+          setSentryInfo(
+            `Sentry loaded: ${!!Sentry}\nDSN present: ${!!dsn}\nEnabled: ${isEnabled}\nDSN prefix: ${dsn ? dsn.substring(0, 30) + "..." : "missing"}`
+          );
+          console.log("[Sentry Test Page] Sentry status:", {
+            loaded: true,
+            hasDsn: !!dsn,
+            isEnabled,
+            dsnPrefix: dsn ? dsn.substring(0, 30) + "..." : "missing",
+          });
+        })
+        .catch((err) => {
+          setSentryInfo(`Sentry failed to load: ${err.message}`);
+          console.error("[Sentry Test Page] Failed to load Sentry:", err);
+        });
+    }
+  }, []);
+
   const triggerClientError = () => {
     const isProd = process.env.NODE_ENV === "production";
     const isEnabled = process.env.NEXT_PUBLIC_SENTRY_ENABLE === "1";
@@ -15,12 +43,21 @@ export default function SentryExamplePage() {
     console.log("[Sentry Test] Triggering client error...", {
       isProd,
       isEnabled,
-      hasSentry: typeof Sentry !== "undefined",
+      sentryLoaded,
     });
     
     // Intentionally throw to verify Sentry wiring (client-side)
     const error = new Error("Sentry test error (intentional - client-side)");
     console.error("[Sentry Test] Throwing error:", error);
+    
+    // Try to capture with Sentry if available
+    if (sentryLoaded) {
+      import("@sentry/nextjs").then((Sentry) => {
+        Sentry.captureException(error);
+        console.log("[Sentry Test] Error captured by Sentry");
+      });
+    }
+    
     throw error;
   };
 
@@ -36,7 +73,11 @@ export default function SentryExamplePage() {
         throw new Error(`Server error: ${text}`);
       }
     } catch (error) {
-      Sentry.captureException(error);
+      if (sentryLoaded) {
+        import("@sentry/nextjs").then((Sentry) => {
+          Sentry.captureException(error);
+        });
+      }
       throw error;
     }
   };
@@ -47,6 +88,13 @@ export default function SentryExamplePage() {
       <p className="mt-2 text-slate-600">
         Click a button below to trigger an intentional error (dev-only is recommended).
       </p>
+      
+      {sentryInfo && (
+        <div className="mt-4 p-4 bg-slate-100 rounded-md text-sm font-mono whitespace-pre-wrap">
+          {sentryInfo}
+        </div>
+      )}
+      
       <div className="mt-6 flex gap-4">
         <button
           onClick={triggerClientError}
@@ -63,6 +111,9 @@ export default function SentryExamplePage() {
       </div>
       <p className="mt-4 text-sm text-slate-500">
         If Sentry is configured, you should see an event in your Sentry project.
+      </p>
+      <p className="mt-2 text-xs text-slate-400">
+        Check browser console (F12) for detailed logs.
       </p>
     </main>
   );
