@@ -1,17 +1,17 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { circuitBreakers } from '@/lib/circuit-breaker';
 
 interface HealthStatus {
   ok: boolean;
   timestamp: string;
-  services: Array<{
+  services?: Array<{
     service: string;
     status: 'ok' | 'degraded' | 'down';
     latency?: number;
     error?: string;
   }>;
+  apis?: Record<string, boolean>;
 }
 
 interface CircuitBreakerState {
@@ -25,6 +25,7 @@ export default function AdminDashboard() {
   const [health, setHealth] = useState<HealthStatus | null>(null);
   const [circuitBreakerStates, setCircuitBreakerStates] = useState<Record<string, CircuitBreakerState>>({});
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     loadData();
@@ -34,21 +35,41 @@ export default function AdminDashboard() {
 
   async function loadData() {
     try {
-      // Load health status
-      const healthRes = await fetch('/api/health');
-      const healthData = await healthRes.json();
-      setHealth(healthData);
-
-      // Load circuit breaker states
-      const states: Record<string, CircuitBreakerState> = {};
-      for (const [service, breaker] of Object.entries(circuitBreakers)) {
-        states[service] = breaker.getState();
+      setError(null);
+      
+      // Get admin token from prompt (in production, use proper auth)
+      const adminToken = prompt('Enter admin token:');
+      if (!adminToken) {
+        setError('Admin token required');
+        setLoading(false);
+        return;
       }
-      setCircuitBreakerStates(states);
+
+      // Load metrics from admin API
+      const metricsRes = await fetch('/api/admin/metrics', {
+        headers: {
+          'x-admin-token': adminToken,
+        },
+      });
+
+      if (!metricsRes.ok) {
+        if (metricsRes.status === 401) {
+          setError('Unauthorized - Invalid admin token');
+        } else {
+          setError(`Failed to load metrics: ${metricsRes.status}`);
+        }
+        setLoading(false);
+        return;
+      }
+
+      const metrics = await metricsRes.json();
+      setHealth(metrics.health);
+      setCircuitBreakerStates(metrics.circuitBreakers || {});
 
       setLoading(false);
     } catch (error) {
       console.error('Failed to load dashboard data:', error);
+      setError(error instanceof Error ? error.message : 'Failed to load data');
       setLoading(false);
     }
   }
@@ -59,6 +80,25 @@ export default function AdminDashboard() {
         <div className="max-w-7xl mx-auto">
           <h1 className="text-3xl font-bold mb-8">Admin Dashboard</h1>
           <p>Loading...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gray-50 p-8">
+        <div className="max-w-7xl mx-auto">
+          <h1 className="text-3xl font-bold mb-8">Admin Dashboard</h1>
+          <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+            <p className="text-red-800">{error}</p>
+            <button
+              onClick={loadData}
+              className="mt-4 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+            >
+              Retry
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -78,7 +118,8 @@ export default function AdminDashboard() {
             {health?.ok ? 'All Systems Operational' : 'Some Systems Degraded'}
           </div>
           <div className="space-y-2">
-            {health?.services.map((service) => (
+            {health?.services && health.services.length > 0 ? (
+              health.services.map((service) => (
               <div key={service.service} className="flex items-center justify-between p-3 bg-gray-50 rounded">
                 <div className="flex items-center gap-3">
                   <div className={`w-3 h-3 rounded-full ${
