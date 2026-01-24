@@ -86,21 +86,22 @@ export function sanitizeJson<T>(json: string): T {
  * Sanitize object recursively to prevent prototype pollution
  */
 export function sanitizeObject<T extends Record<string, any>>(obj: T): T {
-  const sanitized = { ...obj };
+  const sanitized: any = { ...obj };
   
   // Remove dangerous keys
-  delete (sanitized as any).__proto__;
-  delete (sanitized as any).constructor;
-  delete (sanitized as any).prototype;
+  delete sanitized.__proto__;
+  delete sanitized.constructor;
+  delete sanitized.prototype;
   
   // Recursively sanitize nested objects
   for (const key in sanitized) {
-    if (typeof sanitized[key] === 'object' && sanitized[key] !== null) {
-      sanitized[key] = sanitizeObject(sanitized[key]);
-    } else if (typeof sanitized[key] === 'string') {
-      sanitized[key] = sanitizeText(sanitized[key]);
+    const value = sanitized[key];
+    if (typeof value === 'object' && value !== null && !Array.isArray(value)) {
+      sanitized[key] = sanitizeObject(value);
+    } else if (typeof value === 'string') {
+      sanitized[key] = sanitizeText(value);
     }
   }
   
-  return sanitized;
+  return sanitized as T;
 }
