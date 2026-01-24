@@ -1,3 +1,5 @@
+const { withSentryConfig } = require("@sentry/nextjs");
+
 /** @type {import('next').nextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -85,4 +87,9 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+// Keep Sentry quiet in local/dev unless explicitly enabled
+const sentryWebpackPluginOptions = {
+  silent: true,
+};
+
+module.exports = withSentryConfig(nextConfig, sentryWebpackPluginOptions);
