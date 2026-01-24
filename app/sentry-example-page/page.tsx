@@ -4,12 +4,24 @@ import * as Sentry from "@sentry/nextjs";
 
 export default function SentryExamplePage() {
   const triggerClientError = () => {
-    if (process.env.NODE_ENV === "production" && process.env.NEXT_PUBLIC_SENTRY_ENABLE !== "1") {
+    const isProd = process.env.NODE_ENV === "production";
+    const isEnabled = process.env.NEXT_PUBLIC_SENTRY_ENABLE === "1";
+    
+    if (isProd && !isEnabled) {
       alert("Sentry test is disabled in production. Set NEXT_PUBLIC_SENTRY_ENABLE=1 to enable.");
       return;
     }
+    
+    console.log("[Sentry Test] Triggering client error...", {
+      isProd,
+      isEnabled,
+      hasSentry: typeof Sentry !== "undefined",
+    });
+    
     // Intentionally throw to verify Sentry wiring (client-side)
-    throw new Error("Sentry test error (intentional - client-side)");
+    const error = new Error("Sentry test error (intentional - client-side)");
+    console.error("[Sentry Test] Throwing error:", error);
+    throw error;
   };
 
   const triggerServerError = async () => {
