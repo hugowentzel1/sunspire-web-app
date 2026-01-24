@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { getStripe } from "@/src/lib/stripe";
 import { ENV } from "@/src/config/env";
 import { handleCheckoutCompleted } from "@/app/api/stripe/webhook/route";
+import { timingSafeCompare } from "@/src/lib/timing-safe-compare";
 
 /**
  * Admin-only endpoint to replay a Stripe webhook event
@@ -9,9 +10,9 @@ import { handleCheckoutCompleted } from "@/app/api/stripe/webhook/route";
  */
 export async function GET(req: NextRequest) {
   try {
-    // Check admin token
+    // Check admin token (timing-safe comparison)
     const adminToken = req.headers.get("x-admin-token");
-    if (!adminToken || adminToken !== ENV.ADMIN_TOKEN) {
+    if (!adminToken || !ENV.ADMIN_TOKEN || !timingSafeCompare(adminToken, ENV.ADMIN_TOKEN)) {
       return NextResponse.json(
         { error: "Unauthorized - Invalid admin token" },
         { status: 401 },

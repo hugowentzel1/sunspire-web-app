@@ -3,6 +3,8 @@ import { upsertTenantByHandle } from "../../../../src/lib/airtable";
 import { logger } from "../../../../src/lib/logger";
 import { nanoid } from "nanoid";
 import { z } from "zod";
+import { ENV } from "@/src/config/env";
+import { timingSafeCompare } from "@/src/lib/timing-safe-compare";
 
 const createTenantSchema = z.object({
   companyHandle: z.string().min(1, "Company handle is required"),
@@ -14,9 +16,9 @@ const createTenantSchema = z.object({
 
 async function handleCreateTenant(req: NextRequest): Promise<NextResponse> {
   try {
-    // Check admin token
+    // Check admin token (timing-safe comparison)
     const adminToken = req.headers.get("x-admin-token");
-    if (!adminToken || adminToken !== process.env.ADMIN_TOKEN) {
+    if (!adminToken || !ENV.ADMIN_TOKEN || !timingSafeCompare(adminToken, ENV.ADMIN_TOKEN)) {
       return NextResponse.json(
         { error: "Unauthorized - Invalid admin token" },
         { status: 401 },

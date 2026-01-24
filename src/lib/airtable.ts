@@ -209,6 +209,28 @@ export async function findTenantByApiKey(key: string): Promise<Tenant | null> {
   }
 }
 
+export async function findTenantBySubscriptionId(subscriptionId: string): Promise<Tenant | null> {
+  try {
+    const records = await getBase()(TABLES.TENANTS)
+      .select({
+        filterByFormula: `{${TENANT_FIELDS.SUBSCRIPTION_ID}} = '${subscriptionId}'`,
+        maxRecords: 1,
+      })
+      .firstPage();
+
+    if (records.length === 0) return null;
+
+    const record = records[0];
+    return {
+      id: record.id,
+      ...record.fields,
+    } as Tenant;
+  } catch (error) {
+    logger.error("Error finding tenant by subscription ID:", error);
+    throw error;
+  }
+}
+
 export async function upsertTenantByHandle(
   handle: string,
   fields: Record<string, any>,

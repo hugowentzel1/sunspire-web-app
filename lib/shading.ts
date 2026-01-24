@@ -16,19 +16,67 @@ export interface ObstructionData {
 }
 
 /**
- * Basic shading analysis using USGS elevation data
- * This is a simplified implementation that can be enhanced with actual USGS data
+ * Enhanced shading analysis using USGS 3DEP elevation data
+ * Falls back to proxy method if USGS API is unavailable
  */
-export function analyzeShading(
+export async function analyzeShading(
   lat: number, 
   lng: number, 
   roofTilt: number = 22, 
   roofAzimuth: number = 180
-): ShadingAnalysis {
+): Promise<ShadingAnalysis> {
   
-  // For now, return a proxy analysis with some geographic variation
-  // In production, this would use actual USGS elevation data
+  // Try USGS 3DEP elevation data first
+  try {
+    const { getElevation } = await import('./usgs-3dep');
+    const elevationData = await getElevation(lat, lng);
+    
+    if (elevationData) {
+      // Get surrounding elevation points (8 cardinal + intercardinal directions)
+      const surroundingPoints = [
+        { lat: lat + 0.001, lng: lng }, // North
+        { lat: lat + 0.001, lng: lng + 0.001 }, // Northeast
+        { lat: lat, lng: lng + 0.001 }, // East
+        { lat: lat - 0.001, lng: lng + 0.001 }, // Southeast
+        { lat: lat - 0.001, lng: lng }, // South
+        { lat: lat - 0.001, lng: lng - 0.001 }, // Southwest
+        { lat: lat, lng: lng - 0.001 }, // West
+        { lat: lat + 0.001, lng: lng - 0.001 }, // Northwest
+      ];
+      
+      const { getElevations, calculateTerrainShading } = await import('./usgs-3dep');
+      const surroundingElevations = await getElevations(surroundingPoints);
+      const validElevations = surroundingElevations
+        .filter((e): e is NonNullable<typeof e> => e !== null)
+        .map(e => e.elevation);
+      
+      if (validElevations.length > 0) {
+        const terrainShading = calculateTerrainShading(
+          elevationData.elevation,
+          validElevations,
+          roofTilt,
+          roofAzimuth
+        );
+        
+        // Combine terrain shading with orientation-based shading
+        const orientationShading = calculateProxyShadingFactor(lat, lng, roofTilt, roofAzimuth);
+        const combinedShading = (terrainShading * 0.6) + (orientationShading * 0.4);
+        
+        return {
+          method: 'usgs',
+          accuracy: 'high',
+          shadingFactor: Math.max(0.7, Math.min(0.95, combinedShading)),
+          confidence: 0.85,
+          dataSource: 'USGS 3DEP Elevation Data',
+          lastUpdated: new Date().toISOString()
+        };
+      }
+    }
+  } catch (error) {
+    console.warn('USGS 3DEP lookup failed, falling back to proxy:', error);
+  }
   
+  // Fallback to proxy method
   const shadingFactor = calculateProxyShadingFactor(lat, lng, roofTilt, roofAzimuth);
   
   return {
@@ -36,7 +84,7 @@ export function analyzeShading(
     accuracy: 'medium',
     shadingFactor,
     confidence: 0.7,
-    dataSource: 'USGS 3DEP (proxy)',
+    dataSource: 'Geographic Proxy (USGS 3DEP unavailable)',
     lastUpdated: new Date().toISOString()
   };
 }
@@ -80,15 +128,37 @@ function calculateProxyShadingFactor(
 
 /**
  * Get hourly shading factors for a typical year
- * This would be calculated from actual USGS elevation data in production
+ * Uses NSRDB irradiance data if available for more accurate hourly shading
  */
-export function getHourlyShadingFactors(
+export async function getHourlyShadingFactors(
   lat: number, 
   lng: number, 
   roofTilt: number = 22, 
   roofAzimuth: number = 180
-): number[] {
+): Promise<number[]> {
   
+  // Try to use NSRDB data for more accurate hourly shading
+  try {
+    const { getNSRDBData } = await import('./nsrdb');
+    const nsrdbData = await getNSRDBData(lat, lng);
+    
+    if (nsrdbData && nsrdbData.hourlyIrradiance.length === 8760) {
+      // Use NSRDB irradiance patterns to calculate hourly shading
+      // Lower irradiance = more shading impact
+      const maxIrradiance = Math.max(...nsrdbData.hourlyIrradiance);
+      const hourlyFactors = nsrdbData.hourlyIrradiance.map(irr => {
+        // Normalize irradiance to shading factor (0.7-0.95 range)
+        const normalized = irr / maxIrradiance;
+        return 0.7 + (normalized * 0.25); // Scale to 0.7-0.95
+      });
+      
+      return hourlyFactors;
+    }
+  } catch (error) {
+    console.warn('NSRDB lookup failed, using proxy hourly factors:', error);
+  }
+  
+  // Fallback to proxy method with seasonal/daily variation
   const baseFactor = calculateProxyShadingFactor(lat, lng, roofTilt, roofAzimuth);
   
   // Generate 8760 hourly factors with seasonal variation

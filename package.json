@@ -45,6 +45,7 @@
     "clsx": "^2.1.1",
     "docx": "^9.5.1",
     "framer-motion": "^12.23.12",
+    "isomorphic-dompurify": "^2.35.0",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.539.0",
     "nanoid": "^5.1.5",

@@ -1,20 +1,31 @@
 /**
  * Email Service for Sunspire
  * Sends transactional emails after purchase
+ * Uses Resend API with SMTP fallback
  */
 
-import nodemailer from 'nodemailer';
+import { signMagicLinkToken } from '@/src/server/auth/jwt';
+import { ENV } from '@/src/config/env';
 
-// Create transporter (using Gmail SMTP for now - should use Resend/SendGrid in production)
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || 'smtp.gmail.com',
-  port: parseInt(process.env.SMTP_PORT || '587'),
-  secure: false,
-  auth: {
-    user: process.env.SMTP_USER,
-    pass: process.env.SMTP_PASS,
-  },
-});
+// Retry helper for email sending
+async function retryWithBackoff<T>(
+  fn: () => Promise<T>,
+  maxRetries = 3,
+  delayMs = 1000,
+): Promise<T> {
+  let lastError: Error | null = null;
+  for (let i = 0; i < maxRetries; i++) {
+    try {
+      return await fn();
+    } catch (error) {
+      lastError = error instanceof Error ? error : new Error(String(error));
+      if (i < maxRetries - 1) {
+        await new Promise((resolve) => setTimeout(resolve, delayMs * Math.pow(2, i)));
+      }
+    }
+  }
+  throw lastError || new Error('Retry failed');
+}
 
 interface OnboardingEmailParams {
   toEmail: string;
@@ -244,49 +255,94 @@ The Sunspire Team
 https://sunspire.app/support
   `;
 
-  try {
-    const info = await transporter.sendMail({
-      from: process.env.SMTP_FROM || '"Sunspire" <noreply@sunspire.app>',
-      to: toEmail,
-      subject: `🎉 Your ${company} Solar Tool is Ready!`,
-      text,
-      html,
-    });
+  let delivered = false;
+  let messageId: string | undefined;
 
-    console.log('✅ Onboarding email sent:', info.messageId);
-    return { success: true, messageId: info.messageId };
-  } catch (error) {
-    console.error('❌ Failed to send onboarding email:', error);
-    return { success: false, error };
+  // Try Resend first (production recommended)
+  if (ENV.RESEND_API_KEY) {
+    try {
+      const fromDomain = ENV.NEXT_PUBLIC_APP_URL?.replace('https://', '').replace('http://', '') || 'sunspire-web-app.vercel.app';
+      const fromEmail = `no-reply@${fromDomain}`;
+
+      const resendResponse = await retryWithBackoff(async () => {
+        const response = await fetch('https://api.resend.com/emails', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${ENV.RESEND_API_KEY}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            from: fromEmail,
+            to: [toEmail],
+            subject: `🎉 Your ${company} Solar Tool is Ready!`,
+            html,
+            text,
+          }),
+        });
+
+        if (!response.ok) {
+          const errorText = await response.text();
+          throw new Error(`Resend API error: ${response.status} - ${errorText}`);
+        }
+
+        return response.json();
+      });
+
+      delivered = true;
+      messageId = resendResponse.id;
+      console.log('✅ Onboarding email sent via Resend:', messageId);
+    } catch (error) {
+      console.error('❌ Resend failed:', error);
+    }
   }
+
+  // Fallback to SMTP if Resend failed or not configured
+  if (!delivered && ENV.SMTP_HOST && ENV.SMTP_USER && ENV.SMTP_PASS) {
+    try {
+      const nodemailer = await import('nodemailer');
+      const transporter = nodemailer.createTransport({
+        host: ENV.SMTP_HOST,
+        port: parseInt(ENV.SMTP_PORT || '587'),
+        secure: ENV.SMTP_PORT === '465',
+        auth: {
+          user: ENV.SMTP_USER,
+          pass: ENV.SMTP_PASS,
+        },
+      });
+
+      const info = await transporter.sendMail({
+        from: ENV.SMTP_FROM || `"Sunspire" <${ENV.SMTP_USER}>`,
+        to: toEmail,
+        subject: `🎉 Your ${company} Solar Tool is Ready!`,
+        text,
+        html,
+      });
+
+      delivered = true;
+      messageId = info.messageId;
+      console.log('✅ Onboarding email sent via SMTP:', messageId);
+    } catch (error) {
+      console.error('❌ SMTP failed:', error);
+    }
+  }
+
+  if (!delivered) {
+    console.warn('⚠️ No email service configured - onboarding email not sent');
+    return { success: false, error: 'No email service configured' };
+  }
+
+  return { success: true, messageId };
 }
 
-// Generate magic link for passwordless dashboard access
+// Generate magic link for passwordless dashboard access (JWT-signed, 7-day expiration)
 export function generateMagicLink(email: string, company: string): string {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
-  
-  // Simple token (in production, use JWT with expiration)
-  const token = Buffer.from(JSON.stringify({ email, company, timestamp: Date.now() })).toString('base64url');
-  
+  const baseUrl = ENV.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+  const token = signMagicLinkToken(email, company);
   return `${baseUrl}/c/${company}?token=${token}`;
 }
 
-// Verify magic link token
-export function verifyMagicLink(token: string): { email: string; company: string } | null {
-  try {
-    const decoded = JSON.parse(Buffer.from(token, 'base64url').toString());
-    
-    // Check if token is less than 7 days old
-    const age = Date.now() - decoded.timestamp;
-    if (age > 7 * 24 * 60 * 60 * 1000) {
-      return null; // Expired
-    }
-    
-    return { email: decoded.email, company: decoded.company };
-  } catch {
-    return null;
-  }
-}
+// Re-export verify function for convenience
+export { verifyMagicLinkToken as verifyMagicLink } from '@/src/server/auth/jwt';
 
 
 

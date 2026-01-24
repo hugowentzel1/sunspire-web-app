@@ -31,6 +31,17 @@ const envSchema = z.object({
   // Vercel domain management
   VERCEL_TOKEN: z.string().optional(),
   VERCEL_PROJECT_ID: z.string().optional(),
+
+  // Email service
+  RESEND_API_KEY: z.string().optional(),
+  SMTP_HOST: z.string().optional(),
+  SMTP_PORT: z.string().optional(),
+  SMTP_USER: z.string().optional(),
+  SMTP_PASS: z.string().optional(),
+  SMTP_FROM: z.string().optional(),
+
+  // JWT for magic links
+  JWT_SECRET: z.string().optional(),
 });
 
 export const ENV = envSchema.parse(process.env);

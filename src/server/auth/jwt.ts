@@ -10,9 +10,10 @@ export interface JWTPayload {
   iat?: number;
 }
 
-export function signToken(payload: Omit<JWTPayload, "exp" | "iat">): string {
+export function signToken(payload: Omit<JWTPayload, "exp" | "iat">, secret?: string): string {
   try {
-    return jwt.sign(payload, ENV.ADMIN_TOKEN, {
+    const jwtSecret = secret || ENV.JWT_SECRET || ENV.ADMIN_TOKEN;
+    return jwt.sign(payload, jwtSecret, {
       algorithm: "HS256",
       expiresIn: "24h", // Token expires in 24 hours
     });
@@ -22,9 +23,10 @@ export function signToken(payload: Omit<JWTPayload, "exp" | "iat">): string {
   }
 }
 
-export async function verifyToken(token: string): Promise<JWTPayload> {
+export async function verifyToken(token: string, secret?: string): Promise<JWTPayload> {
   try {
-    const payload = jwt.verify(token, ENV.ADMIN_TOKEN, {
+    const jwtSecret = secret || ENV.JWT_SECRET || ENV.ADMIN_TOKEN;
+    const payload = jwt.verify(token, jwtSecret, {
       algorithms: ["HS256"],
     }) as JWTPayload;
 
@@ -38,6 +40,23 @@ export async function verifyToken(token: string): Promise<JWTPayload> {
       logger.error("Error verifying JWT token:", error);
       throw new Error("Token verification failed");
     }
+  }
+}
+
+// Magic link token with extended expiration (7 days)
+export function signMagicLinkToken(email: string, company: string): string {
+  return signToken({ tenantId: company, userId: email }, ENV.JWT_SECRET || ENV.ADMIN_TOKEN);
+}
+
+export async function verifyMagicLinkToken(token: string): Promise<{ email: string; company: string } | null> {
+  try {
+    const payload = await verifyToken(token, ENV.JWT_SECRET || ENV.ADMIN_TOKEN);
+    return {
+      email: payload.userId || "",
+      company: payload.tenantId || "",
+    };
+  } catch {
+    return null;
   }
 }
 

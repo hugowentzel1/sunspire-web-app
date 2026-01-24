@@ -9,6 +9,7 @@ import {
   createOrLinkUserOwner,
   setRequestedDomain,
   setTenantDomainStatus,
+  TENANT_FIELDS,
 } from "@/src/lib/airtable";
 import {
   getRootDomain,
@@ -348,14 +349,35 @@ async function updateTenantSubscriptionStatus(
   periodEnd: number,
 ) {
   try {
-    // Find tenant by subscription ID and update status
-    // This would require adding a Subscription ID field to your Airtable tenant table
-    console.log(
-      `Updating tenant subscription status: ${subscriptionId} -> ${status}`,
-    );
-    // TODO: Implement tenant lookup and update in Airtable
+    const { findTenantBySubscriptionId, upsertTenantByHandle } = await import("@/src/lib/airtable");
+    
+    console.log(`[SubscriptionUpdate] Looking up tenant by subscription ID: ${subscriptionId}`);
+    const tenant = await findTenantBySubscriptionId(subscriptionId);
+    
+    if (!tenant) {
+      console.warn(`[SubscriptionUpdate] No tenant found for subscription ID: ${subscriptionId}`);
+      return;
+    }
+    
+    const handle = tenant[TENANT_FIELDS.COMPANY_HANDLE] as string;
+    if (!handle) {
+      console.error(`[SubscriptionUpdate] Tenant ${tenant.id} has no company handle`);
+      return;
+    }
+    
+    console.log(`[SubscriptionUpdate] Updating tenant "${handle}": status=${status}, periodEnd=${new Date(periodEnd * 1000).toISOString()}`);
+    
+    await upsertTenantByHandle(handle, {
+      [TENANT_FIELDS.PAYMENT_STATUS]: status,
+      [TENANT_FIELDS.SUBSCRIPTION_ID]: subscriptionId,
+      [TENANT_FIELDS.CURRENT_PERIOD_END]: new Date(periodEnd * 1000).toISOString(),
+    });
+    
+    console.log(`[SubscriptionUpdate] ✅ Tenant "${handle}" subscription status updated successfully`);
   } catch (error) {
-    console.error("Failed to update tenant subscription status:", error);
+    const errorMsg = error instanceof Error ? error.message : String(error);
+    console.error(`[SubscriptionUpdate] ❌ Failed to update tenant subscription status: ${errorMsg}`);
+    throw error; // Bubble up so webhook returns 500 and Stripe retries
   }
 }
 
