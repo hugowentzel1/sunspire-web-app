@@ -13,6 +13,18 @@ const stripe = process.env.STRIPE_LIVE_SECRET_KEY
     })
   : null;
 
+// Health check endpoint for monitoring (GET)
+// NOTE: This is a legacy webhook endpoint. The main webhook is at /api/stripe/webhook
+export async function GET() {
+  return NextResponse.json({ 
+    status: 'ok', 
+    service: 'stripe-webhook-legacy',
+    message: 'Legacy webhook endpoint is available',
+    note: 'Main webhook is at /api/stripe/webhook',
+    stripeConfigured: !!stripe
+  });
+}
+
 export async function POST(request: NextRequest) {
   if (!stripe) {
     return NextResponse.json(

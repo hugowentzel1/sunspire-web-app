@@ -1,5 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+// Health check endpoint for monitoring
+export async function GET() {
+  return NextResponse.json({ 
+    status: 'ok', 
+    service: 'pdf-generator',
+    message: 'PDF generation service is available' 
+  });
+}
+
 export async function POST(request: NextRequest) {
   try {
     const { address, lat, lng, placeId, estimate } = await request.json();
