@@ -120,20 +120,35 @@ export default function AdminDashboard() {
           <div className="space-y-2">
             {health?.services && health.services.length > 0 ? (
               health.services.map((service) => (
-              <div key={service.service} className="flex items-center justify-between p-3 bg-gray-50 rounded">
-                <div className="flex items-center gap-3">
-                  <div className={`w-3 h-3 rounded-full ${
-                    service.status === 'ok' ? 'bg-green-500' :
-                    service.status === 'degraded' ? 'bg-yellow-500' : 'bg-red-500'
-                  }`} />
-                  <span className="font-medium">{service.service}</span>
+                <div key={service.service} className="flex items-center justify-between p-3 bg-gray-50 rounded">
+                  <div className="flex items-center gap-3">
+                    <div className={`w-3 h-3 rounded-full ${
+                      service.status === 'ok' ? 'bg-green-500' :
+                      service.status === 'degraded' ? 'bg-yellow-500' : 'bg-red-500'
+                    }`} />
+                    <span className="font-medium">{service.service}</span>
+                  </div>
+                  <div className="text-sm text-gray-600">
+                    {service.latency ? `${service.latency}ms` : 'N/A'}
+                    {service.error && ` - ${service.error}`}
+                  </div>
                 </div>
-                <div className="text-sm text-gray-600">
-                  {service.latency ? `${service.latency}ms` : 'N/A'}
-                  {service.error && ` - ${service.error}`}
+              ))
+            ) : health?.apis ? (
+              Object.entries(health.apis).map(([service, available]) => (
+                <div key={service} className="flex items-center justify-between p-3 bg-gray-50 rounded">
+                  <div className="flex items-center gap-3">
+                    <div className={`w-3 h-3 rounded-full ${available ? 'bg-green-500' : 'bg-red-500'}`} />
+                    <span className="font-medium">{service}</span>
+                  </div>
+                  <div className="text-sm text-gray-600">
+                    {available ? 'Available' : 'Unavailable'}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))
+            ) : (
+              <p className="text-gray-500">No service data available</p>
+            )}
           </div>
           <p className="text-sm text-gray-500 mt-4">
             Last updated: {health?.timestamp ? new Date(health.timestamp).toLocaleString() : 'Never'}
