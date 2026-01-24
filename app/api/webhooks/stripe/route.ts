@@ -7,6 +7,10 @@ import {
 } from "@/src/lib/airtable";
 import Stripe from "stripe";
 
+// Ensure Node.js runtime for this endpoint
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
 const stripe = process.env.STRIPE_LIVE_SECRET_KEY
   ? new Stripe(process.env.STRIPE_LIVE_SECRET_KEY, {
       apiVersion: "2025-08-27.basil",

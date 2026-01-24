@@ -1,5 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+// Ensure Node.js runtime for this endpoint
+export const runtime = 'nodejs';
+export const dynamic = 'force-dynamic';
+
 // Health check endpoint for monitoring
 export async function GET() {
   return NextResponse.json({ 
