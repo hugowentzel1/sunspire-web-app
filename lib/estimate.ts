@@ -215,7 +215,7 @@ export function buildEstimate({
     utilityRate: round3(rate.rate),
     utilityRateSource: rate.source,
     tariff: rate.source || 'Standard Rate',
-    dataSource: 'NREL PVWatts v8',
+    dataSource: rate.source === 'eia' ? 'NREL PVWatts v8 + EIA' : 'NREL PVWatts v8',
     
     shadingAnalysis: {
       method: shadingAnalysis.method,
