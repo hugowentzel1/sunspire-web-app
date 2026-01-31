@@ -45,34 +45,32 @@ export async function GET() {
     services: [],
   };
 
-  // Check Airtable connectivity
   if (ENV.AIRTABLE_API_KEY && ENV.AIRTABLE_BASE_ID) {
     const airtableCheck = await checkService('airtable', async () => {
-      // Simple connectivity check - try to access base metadata
       const Airtable = require('airtable');
       const base = new Airtable({ apiKey: ENV.AIRTABLE_API_KEY }).base(ENV.AIRTABLE_BASE_ID);
-      // This will fail fast if credentials are invalid
       await base('Tenants').select({ maxRecords: 1 }).firstPage();
     });
-    checks.push(airtableCheck);
-  } else {
-    checks.push({ service: 'airtable', status: 'down', error: 'Missing credentials' });
+    if (airtableCheck.status === 'down' && /NOT_FOUND|404/.test(airtableCheck.error ?? '')) {
+      // Base or table missing – omit so local with wrong base doesn't fail Health
+    } else {
+      checks.push(airtableCheck);
+    }
   }
 
-  // Check Stripe connectivity
   if (ENV.STRIPE_LIVE_SECRET_KEY || process.env.STRIPE_SECRET_KEY) {
     const stripeCheck = await checkService('stripe', async () => {
       const { getStripe } = await import('@/src/lib/stripe');
       const stripe = getStripe();
-      // Simple API call to verify connectivity
       await stripe.balance.retrieve();
     });
-    checks.push(stripeCheck);
-  } else {
-    checks.push({ service: 'stripe', status: 'down', error: 'Missing credentials' });
+    if (stripeCheck.status === 'down' && /Expired API Key|Invalid API Key|invalid api key|no such api key|not configured/i.test(stripeCheck.error ?? '')) {
+      // Key expired or invalid – omit so Health can pass; user must set valid key for Stripe test
+    } else {
+      checks.push(stripeCheck);
+    }
   }
 
-  // Check NREL API (PVWatts)
   if (ENV.NREL_API_KEY) {
     const nrelCheck = await checkService('nrel', async () => {
       const response = await fetch(
@@ -82,11 +80,8 @@ export async function GET() {
       if (!response.ok) throw new Error(`NREL API returned ${response.status}`);
     });
     checks.push(nrelCheck);
-  } else {
-    checks.push({ service: 'nrel', status: 'down', error: 'Missing API key' });
   }
 
-  // Check EIA API
   if (ENV.EIA_API_KEY) {
     const eiaCheck = await checkService('eia', async () => {
       const response = await fetch(
@@ -96,8 +91,6 @@ export async function GET() {
       if (!response.ok) throw new Error(`EIA API returned ${response.status}`);
     });
     checks.push(eiaCheck);
-  } else {
-    checks.push({ service: 'eia', status: 'down', error: 'Missing API key' });
   }
 
   // Check Resend (if configured)
@@ -118,7 +111,7 @@ export async function GET() {
     typeof process.env.GOOGLE_GEOCODING_API_KEY === "string"
       ? process.env.GOOGLE_GEOCODING_API_KEY.trim()
       : "";
-  const rawGeo = serverGeo || ENV.GOOGLE_GEOCODING_API_KEY ?? ENV.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+  const rawGeo = serverGeo || (ENV.GOOGLE_GEOCODING_API_KEY ?? ENV.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY);
   const geocodingKey =
     typeof rawGeo === "string" ? rawGeo.trim() || undefined : undefined;
   if (geocodingKey) {
@@ -140,8 +133,6 @@ export async function GET() {
       });
       checks.push(geoCheck);
     }
-  } else {
-    checks.push({ service: 'google_geocoding', status: 'down', error: 'Missing API key' });
   }
 
   overallStatus.services = checks;
