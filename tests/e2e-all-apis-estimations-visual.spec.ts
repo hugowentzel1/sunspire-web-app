@@ -1,7 +1,8 @@
 /**
  * E2E: Every API works on Vercel + estimations ACTUALLY different per place + real addresses + Google autocomplete.
  * Run against LIVE: BASE_URL=https://sunspire-web-app.vercel.app npx playwright test this file --project=chromium --headed --workers=1
- * Run local: BASE_URL=http://localhost:3000 npx playwright test this file --project=chromium --headed
+ * Run local (set GOOGLE_GEOCODING_API_KEY for Geocoding): BASE_URL=http://localhost:3005 npx playwright test this file --project=chromium --headed
+ * Verify key: node scripts/test-geocoding-key.mjs AIza...
  */
 
 import { test, expect } from '@playwright/test';
@@ -67,7 +68,7 @@ test.describe('All APIs + estimations (real addresses, live Vercel)', () => {
     expect(Math.abs(data.lng - (-122.08))).toBeLessThan(0.1);
   });
 
-  test('3. Estimate API – valid estimate for each real location', async ({ request }) => {
+  test('3. Estimate API – valid estimate + shading (industry-standard)', async ({ request }) => {
     for (const loc of LOCATIONS) {
       const res = await request.get(estimateUrl(loc));
       expect(res.status(), `Estimate for ${loc.label} must 200`).toBe(200);
@@ -79,6 +80,11 @@ test.describe('All APIs + estimations (real addresses, live Vercel)', () => {
       expect(Number(annual)).toBeGreaterThanOrEqual(8000);
       const src = (data.estimate?.dataSource ?? '').toLowerCase();
       expect(src).toMatch(/nrel|pvwatts|eia/);
+      // Shading analysis (industry-standard)
+      const shading = data.estimate?.shadingAnalysis;
+      expect(shading, `Estimate for ${loc.label} must include shadingAnalysis`).toBeDefined();
+      expect(typeof (shading?.annualShadingLoss ?? shading?.shadingFactor)).toBe('number');
+      expect(['proxy', 'remote'].some(m => (shading?.method ?? '').toLowerCase().includes(m))).toBe(true);
     }
   });
 
@@ -125,7 +131,7 @@ test.describe('All APIs + estimations (real addresses, live Vercel)', () => {
     expect(hasGoogle, 'Google attribution should be present').toBeTruthy();
   });
 
-  test('6. Report page (Mountain View) – NREL, numbers, address visible', async ({ page }) => {
+  test('6. Report page (Mountain View) – NREL, shading, numbers, address visible', async ({ page }) => {
     const url = reportUrl(LOCATIONS[0], 'ReportMV');
     await page.goto(url, { waitUntil: 'domcontentloaded' });
     await page.waitForTimeout(5000);
@@ -134,9 +140,11 @@ test.describe('All APIs + estimations (real addresses, live Vercel)', () => {
     expect(body).toMatch(/\d+.*kwh|annual|production|estimate|savings/i);
     expect(body.toLowerCase()).toMatch(/mountain view|amphitheatre|california|ca/i);
     expect(/\d{4,}/.test(body), 'Report should show numeric estimates (4+ digits)').toBe(true);
+    expect(body).toMatch(/shading analysis|annual shading loss/i);
+    expect(body).toMatch(/shading|proxy|remote|geographic/i);
   });
 
-  test('7. Report page (Phoenix) – different location, different numbers', async ({ page }) => {
+  test('7. Report page (Phoenix) – different location, shading, numbers', async ({ page }) => {
     const url = reportUrl(LOCATIONS[1], 'ReportPHX');
     await page.goto(url, { waitUntil: 'domcontentloaded' });
     await page.waitForTimeout(5000);
@@ -144,6 +152,7 @@ test.describe('All APIs + estimations (real addresses, live Vercel)', () => {
     expect(body).toMatch(/nrel|pvwatts|pvwatts®/i);
     expect(body.toLowerCase()).toMatch(/phoenix|arizona|az|central/i);
     expect(/\d{4,}/.test(body), 'Report should show numeric estimates').toBe(true);
+    expect(body).toMatch(/shading analysis|annual shading loss/i);
   });
 
   test('8. Stripe create-checkout-session – CTA returns 200', async ({ page }) => {
