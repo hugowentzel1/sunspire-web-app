@@ -113,6 +113,34 @@ export async function GET() {
     checks.push(resendCheck);
   }
 
+  // Check Google Geocoding API (server-side; use server key if set so Vercel requests are allowed)
+  const rawGeo =
+    ENV.GOOGLE_GEOCODING_API_KEY ?? ENV.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+  const geocodingKey =
+    typeof rawGeo === "string" ? rawGeo.trim() || undefined : undefined;
+  if (geocodingKey) {
+    if (!geocodingKey.startsWith("AIza")) {
+      checks.push({
+        service: 'google_geocoding',
+        status: 'down',
+        error: `Key should start with "AIza" (capital I), got "${geocodingKey.slice(0, 4)}". Fix GOOGLE_GEOCODING_API_KEY.`,
+      });
+    } else {
+      const geoCheck = await checkService('google_geocoding', async () => {
+        const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent('1600 Amphitheatre Parkway, Mountain View, CA')}&key=${geocodingKey}`;
+        const response = await fetch(url, { method: 'GET', signal: AbortSignal.timeout(5000) });
+        const data = await response.json();
+        if (data.status !== 'OK' || !data.results?.length) {
+          const msg = data.error_message || data.status;
+          throw new Error(typeof msg === 'string' ? msg : String(msg));
+        }
+      });
+      checks.push(geoCheck);
+    }
+  } else {
+    checks.push({ service: 'google_geocoding', status: 'down', error: 'Missing API key' });
+  }
+
   overallStatus.services = checks;
   overallStatus.ok = checks.every((c) => c.status === 'ok');
 

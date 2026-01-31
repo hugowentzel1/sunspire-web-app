@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { ENV } from "@/src/config/env";
 
 export interface NormalizedAddress {
   formattedAddress: string;
@@ -9,6 +10,26 @@ export interface NormalizedAddress {
   country: string;
   lat: number;
   lng: number;
+}
+
+/** Prefer server-only key so Geocoding works from Vercel (no referrer). Fall back to public key. */
+function getGeocodingApiKey(): string | undefined {
+  const raw =
+    ENV.GOOGLE_GEOCODING_API_KEY ?? ENV.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+  const key = typeof raw === "string" ? raw.trim() : "";
+  return key || undefined;
+}
+
+/** Google API keys start with AIza (capital I). Copy-paste often turns I into l. */
+function validateKeyFormat(key: string): { ok: true } | { ok: false; error: string } {
+  if (!key.startsWith("AIza")) {
+    const start = key.slice(0, 4);
+    return {
+      ok: false,
+      error: `API key should start with "AIza" (capital I), got "${start}". Fix typo in GOOGLE_GEOCODING_API_KEY.`,
+    };
+  }
+  return { ok: true };
 }
 
 export async function GET(request: NextRequest) {
@@ -22,7 +43,7 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const apiKey = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+  const apiKey = getGeocodingApiKey();
   if (!apiKey) {
     return NextResponse.json(
       { error: "Google Maps API key not configured" },
@@ -30,16 +51,36 @@ export async function GET(request: NextRequest) {
     );
   }
 
+  const keyValidation = validateKeyFormat(apiKey);
+  if (!keyValidation.ok) {
+    return NextResponse.json(
+      { error: keyValidation.error },
+      { status: 400 },
+    );
+  }
+
   try {
-    // Use Google Geocoding API
+    // Use Google Geocoding API (server key preferred so requests from Vercel are allowed)
     const geocodeUrl = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`;
 
     const response = await fetch(geocodeUrl);
     const data = await response.json();
 
     if (data.status !== "OK" || !data.results || data.results.length === 0) {
+      const message = data.error_message ?? data.status;
+      const msg = typeof message === "string" ? message : String(message);
+      const isRefererRestriction = msg.toLowerCase().includes("referer");
+      const hint = isRefererRestriction
+        ? "Use GOOGLE_GEOCODING_API_KEY with an unrestricted key (API key 1). Server requests cannot use HTTP-referrer–restricted keys."
+        : data.status === "REQUEST_DENIED"
+          ? "In Google Cloud: (1) Enable Billing for the project (required for Maps APIs). (2) Enable Geocoding API. (3) Use API key 1 (unrestricted) for GOOGLE_GEOCODING_API_KEY."
+          : undefined;
       return NextResponse.json(
-        { error: `Geocoding failed: ${data.status}` },
+        {
+          error: `Geocoding failed: ${data.status}`,
+          details: msg,
+          ...(hint && { fix: hint }),
+        },
         { status: 400 },
       );
     }
