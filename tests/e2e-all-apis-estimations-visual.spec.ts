@@ -2,6 +2,7 @@
  * E2E: Every API works locally and on live. Health only reports configured services; all reported must be ok.
  * Run local: node scripts/check-env-for-e2e.mjs && npm run dev then BASE_URL=http://localhost:3000 npx playwright test this file --project=chromium --workers=1
  * Run live: BASE_URL=https://sunspire-web-app.vercel.app npx playwright test this file --project=chromium --workers=1
+ * Live Geocoding: set GOOGLE_GEOCODING_API_KEY in Vercel (unrestricted key) or test 2 will fail with REQUEST_DENIED.
  */
 
 import { test, expect } from '@playwright/test';

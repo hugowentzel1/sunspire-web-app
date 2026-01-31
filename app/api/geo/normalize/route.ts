@@ -1,5 +1,4 @@
 import { NextRequest, NextResponse } from "next/server";
-import { ENV } from "@/src/config/env";
 
 export interface NormalizedAddress {
   formattedAddress: string;
@@ -12,16 +11,15 @@ export interface NormalizedAddress {
   lng: number;
 }
 
-/** Prefer server-only key so Geocoding works from Vercel (no referrer). Use runtime process.env so Vercel injects env at request time. */
+/**
+ * Use ONLY the server-only key. Never fall back to NEXT_PUBLIC_GOOGLE_MAPS_API_KEY:
+ * that key is referrer-restricted, so server-side calls from Vercel get REQUEST_DENIED.
+ * Read at runtime from process.env only (do not use ENV from config - key is optional there).
+ */
 function getGeocodingApiKey(): string | undefined {
-  const serverKey =
-    typeof process.env.GOOGLE_GEOCODING_API_KEY === "string"
-      ? process.env.GOOGLE_GEOCODING_API_KEY.trim()
-      : "";
-  if (serverKey) return serverKey;
-  const raw = ENV.GOOGLE_GEOCODING_API_KEY ?? ENV.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
-  const key = typeof raw === "string" ? raw.trim() : "";
-  return key || undefined;
+  const key = process.env.GOOGLE_GEOCODING_API_KEY;
+  const raw = typeof key === "string" ? key.trim() : "";
+  return raw || undefined;
 }
 
 /** Google API keys start with AIza (capital I). Copy-paste often turns I into l. */
@@ -50,8 +48,10 @@ export async function GET(request: NextRequest) {
   const apiKey = getGeocodingApiKey();
   if (!apiKey) {
     return NextResponse.json(
-      { error: "Google Maps API key not configured" },
-      { status: 500 },
+      {
+        error: "GOOGLE_GEOCODING_API_KEY not set. Set it in Vercel (Project → Settings → Environment Variables) with an unrestricted key. Do not use NEXT_PUBLIC_GOOGLE_MAPS_API_KEY for server (referrer restriction causes REQUEST_DENIED). Check /api/geo/status after setting.",
+      },
+      { status: 503 },
     );
   }
 
@@ -73,16 +73,16 @@ export async function GET(request: NextRequest) {
     if (data.status !== "OK" || !data.results || data.results.length === 0) {
       const message = data.error_message ?? data.status;
       const msg = typeof message === "string" ? message : String(message);
-      const isRefererRestriction = msg.toLowerCase().includes("referer");
-      const hint = isRefererRestriction
-        ? "Use GOOGLE_GEOCODING_API_KEY with an unrestricted key (API key 1). Server requests cannot use HTTP-referrer–restricted keys."
-        : data.status === "REQUEST_DENIED"
-          ? "In Google Cloud: (1) Enable Billing for the project (required for Maps APIs). (2) Enable Geocoding API. (3) Use API key 1 (unrestricted) for GOOGLE_GEOCODING_API_KEY."
-          : undefined;
+      const isRefererRestriction = /referer|referrer|restriction/i.test(msg);
+      const isRequestDenied = data.status === "REQUEST_DENIED";
+      const hint = isRefererRestriction || isRequestDenied
+        ? "Create a NEW key in Google Cloud Console: APIs & Services → Credentials → Create Credentials → API key. Then: (1) Restrict key → Application restriction = None. (2) API restriction = Restrict key → enable only Geocoding API. (3) Enable Billing on the project. (4) Set that key as GOOGLE_GEOCODING_API_KEY in Vercel (Production) and redeploy. Do NOT use the same key as NEXT_PUBLIC_GOOGLE_MAPS_API_KEY (that one is referrer-restricted)."
+        : undefined;
       return NextResponse.json(
         {
           error: `Geocoding failed: ${data.status}`,
           details: msg,
+          googleErrorMessage: data.error_message ?? null,
           ...(hint && { fix: hint }),
         },
         { status: 400 },
