@@ -2,8 +2,7 @@ import 'server-only';
 import incentives from "@/data/incentives.json";
 import type { PvwattsOut } from "./pvwatts";
 import type { RateResult } from "./rates";
-// Temporarily inline shading analysis to avoid potential module issues
-// import { analyzeShading as analyzeUSGSShading, getUncertaintyBand } from "./usgs-shading";
+import { analyzeShading as analyzeUSGSShading } from "./usgs-shading";
 
 export interface SolarEstimate {
   id: string;
@@ -75,6 +74,15 @@ export interface SolarEstimate {
   }[];
 }
 
+/** Optional precomputed shading (e.g. from async USGS 3DEP in estimate route) */
+export type ShadingOverride = {
+  method: string;
+  accuracy: string;
+  shadingFactor: number;
+  annualShadingLoss: number;
+  confidence: number;
+};
+
 export type BuildInputs = {
   address: string;
   lat: number;
@@ -86,6 +94,8 @@ export type BuildInputs = {
   tilt: number;
   azimuth: number;
   lossesPct: number;
+  /** When set, use this instead of sync usgs-shading (e.g. from lib/shading.ts USGS 3DEP) */
+  shadingOverride?: ShadingOverride;
 };
 
 export function buildEstimate({
@@ -99,6 +109,7 @@ export function buildEstimate({
   tilt,
   azimuth,
   lossesPct,
+  shadingOverride,
 }: BuildInputs): SolarEstimate {
   const costPerWatt = num(process.env.DEFAULT_COST_PER_WATT, 3.0);
   const degr = num(process.env.DEFAULT_DEGRADATION_PCT, 0.5) / 100;
@@ -121,21 +132,22 @@ export function buildEstimate({
   const annualKWh = pv.annual_kwh;
   const monthlyKWh = pv.monthly_kwh.map((n) => Math.round(n));
 
-  // Inline shading analysis (avoiding potential module load issues)
+  // Shading: use override from async USGS 3DEP (estimate route) when provided; else sync usgs-shading (precomputed + proxy)
+  const shadingResult = shadingOverride ?? (() => {
+    const r = analyzeUSGSShading(lat, lng, tilt, azimuth);
+    return { method: r.method, accuracy: r.accuracy, shadingFactor: r.shadingFactor, annualShadingLoss: r.annualShadingLoss, confidence: r.confidence };
+  })();
   const shadingAnalysis = {
-    method: 'proxy' as const,
-    accuracy: 'medium' as const,
-    shadingFactor: 0.9,
-    annualShadingLoss: 10,
-    confidence: 0.7,
-    dataSource: 'Geographic Proxy',
-    lastUpdated: new Date().toISOString().slice(0,10)
+    method: shadingResult.method,
+    accuracy: shadingResult.accuracy,
+    shadingFactor: shadingResult.shadingFactor,
+    annualShadingLoss: shadingResult.annualShadingLoss,
+    confidence: shadingResult.confidence,
   };
-  const annualShadingLoss = shadingAnalysis.annualShadingLoss;
-  
-  // Adjust uncertainty band based on data quality
-  // High accuracy remote sensing: ±7.5%, Medium accuracy proxy: ±10%
-  const uncertaintyBand = 0.10; // Hardcoded for now to avoid module dependency
+  const annualShadingLoss = shadingResult.annualShadingLoss;
+
+  // Uncertainty band from shading data quality: high (remote/LiDAR/3DEP) ±7.5%, medium/low (proxy) ±10%
+  const uncertaintyBand = shadingResult.accuracy === 'high' ? 0.075 : 0.10;
   const productionLow = Math.round(annualKWh * (1 - uncertaintyBand));
   const productionHigh = Math.round(annualKWh * (1 + uncertaintyBand));
 

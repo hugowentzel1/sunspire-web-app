@@ -150,7 +150,27 @@ export async function GET(req: NextRequest) {
 
     console.log('[estimate] marker H - calling getRate');
     const rate = await getRate(i.state);
-    
+
+    // Try async USGS 3DEP shading first (lib/shading.ts); fall back to sync usgs-shading in buildEstimate
+    let shadingOverride: { method: string; accuracy: string; shadingFactor: number; annualShadingLoss: number; confidence: number } | undefined;
+    try {
+      const { analyzeShading: analyzeShading3DEP } = await import('@/lib/shading');
+      const asyncShading = await Promise.race([
+        analyzeShading3DEP(i.lat, i.lng, i.tilt, i.azimuth),
+        new Promise<never>((_, reject) => setTimeout(() => reject(new Error('Shading timeout')), 8000)),
+      ]);
+      const annualShadingLossPct = Math.round((1 - asyncShading.shadingFactor) * 1000) / 10;
+      shadingOverride = {
+        method: asyncShading.method === 'usgs' ? 'remote' : asyncShading.method,
+        accuracy: asyncShading.accuracy,
+        shadingFactor: asyncShading.shadingFactor,
+        annualShadingLoss: annualShadingLossPct,
+        confidence: asyncShading.confidence,
+      };
+    } catch (_) {
+      // Use sync usgs-shading (precomputed + proxy) in buildEstimate
+    }
+
     console.log('[estimate] marker I - calling buildEstimate');
     const estimate = buildEstimate({
       address: i.address,
@@ -163,6 +183,7 @@ export async function GET(req: NextRequest) {
       tilt: i.tilt,
       azimuth: i.azimuth,
       lossesPct: i.lossesPct,
+      shadingOverride,
     });
 
     // Determine uncertainty band from shading analysis accuracy

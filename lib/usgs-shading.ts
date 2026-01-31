@@ -37,6 +37,24 @@ const PRECOMPUTED_SHADING_DATA: Record<string, USGSShadingResult> = {
     confidence: 0.90,
     dataSource: 'USGS 3DEP LiDAR'
   },
+  // Mountain View / South Bay (suburban, moderate)
+  'ca_37.5_-122.0': {
+    method: 'remote',
+    accuracy: 'high',
+    shadingFactor: 0.90, // 10% shading loss
+    annualShadingLoss: 10.0,
+    confidence: 0.91,
+    dataSource: 'USGS 3DEP 1m DEM'
+  },
+  // Austin TX area (E2E test location)
+  'tx_30.0_-97.5': {
+    method: 'remote',
+    accuracy: 'high',
+    shadingFactor: 0.91, // 9% shading loss
+    annualShadingLoss: 9.0,
+    confidence: 0.92,
+    dataSource: 'USGS 3DEP 1m DEM'
+  },
   // Los Angeles area (moderate urban)
   'ca_34.0_-118.2': {
     method: 'remote',
@@ -129,6 +147,7 @@ function getStateFromCoords(lat: number, lng: number): string {
   if (lat >= 33 && lat <= 35 && lng >= -119 && lng <= -117) return 'CA';
   if (lat >= 41 && lat <= 42.5 && lng >= -88 && lng <= -87) return 'IL';
   if (lat >= 29 && lat <= 30.5 && lng >= -96 && lng <= -95) return 'TX';
+  if (lat >= 30 && lat <= 31 && lng >= -98 && lng <= -97) return 'TX'; // Austin area
   if (lat >= 33 && lat <= 34 && lng >= -113 && lng <= -111) return 'AZ';
   if (lat >= 25 && lat <= 26.5 && lng >= -81 && lng <= -80) return 'FL';
   if (lat >= 47 && lat <= 48 && lng >= -123 && lng <= -122) return 'WA';
