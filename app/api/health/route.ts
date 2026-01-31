@@ -113,9 +113,12 @@ export async function GET() {
     checks.push(resendCheck);
   }
 
-  // Check Google Geocoding API (server-side; use server key if set so Vercel requests are allowed)
-  const rawGeo =
-    ENV.GOOGLE_GEOCODING_API_KEY ?? ENV.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+  // Check Google Geocoding API (server-side; use runtime env so Vercel injects GOOGLE_GEOCODING_API_KEY)
+  const serverGeo =
+    typeof process.env.GOOGLE_GEOCODING_API_KEY === "string"
+      ? process.env.GOOGLE_GEOCODING_API_KEY.trim()
+      : "";
+  const rawGeo = serverGeo || ENV.GOOGLE_GEOCODING_API_KEY ?? ENV.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
   const geocodingKey =
     typeof rawGeo === "string" ? rawGeo.trim() || undefined : undefined;
   if (geocodingKey) {

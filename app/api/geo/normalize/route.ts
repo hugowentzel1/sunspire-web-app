@@ -12,10 +12,14 @@ export interface NormalizedAddress {
   lng: number;
 }
 
-/** Prefer server-only key so Geocoding works from Vercel (no referrer). Fall back to public key. */
+/** Prefer server-only key so Geocoding works from Vercel (no referrer). Use runtime process.env so Vercel injects env at request time. */
 function getGeocodingApiKey(): string | undefined {
-  const raw =
-    ENV.GOOGLE_GEOCODING_API_KEY ?? ENV.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+  const serverKey =
+    typeof process.env.GOOGLE_GEOCODING_API_KEY === "string"
+      ? process.env.GOOGLE_GEOCODING_API_KEY.trim()
+      : "";
+  if (serverKey) return serverKey;
+  const raw = ENV.GOOGLE_GEOCODING_API_KEY ?? ENV.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
   const key = typeof raw === "string" ? raw.trim() : "";
   return key || undefined;
 }
