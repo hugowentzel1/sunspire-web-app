@@ -6,19 +6,17 @@ import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 import SharedNavigation from '@/components/SharedNavigation';
 import Footer from '@/components/Footer';
 
+interface HealthService {
+  service: string;
+  status: 'ok' | 'degraded' | 'down';
+  latency?: number;
+  error?: string;
+}
+
 interface HealthStatus {
   ok: boolean;
   timestamp: string;
-  env: {
-    AIRTABLE_API_KEY: string;
-    AIRTABLE_BASE_ID: string;
-    STRIPE_LIVE_SECRET_KEY: string;
-    STRIPE_PUBLISHABLE_KEY: string;
-    STRIPE_WEBHOOK_SECRET: string;
-    GOOGLE_MAPS: string;
-    NREL: string;
-    EIA: string;
-  };
+  services: HealthService[];
 }
 
 export default function StatusPage() {
@@ -82,95 +80,83 @@ export default function StatusPage() {
     );
   }
 
-  const getStatusIcon = (status: string) => {
-    return status === '!!' ? '🟢' : '🔴';
+  const serviceLabels: Record<string, { title: string; desc: string }> = {
+    airtable: { title: 'Data storage', desc: 'Tenants & leads' },
+    stripe: { title: 'Payments', desc: 'Checkout & webhooks' },
+    nrel: { title: 'Quotes', desc: 'Solar production' },
+    eia: { title: 'Rates', desc: 'Utility data' },
+    google_geocoding: { title: 'Address lookup', desc: 'Server geocoding' },
+    google_places: { title: 'Address autocomplete', desc: 'Places (client)' },
+    resend: { title: 'Email', desc: 'Delivery & lead alerts' },
   };
 
-  const getStatusText = (status: string) => {
-    return status === '!!' ? 'OK' : 'Not Configured';
-  };
+  const allOk = health.ok;
+  const downCount = (health.services || []).filter((s) => s.status !== 'ok').length;
 
   return (
     <div className="min-h-screen bg-gray-50 py-12">
       <SharedNavigation />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <div className="text-center mb-10">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">System Status</h1>
           <p className="text-lg text-gray-600">
             Last updated: {new Date(health.timestamp).toLocaleString()}
           </p>
+          {/* Obvious overall status banner */}
+          <div className={`mt-6 mx-auto max-w-md rounded-xl px-6 py-4 ${allOk ? 'bg-green-50 border-2 border-green-200' : 'bg-red-50 border-2 border-red-200'}`}>
+            {allOk ? (
+              <>
+                <div className="flex items-center justify-center gap-3">
+                  <span className="text-4xl" aria-hidden>✅</span>
+                  <span className="text-xl font-bold text-green-800">All systems operational</span>
+                </div>
+                <p className="text-sm text-green-700 mt-1">Every checked API is working.</p>
+              </>
+            ) : (
+              <>
+                <div className="flex items-center justify-center gap-3">
+                  <span className="text-4xl" aria-hidden>❌</span>
+                  <span className="text-xl font-bold text-red-800">Issue detected</span>
+                </div>
+                <p className="text-sm text-red-700 mt-1">{downCount} service{downCount !== 1 ? 's' : ''} degraded or down.</p>
+              </>
+            )}
+          </div>
         </div>
 
-        <div className="bg-white rounded-lg shadow-lg overflow-hidden">
+        <div className="bg-white rounded-xl shadow-lg overflow-hidden border border-gray-200">
           <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
             <h2 className="text-lg font-semibold text-gray-900">Service Status</h2>
+            <p className="text-sm text-gray-500 mt-0.5">What’s currently working</p>
           </div>
-          
           <div className="divide-y divide-gray-200">
-            <div className="px-6 py-4 flex items-center justify-between">
-              <div>
-                <h3 className="text-sm font-medium text-gray-900">Stripe</h3>
-                <p className="text-sm text-gray-500">Payment processing</p>
-              </div>
-              <div className="flex items-center">
-                <span className="text-2xl mr-2">{getStatusIcon(health.env.STRIPE_LIVE_SECRET_KEY)}</span>
-                <span className={`text-sm font-medium ${health.env.STRIPE_LIVE_SECRET_KEY === '!!' ? 'text-green-600' : 'text-red-600'}`}>
-                  {getStatusText(health.env.STRIPE_LIVE_SECRET_KEY)}
-                </span>
-              </div>
-            </div>
-
-            <div className="px-6 py-4 flex items-center justify-between">
-              <div>
-                <h3 className="text-sm font-medium text-gray-900">Airtable</h3>
-                <p className="text-sm text-gray-500">Data storage</p>
-              </div>
-              <div className="flex items-center">
-                <span className="text-2xl mr-2">{getStatusIcon(health.env.AIRTABLE_API_KEY)}</span>
-                <span className={`text-sm font-medium ${health.env.AIRTABLE_API_KEY === '!!' ? 'text-green-600' : 'text-red-600'}`}>
-                  {getStatusText(health.env.AIRTABLE_API_KEY)}
-                </span>
-              </div>
-            </div>
-
-            <div className="px-6 py-4 flex items-center justify-between">
-              <div>
-                <h3 className="text-sm font-medium text-gray-900">Google Maps</h3>
-                <p className="text-sm text-gray-500">Address autocomplete</p>
-              </div>
-              <div className="flex items-center">
-                <span className="text-2xl mr-2">{getStatusIcon(health.env.GOOGLE_MAPS)}</span>
-                <span className={`text-sm font-medium ${health.env.GOOGLE_MAPS === '!!' ? 'text-green-600' : 'text-red-600'}`}>
-                  {getStatusText(health.env.GOOGLE_MAPS)}
-                </span>
-              </div>
-            </div>
-
-            <div className="px-6 py-4 flex items-center justify-between">
-              <div>
-                <h3 className="text-sm font-medium text-gray-900">NREL API</h3>
-                <p className="text-sm text-gray-500">Solar data</p>
-              </div>
-              <div className="flex items-center">
-                <span className="text-2xl mr-2">{getStatusIcon(health.env.NREL)}</span>
-                <span className={`text-sm font-medium ${health.env.NREL === '!!' ? 'text-green-600' : 'text-red-600'}`}>
-                  {getStatusText(health.env.NREL)}
-                </span>
-              </div>
-            </div>
-
-            <div className="px-6 py-4 flex items-center justify-between">
-              <div>
-                <h3 className="text-sm font-medium text-gray-900">EIA API</h3>
-                <p className="text-sm text-gray-500">Energy data</p>
-              </div>
-              <div className="flex items-center">
-                <span className="text-2xl mr-2">{getStatusIcon(health.env.EIA)}</span>
-                <span className={`text-sm font-medium ${health.env.EIA === '!!' ? 'text-green-600' : 'text-red-600'}`}>
-                  {getStatusText(health.env.EIA)}
-                </span>
-              </div>
-            </div>
+            {(health.services || []).map((s) => {
+              const label = serviceLabels[s.service] || { title: s.service, desc: '' };
+              const isOk = s.status === 'ok';
+              const isDegraded = s.status === 'degraded';
+              return (
+                <div key={s.service} className="px-6 py-4 flex items-center justify-between">
+                  <div>
+                    <h3 className="text-sm font-medium text-gray-900">{label.title || s.service}</h3>
+                    <p className="text-sm text-gray-500">{label.desc}</p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    {s.latency != null && s.latency > 0 && isOk && (
+                      <span className="text-xs text-gray-400">{s.latency}ms</span>
+                    )}
+                    <span className={`inline-flex items-center justify-center w-10 h-10 rounded-full text-2xl ${isOk ? 'bg-green-100 text-green-700' : isDegraded ? 'bg-amber-100 text-amber-700' : 'bg-red-100 text-red-700'}`} aria-hidden>
+                      {isOk ? '✓' : isDegraded ? '!' : '✕'}
+                    </span>
+                    <span className={`text-sm font-semibold min-w-[90px] ${isOk ? 'text-green-600' : isDegraded ? 'text-amber-600' : 'text-red-600'}`}>
+                      {isOk ? 'Operational' : isDegraded ? 'Degraded' : 'Down'}
+                    </span>
+                    {s.error && (
+                      <span className="text-xs text-red-600 max-w-[200px] truncate" title={s.error}>{s.error}</span>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
 

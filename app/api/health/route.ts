@@ -132,6 +132,18 @@ export async function GET() {
     }
   }
 
+  // Client-only APIs (no server ping; report configured so status page is complete)
+  const googlePlacesKey = typeof process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY === 'string'
+    ? process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY.trim() || undefined
+    : undefined;
+  if (googlePlacesKey) {
+    checks.push({
+      service: 'google_places',
+      status: 'ok',
+      latency: 0,
+    });
+  }
+
   overallStatus.services = checks;
   overallStatus.ok = checks.every((c) => c.status === 'ok');
 

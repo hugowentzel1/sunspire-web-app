@@ -1,10 +1,21 @@
 'use client';
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
 
-export default function ActivatePage() {
+function ActivateLoading() {
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 flex items-center justify-center">
+      <div className="text-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+        <p className="text-gray-600">Loading activation details...</p>
+      </div>
+    </div>
+  );
+}
+
+function ActivateContent() {
   const searchParams = useSearchParams();
   const sessionId = searchParams?.get('session_id');
   const b = useBrandTakeover();
@@ -16,30 +27,35 @@ export default function ActivatePage() {
   const [activeTab, setActiveTab] = useState<'instant' | 'domain' | 'embed'>('instant');
   const [isLoading, setIsLoading] = useState(true);
 
+  const companyFromUrl = searchParams?.get('company') || '';
+
   const fetchSessionDetails = useCallback(async () => {
     try {
       const response = await fetch(`/api/stripe/session?session_id=${sessionId}`);
       const data = await response.json();
       setSessionDetails(data);
-      
-      // Generate tenant slug from company name or use default
-      const company = data.metadata?.company || 'your-company';
-      const slug = company.toLowerCase().replace(/[^a-z0-9]/g, '-');
+
+      const company = data.metadata?.company || companyFromUrl || 'your-company';
+      const slug = company.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-') || 'your-company';
       setTenantSlug(slug);
     } catch (error) {
       console.error('Error fetching session details:', error);
+      const slug = (companyFromUrl || 'your-company').toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-') || 'your-company';
+      setTenantSlug(slug);
     } finally {
       setIsLoading(false);
     }
-  }, [sessionId]);
+  }, [sessionId, companyFromUrl]);
 
   useEffect(() => {
     if (sessionId) {
       fetchSessionDetails();
     } else {
+      const slug = (companyFromUrl || 'your-company').toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-') || 'your-company';
+      setTenantSlug(slug);
       setIsLoading(false);
     }
-  }, [sessionId, fetchSessionDetails]);
+  }, [sessionId, fetchSessionDetails, companyFromUrl]);
 
   const handleVerifyDomain = async () => {
     if (!customDomain) return;
@@ -111,7 +127,7 @@ export default function ActivatePage() {
             🎉 Your Solar Tool is Ready!
           </h1>
           <p className="text-lg text-gray-600">
-            Your branded solar calculator is now live and ready to generate leads.
+            Your tool is live. New leads go to your inbox and dashboard—optional CRM sync if you use one.
           </p>
         </div>
 
@@ -164,7 +180,7 @@ export default function ActivatePage() {
                 </code>
               </div>
               <p className="text-gray-600 mb-6">
-                This URL is live right now! Share it with your customers to start generating solar leads.
+                Share this link to start receiving leads; you&apos;ll get an instant email and see them in your dashboard.
               </p>
               <button
                 onClick={() => copyToClipboard(`https://${tenantSlug}.out.sunspire.app`)}
@@ -285,5 +301,13 @@ export default function ActivatePage() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function ActivatePage() {
+  return (
+    <Suspense fallback={<ActivateLoading />}>
+      <ActivateContent />
+    </Suspense>
   );
 }

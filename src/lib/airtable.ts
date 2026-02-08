@@ -34,7 +34,7 @@ const TABLES = {
 } as const;
 
 // Field names as defined in requirements
-const LEAD_FIELDS = {
+export const LEAD_FIELDS = {
   NAME: "Name",
   EMAIL: "Email",
   COMPANY: "Company",
@@ -75,9 +75,11 @@ export const TENANT_FIELDS = {
   REQUESTED_DOMAIN: "Requested Domain",
   DOMAIN_STATUS: "Domain Status",
   DOMAIN: "Domain",
+  /** Email to notify when a new lead is captured (optional). Add this column to Tenants in Airtable. */
+  NOTIFICATION_EMAIL: "Notification Email",
 } as const;
 
-const USER_FIELDS = {
+export const USER_FIELDS = {
   EMAIL: "Email",
   ROLE: "Role",
   TENANT: "Tenant",
@@ -137,6 +139,7 @@ export interface Tenant {
   [TENANT_FIELDS.REQUESTED_DOMAIN]?: string;
   [TENANT_FIELDS.DOMAIN_STATUS]?: string;
   [TENANT_FIELDS.DOMAIN]?: string;
+  [TENANT_FIELDS.NOTIFICATION_EMAIL]?: string;
 }
 
 export interface User {
@@ -404,6 +407,58 @@ export async function findLeadByEmailAndTenant(
     logger.error("Error finding lead by email and tenant:", error);
     throw error;
   }
+}
+
+export async function findLeadsByEmail(email: string): Promise<Lead[]> {
+  try {
+    const records = await getBase()(TABLES.LEADS)
+      .select({
+        filterByFormula: `{${LEAD_FIELDS.EMAIL}} = '${email.replace(/'/g, "\\'")}'`,
+      })
+      .firstPage();
+    return records.map((r) => ({ id: r.id, ...r.fields } as Lead));
+  } catch (error) {
+    logger.error("Error finding leads by email:", error);
+    throw error;
+  }
+}
+
+export async function findUsersByEmail(email: string): Promise<User[]> {
+  try {
+    const records = await getBase()(TABLES.USERS)
+      .select({
+        filterByFormula: `{${USER_FIELDS.EMAIL}} = '${email.replace(/'/g, "\\'")}'`,
+      })
+      .firstPage();
+    return records.map((r) => ({ id: r.id, ...r.fields } as User));
+  } catch (error) {
+    logger.error("Error finding users by email:", error);
+    throw error;
+  }
+}
+
+export async function findTenantByEmail(email: string): Promise<Tenant | null> {
+  try {
+    const users = await findUsersByEmail(email);
+    if (users.length === 0) return null;
+    const tenantIds = users[0][USER_FIELDS.TENANT];
+    if (!tenantIds || tenantIds.length === 0) return null;
+    const record = await getBase()(TABLES.TENANTS).find(tenantIds[0]);
+    return { id: record.id, ...record.fields } as Tenant;
+  } catch (error) {
+    logger.error("Error finding tenant by email:", error);
+    throw error;
+  }
+}
+
+export async function updateTenantEmailStatus(
+  _tenantId: string,
+  _email: string,
+  _status: string,
+  _reason?: string,
+): Promise<void> {
+  // Optional: update a custom field on Tenant for bounce status if your base has one
+  logger.info("Tenant email status update requested", { _tenantId, _email, _status });
 }
 
 export async function updateLead(

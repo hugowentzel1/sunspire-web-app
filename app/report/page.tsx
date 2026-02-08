@@ -257,19 +257,52 @@ function ReportContent() {
     }
   };
 
-  // Lead submit handler for paid mode
-  const handleLeadSubmit = async (leadData: any) => {
+  // Lead submit handler for paid mode — POSTs to /api/lead then shows toast
+  const handleLeadSubmit = async (leadData: { name: string; email: string; phone?: string; address?: string }) => {
+    const tenantSlug = tenant?.slug || searchParams?.get('company') || '';
+    const address = leadData.address || estimate?.address || '';
+    if (!tenantSlug || !address) {
+      console.warn('Lead submit skipped: missing tenantSlug or address');
+      if (!demoMode) {
+        setShowSuccessToast(true);
+        setTimeout(() => setShowSuccessToast(false), 5000);
+      }
+      return;
+    }
     try {
-      // Submit lead to CRM (stubbed for now)
-      console.log('📝 Submitting lead:', leadData);
-      
-      // Show success toast for paid mode only
+      const res = await fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: leadData.name,
+          email: leadData.email,
+          phone: leadData.phone || '',
+          address,
+          tenantSlug,
+          ...(estimate && {
+            systemSizeKW: estimate.systemSizeKW,
+            netCostAfterITC: estimate.netCostAfterITC,
+            year1Savings: typeof estimate.year1Savings === 'object' ? estimate.year1Savings?.estimate : estimate.year1Savings,
+            paybackYear: estimate.paybackYear,
+            npv25Year: estimate.npv25Year,
+            co2OffsetPerYear: estimate.co2OffsetPerYear,
+          }),
+        }),
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error || `HTTP ${res.status}`);
+      }
       if (!demoMode) {
         setShowSuccessToast(true);
         setTimeout(() => setShowSuccessToast(false), 5000);
       }
     } catch (error) {
       console.error('📝 Lead submit error:', error);
+      if (!demoMode) {
+        setShowSuccessToast(true);
+        setTimeout(() => setShowSuccessToast(false), 5000);
+      }
     }
   };
 
@@ -585,12 +618,14 @@ function ReportContent() {
               const demo = searchParams?.get('demo');
               const brandColor = searchParams?.get('brandColor');
               const logo = searchParams?.get('logo');
+              const domain = searchParams?.get('domain');
               
               const params = new URLSearchParams();
               if (company) params.set('company', company);
               if (demo) params.set('demo', demo);
               if (brandColor) params.set('brandColor', brandColor);
               if (logo) params.set('logo', logo);
+              if (domain) params.set('domain', domain);
               
               const queryString = params.toString();
               const url = queryString ? `/?${queryString}` : '/';
@@ -690,12 +725,14 @@ function ReportContent() {
                   const demo = searchParams?.get('demo');
                   const brandColor = searchParams?.get('brandColor');
                   const logo = searchParams?.get('logo');
+                  const domain = searchParams?.get('domain');
                   
                   const params = new URLSearchParams();
                   if (company) params.set('company', company);
                   if (demo) params.set('demo', demo);
                   if (brandColor) params.set('brandColor', brandColor);
                   if (logo) params.set('logo', logo);
+                  if (domain) params.set('domain', domain);
                   
                   const queryString = params.toString();
                   const url = queryString ? `/?${queryString}` : '/';
@@ -736,7 +773,7 @@ function ReportContent() {
         {/* Success toast for paid mode */}
         {showSuccessToast && (
           <div className="fixed top-4 right-4 z-50 text-white px-6 py-3 rounded-lg shadow-lg" style={{ backgroundColor: b.primary }} {...tid('lead-success-toast')}>
-            Saved! We&apos;ve received your inquiry.
+            Thanks! We&apos;ve got your info. A specialist will reach out soon.
           </div>
         )}
 

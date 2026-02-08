@@ -133,20 +133,21 @@ function HomeContent() {
 
 
 
-  const handleAddressSelect = (place: { formattedAddress: string; placeId: string; lat: number; lng: number }) => {
-    console.log('Address selected:', place.formattedAddress, 'placeId:', place.placeId);
+  const handleAddressSelect = (place: { formattedAddress: string; placeId: string; lat: number; lng: number; state?: string }) => {
+    console.log('Address selected:', place.formattedAddress, 'placeId:', place.placeId, 'state:', place.state);
     
-    // Create a mock selectedPlace object for navigation
+    // Create a mock selectedPlace object for navigation (state used for utility rate in estimate)
     const mockPlace = {
       formattedAddress: place.formattedAddress,
       placeId: place.placeId,
       lat: place.lat || 40.7128, // Use provided coordinates or default NYC
       lng: place.lng || -74.0060,
+      state: place.state,
       components: {
         street_number: '',
         route: '',
         locality: '',
-        administrative_area_level_1: '',
+        administrative_area_level_1: place.state || '',
         country: '',
         postal_code: ''
       }
@@ -205,6 +206,7 @@ function HomeContent() {
           lng: String(currentPlace.lng),
           placeId: currentPlace.placeId,
         });
+        if (currentPlace.state) q.set('state', currentPlace.state);
         
         // Add company and demo parameters if they exist
         if (company) q.set('company', company);
@@ -316,7 +318,7 @@ function HomeContent() {
           {!isDemo && (
             <div className="mx-auto max-w-3xl mt-4 rounded-lg bg-emerald-50 text-emerald-900 text-sm px-4 py-2 border border-emerald-200 flex items-center justify-center gap-6" {...tid('live-bar')}>
               <span className="flex-shrink-0 mr-2">✅</span>
-              <span>Live for <b>{b.brand || 'Your Company'}</b>. Leads now save to your CRM.</span>
+              <span>Live for <b>{b.brand || 'Your Company'}</b>. New leads hit your inbox instantly and your dashboard—optional CRM sync if you use one.</span>
             </div>
           )}
           
@@ -514,8 +516,8 @@ function HomeContent() {
             <div className="relative bg-gradient-to-br from-white via-white to-[var(--brand-primary)]/15 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-2xl hover:scale-105 transition-all duration-500 flex flex-col items-center justify-center group stagger-item hover-lift">
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/40 to-[var(--brand-primary)]/25 rounded-3xl opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10">
-                <div className="text-2xl font-black text-gray-900 mb-3 group-hover:text-[var(--brand-primary)] transition-colors duration-300">CRM Integration</div>
-                <div className="text-gray-600 font-semibold leading-relaxed">Direct push to HubSpot, Salesforce, and Airtable</div>
+                <div className="text-2xl font-black text-gray-900 mb-3 group-hover:text-[var(--brand-primary)] transition-colors duration-300">Leads to inbox + dashboard</div>
+                <div className="text-gray-600 font-semibold leading-relaxed">Instant email when a lead comes in, plus your Sunspire dashboard. Optional sync to HubSpot, Salesforce, or Airtable.</div>
               </div>
             </div>
             <div className="relative bg-gradient-to-br from-white via-white to-[var(--brand-primary)]/15 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-2xl hover:scale-105 transition-all duration-500 flex flex-col items-center justify-center group stagger-item hover-lift">
@@ -534,7 +536,7 @@ function HomeContent() {
                 <h2 className="text-2xl md:text-3xl font-bold text-gray-900">Launch Your Branded Version Now</h2>
                 <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
                   <span>• &lt;24h setup</span>
-                  <span>• CRM integrations</span>
+                  <span>• Instant lead email + dashboard (+ optional CRM)</span>
                   <span>• Ongoing support</span>
                 </div>
        <button 

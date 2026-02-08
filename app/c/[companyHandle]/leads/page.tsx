@@ -22,8 +22,16 @@ export default function LeadsPage() {
   useEffect(() => {
     const fetchLeads = async () => {
       try {
-        const response = await fetch(`/api/leads?company=${companyHandle}`);
+        const apiKey = typeof window !== "undefined" ? sessionStorage.getItem(`apikey:${companyHandle}`) : null;
+        const headers: Record<string, string> = {};
+        if (apiKey) headers["x-api-key"] = apiKey;
+        const response = await fetch(`/api/leads?company=${companyHandle}`, { headers });
         if (!response.ok) {
+          if (response.status === 401) {
+            setError("Open your dashboard first, then click View Leads.");
+            setLoading(false);
+            return;
+          }
           throw new Error("Failed to fetch leads");
         }
         const data = await response.json();
@@ -87,8 +95,7 @@ export default function LeadsPage() {
                   No leads yet
                 </h3>
                 <p className="text-gray-500">
-                  Leads will appear here as customers submit inquiries through
-                  your solar tool.
+                  Leads show up here as soon as someone submits—you&apos;ll also get an instant email so you can reach out in minutes.
                 </p>
               </div>
             ) : (

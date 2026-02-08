@@ -101,10 +101,10 @@ export default function SetupGuidePage() {
                   </div>
                   <div>
                     <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                      CRM Connection
+                      Lead delivery
                     </h3>
                     <p className="text-gray-600">
-                      Connect your CRM system for lead management
+                      Leads hit your inbox instantly and your dashboard; optional CRM connection when you&apos;re ready.
                     </p>
                   </div>
                 </div>
