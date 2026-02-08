@@ -1,3 +1,8 @@
+/**
+ * GET /api/health — Single source of truth for "is everything up?"
+ * Checks every API Sunspire depends on: Airtable, Stripe, NREL, EIA, Google Geocoding, Resend, Google Places (config).
+ * Not checked here: Sentry (error reporting), Vercel (hosting limits). See /status page copy and TO-DO-LIST.
+ */
 import { NextResponse } from 'next/server';
 import { ENV } from '@/src/config/env';
 
