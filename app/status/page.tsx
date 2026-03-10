@@ -2,9 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { useBrandTakeover } from '@/src/brand/useBrandTakeover';
-import SharedNavigation from '@/components/SharedNavigation';
-import Footer from '@/components/Footer';
+import Link from 'next/link';
 
 interface HealthService {
   service: string;
@@ -16,6 +14,8 @@ interface HealthService {
 interface HealthStatus {
   ok: boolean;
   timestamp: string;
+  version?: string;
+  commit?: string;
   services: HealthService[];
 }
 
@@ -27,6 +27,8 @@ const SERVICE_LABELS: Record<string, { title: string; desc: string }> = {
   google_geocoding: { title: 'Google Geocoding', desc: 'Address lookup (server)' },
   google_places: { title: 'Google Places', desc: 'Address autocomplete (client)' },
   resend: { title: 'Resend', desc: 'Email — lead alerts & delivery' },
+  vercel_kv: { title: 'Vercel KV (Upstash)', desc: 'DLQ, webhook idempotency, rate limiting' },
+  usgs_3dep: { title: 'USGS 3DEP Elevation', desc: 'Shading / terrain — solar shade analysis' },
 };
 
 export default function StatusPage() {
@@ -35,7 +37,6 @@ export default function StatusPage() {
   const [error, setError] = useState<string | null>(null);
   const [refreshing, setRefreshing] = useState(false);
   const searchParams = useSearchParams();
-  const b = useBrandTakeover();
 
   const fetchHealth = useCallback(async (isRefresh = false) => {
     if (isRefresh) setRefreshing(true);
@@ -66,7 +67,7 @@ export default function StatusPage() {
 
   if (loading && !health) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center" data-testid="status-page-content">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-2 border-slate-300 border-t-blue-600 mx-auto mb-4"></div>
           <p className="text-slate-600">Checking system status...</p>
@@ -77,7 +78,7 @@ export default function StatusPage() {
 
   if (error && !health) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center" data-testid="status-page-content">
         <div className="text-center max-w-md px-4">
           <div className="text-red-500 text-5xl mb-4">⚠</div>
           <h1 className="text-2xl font-bold text-slate-900 mb-2">Status check failed</h1>
@@ -107,10 +108,9 @@ export default function StatusPage() {
   const downCount = (health.services || []).filter((s) => s.status !== 'ok').length;
 
   return (
-    <div className="min-h-screen bg-slate-50 py-8">
-      <SharedNavigation />
+    <div className="min-h-screen bg-slate-50 py-8" data-testid="status-page-content">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Hero: single source of truth */}
+        {/* Hero: single source of truth — only h1 on the page */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-slate-900 mb-2">System Status</h1>
           <p className="text-slate-600 mb-4">
@@ -118,6 +118,8 @@ export default function StatusPage() {
           </p>
           <p className="text-sm text-slate-500">
             Last updated: {new Date(health.timestamp).toLocaleString()}
+            {health.version && <> · Version {health.version}</>}
+            {health.commit && <> · <code className="text-xs bg-slate-100 px-1 rounded">{health.commit}</code></>}
             {' · '}
             <button
               type="button"
@@ -170,15 +172,15 @@ export default function StatusPage() {
           </div>
         </div>
 
-        {/* What we check */}
+        {/* What we check — every API and dependency; nothing hidden (single header: only "System Status" above) */}
         <div className="bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden mb-6">
           <div className="px-6 py-4 bg-slate-50 border-b border-slate-200">
-            <h2 className="text-lg font-semibold text-slate-900">What this page checks</h2>
+            <p className="text-lg font-semibold text-slate-900">Everything Sunspire depends on (checked live)</p>
             <p className="text-sm text-slate-500 mt-0.5">
-              Data (Airtable), payments (Stripe), quotes (NREL + EIA), address (Google Geocoding + Places), email (Resend). All are probed by <code className="text-xs bg-slate-100 px-1 rounded">/api/health</code>.
+              Data (Airtable), payments (Stripe), quotes (NREL + EIA), address (Google Geocoding + Places), email (Resend), storage (Vercel KV), shading (USGS 3DEP). Each row is probed by <code className="text-xs bg-slate-100 px-1 rounded">/api/health</code> — only services with env vars set appear. This covers every API in the quote/lead/payment path. See <code className="text-xs bg-slate-100 px-1 rounded">docs/API-HEALTH-COVERAGE.md</code> for the full route list.
             </p>
           </div>
-          <div className="divide-y divide-slate-200">
+          <div className="divide-y divide-slate-200" data-testid="status-service-list">
             {(health.services || []).map((s) => {
               const label = SERVICE_LABELS[s.service] || {
                 title: s.service,
@@ -189,12 +191,14 @@ export default function StatusPage() {
               return (
                 <div
                   key={s.service}
+                  data-testid="status-service-row"
+                  data-service={s.service}
                   className="px-6 py-4 flex items-center justify-between gap-4"
                 >
                   <div className="min-w-0">
-                    <h3 className="text-sm font-medium text-slate-900">
+                    <p className="text-sm font-medium text-slate-900" role="text">
                       {label.title}
-                    </h3>
+                    </p>
                     {label.desc && (
                       <p className="text-sm text-slate-500 truncate">{label.desc}</p>
                     )}
@@ -241,30 +245,36 @@ export default function StatusPage() {
           </div>
         </div>
 
-        {/* Not checked here */}
-        <div className="rounded-xl border border-slate-200 bg-slate-50/80 px-6 py-4 mb-8">
-          <h3 className="text-sm font-semibold text-slate-700 mb-1">
-            Not checked on this page
-          </h3>
-          <p className="text-sm text-slate-600">
-            Sentry (error monitoring) and Vercel (hosting limits) are not probed here. For Sentry trial/limits and Vercel function invocation limits, see <strong>TO-DO-LIST.md</strong> (BEFORE INSTANTLY section) and <strong>MAINTENANCE-GUIDE.md</strong>.
+        {/* Streamlined: UptimeRobot, /status, Sentry — alerts to support@getsunspire.com */}
+        <div className="rounded-xl border-2 border-slate-200 bg-white px-6 py-4 mb-8">
+          <p className="text-sm font-semibold text-slate-800 mb-2">
+            Daily check: UptimeRobot, this page, Sentry — alerts to support@getsunspire.com
           </p>
+          <p className="text-sm text-slate-600 mb-2">
+            <code className="text-xs bg-slate-100 px-1 rounded">/api/health</code> probes every API (Airtable, Stripe, NREL, EIA, Google Geocoding/Places, Resend, Vercel KV, USGS 3DEP). See <code className="text-xs bg-slate-100 px-1 rounded">docs/API-HEALTH-COVERAGE.md</code>.
+          </p>
+          <ul className="text-sm text-slate-600 list-disc list-inside space-y-1">
+            <li><strong>UptimeRobot</strong> — Monitor <code className="text-xs bg-slate-100 px-1 rounded">GET /api/health</code>. When status is not 200, alert <a href="mailto:support@getsunspire.com" className="text-blue-600 hover:underline">support@getsunspire.com</a>.</li>
+            <li><strong>This page</strong> — Open <code className="text-xs bg-slate-100 px-1 rounded">/status</code> to see each service and version.</li>
+            <li><strong>Sentry</strong> — Set project alerts to <a href="mailto:support@getsunspire.com" className="text-blue-600 hover:underline">support@getsunspire.com</a> (Settings → Alerts).</li>
+          </ul>
         </div>
 
+        <p className="text-xs text-slate-500 mb-6">Vercel usage and Sentry limits: MAINTENANCE-GUIDE.</p>
+
         <div className="text-center">
-          <a
+          <Link
             href={
               searchParams?.get('demo')
-                ? `/?${searchParams?.toString()}`
+                ? `/?${searchParams?.toString() || ''}`
                 : `/paid?${searchParams?.toString() || ''}`
             }
-            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-blue-600 hover:bg-blue-700"
+            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-lg text-white bg-slate-700 hover:bg-slate-800"
           >
             ← Back to Home
-          </a>
+          </Link>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

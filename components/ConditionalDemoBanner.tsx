@@ -31,9 +31,11 @@ export default function ConditionalDemoBanner() {
     '/cancel',
     '/signup',
     '/report',
-    '/demo-result'
+    '/demo-result',
   ];
-  
+  // Customer dashboard / activation (post-pay): no "Activate on your domain" etc.
+  if (pathname === '/c' || pathname?.startsWith('/c/')) return null;
+
   // Don't show banner on legal/regulatory pages
   if (noBannerPages.some(page => pathname?.startsWith(page))) {
     return null;

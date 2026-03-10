@@ -21,6 +21,7 @@ export default function SharedNavigation() {
     if (searchParams?.get('demo')) params.set('demo', searchParams?.get('demo') || '');
     if (searchParams?.get('brandColor')) params.set('brandColor', searchParams?.get('brandColor') || '');
     if (searchParams?.get('logo')) params.set('logo', searchParams?.get('logo') || '');
+    if (searchParams?.get('domain')) params.set('domain', searchParams?.get('domain') || '');
 
     const queryString = params.toString();
     return queryString ? `${path}?${queryString}` : path;
@@ -28,6 +29,16 @@ export default function SharedNavigation() {
   
   // Don't render on pages that have their own custom banners
   if (pathname === '/report' || pathname === '/demo-result') {
+    return null;
+  }
+
+  // No header on status page (single clean “System Status” title only; avoids double header)
+  if (pathname === '/status') {
+    return null;
+  }
+
+  // Hide main site header on customer dashboard/activation area (post-purchase portal)
+  if (pathname?.startsWith('/c/')) {
     return null;
   }
 
@@ -158,7 +169,7 @@ export default function SharedNavigation() {
   };
 
   return (
-    <header className="bg-white border-b border-gray-200/30 shadow-sm">
+    <header className="bg-white border-b border-gray-200/30 shadow-sm" data-testid="main-site-nav">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-center md:justify-between items-center h-20">
           <Link href={createUrlWithParams("/")} className="flex items-center space-x-4 hover:opacity-80 transition-opacity">

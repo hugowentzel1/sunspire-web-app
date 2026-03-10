@@ -35,6 +35,7 @@ import { getTrustData } from '@/lib/trust';
 import Container from '@/components/layout/Container';
 import BottomCtaBand from '@/components/cta/BottomCtaBand';
 import ReportCTAFooter from '@/components/report/ReportCTAFooter';
+import ReportLeadModal from '@/components/report/ReportLeadModal';
 import StickyCTA from '@/components/report/StickyCTA';
 import StickyCtaBar from '@/components/StickyCtaBar';
 import { ensureBlurSupport } from '@/src/lib/ensureBlur';
@@ -88,7 +89,7 @@ function ReportContent() {
   const [estimate, setEstimate] = useState<SolarEstimate | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  // showLeadModal state removed - no popups wanted
+  const [showReportLeadModal, setShowReportLeadModal] = useState(false);
   const [demoMode, setDemoMode] = useState(false);
   const [trustData, setTrustData] = useState<any>(null);
   const [showMethodologyModal, setShowMethodologyModal] = useState(false);
@@ -279,6 +280,8 @@ function ReportContent() {
           phone: leadData.phone || '',
           address,
           tenantSlug,
+          utm_source: searchParams?.get('utm_source') || undefined,
+          demo_or_paid: demoMode,
           ...(estimate && {
             systemSizeKW: estimate.systemSizeKW,
             netCostAfterITC: estimate.netCostAfterITC,
@@ -286,6 +289,7 @@ function ReportContent() {
             paybackYear: estimate.paybackYear,
             npv25Year: estimate.npv25Year,
             co2OffsetPerYear: estimate.co2OffsetPerYear,
+            annual_production: estimate.annualProductionKWh?.estimate ?? undefined,
           }),
         }),
       });
@@ -299,10 +303,7 @@ function ReportContent() {
       }
     } catch (error) {
       console.error('📝 Lead submit error:', error);
-      if (!demoMode) {
-        setShowSuccessToast(true);
-        setTimeout(() => setShowSuccessToast(false), 5000);
-      }
+      throw error;
     }
   };
 
@@ -846,7 +847,7 @@ function ReportContent() {
               </motion.div>
             </div>
 
-            {/* Logo → Subheadline = 16px */}
+            {/* Format: "Comprehensive analysis for your property at" → address → "Generated on ..." */}
             <p
               data-testid="hdr-sub"
               className="mt-[16px] text-[clamp(18px,2.4vw,20px)] font-semibold text-slate-800"
@@ -854,17 +855,15 @@ function ReportContent() {
               Comprehensive analysis for your property at
             </p>
 
-            {/* Subheadline → Address = 8px */}
             <p
               data-testid="hdr-address"
-              className="mx-auto mt-2 max-w-[60ch] text-[17px] leading-snug text-slate-600"
+              className="mx-auto mt-4 max-w-[60ch] text-[17px] leading-snug text-slate-600"
               style={{ textWrap: 'balance' } as any}
             >
-              {softWrapCommas(estimate.address)}
+              {softWrapCommas(estimate.address || searchParams?.get('address') || 'your property')}
             </p>
 
-            {/* Address → Meta = 16px */}
-            <div data-testid="hdr-meta" className="mx-auto mt-4 w-full max-w-sm">
+            <div data-testid="hdr-meta" className="mx-auto mt-5 w-full max-w-sm space-y-0.5">
               <div data-testid="meta-generated" className="py-1 text-[15px] text-slate-500">
                 Generated on <span className="text-slate-700">{formatDateSafe(estimate.date)}</span>
               </div>
@@ -1151,10 +1150,10 @@ function ReportContent() {
               transition={{ delay: 1.0, duration: 0.8 }}
               className="mt-12"
             >
-              <BottomCtaBand variant="report" data-testid="report-bottom-cta" />
+              <BottomCtaBand variant="report" onLaunchClick={handleCheckout} data-testid="report-bottom-cta" />
             </motion.div>
           )}
-          {/* Paid-only consolidated CTA block */}
+          {/* Paid-only: next step CTA — headline, subtext, primary button, microcopy per spec */}
           {!demoMode && (
             <motion.div 
               initial={{ opacity: 0, y: 20 }} 
@@ -1162,15 +1161,34 @@ function ReportContent() {
               transition={{ delay: 1.0, duration: 0.8 }}
               className="mt-12"
             >
-              <ReportCTAFooter 
+              <div className="text-center mb-6">
+                <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Next step: get your install-ready plan</h2>
+                <p className="text-gray-600 text-sm max-w-xl mx-auto">A quick consult confirms roof layout, panel location, and incentives—then your installer can schedule the next step.</p>
+              </div>
+              <ReportCTAFooter
                 brandColor={b.primary}
                 searchParams={searchParams?.toString()}
+                onRequestConsult={() => setShowReportLeadModal(true)}
+                hideTalkToSpecialist
               />
+              <p className="text-xs text-gray-500 text-center mt-3">Takes ~30 seconds. No obligation.</p>
             </motion.div>
           )}
         </motion.div>
         </Container>
       </main>
+
+      {/* Lead capture modal (paid report: Request a free consult) */}
+      {!demoMode && (
+        <ReportLeadModal
+          isOpen={showReportLeadModal}
+          onClose={() => setShowReportLeadModal(false)}
+          onSubmit={handleLeadSubmit}
+          address={estimate?.address || searchParams?.get('address') || ''}
+          brandColor={b.primary || '#0ea5e9'}
+          companyName={(searchParams?.get('company') ? capitalizeCompanyName(searchParams.get('company')!) : undefined) || tenant?.name}
+        />
+      )}
 
       {/* Methodology Modal */}
       <MethodologyModal

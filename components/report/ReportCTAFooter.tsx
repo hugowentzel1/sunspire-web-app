@@ -4,22 +4,37 @@ import { motion } from "framer-motion";
 
 interface ReportCTAFooterProps {
   onBook?: () => void;
+  onRequestConsult?: () => void;
   onTalk?: () => void;
   onDownloadPdf?: () => void;
   onCopyLink?: () => void;
   brandColor?: string;
   searchParams?: string;
+  /** Paid report: hide "Talk to a Specialist", show only Book/Request consult (full width) */
+  hideTalkToSpecialist?: boolean;
 }
 
 export default function ReportCTAFooter({
   onBook,
+  onRequestConsult,
   onTalk,
   onDownloadPdf,
   onCopyLink,
   brandColor = "#FF6B35",
   searchParams = "",
+  hideTalkToSpecialist = false,
 }: ReportCTAFooterProps) {
-  
+  const handleRequestConsult = () => {
+    if (typeof window !== "undefined" && (window as any).gtag) {
+      (window as any).gtag("event", "cta_request_consult", { event_category: "engagement", event_label: "report_page_bottom" });
+    }
+    if (onRequestConsult) {
+      onRequestConsult();
+      return;
+    }
+    handleBook();
+  };
+
   const handleBook = async () => {
     if (typeof window !== 'undefined' && (window as any).gtag) {
       (window as any).gtag('event', 'cta_book_consultation_bottom', {
@@ -110,31 +125,33 @@ export default function ReportCTAFooter({
       className="report-cta-footer mt-8 mb-8 rounded-2xl p-6 md:p-8 bg-gradient-to-br from-gray-50 to-white border border-gray-200 shadow-sm grid grid-rows-[1fr_auto_1fr]"
       data-testid="report-cta-footer"
     >
-      {/* TOP HALF — keep your current top-row flex with all its classes/margins */}
+      {/* TOP HALF — primary CTA; paid report: single full-width button, no Talk to Specialist */}
       <div className="h-full grid place-content-center">
-        <div className="cta-row flex flex-col sm:flex-row gap-3 justify-center items-center mb-0" style={{ marginLeft: '-12px', transform: 'translateY(-6.25px)' }}>
+        <div className={`cta-row flex gap-3 justify-center items-center mb-0 ${hideTalkToSpecialist ? 'flex-col w-full max-w-md mx-auto' : 'flex-col sm:flex-row'}`} style={{ marginLeft: hideTalkToSpecialist ? 0 : '-12px', transform: hideTalkToSpecialist ? 'none' : 'translateY(-6.25px)' }}>
           <motion.button
-            onClick={handleBook}
-            className="inline-flex items-center justify-center px-6 py-3 text-white rounded-xl font-semibold text-base hover:shadow-lg transition-all duration-200 w-full sm:w-auto"
+            onClick={handleRequestConsult}
+            className={`inline-flex items-center justify-center px-6 py-4 text-white rounded-xl font-semibold text-base hover:shadow-lg transition-all duration-200 ${hideTalkToSpecialist ? 'w-full' : 'w-full sm:w-auto'}`}
             style={{ backgroundColor: brandColor }}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
             role="button"
-            aria-label="Book a Consultation"
+            aria-label={onRequestConsult ? "Request a free consult" : "Book a Consultation"}
           >
-            📅 Book a Consultation
+            {onRequestConsult ? "📅 Request a free consult" : "📅 Book a Consultation"}
           </motion.button>
-          
-          <motion.a
-            href="tel:+14041234567"
-            onClick={handleTalk}
-            className="inline-flex items-center justify-center px-6 py-3 bg-gray-100 text-gray-900 rounded-xl font-semibold text-base hover:bg-gray-200 transition-all duration-200 w-full sm:w-auto border border-gray-300"
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
-            aria-label="Talk to a Specialist"
-          >
-            📞 Talk to a Specialist
-          </motion.a>
+
+          {!hideTalkToSpecialist && (
+            <motion.a
+              href="tel:+14041234567"
+              onClick={handleTalk}
+              className="inline-flex items-center justify-center px-6 py-3 bg-gray-100 text-gray-900 rounded-xl font-semibold text-base hover:bg-gray-200 transition-all duration-200 w-full sm:w-auto border border-gray-300"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              aria-label="Talk to a Specialist"
+            >
+              📞 Talk to a Specialist
+            </motion.a>
+          )}
         </div>
       </div>
 
