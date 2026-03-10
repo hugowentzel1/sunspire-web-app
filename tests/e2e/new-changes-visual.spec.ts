@@ -84,9 +84,8 @@ test.describe("New changes — visual and buttons", () => {
     await expect(modal.locator("text=/Next step: schedule your free consultation|free consultation/i")).toBeVisible({
       timeout: 5000,
     });
-    await expect(modal.locator("text=/Share your details|quick consult confirms roof layout|installer can guide the next step/i")).toBeVisible({
-      timeout: 3000,
-    });
+    const modalText = await modal.innerText();
+    expect(modalText).toMatch(/Get this report|free call|roof layout|next steps/i);
     await expect(modal.locator("#report-lead-name")).toBeVisible();
     await expect(modal.locator("#report-lead-email")).toBeVisible();
     await expect(modal.locator("#report-lead-phone")).toBeVisible();

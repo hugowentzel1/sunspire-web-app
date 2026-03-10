@@ -65,77 +65,77 @@ export default function ReportLeadModal({
           <div className="p-6 md:p-8">
             {!success ? (
               <>
-                <h2 id="report-lead-modal-title" className="text-xl md:text-2xl font-bold text-gray-900 mb-1">
+                <h2 id="report-lead-modal-title" className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
                   Next step: schedule your free consultation
                 </h2>
-                <p className="text-gray-600 text-sm mb-6">
-                  Share your details below and we’ll send this report plus next steps. A quick consult confirms roof layout, panel location, and incentives—then your installer can guide the next step.
+                <p className="text-gray-600 text-sm mb-6 leading-relaxed">
+                  Get this report by email and a free call with {consentCompany} to confirm your roof layout and next steps.
                 </p>
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
-                    <label htmlFor="report-lead-name" className="block text-sm font-medium text-gray-700 mb-1">First name *</label>
+                    <label htmlFor="report-lead-name" className="block text-sm font-medium text-gray-700 mb-1.5">First name *</label>
                     <input
                       id="report-lead-name"
                       type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder="Your name"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-offset-0 focus:border-transparent"
+                      className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-offset-0 focus:border-transparent text-gray-900"
                       style={{ outlineColor: brandColor }}
                     />
                   </div>
                   <div>
-                    <label htmlFor="report-lead-email" className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                    <label htmlFor="report-lead-email" className="block text-sm font-medium text-gray-700 mb-1.5">Email *</label>
                     <input
                       id="report-lead-email"
                       type="email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="you@example.com"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-offset-0 focus:border-transparent"
+                      className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-offset-0 focus:border-transparent text-gray-900"
                       style={{ outlineColor: brandColor }}
                     />
                   </div>
                   <div>
-                    <label htmlFor="report-lead-phone" className="block text-sm font-medium text-gray-700 mb-1">Phone (optional)</label>
+                    <label htmlFor="report-lead-phone" className="block text-sm font-medium text-gray-700 mb-1.5">Phone (optional)</label>
                     <input
                       id="report-lead-phone"
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="+1 (555) 000-0000"
-                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-offset-0 focus:border-transparent"
+                      className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-offset-0 focus:border-transparent text-gray-900"
                       style={{ outlineColor: brandColor }}
                     />
                   </div>
-                  <div className="flex items-start gap-2">
+                  <div className="flex items-start gap-3 pt-1">
                     <input
                       id="report-lead-consent"
                       type="checkbox"
                       checked={consent}
                       onChange={(e) => setConsent(e.target.checked)}
-                      className="mt-1 rounded border-gray-300"
+                      className="mt-1 rounded border-gray-300 shrink-0"
                     />
-                    <label htmlFor="report-lead-consent" className="text-sm text-gray-600">
-                      By submitting, you agree to be contacted by {consentCompany} via phone, email, or text.{" "}
+                    <label htmlFor="report-lead-consent" className="text-sm text-gray-600 leading-snug">
+                      I agree to be contacted by {consentCompany} by phone, email, or text.{" "}
                       <a href="/privacy" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">Privacy</a>
                       {" · "}
                       <a href="/terms" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">Terms</a>
                     </label>
                   </div>
                   {error && (
-                    <div className="rounded-lg bg-red-50 border border-red-200 p-3 text-sm text-red-700">{error}</div>
+                    <div className="rounded-lg bg-red-50 border border-red-200 px-3 py-2.5 text-sm text-red-700">{error}</div>
                   )}
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3 px-4 rounded-xl font-semibold text-white transition-opacity disabled:opacity-70"
+                    className="w-full py-3.5 px-4 rounded-xl font-semibold text-white transition-opacity disabled:opacity-70 mt-6"
                     style={{ backgroundColor: brandColor }}
                   >
                     {isSubmitting ? "Sending…" : "Send my report & next steps"}
                   </button>
                 </form>
-                <p className="text-xs text-gray-500 mt-3 text-center">Takes ~30 seconds. No obligation.</p>
+                <p className="text-xs text-gray-500 mt-4 text-center">Takes ~30 seconds. No obligation.</p>
               </>
             ) : (
               <div className="text-center">

@@ -125,12 +125,12 @@ export default function ReportCTAFooter({
       className="report-cta-footer mt-8 mb-8 rounded-2xl p-6 md:p-8 bg-gradient-to-br from-gray-50 to-white border border-gray-200 shadow-sm grid grid-rows-[1fr_auto_1fr]"
       data-testid="report-cta-footer"
     >
-      {/* TOP HALF — primary CTA; paid report: single full-width button, no Talk to Specialist */}
-      <div className="h-full grid place-content-center">
-        <div className={`cta-row flex gap-3 justify-center items-center mb-0 ${hideTalkToSpecialist ? 'flex-col w-full max-w-md mx-auto' : 'flex-col sm:flex-row'}`} style={{ marginLeft: hideTalkToSpecialist ? 0 : '-12px', transform: hideTalkToSpecialist ? 'none' : 'translateY(-6.25px)' }}>
+      {/* TOP HALF — primary CTA; paid: one button centered, width = bottom row (two buttons + gap) */}
+      <div className="h-full flex flex-col justify-center items-center">
+        <div className={`cta-row w-full flex gap-3 justify-center items-center ${hideTalkToSpecialist ? 'grid grid-cols-[1fr_1fr] max-w-[min(100%,28rem)]' : 'flex-col sm:flex-row'}`} style={{ marginLeft: hideTalkToSpecialist ? 0 : '-12px', transform: hideTalkToSpecialist ? 'none' : 'translateY(-6.25px)' }}>
           <motion.button
             onClick={handleRequestConsult}
-            className={`inline-flex items-center justify-center px-6 py-4 text-white rounded-xl font-semibold text-base hover:shadow-lg transition-all duration-200 ${hideTalkToSpecialist ? 'w-full' : 'w-full sm:w-auto'}`}
+            className={`inline-flex items-center justify-center px-6 py-4 text-white rounded-xl font-semibold text-base hover:shadow-lg transition-all duration-200 ${hideTalkToSpecialist ? 'col-span-2 w-full' : 'w-full sm:w-auto'}`}
             style={{ backgroundColor: brandColor }}
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
@@ -158,9 +158,9 @@ export default function ReportCTAFooter({
       {/* DIVIDER — stays auto height */}
       <div className="h-px bg-gray-200 my-4 md:my-5" />
 
-      {/* BOTTOM HALF — keep your current bottom-row flex with all its classes/margins */}
-      <div className="h-full grid place-content-center">
-        <div className="utility-row flex flex-col sm:flex-row gap-3 justify-center items-center pt-0 border-t-0" style={{ marginLeft: '9px', transform: 'translateY(6.25px)' }}>
+      {/* BOTTOM HALF — same grid so top button aligns to this width when hideTalkToSpecialist */}
+      <div className="h-full flex flex-col justify-center items-center">
+        <div className="utility-row flex flex-col sm:flex-row gap-3 justify-center items-center pt-0 border-t-0 max-w-[min(100%,28rem)] w-full" style={{ marginLeft: hideTalkToSpecialist ? 0 : '9px', transform: hideTalkToSpecialist ? 'none' : 'translateY(6.25px)' }}>
           <motion.button
             onClick={handleDownload}
             className="btn-tertiary px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-100 transition-all duration-200 border border-gray-300 w-full sm:w-auto"
