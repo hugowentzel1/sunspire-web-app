@@ -1171,6 +1171,7 @@ function ReportContent() {
                 onRequestConsult={() => setShowReportLeadModal(true)}
                 hideTalkToSpecialist
               />
+              {/* Paid report: single CTA only (no Talk to a Specialist) */}
               <p className="text-xs text-gray-500 text-center mt-3">Takes ~30 seconds. No obligation.</p>
             </motion.div>
           )}
