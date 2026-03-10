@@ -61,7 +61,7 @@ test.describe("New changes — visual and buttons", () => {
     });
     const body = await page.locator("body").innerText();
     expect(body).toMatch(/NREL|savings|solar|report|Production|System Size/i);
-    const hasNextStep = /Next step: get your install-ready plan|Next step: schedule your free consultation|quick consult confirms roof layout|installer can schedule the next step/i.test(body);
+    const hasNextStep = /Get your report by email|free consultation|We'll send your report|Where should we send your report/i.test(body);
     const hasConsultBtn = /Request a free consult|Book a Consultation/i.test(body);
     expect(hasNextStep || hasConsultBtn).toBe(true);
     const consultBtn = page.getByRole("button", { name: /Request a free consult|Book a Consultation/i }).first();
@@ -75,38 +75,67 @@ test.describe("New changes — visual and buttons", () => {
     page,
   }) => {
     test.setTimeout(60000);
+    const minimalEstimate = () => ({
+      estimate: {
+        id: "mock-1",
+        address: "1600 Amphitheatre Parkway",
+        coordinates: { lat: 37.422, lng: -122.084 },
+        date: new Date().toISOString(),
+        systemSizeKW: 7.2,
+        tilt: 22,
+        azimuth: 180,
+        losses: 14,
+        annualProductionKWh: { estimate: 11105, low: 9995, high: 12216 },
+        monthlyProduction: Array(12).fill(1000),
+        solarIrradiance: 4.5,
+        grossCost: 25800,
+        netCostAfterITC: 18060,
+        year1Savings: { estimate: 2254, low: 2029, high: 2480 },
+        paybackYear: 8,
+        npv25Year: 73000,
+        co2OffsetPerYear: 10200,
+        utilityRate: 0.14,
+        utilityRateSource: "E2E",
+        tariff: "E2E",
+        dataSource: "E2E",
+        shadingAnalysis: { method: "remote", accuracy: "high", shadingFactor: 0.9, annualShadingLoss: 10, confidence: 0.92 },
+        assumptions: { itcPercentage: 0.3, costPerWatt: 3, degradationRate: 0.005, oandmPerKWYear: 22, electricityRateIncrease: 0.025, discountRate: 0.07 },
+        cashflowProjection: Array.from({ length: 25 }, (_, i) => ({ year: i + 1, production: 12000, savings: 1680, cumulativeSavings: 1680 * (i + 1), netCashflow: 1680 * (i + 1) - 18060 })),
+      },
+    });
+    await page.route("**/api/estimate*", (route) => route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(minimalEstimate()) }));
+    await page.route("**/api/lead*", (route) => {
+      if (route.request().method() === "POST") route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ ok: true }) });
+      else route.continue();
+    });
     await page.goto(
       `${BASE}/report?company=TestCo&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA&placeId=test`,
       { waitUntil: "domcontentloaded" }
     );
-    await page.waitForSelector('button:has-text("Request a free consult"), button:has-text("Book a Consultation")', { timeout: 20000 }).catch(() => null);
+    await page.waitForSelector('[data-testid="report-cta-footer"]', { timeout: 20000 }).catch(() => null);
+    await page.waitForSelector('button:has-text("Request a free consult"), button:has-text("Book a Consultation")', { timeout: 8000 }).catch(() => null);
     const consultBtn = page.getByRole("button", { name: /Request a free consult|Book a Consultation/i }).first();
-    await expect(consultBtn).toBeVisible({ timeout: 10000 });
+    await expect(consultBtn).toBeVisible({ timeout: 15000 });
     await consultBtn.click();
     await page.waitForSelector('[role="dialog"]', { timeout: 8000 });
     const modal = page.locator('[role="dialog"]').first();
-    await expect(modal.locator("text=/Next step: schedule your free consultation|free consultation/i")).toBeVisible({
-      timeout: 5000,
-    });
+    await expect(modal.getByRole("heading", { name: /Where should we send your report/i })).toBeVisible({ timeout: 5000 });
     const modalText = await modal.innerText();
-    expect(modalText).toMatch(/Get this report|free call|roof layout|next steps/i);
+    expect(modalText).toMatch(/report|email your full report|Where should we send|local installer/i);
     await expect(modal.locator("#report-lead-name")).toBeVisible();
     await expect(modal.locator("#report-lead-email")).toBeVisible();
     await expect(modal.locator("#report-lead-phone")).toBeVisible();
     await expect(modal.locator("#report-lead-consent")).toBeVisible();
     await expect(modal.locator("text=/agree to be contacted/i").first()).toBeVisible({ timeout: 3000 });
-    await expect(modal.locator('button[type="submit"]')).toContainText(/Send my report|Sending/i);
-    await expect(modal.locator("text=/Takes ~30 seconds|No obligation/i")).toBeVisible({ timeout: 3000 }).catch(() => null);
+    await expect(modal.locator('button[type="submit"]')).toContainText(/Email my report|Sending/i);
+    await expect(modal.locator("text=/Takes about 30 seconds|No obligation/i")).toBeVisible({ timeout: 3000 }).catch(() => null);
 
     await modal.locator("#report-lead-name").fill("Visual Test");
     await modal.locator("#report-lead-email").fill(`visual-${Date.now()}@test.example`);
     await modal.locator("#report-lead-consent").check();
     await modal.locator('button[type="submit"]').click();
 
-    await page.waitForSelector('text=/You\'re all set|hear back within 1 business day|Book a time|No thanks — have them reach out|Something went wrong|Failed|Sending/i', {
-      timeout: 20000,
-    });
-    await page.waitForTimeout(3000);
+    await expect(modal.getByRole("heading", { name: /all set/i })).toBeVisible({ timeout: 15000 });
     const afterBody = (await modal.innerText().catch(() => "")) || (await page.locator("body").innerText().catch(() => ""));
     const hasSuccess = /You're all set|hear back within 1 business day|Book a time|No thanks — have them reach out/i.test(afterBody);
     const hasError = /Something went wrong|Failed to submit|Failed|error/i.test(afterBody);

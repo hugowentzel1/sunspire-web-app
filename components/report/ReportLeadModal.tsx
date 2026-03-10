@@ -62,16 +62,18 @@ export default function ReportLeadModal({
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" role="dialog" aria-modal="true" aria-labelledby="report-lead-modal-title">
       <FocusTrap>
         <div className="bg-white rounded-2xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
-          <div className="p-6 md:p-8">
+          <div className="p-6 md:p-8 flex flex-col gap-6">
             {!success ? (
               <>
-                <h2 id="report-lead-modal-title" className="text-xl md:text-2xl font-bold text-gray-900 mb-4">
-                  Next step: schedule your free consultation
-                </h2>
-                <p className="text-gray-600 text-sm mb-6 leading-relaxed">
-                  Get this report by email and a free call with {consentCompany} to confirm your roof layout and next steps.
-                </p>
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="space-y-2">
+                  <h2 id="report-lead-modal-title" className="text-xl md:text-2xl font-bold text-gray-900">
+                    Where should we send your report?
+                  </h2>
+                  <p className="text-gray-600 text-sm leading-relaxed">
+                    We&apos;ll email your full report. A local installer may follow up to answer questions—free, no obligation.
+                  </p>
+                </div>
+                <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
                     <label htmlFor="report-lead-name" className="block text-sm font-medium text-gray-700 mb-1.5">First name *</label>
                     <input
@@ -79,7 +81,7 @@ export default function ReportLeadModal({
                       type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      placeholder="Your name"
+                      placeholder="Your first name"
                       className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-offset-0 focus:border-transparent text-gray-900"
                       style={{ outlineColor: brandColor }}
                     />
@@ -108,7 +110,7 @@ export default function ReportLeadModal({
                       style={{ outlineColor: brandColor }}
                     />
                   </div>
-                  <div className="flex items-start gap-3 pt-1">
+                  <div className="flex items-start gap-3">
                     <input
                       id="report-lead-consent"
                       type="checkbox"
@@ -117,7 +119,7 @@ export default function ReportLeadModal({
                       className="mt-1 rounded border-gray-300 shrink-0"
                     />
                     <label htmlFor="report-lead-consent" className="text-sm text-gray-600 leading-snug">
-                      I agree to be contacted by {consentCompany} by phone, email, or text.{" "}
+                      I agree to be contacted by {consentCompany} by phone, email, or text about my solar report.{" "}
                       <a href="/privacy" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">Privacy</a>
                       {" · "}
                       <a href="/terms" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">Terms</a>
@@ -129,13 +131,21 @@ export default function ReportLeadModal({
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3.5 px-4 rounded-xl font-semibold text-white transition-opacity disabled:opacity-70 mt-6"
-                    style={{ backgroundColor: brandColor }}
+                    className="btn-primary w-full py-3.5 px-4 rounded-xl font-semibold text-white transition-opacity disabled:opacity-70"
+                    style={{ ['--brand' as string]: brandColor } as React.CSSProperties}
                   >
-                    {isSubmitting ? "Sending…" : "Send my report & next steps"}
+                    {isSubmitting ? "Sending…" : "Email my report"}
                   </button>
                 </form>
-                <p className="text-xs text-gray-500 mt-4 text-center">Takes ~30 seconds. No obligation.</p>
+                <p className="text-xs text-gray-500 text-center">Takes about 30 seconds. No obligation.</p>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="py-2 text-sm text-gray-500 hover:text-gray-700 -mb-2"
+                  aria-label="Close"
+                >
+                  Cancel
+                </button>
               </>
             ) : (
               <div className="text-center">
@@ -173,16 +183,6 @@ export default function ReportLeadModal({
                   </button>
                 </div>
               </div>
-            )}
-            {!success && (
-              <button
-                type="button"
-                onClick={onClose}
-                className="mt-4 w-full py-2 text-sm text-gray-500 hover:text-gray-700"
-                aria-label="Close"
-              >
-                Cancel
-              </button>
             )}
           </div>
         </div>

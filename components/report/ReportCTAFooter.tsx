@@ -12,6 +12,8 @@ interface ReportCTAFooterProps {
   searchParams?: string;
   /** Paid report: hide "Talk to a Specialist", show only Book/Request consult (full width) */
   hideTalkToSpecialist?: boolean;
+  /** When true, remove section margin so parent controls vertical rhythm */
+  compact?: boolean;
 }
 
 export default function ReportCTAFooter({
@@ -23,6 +25,7 @@ export default function ReportCTAFooter({
   brandColor = "#FF6B35",
   searchParams = "",
   hideTalkToSpecialist = false,
+  compact = false,
 }: ReportCTAFooterProps) {
   const handleRequestConsult = () => {
     if (typeof window !== "undefined" && (window as any).gtag) {
@@ -122,7 +125,7 @@ export default function ReportCTAFooter({
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3, duration: 0.6 }}
       aria-label="Next steps"
-      className="report-cta-footer mt-8 mb-8 rounded-2xl p-6 md:p-8 bg-gradient-to-br from-gray-50 to-white border border-gray-200 shadow-sm grid grid-rows-[1fr_auto_1fr]"
+      className={`report-cta-footer rounded-2xl p-6 md:p-8 bg-gradient-to-br from-gray-50 to-white border border-gray-200 shadow-sm grid grid-rows-[1fr_auto_1fr] ${compact ? "mt-0 mb-0" : "mt-8 mb-8"}`}
       data-testid="report-cta-footer"
     >
       {/* TOP HALF — primary CTA; paid: one button centered, width = bottom row (two buttons + gap) */}
@@ -130,14 +133,14 @@ export default function ReportCTAFooter({
         <div className={`cta-row w-full flex gap-3 justify-center items-center ${hideTalkToSpecialist ? 'grid grid-cols-[1fr_1fr] max-w-[min(100%,28rem)]' : 'flex-col sm:flex-row'}`} style={{ marginLeft: hideTalkToSpecialist ? 0 : '-12px', transform: hideTalkToSpecialist ? 'none' : 'translateY(-6.25px)' }}>
           <motion.button
             onClick={handleRequestConsult}
-            className={`inline-flex items-center justify-center px-6 py-4 text-white rounded-xl font-semibold text-base hover:shadow-lg transition-all duration-200 ${hideTalkToSpecialist ? 'col-span-2 w-full' : 'w-full sm:w-auto'}`}
-            style={{ backgroundColor: brandColor }}
-            whileHover={{ scale: 1.03 }}
+            className={`btn-primary ${hideTalkToSpecialist ? 'col-span-2 w-full rounded-xl px-6 py-4 text-base font-semibold' : 'w-full sm:w-auto rounded-xl px-6 py-4 text-base font-semibold'}`}
+            style={{ ['--brand' as string]: brandColor } as React.CSSProperties}
+            whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             role="button"
             aria-label={onRequestConsult ? "Request a free consult" : "Book a Consultation"}
           >
-            {onRequestConsult ? "📅 Request a free consult" : "📅 Book a Consultation"}
+            {onRequestConsult ? "Request a free consult" : "Book a Consultation"}
           </motion.button>
 
           {!hideTalkToSpecialist && (

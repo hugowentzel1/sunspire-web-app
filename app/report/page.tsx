@@ -1153,26 +1153,32 @@ function ReportContent() {
               <BottomCtaBand variant="report" onLaunchClick={handleCheckout} data-testid="report-bottom-cta" />
             </motion.div>
           )}
-          {/* Paid-only: next step CTA — headline, subtext, primary button, microcopy per spec */}
+          {/* Paid-only: next step CTA — even vertical rhythm, one clear message */}
           {!demoMode && (
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.0, duration: 0.8 }}
               className="mt-12"
             >
-              <div className="text-center mb-6">
-                <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Next step: get your install-ready plan</h2>
-                <p className="text-gray-600 text-sm max-w-xl mx-auto">A quick consult confirms roof layout, panel location, and incentives—then your installer can schedule the next step.</p>
+              <div className="max-w-xl mx-auto flex flex-col items-center gap-6 py-8 px-4">
+                <h2 className="text-xl md:text-2xl font-bold text-gray-900 text-center">
+                  Get your report by email + a free consultation
+                </h2>
+                <p className="text-gray-600 text-sm text-center leading-relaxed max-w-lg">
+                  We&apos;ll send your report to your inbox. A local installer can then answer questions and confirm next steps—free and no obligation.
+                </p>
+                <div className="w-full max-w-[min(100%,28rem)]">
+                  <ReportCTAFooter
+                    brandColor={b.primary}
+                    searchParams={searchParams?.toString()}
+                    onRequestConsult={() => setShowReportLeadModal(true)}
+                    hideTalkToSpecialist
+                    compact
+                  />
+                </div>
+                <p className="text-xs text-gray-500 text-center">Takes about 30 seconds. No obligation.</p>
               </div>
-              <ReportCTAFooter
-                brandColor={b.primary}
-                searchParams={searchParams?.toString()}
-                onRequestConsult={() => setShowReportLeadModal(true)}
-                hideTalkToSpecialist
-              />
-              {/* Paid report: single CTA only (no Talk to a Specialist) */}
-              <p className="text-xs text-gray-500 text-center mt-3">Takes ~30 seconds. No obligation.</p>
             </motion.div>
           )}
         </motion.div>
