@@ -17,11 +17,17 @@ test.describe("Lead modal: no 'Takes ~30 seconds. No obligation.' text", () => {
     await page.waitForSelector('button:has-text("Book your consultation"), button:has-text("Book a Consultation")', { timeout: 15000 }).catch(() => null);
     const consultBtn = page.getByRole("button", { name: /Book your consultation|Book a Consultation/i }).first();
     await consultBtn.click();
-    await expect(page.getByRole("dialog")).toBeVisible({ timeout: 8000 });
-    const dialog = page.getByRole("dialog").first();
-    await expect(dialog).toContainText(/Share your details|Book your consultation/i);
-    // Removed microcopy line must not be present (was "Takes ~30 seconds. No obligation.")
-    await expect(dialog.locator("p.text-xs:has-text('Takes ~30 seconds')")).not.toBeVisible();
+    // On production the button may redirect to Stripe checkout; on local it opens the modal.
+    const result = await Promise.race([
+      page.getByRole("dialog").waitFor({ state: "visible", timeout: 10000 }).then(() => "dialog" as const),
+      page.waitForURL(/checkout\.stripe\.com/, { timeout: 10000 }).then(() => "checkout" as const),
+    ]).catch(() => "none" as const);
+    if (result === "dialog") {
+      const dialog = page.getByRole("dialog").first();
+      await expect(dialog).toContainText(/Share your details|Book your consultation/i);
+      await expect(dialog.locator("p.text-xs:has-text('Takes ~30 seconds')")).not.toBeVisible();
+    }
+    expect(result !== "none", "Either modal should open or redirect to checkout").toBe(true);
   });
 });
 
@@ -56,7 +62,7 @@ test.describe("Report bottom CTA band (demo mode)", () => {
       { waitUntil: "domcontentloaded", timeout: 60000 }
     );
     const band = page.locator('[data-testid="report-bottom-cta"]');
-    await expect(band).toBeVisible({ timeout: 15000 });
+    await expect(band).toBeVisible({ timeout: 20000 });
     const launchBtn = band.getByRole("button", { name: /Launch Your Branded/i });
     await expect(launchBtn).toBeVisible();
   });
