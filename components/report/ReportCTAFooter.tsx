@@ -130,7 +130,7 @@ export default function ReportCTAFooter({
     >
       {/* Primary CTA row — VERTICAL SPACING ONLY; widths/alignment unchanged */}
       <div className="flex flex-col justify-center items-center pt-0.5 pb-1.5">
-        <div className={`cta-row w-full flex gap-3 justify-center items-center ${hideTalkToSpecialist ? 'grid grid-cols-1 max-w-[min(100%,28rem)]' : 'flex-col sm:flex-row'}`} style={{ marginLeft: hideTalkToSpecialist ? 0 : '-12px', transform: hideTalkToSpecialist ? undefined : 'translateY(-6.25px)' }}>
+        <div className={`cta-row w-full flex gap-3 justify-center items-center ${hideTalkToSpecialist ? 'grid grid-cols-1 max-w-[min(100%,28rem)] items-center' : 'flex-col sm:flex-row'}`} style={{ marginLeft: hideTalkToSpecialist ? 0 : '-12px', transform: hideTalkToSpecialist ? undefined : 'translateY(-6.25px)' }}>
           <motion.button
             onClick={handleRequestConsult}
             className={`btn-primary ${hideTalkToSpecialist ? 'w-full rounded-xl px-6 py-4 text-base font-semibold' : 'w-full sm:w-auto rounded-xl px-6 py-4 text-base font-semibold'}`}

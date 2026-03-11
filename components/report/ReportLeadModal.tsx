@@ -6,7 +6,7 @@ import FocusTrap from "@/components/ui/FocusTrap";
 interface ReportLeadModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (data: { name: string; email: string; phone?: string; address?: string }) => Promise<void>;
+  onSubmit: (data: { name: string; email: string; phone?: string; address?: string; preferredContactMethod?: "call" | "email" }) => Promise<void>;
   address?: string;
   brandColor?: string;
   /** Installer/company name for consent: "contacted by [Company] via ..." */
@@ -30,6 +30,7 @@ export default function ReportLeadModal({
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [preferredContact, setPreferredContact] = useState<"call" | "email" | "">("");
   const [consent, setConsent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -44,13 +45,23 @@ export default function ReportLeadModal({
       setError("Name and email are required.");
       return;
     }
+    if (!preferredContact) {
+      setError("Please choose how you'd like to be contacted.");
+      return;
+    }
     if (!consent) {
       setError("Please agree to be contacted.");
       return;
     }
     setIsSubmitting(true);
     try {
-      await onSubmit({ name: name.trim(), email: email.trim(), phone: phone.trim() || undefined, address: address || undefined });
+      await onSubmit({
+        name: name.trim(),
+        email: email.trim(),
+        phone: phone.trim() || undefined,
+        address: address || undefined,
+        preferredContactMethod: preferredContact as "call" | "email",
+      });
       setSuccess(true);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
@@ -109,6 +120,36 @@ export default function ReportLeadModal({
                       style={{ outlineColor: brandColor }}
                     />
                   </div>
+                  <div>
+                    <span className="block text-sm font-medium text-gray-700 mb-2">How would you like to be contacted? *</span>
+                    <div className="flex gap-4" role="radiogroup" aria-required="true" aria-label="Preferred contact method">
+                      <label className="flex items-center gap-2 cursor-pointer">
+                        <input
+                          type="radio"
+                          name="report-lead-contact"
+                          value="call"
+                          checked={preferredContact === "call"}
+                          onChange={() => setPreferredContact("call")}
+                          className="rounded-full border-gray-300 text-gray-900 focus:ring-2 focus:ring-offset-0"
+                          style={{ accentColor: brandColor }}
+                        />
+                        <span className="text-sm text-gray-700">Call</span>
+                      </label>
+                      <label className="flex items-center gap-2 cursor-pointer">
+                        <input
+                          type="radio"
+                          name="report-lead-contact"
+                          value="email"
+                          checked={preferredContact === "email"}
+                          onChange={() => setPreferredContact("email")}
+                          className="rounded-full border-gray-300 text-gray-900 focus:ring-2 focus:ring-offset-0"
+                          style={{ accentColor: brandColor }}
+                        />
+                        <span className="text-sm text-gray-700">Email</span>
+                      </label>
+                    </div>
+                    <p className="text-xs text-gray-500 mt-1">Your installer will use this to reach you.</p>
+                  </div>
                   <div className="flex items-start gap-3 pt-2">
                     <input
                       id="report-lead-consent"
@@ -136,7 +177,6 @@ export default function ReportLeadModal({
                     {isSubmitting ? "Sending…" : "📅 Book your consultation"}
                   </button>
                 </form>
-                <p className="text-xs text-gray-500 text-center mt-5">Takes ~30 seconds. No obligation.</p>
                 <button
                   type="button"
                   onClick={onClose}

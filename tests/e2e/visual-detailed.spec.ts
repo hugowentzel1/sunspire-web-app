@@ -117,11 +117,13 @@ test.describe('Visual detailed — Paid report and lead modal', () => {
     await expect(dialog.locator('#report-lead-name')).toBeVisible();
     await expect(dialog.locator('#report-lead-email')).toBeVisible();
     await expect(dialog.locator('#report-lead-phone')).toBeVisible();
+    await expect(dialog.locator('text=How would you like to be contacted?').or(dialog.locator('label:has-text("Call")'))).toBeVisible();
+    await expect(dialog.getByRole('radio', { name: /Call/i })).toBeVisible();
+    await expect(dialog.getByRole('radio', { name: /Email/i })).toBeVisible();
     await expect(dialog.locator('text=/I agree to be contacted.*solar project and next steps/i').first()).toBeVisible();
     await expect(dialog.locator('a[href="/privacy"]').first()).toBeVisible();
     await expect(dialog.locator('a[href="/terms"]').first()).toBeVisible();
     await expect(dialog.getByRole('button', { name: /Book your consultation/i })).toBeVisible();
-    await expect(dialog.locator('p.text-xs:has-text("Takes ~30 seconds")')).toBeVisible();
   });
 
   test('Lead modal: consent checkbox and submit button enabled when filled', async ({ page }) => {
@@ -136,6 +138,7 @@ test.describe('Visual detailed — Paid report and lead modal', () => {
     const emailInput = page.locator('#report-lead-email').or(page.getByLabel(/Email/i).first());
     await nameInput.fill('Visual Test');
     await emailInput.fill('visual@test.example');
+    await page.getByRole('radio', { name: /Call/i }).check().catch(() => null);
     await page.locator('#report-lead-consent').check().catch(() => null);
     const dialog = page.getByRole('dialog').first();
     const submitBtn = dialog.getByRole('button', { name: /Book your consultation/i });

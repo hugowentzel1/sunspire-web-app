@@ -61,14 +61,14 @@ test.describe("New changes — visual and buttons", () => {
     });
     const body = await page.locator("body").innerText();
     expect(body).toMatch(/NREL|savings|solar|report|Production|System Size/i);
-    const hasNextStep = /Get your report by email|free consultation|We'll send your report|Where should we send your report/i.test(body);
-    const hasConsultBtn = /Request a free consult|Book a Consultation/i.test(body);
+    const hasNextStep = /Next step: (schedule your free consultation|book your consultation)|free consultation|Request a free consult|You already have your estimate/i.test(body);
+    const hasConsultBtn = /Request a free consult|Book a Consultation|Book your consultation/i.test(body);
     expect(hasNextStep || hasConsultBtn).toBe(true);
-    const consultBtn = page.getByRole("button", { name: /Request a free consult|Book a Consultation/i }).first();
+    const consultBtn = page.getByRole("button", { name: /Request a free consult|Book a Consultation|Book your consultation/i }).first();
     await expect(consultBtn).toBeVisible({ timeout: 5000 });
     // Paid report: CTA footer should not show "Talk to a Specialist" (hideTalkToSpecialist)
     const footer = page.locator('[data-testid="report-cta-footer"]');
-    await expect(footer.getByRole("link", { name: /Talk to a Specialist/i })).toHaveCount(0);
+    await expect(footer.getByRole("button", { name: /Talk to a Specialist/i })).toHaveCount(0);
   });
 
   test("Lead modal: open, wording, consent, submit button, then success or error", async ({
@@ -113,25 +113,25 @@ test.describe("New changes — visual and buttons", () => {
       { waitUntil: "domcontentloaded" }
     );
     await page.waitForSelector('[data-testid="report-cta-footer"]', { timeout: 20000 }).catch(() => null);
-    await page.waitForSelector('button:has-text("Request a free consult"), button:has-text("Book a Consultation")', { timeout: 8000 }).catch(() => null);
-    const consultBtn = page.getByRole("button", { name: /Request a free consult|Book a Consultation/i }).first();
+    await page.waitForSelector('button:has-text("Book your consultation"), button:has-text("Book a Consultation")', { timeout: 8000 }).catch(() => null);
+    const consultBtn = page.getByRole("button", { name: /Book your consultation|Book a Consultation/i }).first();
     await expect(consultBtn).toBeVisible({ timeout: 15000 });
     await consultBtn.click();
     await page.waitForSelector('[role="dialog"]', { timeout: 8000 });
     const modal = page.locator('[role="dialog"]').first();
-    await expect(modal.getByRole("heading", { name: /Where should we send your report/i })).toBeVisible({ timeout: 5000 });
+    await expect(modal.getByRole("heading", { name: /Book your free consultation/i })).toBeVisible({ timeout: 5000 });
     const modalText = await modal.innerText();
-    expect(modalText).toMatch(/report|email your full report|Where should we send|local installer/i);
+    expect(modalText).toMatch(/Share your details|contact you within 1-2 business days|Book your consultation/i);
     await expect(modal.locator("#report-lead-name")).toBeVisible();
     await expect(modal.locator("#report-lead-email")).toBeVisible();
     await expect(modal.locator("#report-lead-phone")).toBeVisible();
     await expect(modal.locator("#report-lead-consent")).toBeVisible();
     await expect(modal.locator("text=/agree to be contacted/i").first()).toBeVisible({ timeout: 3000 });
-    await expect(modal.locator('button[type="submit"]')).toContainText(/Email my report|Sending/i);
-    await expect(modal.locator("text=/Takes about 30 seconds|No obligation/i")).toBeVisible({ timeout: 3000 }).catch(() => null);
+    await expect(modal.locator('button[type="submit"]')).toContainText(/Book your consultation|Sending/i);
 
     await modal.locator("#report-lead-name").fill("Visual Test");
     await modal.locator("#report-lead-email").fill(`visual-${Date.now()}@test.example`);
+    await modal.getByRole("radio", { name: /Call/i }).check().catch(() => null);
     await modal.locator("#report-lead-consent").check();
     await modal.locator('button[type="submit"]').click();
 
