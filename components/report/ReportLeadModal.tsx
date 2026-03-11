@@ -80,48 +80,53 @@ export default function ReportLeadModal({
                 <h2 id="report-lead-modal-title" className="text-xl md:text-2xl font-bold text-gray-900 mb-5">
                   Book your free consultation
                 </h2>
-                <p className="text-gray-600 text-sm leading-relaxed mb-7">
+                <p className="text-gray-600 text-sm leading-relaxed mb-6">
                   Share your details below. {displayCompany} will call or email you within 1–2 business days to schedule your free consultation—a short, no-pressure call to discuss your estimate and next steps. No obligation.
                 </p>
-                <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-                  <div>
-                    <label htmlFor="report-lead-name" className="block text-sm font-medium text-gray-700 mb-1.5">First name *</label>
-                    <input
-                      id="report-lead-name"
-                      type="text"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                      placeholder="Your first name"
-                      className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-offset-0 focus:border-transparent text-gray-900"
-                      style={{ outlineColor: brandColor }}
-                    />
+                <form onSubmit={handleSubmit} className="flex flex-col space-y-6">
+                  {/* GROUP 1 — field stack: one consistent internal rhythm */}
+                  <div className="space-y-4">
+                    <div>
+                      <label htmlFor="report-lead-name" className="block text-sm font-medium text-gray-700 mb-2">First name *</label>
+                      <input
+                        id="report-lead-name"
+                        type="text"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="Your first name"
+                        className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-offset-0 focus:border-transparent text-gray-900"
+                        style={{ outlineColor: brandColor }}
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="report-lead-email" className="block text-sm font-medium text-gray-700 mb-2">Email *</label>
+                      <input
+                        id="report-lead-email"
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="you@example.com"
+                        className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-offset-0 focus:border-transparent text-gray-900"
+                        style={{ outlineColor: brandColor }}
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="report-lead-phone" className="block text-sm font-medium text-gray-700 mb-2">Phone (optional)</label>
+                      <input
+                        id="report-lead-phone"
+                        type="tel"
+                        value={phone}
+                        onChange={(e) => setPhone(e.target.value)}
+                        placeholder="+1 (555) 000-0000"
+                        className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-offset-0 focus:border-transparent text-gray-900"
+                        style={{ outlineColor: brandColor }}
+                      />
+                    </div>
                   </div>
-                  <div>
-                    <label htmlFor="report-lead-email" className="block text-sm font-medium text-gray-700 mb-1.5">Email *</label>
-                    <input
-                      id="report-lead-email"
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="you@example.com"
-                      className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-offset-0 focus:border-transparent text-gray-900"
-                      style={{ outlineColor: brandColor }}
-                    />
-                  </div>
-                  <div>
-                    <label htmlFor="report-lead-phone" className="block text-sm font-medium text-gray-700 mb-1.5">Phone (optional)</label>
-                    <input
-                      id="report-lead-phone"
-                      type="tel"
-                      value={phone}
-                      onChange={(e) => setPhone(e.target.value)}
-                      placeholder="+1 (555) 000-0000"
-                      className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-offset-0 focus:border-transparent text-gray-900"
-                      style={{ outlineColor: brandColor }}
-                    />
-                  </div>
-                  <div>
-                    <span className="block text-sm font-medium text-gray-700 mb-2">How would you like to be contacted? *</span>
+
+                  {/* CONTACT METHOD BLOCK — label + radios + helper as one unit */}
+                  <div className="contact-method-block flex flex-col space-y-2">
+                    <span className="block text-sm font-medium text-gray-700">How would you like to be contacted? *</span>
                     <div className="flex gap-4" role="radiogroup" aria-required="true" aria-label="Preferred contact method">
                       <label className="flex items-center gap-2 cursor-pointer">
                         <input
@@ -148,9 +153,11 @@ export default function ReportLeadModal({
                         <span className="text-sm text-gray-700">Email</span>
                       </label>
                     </div>
-                    <p className="text-xs text-gray-500 mt-1">Your installer will use this to reach you.</p>
+                    <p className="text-xs text-gray-500 leading-snug">Your installer will use this to reach you.</p>
                   </div>
-                  <div className="flex items-start gap-3 pt-2">
+
+                  {/* CONSENT BLOCK — checkbox + legal as its own section */}
+                  <div className="consent-block flex items-start gap-3">
                     <input
                       id="report-lead-consent"
                       type="checkbox"
@@ -158,33 +165,37 @@ export default function ReportLeadModal({
                       onChange={(e) => setConsent(e.target.checked)}
                       className="mt-1 rounded border-gray-300 shrink-0"
                     />
-                    <label htmlFor="report-lead-consent" className="text-sm text-gray-600 leading-snug">
+                    <label htmlFor="report-lead-consent" className="text-sm text-gray-600 leading-6">
                       I agree to be contacted by {consentCompany} by phone, email, or text regarding my solar project and next steps.{" "}
                       <a href="/privacy" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">Privacy</a>
                       {" · "}
                       <a href="/terms" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">Terms</a>
                     </label>
                   </div>
-                  {error && (
-                    <div className="rounded-lg bg-red-50 border border-red-200 px-3 py-2.5 text-sm text-red-700">{error}</div>
-                  )}
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="btn-primary w-full py-3.5 px-4 rounded-xl font-semibold text-white transition-opacity disabled:opacity-70 mt-2"
-                    style={{ ['--brand' as string]: brandColor } as React.CSSProperties}
-                  >
-                    {isSubmitting ? "Sending…" : "📅 Book your consultation"}
-                  </button>
+
+                  {/* ACTIONS BLOCK — error + submit + cancel as one intentional group */}
+                  <div className="actions-block flex flex-col items-center space-y-4">
+                    {error && (
+                      <div className="rounded-lg bg-red-50 border border-red-200 px-3 py-2.5 text-sm text-red-700">{error}</div>
+                    )}
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="btn-primary w-full py-3.5 px-4 rounded-xl font-semibold text-white transition-opacity disabled:opacity-70"
+                      style={{ ['--brand' as string]: brandColor } as React.CSSProperties}
+                    >
+                      {isSubmitting ? "Sending…" : "📅 Book your consultation"}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={onClose}
+                      className="w-full py-2 text-center text-sm text-gray-500 hover:text-gray-700"
+                      aria-label="Cancel"
+                    >
+                      Cancel
+                    </button>
+                  </div>
                 </form>
-                <button
-                  type="button"
-                  onClick={onClose}
-                  className="mt-4 py-2.5 text-sm text-gray-500 hover:text-gray-700"
-                  aria-label="Close"
-                >
-                  Cancel
-                </button>
               </>
             ) : (
               <div className="text-center">

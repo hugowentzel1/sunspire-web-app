@@ -125,15 +125,15 @@ export default function ReportCTAFooter({
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3, duration: 0.6 }}
       aria-label="Next steps"
-      className={`report-cta-footer rounded-2xl p-6 md:p-8 bg-gradient-to-br from-gray-50 to-white border border-gray-200 shadow-sm flex flex-col ${compact ? "mt-0 mb-0" : "mt-6 mb-6"}`}
+      className={`report-cta-footer rounded-2xl border border-gray-200 shadow-sm bg-gradient-to-br from-gray-50 to-white flex flex-col overflow-hidden ${compact ? "mt-0 mb-0" : "mt-6 mb-6"} px-8 md:px-10`}
       data-testid="report-cta-footer"
     >
-      {/* Primary CTA row — VERTICAL SPACING ONLY; widths/alignment unchanged */}
-      <div className="flex flex-col justify-center items-center pt-0.5 pb-1.5">
-        <div className={`cta-row w-full flex gap-3 justify-center items-center ${hideTalkToSpecialist ? 'grid grid-cols-1 max-w-[min(100%,28rem)] items-center' : 'flex-col sm:flex-row'}`} style={{ marginLeft: hideTalkToSpecialist ? 0 : '-12px', transform: hideTalkToSpecialist ? undefined : 'translateY(-6.25px)' }}>
+      {/* Top white action region — visible row is the centering region */}
+      <div className="flex h-[104px] items-center justify-center">
+        <div className={`cta-row w-full flex gap-3 justify-center items-center ${hideTalkToSpecialist ? "grid grid-cols-1 max-w-[min(100%,28rem)] items-center justify-items-center mx-auto" : "flex-col sm:flex-row"}`}>
           <motion.button
             onClick={handleRequestConsult}
-            className={`btn-primary ${hideTalkToSpecialist ? 'w-full rounded-xl px-6 py-4 text-base font-semibold' : 'w-full sm:w-auto rounded-xl px-6 py-4 text-base font-semibold'}`}
+            className={`btn-primary inline-flex items-center justify-center leading-none ${hideTalkToSpecialist ? 'w-full rounded-xl px-6 py-4 text-base font-semibold' : 'w-full sm:w-auto rounded-xl px-6 py-4 text-base font-semibold'}`}
             style={{ ['--brand' as string]: brandColor } as React.CSSProperties}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
@@ -158,15 +158,14 @@ export default function ReportCTAFooter({
         </div>
       </div>
 
-      {/* DIVIDER — vertical spacing only */}
-      <div className="h-px bg-gray-200 my-4 md:my-4 shrink-0" />
+      <div className="h-px bg-gray-200 shrink-0" />
 
-      {/* Secondary actions — VERTICAL SPACING ONLY; widths/alignment unchanged */}
-      <div className="flex flex-col justify-center items-center pt-0 pb-0.5">
-        <div className={`utility-row flex flex-col sm:flex-row gap-3 justify-center items-center pt-0 border-t-0 w-full ${hideTalkToSpecialist ? 'max-w-[min(100%,28rem)]' : ''}`} style={{ marginLeft: hideTalkToSpecialist ? 0 : '9px', transform: hideTalkToSpecialist ? undefined : 'translateY(6.25px)' }}>
+      {/* Bottom white action region — visible row is the centering region */}
+      <div className="flex h-[92px] items-center justify-center">
+        <div className={`utility-row w-full flex flex-col sm:flex-row gap-3 justify-center items-center border-t-0 ${hideTalkToSpecialist ? "max-w-[min(100%,28rem)] mx-auto" : ""}`}>
           <motion.button
             onClick={handleDownload}
-            className="btn-tertiary px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-100 transition-all duration-200 border border-gray-300 w-full sm:w-auto"
+            className="btn-tertiary inline-flex items-center justify-center leading-none px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-100 transition-all duration-200 border border-gray-300 w-full sm:w-auto"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             aria-label="Download PDF Report"
@@ -176,7 +175,7 @@ export default function ReportCTAFooter({
           
           <motion.button
             onClick={handleCopy}
-            className="btn-tertiary px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-100 transition-all duration-200 border border-gray-300 w-full sm:w-auto"
+            className="btn-tertiary inline-flex items-center justify-center leading-none px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-100 transition-all duration-200 border border-gray-300 w-full sm:w-auto"
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             aria-label="Copy Share Link"
