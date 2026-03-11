@@ -125,22 +125,22 @@ export default function ReportCTAFooter({
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3, duration: 0.6 }}
       aria-label="Next steps"
-      className={`report-cta-footer rounded-2xl p-6 md:p-8 bg-gradient-to-br from-gray-50 to-white border border-gray-200 shadow-sm grid grid-rows-[1fr_auto_1fr] ${compact ? "mt-0 mb-0" : "mt-8 mb-8"}`}
+      className={`report-cta-footer rounded-2xl p-6 md:p-8 bg-gradient-to-br from-gray-50 to-white border border-gray-200 shadow-sm flex flex-col ${compact ? "mt-0 mb-0" : "mt-6 mb-6"}`}
       data-testid="report-cta-footer"
     >
-      {/* TOP HALF — primary CTA; paid: one button centered, width = bottom row (two buttons + gap) */}
-      <div className="h-full flex flex-col justify-center items-center">
-        <div className={`cta-row w-full flex gap-3 justify-center items-center ${hideTalkToSpecialist ? 'grid grid-cols-[1fr_1fr] max-w-[min(100%,28rem)]' : 'flex-col sm:flex-row'}`} style={{ marginLeft: hideTalkToSpecialist ? 0 : '-12px', transform: hideTalkToSpecialist ? 'none' : 'translateY(-6.25px)' }}>
+      {/* Primary CTA row — VERTICAL SPACING ONLY; widths/alignment unchanged */}
+      <div className="flex flex-col justify-center items-center pt-0.5 pb-1.5">
+        <div className={`cta-row w-full flex gap-3 justify-center items-center ${hideTalkToSpecialist ? 'grid grid-cols-1 max-w-[min(100%,28rem)]' : 'flex-col sm:flex-row'}`} style={{ marginLeft: hideTalkToSpecialist ? 0 : '-12px', transform: hideTalkToSpecialist ? undefined : 'translateY(-6.25px)' }}>
           <motion.button
             onClick={handleRequestConsult}
-            className={`btn-primary ${hideTalkToSpecialist ? 'col-span-2 w-full rounded-xl px-6 py-4 text-base font-semibold' : 'w-full sm:w-auto rounded-xl px-6 py-4 text-base font-semibold'}`}
+            className={`btn-primary ${hideTalkToSpecialist ? 'w-full rounded-xl px-6 py-4 text-base font-semibold' : 'w-full sm:w-auto rounded-xl px-6 py-4 text-base font-semibold'}`}
             style={{ ['--brand' as string]: brandColor } as React.CSSProperties}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             role="button"
-            aria-label={onRequestConsult ? "Request a free consult" : "Book a Consultation"}
+            aria-label={onRequestConsult ? "Book your consultation" : "Book a Consultation"}
           >
-            {onRequestConsult ? "Request a free consult" : "Book a Consultation"}
+            {onRequestConsult ? "📅 Book your consultation" : "Book a Consultation"}
           </motion.button>
 
           {!hideTalkToSpecialist && (
@@ -158,12 +158,12 @@ export default function ReportCTAFooter({
         </div>
       </div>
 
-      {/* DIVIDER — stays auto height */}
-      <div className="h-px bg-gray-200 my-4 md:my-5" />
+      {/* DIVIDER — vertical spacing only */}
+      <div className="h-px bg-gray-200 my-4 md:my-4 shrink-0" />
 
-      {/* BOTTOM HALF — same grid so top button aligns to this width when hideTalkToSpecialist */}
-      <div className="h-full flex flex-col justify-center items-center">
-        <div className="utility-row flex flex-col sm:flex-row gap-3 justify-center items-center pt-0 border-t-0 max-w-[min(100%,28rem)] w-full" style={{ marginLeft: hideTalkToSpecialist ? 0 : '9px', transform: hideTalkToSpecialist ? 'none' : 'translateY(6.25px)' }}>
+      {/* Secondary actions — VERTICAL SPACING ONLY; widths/alignment unchanged */}
+      <div className="flex flex-col justify-center items-center pt-0 pb-0.5">
+        <div className={`utility-row flex flex-col sm:flex-row gap-3 justify-center items-center pt-0 border-t-0 w-full ${hideTalkToSpecialist ? 'max-w-[min(100%,28rem)]' : ''}`} style={{ marginLeft: hideTalkToSpecialist ? 0 : '9px', transform: hideTalkToSpecialist ? undefined : 'translateY(6.25px)' }}>
           <motion.button
             onClick={handleDownload}
             className="btn-tertiary px-4 py-2 bg-white text-gray-700 rounded-full text-sm font-medium hover:bg-gray-100 transition-all duration-200 border border-gray-300 w-full sm:w-auto"

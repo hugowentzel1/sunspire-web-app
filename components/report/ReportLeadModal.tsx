@@ -24,8 +24,9 @@ export default function ReportLeadModal({
   companyName,
   bookingUrl,
 }: ReportLeadModalProps) {
-  const raw = companyName && companyName.trim() ? companyName.trim() : "the company";
-  const consentCompany = raw.toLowerCase() === "sunspire" ? "the company" : raw;
+  const raw = companyName && companyName.trim() ? companyName.trim() : "";
+  const consentCompany = !raw || raw.toLowerCase() === "sunspire" ? "the company" : raw;
+  const displayCompany = raw && raw.toLowerCase() !== "paid" ? raw : "Your installer";
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -61,19 +62,17 @@ export default function ReportLeadModal({
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" role="dialog" aria-modal="true" aria-labelledby="report-lead-modal-title">
       <FocusTrap>
-        <div className="bg-white rounded-2xl shadow-xl max-w-md w-full max-h-[90vh] overflow-y-auto">
-          <div className="p-6 md:p-8 flex flex-col gap-6">
+        <div className="bg-white rounded-2xl shadow-xl max-w-lg w-full max-h-[90vh] overflow-y-auto">
+          <div className="p-10 md:p-12 flex flex-col">
             {!success ? (
               <>
-                <div className="space-y-2">
-                  <h2 id="report-lead-modal-title" className="text-xl md:text-2xl font-bold text-gray-900">
-                    Where should we send your report?
-                  </h2>
-                  <p className="text-gray-600 text-sm leading-relaxed">
-                    We&apos;ll email your full report. A local installer may follow up to answer questions—free, no obligation.
-                  </p>
-                </div>
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <h2 id="report-lead-modal-title" className="text-xl md:text-2xl font-bold text-gray-900 mb-5">
+                  Book your free consultation
+                </h2>
+                <p className="text-gray-600 text-sm leading-relaxed mb-7">
+                  Share your details below. {displayCompany} will call or email you within 1–2 business days to schedule your free consultation—a short, no-pressure call to discuss your estimate and next steps. No obligation.
+                </p>
+                <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                   <div>
                     <label htmlFor="report-lead-name" className="block text-sm font-medium text-gray-700 mb-1.5">First name *</label>
                     <input
@@ -110,7 +109,7 @@ export default function ReportLeadModal({
                       style={{ outlineColor: brandColor }}
                     />
                   </div>
-                  <div className="flex items-start gap-3">
+                  <div className="flex items-start gap-3 pt-2">
                     <input
                       id="report-lead-consent"
                       type="checkbox"
@@ -119,7 +118,7 @@ export default function ReportLeadModal({
                       className="mt-1 rounded border-gray-300 shrink-0"
                     />
                     <label htmlFor="report-lead-consent" className="text-sm text-gray-600 leading-snug">
-                      I agree to be contacted by {consentCompany} by phone, email, or text about my solar report.{" "}
+                      I agree to be contacted by {consentCompany} by phone, email, or text regarding my solar project and next steps.{" "}
                       <a href="/privacy" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">Privacy</a>
                       {" · "}
                       <a href="/terms" className="text-blue-600 hover:underline" target="_blank" rel="noopener noreferrer">Terms</a>
@@ -131,17 +130,17 @@ export default function ReportLeadModal({
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="btn-primary w-full py-3.5 px-4 rounded-xl font-semibold text-white transition-opacity disabled:opacity-70"
+                    className="btn-primary w-full py-3.5 px-4 rounded-xl font-semibold text-white transition-opacity disabled:opacity-70 mt-2"
                     style={{ ['--brand' as string]: brandColor } as React.CSSProperties}
                   >
-                    {isSubmitting ? "Sending…" : "Email my report"}
+                    {isSubmitting ? "Sending…" : "📅 Book your consultation"}
                   </button>
                 </form>
-                <p className="text-xs text-gray-500 text-center">Takes about 30 seconds. No obligation.</p>
+                <p className="text-xs text-gray-500 text-center mt-5">Takes ~30 seconds. No obligation.</p>
                 <button
                   type="button"
                   onClick={onClose}
-                  className="py-2 text-sm text-gray-500 hover:text-gray-700 -mb-2"
+                  className="mt-4 py-2.5 text-sm text-gray-500 hover:text-gray-700"
                   aria-label="Close"
                 >
                   Cancel

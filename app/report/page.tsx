@@ -1128,7 +1128,7 @@ function ReportContent() {
             initial={{ opacity: 0 }} 
             animate={{ opacity: 1 }} 
             transition={{ delay: 0.9, duration: 0.6 }}
-            className="mt-12 mb-12"
+            className="mt-12 mb-10"
           >
             <DataSources
               utilityLabel={
@@ -1153,32 +1153,24 @@ function ReportContent() {
               <BottomCtaBand variant="report" onLaunchClick={handleCheckout} data-testid="report-bottom-cta" />
             </motion.div>
           )}
-          {/* Paid-only: next step CTA — even vertical rhythm, one clear message */}
+          {/* Paid-only: next step CTA — VERTICAL SPACING ONLY; no horizontal layout changes */}
           {!demoMode && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.0, duration: 0.8 }}
-              className="mt-12"
+              className="mt-8 flex flex-col"
             >
-              <div className="max-w-xl mx-auto flex flex-col items-center gap-6 py-8 px-4">
-                <h2 className="text-xl md:text-2xl font-bold text-gray-900 text-center">
-                  Get your report by email + a free consultation
-                </h2>
-                <p className="text-gray-600 text-sm text-center leading-relaxed max-w-lg">
-                  We&apos;ll send your report to your inbox. A local installer can then answer questions and confirm next steps—free and no obligation.
-                </p>
-                <div className="w-full max-w-[min(100%,28rem)]">
-                  <ReportCTAFooter
-                    brandColor={b.primary}
-                    searchParams={searchParams?.toString()}
-                    onRequestConsult={() => setShowReportLeadModal(true)}
-                    hideTalkToSpecialist
-                    compact
-                  />
-                </div>
-                <p className="text-xs text-gray-500 text-center">Takes about 30 seconds. No obligation.</p>
+              <div className="text-center mb-6 flex flex-col justify-center">
+                <h2 className="text-xl md:text-2xl font-bold text-gray-900 mb-2">Next step: book your consultation</h2>
+                <p className="text-gray-600 text-sm max-w-xl mx-auto leading-relaxed">You have your estimate. A quick call with your installer lets you discuss system fit, equipment options, incentives, and next steps. No obligation.</p>
               </div>
+              <ReportCTAFooter
+                brandColor={b.primary}
+                searchParams={searchParams?.toString()}
+                onRequestConsult={() => setShowReportLeadModal(true)}
+                hideTalkToSpecialist
+              />
             </motion.div>
           )}
         </motion.div>
@@ -1204,7 +1196,7 @@ function ReportContent() {
       />
 
       <StickyCtaBar
-        label="Book a Free Consultation"
+        label="Book your consultation"
         testId="sticky-report-cta"
         className="sm:hidden"   // MOBILE-ONLY
       />

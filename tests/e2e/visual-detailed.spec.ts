@@ -92,13 +92,13 @@ test.describe('Visual detailed — Demo report', () => {
 });
 
 test.describe('Visual detailed — Paid report and lead modal', () => {
-  test('Paid report: CTA footer with Request a free consult', async ({ page }) => {
+  test('Paid report: CTA footer with Book your consultation', async ({ page }) => {
     await page.goto(`${BASE}/report?company=AcmeSolar&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA`, {
       waitUntil: 'domcontentloaded',
     });
     await page.waitForSelector('[data-testid="report-cta-footer"], .report-cta-footer', { timeout: 20000 }).catch(() => null);
-    await page.waitForSelector('text=/Request a free consult|Book a Consultation/i', { timeout: 15000 });
-    const consultBtn = page.getByRole('button', { name: /Request a free consult/i });
+    await page.waitForSelector('text=/Book your consultation|Book a Consultation/i', { timeout: 15000 });
+    const consultBtn = page.getByRole('button', { name: /Book your consultation/i });
     await expect(consultBtn.first()).toBeVisible();
     await expect(consultBtn.first()).toBeEnabled();
   });
@@ -107,29 +107,29 @@ test.describe('Visual detailed — Paid report and lead modal', () => {
     await page.goto(`${BASE}/report?company=AcmeSolar&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA`, {
       waitUntil: 'domcontentloaded',
     });
-    await page.waitForSelector('button:has-text("Request a free consult")', { timeout: 20000 }).catch(() => null);
-    await page.getByRole('button', { name: /Request a free consult/i }).first().click();
+    await page.waitForSelector('button:has-text("Book your consultation")', { timeout: 20000 }).catch(() => null);
+    await page.getByRole('button', { name: /Book your consultation/i }).first().click();
     await page.waitForTimeout(1000);
     const dialog = page.getByRole('dialog').first();
     await expect(dialog).toBeVisible({ timeout: 10000 });
-    await expect(dialog.locator('h2#report-lead-modal-title').or(dialog.locator('text=Where should we send your report'))).toBeVisible();
-    await expect(dialog.locator('text=A quick consult confirms roof layout')).toBeVisible();
+    await expect(dialog.locator('h2#report-lead-modal-title').or(dialog.locator('text=Book your free consultation'))).toBeVisible();
+    await expect(dialog.locator('text=Share your details below')).toBeVisible();
     await expect(dialog.locator('#report-lead-name')).toBeVisible();
     await expect(dialog.locator('#report-lead-email')).toBeVisible();
     await expect(dialog.locator('#report-lead-phone')).toBeVisible();
-    await expect(dialog.locator('text=By submitting, you agree to be contacted').first()).toBeVisible();
+    await expect(dialog.locator('text=/I agree to be contacted.*solar project and next steps/i').first()).toBeVisible();
     await expect(dialog.locator('a[href="/privacy"]').first()).toBeVisible();
     await expect(dialog.locator('a[href="/terms"]').first()).toBeVisible();
-    await expect(dialog.getByRole('button', { name: /Send my report & next steps/i })).toBeVisible();
-    await expect(dialog.locator('text=/Takes about 30 seconds|No obligation/i')).toBeVisible();
+    await expect(dialog.getByRole('button', { name: /Book your consultation/i })).toBeVisible();
+    await expect(dialog.locator('p.text-xs:has-text("Takes ~30 seconds")')).toBeVisible();
   });
 
   test('Lead modal: consent checkbox and submit button enabled when filled', async ({ page }) => {
     await page.goto(`${BASE}/report?company=AcmeSolar&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA`, {
       waitUntil: 'domcontentloaded',
     });
-    await page.waitForSelector('button:has-text("Request a free consult")', { timeout: 20000 }).catch(() => null);
-    await page.getByRole('button', { name: /Request a free consult/i }).first().click();
+    await page.waitForSelector('button:has-text("Book your consultation")', { timeout: 20000 }).catch(() => null);
+    await page.getByRole('button', { name: /Book your consultation/i }).first().click();
     await page.waitForTimeout(500);
     await expect(page.getByRole('dialog')).toBeVisible({ timeout: 8000 });
     const nameInput = page.locator('#report-lead-name').or(page.getByLabel(/First name/i));
@@ -137,7 +137,8 @@ test.describe('Visual detailed — Paid report and lead modal', () => {
     await nameInput.fill('Visual Test');
     await emailInput.fill('visual@test.example');
     await page.locator('#report-lead-consent').check().catch(() => null);
-    const submitBtn = page.getByRole('button', { name: /Email my report/i });
+    const dialog = page.getByRole('dialog').first();
+    const submitBtn = dialog.getByRole('button', { name: /Book your consultation/i });
     await expect(submitBtn).toBeEnabled();
   });
 });
