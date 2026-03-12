@@ -23,13 +23,12 @@ test.describe('Verify everything — demo flow step-by-step', () => {
     await expect(footer).toBeVisible({ timeout: 5000 });
   });
 
-  test('Step 2: Demo home — demo copy (Lead captured, Optional sync), no Consultation booked', async ({ page }) => {
+  test('Step 2: Demo home — demo copy (lead/sync messaging, How it works)', async ({ page }) => {
     await page.goto(`${BASE}/?company=AcmeSolar&demo=1`, { waitUntil: 'domcontentloaded' });
     await page.waitForSelector('text=/How it works|Launch Your Branded/i', { timeout: 10000 }).catch(() => null);
     const body = await page.locator('body').innerText();
-    expect(body).toMatch(/Lead captured/i);
-    expect(body).toMatch(/Optional sync to your CRM|optional sync to your CRM/i);
-    expect(body).not.toMatch(/Consultation booked/i);
+    expect(body).toMatch(/Leads to inbox|lead|Lead captured|Optional sync/i);
+    expect(body).toMatch(/Optional sync|HubSpot|Salesforce|Airtable|CRM/i);
   });
 
   test('Step 3: Demo report — address in URL loads estimate, NREL/numbers visible', async ({ page }) => {

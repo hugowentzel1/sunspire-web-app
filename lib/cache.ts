@@ -28,6 +28,10 @@ class SimpleCache {
     return entry.data;
   }
 
+  delete(key: string): void {
+    this.cache.delete(key);
+  }
+
   clear() {
     this.cache.clear();
   }
@@ -44,6 +48,16 @@ class SimpleCache {
 }
 
 export const cache = new SimpleCache();
+
+/** Key builders for cache invalidation (e.g. GDPR delete). */
+export const CACHE_KEYS = {
+  tenant: (email: string) => `tenant:${email}`,
+};
+
+/** Invalidate a specific cache key (used by GDPR delete). */
+export async function invalidateCache(key: string): Promise<void> {
+  cache.delete(key);
+}
 
 // Cleanup on-demand instead of setInterval (serverless compatible)
 // setInterval is incompatible with Vercel's serverless functions

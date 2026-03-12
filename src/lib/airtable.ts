@@ -791,3 +791,30 @@ export async function setRequestedDomain(
     throw error;
   }
 }
+
+/** Set or clear the tenant's CRM Webhook URL (Zapier/Make). Uses CAPTURE_URL in Airtable. */
+export async function updateTenantCrmWebhook(
+  handle: string,
+  crmWebhookUrl: string | null,
+): Promise<void> {
+  try {
+    const tenant = await findTenantByHandle(handle);
+    if (!tenant || !tenant.id) {
+      throw new Error("Tenant not found");
+    }
+
+    await getBase()(TABLES.TENANTS).update([
+      {
+        id: tenant.id,
+        fields: {
+          [TENANT_FIELDS.CAPTURE_URL]: crmWebhookUrl ?? "",
+        },
+      },
+    ]);
+
+    logger.info(`Updated CRM webhook for tenant ${handle}: ${crmWebhookUrl ? "set" : "cleared"}`);
+  } catch (error) {
+    logger.error("Error updating tenant CRM webhook:", error);
+    throw error;
+  }
+}

@@ -44,9 +44,11 @@ async function checkService(
 
 export async function GET() {
   const checks: HealthCheck[] = [];
-  const overallStatus: { ok: boolean; timestamp: string; services: HealthCheck[] } = {
+  const overallStatus: { ok: boolean; timestamp: string; version?: string; commit?: string; services: HealthCheck[] } = {
     ok: true,
     timestamp: new Date().toISOString(),
+    version: process.env.npm_package_version || process.env.NEXT_PUBLIC_APP_VERSION || '0.0.0',
+    commit: process.env.VERCEL_GIT_COMMIT_SHA || undefined,
     services: [],
   };
 
