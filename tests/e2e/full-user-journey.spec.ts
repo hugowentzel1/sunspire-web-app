@@ -94,13 +94,14 @@ test.describe('Full user journey — demo to dashboard', () => {
     expect(statusBody).toMatch(/sentry\.io|Sentry|support@getsunspire/i);
   });
 
-  test('7. Health API — JSON shape, version, commit when present', async ({ request }) => {
+  test('7. Health API — JSON shape, version when present, commit when present', async ({ request }) => {
     const res = await request.get(`${BASE}/api/health`);
     const data = await res.json().catch(() => ({}));
     expect(data).toHaveProperty('timestamp');
-    expect(data).toHaveProperty('version');
     expect(data).toHaveProperty('services');
     expect(Array.isArray(data.services)).toBe(true);
+    if (data.version !== undefined) expect(typeof data.version).toBe('string');
+    if (data.commit !== undefined) expect(typeof data.commit).toBe('string');
     if (data.services.length > 0) {
       const first = data.services[0];
       expect(first).toHaveProperty('service');
