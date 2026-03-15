@@ -10,7 +10,7 @@ export default defineConfig({
   timeout: 0, // NO TIMEOUT - let tests run as long as needed
   
   use: {
-    baseURL: 'http://localhost:3000',
+    baseURL: process.env.BASE_URL || process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:3000',
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',

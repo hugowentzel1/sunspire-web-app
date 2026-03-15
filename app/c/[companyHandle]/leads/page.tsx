@@ -9,6 +9,7 @@ interface Lead {
   email: string;
   address: string;
   phone?: string;
+  notes?: string;
   created: string;
 }
 
@@ -116,6 +117,9 @@ export default function LeadsPage() {
                         Phone
                       </th>
                       <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Notes
+                      </th>
+                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Submitted
                       </th>
                     </tr>
@@ -145,6 +149,13 @@ export default function LeadsPage() {
                             >
                               {lead.phone}
                             </a>
+                          ) : (
+                            <span className="text-gray-400">—</span>
+                          )}
+                        </td>
+                        <td className="px-6 py-4 text-sm text-gray-500 max-w-xs">
+                          {lead.notes ? (
+                            <span className="line-clamp-2" title={lead.notes}>{lead.notes}</span>
                           ) : (
                             <span className="text-gray-400">—</span>
                           )}

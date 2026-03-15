@@ -6,7 +6,7 @@ import FocusTrap from "@/components/ui/FocusTrap";
 interface ReportLeadModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit: (data: { name: string; email: string; phone?: string; address?: string; preferredContactMethod?: "call" | "email" }) => Promise<void>;
+  onSubmit: (data: { name: string; email: string; phone?: string; address?: string; preferredContactMethod?: "call" | "email"; notes?: string }) => Promise<void>;
   address?: string;
   brandColor?: string;
   /** Installer/company name for consent: "contacted by [Company] via ..." */
@@ -30,6 +30,7 @@ export default function ReportLeadModal({
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
+  const [notes, setNotes] = useState("");
   const [preferredContact, setPreferredContact] = useState<"call" | "email" | "">("");
   const [consent, setConsent] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -61,6 +62,7 @@ export default function ReportLeadModal({
         phone: phone.trim() || undefined,
         address: address || undefined,
         preferredContactMethod: preferredContact as "call" | "email",
+        notes: notes.trim() || undefined,
       });
       setSuccess(true);
     } catch (err) {
@@ -80,10 +82,10 @@ export default function ReportLeadModal({
                 <h2 id="report-lead-modal-title" className="text-xl md:text-2xl font-bold text-gray-900 mb-5">
                   Book your free consultation
                 </h2>
-                <p className="text-gray-600 text-sm leading-relaxed mb-6">
+                <p className="text-gray-600 text-sm leading-relaxed mb-5">
                   Share your details below. {displayCompany} will call or email you within 1–2 business days to schedule your free consultation—a short, no-pressure call to discuss your estimate and next steps. No obligation.
                 </p>
-                <form onSubmit={handleSubmit} className="flex flex-col space-y-6">
+                <form onSubmit={handleSubmit} className="flex flex-col space-y-5">
                   {/* GROUP 1 — field stack: one consistent internal rhythm */}
                   <div className="space-y-4">
                     <div>
@@ -119,6 +121,18 @@ export default function ReportLeadModal({
                         onChange={(e) => setPhone(e.target.value)}
                         placeholder="+1 (555) 000-0000"
                         className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-offset-0 focus:border-transparent text-gray-900"
+                        style={{ outlineColor: brandColor }}
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="report-lead-notes" className="block text-sm font-medium text-gray-700 mb-2">Any additional comments or notes? (optional)</label>
+                      <textarea
+                        id="report-lead-notes"
+                        value={notes}
+                        onChange={(e) => setNotes(e.target.value)}
+                        placeholder="e.g. timeline, questions, or how you'd like to be contacted"
+                        rows={3}
+                        className="w-full px-3 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-offset-0 focus:border-transparent text-gray-900 resize-y"
                         style={{ outlineColor: brandColor }}
                       />
                     </div>
@@ -174,7 +188,7 @@ export default function ReportLeadModal({
                   </div>
 
                   {/* ACTIONS BLOCK — error + submit + cancel as one intentional group */}
-                  <div className="actions-block flex flex-col items-center space-y-4">
+                  <div className="actions-block flex flex-col items-center space-y-3">
                     {error && (
                       <div className="rounded-lg bg-red-50 border border-red-200 px-3 py-2.5 text-sm text-red-700">{error}</div>
                     )}

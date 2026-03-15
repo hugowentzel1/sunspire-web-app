@@ -259,7 +259,7 @@ function ReportContent() {
   };
 
   // Lead submit handler for paid mode — POSTs to /api/lead then shows toast
-  const handleLeadSubmit = async (leadData: { name: string; email: string; phone?: string; address?: string }) => {
+  const handleLeadSubmit = async (leadData: { name: string; email: string; phone?: string; address?: string; notes?: string }) => {
     const tenantSlug = tenant?.slug || searchParams?.get('company') || '';
     const address = leadData.address || estimate?.address || '';
     if (!tenantSlug || !address) {
@@ -278,6 +278,7 @@ function ReportContent() {
           name: leadData.name,
           email: leadData.email,
           phone: leadData.phone || '',
+          notes: leadData.notes ?? '',
           address,
           tenantSlug,
           utm_source: searchParams?.get('utm_source') || undefined,
