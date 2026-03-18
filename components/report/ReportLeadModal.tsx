@@ -212,10 +212,10 @@ export default function ReportLeadModal({
                 </form>
               </>
             ) : (
-              <div className="text-center">
-                <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl" style={{ backgroundColor: brandColor }}>✓</div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2">You&apos;re all set</h3>
-                <p className="text-gray-600 mb-6">You&apos;ll hear back within 1 business day.</p>
+              <div className="text-center" data-testid="report-lead-success">
+                <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl" style={{ backgroundColor: brandColor }} aria-hidden>✓</div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Thanks for submitting</h3>
+                <p className="text-gray-600 mb-6">You&apos;re all set. {displayCompany} will reach out within 1–2 business days.</p>
                 <div className="space-y-3">
                   {bookingUrl ? (
                     <a
@@ -228,22 +228,14 @@ export default function ReportLeadModal({
                     >
                       Book a time (recommended)
                     </a>
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={onClose}
-                      className="block w-full py-3 px-4 rounded-xl font-semibold text-white"
-                      style={{ backgroundColor: brandColor }}
-                    >
-                      Book a time (recommended)
-                    </button>
-                  )}
+                  ) : null}
                   <button
                     type="button"
                     onClick={onClose}
-                    className="block w-full py-2.5 px-4 rounded-xl font-medium text-gray-600 hover:bg-gray-100 border border-gray-300"
+                    className="block w-full py-3 px-4 rounded-xl font-semibold text-white"
+                    style={{ backgroundColor: brandColor }}
                   >
-                    No thanks — have them reach out
+                    {bookingUrl ? "Back to report" : "Close"}
                   </button>
                 </div>
               </div>

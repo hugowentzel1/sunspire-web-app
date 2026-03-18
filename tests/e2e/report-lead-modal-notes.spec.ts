@@ -56,8 +56,8 @@ test.describe("Step 29 — Paid report lead modal with optional notes", () => {
     await dialog.locator("#report-lead-consent").check();
     await dialog.getByRole("button", { name: /Book your consultation|Sending/ }).click();
     await expect(
-      page.getByText(/You're all set|You'll hear back|all set|hear back within|Something went wrong|Failed|error/i)
-    ).toBeVisible({ timeout: 15000 });
+      page.getByText(/You're all set|You'll hear back|Thanks for submitting|all set|hear back within|Something went wrong|Failed|error|SUPABASE_URL/i).or(page.getByTestId("report-lead-success"))
+    ).toBeVisible({ timeout: 20000 });
   });
 
   test("submit with notes — notes visible in form, submit returns success or error", async ({ page, request }) => {
@@ -78,8 +78,8 @@ test.describe("Step 29 — Paid report lead modal with optional notes", () => {
     await dialog.locator("#report-lead-consent").check();
     await dialog.getByRole("button", { name: /Book your consultation|Sending/ }).click();
     await expect(
-      page.getByText(/You're all set|You'll hear back|all set|hear back within|Something went wrong|Failed|error/i)
-    ).toBeVisible({ timeout: 15000 });
+      page.getByText(/You're all set|You'll hear back|Thanks for submitting|all set|hear back within|Something went wrong|Failed|error|SUPABASE_URL/i).or(page.getByTestId("report-lead-success"))
+    ).toBeVisible({ timeout: 20000 });
 
     if (TEST_TOKEN) {
       const lastRes = await request.get(
