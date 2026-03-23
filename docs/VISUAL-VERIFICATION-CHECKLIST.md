@@ -1,6 +1,6 @@
 # Visual verification checklist — localhost and live
 
-**Simpler live list (click in order):** **[`LIVE-CLICK-CHECKLIST.md`](./LIVE-CLICK-CHECKLIST.md)**
+**Simpler live list (click in order):** top of **[`TEMPORARY-TO-DO-LIST.md`](./TEMPORARY-TO-DO-LIST.md)** → *Live prod — click through*
 
 **URLs:**
 - **Local:** http://localhost:3000 (run `npm run dev` first, or let Playwright start it).

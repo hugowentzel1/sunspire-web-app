@@ -2,7 +2,7 @@
 
 **Purpose:** Single checklist for “is production still healthy?” before go-live and after big changes. Aligned with Playwright matrix, `/api/health`, and **MAINTENANCE-GUIDE.md**.
 
-**Owner click-through (simple):** **`docs/LIVE-CLICK-CHECKLIST.md`** · Optional automation: **`docs/OWNER-IN-DEPTH-PROD-CHECKLIST.md`**  
+**Owner click-through (simple):** top of **`docs/TEMPORARY-TO-DO-LIST.md`** (Live prod section) · Optional automation: **`docs/OWNER-IN-DEPTH-PROD-CHECKLIST.md`**  
 **One-shot prod automation (screenshots + matrix + docs):** `BASE_URL=https://… npm run verify:temp-list:prod`
 
 **Primary production URL (example):** `https://sunspire-web-app.vercel.app`  

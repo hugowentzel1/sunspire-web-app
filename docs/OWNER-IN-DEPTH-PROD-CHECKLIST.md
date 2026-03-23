@@ -3,9 +3,7 @@
 ## What to actually use
 
 **Click through live prod in order (simple):**  
-→ **[`docs/LIVE-CLICK-CHECKLIST.md`](./LIVE-CLICK-CHECKLIST.md)**
-
-That file walks **steps 1–16** in order (describe → link), using **Apple** (paid + logo) and **Meta** (`demo=1`) as the live examples, then **cost & usage** at the end.
+→ **[`docs/TEMPORARY-TO-DO-LIST.md`](./TEMPORARY-TO-DO-LIST.md)** — section **“Live prod — click through in order”** at the top (**Apple** paid URL + **Meta** demo URL, steps 1–16, then cost & usage).
 
 ---
 

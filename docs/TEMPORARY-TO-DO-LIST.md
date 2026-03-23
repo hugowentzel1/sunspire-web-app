@@ -2,13 +2,97 @@
 
 ---
 
-### Start here if you only want to verify live prod
+## Live prod — click through in order (do this first)
 
-**Use this instead of reading this whole file:**
+**Host:** `https://sunspire-web-app.vercel.app`
 
-→ **[`LIVE-CLICK-CHECKLIST.md`](./LIVE-CLICK-CHECKLIST.md)** — steps **1–12** Sunspire (**Apple** paid URL + **Meta** demo URL), then **13–16** Stripe / webhooks / UptimeRobot / Sentry; **cost & usage** last.
+**Two example URLs:**
 
-Everything **below** is the **historical migration** checklist (numbered steps, ME/YOU). You can ignore it unless you’re finishing that migration.
+| | URL |
+|--|-----|
+| **Paid (branded)** | `https://sunspire-web-app.vercel.app/paid?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com` |
+| **Demo (Meta + demo mode)** | `https://sunspire-web-app.vercel.app/paid?company=meta&demo=1` |
+
+Do steps **1 → 16**, then **cost & usage** at the end. Each step: read what to check, then open the link.
+
+**1 — Paid page with branding (Apple, red accent, logo)**  
+Check: page loads, paid/launch messaging, logo and color visible.  
+→ [Open paid — Apple](https://sunspire-web-app.vercel.app/paid?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com)
+
+**2 — Demo-style experience (Meta, `demo=1`)**  
+Check: demo copy/banner or demo behavior, CTA/address flow.  
+→ [Open demo — Meta](https://sunspire-web-app.vercel.app/paid?company=meta&demo=1)
+
+**3 — Demo report (numbers / NREL)**  
+Check: report loads, production or kWh-style numbers, no endless spinner.  
+→ [Open demo report — Meta](https://sunspire-web-app.vercel.app/report?company=meta&demo=1&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA&placeId=test)
+
+**4 — Paid report (no `demo=1`)**  
+Check: paid CTAs (consult / book), footer/modal sane.  
+→ [Open paid report — Apple](https://sunspire-web-app.vercel.app/report?company=Apple&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA&placeId=test)
+
+**5 — Installer dashboard (preview)**  
+Check: checklist or “Access required”, not blank or infinite loading. If `meta` isn’t in your DB, use [dashboard — testco](https://sunspire-web-app.vercel.app/c/testco?demo=1).  
+→ [Open dashboard — meta](https://sunspire-web-app.vercel.app/c/meta?demo=1)
+
+**6 — Leads list**  
+Check: “Leads Dashboard” or empty state; not stuck on “Loading…”. Fallback: [leads — testco](https://sunspire-web-app.vercel.app/c/testco/leads?demo=1).  
+→ [Open leads — meta](https://sunspire-web-app.vercel.app/c/meta/leads?demo=1)
+
+**7 — Success / activation page**  
+Check: real content loads. Fallback: [success — testco](https://sunspire-web-app.vercel.app/c/testco/success?demo=1).  
+→ [Open success — meta](https://sunspire-web-app.vercel.app/c/meta/success?demo=1)
+
+**8 — System status**  
+Check: “System Status”, service rows, synthetic section if you use it.  
+→ [Open /status](https://sunspire-web-app.vercel.app/status)
+
+**9 — Health API**  
+Check: JSON (`timestamp`, `services`, …); **200** or **503** OK.  
+→ [Open /api/health](https://sunspire-web-app.vercel.app/api/health)
+
+**10 — Terms**  
+→ [Open /legal/terms](https://sunspire-web-app.vercel.app/legal/terms)
+
+**11 — Privacy**  
+→ [Open /legal/privacy](https://sunspire-web-app.vercel.app/legal/privacy)
+
+**12 — Installer docs**  
+→ [Open /docs/setup](https://sunspire-web-app.vercel.app/docs/setup)
+
+**13 — Stripe**  
+→ [Stripe Dashboard](https://dashboard.stripe.com)
+
+**14 — Stripe webhooks**  
+Check: endpoint → your `/api/stripe/webhook`; deliveries **200** where expected.  
+→ [Stripe → Webhooks](https://dashboard.stripe.com/webhooks)
+
+**15 — UptimeRobot**  
+Check: monitor hits prod `/api/health`; alerts to the right email.  
+→ [UptimeRobot dashboard](https://dashboard.uptimerobot.com/dashboard)
+
+**16 — Sentry**  
+→ [sentry.io](https://sentry.io)
+
+**Also useful:** [Supabase](https://supabase.com/dashboard) · [Vercel](https://vercel.com/dashboard) · [Resend](https://resend.com/overview) · [GitHub Actions](https://github.com/hugowentzel1/sunspire-web-app/actions)
+
+### Cost & usage awareness (after steps 1–16)
+
+| Where | What to check |
+|-------|----------------|
+| **Stripe** | Billing / usage alerts. |
+| **Resend** | Email volume / plan limits. |
+| **Supabase** | Usage, spend cap or alerts. |
+| **Vercel** | Bandwidth / functions / budget alerts. |
+
+Set alerts in each product; **monthly** skim is enough for most teams.
+
+**Optional:** `BASE_URL=https://sunspire-web-app.vercel.app npm run verify:temp-list:prod`  
+**After live checks:** [MAINTENANCE-GUIDE.md](../MAINTENANCE-GUIDE.md) · [TO-DO-LIST.md](../TO-DO-LIST.md)
+
+---
+
+**Migration checklist (numbered steps) continues below** if you still need the Supabase cutover history.
 
 ---
 
@@ -527,7 +611,7 @@ Nothing for you to click.
 
 **ME (done):** Full prod Playwright bundle: **`npm run verify:temp-list:prod`**. Screenshots: **`test-results/prod-gate-visual/`** (gitignored).
 
-**YOU:** For a simple prod pass, use **`docs/LIVE-CLICK-CHECKLIST.md`** (click links). Optionally run **`verify:temp-list:prod`** once. Read the docs in (1) if you’re doing full sign-off.
+**YOU:** Use **Live prod — click through** at the **top of this file**. Optionally run **`verify:temp-list:prod`** once. Read the docs in (1) if you’re doing full sign-off.
 
 ---
 
@@ -581,12 +665,12 @@ Before you sign off as **ready for cold emailing**, every item below must be ver
 
 **ME (done):**
 
-- **`docs/LIVE-CLICK-CHECKLIST.md`** (simple click list) + **`docs/API-AND-MAINTENANCE-VERIFICATION.md`** + **`docs/OWNER-IN-DEPTH-PROD-CHECKLIST.md`** (short pointer + optional tests).
+- **Top of this file** (Live prod click-through) + **`docs/API-AND-MAINTENANCE-VERIFICATION.md`** + **`docs/OWNER-IN-DEPTH-PROD-CHECKLIST.md`** (optional tests).
 - **`tests/e2e/temporary-list-final-gate.spec.ts`** — visual screenshots **G01–G09** (+ **G10** if `ADMIN_TOKEN` set); API checks **A01–A12** (health, estimate, geo, lead, tenant 401, crm-webhook, stripe webhook 400, gdpr 401, synthetic-results).
 - **`npm run verify:temp-list:prod`** — runs gate + status mapping + matrix + full-docs (same coverage as prior **38** + **17** docs + gate).
 - **Still YOU-only (cannot automate without your accounts):** Resend inbox proof, CRM webhook receiver proof, real Stripe payment + webhook replay, Supabase Table Editor row confirmation for a **real** tenant slug.
 
-**YOU:** **`docs/LIVE-CLICK-CHECKLIST.md`** (Sunspire links + Stripe / UptimeRobot / Sentry / Supabase / etc.). For cold-email proof, submit one real test lead and confirm it in Supabase + dashboard + email/webhook.
+**YOU:** **Live prod — click through** at the **top of this file**. For cold-email proof, submit one real test lead and confirm it in Supabase + dashboard + email/webhook.
 
 **Clarity:** **`verify:temp-list:prod`** = automation only. “Cold-email ready” still means **you** proved one lead end-to-end + Stripe webhook + monitoring (see **Part B** in the live click list).
 
@@ -642,7 +726,7 @@ After **supabase-migration** is merged to **main** and production is deployed fr
 
 ## 11. Hands-off and 100% shippable (ready for cold email)
 
-- [ ] **Step 44** — UptimeRobot + Sentry alerts verified — **YOU** *(**[LIVE-CLICK-CHECKLIST.md](./LIVE-CLICK-CHECKLIST.md)** → Part B)*
+- [ ] **Step 44** — UptimeRobot + Sentry alerts verified — **YOU** *(steps **15–16** at top of this file)*
 
 ### Step 44 — UptimeRobot + Sentry alerts verified (YOU)
 
@@ -661,11 +745,11 @@ I will ensure MAINTENANCE-GUIDE.md is the single place for daily/weekly/monthly 
 
 ---
 
-- [ ] **Step 46** — Cost and usage awareness (optional) — **YOU** *(**[LIVE-CLICK-CHECKLIST.md](./LIVE-CLICK-CHECKLIST.md)** → section **“After that — cost & usage awareness”** at the bottom)*
+- [ ] **Step 46** — Cost and usage awareness (optional) — **YOU** *(**Cost & usage awareness** at top of this file, after steps 1–16)*
 
 ### Step 46 — Cost and usage awareness (YOU)
 
-Set alerts or caps so you are not surprised by bills: Stripe (billing alert), Resend (usage alert if offered), Supabase (spend cap or alert), Vercel (usage alert). Note in MAINTENANCE-GUIDE or calendar: Monthly quick check Stripe/Resend/Supabase/Vercel usage.
+Same as **Cost & usage awareness** under **Live prod — click through** at the top of this file. Set alerts in Stripe, Resend, Supabase, Vercel; monthly skim.
 
 ---
 
@@ -673,7 +757,7 @@ Set alerts or caps so you are not surprised by bills: Stripe (billing alert), Re
 
 ### Step 47 — What YOU check (simplified)
 
-**Use one file:** **[`LIVE-CLICK-CHECKLIST.md`](./LIVE-CLICK-CHECKLIST.md)** — numbered steps 1–16, then **cost & usage** at the bottom.
+**Use:** **Live prod — click through** at the **top of this file** (steps 1–16, then cost & usage).
 
 **Optional terminal:** `BASE_URL=https://sunspire-web-app.vercel.app npm run verify:temp-list:prod`  
 **Optional screenshots:** `test-results/prod-gate-visual/` after the gate spec.
