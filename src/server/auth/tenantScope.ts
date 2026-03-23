@@ -1,5 +1,5 @@
 import { NextRequest } from "next/server";
-import { findTenantByHandle, findTenantByApiKey } from "../../lib/airtable";
+import { findTenantByHandle, findTenantByApiKey } from "@/src/lib/storage";
 import { verifyToken } from "./jwt";
 import { logger } from "../../lib/logger";
 
@@ -30,7 +30,7 @@ export async function resolveTenant(req: NextRequest): Promise<TenantContext> {
         logger.debug("Tenant resolved by subdomain:", subdomain);
         return {
           id: tenant.id!,
-          handle: tenant["Company Handle"],
+          handle: (tenant as { "Company Handle": string })["Company Handle"],
         };
       }
     }
@@ -45,7 +45,7 @@ export async function resolveTenant(req: NextRequest): Promise<TenantContext> {
       logger.debug("Tenant resolved by path prefix:", handle);
       return {
         id: tenant.id!,
-        handle: tenant["Company Handle"],
+        handle: (tenant as { "Company Handle": string })["Company Handle"],
       };
     }
   }
@@ -58,7 +58,7 @@ export async function resolveTenant(req: NextRequest): Promise<TenantContext> {
       logger.debug("Tenant resolved by API key");
       return {
         id: tenant.id!,
-        handle: tenant["Company Handle"],
+        handle: (tenant as { "Company Handle": string })["Company Handle"],
       };
     }
   }
@@ -77,7 +77,7 @@ export async function resolveTenant(req: NextRequest): Promise<TenantContext> {
           logger.debug("Tenant resolved by JWT");
           return {
             id: tenant.id!,
-            handle: tenant["Company Handle"],
+            handle: (tenant as { "Company Handle": string })["Company Handle"],
           };
         }
       }

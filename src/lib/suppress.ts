@@ -1,4 +1,4 @@
-import { upsertLeadSuppressionByEmail } from "./airtable"; // implement if missing
+import { upsertLeadSuppressionByEmail } from "@/src/lib/storage";
 
 export async function suppressByEmail(
   email: string,

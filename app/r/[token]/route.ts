@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { findLinkByToken, markLinkClicked } from "@/src/lib/airtable";
+import { findLinkByToken, markLinkClicked } from "@/src/lib/storage";
 
 export async function GET(
   request: NextRequest,
@@ -12,7 +12,7 @@ export async function GET(
       return NextResponse.redirect(new URL("/", request.url), 302);
     }
 
-    // Look up the token in Airtable
+    // Look up the token in Supabase (links table)
     const link = await findLinkByToken(token);
 
     if (!link) {

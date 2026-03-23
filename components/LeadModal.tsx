@@ -54,7 +54,7 @@ export function LeadModal({
     setError(null);
 
     try {
-      // Submit lead data to Airtable upsert
+      // Submit lead data to Supabase via leads/upsert
       const response = await fetch("/api/leads/upsert", {
         method: "POST",
         headers: {
@@ -66,7 +66,7 @@ export function LeadModal({
           company: b?.brand || tenant?.name || "Demo",
           companyHandle: tenant?.slug || "demo",
           address,
-          crm: "Airtable",
+          crm: "sunspire",
           source: "lead_modal",
         }),
       });

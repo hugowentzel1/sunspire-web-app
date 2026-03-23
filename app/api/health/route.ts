@@ -1,6 +1,6 @@
 /**
  * GET /api/health — Single source of truth for "is everything up?"
- * Checks every API Sunspire depends on: Airtable, Stripe, NREL, EIA, Google Geocoding, Resend, Google Places (config).
+ * Checks every API Sunspire depends on: Supabase, Stripe, NREL, EIA, Google Geocoding, Resend, Google Places (config).
  * Not checked here: Sentry (error reporting), Vercel (hosting limits). See /status page copy and TO-DO-LIST.
  */
 import { NextResponse } from 'next/server';
@@ -52,18 +52,13 @@ export async function GET() {
     services: [],
   };
 
-  if (ENV.AIRTABLE_API_KEY && ENV.AIRTABLE_BASE_ID) {
-    const airtableCheck = await checkService('airtable', async () => {
-      const Airtable = require('airtable');
-      const base = new Airtable({ apiKey: ENV.AIRTABLE_API_KEY }).base(ENV.AIRTABLE_BASE_ID);
-      await base('Tenants').select({ maxRecords: 1 }).firstPage();
-    });
-    if (airtableCheck.status === 'down' && /NOT_FOUND|404/.test(airtableCheck.error ?? '')) {
-      // Base or table missing – omit so local with wrong base doesn't fail Health
-    } else {
-      checks.push(airtableCheck);
-    }
-  }
+  const supabaseCheck = await checkService('supabase', async () => {
+    const { getSupabase } = await import('@/src/lib/supabase');
+    const sb = getSupabase();
+    const { error } = await sb.from('tenants').select('id').limit(1).maybeSingle();
+    if (error) throw new Error(error.message);
+  });
+  checks.push(supabaseCheck);
 
   if (ENV.STRIPE_LIVE_SECRET_KEY || process.env.STRIPE_SECRET_KEY) {
     const stripeCheck = await checkService('stripe', async () => {
@@ -153,6 +148,25 @@ export async function GET() {
 
   overallStatus.services = checks;
   overallStatus.ok = checks.every((c) => c.status === 'ok');
+
+  // Expose which critical integrations are configured (no secret values) — catches env drift in prod
+  const url = process.env.SUPABASE_URL || process.env.SUPABASE_URL_STAGING || process.env.SUPABASE_URL_PROD;
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY_STAGING || process.env.SUPABASE_SERVICE_ROLE_KEY_PROD;
+  (overallStatus as Record<string, unknown>).config = {
+    supabase: !!(url && key),
+    stripe: !!(ENV.STRIPE_LIVE_SECRET_KEY || process.env.STRIPE_SECRET_KEY),
+    nrel: !!ENV.NREL_API_KEY,
+    eia: !!ENV.EIA_API_KEY,
+    geocoding: !!(
+      typeof process.env.GOOGLE_GEOCODING_API_KEY === 'string' &&
+      process.env.GOOGLE_GEOCODING_API_KEY.trim().length > 0
+    ),
+    resend: !!ENV.RESEND_API_KEY,
+    google_places: !!(
+      typeof process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY === 'string' &&
+      process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY.trim().length > 0
+    ),
+  };
 
   const statusCode = overallStatus.ok ? 200 : 503;
   return NextResponse.json(overallStatus, { status: statusCode });

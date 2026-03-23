@@ -18,7 +18,7 @@ export async function getTenantByCompany(
   company: string,
 ): Promise<{ id: string; logoUrl?: string; brandColor?: string } | null> {
   try {
-    // For now, return null since we don't have the full Airtable integration
+    // Optional: load from Supabase tenant config
     // This can be implemented later when the full tenant lookup is available
     return null;
   } catch {

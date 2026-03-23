@@ -3,7 +3,7 @@ import {
   withTenantScope,
   AuthenticatedRequest,
 } from "../../../../src/server/auth/tenantScope";
-import { upsertLeadByEmailAndTenant } from "../../../../src/lib/airtable";
+import { upsertLeadByEmailAndTenant } from "../../../../src/lib/storage";
 import { getRate } from "../../../../src/services/rate";
 import { logger } from "../../../../src/lib/logger";
 import { z } from "zod";

@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { storeLead, storeLeadFallback, getTenantByHandle } from "@/src/lib/airtable";
-import { TENANT_FIELDS } from "@/src/lib/airtable";
+import { storeLead, storeLeadFallback, getTenantByHandle, TENANT_FIELDS } from "@/src/lib/storage";
 import { checkRateLimit } from "@/src/lib/ratelimit";
 import { ENV } from "@/src/config/env";
 
@@ -58,31 +57,16 @@ export async function POST(request: NextRequest) {
       notes: body.notes || "",
       tenantSlug,
       systemSizeKW,
-      estimatedCost: netCostAfterITC, // Map new field to old for Airtable compatibility
-      estimatedSavings: year1Savings, // Map new field to old for Airtable compatibility
-      paybackPeriodYears: paybackYear, // Map new field to old for Airtable compatibility
+      estimatedCost: netCostAfterITC, // Map new field to storage schema
+      estimatedSavings: year1Savings,
+      paybackPeriodYears: paybackYear,
       npv25Year,
       co2OffsetPerYear,
       token: token || "", // Add token for attribution
       createdAt: new Date().toISOString(),
     };
 
-    // Store lead in Airtable (or fallback)
-    let storeResult;
-    console.log("Environment check:", {
-      hasAirtableKey: !!process.env.AIRTABLE_API_KEY,
-      hasAirtableBase: !!process.env.AIRTABLE_BASE_ID,
-      airtableKeyLength: process.env.AIRTABLE_API_KEY?.length,
-      airtableBase: process.env.AIRTABLE_BASE_ID,
-    });
-
-    if (process.env.AIRTABLE_API_KEY && process.env.AIRTABLE_BASE_ID) {
-      console.log("Attempting to store lead in Airtable...");
-      storeResult = await storeLead(leadData);
-    } else {
-      console.log("Using fallback storage (missing Airtable credentials)");
-      storeResult = await storeLeadFallback(leadData);
-    }
+    const storeResult = await storeLead(leadData);
 
     if (!storeResult.success) {
       console.error("Failed to store lead:", storeResult.error);
@@ -102,12 +86,18 @@ export async function POST(request: NextRequest) {
           const fromDomain = ENV.NEXT_PUBLIC_APP_URL?.replace("https://", "").replace("http://", "") || "sunspire-web-app.vercel.app";
           const fromEmail = `no-reply@${fromDomain}`;
           const dashboardUrl = `${ENV.NEXT_PUBLIC_APP_URL || "https://sunspire-web-app.vercel.app"}/c/${tenantSlug}/leads`;
+          // Never block the HTTP response on outbound email; Vercel will 504 if this hangs.
+          const emailTimeoutMs = Math.min(
+            12_000,
+            Number(process.env.RESEND_FETCH_TIMEOUT_MS ?? 12_000),
+          );
           const res = await fetch("https://api.resend.com/emails", {
             method: "POST",
             headers: {
               Authorization: `Bearer ${ENV.RESEND_API_KEY}`,
               "Content-Type": "application/json",
             },
+            signal: AbortSignal.timeout(emailTimeoutMs),
             body: JSON.stringify({
               from: fromEmail,
               to: [toEmail],

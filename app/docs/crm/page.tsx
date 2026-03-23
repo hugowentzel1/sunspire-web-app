@@ -36,8 +36,8 @@ export default function CRMGuidesPage() {
     },
     {
       id: "airtable",
-      name: "Airtable",
-      description: "Connect with Airtable for flexible database management and custom workflows.",
+      name: "Airtable (optional export)",
+      description: "Optional: export or sync leads to Airtable for custom workflows. Sunspire uses Supabase as the primary database.",
       icon: "A",
       brandColor: "#18BFFF",
       href: "/docs/crm/airtable",

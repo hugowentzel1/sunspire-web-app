@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { listLeadsForTenant } from "@/src/lib/storage";
 
 export async function GET(request: NextRequest) {
   try {
@@ -12,38 +13,17 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // Verify API key for security
     const apiKey = request.headers.get("x-api-key");
     if (!apiKey) {
       return NextResponse.json({ error: "API key required" }, { status: 401 });
     }
-
-    // Fetch leads from Airtable
-    const airtableResponse = await fetch(
-      `https://api.airtable.com/v0/${process.env.AIRTABLE_BASE_ID}/Leads?filterByFormula={Company Handle}='${companyHandle}'&sort[0][field]=Created&sort[0][direction]=desc`,
-      {
-        headers: {
-          Authorization: `Bearer ${process.env.AIRTABLE_API_KEY}`,
-          "Content-Type": "application/json",
-        },
-      },
-    );
-
-    if (!airtableResponse.ok) {
-      throw new Error(`Airtable API error: ${airtableResponse.status}`);
+    const { findTenantByApiKey } = await import("@/src/lib/storage");
+    const tenant = await findTenantByApiKey(apiKey);
+    if (!tenant || (tenant as { "Company Handle": string })["Company Handle"] !== companyHandle) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const data = await airtableResponse.json();
-
-    const leads = data.records.map((record: any) => ({
-      id: record.id,
-      name: record.fields["Name"] || "",
-      email: record.fields["Email"] || "",
-      address: record.fields["Address"] || "",
-      phone: record.fields["Phone"] || "",
-      created: record.fields["Created"] || record.createdTime,
-    }));
-
+    const leads = await listLeadsForTenant(companyHandle);
     return NextResponse.json({ leads });
   } catch (error) {
     console.error("Error fetching leads:", error);

@@ -10,7 +10,7 @@ import {
   setRequestedDomain,
   setTenantDomainStatus,
   TENANT_FIELDS,
-} from "@/src/lib/airtable";
+} from "@/src/lib/storage";
 import {
   getRootDomain,
   buildFixedQuoteDomain,
@@ -69,7 +69,7 @@ export async function POST(req: NextRequest) {
     try {
       // Use idempotency wrapper to prevent duplicate processing
       const result = await withIdempotency(eventId, async () => {
-        let handlerResult: { success: boolean; airtable?: boolean; email?: boolean; error?: string } = { success: false };
+        let handlerResult: { success: boolean; storage?: boolean; email?: boolean; error?: string } = { success: false };
 
         switch (event.type) {
           case "checkout.session.completed":
@@ -127,8 +127,8 @@ export async function POST(req: NextRequest) {
       }
 
       // Log side effects
-      if (result.airtable !== undefined) {
-        console.log(`[Webhook] Airtable upsert: ${result.airtable ? '✅ success' : '❌ failed'}`);
+      if (result.storage !== undefined) {
+        console.log(`[Webhook] Supabase upsert: ${result.storage ? '✅ success' : '❌ failed'}`);
       }
       if (result.email !== undefined) {
         console.log(`[Webhook] Email send: ${result.email ? '✅ success' : '❌ failed'}`);
@@ -161,7 +161,7 @@ export async function POST(req: NextRequest) {
   }
 }
 
-export async function handleCheckoutCompleted(session: Stripe.Checkout.Session): Promise<{ success: boolean; airtable?: boolean; email?: boolean; error?: string }> {
+export async function handleCheckoutCompleted(session: Stripe.Checkout.Session): Promise<{ success: boolean; storage?: boolean; email?: boolean; error?: string }> {
   console.log(`[CheckoutCompleted] Processing session: ${session.id} (livemode: ${session.livemode})`);
   console.log(`[CheckoutCompleted] Customer email: ${session.customer_email || 'none'}`);
   console.log(`[CheckoutCompleted] Metadata:`, session.metadata);
@@ -177,13 +177,6 @@ export async function handleCheckoutCompleted(session: Stripe.Checkout.Session):
   }
 
   try {
-    // Log Airtable config (safe - no secrets)
-    console.log(`[CheckoutCompleted] Airtable config check:`, {
-      hasApiKey: !!ENV.AIRTABLE_API_KEY,
-      hasBaseId: !!ENV.AIRTABLE_BASE_ID,
-      baseIdPrefix: ENV.AIRTABLE_BASE_ID?.substring(0, 8) + '...' || 'missing',
-    });
-
     // Generate API key for the tenant
     const apiKey = generateApiKey();
     const baseUrl = ENV.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
@@ -199,30 +192,28 @@ export async function handleCheckoutCompleted(session: Stripe.Checkout.Session):
       apiKeyPrefix: apiKey.substring(0, 8) + '...',
     });
 
-    // Create/update tenant in Airtable - bubble errors
-    let airtableSuccess = false;
-    let tenant;
+    // Create/update tenant in Supabase - bubble errors
+    let storageSuccess = false;
+    let tenant: { id: string };
     try {
-      console.log(`[CheckoutCompleted] Upserting tenant in Airtable: ${company}`);
-      tenant = await upsertTenantByHandle(company, {
-        "Company Handle": company,
-        Plan: plan || "Starter",
-        Token: token || "",
-        "UTM Source": utm_source || "",
-        "UTM Campaign": utm_campaign || "",
-        "API Key": apiKey,
-        "Domain / Login URL": loginUrl,
-        "Capture URL": captureUrl,
-        "Payment Status": "Paid",
-        "Stripe Customer ID": session.customer as string,
-        "Last Payment": new Date().toISOString(),
+      console.log(`[CheckoutCompleted] Upserting tenant in Supabase: ${company}`);
+      const result = await upsertTenantByHandle(company, {
+        [TENANT_FIELDS.COMPANY_HANDLE]: company,
+        [TENANT_FIELDS.PLAN]: plan || "Starter",
+        [TENANT_FIELDS.API_KEY]: apiKey,
+        [TENANT_FIELDS.DOMAIN_LOGIN_URL]: loginUrl,
+        [TENANT_FIELDS.CAPTURE_URL]: captureUrl,
+        [TENANT_FIELDS.PAYMENT_STATUS]: "Paid",
+        [TENANT_FIELDS.STRIPE_CUSTOMER_ID]: session.customer as string,
+        [TENANT_FIELDS.LAST_PAYMENT]: new Date().toISOString(),
       });
-      airtableSuccess = true;
-      console.log(`[CheckoutCompleted] ✅ Airtable upsert successful - tenant ID: ${tenant.id}`);
-    } catch (airtableError) {
-      const errorMsg = airtableError instanceof Error ? airtableError.message : String(airtableError);
-      console.error(`[CheckoutCompleted] ❌ Airtable upsert failed: ${errorMsg}`);
-      throw new Error(`Airtable upsert failed: ${errorMsg}`);
+      tenant = { id: result.id as string };
+      storageSuccess = true;
+      console.log(`[CheckoutCompleted] ✅ Supabase upsert successful - tenant ID: ${tenant.id}`);
+    } catch (storageError) {
+      const errorMsg = storageError instanceof Error ? storageError.message : String(storageError);
+      console.error(`[CheckoutCompleted] ❌ Supabase upsert failed: ${errorMsg}`);
+      throw new Error(`Supabase upsert failed: ${errorMsg}`);
     }
 
     // Set up custom domain if company website is available (non-blocking)
@@ -299,7 +290,7 @@ export async function handleCheckoutCompleted(session: Stripe.Checkout.Session):
     }
 
     console.log(`[CheckoutCompleted] ✅ Tenant provisioned successfully: ${company}`);
-    return { success: true, airtable: airtableSuccess, email: emailSuccess };
+    return { success: true, storage: storageSuccess, email: emailSuccess };
   } catch (err: unknown) {
     const errorMsg = err instanceof Error ? err.message : String(err);
     console.error(`[CheckoutCompleted] ❌ Failed to provision tenant: ${errorMsg}`);
@@ -349,7 +340,7 @@ async function updateTenantSubscriptionStatus(
   periodEnd: number,
 ) {
   try {
-    const { findTenantBySubscriptionId, upsertTenantByHandle } = await import("@/src/lib/airtable");
+    const { findTenantBySubscriptionId, upsertTenantByHandle } = await import("@/src/lib/storage");
     
     console.log(`[SubscriptionUpdate] Looking up tenant by subscription ID: ${subscriptionId}`);
     const tenant = await findTenantBySubscriptionId(subscriptionId);

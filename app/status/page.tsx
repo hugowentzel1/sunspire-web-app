@@ -11,16 +11,45 @@ interface HealthService {
   error?: string;
 }
 
+interface HealthConfig {
+  supabase?: boolean;
+  stripe?: boolean;
+  nrel?: boolean;
+  eia?: boolean;
+  geocoding?: boolean;
+  resend?: boolean;
+  google_places?: boolean;
+}
+
 interface HealthStatus {
   ok: boolean;
   timestamp: string;
   version?: string;
   commit?: string;
   services: HealthService[];
+  config?: HealthConfig;
+}
+
+interface SyntheticTestResult {
+  testName: string;
+  status: 'pass' | 'fail' | 'degraded';
+  lastRun: string;
+  durationMs?: number;
+  summary?: string;
+  failureReason?: string;
+  artifactsUrl?: string;
+  recentFailureCount?: number;
+  environment: string;
+}
+
+interface SyntheticResults {
+  homeowner?: SyntheticTestResult;
+  buyer?: SyntheticTestResult;
+  lastUpdated?: string;
 }
 
 const SERVICE_LABELS: Record<string, { title: string; desc: string }> = {
-  airtable: { title: 'Airtable', desc: 'Data storage — tenants & leads' },
+  supabase: { title: 'Supabase', desc: 'Data storage — tenants & leads' },
   stripe: { title: 'Stripe', desc: 'Payments — checkout & webhooks' },
   nrel: { title: 'NREL PVWatts', desc: 'Solar production — quotes' },
   eia: { title: 'EIA', desc: 'Utility rates — electricity data' },
@@ -33,6 +62,7 @@ const SERVICE_LABELS: Record<string, { title: string; desc: string }> = {
 
 export default function StatusPage() {
   const [health, setHealth] = useState<HealthStatus | null>(null);
+  const [synthetic, setSynthetic] = useState<SyntheticResults | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [refreshing, setRefreshing] = useState(false);
@@ -42,10 +72,13 @@ export default function StatusPage() {
     if (isRefresh) setRefreshing(true);
     try {
       const response = await fetch('/api/health');
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const data = await response.json();
-      setHealth(data);
-      setError(null);
+      const data = await response.json().catch(() => null);
+      if (data && typeof data === 'object' && Array.isArray(data.services)) {
+        setHealth(data);
+        setError(null);
+      } else {
+        setError(response.ok ? 'Invalid response' : `HTTP ${response.status}`);
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
     } finally {
@@ -57,6 +90,22 @@ export default function StatusPage() {
   useEffect(() => {
     fetchHealth();
   }, [fetchHealth]);
+
+  const fetchSynthetic = useCallback(async () => {
+    try {
+      const res = await fetch('/api/synthetic-results');
+      if (res.ok) {
+        const data = await res.json();
+        setSynthetic(data);
+      }
+    } catch {
+      setSynthetic(null);
+    }
+  }, []);
+
+  useEffect(() => {
+    fetchSynthetic();
+  }, [fetchSynthetic]);
 
   // Auto-refresh every 60s when page is visible
   useEffect(() => {
@@ -78,17 +127,61 @@ export default function StatusPage() {
 
   if (error && !health) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center" data-testid="status-page-content">
-        <div className="text-center max-w-md px-4">
-          <div className="text-red-500 text-5xl mb-4">⚠</div>
-          <h1 className="text-2xl font-bold text-slate-900 mb-2">Status check failed</h1>
-          <p className="text-slate-600 mb-4">{error}</p>
-          <button
-            onClick={() => fetchHealth(true)}
-            className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
-          >
-            Try again
-          </button>
+      <div className="min-h-screen bg-slate-50 py-8" data-testid="status-page-content">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-md mx-auto mb-8">
+            <div className="text-red-500 text-5xl mb-4">⚠</div>
+            <h1 className="text-2xl font-bold text-slate-900 mb-2">Status check failed</h1>
+            <p className="text-slate-600 mb-4">{error}</p>
+            <button
+              onClick={() => fetchHealth(true)}
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+            >
+              Try again
+            </button>
+          </div>
+          {/* Synthetic monitoring still shown when health fails */}
+          <div className="rounded-xl border border-slate-200 bg-white px-6 py-4 mb-6" data-testid="synthetic-monitoring-section">
+            <p className="text-lg font-semibold text-slate-900 mb-2">Synthetic monitoring</p>
+            <p className="text-sm text-slate-500 mb-3">
+              Latest results from scheduled production flows (homeowner quote, buyer checkout). Updated by GitHub Actions.
+            </p>
+            {synthetic && (synthetic.homeowner || synthetic.buyer) ? (
+              <div className="space-y-3">
+                {synthetic.homeowner && (
+                  <div className="flex flex-wrap items-center justify-between gap-2 py-2 border-b border-slate-100 last:border-0" data-testid="synthetic-homeowner-row">
+                    <span className="text-sm font-medium text-slate-800">Homeowner flow</span>
+                    <div className="flex items-center gap-2">
+                      <span className={`text-sm font-semibold ${synthetic.homeowner.status === 'pass' ? 'text-emerald-600' : synthetic.homeowner.status === 'fail' ? 'text-red-600' : 'text-amber-600'}`}>
+                        {synthetic.homeowner.status === 'pass' ? 'PASS' : synthetic.homeowner.status === 'fail' ? 'FAIL' : 'DEGRADED'}
+                      </span>
+                      <span className="text-xs text-slate-500">
+                        {synthetic.homeowner.lastRun ? new Date(synthetic.homeowner.lastRun).toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' }) : '—'}
+                      </span>
+                      {synthetic.homeowner.summary && <p className="text-xs text-slate-500 w-full">{synthetic.homeowner.summary}</p>}
+                    </div>
+                  </div>
+                )}
+                {synthetic.buyer && (
+                  <div className="flex flex-wrap items-center justify-between gap-2 py-2 border-b border-slate-100 last:border-0" data-testid="synthetic-buyer-row">
+                    <span className="text-sm font-medium text-slate-800">Buyer checkout flow</span>
+                    <div className="flex items-center gap-2">
+                      <span className={`text-sm font-semibold ${synthetic.buyer.status === 'pass' ? 'text-emerald-600' : synthetic.buyer.status === 'fail' ? 'text-red-600' : 'text-amber-600'}`}>
+                        {synthetic.buyer.status === 'pass' ? 'PASS' : synthetic.buyer.status === 'fail' ? 'FAIL' : 'DEGRADED'}
+                      </span>
+                      <span className="text-xs text-slate-500">
+                        {synthetic.buyer.lastRun ? new Date(synthetic.buyer.lastRun).toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' }) : '—'}
+                      </span>
+                      {synthetic.buyer.summary && <p className="text-xs text-slate-500 w-full">{synthetic.buyer.summary}</p>}
+                    </div>
+                  </div>
+                )}
+                {synthetic.lastUpdated && <p className="text-xs text-slate-400 pt-1">Results last updated: {new Date(synthetic.lastUpdated).toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' })}</p>}
+              </div>
+            ) : (
+              <p className="text-sm text-slate-500">No recent synthetic data. Runs every 30 minutes via GitHub Actions.</p>
+            )}
+          </div>
         </div>
       </div>
     );
@@ -177,7 +270,7 @@ export default function StatusPage() {
           <div className="px-6 py-4 bg-slate-50 border-b border-slate-200">
             <p className="text-lg font-semibold text-slate-900">Everything Sunspire depends on (checked live)</p>
             <p className="text-sm text-slate-500 mt-0.5">
-              Data (Airtable), payments (Stripe), quotes (NREL + EIA), address (Google Geocoding + Places), email (Resend), storage (Vercel KV), shading (USGS 3DEP). Each row is probed by <code className="text-xs bg-slate-100 px-1 rounded">/api/health</code> — only services with env vars set appear. This covers every API in the quote/lead/payment path. See <code className="text-xs bg-slate-100 px-1 rounded">docs/API-HEALTH-COVERAGE.md</code> for the full route list.
+              Data (Supabase), payments (Stripe), quotes (NREL + EIA), address (Google Geocoding + Places), email (Resend), storage (Vercel KV), shading (USGS 3DEP). Each row is probed by <code className="text-xs bg-slate-100 px-1 rounded">/api/health</code> — only services with env vars set appear. This covers every API in the quote/lead/payment path. See <code className="text-xs bg-slate-100 px-1 rounded">docs/API-HEALTH-COVERAGE.md</code> for the full route list.
             </p>
           </div>
           <div className="divide-y divide-slate-200" data-testid="status-service-list">
@@ -245,13 +338,123 @@ export default function StatusPage() {
           </div>
         </div>
 
+        {/* Config presence (no values) — catch env drift in prod */}
+        {health.config && (
+          <div className="rounded-xl border border-slate-200 bg-slate-50 px-6 py-4 mb-6">
+            <p className="text-sm font-semibold text-slate-800 mb-2">Config (env set)</p>
+            <p className="text-xs text-slate-500 mb-2">Which integrations have env vars configured. Use this to spot production drift.</p>
+            <div className="flex flex-wrap gap-3">
+              {Object.entries(health.config).map(([key, value]) => (
+                <span
+                  key={key}
+                  className={`text-xs font-medium px-2 py-1 rounded ${value ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-200 text-slate-600'}`}
+                  title={value ? 'Configured' : 'Not set'}
+                >
+                  {key}: {value ? '✓' : '—'}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Synthetic monitoring results (from scheduled Playwright runs) */}
+        <div className="rounded-xl border border-slate-200 bg-white px-6 py-4 mb-6" data-testid="synthetic-monitoring-section">
+          <p className="text-lg font-semibold text-slate-900 mb-2">Synthetic monitoring</p>
+          <p className="text-sm text-slate-500 mb-3">
+            Latest results from scheduled production flows (homeowner quote, buyer checkout). Updated by GitHub Actions.
+          </p>
+          {synthetic && (synthetic.homeowner || synthetic.buyer) ? (
+            <div className="space-y-3">
+              {synthetic.homeowner && (
+                <div className="flex flex-wrap items-center justify-between gap-2 py-2 border-b border-slate-100 last:border-0" data-testid="synthetic-homeowner-row">
+                  <span className="text-sm font-medium text-slate-800">Homeowner flow</span>
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={`text-sm font-semibold ${
+                        synthetic.homeowner.status === 'pass'
+                          ? 'text-emerald-600'
+                          : synthetic.homeowner.status === 'fail'
+                            ? 'text-red-600'
+                            : 'text-amber-600'
+                      }`}
+                    >
+                      {synthetic.homeowner.status === 'pass' ? 'PASS' : synthetic.homeowner.status === 'fail' ? 'FAIL' : 'DEGRADED'}
+                    </span>
+                    <span className="text-xs text-slate-500">
+                      {synthetic.homeowner.lastRun
+                        ? new Date(synthetic.homeowner.lastRun).toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' })
+                        : '—'}
+                    </span>
+                    {synthetic.homeowner.durationMs != null && (
+                      <span className="text-xs text-slate-400">{Math.round(synthetic.homeowner.durationMs / 1000)}s</span>
+                    )}
+                  </div>
+                  {synthetic.homeowner.summary && (
+                    <p className="text-xs text-slate-500 w-full">{synthetic.homeowner.summary}</p>
+                  )}
+                  {synthetic.homeowner.failureReason && (
+                    <p className="text-xs text-red-600 w-full">{synthetic.homeowner.failureReason}</p>
+                  )}
+                  {synthetic.homeowner.artifactsUrl && (
+                    <a href={synthetic.homeowner.artifactsUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 hover:underline">
+                      View run
+                    </a>
+                  )}
+                </div>
+              )}
+              {synthetic.buyer && (
+                <div className="flex flex-wrap items-center justify-between gap-2 py-2 border-b border-slate-100 last:border-0" data-testid="synthetic-buyer-row">
+                  <span className="text-sm font-medium text-slate-800">Buyer checkout flow</span>
+                  <div className="flex items-center gap-2">
+                    <span
+                      className={`text-sm font-semibold ${
+                        synthetic.buyer.status === 'pass'
+                          ? 'text-emerald-600'
+                          : synthetic.buyer.status === 'fail'
+                            ? 'text-red-600'
+                            : 'text-amber-600'
+                      }`}
+                    >
+                      {synthetic.buyer.status === 'pass' ? 'PASS' : synthetic.buyer.status === 'fail' ? 'FAIL' : 'DEGRADED'}
+                    </span>
+                    <span className="text-xs text-slate-500">
+                      {synthetic.buyer.lastRun
+                        ? new Date(synthetic.buyer.lastRun).toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' })
+                        : '—'}
+                    </span>
+                    {synthetic.buyer.durationMs != null && (
+                      <span className="text-xs text-slate-400">{Math.round(synthetic.buyer.durationMs / 1000)}s</span>
+                    )}
+                  </div>
+                  {synthetic.buyer.summary && (
+                    <p className="text-xs text-slate-500 w-full">{synthetic.buyer.summary}</p>
+                  )}
+                  {synthetic.buyer.failureReason && (
+                    <p className="text-xs text-red-600 w-full">{synthetic.buyer.failureReason}</p>
+                  )}
+                  {synthetic.buyer.artifactsUrl && (
+                    <a href={synthetic.buyer.artifactsUrl} target="_blank" rel="noopener noreferrer" className="text-xs text-blue-600 hover:underline">
+                      View run
+                    </a>
+                  )}
+                </div>
+              )}
+              {synthetic.lastUpdated && (
+                <p className="text-xs text-slate-400 pt-1">Results last updated: {new Date(synthetic.lastUpdated).toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' })}</p>
+              )}
+            </div>
+          ) : (
+            <p className="text-sm text-slate-500">No recent synthetic data. Runs every 30 minutes via GitHub Actions.</p>
+          )}
+        </div>
+
         {/* Streamlined: UptimeRobot, /status, Sentry — alerts to support@getsunspire.com */}
         <div className="rounded-xl border-2 border-slate-200 bg-white px-6 py-4 mb-8">
           <p className="text-sm font-semibold text-slate-800 mb-2">
             Daily check: UptimeRobot, this page, Sentry — alerts to support@getsunspire.com
           </p>
           <p className="text-sm text-slate-600 mb-2">
-            <code className="text-xs bg-slate-100 px-1 rounded">/api/health</code> probes every API (Airtable, Stripe, NREL, EIA, Google Geocoding/Places, Resend, Vercel KV, USGS 3DEP). See <code className="text-xs bg-slate-100 px-1 rounded">docs/API-HEALTH-COVERAGE.md</code>.
+            <code className="text-xs bg-slate-100 px-1 rounded">/api/health</code> probes every API (Supabase, Stripe, NREL, EIA, Google Geocoding/Places, Resend, Vercel KV, USGS 3DEP). See <code className="text-xs bg-slate-100 px-1 rounded">docs/API-HEALTH-COVERAGE.md</code>.
           </p>
           <ul className="text-sm text-slate-600 list-disc list-inside space-y-1">
             <li><strong>UptimeRobot</strong> — Monitor <code className="text-xs bg-slate-100 px-1 rounded">GET /api/health</code>. When status is not 200, alert <a href="mailto:support@getsunspire.com" className="text-blue-600 hover:underline">support@getsunspire.com</a>.</li>

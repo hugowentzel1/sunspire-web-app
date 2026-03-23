@@ -96,14 +96,14 @@ test.describe('Exhaustive user journey — one full pass', () => {
     await page.waitForSelector('[data-testid="status-service-list"]', { timeout: 25000 }).catch(() => null);
     await page.waitForFunction(
       () =>
-        document.body?.innerText?.includes('Airtable') ||
+        document.body?.innerText?.includes('Supabase') ||
         document.body?.innerText?.includes('Operational') ||
         document.body?.innerText?.includes('support@getsunspire'),
       { timeout: 15000 }
     ).catch(() => null);
     const statusBody = await page.locator('body').innerText();
     expect(statusBody).toMatch(/System Status/i);
-    expect(statusBody).toMatch(/operational|Operational|systems|Airtable|Stripe|NREL|Resend|Geocoding|USGS|3DEP/i);
+    expect(statusBody).toMatch(/operational|Operational|systems|Supabase|Stripe|NREL|Resend|Geocoding|USGS|3DEP/i);
     expect(statusBody).toMatch(/support@getsunspire\.com/i);
     expect(statusBody).toMatch(/Sentry|sentry\.io/i);
     await expect(page.locator('header')).toHaveCount(0);

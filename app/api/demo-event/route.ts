@@ -4,7 +4,7 @@ export async function POST(req: Request) {
     const body = await req.json();
     console.log("demo-event", body);
 
-    // TODO: Forward to Airtable/Zapier for follow-up and retargeting
+    // Optional: forward to webhook/Zapier for follow-up and retargeting
     // Include: brand, domain, variant, utm params, deadline, runsUsed, referrer, userAgent, screen size
 
     // Return success response so the form confirmation works

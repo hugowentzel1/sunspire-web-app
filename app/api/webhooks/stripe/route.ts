@@ -4,7 +4,7 @@ import {
   logEvent,
   upsertTenantByHandle,
   findTenantByHandle,
-} from "@/src/lib/airtable";
+} from "@/src/lib/storage";
 import Stripe from "stripe";
 
 // Ensure Node.js runtime for this endpoint

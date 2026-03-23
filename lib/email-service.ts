@@ -173,7 +173,7 @@ ${embedCode}</code>
                   <li>Share your instant URL on social media</li>
                   <li>Embed the calculator on your website</li>
                   <li>(Optional) Set up custom domain</li>
-                  <li>Watch leads flow into your Airtable!</li>
+                  <li>Watch leads flow into your Sunspire dashboard!</li>
                 </ol>
               </div>
 

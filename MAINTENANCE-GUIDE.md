@@ -4,12 +4,12 @@ Production-Ready System - January 2026
 ---
 WHAT YOU HAVE SET UP (and how it covers all APIs)
 
-• **Health endpoint:** GET /api/health — Single source of truth. Probes every configured external API: **Airtable** (read), **Stripe** (balance), **NREL PVWatts** (quote), **EIA** (rates), **Google Geocoding** (server geo), **Resend** (email), **Google Places** (config only; client autocomplete), **Vercel KV** (when KV_REST_API_URL + KV_REST_API_TOKEN set; DLQ, idempotency, rate limiting), **USGS 3DEP** (elevation/shading for estimates). Each check has 5s timeout (8s for USGS). Returns 200 if all ok, 503 if any down. Response: `{ "ok": true|false, "timestamp": "...", "version": "...", "services": [ { "service": "airtable", "status": "ok"|"degraded"|"down", "latency": ms, "error": "..." } ] }`. Only services with env vars set are checked; Stripe is omitted if the key is invalid so health can still pass.
+• **Health endpoint:** GET /api/health — Single source of truth. Probes every configured external API: **Supabase** (tenants/leads), **Stripe** (balance), **NREL PVWatts** (quote), **EIA** (rates), **Google Geocoding** (server geo), **Resend** (email), **Google Places** (config only; client autocomplete), **Vercel KV** (when KV_REST_API_URL + KV_REST_API_TOKEN set; DLQ, idempotency, rate limiting), **USGS 3DEP** (elevation/shading for estimates). Each check has 5s timeout (8s for USGS). Returns 200 if all ok, 503 if any down. Response includes `services` and **`config`** (which integrations have env set, no values) to catch production env drift. Only services with env vars set are checked; Stripe is omitted if the key is invalid so health can still pass.
 • **Rate limiting:** Quote/estimate (1000/hr per IP), lead submit, Stripe checkout — all protected. Webhook is idempotent (replay-safe).
 • **Error monitoring:** Sentry on frontend + API; uncaught errors and rejections captured.
 • **Canary-style checks:** Smoke + API tests (health, estimate, geo, lead, Stripe webhook) run in CI and via prod-smoke workflow against production.
 
-**Does it cover all APIs?** Yes. Health explicitly checks: Airtable, Stripe, NREL, EIA, Google Geocoding, Resend, Google Places (config), Vercel KV (when configured), USGS 3DEP. Quote engine = NREL + EIA + USGS 3DEP; Google Places is client-only — if it fails, users can still type address and server geocode works. Revenue path (quote, lead, Stripe webhook) is guarded with try/catch and clear errors. /status page shows every checked service and reminds you to use UptimeRobot + Sentry with alerts to **support@getsunspire.com**.
+**Does it cover all APIs?** Yes. Health explicitly checks: Supabase, Stripe, NREL, EIA, Google Geocoding, Resend, Google Places (config), Vercel KV (when configured), USGS 3DEP. Quote engine = NREL + EIA + USGS 3DEP; Google Places is client-only — if it fails, users can still type address and server geocode works. Revenue path (quote, lead, Stripe webhook) is guarded with try/catch and clear errors. /status page shows every checked service and reminds you to use UptimeRobot + Sentry with alerts to **support@getsunspire.com**. **Most likely production bug:** env/config drift (missing or wrong var in Vercel). Use health `config` and /status daily; see **docs/INTEGRATION-FAILURE-PREVENTION.md**.
 
 **How to use it to be sure they're all up:**
 1. **Single place:** Open https://sunspire-web-app.vercel.app/status — shows every service (Airtable, Stripe, NREL, EIA, Google Geocoding, Resend, Google Places, Vercel KV, USGS 3DEP). If all green, you're good. Auto-refreshes every 60s; or use "Refresh now." The status page has **only one header** (System Status); all other sections are subsections.
@@ -30,7 +30,7 @@ WHAT YOU HAVE SET UP (and how it covers all APIs)
 - **Monitor:** Add a monitor for `GET https://sunspire-web-app.vercel.app/api/health` (or your production domain). When HTTP status ≠ 200 (e.g. 503 when a dependency is down), you get alerted.
 - **Alert contact:** Set the alert email to **support@getsunspire.com** so you're notified when the check fails.
 - What to check: All monitors should be green ✅. If any are red, check Vercel deployment and "WHEN SOMETHING BREAKS" below.
-- Action if down: Check Vercel logs, /status page (which service is red), and external status pages (Airtable, Stripe, etc.); redeploy if needed.
+- Action if down: Check Vercel logs, /status page (which service is red), and external status pages (Supabase, Stripe, etc.); redeploy if needed.
 
 2. **Sentry**
 - URL: https://sentry.io
@@ -40,7 +40,7 @@ WHAT YOU HAVE SET UP (and how it covers all APIs)
 - **Make it work:** Ensure `SENTRY_DSN` and `NEXT_PUBLIC_SENTRY_DSN` are set in Vercel env.
 
 3. **Quick Health Check — single place = /status**
-- **Easiest:** Open https://sunspire-web-app.vercel.app/status in a browser. That page is your **one place** to confirm all systems: it calls /api/health and shows **every** service: Airtable, Stripe, NREL PVWatts, EIA, Google Geocoding, Resend, Google Places, Vercel KV (if configured), USGS 3DEP. If everything is green, you’re good. Use “Refresh now” or wait for auto-refresh (60s).
+- **Easiest:** Open https://sunspire-web-app.vercel.app/status in a browser. That page is your **one place** to confirm all systems: it calls /api/health and shows **every** service: Supabase, Stripe, NREL PVWatts, EIA, Google Geocoding, Resend, Google Places, Vercel KV (if configured), USGS 3DEP. If everything is green, you’re good. Use “Refresh now” or wait for auto-refresh (60s).
 - **CLI:** `curl https://sunspire-web-app.vercel.app/api/health` — Expected: `{"ok": true, "timestamp": "...", "services": [...]}` with every service `"status": "ok"`. If 503 or any "down", check which service in the JSON and use "WHEN SOMETHING BREAKS" below.
 - The /status page also shows: **Daily check: UptimeRobot, this page, Sentry — alerts to support@getsunspire.com** and links to docs/API-HEALTH-COVERAGE.md.
 
@@ -62,7 +62,7 @@ WHAT YOU HAVE SET UP (and how it covers all APIs)
      - Check event type (usually checkout.session.completed)
      - Check timestamp
   3. Common causes:
-     - Airtable rate limit: Wait 5 minutes, then replay
+     - Supabase/DB error: Check connection and tenant exists; replay
      - Stripe API error: Usually transient, replay works
      - Missing tenant: Create tenant first, then replay
   4. Replay a webhook:
@@ -75,7 +75,7 @@ WHAT YOU HAVE SET UP (and how it covers all APIs)
 
 📆 MONTHLY CHECKS (30 minutes)
 
-1. Backup: Export Airtable data (base export or critical tables). Optional: note tenant configs if you need recovery.
+1. Backup: Export Supabase data (Table Editor → export or pg_dump). Optional: note tenant configs if you need recovery.
 2. Dependency Security Audit
 `bash
 npm audit

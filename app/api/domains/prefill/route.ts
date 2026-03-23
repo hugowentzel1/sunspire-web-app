@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { setRequestedDomain, setTenantDomainStatus } from "@/src/lib/airtable";
+import { setRequestedDomain, setTenantDomainStatus } from "@/src/lib/storage";
 
 export async function POST(req: Request) {
   try {

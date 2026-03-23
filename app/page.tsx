@@ -517,7 +517,7 @@ function HomeContent() {
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/40 to-[var(--brand-primary)]/25 rounded-3xl opacity-100 transition-opacity duration-500"></div>
               <div className="relative z-10">
                 <div className="text-2xl font-black text-gray-900 mb-3 group-hover:text-[var(--brand-primary)] transition-colors duration-300">Leads to inbox + dashboard</div>
-                <div className="text-gray-600 font-semibold leading-relaxed">Instant email when a lead comes in, plus your Sunspire dashboard. Optional sync to HubSpot, Salesforce, or Airtable.</div>
+                <div className="text-gray-600 font-semibold leading-relaxed">Instant email when a lead comes in, plus your Sunspire dashboard. Optional sync to HubSpot, Salesforce, or your CRM.</div>
               </div>
             </div>
             <div className="relative bg-gradient-to-br from-white via-white to-[var(--brand-primary)]/15 backdrop-blur-sm rounded-3xl p-8 text-center border border-gray-200/50 hover:shadow-2xl hover:scale-105 transition-all duration-500 flex flex-col items-center justify-center group stagger-item hover-lift">

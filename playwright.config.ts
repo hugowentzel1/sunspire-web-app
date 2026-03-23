@@ -4,18 +4,17 @@ export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : 8, // 8 parallel workers for speed
+  retries: process.env.CI ? 2 : 1,
+  workers: process.env.CI ? 1 : 4,
   reporter: 'list',
-  timeout: 0, // NO TIMEOUT - let tests run as long as needed
-  
+  timeout: 35000,
   use: {
     baseURL: process.env.BASE_URL || process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:3000',
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
-    actionTimeout: 0, // NO TIMEOUT for actions
-    navigationTimeout: 0, // NO TIMEOUT for navigation
+    video: 'off',
+    actionTimeout: 15000,
+    navigationTimeout: 20000,
   },
 
   projects: [

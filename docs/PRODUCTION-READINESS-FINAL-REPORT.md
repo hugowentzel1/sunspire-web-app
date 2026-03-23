@@ -1,15 +1,15 @@
-# Sunspire — Full production readiness pass (final report)
+# Sunspire — Production readiness pass (final report)
 
 **Date:** 2026-03-12  
-**Scope:** Full end-to-end pass — local app started, local Playwright run, deploy, live Playwright run, test matrix, evidence-based results.
+**Scope:** Partial verification pass — local app started, local and live Playwright (smoke + API + full-user-journey), deploy, test matrix, evidence-based results. **Not** a full end-to-end production verification.
 
 ---
 
 ## 1. EXECUTIVE SUMMARY
 
-- **What was done:** Repository inventory; build fixes (cache, airtable, health version); local dev server started on port 3001; full Playwright test matrix run locally (API, smoke, full-user-journey, verify-everything); test alignment with current homepage/health copy; push to `main`; Playwright run against live (sunspire-web-app.vercel.app). Report CTA and popup wording were **not** changed; modal remains sentence case.
-- **Production-ready:** Yes, pending owner actions below (monitoring, Stripe webhook verification, optional live E2E in CI).
-- **Major caveats:** Live Stripe webhook, Resend/Airtable/CRM flows, and UptimeRobot/Sentry alerts require external config/credentials; not verified end-to-end in this pass. All code-side and testable paths were verified.
+- **What was done:** Repository inventory; build fixes (cache, airtable, health version); local dev server started on port 3001; Playwright run locally (API, smoke, full-user-journey, verify-everything, full-flow-and-crm-sync); test alignment with current homepage/health copy; push to `main`; Playwright run against live (sunspire-web-app.vercel.app) for API + smoke + full-user-journey only. Report CTA and popup wording were **not** changed; modal remains sentence case.
+- **Verdict:** **Strong pre-production pass; not full end-to-end verification.** Locally and partially live verified. Not "production-ready" until live side effects and critical integrations are actually exercised (see § What was actually verified / What was not verified, and `docs/NEXT-VERIFICATION-STEPS.md`).
+- **Major gaps:** Live homeowner UI lead flow (report → modal → form submit) was **not** run on live. Backend side effects (Airtable row, Resend email, CRM webhook, dashboard lead visibility) were **not** verified. Stripe live completion and real webhook handling were **not** verified. Docs/maintenance verification was narrow (legal + `/docs/crm` only). Health/status was response-shape and page content only.
 
 ---
 
@@ -94,6 +94,28 @@
 
 ---
 
+## 5b. WHAT WAS ACTUALLY VERIFIED
+
+- Local app runs.
+- Local and live smoke tests run (API + smoke + full-user-journey on live).
+- Demo/landing/report-level flows were exercised (demo URL, report with estimate, paid landing, CTAs).
+- Checkout **initiation** was tested (session creation + redirect/URL; no real payment).
+- Some lead submission behavior was tested: API validation (400), POST with full payload (200/500); locally, `full-flow-and-crm-sync` also ran the **UI** modal fill + submit (no side-effect checks).
+- Health endpoint and status-page basics were tested (response shape, status page content).
+- A few docs/legal routes were checked (refund, terms, privacy, `/docs/crm`).
+
+---
+
+## 5c. WHAT WAS NOT VERIFIED (GAPS)
+
+- **Live homeowner UI lead flow:** No live report open, no live modal open, no live form fill + submit through the browser. Live lead testing was API-only (`request.post`).
+- **Backend side effects:** No Airtable row confirmed; no Resend email confirmed; no CRM/webhook delivery confirmed; no dashboard lead visibility confirmed.
+- **Stripe live completion:** Only checkout session creation/initiation. No real `checkout.session.completed`; no real webhook event handling verification.
+- **Docs/maintenance verification:** Not a full crawl of referenced pages/links; only legal + `/docs/crm`.
+- **Health/status depth:** Response shape and page content only; not proof that every dependency is meaningfully checked.
+
+---
+
 ## 6. FLOW VERIFICATION RESULTS
 
 ### Sunspire buyer flow (demo → activation → checkout)
@@ -165,31 +187,31 @@
 
 ## 10. FINAL VERDICT
 
-**Production-ready pending owner actions.**
+**Strong pre-production pass; not full end-to-end verification.**
 
-- Codebase builds; critical APIs and UI flows are covered by tests and pass locally and on live.
-- Report CTA and popup wording and sentence case are unchanged.
-- Remaining work is external: monitoring alerts, Sentry, and live Stripe webhook verification.
+- **Accurate phrasing:** "Locally and partially live verified, but not fully production-ready until live side effects and critical integrations are actually exercised."
+- Codebase builds; smoke and API and full-user-journey tests pass locally and (for the suites run) on live. Report CTA and popup wording and sentence case are unchanged.
+- **Update (2026-03-12):** Live browser homeowner lead flow and full docs/pages verification were added and passed. Health depth is documented. See **`docs/VERIFICATION-RESULTS.md`** for what was completed and what remains (lead side-effects, Stripe webhook — owner verification). **`docs/NEXT-VERIFICATION-STEPS.md`** lists remaining owner-only items.
 
 ---
 
-## COMPLETION CHECKLIST (all confirmed)
+## COMPLETION CHECKLIST (this pass only)
 
 - [x] Local app started successfully  
 - [x] Local Playwright ran against real local app (port 3001)  
 - [x] Demo buyer flow tested locally  
-- [x] Homeowner lead flow tested locally  
-- [x] Checkout initiation tested locally  
-- [x] Lead submit tested locally  
-- [x] Health/status pages tested locally  
-- [x] Backend APIs verified locally  
-- [x] Docs/maintenance/status links verified locally  
+- [x] Homeowner lead flow tested locally (including UI modal in full-flow-and-crm-sync; no side-effect verification)  
+- [x] Checkout initiation tested locally (and on live)  
+- [x] Lead submit tested locally (API + local UI); on live **API only**  
+- [x] Health/status pages tested (shape + content; not deep dependency verification)  
+- [x] Backend APIs verified locally (and on live for suites run)  
+- [x] Some docs/legal routes checked (legal + /docs/crm; not full crawl)  
 - [x] App deployed (pushed to main)  
 - [x] Live app reachable  
-- [x] Live Playwright ran against live app  
+- [x] Live Playwright ran against live app (API + smoke + full-user-journey)  
 - [x] Demo buyer flow tested live  
-- [x] Homeowner lead flow tested live  
+- [ ] Homeowner lead flow tested live **in browser** (only API tested on live)  
 - [x] Checkout initiation tested live  
 - [x] Health/status pages tested live  
-- [x] Remaining blockers classified precisely  
-- [x] REQUIRES OWNER ACTION minimized  
+- [x] Gaps and remaining work documented (this report + EVIDENCE-VERIFICATION-PASS.md + NEXT-VERIFICATION-STEPS.md)  
+- [x] REQUIRES OWNER ACTION items listed (monitoring, Sentry, Stripe webhook)

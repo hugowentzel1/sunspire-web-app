@@ -10,13 +10,14 @@ Last Updated: January 25, 2026
 #  • PATH 1 = Add Leads (Snov.io → Google Sheet → Instantly Add Leads → Google Sheets paste URL). PATH 2 = SuperSearch (Instantly only; no Snov.io). Use Path 1 progress list; check [x] when you complete a step.
 #  • Phase 1 (1.1–1.8) = done. STEP 2.1 onward = [ ] until you say it's done. Every button from now to 1,000 customers is in Path 1 below (Steps 2–18).
 #  • Full order: Path 1 → "EVERY BUTTON IN ORDER — MASTER SEQUENCE" (17 steps) then "EVERY BUTTON IN ORDER — LINEAR LIST" (67 actions). Then complete each step's sub-bullets in detail.
+#  • AFTER MIGRATION: When docs/TEMPORARY-TO-DO-LIST.md is complete (Supabase migration done), you are ready for cold email. From then on: follow this list (TO-DO-LIST) from STEP 2.1 onward + MAINTENANCE-GUIDE.md only. No other checklist.
 #
 #  REFERENCE (from Sunspire Final notes — your actual setup):
 #  • Namecheap (hugowentzel@gmail.com): sunspiredemo.com (outreach/demo), getsunspire.com, sunspiretool.com, sunspirequote.com, usesunspire.com (sending). Domain list → Manage → Advanced DNS per domain.
 #  • Google Workspace — 4 domains (trials started 8/11/25): getsunspire.com, sunspirequote.com, sunspiretool.com, usesunspire.com. Sending accounts: hgwentzel@getsunspire.com, dalynhelms7@sunspirequote.com, hgowentzel@sunspiretool.com, hugowentzelspam@usesunspire.com. Add 5th inbox (e.g. hugo@getsunspire.com or another user) if you want 5 for Path 1.
 #  • DKIM/SPF/DMARC: set up for getsunspire, sunspirequote, sunspiretool, usesunspire. Instantly: connect these 4 (or 5) sending inboxes.
 #  • Support: support@getsunspire.com. Billing/Stripe: billing@getsunspire.com. Address (Anytime Mailbox): 1700 Northside Drive, Suite A7 #5164, Atlanta, GA 30318. Phone: 404-637-8549.
-#  • Other: Vercel (hugowentzel@gmail.com), Stripe (billing@getsunspire.com), Airtable, Clay, Apollo, Zapier (Finster812345!), legal doc sunspire-legal.docx.
+#  • Other: Vercel (hugowentzel@gmail.com), Stripe (billing@getsunspire.com), Supabase (post-migration), Clay, Apollo, Zapier (Finster812345!), legal doc sunspire-legal.docx.
 #  • API keys: For Geocoding to work from Vercel, set GOOGLE_GEOCODING_API_KEY in Vercel. In Google Cloud: Credentials → Create API key → Application restriction "None", API restriction "Geocoding API" only → copy key → Vercel → Environment Variables → GOOGLE_GEOCODING_API_KEY. Run E2E: BASE_URL=https://sunspire-web-app.vercel.app npx playwright test tests/e2e-all-apis-estimations-visual.spec.ts --headed
 #
 ################################################################################
@@ -60,7 +61,7 @@ Do not skip. Complete each step fully before the next.
  11. STEP 12 — Instantly: Schedule + Options (12.1–12.2)
  12. STEP 13 — Instantly: test email → Launch campaign (13.1–13.3)
  13. STEP 14 — Instantly: AI Reply Agent (14.1–14.3)
- 14. STEP 15 — First sale: daily Analytics + Unibox replies + Stripe/Airtable/Admin (15.1–15.4)
+ 14. STEP 15 — First sale: daily Analytics + Unibox replies + Stripe/Supabase/Admin (15.1–15.4)
  15. STEP 16 — Scale to 10: new Snov.io list → Sheets → new campaign → repeat (16.1–16.3)
  16. STEP 17 — Scale to 100: upgrade Instantly/Snov.io if needed; more campaigns (17.1–17.3)
  17. STEP 18 — Scale to 1,000: large batches, List-Unsubscribe/DNS for 5k+/day (18.1–18.2)
@@ -82,7 +83,7 @@ CAMPAIGN + LAUNCH (Steps 8–14)
   43. Instantly → Campaigns → "+ Add New".  44. Campaign name: "Solar Outreach - Batch 1" → Click "CONTINUE".  45. Campaign → Leads → "Add Leads" → click "Google Sheets".  46. Paste the Google Sheet URL. Wait for Instantly to load columns.  47. Map: Email→Email, First name→First name, Company name→Company name (or Custom "Company"), CompanyDomain→Custom "domain", DemoURL→Custom "demo_url". Others→Do Not Import.  48. Check "Verify leads". Optionally "Check for duplicates".  49. Click "Upload all". Wait.  50. Campaign → Settings (or Email accounts): check all 4 (or 5) sending accounts → Save.  51. Campaign → Sequences. First step: Subject: type "Quick question about " → bolt icon → select "company" → type "'s solar quotes".  52. Body: type/paste Email 1 (Hey {{first_name}}, …); use Variables button for first_name, company; click "+" → Insert Unsubscribe Link; add footer (Sunspire LLC, address, Honor opt-out).  53. "Send next message in": 0 days. Click "Add step" → Email.  54. Subject: "Built a quick preview for " → bolt → company. Body: Email 2 with {{demo_url}}. "Send next": 3 days. Check "Only if no reply".  55. "Add step" → Email. Subject: "Another solar team just switched". Body: Email 3. "Send next": 6 days. Check "Only if no reply".  56. Click "Save".  57. Campaign → Schedule: check Tue, Wed, Thu; time 9:30 AM–3:30 PM → Save.  58. Campaign → Options: Daily limit 20; "Stop sending emails on reply" ON; delay 8–12 min if available → Save.  59. Sequences → "Preview" → Load data for lead (or Send test to your email) → Send from (one account) → "Send test". Check inbox.  60. Campaign → "Launch" → Confirm.  61. Instantly sidebar → AI Agents (or Unibox) → "Add New" → AI Reply Agent. Name: "Sunspire Demo Replies".  62. Mode: Autopilot. Assign: Solar Outreach - Batch 1. Instructions: use demo_url for demo requests. Save.
 
 FIRST SALE → 1,000 (Steps 15–18)
-  63. Daily: Instantly → Campaigns → Solar Outreach - Batch 1 → Analytics (Sent, Opens, Replies, Clicks). Unibox → open replies → Reply (include demo_url if asked) → Send.  64. Link clicks: follow up after 24h with short email. When someone pays: Stripe → Payments; Airtable → Tenants; Admin dashboard → new tenant.  65. Scale to 10: Snov.io new list "Solar Batch 2" → Export CSV → Google Sheets (CompanyDomain + DemoURL formulas) → Share "Anyone with link" → copy URL → Instantly new campaign "Solar Outreach - Batch 2" → Add Leads → Google Sheets (paste URL) → map → Verify → Settings (accounts) → same 3 emails → Schedule → Options → Preview → Launch. Assign AI Agent. Repeat.  66. Scale to 100: Upgrade Instantly/Snov.io if needed. New campaigns same flow. Optional: more Google users + domains + DNS + Instantly accounts.  67. Scale to 1,000: Large exports (5K–25K) → Sheets (CompanyDomain + DemoURL) → Share link → Add Leads → Google Sheets per campaign. Enable List-Unsubscribe header; SPF/DKIM/DMARC; monitor bounce/spam. Target 1,000 = $99K MRR.
+  63. Daily: Instantly → Campaigns → Solar Outreach - Batch 1 → Analytics (Sent, Opens, Replies, Clicks). Unibox → open replies → Reply (include demo_url if asked) → Send.  64. Link clicks: follow up after 24h with short email. When someone pays: Stripe → Payments; Supabase → Tenants; Admin dashboard → new tenant.  65. Scale to 10: Snov.io new list "Solar Batch 2" → Export CSV → Google Sheets (CompanyDomain + DemoURL formulas) → Share "Anyone with link" → copy URL → Instantly new campaign "Solar Outreach - Batch 2" → Add Leads → Google Sheets (paste URL) → map → Verify → Settings (accounts) → same 3 emails → Schedule → Options → Preview → Launch. Assign AI Agent. Repeat.  66. Scale to 100: Upgrade Instantly/Snov.io if needed. New campaigns same flow. Optional: more Google users + domains + DNS + Instantly accounts.  67. Scale to 1,000: Large exports (5K–25K) → Sheets (CompanyDomain + DemoURL) → Share link → Add Leads → Google Sheets per campaign. Enable List-Unsubscribe header; SPF/DKIM/DMARC; monitor bounce/spam. Target 1,000 = $99K MRR.
 
 --------------------------------------------------------------------------------
 STEP 1 — PHASE 1: SYSTEM VERIFICATION (every button + legal + post-purchase)
@@ -94,9 +95,9 @@ Sources: Vercel env vars — vercel.com/docs/environment-variables. Resend webho
   [x] 1.3 — Admin dashboard: (1) New tab → https://[YOUR-PRODUCTION-URL]/admin/dashboard. (2) In the token field paste ADMIN_TOKEN (from Vercel → Settings → Environment Variables). (3) Click Submit (or Log in). (4) Confirm dashboard loads: health, circuit breakers, DLQ, any errors.
   [x] 1.4 — Health endpoint: (1) New tab → https://[YOUR-PRODUCTION-URL]/api/health. (2) Confirm page shows JSON: {"status":"ok","timestamp":"..."}.
   [x] 1.5 — Demo URL: (1) New tab → https://[YOUR-PRODUCTION-URL]/?company=TestCompany&domain=apple.com&demo=1. (2) Confirm "TestCompany" and Apple logo load. (3) Confirm "Activate on Your Domain" button visible. (4) Optional: click Activate on Your Domain → confirm redirect to Stripe checkout → go back without paying.
-  [x] 1.6 — Bookmarks: (1) In browser create folder "Sunspire" (e.g. Chrome: Bookmark manager → Add folder). (2) Bookmark: Admin dashboard URL, Health URL, https://vercel.com/dashboard, https://dashboard.stripe.com, https://airtable.com, https://resend.com/emails, https://sentry.io, https://dashboard.uptimerobot.com, https://www.namecheap.com/myaccount/login, Demo test URL from 1.5.
+  [x] 1.6 — Bookmarks: (1) In browser create folder "Sunspire" (e.g. Chrome: Bookmark manager → Add folder). (2) Bookmark: Admin dashboard URL, Health URL, https://vercel.com/dashboard, https://dashboard.stripe.com, https://app.supabase.com (post-migration), https://resend.com/emails, https://sentry.io, https://dashboard.uptimerobot.com, https://www.namecheap.com/myaccount/login, Demo test URL from 1.5.
   [x] 1.7 — Legal (Phase 1): Privacy policy has NREL disclaimer (Third-Party Data / NREL PVWatts®). Privacy has CCPA section (rights, no sale, request methods). Every cold email has CAN-SPAM: Sunspire Software LLC, physical address (1700 Northside Drive, Suite A7 #5164, Atlanta, GA 30318), unsubscribe link, "Honor opt-out within 10 business days." Success page has 24-hour setup guarantee and link to /legal/refund. Source: CAN-SPAM — ftc.gov; Gmail bulk 5k+/day needs List-Unsubscribe (RFC 8058) — support.google.com.
-  [x] 1.8 — Post-purchase verified: Customer pays → redirect to /c/[companyHandle]?session_id=...&demo=1. Stripe webhook (checkout.session.completed) → Airtable Tenants + Resend onboarding email. Confirm: /c/[handle] loads after purchase; Stripe → Airtable + Resend flow works.
+  [x] 1.8 — Post-purchase verified: Customer pays → redirect to /c/[companyHandle]?session_id=...&demo=1. Stripe webhook (checkout.session.completed) → Supabase Tenants + Resend onboarding email. Confirm: /c/[handle] loads after purchase; Stripe → Supabase + Resend flow works.
 
 --------------------------------------------------------------------------------
 STEP 2 — SIGN UP INSTANTLY.AI (every button)
@@ -248,10 +249,10 @@ Source: help.instantly.ai/en/articles/8693846-ai-inbox-manager, help.instantly.a
 --------------------------------------------------------------------------------
 STEP 15 — FIRST SALE (Days 8–21) — EVERY BUTTON
 --------------------------------------------------------------------------------
-Source: Instantly Analytics, Unibox/Inbox; Stripe dashboard; Airtable; Admin dashboard.
+Source: Instantly Analytics, Unibox/Inbox; Stripe dashboard; Supabase; Admin dashboard.
   [ ] 15.1 — Daily: Tab → https://instantly.ai → Log in. Left sidebar → Campaigns → click "Solar Outreach - Batch 1". Tab/menu → "Analytics": note Sent, Opens, Replies, Link clicks. Left sidebar → "Unibox" or "Inbox": click each thread with a reply → click "Reply" → type reply; if they asked for demo, paste their demo URL (from Leads or from demo_url variable). Click "Send". Aim: reply within 2 hours.
   [ ] 15.2 — Analytics → "Link clicks": note leads who clicked demo link. Wait 24h. If no activation: Unibox or Leads → search/filter that lead → click lead → "Send email" or Reply → type: "Hey [first_name], saw you checked the demo. Any questions? Preview stays live if you want to share with your team." Send.
-  [ ] 15.3 — When someone pays: Tab → https://dashboard.stripe.com → Log in → Payments: confirm $399 + $99 charge. Tab → https://airtable.com → Tenants base: new row. Tab → [YOUR-PRODUCTION-URL]/admin/dashboard → confirm new tenant. Resend: onboarding email sent.
+  [ ] 15.3 — When someone pays: Tab → https://dashboard.stripe.com → Log in → Payments: confirm $399 + $99 charge. Tab → https://app.supabase.com → project → Table Editor → tenants: new row. Tab → [YOUR-PRODUCTION-URL]/admin/dashboard → confirm new tenant. Resend: onboarding email sent.
   [ ] 15.4 — Optional (if metrics good 2+ days): Campaign → Options tab → Daily limit field → change 20 to 40 or 60 → Save. Leave "Pause on reply" ON.
 
 --------------------------------------------------------------------------------
@@ -309,8 +310,8 @@ PATH 1 — SOURCES (verified — every phase)
 ################################################################################
   [x] Vercel KV, Resend webhook, Admin, Health, Demo URL verified (Phase 1)
   [x] Wording/copy optimized (inbox + dashboard + optional CRM) on live bar, features, activate, leads page, docs/setup
-  [x] Lead delivery: instant email to installer (Tenants "Notification Email" in Airtable + Resend); report handleLeadSubmit wires to POST /api/lead
-  [x] /api/health covers all APIs (airtable, stripe, nrel, eia, resend, google_geocoding, google_places when key set); /status page shows clear checkmarks and status
+  [x] Lead delivery: instant email to installer (Tenants "Notification Email" in Supabase + Resend); report handleLeadSubmit wires to POST /api/lead
+  [x] /api/health covers all APIs (supabase, stripe, nrel, eia, resend, google_geocoding, google_places when key set); /status page shows clear checkmarks and status
   [x] Smoke tests pass (BASE_URL=prod): health, geo, estimate, landing, report, status 200, demo copy, lead API 400
   [ ] Instantly + Snov.io Starter + 4 (or 5) Google Workspace accounts (getsunspire, sunspirequote, sunspiretool, usesunspire)
   [ ] Namecheap SPF/DKIM/DMARC for all 4 sending domains; 4 (or 5) accounts connected in Instantly
@@ -366,7 +367,7 @@ PATH 2 — STEPS 8–18: SAME AS PATH 1 (assign accounts, sequence, schedule, op
   [ ] 10 — Same as Path 1 Step 12: Schedule Tue–Thu 9:30–15:30; Options: Daily limit 20, Stop on reply ON. Save.
   [ ] 11 — Same as Path 1 Step 13: Preview → Send test → Launch.
   [ ] 12 — Same as Path 1 Step 14: AI Reply Agent, Autopilot, instructions use demo_url for demo requests. Save.
-  [ ] 13 — First sale: daily Analytics + Unibox replies; Stripe/Airtable/Admin when they pay; optional increase daily limit.
+  [ ] 13 — First sale: daily Analytics + Unibox replies; Stripe/Supabase/Admin when they pay; optional increase daily limit.
   [ ] 14 — Scale to 10: SuperSearch new search (different filters/region) → Find Email (Full profile) → optionally AI demo_url → Move to new campaign "Solar Outreach - Batch 2". Same sequence, Schedule, Options, Launch. Assign AI Agent. Repeat. Target $990 MRR.
   [ ] 15 — Scale to 100: Upgrade Instantly (Hypergrowth) if needed. More SuperSearch lists → Move to new campaigns. Optional: more Google users + domains + Instantly accounts. Target $9,900 MRR.
   [ ] 16 — Scale to 1,000: Large SuperSearch batches (or export to Sheet + CompanyDomain + DemoURL + Add Leads Google Sheets). List-Unsubscribe + DNS for 5k+/day. Target $99K MRR.

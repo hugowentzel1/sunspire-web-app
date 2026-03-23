@@ -6,8 +6,7 @@ export async function POST(req: Request) {
     const { name, email, domain, brand, primary, logo, demoLink, source } =
       body;
 
-    // TODO: Call Airtable here with the demo lead data
-    // For now, just log the data
+    // Demo leads: optionally persist to Supabase (e.g. demo_leads table) or just log
     console.log("Demo lead captured:", {
       name,
       email,

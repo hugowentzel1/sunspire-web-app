@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { upsertLead } from "@/src/lib/airtable";
+import { upsertLead } from "@/src/lib/storage";
 import { checkRateLimit } from "@/src/lib/ratelimit";
 
 // Helper function to extract client IP

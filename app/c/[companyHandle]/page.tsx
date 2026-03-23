@@ -36,7 +36,7 @@ export default function CompanyDashboard() {
   const fetchTenantData = useCallback(async () => {
     console.log('🔧 fetchTenantData called for:', companyHandle);
     try {
-      // In production, this would fetch from Airtable via API
+      // In production, this fetches from Supabase via API
       // For now, generate the data based on company handle
       const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
       

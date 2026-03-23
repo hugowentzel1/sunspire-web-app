@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { upsertTenantByHandle } from "../../../../src/lib/airtable";
+import { upsertTenantByHandle } from "../../../../src/lib/storage";
 import { logger } from "../../../../src/lib/logger";
 import { nanoid } from "nanoid";
 import { z } from "zod";

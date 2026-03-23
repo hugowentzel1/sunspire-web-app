@@ -159,7 +159,7 @@ export const circuitBreakers = {
     failureThreshold: 5,
     resetTimeout: 60000,
   }),
-  airtable: new CircuitBreaker({
+  supabase: new CircuitBreaker({
     failureThreshold: 10,
     resetTimeout: 30000, // 30 seconds
   }),

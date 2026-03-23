@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     // In production, you would:
-    // 1. Save to your database (Airtable, etc.)
+    // 1. Save to your database (Supabase)
     // 2. Send notification emails
     // 3. Integrate with CRM systems
     // 4. Track analytics

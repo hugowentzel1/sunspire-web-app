@@ -16,7 +16,7 @@
  * ✅ MOBILE RESPONSIVENESS (All devices, touch interactions)
  * ✅ ACCESSIBILITY (Screen readers, keyboard navigation, WCAG compliance)
  * ✅ PERFORMANCE (Load times, memory usage, optimization)
- * ✅ INTEGRATION (Stripe webhooks, Airtable sync, email systems)
+ * ✅ INTEGRATION (Stripe webhooks, Supabase sync, email systems)
  * ✅ POST-PURCHASE FLOW (Activation, domain setup, customer dashboard)
  * ✅ BUSINESS MODEL (Demo quotas, paywalls, upgrade flows)
  * ✅ EDGE CASES (Invalid data, network failures, concurrent access)

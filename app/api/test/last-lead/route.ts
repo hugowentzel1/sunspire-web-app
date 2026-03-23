@@ -1,22 +1,5 @@
 import { NextResponse } from "next/server";
-import Airtable from "airtable";
-
-const baseId = process.env.AIRTABLE_BASE_ID!;
-const apiKey = process.env.AIRTABLE_API_KEY!;
-
-async function getLastLeadForTenant(handle: string) {
-  const base = new Airtable({ apiKey }).base(baseId);
-  const records = await base("Leads")
-    .select({
-      filterByFormula: `{Company Handle} = "${handle}"`,
-      sort: [{ field: "Created", direction: "desc" }],
-      pageSize: 1,
-    })
-    .all();
-  const r = records[0];
-  if (!r) return null;
-  return { id: r.id, fields: r.fields };
-}
+import { getLastLeadForTenant } from "@/src/lib/storage";
 
 export async function GET(req: Request) {
   const url = new URL(req.url);
@@ -37,9 +20,9 @@ export async function GET(req: Request) {
   try {
     const last = await getLastLeadForTenant(tenant);
     return NextResponse.json({ ok: true, last }, { status: 200 });
-  } catch (e: any) {
+  } catch (e: unknown) {
     return NextResponse.json(
-      { ok: false, error: String(e?.message || e) },
+      { ok: false, error: String(e instanceof Error ? e.message : e) },
       { status: 500 },
     );
   }

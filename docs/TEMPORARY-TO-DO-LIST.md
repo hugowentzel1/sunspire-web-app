@@ -17,6 +17,8 @@
 
 **Airtable is completely gone when we’re done.** There is no dual backend and no `STORAGE_BACKEND` switch. The app will use **Supabase only** for tenants, leads, users, and links. All code that currently uses Airtable will be replaced by Supabase (DAL + routes). Then `src/lib/airtable.ts` and every Airtable env var will be removed. When the list is complete, Sunspire is **ready to ship** with Supabase as the single source of truth and all goals below met.
 
+**Local first, then push and test live:** For steps that involve running tests (e.g. 31, 32), get everything passing **locally** first (`npm run dev` then `npm run verify:local` or `verify:local:headed`). Only then push your branch, wait for Vercel deploy, and run the same matrix against the live URL. Don't push until local is green.
+
 **Optional "additional comments" box — answer (sources amalgamated):** Solar forms (Sky Power, Progressive Energy, Mobile2b) often include an optional Message / Additional information field. Research: optional fields can help when clearly optional; one optional line on a high-intent step is common. **Verdict: Yes — add one optional "Any additional comments or notes?" so installers get context; keep it optional and short.** Saved in backend; no Zapier needed.
 
 **Supabase: what gets saved and who sees it**
@@ -389,11 +391,15 @@ Tests are storage-agnostic and Supabase-backed: **tests/e2e/report-lead-modal-no
 
 ---
 
-- [ ] **Step 31** — Run full matrix locally — **YOU** (.env.local + run dev) + **ME** (run tests, fix)
+- [x] **Step 31** — Run full matrix locally — **YOU** (.env.local + run dev) + **ME** (run tests, fix)
 
 ### Step 31 — Run full matrix locally — **YOU** + **ME**
 
 **YOU:** Ensure **.env.local** has `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` (staging). From repo root run: `npm run dev`. I’ll run the full Playwright + API suite and fix failures until green. You confirm when I say “run: npm run test:e2e” (or similar) and paste the result if anything fails.
+
+**Local-first flow (do this before pushing):** (1) Ensure `.env.local` has `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY`. (2) Terminal 1: `npm run dev`. (3) Terminal 2: **`npm run verify:local`** — waits for server, runs API check, then full Playwright matrix (Chromium). To see the browser: **`npm run verify:local:headed`**. (4) When all pass, Step 31 done; then do Step 32.
+
+**Local URLs:** Demo: `http://localhost:3000/?company=Metaca&demo=1`. Paid: `http://localhost:3000/paid?company=paid`.
 
 ---
 
@@ -404,8 +410,10 @@ Tests are storage-agnostic and Supabase-backed: **tests/e2e/report-lead-modal-no
 1. **Vercel** → your Sunspire project → **Deployments**.
 2. Ensure the **supabase-migration** branch is deployed (push the branch if needed; Vercel will build it). Or **Settings** → **Git** → ensure the repo is connected and the branch is in the list.
 3. Open the **Preview** deployment URL for **supabase-migration** (from Deployments list).
-4. In that deployment, **Settings** → **Environment Variables**: for **Preview**, set `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` (staging) if not already set. Redeploy that branch if needed.
-5. In terminal (repo): `BASE_URL=<preview-url> npx playwright test tests/api/route-integration.spec.ts tests/e2e/smoke.spec.ts tests/e2e/full-user-journey.spec.ts` (I’ll give the exact command). Run it; tell me if any test fails.
+4. In that deployment, **Settings** → **Environment Variables**: for **Preview**, set staging Supabase (`SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY`, **or** `SUPABASE_URL_STAGING` + `SUPABASE_SERVICE_ROLE_KEY_STAGING`). For **Production**, set prod pair or generic keys. Also set `RESEND_API_KEY` if you want installer emails; the lead API uses a **bounded Resend timeout** so a stuck email send cannot cause a 504. Redeploy after env changes.
+5. **After deploy is Ready**, in terminal: `BASE_URL=<your-preview-or-prod-url> npm run test:matrix:stable`. Example prod: `BASE_URL=https://sunspire-web-app.vercel.app npm run test:matrix:stable`. When all tests pass, mark Step 32 done.
+
+**Rule:** Do Step 32 only after Step 31 passes locally. Push → wait for deploy → run matrix against live URL.
 
 ---
 

@@ -460,6 +460,11 @@ function ReportContent() {
         lat: String(lat), 
         lng: String(lng), 
         systemKw: '7.2',
+        // These defaults must be sent; the estimate route relies on them for PVWatts/shading.
+        // Without them, local estimate generation can hang and the report stays on the loading spinner.
+        tilt: '20',
+        azimuth: '180',
+        lossesPct: '14',
         ...(state && { state }),
         ...(placeId && { placeId }),
         _t: Date.now().toString() // Cache busting

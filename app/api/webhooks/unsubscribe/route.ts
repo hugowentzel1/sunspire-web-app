@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { upsertLeadSuppressionByEmail } from "@/src/lib/airtable";
+import { upsertLeadSuppressionByEmail } from "@/src/lib/storage";
 import { z } from "zod";
 
 const Body = z.object({

@@ -6,7 +6,7 @@ import {
 import {
   upsertLeadByEmailAndTenant,
   appendLeadNote,
-} from "../../../../src/lib/airtable";
+} from "../../../../src/lib/storage";
 import { getRate } from "../../../../src/services/rate";
 import { logger } from "../../../../src/lib/logger";
 import { z } from "zod";

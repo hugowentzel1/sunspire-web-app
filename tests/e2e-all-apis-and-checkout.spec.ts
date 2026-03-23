@@ -1,7 +1,7 @@
 /**
  * E2E: Every API + Google Autocomplete + Stripe Checkout + Post-buy dashboard (/c/[companyHandle])
  * Run: npx playwright test tests/e2e-all-apis-and-checkout.spec.ts --headed
- * Requires: npm run dev (localhost:3000) and all env vars set (Airtable, Stripe, NREL, EIA, Google, Resend optional)
+ * Requires: npm run dev (localhost:3000) and all env vars set (Supabase, Stripe, NREL, EIA, Google, Resend optional)
  */
 
 import { test, expect } from '@playwright/test';
@@ -137,7 +137,7 @@ test.describe('E2E All APIs and Checkout', () => {
     console.log('Report page: NREL/estimate content:', hasNrel, hasEstimate);
   });
 
-  test('8. Lead API (Airtable) - endpoint accepts POST and validates', async ({ request }) => {
+  test('8. Lead API (Supabase) - endpoint accepts POST and validates', async ({ request }) => {
     const res = await request.post(`${BASE}/api/lead`, {
       data: { name: 'E2E Test', email: 'e2e@test.com' },
       headers: { 'Content-Type': 'application/json' },

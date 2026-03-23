@@ -291,10 +291,10 @@ export default function SetupGuidePage() {
                     </svg>
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900">
-                    Airtable
+                    Airtable (optional)
                   </h3>
                   <p className="text-sm text-gray-600">
-                    Custom database and workflow automation
+                    Optional export; Sunspire uses Supabase as primary database
                   </p>
                   <a
                     href="/docs/crm/airtable"

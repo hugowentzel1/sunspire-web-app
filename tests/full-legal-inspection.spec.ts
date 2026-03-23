@@ -90,7 +90,7 @@ test('COMPLETE LEGAL INSPECTION - All Pages', async ({ page }) => {
   console.log('  - Has GDPR compliance:', privacyText?.includes('GDPR') || privacyText?.includes('European'));
   console.log('  - Has CCPA compliance:', privacyText?.includes('CCPA') || privacyText?.includes('California'));
   console.log('  - Has user rights:', privacyText?.includes('right') && (privacyText?.includes('access') || privacyText?.includes('delete')));
-  console.log('  - Lists subprocessors:', privacyText?.includes('Stripe') || privacyText?.includes('Airtable') || privacyText?.includes('Vercel'));
+  console.log('  - Lists subprocessors:', privacyText?.includes('Stripe') || privacyText?.includes('Supabase') || privacyText?.includes('Vercel'));
   
   await page.screenshot({ path: 'legal-inspect/04-privacy.png', fullPage: true });
   

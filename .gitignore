@@ -24,6 +24,9 @@ yarn-error.log*
 .env*.local
 .env
 
+# Airtable export CSVs (Step 23 migration; do not commit real data)
+data/airtable/
+
 # Vercel
 .vercel
 

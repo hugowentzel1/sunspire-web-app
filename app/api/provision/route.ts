@@ -4,7 +4,7 @@ import { ENV } from "@/src/config/env";
 import {
   upsertTenantByHandle,
   createOrLinkUserOwner,
-} from "@/src/lib/airtable";
+} from "@/src/lib/storage";
 
 export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => ({}));

@@ -1,8 +1,13 @@
 import { z } from "zod";
 
 const envSchema = z.object({
-  AIRTABLE_API_KEY: z.string(),
-  AIRTABLE_BASE_ID: z.string(),
+  // Supabase: use SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY, or _STAGING / _PROD per environment
+  SUPABASE_URL: z.string().url().optional(),
+  SUPABASE_SERVICE_ROLE_KEY: z.string().min(1).optional(),
+  SUPABASE_URL_STAGING: z.string().url().optional(),
+  SUPABASE_SERVICE_ROLE_KEY_STAGING: z.string().min(1).optional(),
+  SUPABASE_URL_PROD: z.string().url().optional(),
+  SUPABASE_SERVICE_ROLE_KEY_PROD: z.string().min(1).optional(),
 
   NEXT_PUBLIC_GOOGLE_MAPS_API_KEY: z.string(),
   NREL_API_KEY: z.string(),
