@@ -3,8 +3,12 @@
 **URLs:**
 - **Local:** http://localhost:3000 (run `npm run dev` first, or let Playwright start it).
 - **Live:** https://sunspire-web-app.vercel.app
-- **Demo (live):** https://sunspire-web-app.vercel.app/?company=TestCo&demo=1
-- **Paid (live):** https://sunspire-web-app.vercel.app/paid?company=TestCo
+- **Demo home (live):** https://sunspire-web-app.vercel.app/?company=TestCo&demo=1
+- **Demo + Apple logo (live):** https://sunspire-web-app.vercel.app/?company=TestCompany&domain=apple.com&demo=1
+- **Demo report (live):** https://sunspire-web-app.vercel.app/report?company=TestCo&demo=1&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA&placeId=test
+- **Paid landing (live, `paid` tenant):** https://sunspire-web-app.vercel.app/paid?company=paid
+- **Paid landing (live, `TestCo`):** https://sunspire-web-app.vercel.app/paid?company=TestCo
+- **Paid report (live):** https://sunspire-web-app.vercel.app/report?company=paid&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA&placeId=test
 - **Status (live):** https://sunspire-web-app.vercel.app/status
 - **Health API (live):** https://sunspire-web-app.vercel.app/api/health
 

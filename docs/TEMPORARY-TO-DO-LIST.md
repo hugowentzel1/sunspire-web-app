@@ -661,7 +661,11 @@ Set alerts or caps so you are not surprised by bills: Stripe (billing alert), Re
 
 ### Step 47 — What YOU personally must check (clear order)
 
-**Easiest (dashboard / “does prod work?”):** open **`https://<your-prod-host>/c/<your-handle>`** and **`…/c/<your-handle>/leads`** in the browser — real live URLs, no `demo=1` required if you’re checking as a signed-in tenant. Good = pages load, not infinite spinner or 500. Full wording: **`docs/OWNER-IN-DEPTH-PROD-CHECKLIST.md`** → **“The simple way — just check the live links.”**
+**Easiest (dashboard / “does prod work?”)** — copy-paste (prod):  
+https://sunspire-web-app.vercel.app/c/testco?demo=1 · https://sunspire-web-app.vercel.app/c/testco/leads?demo=1  
+(Alternatives if `testco` isn’t in DB: `/c/paid?demo=1`, `/c/acme-solar?demo=1` — see owner doc table.)  
+**Demo + paid pages:** https://sunspire-web-app.vercel.app/?company=TestCo&demo=1 · https://sunspire-web-app.vercel.app/paid?company=paid · https://sunspire-web-app.vercel.app/paid?company=TestCo  
+Full table of URLs: **`docs/OWNER-IN-DEPTH-PROD-CHECKLIST.md`** → **“Copy-paste URLs — demo, paid, dashboard (live)”.**
 
 **Full detail (deeper checklist):** same doc → **“Part 2 — Deeper manual checklist”**.
 
@@ -669,7 +673,7 @@ Set alerts or caps so you are not surprised by bills: Stripe (billing alert), Re
 
 | Order | What you do | Why |
 |------|-------------|-----|
-| **0** | **Live only:** open prod **`/c/<handle>`** + **`/c/<handle>/leads`** (and optionally **`/status`**, **`/api/health`**) | Fast human check — **this is fine** for “dashboard works on live.” |
+| **0** | **Live only:** e.g. https://sunspire-web-app.vercel.app/c/testco?demo=1 + https://sunspire-web-app.vercel.app/c/testco/leads?demo=1 ; optional https://sunspire-web-app.vercel.app/status + /api/health | Fast human check — **this is fine** for “dashboard works on live.” |
 | **1** | Terminal: `export ADMIN_TOKEN='…'` (recommended), then `BASE_URL=https://sunspire-web-app.vercel.app npm run verify:temp-list:prod` | Proves automated suite green **on your machine** right now. Without `ADMIN_TOKEN`, expect **2 skipped** (admin/GDPR) — that is normal, not a failure. |
 | **2** | Folder `test-results/prod-gate-visual/` — open **G01–G09** PNGs | Quick visual scan of captured prod pages. |
 | **3** | *(Optional)* `BASE_URL=… npm run verify:temp-list:prod:headed` | Watch Chromium run the same tests (~3 min). |
