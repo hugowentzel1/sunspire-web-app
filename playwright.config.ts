@@ -12,9 +12,13 @@ export default defineConfig({
     baseURL: process.env.BASE_URL || process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:3000',
     trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
-    video: 'off',
+    video: process.env.PLAYWRIGHT_VIDEO === '1' ? 'on' : 'off',
     actionTimeout: 15000,
     navigationTimeout: 20000,
+    // Slight slow-mo so headed runs are easier to follow (set HEADED_SLOW_MO=150)
+    launchOptions: process.env.HEADED_SLOW_MO
+      ? { slowMo: Math.min(2000, parseInt(process.env.HEADED_SLOW_MO, 10) || 0) }
+      : undefined,
   },
 
   projects: [
