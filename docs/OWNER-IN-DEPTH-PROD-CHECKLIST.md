@@ -5,7 +5,7 @@
 **Click through live prod in order (simple):**  
 → **[`docs/LIVE-CLICK-CHECKLIST.md`](./LIVE-CLICK-CHECKLIST.md)**
 
-That file has **one example company (TestCo / testco)**, **clickable links** for every Sunspire page, plus **Stripe, UptimeRobot, Sentry, Supabase, Vercel, Resend, GitHub** in a second table.
+That file walks **steps 1–16** in order (describe → link), using **Apple** (paid + logo) and **Meta** (`demo=1`) as the live examples, then **cost & usage** at the end.
 
 ---
 

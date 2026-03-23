@@ -6,7 +6,7 @@
 
 **Use this instead of reading this whole file:**
 
-→ **[`LIVE-CLICK-CHECKLIST.md`](./LIVE-CLICK-CHECKLIST.md)** — **TestCo / testco** example, **12 Sunspire links in order**, then **Stripe · UptimeRobot · Sentry · Supabase · Vercel · Resend · GitHub** with real dashboard URLs to click.
+→ **[`LIVE-CLICK-CHECKLIST.md`](./LIVE-CLICK-CHECKLIST.md)** — steps **1–12** Sunspire (**Apple** paid URL + **Meta** demo URL), then **13–16** Stripe / webhooks / UptimeRobot / Sentry; **cost & usage** last.
 
 Everything **below** is the **historical migration** checklist (numbered steps, ME/YOU). You can ignore it unless you’re finishing that migration.
 
@@ -661,7 +661,7 @@ I will ensure MAINTENANCE-GUIDE.md is the single place for daily/weekly/monthly 
 
 ---
 
-- [ ] **Step 46** — Cost and usage awareness (optional) — **YOU** *(Stripe / Resend / Supabase / Vercel dashboards — same tools as **Part B** in **[LIVE-CLICK-CHECKLIST.md](./LIVE-CLICK-CHECKLIST.md)**)*
+- [ ] **Step 46** — Cost and usage awareness (optional) — **YOU** *(**[LIVE-CLICK-CHECKLIST.md](./LIVE-CLICK-CHECKLIST.md)** → section **“After that — cost & usage awareness”** at the bottom)*
 
 ### Step 46 — Cost and usage awareness (YOU)
 
@@ -673,9 +673,7 @@ Set alerts or caps so you are not surprised by bills: Stripe (billing alert), Re
 
 ### Step 47 — What YOU check (simplified)
 
-**Use one file:** **[`LIVE-CLICK-CHECKLIST.md`](./LIVE-CLICK-CHECKLIST.md)**  
-→ **Part A:** 12 Sunspire links in order (TestCo / testco).  
-→ **Part B:** Stripe, UptimeRobot, Sentry, Supabase, Vercel, Resend, GitHub.
+**Use one file:** **[`LIVE-CLICK-CHECKLIST.md`](./LIVE-CLICK-CHECKLIST.md)** — numbered steps 1–16, then **cost & usage** at the bottom.
 
 **Optional terminal:** `BASE_URL=https://sunspire-web-app.vercel.app npm run verify:temp-list:prod`  
 **Optional screenshots:** `test-results/prod-gate-visual/` after the gate spec.
