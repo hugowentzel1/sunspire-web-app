@@ -1,6 +1,6 @@
 # Secrets handling
 
-- **Local:** Copy `.env.example` → `.env.local` and paste values there. `.env.local` is gitignored — never commit it.
+- **Local:** Put real values in **`.env.local`** only (or copy `.env.example` → `.env.local` and fill in). `.env.local` matches `.gitignore` rule **`.env*.local`** — it will **not** be committed. Never commit or upload this file.
 - **Production / Vercel:** Set variables in the Vercel dashboard only. Do not paste secrets into tickets, chat, or git.
 - **If secrets were exposed:** Rotate them in each provider (Stripe, Supabase, Resend, JWT, Vercel, Airtable, etc.) and update Vercel + your local `.env.local`.
 
