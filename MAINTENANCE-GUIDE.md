@@ -492,4 +492,4 @@ Details: `docs/POST-PURCHASE-FLOW.md`.
 
 ---
 
-**Hands-off after go-live:** For ongoing operations, treat **this file (`MAINTENANCE-GUIDE.md`)** as the single maintenance source: daily **UptimeRobot** + **`/status`** + **Sentry**, plus weekly/monthly sections above. Growth/outreach is **`TO-DO-LIST.md`** only. Quick prod click-through (recommended): **`docs/TEMPORARY-TO-DO-LIST.md`** → **Step 46** + **Step 47** at file start. Optional tests: **`docs/OWNER-IN-DEPTH-PROD-CHECKLIST.md`**.
+**Hands-off after go-live:** For ongoing operations, treat **this file (`MAINTENANCE-GUIDE.md`)** as the single maintenance source: daily **UptimeRobot** + **`/status`** + **Sentry**, plus weekly/monthly sections above. Growth/outreach is **`TO-DO-LIST.md`** only. Quick prod click-through (recommended): **`docs/TEMPORARY-TO-DO-LIST.md`** → **Step 46** (**1–51**) + **Step 47** (**52–55**) at file start. Optional tests: **`docs/OWNER-IN-DEPTH-PROD-CHECKLIST.md`**.

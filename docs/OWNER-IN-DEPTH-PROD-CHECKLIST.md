@@ -3,7 +3,7 @@
 ## What to actually use
 
 **Click through live prod in order (simple):**  
-→ **[`docs/TEMPORARY-TO-DO-LIST.md`](./TEMPORARY-TO-DO-LIST.md)** — **Step 46** + **Step 47** right under the title (clickable links **1–33**; repeated again in §11).
+→ **[`docs/TEMPORARY-TO-DO-LIST.md`](./TEMPORARY-TO-DO-LIST.md)** — **Step 46** + **Step 47** under the title (**1–51** + **52–55**; DEMO/PAID/INSTALLER legend; full duplicate in §11).
 
 ---
 

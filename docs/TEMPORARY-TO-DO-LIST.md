@@ -4,39 +4,101 @@
 
 ## Step 46 — Live prod verification (YOU)
 
-Open **1 → 29** in order on Sunspire / external tabs. **7** = submit one test lead from the report page you already opened (**4**, **5**, or **6**). **Meta** = demo homeowner; **Apple** = branded paid; **testco** = installer tenant used in tests.
+**Read this legend once — every label below is exact:**
 
-**1.** [Meta — demo home](https://sunspire-web-app.vercel.app/?company=meta&demo=1)  
-**2.** [Meta — `/paid` + `demo=1`](https://sunspire-web-app.vercel.app/paid?company=meta&demo=1)  
-**3.** [Apple — branded paid + logo + red](https://sunspire-web-app.vercel.app/paid?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com)  
-**4.** [Meta — demo report (numbers / NREL)](https://sunspire-web-app.vercel.app/report?company=meta&demo=1&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA&placeId=test)  
-**5.** [Apple — paid report](https://sunspire-web-app.vercel.app/report?company=Apple&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA&placeId=test)  
-**6.** [Meta — paid report (no `demo=1`)](https://sunspire-web-app.vercel.app/report?company=meta&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA&placeId=test)  
-**7.** *No new URL — on **4**, **5**, or **6**, click **Book / Request consultation** (or similar), submit one test email → checks `POST /api/lead` + Supabase (+ Resend/webhook if on).*  
-**8.** [Installer — dashboard `testco`](https://sunspire-web-app.vercel.app/c/testco?demo=1)  
-**9.** [Installer — leads `testco`](https://sunspire-web-app.vercel.app/c/testco/leads?demo=1)  
-**10.** [Installer — success `testco`](https://sunspire-web-app.vercel.app/c/testco/success?demo=1)  
-**11.** [System status](https://sunspire-web-app.vercel.app/status)  
-**12.** [Health JSON](https://sunspire-web-app.vercel.app/api/health)  
-**13.** [Terms](https://sunspire-web-app.vercel.app/legal/terms)  
-**14.** [Privacy](https://sunspire-web-app.vercel.app/legal/privacy)  
-**15.** [Docs — setup](https://sunspire-web-app.vercel.app/docs/setup)  
-**16.** [Docs — CRM](https://sunspire-web-app.vercel.app/docs/crm)  
-**17.** [Docs — API](https://sunspire-web-app.vercel.app/docs/api)  
-**18.** [Docs — embed](https://sunspire-web-app.vercel.app/docs/embed)  
-**19.** [Admin (token prompt)](https://sunspire-web-app.vercel.app/admin/dashboard)  
-**20.** [Homepage](https://sunspire-web-app.vercel.app/)  
-**21.** [Another company example — `/paid` + Google + demo](https://sunspire-web-app.vercel.app/paid?company=Google&demo=1)  
-**22.** [Stripe Dashboard](https://dashboard.stripe.com)  
-**23.** [Stripe Webhooks](https://dashboard.stripe.com/webhooks)  
-**24.** [UptimeRobot](https://dashboard.uptimerobot.com/dashboard)  
-**25.** [Sentry](https://sentry.io)  
-**26.** [Supabase](https://supabase.com/dashboard)  
-**27.** [Vercel](https://vercel.com/dashboard)  
-**28.** [Resend](https://resend.com/overview)  
-**29.** [GitHub Actions — repo](https://github.com/hugowentzel1/sunspire-web-app/actions)  
+| Label | Meaning |
+|--------|---------|
+| **HOMEOWNER · DEMO** | URL has **`demo=1`** on `/`, `/paid`, or `/report` → **prospect / trial** UI (unlock banner, demo quota, etc.). |
+| **HOMEOWNER · PAID** | Same routes **without** `demo=1` → **post-purchase / real customer** homeowner experience. |
+| **INSTALLER · PREVIEW** | `/c/<handle>?demo=1` (and related) → **tenant dashboard preview** only; `demo=1` here is **not** the same as homeowner DEMO. |
+| **OPS / MARKETING** | Public Sunspire pages, legal, docs, health — not tied to demo vs paid. |
+
+**Shared report query (Mountain View test address):**  
+`address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA&placeId=test`
+
+Open **1 → 51** in order. **12** = submit **one test lead** from a report you already opened (**8–11**). **Companies:** **meta**, **Apple**, **Google** (homeowner examples); **testco** (installer slug used in tests).
+
+---
+
+### A — Homeowner: `/` and `/paid` (DEMO vs PAID)
+
+**1.** **HOMEOWNER · DEMO** — Home + Meta: [`/?company=meta&demo=1`](https://sunspire-web-app.vercel.app/?company=meta&demo=1)  
+**2.** **HOMEOWNER · DEMO** — `/paid` + Meta + `demo=1`: [`/paid?company=meta&demo=1`](https://sunspire-web-app.vercel.app/paid?company=meta&demo=1)  
+**3.** **HOMEOWNER · DEMO** — `/paid` + Google + `demo=1`: [`/paid?company=Google&demo=1`](https://sunspire-web-app.vercel.app/paid?company=Google&demo=1)  
+**4.** **HOMEOWNER · PAID** — **Instant URL** (redirects to `/paid?company=…` **without** `demo=1`): [`/meta`](https://sunspire-web-app.vercel.app/meta)  
+**5.** **HOMEOWNER · PAID** — `/paid` + Meta, **no** `demo=1`: [`/paid?company=meta`](https://sunspire-web-app.vercel.app/paid?company=meta)  
+**6.** **HOMEOWNER · PAID** — `/paid` + Apple, **no** `demo=1`, **no** extra branding params: [`/paid?company=Apple`](https://sunspire-web-app.vercel.app/paid?company=Apple)  
+**7.** **HOMEOWNER · PAID** — `/paid` + Apple + **branded** (logo + color): [`/paid?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com`](https://sunspire-web-app.vercel.app/paid?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com)  
+
+### B — Homeowner: `/report` (DEMO vs PAID)
+
+**8.** **REPORT · DEMO** — Meta + `demo=1` + address: [`/report?company=meta&demo=1&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA&placeId=test`](https://sunspire-web-app.vercel.app/report?company=meta&demo=1&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA&placeId=test)  
+**9.** **REPORT · DEMO** — Apple + `demo=1` + address: [`/report?company=Apple&demo=1&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA&placeId=test`](https://sunspire-web-app.vercel.app/report?company=Apple&demo=1&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA&placeId=test)  
+**10.** **REPORT · PAID** — Meta, **no** `demo=1`: [`/report?company=meta&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA&placeId=test`](https://sunspire-web-app.vercel.app/report?company=meta&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA&placeId=test)  
+**11.** **REPORT · PAID** — Apple, **no** `demo=1`: [`/report?company=Apple&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA&placeId=test`](https://sunspire-web-app.vercel.app/report?company=Apple&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA&placeId=test)  
+
+**12.** **LEAD E2E (no new tab)** — On **8**, **9**, **10**, or **11**: click **Book / Request consultation** (or equivalent) → submit **one** test email + consent → confirms **`POST /api/lead`** → Supabase **`leads`** → optional Resend / CRM webhook.
+
+### C — Installer tenant UI (`testco` + `demo=1` preview)
+
+**13.** **INSTALLER · PREVIEW** — Dashboard: [`/c/testco?demo=1`](https://sunspire-web-app.vercel.app/c/testco?demo=1)  
+**14.** **INSTALLER · PREVIEW** — Leads: [`/c/testco/leads?demo=1`](https://sunspire-web-app.vercel.app/c/testco/leads?demo=1)  
+**15.** **INSTALLER · PREVIEW** — Success / activation copy: [`/c/testco/success?demo=1`](https://sunspire-web-app.vercel.app/c/testco/success?demo=1)  
+**16.** **INSTALLER · PREVIEW** — Cancel / churn messaging: [`/c/testco/cancel?demo=1`](https://sunspire-web-app.vercel.app/c/testco/cancel?demo=1)  
+
+### D — Post-checkout / activation (buyer flow surface)
+
+**17.** **ACTIVATION** — `/activate` (test query; page may partial-load without real Stripe session): [`/activate?company=testco&session_id=cs_test_a1&plan=starter`](https://sunspire-web-app.vercel.app/activate?company=testco&session_id=cs_test_a1&plan=starter)  
+
+### E — OPS / health / marketing / compliance (matches `full-docs-and-pages` + public app routes)
+
+**18.** **OPS** — Status: [`/status`](https://sunspire-web-app.vercel.app/status)  
+**19.** **OPS** — Health JSON: [`/api/health`](https://sunspire-web-app.vercel.app/api/health)  
+**20.** **MARKETING** — Support: [`/support`](https://sunspire-web-app.vercel.app/support)  
+**21.** **MARKETING** — Pricing: [`/pricing`](https://sunspire-web-app.vercel.app/pricing)  
+**22.** **MARKETING** — Contact: [`/contact`](https://sunspire-web-app.vercel.app/contact)  
+**23.** **MARKETING** — Methodology: [`/methodology`](https://sunspire-web-app.vercel.app/methodology)  
+**24.** **MARKETING** — Signup: [`/signup`](https://sunspire-web-app.vercel.app/signup)  
+**25.** **MARKETING** — Partners: [`/partners`](https://sunspire-web-app.vercel.app/partners)  
+**26.** **COMPLIANCE** — Security: [`/security`](https://sunspire-web-app.vercel.app/security)  
+**27.** **COMPLIANCE** — DPA: [`/dpa`](https://sunspire-web-app.vercel.app/dpa)  
+**28.** **COMPLIANCE** — Do not sell: [`/do-not-sell`](https://sunspire-web-app.vercel.app/do-not-sell)  
+**29.** **LEGAL** — Terms: [`/legal/terms`](https://sunspire-web-app.vercel.app/legal/terms)  
+**30.** **LEGAL** — Privacy (canonical): [`/legal/privacy`](https://sunspire-web-app.vercel.app/legal/privacy)  
+**31.** **LEGAL** — Refund: [`/legal/refund`](https://sunspire-web-app.vercel.app/legal/refund)  
+**32.** **LEGAL** — Accessibility: [`/legal/accessibility`](https://sunspire-web-app.vercel.app/legal/accessibility)  
+**33.** **LEGAL** — Cookies: [`/legal/cookies`](https://sunspire-web-app.vercel.app/legal/cookies)  
+
+### F — Installer docs (CRM + API + embed + branding)
+
+**34.** [`/docs/setup`](https://sunspire-web-app.vercel.app/docs/setup)  
+**35.** [`/docs/api`](https://sunspire-web-app.vercel.app/docs/api)  
+**36.** [`/docs/embed`](https://sunspire-web-app.vercel.app/docs/embed)  
+**37.** [`/docs/branding`](https://sunspire-web-app.vercel.app/docs/branding)  
+**38.** [`/docs/crm`](https://sunspire-web-app.vercel.app/docs/crm)  
+**39.** [`/docs/crm/hubspot`](https://sunspire-web-app.vercel.app/docs/crm/hubspot)  
+**40.** [`/docs/crm/salesforce`](https://sunspire-web-app.vercel.app/docs/crm/salesforce)  
+**41.** [`/docs/crm/airtable`](https://sunspire-web-app.vercel.app/docs/crm/airtable) *(legacy path name; copy should reference Supabase / not built-in)*  
+
+### G — Admin + root
+
+**42.** **ADMIN** — Dashboard (token prompt): [`/admin/dashboard`](https://sunspire-web-app.vercel.app/admin/dashboard)  
+**43.** **MARKETING** — Homepage: [`/`](https://sunspire-web-app.vercel.app/)  
+
+### H — External dashboards (log in)
+
+**44.** [Stripe Dashboard](https://dashboard.stripe.com)  
+**45.** [Stripe Webhooks](https://dashboard.stripe.com/webhooks)  
+**46.** [UptimeRobot](https://dashboard.uptimerobot.com/dashboard)  
+**47.** [Sentry](https://sentry.io)  
+**48.** [Supabase](https://supabase.com/dashboard)  
+**49.** [Vercel](https://vercel.com/dashboard)  
+**50.** [Resend](https://resend.com/overview)  
+**51.** [GitHub Actions — sunspire-web-app](https://github.com/hugowentzel1/sunspire-web-app/actions)  
 
 **Optional terminal:** `BASE_URL=https://sunspire-web-app.vercel.app npm run verify:temp-list:prod`
+
+**APIs you don’t open in a browser (covered by tests / curl):** `GET /api/estimate`, `GET /api/geo/normalize`, `POST /api/lead` (via step **12**), `POST /api/stripe/webhook` (Stripe dashboard), `POST /api/gdpr/*` (admin).
 
 ---
 
@@ -44,10 +106,10 @@ Open **1 → 29** in order on Sunspire / external tabs. **7** = submit one test 
 
 Open each; add **billing / usage alerts** in that product’s settings.
 
-**30.** [Stripe — billing overview](https://dashboard.stripe.com/settings/billing/overview)  
-**31.** [Resend — overview / usage](https://resend.com/overview)  
-**32.** [Supabase — dashboard (then your project → Settings / usage)](https://supabase.com/dashboard)  
-**33.** [Vercel — dashboard (team → Usage / Billing)](https://vercel.com/dashboard)  
+**52.** [Stripe — billing overview](https://dashboard.stripe.com/settings/billing/overview)  
+**53.** [Resend — overview / usage](https://resend.com/overview)  
+**54.** [Supabase — dashboard → project → Settings / usage](https://supabase.com/dashboard)  
+**55.** [Vercel — dashboard → team Usage / Billing](https://vercel.com/dashboard)  
 
 ---
 
@@ -570,7 +632,7 @@ Nothing for you to click.
 
 **ME (done):** Full prod Playwright bundle: **`npm run verify:temp-list:prod`**. Screenshots: **`test-results/prod-gate-visual/`** (gitignored).
 
-**YOU:** Click **every link in Step 46 and Step 47** (first sections under the title in this file — **1** through **33**). Optionally run **`verify:temp-list:prod`** once. Read the docs in (1) if you’re doing full sign-off.
+**YOU:** Click **every link in Step 46 and Step 47** (under the title — **1** through **51**, then **52** through **55**). Optionally run **`verify:temp-list:prod`** once. Read the docs in (1) if you’re doing full sign-off.
 
 ---
 
@@ -624,14 +686,14 @@ Before you sign off as **ready for cold emailing**, every item below must be ver
 
 **ME (done):**
 
-- **Step 46 + Step 47** (first sections in this file; links **1–33**) + **`docs/API-AND-MAINTENANCE-VERIFICATION.md`** + **`docs/OWNER-IN-DEPTH-PROD-CHECKLIST.md`** (optional tests).
+- **Step 46 + Step 47** (under file title; **1–51** + **52–55**) + **`docs/API-AND-MAINTENANCE-VERIFICATION.md`** + **`docs/OWNER-IN-DEPTH-PROD-CHECKLIST.md`** (optional tests).
 - **`tests/e2e/temporary-list-final-gate.spec.ts`** — visual screenshots **G01–G09** (+ **G10** if `ADMIN_TOKEN` set); API checks **A01–A12** (health, estimate, geo, lead, tenant 401, crm-webhook, stripe webhook 400, gdpr 401, synthetic-results).
 - **`npm run verify:temp-list:prod`** — runs gate + status mapping + matrix + full-docs (same coverage as prior **38** + **17** docs + gate).
 - **Still YOU-only (cannot automate without your accounts):** Resend inbox proof, CRM webhook receiver proof, real Stripe payment + webhook replay, Supabase Table Editor row confirmation for a **real** tenant slug.
 
-**YOU:** **Step 46** links **1–29** + **7** (test lead on report **4** / **5** / **6**) + confirm Supabase + dashboard + email/webhook.
+**YOU:** **Step 46** items **1–51** + **12** (test lead from report **8–11**) + confirm Supabase + dashboard + email/webhook.
 
-**Clarity:** **`verify:temp-list:prod`** = automation only. “Cold-email ready” still means **you** proved one lead end-to-end + Stripe webhook + monitoring (**Step 46** links **22–25**).
+**Clarity:** **`verify:temp-list:prod`** = automation only. “Cold-email ready” still means **you** proved one lead end-to-end + Stripe webhook + monitoring (**Step 46** items **44–47**).
 
 ---
 
@@ -685,7 +747,7 @@ After **supabase-migration** is merged to **main** and production is deployed fr
 
 ## 11. Hands-off and 100% shippable (ready for cold email)
 
-- [ ] **Step 44** — UptimeRobot + Sentry alerts verified — **YOU** *(same as **Step 46** links **24** and **25** below — repeated here so you don’t hunt)*
+- [ ] **Step 44** — UptimeRobot + Sentry alerts verified — **YOU** *(same as **Step 46** items **46** and **47**)*
 
 ### Step 44 — UptimeRobot + Sentry alerts verified (YOU)
 
@@ -706,41 +768,63 @@ I will ensure MAINTENANCE-GUIDE.md is the single place for daily/weekly/monthly 
 
 - [ ] **Step 46** — **YOUR** live prod verification (open every link in order) — **YOU**
 
-### Step 46 — Live prod verification — same links again (YOU)
+### Step 46 — Live prod verification — full duplicate (YOU)
 
-*(Duplicate of **## Step 46** at the document start — every link is clickable again here.)*
+*(Same checklist and numbering as **## Step 46** at the document start — DEMO / PAID / INSTALLER labels apply the same way.)*
 
-**1.** [Meta — demo home](https://sunspire-web-app.vercel.app/?company=meta&demo=1)  
-**2.** [Meta — `/paid` + `demo=1`](https://sunspire-web-app.vercel.app/paid?company=meta&demo=1)  
-**3.** [Apple — branded paid + logo + red](https://sunspire-web-app.vercel.app/paid?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com)  
-**4.** [Meta — demo report](https://sunspire-web-app.vercel.app/report?company=meta&demo=1&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA&placeId=test)  
-**5.** [Apple — paid report](https://sunspire-web-app.vercel.app/report?company=Apple&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA&placeId=test)  
-**6.** [Meta — paid report (no demo)](https://sunspire-web-app.vercel.app/report?company=meta&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA&placeId=test)  
-**7.** *On **4** / **5** / **6** → Book consultation → one test lead.*  
-**8.** [Dashboard `testco`](https://sunspire-web-app.vercel.app/c/testco?demo=1)  
-**9.** [Leads `testco`](https://sunspire-web-app.vercel.app/c/testco/leads?demo=1)  
-**10.** [Success `testco`](https://sunspire-web-app.vercel.app/c/testco/success?demo=1)  
-**11.** [Status](https://sunspire-web-app.vercel.app/status)  
-**12.** [Health](https://sunspire-web-app.vercel.app/api/health)  
-**13.** [Terms](https://sunspire-web-app.vercel.app/legal/terms)  
-**14.** [Privacy](https://sunspire-web-app.vercel.app/legal/privacy)  
-**15.** [Docs setup](https://sunspire-web-app.vercel.app/docs/setup)  
-**16.** [Docs CRM](https://sunspire-web-app.vercel.app/docs/crm)  
-**17.** [Docs API](https://sunspire-web-app.vercel.app/docs/api)  
-**18.** [Docs embed](https://sunspire-web-app.vercel.app/docs/embed)  
-**19.** [Admin](https://sunspire-web-app.vercel.app/admin/dashboard)  
-**20.** [Homepage](https://sunspire-web-app.vercel.app/)  
-**21.** [Paid + Google + demo](https://sunspire-web-app.vercel.app/paid?company=Google&demo=1)  
-**22.** [Stripe](https://dashboard.stripe.com)  
-**23.** [Stripe Webhooks](https://dashboard.stripe.com/webhooks)  
-**24.** [UptimeRobot](https://dashboard.uptimerobot.com/dashboard)  
-**25.** [Sentry](https://sentry.io)  
-**26.** [Supabase](https://supabase.com/dashboard)  
-**27.** [Vercel](https://vercel.com/dashboard)  
-**28.** [Resend](https://resend.com/overview)  
-**29.** [GitHub Actions](https://github.com/hugowentzel1/sunspire-web-app/actions)  
+**1.** [HOMEOWNER · DEMO — `/?company=meta&demo=1`](https://sunspire-web-app.vercel.app/?company=meta&demo=1)  
+**2.** [HOMEOWNER · DEMO — `/paid?company=meta&demo=1`](https://sunspire-web-app.vercel.app/paid?company=meta&demo=1)  
+**3.** [HOMEOWNER · DEMO — `/paid?company=Google&demo=1`](https://sunspire-web-app.vercel.app/paid?company=Google&demo=1)  
+**4.** [HOMEOWNER · PAID — instant `/meta`](https://sunspire-web-app.vercel.app/meta)  
+**5.** [HOMEOWNER · PAID — `/paid?company=meta`](https://sunspire-web-app.vercel.app/paid?company=meta)  
+**6.** [HOMEOWNER · PAID — `/paid?company=Apple`](https://sunspire-web-app.vercel.app/paid?company=Apple)  
+**7.** [HOMEOWNER · PAID — Apple branded paid](https://sunspire-web-app.vercel.app/paid?company=Apple&brandColor=%23FF0000&logo=https%3A%2F%2Flogo.clearbit.com%2Fapple.com)  
+**8.** [REPORT · DEMO — meta](https://sunspire-web-app.vercel.app/report?company=meta&demo=1&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA&placeId=test)  
+**9.** [REPORT · DEMO — Apple](https://sunspire-web-app.vercel.app/report?company=Apple&demo=1&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA&placeId=test)  
+**10.** [REPORT · PAID — meta](https://sunspire-web-app.vercel.app/report?company=meta&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA&placeId=test)  
+**11.** [REPORT · PAID — Apple](https://sunspire-web-app.vercel.app/report?company=Apple&address=1600+Amphitheatre+Parkway&lat=37.422&lng=-122.084&state=CA&placeId=test)  
+**12.** *LEAD E2E — on **8–11**, Book consultation → one test submit.*  
+**13.** [INSTALLER · PREVIEW — `/c/testco?demo=1`](https://sunspire-web-app.vercel.app/c/testco?demo=1)  
+**14.** [INSTALLER · PREVIEW — leads](https://sunspire-web-app.vercel.app/c/testco/leads?demo=1)  
+**15.** [INSTALLER · PREVIEW — success](https://sunspire-web-app.vercel.app/c/testco/success?demo=1)  
+**16.** [INSTALLER · PREVIEW — cancel](https://sunspire-web-app.vercel.app/c/testco/cancel?demo=1)  
+**17.** [ACTIVATE — test query](https://sunspire-web-app.vercel.app/activate?company=testco&session_id=cs_test_a1&plan=starter)  
+**18.** [OPS — status](https://sunspire-web-app.vercel.app/status)  
+**19.** [OPS — health](https://sunspire-web-app.vercel.app/api/health)  
+**20.** [MARKETING — support](https://sunspire-web-app.vercel.app/support)  
+**21.** [MARKETING — pricing](https://sunspire-web-app.vercel.app/pricing)  
+**22.** [MARKETING — contact](https://sunspire-web-app.vercel.app/contact)  
+**23.** [MARKETING — methodology](https://sunspire-web-app.vercel.app/methodology)  
+**24.** [MARKETING — signup](https://sunspire-web-app.vercel.app/signup)  
+**25.** [MARKETING — partners](https://sunspire-web-app.vercel.app/partners)  
+**26.** [COMPLIANCE — security](https://sunspire-web-app.vercel.app/security)  
+**27.** [COMPLIANCE — dpa](https://sunspire-web-app.vercel.app/dpa)  
+**28.** [COMPLIANCE — do-not-sell](https://sunspire-web-app.vercel.app/do-not-sell)  
+**29.** [LEGAL — terms](https://sunspire-web-app.vercel.app/legal/terms)  
+**30.** [LEGAL — privacy](https://sunspire-web-app.vercel.app/legal/privacy)  
+**31.** [LEGAL — refund](https://sunspire-web-app.vercel.app/legal/refund)  
+**32.** [LEGAL — accessibility](https://sunspire-web-app.vercel.app/legal/accessibility)  
+**33.** [LEGAL — cookies](https://sunspire-web-app.vercel.app/legal/cookies)  
+**34.** [docs/setup](https://sunspire-web-app.vercel.app/docs/setup)  
+**35.** [docs/api](https://sunspire-web-app.vercel.app/docs/api)  
+**36.** [docs/embed](https://sunspire-web-app.vercel.app/docs/embed)  
+**37.** [docs/branding](https://sunspire-web-app.vercel.app/docs/branding)  
+**38.** [docs/crm](https://sunspire-web-app.vercel.app/docs/crm)  
+**39.** [docs/crm/hubspot](https://sunspire-web-app.vercel.app/docs/crm/hubspot)  
+**40.** [docs/crm/salesforce](https://sunspire-web-app.vercel.app/docs/crm/salesforce)  
+**41.** [docs/crm/airtable](https://sunspire-web-app.vercel.app/docs/crm/airtable)  
+**42.** [ADMIN](https://sunspire-web-app.vercel.app/admin/dashboard)  
+**43.** [Homepage](https://sunspire-web-app.vercel.app/)  
+**44.** [Stripe](https://dashboard.stripe.com)  
+**45.** [Stripe Webhooks](https://dashboard.stripe.com/webhooks)  
+**46.** [UptimeRobot](https://dashboard.uptimerobot.com/dashboard)  
+**47.** [Sentry](https://sentry.io)  
+**48.** [Supabase](https://supabase.com/dashboard)  
+**49.** [Vercel](https://vercel.com/dashboard)  
+**50.** [Resend](https://resend.com/overview)  
+**51.** [GitHub Actions](https://github.com/hugowentzel1/sunspire-web-app/actions)  
 
-**Optional:** `BASE_URL=https://sunspire-web-app.vercel.app npm run verify:temp-list:prod` · screenshots `test-results/prod-gate-visual/`
+**Optional:** `BASE_URL=https://sunspire-web-app.vercel.app npm run verify:temp-list:prod` · `test-results/prod-gate-visual/`
 
 When **Step 46** and **Step 44** are done to your satisfaction, treat the list as **operationally complete**. **Step 47** optional.
 
@@ -748,14 +832,12 @@ When **Step 46** and **Step 44** are done to your satisfaction, treat the list a
 
 - [ ] **Step 47** — Cost and usage awareness (optional) — **YOU**
 
-### Step 47 — Cost & usage — same links again (YOU)
+### Step 47 — Cost & usage — full duplicate (YOU)
 
-*(Duplicate of **## Step 47** at the document start.)*
-
-**30.** [Stripe billing](https://dashboard.stripe.com/settings/billing/overview)  
-**31.** [Resend](https://resend.com/overview)  
-**32.** [Supabase](https://supabase.com/dashboard)  
-**33.** [Vercel dashboard / billing](https://vercel.com/dashboard)  
+**52.** [Stripe billing](https://dashboard.stripe.com/settings/billing/overview)  
+**53.** [Resend](https://resend.com/overview)  
+**54.** [Supabase](https://supabase.com/dashboard)  
+**55.** [Vercel](https://vercel.com/dashboard)  
 
 Set usage or billing alerts in each; monthly skim is enough.
 
