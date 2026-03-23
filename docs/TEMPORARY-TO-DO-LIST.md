@@ -419,20 +419,21 @@ Tests are storage-agnostic and Supabase-backed: **tests/e2e/report-lead-modal-no
 
 ## 8. Production cutover and Airtable removal
 
-- [ ] **Step 33** — Prepare for cutover — **YOU** (only you: pick window, don’t edit Airtable during it)
+- [x] **Step 33** — Prepare for cutover — **WAIVED** ✅ (no Airtable in scope; Zapier removed)
 
 ### Step 33 — Prepare for cutover (YOU)
 
-Pick a quiet time window. During it: don’t edit Airtable manually; avoid creating leads in production if possible until we’ve flipped to Supabase.
+**Original:** Pick a quiet time window; don’t edit Airtable during cutover.  
+**Decision (Mar 2026):** Skipped — you are **not** using Airtable going forward and **Zapier is off**, so there is no Airtable freeze window to plan. Nothing to do.
 
 ---
 
-- [ ] **Step 34** — Final import sync to Supabase prod — **YOU** (only you: export CSV, run script with prod env)
+- [x] **Step 34** — Final import sync to Supabase prod — **WAIVED** ✅ (Supabase verified; no historical CSV import)
 
 ### Step 34 — Final import sync to Supabase prod (YOU)
 
-1. In **Airtable**: export **Tenants** and **Leads** to CSV again (same as step 23).
-2. In terminal: set **SUPABASE_URL** and **SUPABASE_SERVICE_ROLE_KEY** to **prod**. Run the import script again so prod has the latest data. Check **Table Editor** in Supabase prod for counts.
+**Original:** Export Tenants/Leads from Airtable to CSV and run import script against **prod** Supabase.  
+**Decision (Mar 2026):** Skipped — you **don’t need** a one-time Airtable→Supabase import as long as **Supabase is the system of record** and **functionality is verified** (local + live matrix, `/api/health`, lead paths). New data flows through Supabase only. If you ever need old rows, you can run `scripts/import-airtable-to-supabase.mjs` manually with prod env; not required for go-live.
 
 ---
 
@@ -453,7 +454,7 @@ Pick a quiet time window. During it: don’t edit Airtable manually; avoid creat
 
 ### Step 36 — Post-cutover verification (YOU + ME)
 
-**YOU:** On **production**, run a quick pass of both personas: (1) **Sunspire customer:** open dashboard `/c/<handle>`, check leads list `/c/<handle>/leads`, confirm branding/config from Supabase. (2) **Homeowner:** open a white-labeled report URL, submit one **test** lead (e.g. test@sunspire-test.com); confirm it appears in the tenant’s leads list and that notification/Zap (if any) fired. Also check **/api/health** (200, body mentions Supabase or “ok”) and **/status** page loads. Tell me “38 done” or describe any failure. I’ll update **docs/VERIFICATION-RESULTS.md** with the Supabase cutover section.
+**YOU:** On **production**, run a quick pass of both personas: (1) **Sunspire customer:** open dashboard `/c/<handle>`, check leads list `/c/<handle>/leads`, confirm branding/config from Supabase. (2) **Homeowner:** open a white-labeled report URL, submit one **test** lead (e.g. test@sunspire-test.com); confirm it appears in the tenant’s leads list (and Resend/email if configured). Zapier is **not** in scope. Also check **/api/health** (200, body mentions Supabase or “ok”) and **/status** page loads. Tell me “38 done” or describe any failure. I’ll update **docs/VERIFICATION-RESULTS.md** with the Supabase cutover section.
 
 ---
 
