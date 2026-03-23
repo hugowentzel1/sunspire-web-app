@@ -3,7 +3,7 @@
 ## What to actually use
 
 **Click through live prod in order (simple):**  
-→ **[`docs/TEMPORARY-TO-DO-LIST.md`](./TEMPORARY-TO-DO-LIST.md)** — **“Live prod — end-to-end links (Sunspire)”** + **Step 46**. Cost alerts = **Step 47**.
+→ **[`docs/TEMPORARY-TO-DO-LIST.md`](./TEMPORARY-TO-DO-LIST.md)** — **Step 46** + **Step 47** right under the title (clickable links **1–33**; repeated again in §11).
 
 ---
 
