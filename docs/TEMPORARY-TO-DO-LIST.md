@@ -1,5 +1,17 @@
 # Temporary to‑do list — Supabase migration (every button, every step)
 
+---
+
+### Start here if you only want to verify live prod
+
+**Use this instead of reading this whole file:**
+
+→ **[`LIVE-CLICK-CHECKLIST.md`](./LIVE-CLICK-CHECKLIST.md)** — **TestCo / testco** example, **12 Sunspire links in order**, then **Stripe · UptimeRobot · Sentry · Supabase · Vercel · Resend · GitHub** with real dashboard URLs to click.
+
+Everything **below** is the **historical migration** checklist (numbered steps, ME/YOU). You can ignore it unless you’re finishing that migration.
+
+---
+
 **Goal:** Remove Airtable completely, move everything to Supabase (staging + prod), full E2E tests, and **finalize so the system is bulletproof and ready for cold emailing**. Completing every step below = all success criteria met = **Sunspire ready to ship**.
 
 **Success = all of the following:**
@@ -513,9 +525,9 @@ Nothing for you to click.
 3. ~~merge **supabase-migration** into **main**~~ **N/A (2026-03):** work is already on **`main`**.
 4. **From then on:** Open **TO-DO-LIST.md**. Your next action is **STEP 2.1** (or wherever you are). Follow that list for cold email and growth. Follow **MAINTENANCE-GUIDE.md** for daily/weekly/monthly ops. Nothing else required.
 
-**ME (done):** Full prod Playwright bundle: **`npm run verify:temp-list:prod`** (see **Step 47** + **`docs/OWNER-IN-DEPTH-PROD-CHECKLIST.md`**). Produces full-page PNGs under **`test-results/prod-gate-visual/`** (gitignored).
+**ME (done):** Full prod Playwright bundle: **`npm run verify:temp-list:prod`**. Screenshots: **`test-results/prod-gate-visual/`** (gitignored).
 
-**YOU:** Read the docs in (1), run **`verify:temp-list:prod`** locally once, confirm green, then check the box in your head.
+**YOU:** For a simple prod pass, use **`docs/LIVE-CLICK-CHECKLIST.md`** (click links). Optionally run **`verify:temp-list:prod`** once. Read the docs in (1) if you’re doing full sign-off.
 
 ---
 
@@ -569,14 +581,14 @@ Before you sign off as **ready for cold emailing**, every item below must be ver
 
 **ME (done):**
 
-- **`docs/API-AND-MAINTENANCE-VERIFICATION.md`** + **`docs/OWNER-IN-DEPTH-PROD-CHECKLIST.md`** (ordered owner steps).
+- **`docs/LIVE-CLICK-CHECKLIST.md`** (simple click list) + **`docs/API-AND-MAINTENANCE-VERIFICATION.md`** + **`docs/OWNER-IN-DEPTH-PROD-CHECKLIST.md`** (short pointer + optional tests).
 - **`tests/e2e/temporary-list-final-gate.spec.ts`** — visual screenshots **G01–G09** (+ **G10** if `ADMIN_TOKEN` set); API checks **A01–A12** (health, estimate, geo, lead, tenant 401, crm-webhook, stripe webhook 400, gdpr 401, synthetic-results).
 - **`npm run verify:temp-list:prod`** — runs gate + status mapping + matrix + full-docs (same coverage as prior **38** + **17** docs + gate).
 - **Still YOU-only (cannot automate without your accounts):** Resend inbox proof, CRM webhook receiver proof, real Stripe payment + webhook replay, Supabase Table Editor row confirmation for a **real** tenant slug.
 
-**YOU:** Follow **`docs/OWNER-IN-DEPTH-PROD-CHECKLIST.md`** — use **Part 2** (manual checklist) for **C–F** (lead side effects, Stripe, UptimeRobot, Sentry).
+**YOU:** **`docs/LIVE-CLICK-CHECKLIST.md`** (Sunspire links + Stripe / UptimeRobot / Sentry / Supabase / etc.). For cold-email proof, submit one real test lead and confirm it in Supabase + dashboard + email/webhook.
 
-**Clarity:** Checking every box under **Step 41** above = **you** verified each bullet in the browser or external dashboard. Checking only **`verify:temp-list:prod`** = automation only; **you still must** do **C** (one lead + Supabase + email/webhook), **D** (Stripe), and **F** (UptimeRobot + Sentry) for a honest “cold-email ready” sign-off.
+**Clarity:** **`verify:temp-list:prod`** = automation only. “Cold-email ready” still means **you** proved one lead end-to-end + Stripe webhook + monitoring (see **Part B** in the live click list).
 
 ---
 
@@ -630,7 +642,7 @@ After **supabase-migration** is merged to **main** and production is deployed fr
 
 ## 11. Hands-off and 100% shippable (ready for cold email)
 
-- [ ] **Step 44** — UptimeRobot + Sentry alerts verified — **YOU** *(see **OWNER-IN-DEPTH-PROD-CHECKLIST.md** Phase F)*
+- [ ] **Step 44** — UptimeRobot + Sentry alerts verified — **YOU** *(**[LIVE-CLICK-CHECKLIST.md](./LIVE-CLICK-CHECKLIST.md)** → Part B)*
 
 ### Step 44 — UptimeRobot + Sentry alerts verified (YOU)
 
@@ -649,7 +661,7 @@ I will ensure MAINTENANCE-GUIDE.md is the single place for daily/weekly/monthly 
 
 ---
 
-- [ ] **Step 46** — Cost and usage awareness (optional) — **YOU** *(see **OWNER-IN-DEPTH-PROD-CHECKLIST.md** Phase G)*
+- [ ] **Step 46** — Cost and usage awareness (optional) — **YOU** *(Stripe / Resend / Supabase / Vercel dashboards — same tools as **Part B** in **[LIVE-CLICK-CHECKLIST.md](./LIVE-CLICK-CHECKLIST.md)**)*
 
 ### Step 46 — Cost and usage awareness (YOU)
 
@@ -659,33 +671,14 @@ Set alerts or caps so you are not surprised by bills: Stripe (billing alert), Re
 
 - [ ] **Step 47** — **YOUR** ordered manual verification (open these in order) — **YOU**
 
-### Step 47 — What YOU personally must check (clear order)
+### Step 47 — What YOU check (simplified)
 
-**Easiest (dashboard / “does prod work?”)** — copy-paste (prod):  
-https://sunspire-web-app.vercel.app/c/testco?demo=1 · https://sunspire-web-app.vercel.app/c/testco/leads?demo=1  
-(Alternatives if `testco` isn’t in DB: `/c/paid?demo=1`, `/c/acme-solar?demo=1` — see owner doc table.)  
-**Demo + paid pages:** https://sunspire-web-app.vercel.app/?company=TestCo&demo=1 · https://sunspire-web-app.vercel.app/paid?company=paid · https://sunspire-web-app.vercel.app/paid?company=TestCo  
-Full table of URLs: **`docs/OWNER-IN-DEPTH-PROD-CHECKLIST.md`** → **“Copy-paste URLs — demo, paid, dashboard (live)”.**
+**Use one file:** **[`LIVE-CLICK-CHECKLIST.md`](./LIVE-CLICK-CHECKLIST.md)**  
+→ **Part A:** 12 Sunspire links in order (TestCo / testco).  
+→ **Part B:** Stripe, UptimeRobot, Sentry, Supabase, Vercel, Resend, GitHub.
 
-**Full detail (deeper checklist):** same doc → **“Part 2 — Deeper manual checklist”**.
-
-**In one list (same order as that doc):**
-
-| Order | What you do | Why |
-|------|-------------|-----|
-| **0** | **Live only:** e.g. https://sunspire-web-app.vercel.app/c/testco?demo=1 + https://sunspire-web-app.vercel.app/c/testco/leads?demo=1 ; optional https://sunspire-web-app.vercel.app/status + /api/health | Fast human check — **this is fine** for “dashboard works on live.” |
-| **1** | Terminal: `export ADMIN_TOKEN='…'` (recommended), then `BASE_URL=https://sunspire-web-app.vercel.app npm run verify:temp-list:prod` | Proves automated suite green **on your machine** right now. Without `ADMIN_TOKEN`, expect **2 skipped** (admin/GDPR) — that is normal, not a failure. |
-| **2** | Folder `test-results/prod-gate-visual/` — open **G01–G09** PNGs | Quick visual scan of captured prod pages. |
-| **3** | *(Optional)* `BASE_URL=… npm run verify:temp-list:prod:headed` | Watch Chromium run the same tests (~3 min). |
-| **4** | Browser **A1–A6:** demo home → report → paid → **/status** → **/api/health** → terms + privacy | Confirms **your** browser sees what customers see on prod. |
-| **5** | Browser **B1–B3:** `/c/<handle>?demo=1` → `/leads` → `/success` *(or skip demo if you already did **0** with real access)* | Same dashboard paths; `demo=1` only if you need preview without Stripe. |
-| **6** | **C1–C5:** Submit **one test lead** on prod → Supabase row → leads UI → email → webhook | **Non-negotiable for cold email:** only **you** can confirm inbox + Supabase + webhook. |
-| **7** | **D1–D3:** Stripe Dashboard (webhook URL, test checkout, delivery **200**) | Confirms money path + webhook to your app. |
-| **8** | **E1–E2:** `/admin/dashboard` + GDPR curl *(if you use them)* | Admin token flows. |
-| **9** | **F3–F4:** UptimeRobot + Sentry — **receive a real test alert** | Step **44**; automation cannot log into your monitoring accounts. |
-| **10** | **G1–G4:** Cost/usage alerts *(optional)* | Step **46**. |
-
-**Honest note:** Green Playwright = “tests we wrote passed at run time.” **Row 0** (live dashboard + leads) is a valid check on its own for “prod works.” It does **not** replace **6, 7, 9** when you want cold-email + billing + monitoring fully proven.
+**Optional terminal:** `BASE_URL=https://sunspire-web-app.vercel.app npm run verify:temp-list:prod`  
+**Optional screenshots:** `test-results/prod-gate-visual/` after the gate spec.
 
 When Steps **44** and **46** are done to your satisfaction, treat the temporary migration list as **complete** for your operational purposes.
 

@@ -489,3 +489,7 @@ Details: `docs/POST-PURCHASE-FLOW.md`.
 - **Refund and chargebacks:** Refund policy at `/legal/refund`, `docs/FINANCIAL-SANITY-CHECKLIST.md`, `docs/CHARGEBACK-EVIDENCE-TEMPLATE.md`.  
 - **Estimation sources:** `docs/ESTIMATION_SOURCES.md`.  
 - **Runbooks:** `docs/RUNBOOK-FAILURES.md`, `docs/MAINTENANCE-GUIDE.md` (this file).
+
+---
+
+**Hands-off after go-live:** For ongoing operations, treat **this file (`MAINTENANCE-GUIDE.md`)** as the single maintenance source: daily **UptimeRobot** + **`/status`** + **Sentry**, plus weekly/monthly sections above. Growth/outreach is **`TO-DO-LIST.md`** only. Quick prod click-through (recommended): **`docs/LIVE-CLICK-CHECKLIST.md`**. Optional tests: **`docs/OWNER-IN-DEPTH-PROD-CHECKLIST.md`**.

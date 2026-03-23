@@ -1,5 +1,7 @@
 # Visual verification checklist — localhost and live
 
+**Simpler live list (click in order):** **[`LIVE-CLICK-CHECKLIST.md`](./LIVE-CLICK-CHECKLIST.md)**
+
 **URLs:**
 - **Local:** http://localhost:3000 (run `npm run dev` first, or let Playwright start it).
 - **Live:** https://sunspire-web-app.vercel.app
