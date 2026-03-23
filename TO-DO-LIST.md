@@ -10,7 +10,7 @@ Last Updated: January 25, 2026
 #  • PATH 1 = Add Leads (Snov.io → Google Sheet → Instantly Add Leads → Google Sheets paste URL). PATH 2 = SuperSearch (Instantly only; no Snov.io). Use Path 1 progress list; check [x] when you complete a step.
 #  • Phase 1 (1.1–1.8) = done. STEP 2.1 onward = [ ] until you say it's done. Every button from now to 1,000 customers is in Path 1 below (Steps 2–18).
 #  • Full order: Path 1 → "EVERY BUTTON IN ORDER — MASTER SEQUENCE" (17 steps) then "EVERY BUTTON IN ORDER — LINEAR LIST" (67 actions). Then complete each step's sub-bullets in detail.
-#  • AFTER MIGRATION: When docs/TEMPORARY-TO-DO-LIST.md is complete (Supabase migration done), you are ready for cold email. From then on: follow this list (TO-DO-LIST) from STEP 2.1 onward + MAINTENANCE-GUIDE.md only. No other checklist.
+#  • AFTER MIGRATION: When docs/TEMPORARY-TO-DO-LIST.md is complete through Step 39 (Supabase migration + doc pass), you are ready for cold email. Then: optional Step 40–41 sign-off in TEMPORARY list → open this file at STEP 2.1 + MAINTENANCE-GUIDE.md only. No other checklist.
 #
 #  REFERENCE (from Sunspire Final notes — your actual setup):
 #  • Namecheap (hugowentzel@gmail.com): sunspiredemo.com (outreach/demo), getsunspire.com, sunspiretool.com, sunspirequote.com, usesunspire.com (sending). Domain list → Manage → Advanced DNS per domain.

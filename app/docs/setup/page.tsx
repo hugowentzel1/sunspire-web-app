@@ -291,13 +291,13 @@ export default function SetupGuidePage() {
                     </svg>
                   </div>
                   <h3 className="text-lg font-semibold text-gray-900">
-                    Airtable (optional)
+                    Supabase + CRM webhook
                   </h3>
                   <p className="text-sm text-gray-600">
-                    Optional export; Sunspire uses Supabase as primary database
+                    Leads and tenants live in Supabase. Connect HubSpot, Salesforce, or a custom URL from the dashboard.
                   </p>
                   <a
-                    href="/docs/crm/airtable"
+                    href="/docs/crm"
                     className="inline-flex items-center text-[var(--brand-primary)] hover:underline font-medium"
                   >
                     View Guide

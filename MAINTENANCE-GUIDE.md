@@ -12,7 +12,7 @@ WHAT YOU HAVE SET UP (and how it covers all APIs)
 **Does it cover all APIs?** Yes. Health explicitly checks: Supabase, Stripe, NREL, EIA, Google Geocoding, Resend, Google Places (config), Vercel KV (when configured), USGS 3DEP. Quote engine = NREL + EIA + USGS 3DEP; Google Places is client-only — if it fails, users can still type address and server geocode works. Revenue path (quote, lead, Stripe webhook) is guarded with try/catch and clear errors. /status page shows every checked service and reminds you to use UptimeRobot + Sentry with alerts to **support@getsunspire.com**. **Most likely production bug:** env/config drift (missing or wrong var in Vercel). Use health `config` and /status daily; see **docs/INTEGRATION-FAILURE-PREVENTION.md**.
 
 **How to use it to be sure they're all up:**
-1. **Single place:** Open https://sunspire-web-app.vercel.app/status — shows every service (Airtable, Stripe, NREL, EIA, Google Geocoding, Resend, Google Places, Vercel KV, USGS 3DEP). If all green, you're good. Auto-refreshes every 60s; or use "Refresh now." The status page has **only one header** (System Status); all other sections are subsections.
+1. **Single place:** Open https://sunspire-web-app.vercel.app/status — shows every service (**Supabase**, Stripe, NREL, EIA, Google Geocoding, Resend, Google Places, Vercel KV, USGS 3DEP). If all green, you're good. Auto-refreshes every 60s; or use "Refresh now." The status page has **only one header** (System Status); all other sections are subsections.
 2. **UptimeRobot:** Monitor GET https://sunspire-web-app.vercel.app/api/health. When status ≠ 200, alert **support@getsunspire.com**. Configure UptimeRobot alert contact to support@getsunspire.com.
 3. **Sentry (fully work):** Set **SENTRY_DSN** and **NEXT_PUBLIC_SENTRY_DSN** in Vercel env. In Sentry project **Settings → Alerts**, set notifications to **support@getsunspire.com** so you get email on new issues and error spikes. Double-check that all API routes that matter (estimate, lead, Stripe webhook, health) are in the same app so Sentry captures backend errors.
 4. **CLI:** `curl https://sunspire-web-app.vercel.app/api/health` — expect `"ok": true` and every service `"status": "ok"`. If 503 or any "down", use "WHEN SOMETHING BREAKS" below.
@@ -91,10 +91,8 @@ npm outdated
   - Review failed events
   - Compare with DLQ events in admin dashboard
 
-4. Check Airtable Usage
-- Airtable Dashboard: Check API usage
-- Monitor: API call volume
-- Note: Rate limiting prevents overages, but monitor trends
+4. Supabase (optional sanity check)
+- Dashboard: https://app.supabase.com → your project → **Reports** / **Database**: monitor size, slow queries, and auth/API usage trends.
 
 5. Review Sentry Trends
 - Sentry Dashboard: Review error trends
@@ -113,7 +111,7 @@ Step 1: Check Vercel Deployment
 - Review function logs for errors
 
 Step 2: Check External Services
-- Airtable: https://status.airtable.com
+- Supabase: https://status.supabase.com
 - Stripe: https://status.stripe.com
 - NREL: Usually reliable, check their status page
 
@@ -133,10 +131,10 @@ Step 1: Check DLQ
 Step 2: Common Causes & Fixes
 
 Error   Cause   Fix
-"Airtable rate limit exceeded"   Too many requests   Wait 5 minutes, replay webhook
+"Supabase rate limit" / DB errors   Too many requests or pool   Back off, check Supabase dashboard, replay webhook if needed
 "Stripe API error"   Transient API issue   Replay webhook (usually works)
 "Tenant not found"   Tenant doesn't exist   Create tenant first, then replay
-"Invalid data"   Data format issue   Fix data in Airtable, then replay
+"Invalid data"   Data format issue   Fix data in Supabase (Table Editor) or tenant config, then replay
 
 Step 3: Replay a Webhook
 `bash
@@ -155,7 +153,7 @@ curl -X DELETE "https://sunspire-web-app.vercel.app/api/admin/dlq?eventId=evt_xx
 Issue: Customer Can't Access Dashboard
 
 Step 1: Check Tenant Exists
-- Airtable → Tenants table
+- Supabase → Tenants table
 - Search by company handle or email
 - Verify tenant record exists
 
@@ -194,7 +192,7 @@ If You Suspect a Security Breach
 Immediate Actions:
 1. Rotate all API keys:
    - Stripe API keys (Stripe Dashboard)
-   - Airtable API key (Airtable Dashboard)
+   - Supabase API key (Supabase Dashboard)
    - Resend API key (Resend Dashboard)
    - Admin token (update in Vercel env vars)
 
@@ -232,14 +230,14 @@ Customer accesses dashboard
 
 3. System Components:
 - Frontend: Next.js app on Vercel
-- Database: Airtable (Tenants, Leads, Users)
+- Database: Supabase (Tenants, Leads, Users)
 - Payments: Stripe (checkout, subscriptions, webhooks)
 - Email: Resend (primary), SMTP (fallback)
 - Solar Data: NREL APIs (PVWatts, NSRDB, EIA)
 - Monitoring: Sentry (errors), UptimeRobot (uptime)
 
 4. What Each Service Does:
-- Airtable: Stores all customer data (tenants, leads, users)
+- Supabase: Stores all customer data (tenants, leads, users)
 - Stripe: Handles payments and subscriptions
 - Resend: Sends transactional emails
 - NREL: Provides solar estimation data (free government APIs)
@@ -296,7 +294,7 @@ Business Information:
 Service Support:
 - Vercel Support: https://vercel.com/support
 - Stripe Support: https://support.stripe.com (automated tax collection enabled)
-- Airtable Support: https://support.airtable.com
+- Supabase: https://supabase.com/docs/guides/platform (dashboard + docs)
 - Resend Support: https://resend.com/support
 - Sentry Support: https://sentry.io/support
 - Namecheap Support: https://www.namecheap.com/support
@@ -308,10 +306,10 @@ PRE-OUTBOUND RELIABILITY CHECKLIST (authoritative before cold outreach)
 Use this to confirm you are safe to scale. All of the below are covered in this guide or in code.
 
 **Section 1 — Dependency control**  
-✔ Done. MAINTENANCE-GUIDE “What you have set up” + QA_SPEC.md A.4 list every dependency (Stripe, Airtable, quote/NREL+EIA, Google Places + Geocoding, Resend, Sentry, webhooks). Purpose, env vars, and fallback are in this guide; no separate dependencies.md (you asked to keep to main docs).
+✔ Done. MAINTENANCE-GUIDE “What you have set up” + QA_SPEC.md A.4 list every dependency (Stripe, Supabase, quote/NREL+EIA, Google Places + Geocoding, Resend, Sentry, webhooks). Purpose, env vars, and fallback are in this guide; no separate dependencies.md (you asked to keep to main docs).
 
 **Section 2 — /api/health**  
-✔ Done. One endpoint checks Airtable, Stripe, NREL, EIA, Google Geocoding, Resend, Google Places (config), Vercel KV (when configured), USGS 3DEP. 5s timeouts (8s for USGS), structured JSON, no secrets. Returns 200 when all ok, 503 when any down. /status page shows user-facing "System Status" from the same health response. Full route-to-health mapping: docs/API-HEALTH-COVERAGE.md.
+✔ Done. One endpoint checks Supabase, Stripe, NREL, EIA, Google Geocoding, Resend, Google Places (config), Vercel KV (when configured), USGS 3DEP. 5s timeouts (8s for USGS), structured JSON, no secrets. Returns 200 when all ok, 503 when any down. /status page shows user-facing "System Status" from the same health response. Full route-to-health mapping: docs/API-HEALTH-COVERAGE.md.
 
 **Section 3 — Sentry + Vercel**  
 ✔ Done. Sentry in frontend + API (sentry.client/server/edge.config, next.config). Vercel: prod env vars, main deploys, rollback via redeploy — see “When something breaks” and “Production settings” in this guide. Rate limiting: quote (1000/hr per IP), lead, Stripe checkout; webhook idempotent.
@@ -326,7 +324,7 @@ Use this to confirm you are safe to scale. All of the below are covered in this 
 ✔ Done. /status page calls /api/health and shows “System Status” with ✔ Operational / Degraded / Down per service (Quotes, Payments, Data storage, etc.). No secrets exposed.
 
 **Section 7 — Lead delivery (optimal setup)**  
-See “Lead delivery — optimal setup” below. Current: instant store in Airtable; optional CRM/webhook later. Recommended: add instant email notification to installer on new lead (sources + how-to below).
+See “Lead delivery — optimal setup” below. Current: instant store in Supabase; optional CRM/webhook later. Recommended: add instant email notification to installer on new lead (sources + how-to below).
 
 **Section 8 — Stripe + financial**  
 ✔ Your checklist. Confirm bank connected, identity verified, webhook signature on, test payment + refund, webhook logs. See “Stripe verification before outbound” in this guide / launch runbook.
@@ -338,13 +336,13 @@ See “Lead delivery — optimal setup” below. Current: instant store in Airta
 ✔ Partially done. Sentry captures API errors and uncaught exceptions. Event types: demo_open, address_selected, activation_clicked, signup_complete, report_generated, lead_submitted (api/events/log). Client track(): view, run_complete, limit_hit, checkout_start, cta_click, etc. (src/demo/track, lib/track). Not every event in the checklist is named exactly (e.g. “lock_trigger”) but lock/quota is tracked; “webhook_received” and “lead_saved” are in logs/Sentry. Sufficient for debugging.
 
 **Section 11 — Backup & recovery**  
-△ Gap. No weekly Airtable export or tenant backup is automated. Do manually: Airtable → export base; or add a weekly reminder to export. Document here: “Weekly: export Airtable data; backup tenant configs if needed.”
+△ Gap. No weekly Supabase export or tenant backup is automated. Do manually: Supabase → export base; or add a weekly reminder to export. Document here: “Weekly: export Supabase data; backup tenant configs if needed.”
 
 **Section 12 — Controlled pilot**  
 ✔ Your process. TO-DO-LIST: start with 100 leads, then scale. Checklist says 200–500 installers first; your list says 100 then scale. Either is fine — don’t start with 100K.
 
 **FINAL REALITY CHECK — You are ready when:**  
-✔ /api/health exists ✔ Sentry installed ✔ Canary/smoke tests run (CI + prod-smoke) ✔ Stripe verified (your step) ✔ Legal pages live ✔ Rate limiting active ✔ Rollback known (Vercel redeploy) ✔ Monitoring (Sentry + UptimeRobot) ✔ Lead delivery confirmed ✔ Backup: add weekly Airtable export reminder.
+✔ /api/health exists ✔ Sentry installed ✔ Canary/smoke tests run (CI + prod-smoke) ✔ Stripe verified (your step) ✔ Legal pages live ✔ Rate limiting active ✔ Rollback known (Vercel redeploy) ✔ Monitoring (Sentry + UptimeRobot) ✔ Lead delivery confirmed ✔ Backup: add weekly Supabase export reminder.
 
 **Optional (checklist says):** Load testing (50–200 concurrent users); SLA positioning for enterprise. Everything else is covered.
 
@@ -356,7 +354,7 @@ LEAD DELIVERY — OPTIMAL SETUP (customer-facing + how it works)
 • **Speed-to-lead:** Responding within 5 minutes can yield much higher conversion than waiting 30+ minutes (e.g. “8x higher conversion” at 5 min vs 30 min; “21x more likely to qualify” at 5 min vs 30 min). Many B2B companies still respond in 24+ hours — so instant notification is a real advantage.  
   Sources: Lead Gen Economy (“5-Minute Rule”), Rework/lead-management, GetNextPhone (“Speed to Lead”), InsideSales lead response study.
 
-• **Instant notification + CRM together:** Best practice is not “email only” or “CRM only” — it’s both: (1) **Instant notification** (email/SMS) to the sales team when a lead is captured, so they can act in under 5 minutes, and (2) **CRM (or Airtable) as system of record** for storage, pipeline, and follow-up.  
+• **Instant notification + CRM together:** Best practice is not “email only” or “CRM only” — it’s both: (1) **Instant notification** (email/SMS) to the sales team when a lead is captured, so they can act in under 5 minutes, and (2) **CRM as system of record** for sales pipeline (Sunspire already stores every lead in **Supabase** for the product).  
   Sources: Twilio (instant lead alerts), n8n (instant CRM lead notifications + email), Instantly (CRM integration + two-way sync with HubSpot/Salesforce).
 
 • **Solar/installer context:** Solar CRMs are used for lead organization, scoring, and follow-up; the “10-Minute Rule” or similar fast contact is emphasized. Email alone tends to lose leads without a central place to track them; CRM + instant alert is the recommended pattern.  
@@ -364,17 +362,17 @@ LEAD DELIVERY — OPTIMAL SETUP (customer-facing + how it works)
 
 **Recommended setup for Sunspire:**
 
-1. **System of record (you already have):** Store every lead in Airtable immediately (POST /api/lead → storeLead). No change needed.
+1. **System of record (you already have):** Store every lead in Supabase immediately (POST /api/lead → storeLead). No change needed.
 2. **Customer-facing (demo + paid):** Show a short, clear message after submit: e.g. “Lead delivered. Your team will get an instant email so you can reach out in minutes.” That sets the expectation and differentiates you.
-3. **Instant email to installer:** When a lead is successfully stored, send one optional “New lead” email to the installer (tenant). Options: (a) Add a “Notification email” (or “Lead alert email”) field to the Tenants table in Airtable; after storeLead success, look up that tenant and send a Resend email to that address with lead name, email, address, and link to Airtable or dashboard. (b) Or use a single env var (e.g. LEAD_ALERT_EMAIL) for a global inbox if you have one. Prefer (a) for multi-tenant so each installer gets their own leads.
+3. **Instant email to installer:** When a lead is successfully stored, send one optional “New lead” email to the installer (tenant). Options: (a) Set **notification_email** on the tenant in **Supabase** (`tenants` table); after `storeLead` success, send Resend to that address with lead details and a link to the **dashboard** (`/c/[handle]/leads`). (b) Or use a single env var (e.g. LEAD_ALERT_EMAIL) for a global inbox if you have one. Prefer (a) for multi-tenant.
 4. **Optional CRM sync (post-sale):** Keep “Optional CRM sync (Zapier, HubSpot, Salesforce) available” as an upsell. Don’t force CRM during onboarding. Industry standard for your positioning = “Instant lead delivery. Optional CRM sync available.”
-5. **No blocking on CRM:** Do not require the installer to connect a CRM before they can receive leads. Email (and Airtable) first; CRM is optional.
+5. **No blocking on CRM:** Do not require the installer to connect a CRM before they can receive leads. Email (and Supabase) first; CRM is optional.
 
-**Implemented:** The API now sends a “New lead” email via Resend when a lead is stored, if the tenant has a “Notification Email” column set in Airtable (Tenants table). Add that column (email or single-line text) and fill it per installer.
+**Implemented:** The API now sends a “New lead” email via Resend when a lead is stored, if the tenant has a “Notification Email” column set in Supabase (Tenants table). Add that column (email or single-line text) and fill it per installer.
 
-**How it works (for sales/support):** Leads are stored in Sunspire's Airtable (one base), one row per lead, linked to the tenant. The installer sees all their leads in the Sunspire dashboard (/c/[handle]/leads) and gets an instant email when one comes in. So "leads go straight to you" = inbox + dashboard. **Optional CRM webhook:** In the Tenants table in Airtable, add a "CRM Webhook URL" column (single-line text). When set to a valid http(s) URL (e.g. a Zapier or Make webhook), the API POSTs each new lead to that URL (event: "lead.created", payload: lead fields + createdAt). Installers can use this to push into their own Airtable base, HubSpot, or Salesforce. Optional sync is an upsell/setup step.
+**How it works (for sales/support):** Leads are stored in **Sunspire’s Supabase** (`leads` table), one row per lead, scoped to the tenant. The installer sees them in the dashboard (`/c/[handle]/leads`) and gets an instant email when one comes in. **Optional CRM webhook:** Configure **CRM Webhook URL** on the tenant (Supabase `tenants.crm_keys` / dashboard). When set to a valid `https` URL, the API POSTs each new lead there. Installers can forward into HubSpot, Salesforce, or any automation tool. Optional sync is an upsell/setup step.
 
-**Summary:** Optimal = Airtable as single source of truth + instant email notification to the installer on new lead + customer-facing copy that says so. Add optional CRM sync later. This matches SaaS and solar best practice and the cited sources.
+**Summary:** Optimal = Supabase as single source of truth + instant email notification to the installer on new lead + customer-facing copy that says so. Add optional CRM sync later. This matches SaaS and solar best practice and the cited sources.
 
 **What to say on the demo and in cold email (after they buy):**  
 Use both, and say so clearly. Recommended phrasing:
@@ -385,7 +383,7 @@ Use both, and say so clearly. Recommended phrasing:
 
 **Source for “both” in solar:** Solargen’s FAQ states: “You’ll receive an email notification as soon as a prospect completes a simulation. All leads are available in your dashboard. On Pro and Enterprise, we also sync leads to your CRM automatically.” (solargen.app) So the category norm is: email + dashboard for all; CRM sync as optional/higher tier.
 
-**Demo & setup copy — exact changes (long-term):** app/page.tsx ~321 live bar → "New leads hit your inbox instantly and your dashboard—optional CRM sync if you use one." ~519–520 CRM card → "Leads to inbox + dashboard" / "Instant email when a lead comes in, plus your Sunspire dashboard. Optional sync to HubSpot, Salesforce, or Airtable." ~539 CTA → "Instant lead email + dashboard (+ optional CRM)". app/report/page.tsx ~743 toast (homeowner) → "Thanks! We've got your info. A specialist will reach out soon." app/activate/page.tsx ~130, ~183 → "Your tool is live. New leads go to your inbox and dashboard—optional CRM sync if you use one." / "Share this link to start receiving leads; you'll get an instant email and see them in your dashboard." app/c/[companyHandle]/leads/page.tsx ~98–99 empty state → "Leads show up here as soon as someone submits—you'll also get an instant email so you can reach out in minutes." app/docs/setup/page.tsx ~104–108 step 4 → "Lead delivery" / "Leads hit your inbox instantly and your dashboard; optional CRM connection when you're ready." Function: wire report lead form to POST /api/lead; add Tenants "Notification email" + send Resend on new lead (see "Instant email to installer" above).
+**Demo & setup copy — exact changes (long-term):** app/page.tsx ~321 live bar → "New leads hit your inbox instantly and your dashboard—optional CRM sync if you use one." ~519–520 CRM card → "Leads to inbox + dashboard" / "Instant email when a lead comes in, plus your Sunspire dashboard. Optional sync to HubSpot, Salesforce, or other CRM." ~539 CTA → "Instant lead email + dashboard (+ optional CRM)". app/report/page.tsx ~743 toast (homeowner) → "Thanks! We've got your info. A specialist will reach out soon." app/activate/page.tsx ~130, ~183 → "Your tool is live. New leads go to your inbox and dashboard—optional CRM sync if you use one." / "Share this link to start receiving leads; you'll get an instant email and see them in your dashboard." app/c/[companyHandle]/leads/page.tsx ~98–99 empty state → "Leads show up here as soon as someone submits—you'll also get an instant email so you can reach out in minutes." app/docs/setup/page.tsx ~104–108 step 4 → "Lead delivery" / "Leads hit your inbox instantly and your dashboard; optional CRM connection when you're ready." Function: wire report lead form to POST /api/lead; add Tenants "Notification email" + send Resend on new lead (see "Instant email to installer" above).
 
 ---
 📎 WHERE TO FIND MORE (every part covered here)
@@ -393,7 +391,7 @@ Use both, and say so clearly. Recommended phrasing:
 **Report/lead UX (consent, format, demo CTA):** Lead modal consent uses the **installer/demo company name** from the URL (e.g. TestCo), not "Sunspire"; if the name is "Sunspire" it shows "the company". Report header address uses estimate address or URL param or "your property". Demo report bottom CTA ("Launch Your Branded Version Now") uses a button that triggers checkout (not a link to the API URL). See `app/report/page.tsx`, `components/report/ReportLeadModal.tsx`, `components/cta/BottomCtaBand.tsx`.
 
 This guide covers **all maintenance parts** in one place:
-- **Daily / weekly / monthly:** Above (UptimeRobot, Sentry, health, admin, DLQ, npm audit, Stripe, Airtable).
+- **Daily / weekly / monthly:** Above (UptimeRobot, Sentry, health, admin, DLQ, npm audit, Stripe, Supabase).
 - **When something breaks:** Health down, webhooks, customer access, estimation issues, security.
 - **Common tasks:** Create tenant, GDPR export/delete, health check.
 - **Pre-sell checklist (3 min before sales):** See `QA_SPEC.md` Section D (Vercel deploy, smoke run, errors, runbook).
@@ -431,13 +429,13 @@ Use this section to re-orient: what Sunspire is, how it makes money, how it work
 
 1. **Acquisition:** Installer gets cold email or link → opens **demo** (`?company=…&demo=1`). They can run 1–2 quotes; report is then locked/blurred.
 2. **Conversion:** “Activate” / “Launch Your Branded Version” → Stripe Checkout. After payment, Stripe webhook provisions the tenant and sends onboarding email.
-3. **Activation:** Customer lands on dashboard `/c/[handle]` with “you’re live” checklist: instant URL, embed code, API key, “Connect your CRM,” refund policy and docs. Lead delivery is configured via **Notification Email** (and optional CRM Webhook URL) in Airtable or dashboard.
+3. **Activation:** Customer lands on dashboard `/c/[handle]` with “you’re live” checklist: instant URL, embed code, API key, “Connect your CRM,” refund policy and docs. Lead delivery is configured via **Notification Email** (and optional CRM Webhook URL) in Supabase or dashboard.
 
 ### How it works for clients (installers)
 
-- **Tenant = one installer.** Stored in Airtable (Tenants table): company handle, plan, payment status, Stripe customer ID, Notification Email, optional CRM Webhook URL, branding (logo, colors), capture URL.
+- **Tenant = one installer.** Stored in Supabase (Tenants table): company handle, plan, payment status, Stripe customer ID, Notification Email, optional CRM Webhook URL, branding (logo, colors), capture URL.
 - **When a homeowner submits contact info:**  
-  1. Lead is **saved to Airtable** (source of truth).  
+  1. Lead is **saved to Supabase** (source of truth).  
   2. Homeowner sees confirmation (“You’re all set”, “You’ll hear back within 1 business day”).  
   3. **Installer gets an email** (Resend): subject e.g. “New Sunspire Lead – 8.4kW System – Atlanta”, body = structured data (name, address, system, savings, phone, email) + “View full report → Dashboard” link (no screenshot).  
   4. Lead appears in **installer dashboard** at `/c/[handle]/leads`.  
@@ -456,13 +454,13 @@ Use this section to re-orient: what Sunspire is, how it makes money, how it work
 
 ### Lead object (what gets stored and sent)
 
-Canonical shape includes: `tenant_id` (tenant handle), `homeowner_name`, `email`, `phone`, `address`, `system_size`, `annual_production`, `savings_25yr`, `monthly_payment_est`, `incentives_assumed`, `timestamp`, `utm_source`, `demo_or_paid`. This is saved to Airtable, emailed to the installer (structured + dashboard link), and optionally sent to CRM webhook. Installer does **not** get a screenshot; they get data + link to the lead view in the dashboard (which reconstructs the report view).
+Canonical shape includes: `tenant_id` (tenant handle), `homeowner_name`, `email`, `phone`, `address`, `system_size`, `annual_production`, `savings_25yr`, `monthly_payment_est`, `incentives_assumed`, `timestamp`, `utm_source`, `demo_or_paid`. This is saved to Supabase, emailed to the installer (structured + dashboard link), and optionally sent to CRM webhook. Installer does **not** get a screenshot; they get data + link to the lead view in the dashboard (which reconstructs the report view).
 
 ### APIs and what they do
 
 | API / service      | Role |
 |--------------------|------|
-| **Airtable**       | Tenants (installer config), Leads (every submission). Source of truth. |
+| **Supabase**       | Tenants (installer config), Leads (every submission). Source of truth. |
 | **Stripe**         | Checkout, webhooks (payment → provision tenant, send onboarding email). |
 | **NREL PVWatts**   | Solar production for estimate. |
 | **EIA**            | Utility rates for estimate. |
@@ -472,14 +470,14 @@ Canonical shape includes: `tenant_id` (tenant handle), `homeowner_name`, `email`
 | **Resend**         | Lead alert email to installer, onboarding email after purchase. |
 | **Vercel KV**      | Webhook idempotency, rate limiting (optional). |
 
-**Health:** GET `/api/health` probes every configured dependency above (Airtable, Stripe, NREL, EIA, Geocoding, Resend, Places config, KV, USGS). Only services with env vars set are checked. **Status page:** `/status` shows per-service status and reminds to use UptimeRobot + Sentry with alerts to **support@getsunspire.com**. See `docs/API-HEALTH-COVERAGE.md` and `docs/COST-CAPACITY-MATRIX.md` for routes and limits.
+**Health:** GET `/api/health` probes every configured dependency above (Supabase, Stripe, NREL, EIA, Geocoding, Resend, Places config, KV, USGS). Only services with env vars set are checked. **Status page:** `/status` shows per-service status and reminds to use UptimeRobot + Sentry with alerts to **support@getsunspire.com**. See `docs/API-HEALTH-COVERAGE.md` and `docs/COST-CAPACITY-MATRIX.md` for routes and limits.
 
 ### What happens when someone buys (post-purchase flow)
 
 1. **Stripe success** → redirect to success URL.  
-2. **Stripe webhook** → tenant created/updated in Airtable, onboarding email sent (Resend).  
+2. **Stripe webhook** → tenant created/updated in Supabase, onboarding email sent (Resend).  
 3. **Activation page** → `/c/[handle]?session_id=...` with checklist: URL, embed, API key, Connect CRM, refund/docs.  
-4. **Lead routing:** Installer sets Notification Email (and optional CRM Webhook). New leads → Airtable, then email, then dashboard, then optional CRM.  
+4. **Lead routing:** Installer sets Notification Email (and optional CRM Webhook). New leads → Supabase, then email, then dashboard, then optional CRM.  
 Details: `docs/POST-PURCHASE-FLOW.md`.
 
 ### Where to find what

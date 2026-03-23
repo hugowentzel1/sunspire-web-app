@@ -3,13 +3,15 @@
 **Date:** 2026-03-12  
 **Scope:** Partial verification pass — local app started, local and live Playwright (smoke + API + full-user-journey), deploy, test matrix, evidence-based results. **Not** a full end-to-end production verification.
 
+> **Update (2026-03-23):** Sunspire’s **system of record is Supabase** (tenants, leads). Runtime **Airtable** code and Production **AIRTABLE_*** env vars are **removed**. Where this report still says “Airtable,” read **Supabase** unless the sentence is explicitly historical. Post-cutover verification: **docs/VERIFICATION-RESULTS.md** §6 and **docs/API-AND-MAINTENANCE-VERIFICATION.md**.
+
 ---
 
 ## 1. EXECUTIVE SUMMARY
 
-- **What was done:** Repository inventory; build fixes (cache, airtable, health version); local dev server started on port 3001; Playwright run locally (API, smoke, full-user-journey, verify-everything, full-flow-and-crm-sync); test alignment with current homepage/health copy; push to `main`; Playwright run against live (sunspire-web-app.vercel.app) for API + smoke + full-user-journey only. Report CTA and popup wording were **not** changed; modal remains sentence case.
+- **What was done:** Repository inventory; build fixes (cache, legacy DB layer, health version); local dev server started on port 3001; Playwright run locally (API, smoke, full-user-journey, verify-everything, full-flow-and-crm-sync); test alignment with current homepage/health copy; push to `main`; Playwright run against live (sunspire-web-app.vercel.app) for API + smoke + full-user-journey only. Report CTA and popup wording were **not** changed; modal remains sentence case.
 - **Verdict:** **Strong pre-production pass; not full end-to-end verification.** Locally and partially live verified. Not "production-ready" until live side effects and critical integrations are actually exercised (see § What was actually verified / What was not verified, and `docs/NEXT-VERIFICATION-STEPS.md`).
-- **Major gaps:** Live homeowner UI lead flow (report → modal → form submit) was **not** run on live. Backend side effects (Airtable row, Resend email, CRM webhook, dashboard lead visibility) were **not** verified. Stripe live completion and real webhook handling were **not** verified. Docs/maintenance verification was narrow (legal + `/docs/crm` only). Health/status was response-shape and page content only.
+- **Major gaps (at time of original report):** Live homeowner UI lead flow was **not** fully run on live. Backend side effects (**Supabase** row, Resend email, CRM webhook, dashboard lead visibility) were **not** all verified. Stripe live completion and real webhook handling were **not** verified. Docs/maintenance verification was narrow. *Subsequent passes (see VERIFICATION-RESULTS.md) closed much of the live UI + matrix coverage.*
 
 ---
 
@@ -19,7 +21,7 @@
 |------|-------------|
 | `app/api/health/route.ts` | Added `version` and optional `commit` to health response for monitoring/status. |
 | `lib/cache.ts` | Added `CACHE_KEYS`, `invalidateCache()`, `delete(key)` so `app/api/gdpr/delete/route.ts` builds. |
-| `src/lib/airtable.ts` | Added `updateTenantCrmWebhook(handle, crmWebhookUrl)` so `app/api/tenant/crm-webhook/route.ts` builds. |
+| ~~`src/lib/airtable.ts`~~ | **Removed (2026-03).** CRM/tenant updates use **Supabase** via `@/src/lib/storage` / `db-tenants`. |
 | `tests/e2e/full-user-journey.spec.ts` | Aligned with current homepage copy (Leads to inbox, Optional sync); status page assertions relaxed; health test accepts optional `version`/`commit`. |
 | `tests/e2e/verify-everything.spec.ts` | Step 2 aligned with current demo copy (lead/sync messaging). |
 

@@ -462,26 +462,30 @@ Tests are storage-agnostic and Supabase-backed: **tests/e2e/report-lead-modal-no
 
 ---
 
-- [ ] **Step 37** — Remove Airtable from codebase entirely — **ME**
+- [x] **Step 37** — Remove Airtable from codebase entirely — **DONE** ✅
 
 ### Step 37 — Remove Airtable from codebase entirely — **ME**
 
 When we’re on this step: I will delete `src/lib/airtable.ts`, remove the `airtable` dependency from package.json, remove any remaining Airtable env or references from docs and config, and ensure the app uses only Supabase. Nothing for you to click.
 
+**Done (2026-03-23):** `src/lib/airtable.ts` already absent; **no `airtable` npm dependency**. Removed dead **`src/server/airtable/leads.ts`** and unused **`lib/airtable-rate-limit.ts`**. Runtime storage is **Supabase** only (`@/src/lib/storage`). Optional **CSV** path remains: `scripts/import-airtable-to-supabase.mjs`.
+
 ---
 
-- [ ] **Step 38** — Archive Airtable base — **YOU** (only you: Airtable UI)
+- [x] **Step 38** — Archive Airtable base — **WAIVED** ✅
 
 ### Step 38 — Archive Airtable base (YOU)
 
 1. In **Airtable**, open your Sunspire base.
 2. **Settings** (gear) or **Base** menu → find **Archive base** or **Duplicate base** (for read-only backup). Optionally archive so it’s no longer editable. The app and Zapier no longer use it.
 
+**Decision:** Owner does not need to archive the base. **Skipped.**
+
 ---
 
 ## 9. Final readiness and sign-off
 
-- [ ] **Step 39** — Final doc pass — **ME**
+- [x] **Step 39** — Final doc pass — **DONE** ✅
 
 ### Step 39 — Final doc pass (ME)
 
@@ -493,6 +497,8 @@ I will update:
 - **MAINTENANCE-GUIDE.md** — Replace all Airtable references with Supabase (env vars, runbooks, health/backup steps, links). Ensure maintenance instructions describe Supabase projects (staging/prod), connection strings, and any new ops steps (e.g. Supabase backups, RLS). **Ensure the “daily check” methods are explicit:** GET /api/health, /status page, UptimeRobot, Sentry — and that the guide states these are the same endpoints/methods that are fully tested so you can rely on them 24/7.
 - **TO-DO-LIST.md** — Replace every Airtable reference with Supabase (1.8: Stripe webhook → Supabase Tenants + Resend; bookmarks: airtable.com → Supabase dashboard or remove; 15.3 / FIRST SALE: Airtable → Supabase; Lead delivery / health bullets: Airtable → Supabase). Add under WHERE YOU ARE: **After TEMPORARY-TO-DO-LIST is complete, you are ready for cold email. From then on: follow TO-DO-LIST.md from STEP 2.1 onward + MAINTENANCE-GUIDE.md only. No other checklist.**
 - **API & maintenance verification checklist** — Add or update a doc (e.g. `docs/API-AND-MAINTENANCE-VERIFICATION.md`) that lists every API route and every maintenance check (health, status, UptimeRobot, Sentry) with “tested: yes/no” and how to run the check, so you can re-run before go-live and after big changes.
+
+**Done (2026-03-23):** **PRODUCTION-READINESS-FINAL-REPORT** (banner + summary tweaks), **NEXT-VERIFICATION-STEPS** (Supabase wording), **MAINTENANCE-GUIDE** (Supabase throughout + monthly check), **API-AND-MAINTENANCE-VERIFICATION.md** (new). **TO-DO-LIST.md** already used Supabase in Phase 1 / bookmarks; no Airtable strings found. CRM/setup docs updated; **`/docs/crm/airtable`** = legacy URL with “not built-in” copy.
 
 Nothing for you to click.
 

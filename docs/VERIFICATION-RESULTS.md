@@ -24,6 +24,8 @@
 - Manually confirm a **test lead** appears in **Supabase Table Editor** and tenant **`/c/<handle>/leads`** for your real production handle.
 - Re-run **`/api/health`** at a quiet time; expect **200** when the Supabase ping succeeds.
 
+**Ongoing checklist:** **`docs/API-AND-MAINTENANCE-VERIFICATION.md`**
+
 ---
 
 ## 1. What was completed

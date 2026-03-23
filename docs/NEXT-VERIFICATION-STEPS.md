@@ -14,16 +14,16 @@ The evidence showed the initial pass was **partial verification only**. The foll
 
 ### 2. Lead side-effect verification
 
-- Confirm Airtable (or source-of-truth) write for a submitted lead.
+- Confirm **Supabase** write for a submitted lead (`leads` table, correct `tenant_id`).
 - Confirm installer email send path (Resend or equivalent).
-- Confirm dashboard visibility or lead-view path (lead appears where operators expect).
+- Confirm dashboard visibility (`/c/<handle>/leads`).
 - Confirm CRM/webhook push if configured for the tenant.
 
 ### 3. Real Stripe completion / webhook verification
 
 - Complete a **test-mode** purchase (checkout → payment).
 - Webhook receives a **real signed** `checkout.session.completed` (or equivalent) event.
-- Tenant activation/unlock confirmed after webhook handling (e.g. in Airtable or app state).
+- Tenant activation/unlock confirmed after webhook handling (e.g. row in **Supabase** `tenants`).
 
 ### 4. Full referenced-page verification ✅ DONE
 
@@ -31,7 +31,7 @@ The evidence showed the initial pass was **partial verification only**. The foll
 
 ### 5. Health / status depth check ✅ DONE
 
-- **Completed:** `docs/HEALTH-DEPTH.md` — health performs real dependency checks (Airtable, Stripe, NREL, EIA, Geocoding, Resend); limitations documented (Places config-only; Sentry/Vercel/KV not in health).
+- **Completed:** `docs/HEALTH-DEPTH.md` — health performs real dependency checks (**Supabase**, Stripe, NREL, EIA, Geocoding, Resend); limitations documented (Places config-only; Sentry/Vercel/KV not in health).
 
 ---
 
@@ -39,7 +39,7 @@ The evidence showed the initial pass was **partial verification only**. The foll
 
 - Do **not** stop after API-only checks.
 - Do **not** stop after route-existence checks.
-- Do **not** claim side effects are verified unless confirmed (e.g. row in Airtable, email sent, webhook delivered).
+- Do **not** claim side effects are verified unless confirmed (e.g. row in **Supabase**, email sent, webhook delivered).
 - Do **not** claim live flow is verified unless the **browser** flow actually ran on live.
 
 ---

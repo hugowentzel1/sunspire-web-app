@@ -36,13 +36,14 @@ export default function CRMGuidesPage() {
     },
     {
       id: "airtable",
-      name: "Airtable (optional export)",
-      description: "Optional: export or sync leads to Airtable for custom workflows. Sunspire uses Supabase as the primary database.",
+      name: "Airtable (external only)",
+      description:
+        "No in-app Airtable sync. Leads live in Supabase; use CRM webhooks or your own tools if you want Airtable.",
       icon: "A",
       brandColor: "#18BFFF",
       href: "/docs/crm/airtable",
-      features: ["Custom Databases", "Workflow Automation", "API Integration", "Team Collaboration"]
-    }
+      features: ["Supabase is source of truth", "Webhook to your stack", "Optional manual export"],
+    },
   ];
 
   const additionalIntegrations = [
@@ -56,11 +57,12 @@ export default function CRMGuidesPage() {
     },
     {
       id: "zapier",
-      name: "Zapier",
-      description: "Connect with 5000+ apps through Zapier for unlimited integration possibilities.",
+      name: "Zapier (optional)",
+      description:
+        "Optional third-party automation. Sunspire does not require Zapier; prefer the native CRM webhook on your dashboard.",
       icon: "Z",
       brandColor: "#FF4A00",
-      features: ["5000+ Apps", "Automated Workflows", "Custom Triggers", "Multi-step Zaps"]
+      features: ["Optional", "Not required", "Use webhooks first", "5000+ apps if needed"],
     },
     {
       id: "monday",

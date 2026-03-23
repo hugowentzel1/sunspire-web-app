@@ -21,8 +21,6 @@ const required = minimal
       { key: 'NEXT_PUBLIC_GOOGLE_MAPS_API_KEY', hint: 'Places Autocomplete.' },
       { key: 'NREL_API_KEY', hint: 'Estimate API.' },
       { key: 'EIA_API_KEY', hint: 'Utility rates.' },
-      { key: 'AIRTABLE_API_KEY', hint: 'Health: tenants (optional for Health if unset).' },
-      { key: 'AIRTABLE_BASE_ID', hint: 'Health: tenants base.' },
       { key: 'STRIPE_LIVE_SECRET_KEY', hint: 'Checkout (or STRIPE_SECRET_KEY).' },
       { key: 'STRIPE_PRICE_MONTHLY_99', hint: 'Checkout (or STRIPE_PRICE_STARTER).' },
       { key: 'STRIPE_PRICE_SETUP_399', hint: 'Checkout setup price.' },
@@ -50,6 +48,13 @@ for (const { key, hint } of required) {
   const val = process.env[key];
   const set = typeof val === 'string' && val.length > 0;
   if (set) ok.push(key); else missing.push({ key, hint });
+}
+
+if (!minimal && !hasSupabasePair()) {
+  missing.push({
+    key: 'SUPABASE_URL (+ SERVICE_ROLE_KEY)',
+    hint: 'Set SUPABASE_URL + SUPABASE_SERVICE_ROLE_KEY, or *_STAGING / *_PROD pairs (see .env.example).',
+  });
 }
 
 if (missing.length) {
