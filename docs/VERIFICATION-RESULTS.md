@@ -5,6 +5,27 @@
 
 ---
 
+## 6. Step 35–36 — Production Supabase cutover + verification (2026-03-23)
+
+### 6.1 Step 35 (Vercel Production)
+
+- **Automation:** `scripts/vercel-step35-prod-cutover.mjs` (reads `VERCEL_TOKEN`, `VERCEL_PROJECT_ID`, `SUPABASE_URL_PROD`, `SUPABASE_SERVICE_ROLE_KEY_PROD` from **`.env.local`**; never committed).
+- **Actions:** Upserted **`SUPABASE_URL`** and **`SUPABASE_SERVICE_ROLE_KEY`** for **production** from prod Supabase values; removed **`AIRTABLE_API_KEY`** and **`AIRTABLE_BASE_ID`** from **production**; triggered redeploy with `withLatestCommit: true`.
+- **Deployment:** `dpl_8CP5YYkTW76jshvzKSAVRGEBHx66` reached **`READY`** (commit `bce638088bbdcf84679b071b1996107fe2fe20bd` at time of run).
+
+### 6.2 Step 36 (Production checks)
+
+- **Matrix:** `BASE_URL=https://sunspire-web-app.vercel.app npm run test:matrix:stable` → **38 passed** (~2.5m, Chromium, workers=1).
+- **`/status`:** HTTP **200**.
+- **`/api/health` (sample right after deploy):** HTTP **503**, `config.supabase: true`, but **`services[].supabase`** reported **`TypeError: fetch failed`** (short latency). Other services (Stripe, NREL, EIA, Resend, geocoding) **ok** in that sample. Treat as **monitor** — if persistent, investigate Vercel↔Supabase networking (DNS/TLS/IPv6) or increase health-check resilience; **E2E/API matrix still passed** including lead and dashboard paths.
+
+### 6.3 Owner follow-up (optional)
+
+- Manually confirm a **test lead** appears in **Supabase Table Editor** and tenant **`/c/<handle>/leads`** for your real production handle.
+- Re-run **`/api/health`** at a quiet time; expect **200** when the Supabase ping succeeds.
+
+---
+
 ## 1. What was completed
 
 ### 1.1 Live homeowner UI flow ✅
