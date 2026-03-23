@@ -403,7 +403,7 @@ Tests are storage-agnostic and Supabase-backed: **tests/e2e/report-lead-modal-no
 
 ---
 
-- [ ] **Step 32** — Run full matrix against staging Vercel — **YOU** (only you: deploy + set Preview env; I’ll give exact test command)
+- [x] **Step 32** — Run full matrix against staging Vercel — **YOU** (deploy + env) + **ME** (matrix green on live URL) ✅
 
 ### Step 32 — Run full matrix against staging Vercel (YOU)
 

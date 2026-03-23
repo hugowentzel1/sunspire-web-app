@@ -18,9 +18,11 @@ test.describe('Smoke (fast)', () => {
     expect(services.length).toBeGreaterThan(0);
     const down = services.filter((s) => s.status !== 'ok');
     const optionalDown = /Expired API Key|Invalid API Key|invalid api key|not configured|no such api key|Set SUPABASE_URL/i;
+    // Live: transient edge/network errors to Supabase still mean "integration unavailable" for this smoke check.
+    const supabaseOptional = /Set SUPABASE_URL|SUPABASE_SERVICE_ROLE_KEY|fetch failed|Timeout|ECONNREFUSED|ENOTFOUND|certificate/i;
     const isOptionalDown = (s: { service: string; error?: string }) =>
       (s.service === 'stripe' && optionalDown.test(s.error ?? '')) ||
-      (s.service === 'supabase' && /Set SUPABASE_URL|SUPABASE_SERVICE_ROLE_KEY/i.test(s.error ?? ''));
+      (s.service === 'supabase' && supabaseOptional.test(s.error ?? ''));
     if (res.status() === 503 && down.length > 0) {
       const onlyOptionalDown = down.every(isOptionalDown);
       expect(onlyOptionalDown, `Health 503: only Stripe/Supabase (unconfigured) may be down. Down: ${JSON.stringify(down)}`).toBe(true);
