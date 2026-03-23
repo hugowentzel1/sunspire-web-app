@@ -661,24 +661,27 @@ Set alerts or caps so you are not surprised by bills: Stripe (billing alert), Re
 
 ### Step 47 — What YOU personally must check (clear order)
 
-**Full detail (copy-paste URLs + “tick when…”):** **`docs/OWNER-IN-DEPTH-PROD-CHECKLIST.md`** — start at **“Part 2 — YOUR manual checklist”**.
+**Easiest (dashboard / “does prod work?”):** open **`https://<your-prod-host>/c/<your-handle>`** and **`…/c/<your-handle>/leads`** in the browser — real live URLs, no `demo=1` required if you’re checking as a signed-in tenant. Good = pages load, not infinite spinner or 500. Full wording: **`docs/OWNER-IN-DEPTH-PROD-CHECKLIST.md`** → **“The simple way — just check the live links.”**
+
+**Full detail (deeper checklist):** same doc → **“Part 2 — Deeper manual checklist”**.
 
 **In one list (same order as that doc):**
 
 | Order | What you do | Why |
 |------|-------------|-----|
+| **0** | **Live only:** open prod **`/c/<handle>`** + **`/c/<handle>/leads`** (and optionally **`/status`**, **`/api/health`**) | Fast human check — **this is fine** for “dashboard works on live.” |
 | **1** | Terminal: `export ADMIN_TOKEN='…'` (recommended), then `BASE_URL=https://sunspire-web-app.vercel.app npm run verify:temp-list:prod` | Proves automated suite green **on your machine** right now. Without `ADMIN_TOKEN`, expect **2 skipped** (admin/GDPR) — that is normal, not a failure. |
 | **2** | Folder `test-results/prod-gate-visual/` — open **G01–G09** PNGs | Quick visual scan of captured prod pages. |
 | **3** | *(Optional)* `BASE_URL=… npm run verify:temp-list:prod:headed` | Watch Chromium run the same tests (~3 min). |
 | **4** | Browser **A1–A6:** demo home → report → paid → **/status** → **/api/health** → terms + privacy | Confirms **your** browser sees what customers see on prod. |
-| **5** | Browser **B1–B3:** `/c/<handle>?demo=1` → `/leads` → `/success` | Confirms installer dashboard paths load. |
+| **5** | Browser **B1–B3:** `/c/<handle>?demo=1` → `/leads` → `/success` *(or skip demo if you already did **0** with real access)* | Same dashboard paths; `demo=1` only if you need preview without Stripe. |
 | **6** | **C1–C5:** Submit **one test lead** on prod → Supabase row → leads UI → email → webhook | **Non-negotiable for cold email:** only **you** can confirm inbox + Supabase + webhook. |
 | **7** | **D1–D3:** Stripe Dashboard (webhook URL, test checkout, delivery **200**) | Confirms money path + webhook to your app. |
 | **8** | **E1–E2:** `/admin/dashboard` + GDPR curl *(if you use them)* | Admin token flows. |
 | **9** | **F3–F4:** UptimeRobot + Sentry — **receive a real test alert** | Step **44**; automation cannot log into your monitoring accounts. |
 | **10** | **G1–G4:** Cost/usage alerts *(optional)* | Step **46**. |
 
-**Honest note:** Green Playwright = “tests we wrote passed at run time.” It does **not** mean your UptimeRobot emailed you or that you watched the browser — **steps 6, 7, 9** still need **you**.
+**Honest note:** Green Playwright = “tests we wrote passed at run time.” **Row 0** (live dashboard + leads) is a valid check on its own for “prod works.” It does **not** replace **6, 7, 9** when you want cold-email + billing + monitoring fully proven.
 
 When Steps **44** and **46** are done to your satisfaction, treat the temporary migration list as **complete** for your operational purposes.
 

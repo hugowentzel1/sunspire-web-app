@@ -4,6 +4,28 @@ Use your real production URL everywhere — example: **`https://sunspire-web-app
 
 ---
 
+## The simple way — just check the live links
+
+**This is enough for “does the dashboard / site work on prod?”** Open real URLs in Chrome (no terminal required).
+
+1. Set **`LIVE`** = your production host, e.g. `https://sunspire-web-app.vercel.app`.
+
+2. **Dashboard (main check)**  
+   - Open **`LIVE/c/<your-handle>`** — the same path installers use (bookmark this).  
+   - **Good:** checklist / dashboard loads, **or** a clear **Access required** if you’re not allowed in yet — **not** a blank page, endless spinner, or 500.
+
+3. **Leads**  
+   - Open **`LIVE/c/<your-handle>/leads`**.  
+   - **Good:** “Leads Dashboard” with a table or empty state — **not** stuck on **Loading…** forever.
+
+4. **Optional quick pings** (same session): **`LIVE/status`**, **`LIVE/api/health`**, homepage **`LIVE/`**.
+
+**About `?demo=1`:** Add it only if you want to **peek** at tenant UI **without** going through Stripe first (`LIVE/c/<your-handle>?demo=1`). Real installs use the **same paths without `demo=1`** once they have access. Your routine “is live OK?” check = the **non-demo** links when you’re testing as a real user, or demo links if you just need a fast visual.
+
+**When you’re happy with the live links, you’re done with the dashboard check.** Use **Part 2** below only when you need deeper proof (test lead, Stripe, monitoring, etc.).
+
+---
+
 ## Read this first — honest scope
 
 ### What “everything worked” means (and does not mean)
@@ -46,9 +68,9 @@ Open **`test-results/prod-gate-visual/`** — expect **`G01-…png` through `G09
 
 ---
 
-## Part 2 — YOUR manual checklist (do in order, tick when true)
+## Part 2 — Deeper manual checklist (optional; cold-email + ops)
 
-Copy this into a note and check each line. **URLs** use `https://sunspire-web-app.vercel.app` — swap if yours differs.
+Use this when you need more than “live links load” — e.g. before cold email, or after a big change. **URLs** use `https://sunspire-web-app.vercel.app` — swap if yours differs.
 
 ### A — Public site (5–10 min)
 
