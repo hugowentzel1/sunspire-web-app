@@ -1,114 +1,172 @@
 # YOUR in-depth production checklist (after automation)
 
-Do this **in order** on a **desktop browser** (Chrome). Use your real production URL everywhere below — example: **`https://sunspire-web-app.vercel.app`**. Replace handles with your real tenant slug where noted.
-
-**Before you start**
-
-1. Run the automated gate (so you have screenshots + green tests):
-
-   ```bash
-   cd /path/to/sunspire-clean
-   export ADMIN_TOKEN="your-admin-token"   # optional but recommended
-   BASE_URL=https://sunspire-web-app.vercel.app npm run verify:temp-list:prod
-   ```
-
-2. Open screenshots folder: **`test-results/prod-gate-visual/`** — you should see `G01-…png` through `G10-…png` (G10 only if `ADMIN_TOKEN` was set).
-
-3. To **watch** the full suite in **Chromium** (visible window, ~3 min, slight slow-mo so you can follow):
-
-   ```bash
-   BASE_URL=https://sunspire-web-app.vercel.app npm run verify:temp-list:prod:headed
-   ```
-
-   - Uses **`--project=chromium`** and **`HEADED_SLOW_MO=120`**. Faster: `HEADED_SLOW_MO=0 BASE_URL=… npm run verify:temp-list:prod:headed`.
-   - Optional **video** per test: `PLAYWRIGHT_VIDEO=1 BASE_URL=… npm run verify:temp-list:prod:headed` → under `test-results/`.
-   - **Gate-only** (shorter): `BASE_URL=… npx playwright test tests/e2e/temporary-list-final-gate.spec.ts --workers=1 --headed --timeout=120000 --project=chromium`
-   - **Matrix-only** (14 journey tests): `BASE_URL=… npm run test:matrix:headed:live`
+Use your real production URL everywhere — example: **`https://sunspire-web-app.vercel.app`**. Replace `<your-handle>` with your real tenant slug.
 
 ---
 
-## Phase A — Public & demo (homeowner + prospect)
+## Read this first — honest scope
 
-| Step | Open / do | What “good” looks like |
-|------|-----------|-------------------------|
-| **A1** | Open `/?company=YourDemoCo&demo=1` | Company name/branding visible; hero CTA for branded version; “How it works”; lead/inbox messaging. |
-| **A2** | From demo, start a quote (or open a report URL with address+lat/lng like in TO-DO-LIST). | Report loads; **Annual production** (or kWh) appears; no infinite spinner. |
-| **A3** | Open `/paid?company=paid` (or your paid slug). | Paid positioning; launch/checkout language; no demo-only dead ends. |
-| **A4** | Open `/status` | **System Status** heading; list of services (Supabase, Stripe, NREL, …); each row **Operational**, **Degraded**, or **Down** (not all blindly “ok” if health is 503). **Synthetic monitoring** section visible (may say “no recent data” until Actions run). |
-| **A5** | Open `/api/health` in browser | JSON: `timestamp`, `services[]`, `config` object; HTTP **200** or **503**. |
-| **A6** | Open `/legal/terms` and `/legal/privacy` | Pages load; Sunspire / policy text present. |
+### What “everything worked” means (and does not mean)
 
----
+| | |
+|--|--|
+| **If `npm run verify:temp-list:prod` exits green** | A large set of **automated** checks passed: many pages, APIs, and flows against production **as Playwright and the test code define them**. That is strong signal the app behaves as tested **at that moment**. |
+| **What automation does *not* replace** | **Your** email inbox (Resend), **your** Stripe dashboard (real payment + webhook delivery), **your** UptimeRobot/Sentry dashboards, **your** eyes on the UI, and **your** Supabase Table Editor for a lead you personally submitted. Those need **you** to confirm. |
+| **Typical result without `ADMIN_TOKEN`** | **77 passed, 2 skipped** is normal: admin dashboard screenshot (**G10**) and one GDPR/admin test are skipped until you set `ADMIN_TOKEN`. Set the token and re-run if you want **79** passing. |
+| **Who “double-checked”** | CI or an engineer run proves **the last run of that command**. For **your** peace of mind, **you** should run the same command **once on your machine** after deploys. This doc tells you exactly what to do after that. |
 
-## Phase B — Installer dashboard (tenant)
-
-Use **`?demo=1`** only if you don’t have a live session yet; use a real **`session_id=`** from Stripe after a test payment when verifying real activation.
-
-| Step | Open / do | What “good” looks like |
-|------|-----------|-------------------------|
-| **B1** | Open `/c/<your-handle>?demo=1` (or real post-checkout URL). | Dashboard checklist: instant URL, embed, CRM, test lead, docs links — **or** clear “Access required” if not authorized (expected without session). |
-| **B2** | Open `/c/<your-handle>/leads?demo=1` | “Leads Dashboard” or empty state; not stuck on “Loading…” forever. |
-| **B3** | Open `/c/<your-handle>/success?demo=1` | Success / onboarding style content loads (copy may vary). |
-| **B4** | In dashboard, if shown: set **notification email** and **CRM webhook** (or in Supabase `tenants` table). | Values persist after refresh; new lead triggers email (Resend) / webhook if configured. |
+**Bottom line:** Green tests = “reproducible automated verification passed.” **Ship confidence** = green tests **plus** you ticking the manual items below (especially **one real test lead** and **monitoring alerts**).
 
 ---
 
-## Phase C — Lead submission (end-to-end, **you** confirm side effects)
+## Part 1 — Run automation once (your machine)
 
-| Step | Do | Confirm |
-|------|-----|---------|
-| **C1** | On a **report** for a real tenant slug, open **Book consultation** (or equivalent), submit with a **unique test email**. | UI success or clear error (not silent). |
-| **C2** | Open **Supabase** → **Table Editor** → **`leads`**. | New row: correct `tenant_id`, email, notes if entered. |
-| **C3** | Open `/c/<handle>/leads` for that tenant. | Row appears in UI. |
-| **C4** | Check **Resend** (or installer inbox). | “New lead” email if `notification_email` set. |
-| **C5** | If webhook URL set, check your **webhook receiver** (Zapier/Make/custom). | Payload received once per submit. |
+**1a. Full prod bundle (headless, ~3 min):**
 
----
+```bash
+cd /path/to/sunspire-clean
+export ADMIN_TOKEN="your-admin-token"   # recommended: un-skips admin tests
+BASE_URL=https://sunspire-web-app.vercel.app npm run verify:temp-list:prod
+```
 
-## Phase D — Stripe (real money = careful; prefer **test mode** if duplicated project)
+**You’re done with 1a when:** Terminal shows **passed** (and only **skipped** if you omitted `ADMIN_TOKEN` on purpose).
 
-| Step | Do | Confirm |
-|------|-----|---------|
-| **D1** | Stripe Dashboard → **Developers** → **Webhooks** | Endpoint URL matches your prod `/api/stripe/webhook` (or app route you use); recent deliveries. |
-| **D2** | Complete a **test** checkout (or Stripe test card) | Redirect to `/c/...?session_id=...`; tenant row in Supabase updated (`payment_status`, etc.). |
-| **D3** | **Webhook** event `checkout.session.completed` | **200** response in Stripe logs; no endless **DLQ** growth in admin. |
+**1b. Optional — watch Chromium (same tests, visible browser):**
 
----
+```bash
+BASE_URL=https://sunspire-web-app.vercel.app npm run verify:temp-list:prod:headed
+```
 
-## Phase E — Admin & compliance APIs
+- Uses **`--project=chromium`** and **`HEADED_SLOW_MO=120`**. Faster: `HEADED_SLOW_MO=0` …
+- Optional **videos**: `PLAYWRIGHT_VIDEO=1 BASE_URL=… npm run verify:temp-list:prod:headed` → under `test-results/`.
 
-| Step | Do | Confirm |
-|------|-----|---------|
-| **E1** | Open `/admin/dashboard` — when prompted, paste **ADMIN_TOKEN**. | Metrics / health / circuit breakers load or clear error if token wrong. |
-| **E2** | **Do not** run GDPR delete on real customers without legal review. Optional: call **`POST /api/gdpr/export`** with header `x-admin-token: <ADMIN>` and body `{"email":"test@example.com"}` via curl/Postman. | **401** without token; **200**/empty shape with token. |
+**1c. Optional — review screenshots from the gate spec:**
+
+Open **`test-results/prod-gate-visual/`** — expect **`G01-…png` through `G09-…png`** (and **`G10-…`** if `ADMIN_TOKEN` was set).
 
 ---
 
-## Phase F — Synthetics & monitoring (Steps 42–44)
+## Part 2 — YOUR manual checklist (do in order, tick when true)
 
-| Step | Do | Confirm |
-|------|-----|---------|
-| **F1** | GitHub → **Actions** → **Synthetic monitoring** workflow (if configured). | Run completes; optional POST to `/api/synthetic-results`. |
-| **F2** | Refresh `/status` | **Synthetic monitoring** rows update (PASS/FAIL/timestamps) when data exists. |
-| **F3** | **UptimeRobot** | Monitor hits `GET .../api/health`; alert email = **support@getsunspire.com** (or yours). Test alert once. |
-| **F4** | **Sentry** | Alerts to support email; trigger a test issue if needed. |
+Copy this into a note and check each line. **URLs** use `https://sunspire-web-app.vercel.app` — swap if yours differs.
 
----
+### A — Public site (5–10 min)
 
-## Phase G — Cost alerts (Step 46, optional)
+| # | You open / do | You tick when… |
+|---|----------------|----------------|
+| **A1** | `https://sunspire-web-app.vercel.app/?company=YourDemoCo&demo=1` | Company name/branding visible; hero and “How it works” load; no blank page. |
+| **A2** | From that page, start a quote **or** open a report URL you use in prod (with address / coords). | Report loads; **annual production or kWh** shows; spinner does not run forever. |
+| **A3** | `https://sunspire-web-app.vercel.app/paid?company=paid` (or your paid slug). | Paid messaging loads; no obvious broken demo-only dead end. |
+| **A4** | `https://sunspire-web-app.vercel.app/status` | Heading **System Status**; rows for Supabase, Stripe, NREL, etc.; each row is **Operational**, **Degraded**, or **Down** (not an error page). **Synthetic monitoring** section visible. |
+| **A5** | `https://sunspire-web-app.vercel.app/api/health` | Browser shows JSON: `timestamp`, `services` (or similar), `config`; HTTP **200** or **503** (503 = at least one dependency unhealthy — still “working as designed” for the endpoint). |
+| **A6** | `…/legal/terms` and `…/legal/privacy` | Both load; policy text present. |
 
-| Step | Do |
-|------|-----|
-| **G1** | Stripe → billing alerts. |
+### B — Installer dashboard (demo or real session)
+
+| # | You open / do | You tick when… |
+|---|----------------|----------------|
+| **B1** | `https://sunspire-web-app.vercel.app/c/<your-handle>?demo=1` **or** real URL with `session_id=` after checkout. | Dashboard checklist loads **or** clear **Access required** if not logged in — not infinite loading. |
+| **B2** | `…/c/<your-handle>/leads?demo=1` | **Leads Dashboard** title or empty state; not stuck on **Loading…** forever. |
+| **B3** | `…/c/<your-handle>/success?demo=1` | Success / onboarding content loads. |
+| **B4** | If UI allows: set **notification email** and **CRM webhook** (or set in Supabase `tenants`). | After refresh, values still there. |
+
+### C — One real end-to-end lead (critical for cold email)
+
+| # | You do | You tick when… |
+|---|--------|----------------|
+| **C1** | On a **production** report for your tenant, open **Book consultation** (or equivalent), submit with a **unique test email** (e.g. `you+test2026@…`). | UI shows success or a **clear** error (not silent failure). |
+| **C2** | Supabase → **Table Editor** → **`leads`**. | New row: correct `tenant_id`, email, fields you entered. |
+| **C3** | `…/c/<your-handle>/leads`. | That lead appears in the UI. |
+| **C4** | Email (Resend → installer inbox or your test inbox). | “New lead” (or your template) received **if** `notification_email` is set. |
+| **C5** | If CRM webhook URL is set: your receiver (Zapier/Make/server). | **One** payload per submit; payload looks right. |
+
+### D — Stripe (use **test mode** / test card if you duplicate project)
+
+| # | You do | You tick when… |
+|---|--------|----------------|
+| **D1** | Stripe Dashboard → **Developers** → **Webhooks**. | Endpoint URL matches prod **`/api/stripe/webhook`** (or your app’s route); recent attempts visible. |
+| **D2** | Complete a **test** checkout. | Redirect to `/c/...?session_id=...`; Supabase **tenants** row updated (plan/payment fields). |
+| **D3** | Stripe → webhook delivery for `checkout.session.completed`. | **200** response; not stuck failing. |
+
+### E — Admin & GDPR APIs (needs `ADMIN_TOKEN`)
+
+| # | You do | You tick when… |
+|---|--------|----------------|
+| **E1** | Open `…/admin/dashboard` → paste **ADMIN_TOKEN** when prompted. | Metrics/health load **or** clear error if token wrong. |
+| **E2** | *(Optional, legal-sensitive)* `POST /api/gdpr/export` with header `x-admin-token: <ADMIN>` — only for test data. | **401** without token; **200** with token. |
+
+### F — Monitoring you rely on daily (Steps 44 / TEMPORARY list)
+
+| # | You do | You tick when… |
+|---|--------|----------------|
+| **F1** | GitHub → **Actions** → **Synthetic monitoring** (if configured). | Workflow can complete; optional POST to `/api/synthetic-results`. |
+| **F2** | Refresh `…/status`. | Synthetic section shows **Homeowner** / **Buyer** rows with PASS/FAIL and timestamps when data exists. |
+| **F3** | **UptimeRobot** (or your uptime tool). | Monitor hits **`GET …/api/health`**; alert email is **support@getsunspire.com** (or yours); you **trigger or simulate** one alert and **receive** it. |
+| **F4** | **Sentry** → Alerts. | New issues notify the right email; optional test event. |
+
+### G — Cost alerts (optional, Step 46)
+
+| # | You do |
+|---|--------|
+| **G1** | Stripe → billing / usage alerts. |
 | **G2** | Resend → usage. |
-| **G3** | Supabase → usage / spend cap. |
-| **G4** | Vercel → usage / budget. |
+| **G3** | Supabase → usage / cap. |
+| **G4** | Vercel → budget / usage. |
+
+---
+
+## Part 3 — Reference tables (same content as above, compact)
+
+### Phase A — Public & demo
+
+| Step | Open / do | What “good” looks like |
+|------|-----------|-------------------------|
+| **A1** | `/?company=YourDemoCo&demo=1` | Company name/branding visible; hero CTA; “How it works”; lead/inbox messaging. |
+| **A2** | From demo, start a quote (or open a report URL with address+lat/lng). | Report loads; **Annual production** (or kWh) appears; no infinite spinner. |
+| **A3** | `/paid?company=paid` (or your paid slug). | Paid positioning; launch/checkout language; no demo-only dead ends. |
+| **A4** | `/status` | **System Status**; services listed; each **Operational** / **Degraded** / **Down**; **Synthetic monitoring** visible. |
+| **A5** | `/api/health` | JSON: `timestamp`, `services[]`, `config`; HTTP **200** or **503**. |
+| **A6** | `/legal/terms` and `/legal/privacy` | Pages load; policy text present. |
+
+### Phase B — Installer dashboard
+
+| Step | Open / do | What “good” looks like |
+|------|-----------|-------------------------|
+| **B1** | `/c/<your-handle>?demo=1` (or real post-checkout URL). | Dashboard checklist **or** clear “Access required”; not stuck loading. |
+| **B2** | `/c/<your-handle>/leads?demo=1` | Leads Dashboard or empty state; not “Loading…” forever. |
+| **B3** | `/c/<your-handle>/success?demo=1` | Success / onboarding content loads. |
+| **B4** | Notification email + CRM webhook in UI or Supabase. | Values persist; new lead triggers email/webhook when configured. |
+
+### Phase C — Lead submission
+
+| Step | Do | Confirm |
+|------|-----|---------|
+| **C1** | Submit consultation on prod report with unique test email. | UI success or clear error. |
+| **C2** | Supabase → `leads`. | Row exists with correct `tenant_id`. |
+| **C3** | `/c/<handle>/leads`. | Row in UI. |
+| **C4** | Resend / inbox. | Email if `notification_email` set. |
+| **C5** | Webhook receiver. | Payload if URL set. |
+
+### Phase D — Stripe
+
+| Step | Do | Confirm |
+|------|-----|---------|
+| **D1** | Stripe → Webhooks | URL matches prod; recent deliveries. |
+| **D2** | Test checkout | Redirect with `session_id`; Supabase tenant updated. |
+| **D3** | `checkout.session.completed` | **200** in Stripe logs. |
+
+### Phase E — Admin & compliance
+
+| Step | Do | Confirm |
+|------|-----|---------|
+| **E1** | `/admin/dashboard` + token | Loads or clear auth error. |
+| **E2** | GDPR export (test only) | 401 without token; 200 with token. |
 
 ---
 
 ## When you’re done
 
-1. In **`docs/TEMPORARY-TO-DO-LIST.md`**, check off **Steps 40–46** for items you personally verified.
+1. In **`docs/TEMPORARY-TO-DO-LIST.md`**, check off **Steps 41** (your boxes), **44**, **46** when true.
 2. Open **`TO-DO-LIST.md`** at **STEP 2.1** for cold email.
 3. Keep **`MAINTENANCE-GUIDE.md`** for daily/weekly ops.
 

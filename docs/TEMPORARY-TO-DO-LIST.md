@@ -574,7 +574,9 @@ Before you sign off as **ready for cold emailing**, every item below must be ver
 - **`npm run verify:temp-list:prod`** — runs gate + status mapping + matrix + full-docs (same coverage as prior **38** + **17** docs + gate).
 - **Still YOU-only (cannot automate without your accounts):** Resend inbox proof, CRM webhook receiver proof, real Stripe payment + webhook replay, Supabase Table Editor row confirmation for a **real** tenant slug.
 
-**YOU:** Follow **`docs/OWNER-IN-DEPTH-PROD-CHECKLIST.md`** Phases **C–F** for side effects, Stripe, UptimeRobot, Sentry.
+**YOU:** Follow **`docs/OWNER-IN-DEPTH-PROD-CHECKLIST.md`** — use **Part 2** (manual checklist) for **C–F** (lead side effects, Stripe, UptimeRobot, Sentry).
+
+**Clarity:** Checking every box under **Step 41** above = **you** verified each bullet in the browser or external dashboard. Checking only **`verify:temp-list:prod`** = automation only; **you still must** do **C** (one lead + Supabase + email/webhook), **D** (Stripe), and **F** (UptimeRobot + Sentry) for a honest “cold-email ready” sign-off.
 
 ---
 
@@ -657,19 +659,26 @@ Set alerts or caps so you are not surprised by bills: Stripe (billing alert), Re
 
 - [ ] **Step 47** — **YOUR** ordered manual verification (open these in order) — **YOU**
 
-### Step 47 — Exact order for you to open, click, and verify (YOU)
+### Step 47 — What YOU personally must check (clear order)
 
-Do **not** skip order. Full printable/runbook version: **`docs/OWNER-IN-DEPTH-PROD-CHECKLIST.md`**.
+**Full detail (copy-paste URLs + “tick when…”):** **`docs/OWNER-IN-DEPTH-PROD-CHECKLIST.md`** — start at **“Part 2 — YOUR manual checklist”**.
 
-**Summary (must match that doc):**
+**In one list (same order as that doc):**
 
-1. **Terminal (once):** `export ADMIN_TOKEN='…'` then `BASE_URL=https://sunspire-web-app.vercel.app npm run verify:temp-list:prod` → all green.
-2. **Folder:** Open **`test-results/prod-gate-visual/`** → review **G01–G09** PNGs (full-page captures of live UI).
-3. **Visual (Chromium):** `BASE_URL=… npm run verify:temp-list:prod:headed` → ~3 min, **77 tests**, slow-mo 120ms. Optional: `PLAYWRIGHT_VIDEO=1` for recordings in `test-results/`.
-4. **Browser Phase A:** `/?company=…&demo=1` → report → `/paid?company=…` → `/status` → `/api/health` → `/legal/terms` → `/legal/privacy`.
-5. **Browser Phase B:** `/c/<handle>?demo=1` → `/c/<handle>/leads?demo=1` → `/c/<handle>/success?demo=1`.
-6. **Browser Phase C:** Submit **one real test lead** from report modal → confirm row in **Supabase** + **leads page** + **email** + **webhook** (if configured).
-7. **Phase D–G:** Stripe webhook dashboard, **UptimeRobot**, **Sentry**, optional **cost alerts** — as in the owner doc.
+| Order | What you do | Why |
+|------|-------------|-----|
+| **1** | Terminal: `export ADMIN_TOKEN='…'` (recommended), then `BASE_URL=https://sunspire-web-app.vercel.app npm run verify:temp-list:prod` | Proves automated suite green **on your machine** right now. Without `ADMIN_TOKEN`, expect **2 skipped** (admin/GDPR) — that is normal, not a failure. |
+| **2** | Folder `test-results/prod-gate-visual/` — open **G01–G09** PNGs | Quick visual scan of captured prod pages. |
+| **3** | *(Optional)* `BASE_URL=… npm run verify:temp-list:prod:headed` | Watch Chromium run the same tests (~3 min). |
+| **4** | Browser **A1–A6:** demo home → report → paid → **/status** → **/api/health** → terms + privacy | Confirms **your** browser sees what customers see on prod. |
+| **5** | Browser **B1–B3:** `/c/<handle>?demo=1` → `/leads` → `/success` | Confirms installer dashboard paths load. |
+| **6** | **C1–C5:** Submit **one test lead** on prod → Supabase row → leads UI → email → webhook | **Non-negotiable for cold email:** only **you** can confirm inbox + Supabase + webhook. |
+| **7** | **D1–D3:** Stripe Dashboard (webhook URL, test checkout, delivery **200**) | Confirms money path + webhook to your app. |
+| **8** | **E1–E2:** `/admin/dashboard` + GDPR curl *(if you use them)* | Admin token flows. |
+| **9** | **F3–F4:** UptimeRobot + Sentry — **receive a real test alert** | Step **44**; automation cannot log into your monitoring accounts. |
+| **10** | **G1–G4:** Cost/usage alerts *(optional)* | Step **46**. |
+
+**Honest note:** Green Playwright = “tests we wrote passed at run time.” It does **not** mean your UptimeRobot emailed you or that you watched the browser — **steps 6, 7, 9** still need **you**.
 
 When Steps **44** and **46** are done to your satisfaction, treat the temporary migration list as **complete** for your operational purposes.
 
