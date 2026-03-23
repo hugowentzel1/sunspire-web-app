@@ -3,7 +3,7 @@
 ## What to actually use
 
 **Click through live prod in order (simple):**  
-→ **[`docs/TEMPORARY-TO-DO-LIST.md`](./TEMPORARY-TO-DO-LIST.md)** — section **“Live prod — click through in order”** at the top (**Apple** paid URL + **Meta** demo URL, steps 1–16, then cost & usage).
+→ **[`docs/TEMPORARY-TO-DO-LIST.md`](./TEMPORARY-TO-DO-LIST.md)** — **“Live prod — end-to-end links (Sunspire)”** + **Step 46**. Cost alerts = **Step 47**.
 
 ---
 
