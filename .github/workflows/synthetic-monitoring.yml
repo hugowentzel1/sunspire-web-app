@@ -1,10 +1,9 @@
 # Synthetic monitoring: homeowner quote flow + buyer checkout flow (no real payment).
-# Runs every 30 min, on manual dispatch, and uploads results to the app for /status display.
+# Scheduled runs are OFF — run manually via Actions → "Synthetic monitoring" → Run workflow.
+# When dispatched, uploads results to the app for /status display.
 name: Synthetic monitoring
 
 on:
-  schedule:
-    - cron: '*/30 * * * *'
   workflow_dispatch:
 
 env:

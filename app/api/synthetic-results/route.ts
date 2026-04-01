@@ -53,7 +53,7 @@ export async function GET() {
   }
 }
 
-// Rate limit: 12 POSTs per hour per IP (synthetic runs every 30 min)
+// Rate limit: 12 POSTs per hour per IP (manual synthetic workflow + local posts)
 const SYNTHETIC_POST_WINDOW_MS = 60 * 60 * 1000;
 const SYNTHETIC_POST_MAX = 12;
 const postCountByIp = new Map<string, { count: number; resetAt: number }>();

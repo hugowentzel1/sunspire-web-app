@@ -179,7 +179,7 @@ export default function StatusPage() {
                 {synthetic.lastUpdated && <p className="text-xs text-slate-400 pt-1">Results last updated: {new Date(synthetic.lastUpdated).toLocaleString(undefined, { dateStyle: 'short', timeStyle: 'short' })}</p>}
               </div>
             ) : (
-              <p className="text-sm text-slate-500">No recent synthetic data. Runs every 30 minutes via GitHub Actions.</p>
+              <p className="text-sm text-slate-500">No recent synthetic data. Synthetic runs are manual (GitHub Actions → Synthetic monitoring → Run workflow).</p>
             )}
           </div>
         </div>
@@ -444,7 +444,7 @@ export default function StatusPage() {
               )}
             </div>
           ) : (
-            <p className="text-sm text-slate-500">No recent synthetic data. Runs every 30 minutes via GitHub Actions.</p>
+            <p className="text-sm text-slate-500">No recent synthetic data. Synthetic runs are manual (GitHub Actions → Synthetic monitoring → Run workflow).</p>
           )}
         </div>
 

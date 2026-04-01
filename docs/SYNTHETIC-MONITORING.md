@@ -1,6 +1,6 @@
 # Synthetic monitoring
 
-Production-safe Playwright tests that run on a schedule and surface results on the Sunspire status page.
+Production-safe Playwright tests that can be run manually (GitHub Actions **workflow_dispatch**) and surface results on the Sunspire status page. **No cron schedule** — automated schedule is disabled.
 
 ## What the two tests cover
 
@@ -27,6 +27,11 @@ Production-safe Playwright tests that run on a schedule and surface results on t
 - Status UI: `app/status/page.tsx` (Synthetic monitoring section)
 - Post script: `scripts/post-synthetic-results.mjs`
 
+## Post–Step 42 verification (main / production)
+
+- **Status section present:** `SYNTHETIC_APP_URL=https://sunspire-web-app.vercel.app npm run test:synthetic:status` — baseline test passes; row-level tests run when synthetic JSON has been POSTed to `/api/synthetic-results` (e.g. after GitHub Actions posts results).
+- **Full flows:** `SYNTHETIC_BASE_URL=https://sunspire-web-app.vercel.app npm run test:synthetic` (optional; longer).
+
 ## How to run locally
 
 - **Both production flows:** `npm run test:synthetic` (runs homeowner + buyer; status-page tests skip when the app has no synthetic section, e.g. production from main).
@@ -48,7 +53,7 @@ SYNTHETIC_TEST_ADDRESS="123 Main St, Phoenix, AZ 85004" SYNTHETIC_TEST_LAT=33.45
 
 ## How they run in GitHub Actions
 
-- **Schedule:** Every 30 minutes (`*/30 * * * *`).
+- **Schedule:** None (disabled).
 - **Manual:** Workflow dispatch from the Actions tab (“Synthetic monitoring”).
 - Jobs: One job runs homeowner synthetic, then buyer synthetic, then posts results to `/api/synthetic-results`.
 - On failure, artifacts (test-results/, playwright-report/) are uploaded.
@@ -67,7 +72,7 @@ SYNTHETIC_TEST_ADDRESS="123 Main St, Phoenix, AZ 85004" SYNTHETIC_TEST_LAT=33.45
 ## Going live
 
 - The synthetic API (`/api/synthetic-results`) and the status page’s Synthetic monitoring section live on the **supabase-migration** branch. Production (e.g. `sunspire-web-app.vercel.app`) will return 404 for that route until this branch is merged and deployed.
-- After merge and deploy: the workflow’s default `SYNTHETIC_APP_URL` (same as `SYNTHETIC_BASE_URL`) will POST to production, and `/status` will show homeowner/buyer pass/fail and last run.
+- After merge and deploy: when you **manually** run the workflow, its default `SYNTHETIC_APP_URL` (same as `SYNTHETIC_BASE_URL`) POSTs to production, and `/status` can show homeowner/buyer pass/fail and last run.
 
 ## Checking visually on live while on this branch (no merge yet)
 
@@ -87,7 +92,7 @@ So you do **not** have to wait until merge: use the branch’s preview URL as th
 
 ## GitHub secrets
 
-- **None required.** The workflow POSTs to `/api/synthetic-results` without auth. The API rate-limits (12 POSTs/hour per IP) so the 30‑min schedule works and abuse is limited.
+- **None required.** The workflow POSTs to `/api/synthetic-results` without auth. The API rate-limits (12 POSTs/hour per IP) to limit abuse.
 
 ## How the status page gets synthetic data
 
